@@ -18,8 +18,6 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SWADE_VERSION = '2.2.1.0';
-
 /*
  * This module loads the rules from the Savage Worlds Adventure Edition Core
  * Rules. The SWADE function contains methods that load rules for particular
@@ -30,7 +28,7 @@ var SWADE_VERSION = '2.2.1.0';
  */
 function SWADE() {
 
-  var rules = new QuilvynRules('Savage Worlds', SWADE_VERSION);
+  var rules = new QuilvynRules('Savage Worlds', SWADE.VERSION);
   SWADE.rules = rules;
 
   rules.defineChoice('choices', SWADE.CHOICES);
@@ -61,6 +59,8 @@ function SWADE() {
   Quilvyn.addRuleSet(rules);
 
 }
+
+SWADE.VERSION = '2.2.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -2073,7 +2073,7 @@ SWADE.makeValid = function(attributes) {
 SWADE.ruleNotes = function() {
   return '' +
     '<h2>SWADE Quilvyn Module Notes</h2>\n' +
-    'SWADE Quilvyn Module Version ' + SWADE_VERSION + '\n' +
+    'SWADE Quilvyn Module Version ' + SWADE.VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<p>\n' +
