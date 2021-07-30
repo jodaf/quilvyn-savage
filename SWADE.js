@@ -46,7 +46,8 @@ function SWADE() {
     'edges', 'edgeCount', 'hinderences', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Race,select-one,races', 'advances:Advances,select-one,[0,1,2,3,4,5]');
+    'race:Race,select-one,races'
+  );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
@@ -188,20 +189,103 @@ SWADE.HINDRANCES = {
   'Young (Minor)':'Level=Minor',
 };
 SWADE.FEATURES = {
+  // Race
+  'Adaptable':
+    'Section=feature Note="+1 Edge Count"',
+  'Agile':
+    'Section=skills Note="+1 Agility"',
+  'All Thumbs':
+    'Section=feature Note="TODO"',
+  'Aquatic':
+    'Section=ability Note="Cannot drown, swim at full Pace"',
+  'Armor +2':
+    'Section=combat Note="+2 Armor"',
+  'Bite':
+    'Section=combat Note="Can attack w/Fangs"',
+  'Claws':
+    'Section=combat Note="Can attack w/Claws"',
+  'Bloodthirsty':
+    'Section=combat Note="Cruel w/foes"',
+  "Can't Swim":
+    'Section=abilities,skills Note="Swimming costs 3x Pace","-2 Athletics (swimming)"',
+  'Construct':
+    'Section=combat,save ' +
+    'Note=' +
+      '"Ignore one level of Wound modifiers",' +
+      '"+2 Shaken recovery, immune to disease and poison"',
+  'Dependency':
+    'Section=feature Note="Immerse in water 1 hr/dy or fatigued"',
+  'Environmental Weakness':
+    'Section=combat,save Note="+4 damage from cold","-4 vs. cold effects"',
+  'Flight':
+    'Section=ability,skill ' +
+    'Note="Fly at Pace 12","Use Athletics for flight maneuvers"',
+  'Frail':
+    'Section=skill Note="-1 Toughness"',
+  'Heritage':
+    'Section=feature Note="Choice of +1 Edge Count or +1 Agility"',
+  'Keen Senses':
+    'Section=feature Note="Alertness"',
+  'Low Light Vision':
+    'Section=feature Note="Ignore penalties for Dim and Dark Illumination"',
+  'Luck':
+    'Section=feature Note="+1 Benny/session"',
+  'Outsider (Major)':
+    'Section=feature Note="-2 Persuasion"',
+  'Outsider (Minor)':
+    'Section=feature Note="-2 Persuasion"',
+  'Pacifist (Major)':
+    'Section=feature Note="TODO"',
+  'Racial Enemy':
+    'Section=skill Note="-2 Persuasion w/racial enemy"',
+  'Reduced Pace':
+    'Section=ability Note="-1 Pace"',
+  'Size -1':
+    'Section=ability Note="-1 Toughness"',
+  'Spirited':
+    'Section=ability Note="+1 Spirit"',
+  'Tough':
+    'Section=ability Note="+1 Vigor"',
+  'Toughness':
+    'Section=skill Note="+1 Toughness"',
+  'Vow':
+    'Section=feature Note="Major Vow"'
 };
 SWADE.GOODIES = {
 };
 SWADE.RACES = {
-  'Android':'',
-  'Aquarian':'',
-  'Avion':'',
-  'Dwarf':'',
-  'Elf':'',
-  'Half-Elf':'',
-  'Half-Folk':'',
-  'Human':'',
-  'Rakashan':'',
-  'Saurian':''
+  'Android':
+    'Features=' +
+      'Construct,"Outsider (Major)","Pacifist (Major)",Vow',
+  'Aquarian':
+    'Features=' +
+      'Aquatic,Dependency,"Low Light Vision",Toughness',
+  'Avion':
+    'Features=' +
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace"',
+  'Dwarf':
+    'Features=' +
+      '"Low Light Vision","Reduced Pace",Tough',
+  'Elf':
+    'Features=' +
+      'Agile,"All Thumbs","Low Light Vision"',
+  'Half-Elf':
+    'Features=' +
+      'Heritage,"Low Light Vision","Outsider (Minor)"',
+  'Half-Folk':
+    'Features=' +
+      'Luck,"Reduced Pace","Size -1",Spirited',
+  'Human':
+    'Features=' +
+      'Adaptable',
+  'Rakashan':
+    'Features=' +
+      'Agile,Bite/Claws,Bloodthirsty,"Can\'t Swim","Low Light Vision",' +
+      '"Racial Enemy"',
+  'Saurian':
+    'Features=' +
+      '"Armor +2",Bite,"Environmental Weakness","Keen Senses",' +
+      '"Outsider (minor)"'
 };
 SWADE.SHIELDS = {
   'None':'AC=0',
@@ -254,6 +338,8 @@ SWADE.attributeRules = function(rules) {
     rules.defineChoice('notes', attribute + ':%V (%1)');
     rules.defineRule(attribute + '.1', attribute + 'Die', '=', null);
   }
+
+  rules.defineRule('advancements', '', '=', '0');
 
   QuilvynRules.validAllocationRules
     (rules, 'attributeBoost', 'attributeBoosts', 'Sum "^(agility|smarts|spirit|strength|vigor)$"');
@@ -461,9 +547,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
-      QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
+      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
     SWADE.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
@@ -693,14 +777,10 @@ SWADE.hindranceRulesExtra = function(rules, name) {
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features and #languages# any automatic languages. If the race
- * grants spell slots, #spellAbility# names the ability for computing spell
- * difficulty class, and #spellSlots# lists the number of spells per level per
- * day granted.
+ * associated features and #languages# any automatic languages.
  */
 SWADE.raceRules = function(
-  rules, name, requires, features, selectables, languages, spellAbility,
-  spellSlots
+  rules, name, requires, features, selectables, languages
 ) {
 
   if(!name) {
@@ -723,17 +803,6 @@ SWADE.raceRules = function(
     console.log('Bad languages list "' + languages + '" for race ' + name);
     return;
   }
-  if(spellAbility) {
-    spellAbility = spellAbility.toLowerCase();
-    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SWADE.ATTRIBUTES)) {
-      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
-      return;
-    }
-  }
-  if(!Array.isArray(spellSlots)) {
-    console.log('Bad spellSlots list "' + spellSlots + '" for race ' + name);
-    return;
-  }
 
   var matchInfo;
   var prefix =
@@ -742,7 +811,7 @@ SWADE.raceRules = function(
 
   rules.defineRule(raceLevel,
     'race', '?', 'source == "' + name + '"',
-    'level', '=', null
+    'advancements', '=', 'source + 1'
   );
 
   if(requires.length > 0)
@@ -762,35 +831,6 @@ SWADE.raceRules = function(
     }
   }
 
-  if(spellSlots.length > 0) {
-
-    rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
-    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
-
-    for(var i = 0; i < spellSlots.length; i++) {
-      var matchInfo = spellSlots[i].match(/^(\D+)(\d):/);
-      if(!matchInfo) {
-        console.log('Bad format for spell slot "' + spellSlots[i] + '"');
-        continue;
-      }
-      var spellLevel = matchInfo[2] * 1;
-      var spellType = matchInfo[1];
-      if(spellType != name)
-        rules.defineRule
-          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
-      rules.defineRule('spellAttackModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null,
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellDifficultyClass.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-    }
-  }
-
 };
 
 /*
@@ -798,59 +838,6 @@ SWADE.raceRules = function(
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-
-  if(name == 'Half-Elf') {
-    rules.defineRule
-      ('abilityBoosts', 'abilityNotes.half-ElfAbilityAdjustment', '+=', '2');
-  } else if(name == 'Half-Elf') {
-    rules.defineRule
-      ('skillProficiency.Intimidation', 'skillNotes.menacing', '=', '1');
-  } else if(name == 'Dragonborn') {
-    rules.defineRule('combatNotes.draconicBreath',
-      'level', '=', 'Math.floor((source + 9) / 5)'
-    );
-    rules.defineRule('combatNotes.draconicBreath.1',
-      'race', '=', 'source == "Dragonborn" ? "5\'x30\' line" : null',
-      'dragonbornFeatures.Gold Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Green Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Red Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.White Draconic Ancestry', '=', '"15\' cone"'
-    );
-    rules.defineRule('combatNotes.draconicBreath.2',
-      'race', '=', 'source == "Dragonborn" ? "fire" : null',
-      'dragonbornFeatures.Black Draconic Ancestry', '=', '"acid"',
-      'dragonbornFeatures.Blue Draconic Ancestry', '=', '"lightning"',
-      'dragonbornFeatures.Bronze Draconic Ancestry', '=', '"lightning"',
-      'dragonbornFeatures.Copper Draconic Ancestry', '=', '"acid"',
-      'dragonbornFeatures.Green Draconic Ancestry', '=', '"poison"',
-      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"cold"',
-      'dragonbornFeatures.White Draconic Ancestry', '=', '"cold"'
-    );
-    rules.defineRule('combatNotes.draconicBreath.4',
-      'combatNotes.draconicBreath.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
-    );
-    rules.defineRule
-      ('saveNotes.draconicBreath', 'combatNotes.draconicBreath.2', '=', null);
-    rules.defineRule('selectableFeatureCount.Dragonborn',
-      'race', '=', 'source == "Dragonborn" ? 1 : null'
-    );
-  } else if(name.match(/Dwarf/)) {
-    rules.defineRule
-      ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
-    rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
-  } else if(name.match(/Elf/)) {
-    rules.defineRule
-      ('skillProficiency.Perception', 'skillNotes.keenSenses', '=', '1');
-  } else if(name == 'Tiefling') {
-    rules.defineRule('magicNotes.infernalLegacy',
-      'race', '?', 'source == "Tiefling"',
-      'level', '=',
-        'source<3 ? "<i>Thaumaturgy</i> cantrip" : ' +
-        'source<5 ? "<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest" : ' +
-        '"<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest, <i>Darkness</i> 1/long rest"'
-    );
-  }
 
 };
 
