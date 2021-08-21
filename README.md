@@ -12,10 +12,17 @@ quilvyn-core package.
 ### Installation
 
 To use quilvyn-savage, unbundle the release package into a plugins/
-subdirectory within the Quilvyn installation directory, then add or uncomment
-the 'plugins/SWADE.js' entry in the PLUGINS definition in quilvyn.html.
+subdirectory within the Quilvyn installation directory, then append the
+following lines to the file plugins/plugins.js:
+
+    RULESETS["Savage Worlds Adventurer's Edition"] = {
+      url:'SWADE.js',
+      group:'Savage Worlds',
+      require:'v3.5 (SRD only)'
+    };
 
 ### Usage
 
 Once the SWADE plugin is installed as described above, start Quilvyn and
-choose Savage Worlds from the Rules menu in the editor window.
+check the box next to "Savage Worlds Adventurer's Edition" from the rule set
+menu in the initial window.
