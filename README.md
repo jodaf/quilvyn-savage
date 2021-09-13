@@ -16,7 +16,7 @@ subdirectory within the Quilvyn installation directory, then append the
 following lines to the file plugins/plugins.js:
 
     RULESETS["Savage Worlds Adventurer's Edition"] = {
-      url:'SWADE.js',
+      url:'plugins/SWADE.js',
       group:'Savage Worlds',
       require:'v3.5 (SRD only)'
     };
