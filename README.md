@@ -18,7 +18,7 @@ following lines to the file plugins/plugins.js:
     RULESETS["Savage Worlds Adventurer's Edition"] = {
       url:'plugins/SWADE.js',
       group:'Savage Worlds',
-      require:'v3.5 (SRD only)'
+      require:'SRD35.js'
     };
 
 ### Usage
