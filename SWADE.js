@@ -43,15 +43,13 @@ function SWADE() {
 
   SWADE.createViewers(rules, SWADE.VIEWERS);
   rules.defineChoice('extras',
-    'edges', 'edgeCount', 'hinderences', 'sanityNotes', 'validationNotes'
+    'edges', 'edgePoints', 'hinderences', 'sanityNotes', 'validationNotes'
   );
-  rules.defineChoice('preset',
-    'race:Race,select-one,races'
-  );
+  rules.defineChoice('preset', 'race:Race,select-one,races');
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
-  SWADE.magicRules(rules, SWADE.POWERS);
+  SWADE.magicrRules(rules, SWADE.POWERS);
   SWADE.identityRules(rules, SWADE.RACES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
@@ -61,7 +59,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.2.1.0';
+SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -73,8 +71,7 @@ SWADE.CHOICES = [
  * dependencies among attributes when generating random characters.
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
-  'agility', 'smarts', 'spirit', 'strength', 'vigor',
-  'name', 'race', 'gender', 'advances', 'features', 'edges', 'hindrances',
+  'name', 'race', 'gender', 'advances', 'attributes', 'edges', 'hindrances',
   'skills', 'armor', 'weapons', 'shield', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
@@ -87,6 +84,7 @@ SWADE.ATTRIBUTES = {
   'Vigor':''
 };
 SWADE.ARMORS = {
+  // TODO
   'None':'AC=0 Dex=10 Weight=0',
   'Padded':'AC=1 Dex=10 Weight=1',
   'Leather':'AC=1 Dex=10 Weight=1',
@@ -101,175 +99,172 @@ SWADE.ARMORS = {
   'Splint':'AC=7 Dex=0 Str=15 Weight=3',
   'Plate':'AC=8 Dex=0 Str=15 Weight=3'
 };
-SWADE.DIES = [
-  'd4', 'd6', 'd8', 'd10', 'd12', 'd12+1', 'd12+2', 'd12+3', 'd12+4'
-];
 SWADE.EDGES = {
   'Alertness':'Type=background',
-  'Ambidextrous':'Type=background Require="agility >= 2"',
+  'Ambidextrous':'Type=background Require="agility >= 8"',
   'Arcane Background':'Type=background',
-  'Arcane Resistance':'Type=background Require="spirit >= 2"',
+  'Arcane Resistance':'Type=background Require="spirit >= 8"',
   'Improved Arcane Resistance':
     'Type=background Require="features.Arcane Resistance"',
   'Aristocrat':'Type=background',
-  'Attractive':'Type=background Require="vigor >= 1"',
+  'Attractive':'Type=background Require="vigor >= 6"',
   'Very Attractive':'Type=background Require="feature.Attractive"',
   'Berserk':'Type=background',
-  'Brave':'Type=background Require="spirit >= 1"',
-  'Brawny':'Type=background Require="strength >= 1","vigor >= 1"',
-  'Brute':'Type=background Require="strength >= 1","vigor >= 1"',
-  'Charismatic':'Type=background Require="spirit >= 1"',
-  'Elan':'Type=background Require="spirit >= 1"',
+  'Brave':'Type=background Require="spirit >= 6"',
+  'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
+  'Brute':'Type=background Require="strength >= 6","vigor >= 6"',
+  'Charismatic':'Type=background Require="spirit >= 6"',
+  'Elan':'Type=background Require="spirit >= 6"',
   'Fame':'Type=background',
   'Fame':'Type=background Require="advances >= 4","features.fame"',
-  'Fast Healer':'Type=background Require="vigor >= 2"',
-  'Fleet-Footed':'Type=background Require="agility >= 1"',
-  'Linguist':'Type=background Require="smarts >= 1"',
+  'Fast Healer':'Type=background Require="vigor >= 8"',
+  'Fleet-Footed':'Type=background Require="agility >= 6"',
+  'Linguist':'Type=background Require="smarts >= 6"',
   'Luck':'Type=background',
   'Great Luck':'Type=background Require="features.Luck"',
-  'Quick':'Type=background Require="agility >= 2"',
+  'Quick':'Type=background Require="agility >= 8"',
   'Rich':'Type=background',
   'Filthy Rich':'Type=background Require="feature.Rich"',
-  'Block':'Type=combat Require="advances >= 4","skills.Fighting >= 2"',
+  'Block':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Block':'Type=combat Require="advances >= 8","features.Block"',
-  'Brawler':'Type=combat Require="strength >= 2","vigor >= 2"',
+  'Brawler':'Type=combat Require="strength >= 8","vigor >= 8"',
   'Bruiser':'Type=combat Require="advances >= 4","features.Brawler"',
-  'Calculating':'Type=combat Require="smarts >= 2"',
+  'Calculating':'Type=combat Require="smarts >= 8"',
   'Combat Reflexes':'Type=combat Require="advances >= 8"',
-  'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 2"',
+  'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Counterattack':
     'Type=combat Require="advances >= 8","features.Counterattack"',
   'Dead Shot':
-    'Type=combat Require="skills.Athletics >= 2 || skills.Shooting >= 2"',
-  'Dodge':'Type=combat Require="advances >= 4","agility >= 2"',
+    'Type=combat Require="skills.Athletics >= 8 || skills.Shooting >= 8"',
+  'Dodge':'Type=combat Require="advances >= 4","agility >= 8"',
   'Improved Dodge':'Type=combat Require="advances >= 4","features.Dodge"',
-  'Double Tap':'Type=combat Require="advances >= 4","skills.Shooting >= 1"',
-  'Extraction':'Type=combat Require="agility >= 2"',
+  'Double Tap':'Type=combat Require="advances >= 4","skills.Shooting >= 6"',
+  'Extraction':'Type=combat Require="agility >= 8"',
   'Improved Extraction':
     'Type=combat Require="advances >= 4","features.Extraction"',
-  'Feint':'Type=combat Require="skills.Fighting >= 2"',
-  'First Strike':'Type=combat Require="agility >= 2"',
+  'Feint':'Type=combat Require="skills.Fighting >= 8"',
+  'First Strike':'Type=combat Require="agility >= 8"',
   'Improved First Strike':
     'Type=combat Require="advances >= 12","features.First Strike"',
-  'Free Runner':'Type=combat Require="agility >= 2","skills.Athletics >= 1"',
-  'Frenzy':'Type=combat Require="advances >= 4","skills.Fighting >= 2"',
+  'Free Runner':'Type=combat Require="agility >= 8","skills.Athletics >= 6"',
+  'Frenzy':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Frenzy':'Type=combat Require="advances >= 8","features.Frenzy"',
   'Giant Killer':'Type=combat Require="advances >= 8"',
-  'Hard To Kill':'Type=combat Require="spirit >= 2"',
+  'Hard To Kill':'Type=combat Require="spirit >= 8"',
   'Harder To Kill':
     'Type=combat Require="advances >= 8","features.Hard To Kill"',
-  'Improvisational Fighter':'Type=combat Require="advances >= 4","smarts >= 1"',
-  'Iron Jaw':'Type=combat Require="vigor >= 2"',
+  'Improvisational Fighter':'Type=combat Require="advances >= 4","smarts >= 6"',
+  'Iron Jaw':'Type=combat Require="vigor >= 8"',
   'Killer Instinct':'Type=combat Require="advances >= 4"',
-  'Level Headed':'Type=combat Require="advances >= 4","smarts >= 2"',
+  'Level Headed':'Type=combat Require="advances >= 4","smarts >= 8"',
   'Improved Level Headed':
     'Type=combat Require="advances >= 4","features.Level Headed"',
   'Marksman':
     'Type=combat ' +
-    'Require="advances >= 4","skills.Athletics >= 2 || skills.Shooting >= 2"',
-  'Martial Artist':'Type=combat Require="skills.Fighting >= 1"',
+    'Require="advances >= 4","skills.Athletics >= 8 || skills.Shooting >= 8"',
+  'Martial Artist':'Type=combat Require="skills.Fighting >= 6"',
   'Martial Warrior':
     'Type=combat Require="advances >= 4","features.Martial Artist"',
-  'Mighty Blow':'Type=combat Require="skills.Fighting >= 2"',
-  'Nerves Of Steel':'Type=combat Require="vigor >= 2"',
+  'Mighty Blow':'Type=combat Require="skills.Fighting >= 8"',
+  'Nerves Of Steel':'Type=combat Require="vigor >= 8"',
   'Improved Nerves Of Steel':'Type=combat Require="features.Nerves Of Steel"',
   'No Mercy':'Type=combat Require="advances >= 4"',
-  'Rapid Fire':'Type=combat Require="advances >= 4","skills.Shooting >= 1"',
+  'Rapid Fire':'Type=combat Require="advances >= 4","skills.Shooting >= 6"',
   'Improved Rapid Fire':
     'Type=combat Require="advances >= 8","features.Rapid Fire"',
-  'Rock And Roll':'Type=combat Require="advances >= 4","skills.Shooting >= 2"',
-  'Steady Hands':'Type=combat Require="agility >= 2"',
-  'Sweep':'Type=combat Require="strength >= 2","skills.Fighting >= 2"',
+  'Rock And Roll':'Type=combat Require="advances >= 4","skills.Shooting >= 8"',
+  'Steady Hands':'Type=combat Require="agility >= 8"',
+  'Sweep':'Type=combat Require="strength >= 8","skills.Fighting >= 8"',
   'Improved Sweep':'Type=combat Require="advances >= 8","features.Sweep"',
-  'Trademark Weapon (%weapon)':'Type=combat Require="skills.%weapon >= 2"',
+  'Trademark Weapon (%weapon)':'Type=combat Require="skills.%weapon >= 8"',
   'Improved Trademark Weapon':'Type=combat Require="advances >= 4"',
-  'Two-Fisted':'Type=combat Require="agility >= 2"',
-  'Two-Gun Kid':'Type=combat Require="agility >= 2"',
-  'Command':'Type=combat Require="smarts >= 1"',
+  'Two-Fisted':'Type=combat Require="agility >= 8"',
+  'Two-Gun Kid':'Type=combat Require="agility >= 8"',
+  'Command':'Type=combat Require="smarts >= 6"',
   'Command Presence':'Type=combat Require="advances >= 4","features.Command"',
   'Fervor':
-    'Type=combat Require="advances >= 8","spirit >= 2","features.Command"',
+    'Type=combat Require="advances >= 8","spirit >= 8","features.Command"',
   'Hold The Line!':
-    'Type=combat Require="advances >= 4","smarts >= 2","features.Command"',
+    'Type=combat Require="advances >= 4","smarts >= 8","features.Command"',
   'Inspire':'Type=combat Require="advances >= 4","features.Command"',
   'Natural Leader':
-    'Type=combat Require="advances >= 4","spirit >= 2","features.Command"',
+    'Type=combat Require="advances >= 4","spirit >= 8","features.Command"',
   'Tactician':
     'Type=combat ' +
-    'Require="advances >= 4","smarts >= 2","features.Command","skills.Battle >= 1"',
+    'Require="advances >= 4","smarts >= 8","features.Command","skills.Battle >= 6"',
   'Master Tactician':'Type=combat Require="advances >= 8","features.Tactician"',
   'Artificer':'Type=power Require="advances >= 4",isArcane',
   'Concentration':'Type=power Require="advances >= 4",isArcane',
   'Extra Effort':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Gifted)","skills.Focus >= 1"',
+    'Require="advances >= 4","features.Arcane Background (Gifted)","skills.Focus >= 6"',
   'Gadgeteer':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Weird Science)","skills.Weird Science >= 1"',
+    'Require="advances >= 4","features.Arcane Background (Weird Science)","skills.Weird Science >= 6"',
   'Holy/Unholy Warrior':
     'Type=power ' +
-    'Require="advances >= 4","Arcane Background (Miracles","skills.Faith >= 1"',
+    'Require="advances >= 4","Arcane Background (Miracles","skills.Faith >= 6"',
   'Mentalist':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Psionics)","skills.Psionics >= 1"',
+    'Require="advances >= 4","features.Arcane Background (Psionics)","skills.Psionics >= 6"',
   'New Powers':'Type=power Require=isArcane"',
   'Power Points':'Type=power Require=isArcane"',
   // TODO arcane skill d8+
   'Power Surge':'Type=power Require="isArcane"',
   'Rapid Recharge':
-    'Type=power Require="advances >= 4","spirit >= 1",isArcane',
+    'Type=power Require="advances >= 4","spirit >= 6",isArcane',
   'Improved Rapid Recharge':
     'Type=power Require="advances >= 8","features.Rapid Recharge"',
   // TODO arcane skill d10+
   'Soul Drain':'Type=power Require="advances >= 4",isArcane',
   'Wizard':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Magic)","skills.Spellcasting >= 1"',
-  'Ace':'Type=professional Require="agility >= 2"',
-  'Acrobat':'Type=professional Require="agility >= 2","skills.Athletics >= 2"',
+    'Require="advances >= 4","features.Arcane Background (Magic)","skills.Spellcasting >= 6"',
+  'Ace':'Type=professional Require="agility >= 8"',
+  'Acrobat':'Type=professional Require="agility >= 8","skills.Athletics >= 8"',
   'Combat Acrobat':
     'Type=professional Require="advances >= 4","features.Acrobat"',
   'Assassin':
     'Type=professional ' +
-    'Require="agility >= 2","skills.Fighting >= 1","stealth >= 2"',
+    'Require="agility >= 8","skills.Fighting >= 6","stealth >= 8"',
   'Investigator':
-    'Type=professional Require="smarts >= 1","skills.Research >= 2"',
-  'Jack-Of-All-Trades':'Type=professional Require="smarts >= 3"',
+    'Type=professional Require="smarts >= 6","skills.Research >= 8"',
+  'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
   'McGyver':
     'Type=professional ' +
-    'Require="smarts >= 1","skills.Notice >= 2","skills.Repair >= 1"',
-  'Mr. Fix It':'Type=professional Require="skills.Repair >= 2"',
-  'Scholar':'Type=professional Require="skills.Research >= 2"',
-  'Soldier':'Type=professional Require="strength >= 1","vigor >= 1"',
+    'Require="smarts >= 6","skills.Notice >= 8","skills.Repair >= 6"',
+  'Mr. Fix It':'Type=professional Require="skills.Repair >= 8"',
+  'Scholar':'Type=professional Require="skills.Research >= 8"',
+  'Soldier':'Type=professional Require="strength >= 6","vigor >= 6"',
   'Thief':
     'Type=professional ' +
-    'Require="agility >= 2","skills.Stealth >= 1","skills.Thievery >= 1"',
-  'Woodsman':'Type=professional Require="spirit >= 1","skills.Survival >= 2"',
-  'Bolster':'Type=social Require="spirit >= 2"',
-  'Common Bond':'Type=social Require="spirit >= 2"',
+    'Require="agility >= 8","skills.Stealth >= 6","skills.Thievery >= 6"',
+  'Woodsman':'Type=professional Require="spirit >= 6","skills.Survival >= 8"',
+  'Bolster':'Type=social Require="spirit >= 8"',
+  'Common Bond':'Type=social Require="spirit >= 8"',
   'Connections':'Type=social',
-  'Humiliate':'Type=social Require="skills.Taunt >= 2"',
+  'Humiliate':'Type=social Require="skills.Taunt >= 8"',
   'Menacing':
     'Type=social Require="features.Bloodthirsty || features.Mean || features.Ruthless || features.Ugly"',
-  'Provoke':'Type=social Require="skills.Taunt >= 1"',
-  'Rabble-Rouser':'Type=social Require="spirit >= 2"',
-  'Reliable':'Type=social Require="spirit >= 2"',
-  'Retort':'Type=social Require="skills.Taunt >= 1"',
-  'Streetwise':'Type=social Require="smarts >= 1"',
-  'Strong Willed':'Type=social Require="spirit >= 2"',
+  'Provoke':'Type=social Require="skills.Taunt >= 6"',
+  'Rabble-Rouser':'Type=social Require="spirit >= 8"',
+  'Reliable':'Type=social Require="spirit >= 8"',
+  'Retort':'Type=social Require="skills.Taunt >= 6"',
+  'Streetwise':'Type=social Require="smarts >= 6"',
+  'Strong Willed':'Type=social Require="spirit >= 8"',
   'Iron Will':
     'Type=social ' +
     'Require="advances >= 4","features.Brave","features.Strong Willed"',
-  'Work The Room':'Type=social Require="spirit >= 2"',
+  'Work The Room':'Type=social Require="spirit >= 8"',
   'Work The Crowd':
     'Type=social Require="advances >= 4","features.Work The Room"',
   'Beast Bond':'Type=weird',
-  'Beast Master':'Type=weird Require="spirit >= 2"',
-  'Champion':'Type=weird Require="spirit >= 2","skills.Fighting >= 1"',
+  'Beast Master':'Type=weird Require="spirit >= 8"',
+  'Champion':'Type=weird Require="spirit >= 8","skills.Fighting >= 6"',
   'Chi':'Type=weird Require="advances >= 8","features.Martial Warrior"',
   'Danger Sense':'Type=weird',
-  'Healer':'Type=weird Require="spirit >= 2"',
-  'Liquid Courage':'Type=weird Require="vigor >= 2"',
+  'Healer':'Type=weird Require="spirit >= 8"',
+  'Liquid Courage':'Type=weird Require="vigor >= 8"',
   'Scavenger':'Type=weird Require="features.Luck"',
   'Followers':'Type=legendary Require="advances >= 16"',
   // TODO Maximum die type in selected trait
@@ -279,13 +274,296 @@ SWADE.EDGES = {
   // TODO Expert in selected trait
   'Master':'Type=legendary Require="advances >= 16"',
   'Sidekick':'Type=legendary Require="advances >= 16"',
-  'Tough As Nails':'Type=legendary Require="advances >= 16","vigor >= 2"',
+  'Tough As Nails':'Type=legendary Require="advances >= 16","vigor >= 8"',
   'Tougher Than Nails':
-    'Type=legendary Require="advances >= 16","features.Tough As Nails","vigor >= 4"',
+    'Type=legendary Require="advances >= 16","features.Tough As Nails","vigor >= 12"',
   'Weapon Master':
-    'Type=legendary Require="advances >= 16","skills.Fighting >= 4"',
+    'Type=legendary Require="advances >= 16","skills.Fighting >= 12"',
   'Master Of Arms':
     'Type=legendary Require="advances >= 16","features.Weapon Master"'
+};
+SWADE.FEATURES = {
+
+  // Edges
+  'Ace':'Section=feature Note="TODO"',
+  'Acrobat':'Section=feature Note="TODO"',
+  'Alertness':'Section=skill Note="+2 Notice"',
+  'Ambidextrous':
+    'Section=combat Note="No off-hand penalty, parry bonuses stack"',
+  'Arcane Background':'Section=feature Note="TODO"',
+  'Arcane Resistance':
+    'Section=save Note="-2 others\' targeted arcane skill, -2 magical damage"',
+  'Aristocrat':
+    'Section=feature ' +
+    'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
+  'Artificer':'Section=feature Note="TODO"',
+  'Assassin':'Section=feature Note="TODO"',
+  'Attractive':
+    'Section=skill ' +
+    'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
+  'Beast Bond':'Section=feature Note="TODO"',
+  'Beast Master':'Section=feature Note="TODO"',
+  'Berserk':
+    'Section=combat ' +
+    'Note="After injury, rage causes +1 strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
+  'Block':'Section=feature Note="TODO"',
+  'Bolster':'Section=feature Note="TODO"',
+  'Brave':'Section=save Note="+2 fear checks, -2 fear roll"',
+  'Brawler':'Section=feature Note="TODO"',
+  'Brawny':'Section=feature Note="TODO"',
+  'Bruiser':'Section=feature Note="TODO"',
+  'Brute':'Section=feature Note="TODO"',
+  'Calculating':'Section=feature Note="TODO"',
+  'Champion':'Section=feature Note="TODO"',
+  'Charismatic':'Section=skill Note="Reroll Persuasion"',
+  'Chi':'Section=feature Note="TODO"',
+  'Combat Acrobat':'Section=feature Note="TODO"',
+  'Combat Reflexes':'Section=feature Note="TODO"',
+  'Command Presence':'Section=feature Note="TODO"',
+  'Command':'Section=feature Note="TODO"',
+  'Common Bond':'Section=feature Note="TODO"',
+  'Concentration':'Section=feature Note="TODO"',
+  'Connections':'Section=feature Note="TODO"',
+  'Counterattack':'Section=feature Note="TODO"',
+  'Danger Sense':'Section=feature Note="TODO"',
+  'Dead Shot':'Section=feature Note="TODO"',
+  'Dodge':'Section=feature Note="TODO"',
+  'Double Tap':'Section=feature Note="TODO"',
+  'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
+  'Expert':'Section=feature Note="TODO"',
+  'Extra Effort':'Section=feature Note="TODO"',
+  'Extraction':'Section=feature Note="TODO"',
+  'Fame':
+    'Section=feature,skill ' +
+    'Note=' +
+      '"5x fee from performing",' +
+      '"+2 Persuasion influencing friendly individuals"',
+  'Fast Healer':
+    'Section=combat Note="+2 Vigor (natural healing), check every 3 dy"',
+  'Feint':'Section=feature Note="TODO"',
+  'Fervor':'Section=feature Note="TODO"',
+  'Filthy Rich':'Section=feature Note="5x starting funds"',
+  'First Strike':'Section=feature Note="TODO"',
+  'Fleet-Footed':'Section=ability Note="+2 Pace/+1 run die"',
+  'Followers':'Section=feature Note="TODO"',
+  'Free Runner':'Section=feature Note="TODO"',
+  'Frenzy':'Section=feature Note="TODO"',
+  'Gadgeteer':'Section=feature Note="TODO"',
+  'Giant Killer':'Section=feature Note="TODO"',
+  'Great Luck':'Section=feature Note="+1 Benny each session"',
+  'Hard To Kill':'Section=feature Note="TODO"',
+  'Harder To Kill':'Section=feature Note="TODO"',
+  'Healer':'Section=feature Note="TODO"',
+  'Hold The Line!':'Section=feature Note="TODO"',
+  'Holy/Unholy Warrior':'Section=feature Note="TODO"',
+  'Humiliate':'Section=feature Note="TODO"',
+  'Improved Arcane Resistance':'Section=feature Note="TODO"',
+  'Improved Block':'Section=feature Note="TODO"',
+  'Improved Counterattack':'Section=feature Note="TODO"',
+  'Improved Dodge':'Section=feature Note="TODO"',
+  'Improved Extraction':'Section=feature Note="TODO"',
+  'Improved First Strike':'Section=feature Note="TODO"',
+  'Improved Frenzy':'Section=feature Note="TODO"',
+  'Improved Level Headed':'Section=feature Note="TODO"',
+  'Improved Nerves Of Steel':'Section=feature Note="TODO"',
+  'Improved Rapid Fire':'Section=feature Note="TODO"',
+  'Improved Rapid Recharge':'Section=feature Note="TODO"',
+  'Improved Sweep':'Section=feature Note="TODO"',
+  'Improved Trademark Weapon':'Section=feature Note="TODO"',
+  'Improvisational Fighter':'Section=feature Note="TODO"',
+  'Inspire':'Section=feature Note="TODO"',
+  'Investigator':'Section=feature Note="TODO"',
+  'Iron Jaw':'Section=feature Note="TODO"',
+  'Iron Will':'Section=feature Note="TODO"',
+  'Jack-Of-All-Trades':'Section=feature Note="TODO"',
+  'Killer Instinct':'Section=feature Note="TODO"',
+  'Level Headed':'Section=feature Note="TODO"',
+  'Linguist':'Section=feature Note="TODO"',
+  'Liquid Courage':'Section=feature Note="TODO"',
+  'Luck':'Section=feature Note="+%V Benny each session"',
+  'Marksman':'Section=feature Note="TODO"',
+  'Martial Artist':'Section=feature Note="TODO"',
+  'Martial Warrior':'Section=feature Note="TODO"',
+  'Master Of Arms':'Section=feature Note="TODO"',
+  'Master Tactician':'Section=feature Note="TODO"',
+  'Master':'Section=feature Note="TODO"',
+  'McGyver':'Section=feature Note="TODO"',
+  'Menacing':'Section=feature Note="TODO"',
+  'Mentalist':'Section=feature Note="TODO"',
+  'Mighty Blow':'Section=feature Note="TODO"',
+  'Mr. Fix It':'Section=feature Note="TODO"',
+  'Natural Leader':'Section=feature Note="TODO"',
+  'Nerves Of Steel':'Section=feature Note="TODO"',
+  'New Powers':'Section=feature Note="TODO"',
+  'No Mercy':'Section=feature Note="TODO"',
+  'Power Points':'Section=feature Note="TODO"',
+  'Power Surge':'Section=feature Note="TODO"',
+  'Professional':'Section=feature Note="TODO"',
+  'Provoke':'Section=feature Note="TODO"',
+  'Quick':'Section=combat Note="Redraw action cards under 6"',
+  'Rabble-Rouser':'Section=feature Note="TODO"',
+  'Rapid Fire':'Section=feature Note="TODO"',
+  'Rapid Recharge':'Section=feature Note="TODO"',
+  'Reliable':'Section=feature Note="TODO"',
+  'Retort':'Section=feature Note="TODO"',
+  'Rich':'Section=feature Note="%Vx starting funds"',
+  'Rock And Roll':'Section=feature Note="TODO"',
+  'Scavenger':'Section=feature Note="TODO"',
+  'Scholar':'Section=feature Note="TODO"',
+  'Sidekick':'Section=feature Note="TODO"',
+  'Soldier':'Section=feature Note="TODO"',
+  'Soul Drain':'Section=feature Note="TODO"',
+  'Steady Hands':'Section=feature Note="TODO"',
+  'Streetwise':'Section=feature Note="TODO"',
+  'Strong Willed':'Section=feature Note="TODO"',
+  'Sweep':'Section=feature Note="TODO"',
+  'Tactician':'Section=feature Note="TODO"',
+  'Thief':'Section=feature Note="TODO"',
+  'Tough As Nails':'Section=feature Note="TODO"',
+  'Tougher Than Nails':'Section=feature Note="TODO"',
+  'Trademark Weapon (%weapon)':'Section=feature Note="TODO"',
+  'Two-Fisted':'Section=feature Note="TODO"',
+  'Two-Gun Kid':'Section=feature Note="TODO"',
+  'Very Attractive':
+    'Section=skill ' +
+    'Note="+1 Performance (attracted target)/+1 Persuasion (attracted target)"',
+  'Weapon Master':'Section=feature Note="TODO"',
+  'Wizard':'Section=feature Note="TODO"',
+  'Woodsman':'Section=feature Note="TODO"',
+  'Work The Crowd':'Section=feature Note="TODO"',
+  'Work The Room':'Section=feature Note="TODO"',
+
+  // Hindrances
+  'All Thumbs':
+    'Section=skill ' +
+    'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
+  'Anemic':'Section=save Note="-2 Vigor (resist disease)"',
+  'Arrogant':'Section=combat Note="Always take on biggest threat"',
+  'Bad Eyes (Major)':'Section=skill Note="-2 vision-linked"',
+  'Bad Eyes (Minor)':'Section=skill Note="-1 vision-linked"',
+  'Bad Luck':'Section=feature Note="-1 Benny each session"',
+  'Big Mouth':'Section=feature Note="TODO"',
+  'Blind':'Section=feature Note="TODO"',
+  'Bloodthirsty':'Section=combat Note="Cruel w/foes"',
+  "Can't Swim":
+    'Section=combat,skill ' +
+    'Note="Swim pace %{pace//3}","-2 Athletics (swimming)"',
+  'Cautious':'Section=feature Note="TODO"',
+  'Clueless (Major)':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
+  'Clueless (Minor)':'Section=feature Note="TODO"',
+  'Clumsy':'Section=feature Note="TODO"',
+  'Code Of Honor':'Section=feature Note="TODO"',
+  'Curious':'Section=feature Note="TODO"',
+  'Death Wish':'Section=feature Note="TODO"',
+  'Delusional (Major)':'Section=feature Note="TODO"',
+  'Delusional (Minor)':'Section=feature Note="TODO"',
+  'Doubting Thomas':'Section=feature Note="TODO"',
+  'Driven (Major)':'Section=feature Note="TODO"',
+  'Driven (Minor)':'Section=feature Note="TODO"',
+  'Elderly':'Section=feature Note="TODO"',
+  'Enemy (Major)':'Section=feature Note="TODO"',
+  'Enemy (Minor)':'Section=feature Note="TODO"',
+  'Greedy (Major)':'Section=feature Note="TODO"',
+  'Greedy (Minor)':'Section=feature Note="TODO"',
+  'Habit (Major)':'Section=feature Note="TODO"',
+  'Habit (Minor)':'Section=feature Note="TODO"',
+  'Hard Of Hearing (Major)':'Section=feature Note="TODO"',
+  'Hard Of Hearing (Minor)':'Section=feature Note="TODO"',
+  'Heroic':'Section=feature Note="TODO"',
+  'Hesitant':'Section=feature Note="TODO"',
+  'Illiterate':'Section=feature Note="TODO"',
+  'Impulsive':'Section=feature Note="TODO"',
+  'Jealous (Major)':'Section=feature Note="TODO"',
+  'Jealous (Minor)':'Section=feature Note="TODO"',
+  'Loyal':'Section=feature Note="TODO"',
+  'Mean':'Section=feature Note="TODO"',
+  'Mild Mannered':'Section=feature Note="TODO"',
+  'Mute':'Section=feature Note="TODO"',
+  'Obese':'Section=feature Note="TODO"',
+  'Obligation (Major)':'Section=feature Note="TODO"',
+  'Obligation (Minor)':'Section=feature Note="TODO"',
+  'One Arm':'Section=feature Note="TODO"',
+  'One Eye':'Section=feature Note="TODO"',
+  'Outsider (Major)':
+    'Section=feature,skill ' +
+    'Note="No legal rights","-2 Persuasion (other races)"',
+  'Outsider (Minor)':'Section=skill Note="-2 Persuasion (other races)"',
+  'Overconfident':'Section=feature Note="TODO"',
+  'Pacifist (Major)':
+    'Section=combat ' +
+    'Note="Will not fight living creatures, use nonlethal methods only in defense"',
+  'Pacifist (Minor)':'Section=feature Note="TODO"',
+  'Phobia (Major)':'Section=feature Note="TODO"',
+  'Phobia (Minor)':'Section=feature Note="TODO"',
+  'Poverty':'Section=feature Note="TODO"',
+  'Quirk':'Section=feature Note="TODO"',
+  'Secret (Major)':'Section=feature Note="TODO"',
+  'Secret (Minor)':'Section=feature Note="TODO"',
+  'Shamed (Major)':'Section=feature Note="TODO"',
+  'Shamed (Minor)':'Section=feature Note="TODO"',
+  'Slow (Major)':'Section=feature Note="TODO"',
+  'Slow (Minor)':'Section=feature Note="TODO"',
+  'Small':'Section=feature Note="TODO"',
+  'Stubborn':'Section=feature Note="TODO"',
+  'Suspicious (Major)':'Section=feature Note="TODO"',
+  'Suspicious (Minor)':'Section=feature Note="TODO"',
+  'Thin Skinned (Major)':'Section=feature Note="TODO"',
+  'Thin Skinned (Minor)':'Section=feature Note="TODO"',
+  'Tongue-Tied':'Section=feature Note="TODO"',
+  'Ugly (Major)':'Section=feature Note="TODO"',
+  'Ugly (Minor)':'Section=feature Note="TODO"',
+  'Vengeful (Major)':'Section=feature Note="TODO"',
+  'Vengeful (Minor)':'Section=feature Note="TODO"',
+  'Vow (Minor)':
+    'Section=feature Note="Broad requiremens on behavior and actions"',
+  'Vow (Major)':
+    'Section=feature Note="Strict requirements on behavior and actions"',
+  'Wanted (Major)':'Section=feature Note="TODO"',
+  'Wanted (Minor)':'Section=feature Note="TODO"',
+  'Yellow':'Section=feature Note="TODO"',
+  'Young (Major)':'Section=feature Note="TODO"',
+  'Young (Minor)':'Section=feature Note="TODO"',
+
+  // Races
+  'Adaptable':'Section=feature Note="+1 Edge Points"',
+  'Agile':'Section=ability Note="+1 Agility die"',
+  'Aquatic':'Section=combat Note="Cannot drown, swim pace %{pace}"',
+  'Armor +2':'Section=combat Note="+2 Parry"',
+  'Bite':'Section=combat Note="Can attack w/Fangs"',
+  'Claws':'Section=combat Note="Can attack w/Claws"',
+  'Construct':
+    'Section=combat,save ' +
+    'Note=' +
+      '"Ignore one level of Wound modifiers",' +
+      '"+2 Shaken recovery, immune to disease and poison"',
+  'Dependency':
+    'Section=feature Note="Immerse in water 1 hr/dy or fatigued"',
+  'Environmental Weakness':
+    'Section=combat,save Note="+4 damage from cold","-4 vs. cold effects"',
+  'Flight':
+    'Section=combat,skill ' +
+    'Note="Fly pace 12","Use Athletics for flight maneuvers"',
+  'Frail':
+    'Section=combat Note="-1 Toughness"',
+  'Heritage':
+    'Section=feature Note="+2 Improvement Points (Ability Die or Edge)"',
+  'Keen Senses':'Section=skill Note="+1 Notice die"',
+  'Low Light Vision':
+    'Section=feature Note="Ignore penalties for dim and dark illumination"',
+  'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
+  'Reduced Pace':'Section=combat Note="-1 Pace"',
+  'Size -1':'Section=combat Note="-1 Toughness"',
+  'Spirited':'Section=ability Note="+1 Spirit die"',
+  'Tough':'Section=ability Note="+1 Vigor die"',
+  'Toughness':'Section=combat Note="+1 Toughness"',
+
+  // Misc
+  'Attribute Points':'Section=ability Note="%V to distribute"',
+  'Skill Points':'Section=skill Note="%V to distribute"'
+
+};
+SWADE.GOODIES = {
+  // TODO
 };
 SWADE.HINDRANCES = {
   'All Thumbs':'Level=Minor',
@@ -299,7 +577,8 @@ SWADE.HINDRANCES = {
   'Bloodthirsty':'Level=Major',
   "Can't Swim":'Level=Minor',
   'Cautious':'Level=Minor',
-  'Clueless':'Level=Major',
+  'Clueless (Major)':'Level=Major',
+  'Clueless (Minor)':'Level=Minor',
   'Clumsy':'Level=Major',
   'Code Of Honor':'Level=Major',
   'Curious':'Level=Major',
@@ -365,138 +644,7 @@ SWADE.HINDRANCES = {
   'Wanted (Minor)':'Level=Minor',
   'Yellow':'Level=Major',
   'Young (Major)':'Level=Major',
-  'Young (Minor)':'Level=Minor',
-};
-SWADE.FEATURES = {
-
-  // Race
-  'Adaptable':'Section=feature Note="+1 Edge Count"',
-  'Agile':'Section=ability Note="+1 Agility die"',
-  'Aquatic':'Section=ability Note="Cannot drown, %{pace} swim pace"',
-  'Armor +2':'Section=combat Note="+2 Parry"',
-  'Bite':'Section=combat Note="Can attack w/Fangs"',
-  'Claws':'Section=combat Note="Can attack w/Claws"',
-  'Construct':
-    'Section=combat,save ' +
-    'Note=' +
-      '"Ignore one level of Wound modifiers",' +
-      '"+2 Shaken recovery, immune to disease and poison"',
-  'Dependency':
-    'Section=feature Note="Immerse in water 1 hr/dy or fatigued"',
-  'Environmental Weakness':
-    'Section=combat,save Note="+4 damage from cold","-4 vs. cold effects"',
-  'Flight':
-    'Section=ability,skill ' +
-    'Note="12 fly pace","Use Athletics for flight maneuvers"',
-  'Frail':
-    'Section=combat Note="-1 Toughness"',
-  'Heritage':'Section=feature Note="Choice of +1 Edge Count or +1 Agility die"',
-  'Keen Senses':'Section=skill Note="+1 Notice die"',
-  'Low Light Vision':
-    'Section=feature Note="Ignore penalties for dim and dark illumination"',
-  'Luck':'Section=feature Note="+1 Benny each session"',
-  'Racial Enemy':'Section=skill Note="-2 Persuasion rolls w/racial enemy"',
-  'Reduced Pace':'Section=ability Note="-1 Pace"',
-  'Size -1':'Section=combat Note="-1 Toughness"',
-  'Spirited':'Section=ability Note="+1 Spirit die"',
-  'Tough':'Section=ability Note="+1 Vigor die"',
-  'Toughness':'Section=combat Note="+1 Toughness"',
-
-  // Hindrances
-  'All Thumbs':
-    'Section=feature ' +
-    'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
-  'Anemic':'Section=feature Note="TODO"',
-  'Arrogant':'Section=feature Note="TODO"',
-  'Bad Eyes (Major)':'Section=feature Note="TODO"',
-  'Bad Eyes (Minor)':'Section=feature Note="TODO"',
-  'Bad Luck':'Section=feature Note="TODO"',
-  'Big Mouth':'Section=feature Note="TODO"',
-  'Blind':'Section=feature Note="TODO"',
-  'Bloodthirsty':'Section=combat Note="Cruel w/foes"',
-  "Can't Swim":
-    'Section=ability,skill ' +
-    'Note="%{pace//3} swim Pace","-2 Athletics (swimming) rolls"',
-  'Cautious':'Section=feature Note="TODO"',
-  'Clueless':'Section=feature Note="TODO"',
-  'Clumsy':'Section=feature Note="TODO"',
-  'Code Of Honor':'Section=feature Note="TODO"',
-  'Curious':'Section=feature Note="TODO"',
-  'Death Wish':'Section=feature Note="TODO"',
-  'Delusional (Major)':'Section=feature Note="TODO"',
-  'Delusional (Minor)':'Section=feature Note="TODO"',
-  'Doubting Thomas':'Section=feature Note="TODO"',
-  'Driven (Major)':'Section=feature Note="TODO"',
-  'Driven (Minor)':'Section=feature Note="TODO"',
-  'Elderly':'Section=feature Note="TODO"',
-  'Enemy (Major)':'Section=feature Note="TODO"',
-  'Enemy (Minor)':'Section=feature Note="TODO"',
-  'Greedy (Major)':'Section=feature Note="TODO"',
-  'Greedy (Minor)':'Section=feature Note="TODO"',
-  'Habit (Major)':'Section=feature Note="TODO"',
-  'Habit (Minor)':'Section=feature Note="TODO"',
-  'Hard Of Hearing (Major)':'Section=feature Note="TODO"',
-  'Hard Of Hearing (Minor)':'Section=feature Note="TODO"',
-  'Heroic':'Section=feature Note="TODO"',
-  'Hesitant':'Section=feature Note="TODO"',
-  'Illiterate':'Section=feature Note="TODO"',
-  'Impulsive':'Section=feature Note="TODO"',
-  'Jealous (Major)':'Section=feature Note="TODO"',
-  'Jealous (Minor)':'Section=feature Note="TODO"',
-  'Loyal':'Section=feature Note="TODO"',
-  'Mean':'Section=feature Note="TODO"',
-  'Mild Mannered':'Section=feature Note="TODO"',
-  'Mute':'Section=feature Note="TODO"',
-  'Obese':'Section=feature Note="TODO"',
-  'Obligation (Major)':'Section=feature Note="TODO"',
-  'Obligation (Minor)':'Section=feature Note="TODO"',
-  'One Arm':'Section=feature Note="TODO"',
-  'One Eye':'Section=feature Note="TODO"',
-  'Outsider (Major)':
-    'Section=skill Note="-2 Persuasion rolls w/other races, no legal rights"',
-  'Outsider (Minor)':'Section=skill Note="-2 Persuasion rolls w/other races"',
-  'Overconfident':'Section=feature Note="TODO"',
-  'Pacifist (Major)':
-    'Section=combat ' +
-    'Note="Will not fight living creatures, use nonlethal methods only in defense"',
-  'Pacifist (Minor)':'Section=feature Note="TODO"',
-  'Phobia (Major)':'Section=feature Note="TODO"',
-  'Phobia (Minor)':'Section=feature Note="TODO"',
-  'Poverty':'Section=feature Note="TODO"',
-  'Quirk':'Section=feature Note="TODO"',
-  'Secret (Major)':'Section=feature Note="TODO"',
-  'Secret (Minor)':'Section=feature Note="TODO"',
-  'Shamed (Major)':'Section=feature Note="TODO"',
-  'Shamed (Minor)':'Section=feature Note="TODO"',
-  'Slow (Major)':'Section=feature Note="TODO"',
-  'Slow (Minor)':'Section=feature Note="TODO"',
-  'Small':'Section=feature Note="TODO"',
-  'Stubborn':'Section=feature Note="TODO"',
-  'Suspicious (Major)':'Section=feature Note="TODO"',
-  'Suspicious (Minor)':'Section=feature Note="TODO"',
-  'Thin Skinned (Major)':'Section=feature Note="TODO"',
-  'Thin Skinned (Minor)':'Section=feature Note="TODO"',
-  'Tongue-Tied':'Section=feature Note="TODO"',
-  'Ugly (Major)':'Section=feature Note="TODO"',
-  'Ugly (Minor)':'Section=feature Note="TODO"',
-  'Vengeful (Major)':'Section=feature Note="TODO"',
-  'Vengeful (Minor)':'Section=feature Note="TODO"',
-  'Vow (Minor)':
-    'Section=feature Note="Broad requiremens on behavior and actions"',
-  'Vow (Major)':
-    'Section=feature Note="Strict requirements on behavior and actions"',
-  'Wanted (Major)':'Section=feature Note="TODO"',
-  'Wanted (Minor)':'Section=feature Note="TODO"',
-  'Yellow':'Section=feature Note="TODO"',
-  'Young (Major)':'Section=feature Note="TODO"',
-  'Young (Minor)':'Section=feature Note="TODO"',
-
-  // Misc
-  'Attribute Points':'Section=ability Note="%V to distribute"',
-  'Skill Points':'Section=skill Note="%V to distribute"'
-
-};
-SWADE.GOODIES = {
+  'Young (Minor)':'Level=Minor'
 };
 SWADE.RACES = {
   'Android':
@@ -581,15 +729,30 @@ SWADE.attributeRules = function(rules) {
 
   for(var a in SWADE.ATTRIBUTES) {
     a = a.toLowerCase();
-    rules.defineRule(a + 'Die', a, '=', 'SWADE.DIES[source]');
+    rules.defineRule(a + 'Level', a + 'Allocation', '=', null);
+    rules.defineRule(a, a + 'Level', '=', 'Math.min(4 + source * 2, 12)');
+    rules.defineRule(a + 'Modifier', a + 'Level', '=', 'Math.max(source-3, 0)');
+    rules.defineChoice('notes', a + ':d%V%1');
+    rules.defineRule(a + '.1',
+      a + 'Modifier', '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
+    );
   }
-  rules.defineRule('advances', '', '=', '0');
-  rules.defineRule('attributePoints', '', '=', '5');
+  rules.defineRule('advances', '', '^=', '0');
+  rules.defineRule('improvementPoints.total', 'advances', '=', 'source * 2');
+  rules.defineRule('attributePoints',
+    '', '=', '5',
+    'improvementPoints.ability', '+', 'Math.floor(source / 2)'
+  );
   rules.defineRule
     ('abilityNotes.attributePoints', 'attributePoints', '=', null);
   rules.defineRule('pace', '', '=', '6');
+  rules.defineRule('rank',
+    'advances', '=', 'source<4 ? "Novice" : source<8 ? "Seasoned" : source<12 ? "Veteran" : source<16 ? "Heroic" : "Legendary"'
+  );
   QuilvynRules.validAllocationRules
-    (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)$"');
+    (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
+  QuilvynRules.validAllocationRules
+    (rules, 'improvementPoints', 'improvementPoints.total', 'Sum "^improvementPoints.(ability|edge|skill|hinderance)$"');
 
 };
 
@@ -675,10 +838,10 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
   rules.defineRule('parry',
-    '', '=', '4',
-    'skillModifier.Fighting', '+', null
+    '', '=', '2',
+    'skillModifier.Fighting', '+', 'source / 2'
   );
-  rules.defineRule('toughness', 'vigor', '=', '4 + source');
+  rules.defineRule('toughness', 'vigor', '=', 'source / 2 + 2');
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SWADE.ATTRIBUTES) {
@@ -711,11 +874,9 @@ SWADE.identityRules = function(rules, races) {
 
 };
 
-/* Defines rules related to magic use. */
-SWADE.magicRules = function(rules, powers) {
-
+/* Defines rules related to powers. */
+SWADE.magicrRules = function(rules, powers) {
   // TODO
-
 };
 
 /* Defines rules related to character aptitudes. */
@@ -725,7 +886,7 @@ SWADE.talentRules = function(
 
   QuilvynUtils.checkAttrTable(edges, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
-  QuilvynUtils.checkAttrTable(hindrances, ['Level', 'Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(hindrances, ['Level']);
   QuilvynUtils.checkAttrTable(skills, ['Attribute', 'Core']);
 
   for(var edge in edges) {
@@ -750,10 +911,19 @@ SWADE.talentRules = function(
       'Section=skill Note="%V ' + skill + '"'
     );
   }
-  rules.defineRule('skillPoints', '', '=', '12');
+  rules.defineRule('edgePoints',
+    '', '=', '1',
+    'improvementPoints.edge', '+', 'Math.floor(source / 2)'
+  );
+  rules.defineRule('skillPoints',
+    '', '=', '12',
+    'improvementPoints.skill', '+', 'source'
+  );
   rules.defineRule('skillNotes.skillPoints', 'skillPoints', '=', null);
   QuilvynRules.validAllocationRules
-    (rules, 'skillPoints', 'skillPoints', 'Sum "^skills\\."');
+    (rules, 'edgePoints', 'edgePoints', 'Sum "^edges\\."');
+  QuilvynRules.validAllocationRules
+    (rules, 'skillPoints', 'skillPoints', 'Sum "^skillAllocations\\."');
 
 };
 
@@ -790,15 +960,11 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
     );
-  else if(type == 'Hindrance') {
+  else if(type == 'Hindrance')
     SWADE.hindranceRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Level'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Type')
     );
-    SWADE.hindranceRulesExtra(rules, name);
-  } else if(type == 'Race') {
+  else if(type == 'Race') {
     SWADE.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
@@ -970,6 +1136,22 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
  */
 SWADE.edgeRulesExtra = function(rules, name) {
   // TODO
+  if(name == 'Attractive') {
+    rules.defineRule('skillNotes.attractive',
+      '', '=', '1',
+      'skillNotes.veryAttractive', '+', '1'
+    );
+  } else if(name == 'Luck') {
+    rules.defineRule('featureNotes.luck',
+      '', '=', '1',
+      'featureNotes.greatLuck', '+', '1'
+    );
+  } else if(name == 'Rich') {
+    rules.defineRule('featureNotes.rich',
+      '', '=', '3',
+      'featureNotes.filthyRich', '^', '5'
+    );
+  }
 };
 
 /*
@@ -987,11 +1169,13 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     var note =
       name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
     if(sections[i] == 'ability')
-      rules.defineRule
-        (matchInfo[2].toLowerCase(), 'abilityNotes.' + note, '+', matchInfo[1]);
+      rules.defineRule(matchInfo[2].toLowerCase() + 'Points',
+        'abilityNotes.' + note, '+', matchInfo[1]
+      );
     else if(sections[i] == 'skill')
-      rules.defineRule
-        ('skillModifier.' + matchInfo[2], 'skillNotes.' + note, '+', matchInfo[1]);
+      rules.defineRule('skillPoints.' + matchInfo[2],
+        'skillNotes.' + note, '+', matchInfo[1]
+      );
   }
 };
 
@@ -1004,7 +1188,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
  * #value#), or "raise" (increases the value to #value#). #value#, if null,
  * defaults to 1; occurrences of $1, $2, ... in #value# reference capture
  * groups in #pattern#. #sections# and #notes# list the note sections
- * ("attribute", "combat", "companion", "feature", "magic", "save", or "skill")
+ * ("attribute", "combat", "companion", "feature", "power", "save", or "skill")
  * and formats that show the effects of the goody on the character sheet.
  */
 SWADE.goodyRules = function(
@@ -1017,15 +1201,12 @@ SWADE.goodyRules = function(
 /*
  * TODO
  */
-SWADE.hindranceRules = function(rules, name, level, requires, implies, types) {
-};
-
-/*
- * Defines in #rules# the rules associated with hindrance #name# that cannot be
- * derived directly from the attributes passed to hindranceRules.
- */
-SWADE.hindranceRulesExtra = function(rules, name) {
+SWADE.hindranceRules = function(rules, name, level) {
   // TODO
+  rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
+  rules.defineRule('improvementPoints.total',
+    'hindrances.' + name, '+', level=='Major' ? '2' : '1'
+  );
 };
 
 /*
@@ -1092,7 +1273,10 @@ SWADE.raceRules = function(
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-
+  if(name == 'Half-Elf') {
+    rules.defineRule
+      ('improvementPoints.total', 'featureNotes.heritage', '+', '2');
+  }
 };
 
 /*
@@ -1135,20 +1319,26 @@ SWADE.skillRules = function(rules, name, attribute, core) {
   if(attribute) {
     attribute = attribute.toLowerCase();
     if(!(attribute.charAt(0).toUpperCase() + attribute.substring(1) in SWADE.ATTRIBUTES)) {
-      console.log('Bad attribute "' + ability + '" for skill ' + name);
+      console.log('Bad attribute "' + attribute + '" for skill ' + name);
       return;
     }
   }
 
-  rules.defineRule('skillModifier.' + name,
-    'skills.' + name, '=', null,
-    '', '^', '0'
-  );
   rules.defineRule
-    ('skillDies.' + name, 'skillModifier.' + name, '=', 'SWADE.DIES[source]');
+    ('skillLevels.' + name, 'skillAllocations.' + name, '=', null);
   if(core && core != 'n' && core != 'N') {
-    rules.defineRule('skillModifier.' + name, 'agility', '^=', '0');
+    rules.defineRule('skillLevels.' + name, 'agility', '^=', '0');
   }
+  rules.defineRule('skills.' + name,
+    'skillLevels.' + name, '=', 'Math.min(4 + source * 2, 12)'
+  );
+  rules.defineRule('skillModifier.' + name,
+    'skillLevels.' + name, '=', 'Math.max(source - 3, 0)'
+  );
+  rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
+  rules.defineRule('skills.' + name + '.1',
+    'skillModifier.' + name, '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
+  );
 
 };
 
@@ -1377,13 +1567,13 @@ SWADE.createViewers = function(rules, viewers) {
              separator: '/'},
             {name: 'Attributes', within: 'Section 1',
              format: '<b>Agi/Sma/Spi/Str/Vig</b> %V', separator: '/'},
-              {name: 'Agility Die', within: 'Abilities', format: '%V'},
-              {name: 'Smarts Die', within: 'Abilities', format: '%V'},
-              {name: 'Spirit Die', within: 'Abilities', format: '%V'},
-              {name: 'Strength Die', within: 'Abilities', format: '%V'},
-              {name: 'Vigor Die', within: 'Abilities', format: '%V'},
+              {name: 'Agility', within: 'Abilities', format: '%V'},
+              {name: 'Smarts', within: 'Abilities', format: '%V'},
+              {name: 'Spirit', within: 'Abilities', format: '%V'},
+              {name: 'Strength', within: 'Abilities', format: '%V'},
+              {name: 'Vigor', within: 'Abilities', format: '%V'},
           {name: 'Section 2', within: '_top', separator: '; '},
-            {name: 'Skill Die', within: 'Section 2', separator: '/'},
+            {name: 'Skills', within: 'Section 2', separator: '/'},
             {name: 'Edges', within: 'Section 2', separator: '/'},
             {name: 'Hindrances', within: 'Section 2', separator: '/'},
             {name: 'Powers', within: 'Section 2', separator: '/'},
@@ -1406,20 +1596,20 @@ SWADE.createViewers = function(rules, viewers) {
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Attributes', within: '_top', separator: outerSep},
           {name: 'Abilities', within: 'Attributes', separator: innerSep},
-            {name: 'Agility Die', within: 'Abilities'},
-            {name: 'Smarts Die', within: 'Abilities'},
-            {name: 'Spirit Die', within: 'Abilities'},
-            {name: 'Strength Die', within: 'Abilities'},
-            {name: 'Vigor Die', within: 'Abilities'},
+            {name: 'Agility', within: 'Abilities'},
+            {name: 'Smarts', within: 'Abilities'},
+            {name: 'Spirit', within: 'Abilities'},
+            {name: 'Strength', within: 'Abilities'},
+            {name: 'Vigor', within: 'Abilities'},
           {name: 'Description', within: 'Attributes', separator: innerSep},
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
             {name: 'AdvanceInfo', within: 'AbilityStats', separator: ''},
-              {name: 'Advancements', within: 'AdvanceInfo'},
+              {name: 'Advances', within: 'AdvanceInfo'},
               {name: 'Rank', within: 'AdvanceInfo', format: ' (%V)'},
-            {name: 'Advancement', within: 'AbilityStats'},
-            {name: 'Pace', within: 'AbilityStats'},
+            {name: 'Improvement Points', within: 'AbilityStats',
+             separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -1429,8 +1619,12 @@ SWADE.createViewers = function(rules, viewers) {
       viewer.addElements(
         {name: 'FeaturesAndSkills', within: '_top', separator: outerSep,
          format: '<b>Features/Skills</b><br/>%V'},
-          {name: 'Edges', within: 'FeaturesAndSkills', separator: ';'},
-          {name: 'Hindrances', within: 'FeaturesAndSkills', separator: ';'}
+          {name: 'FeaturePart', within: 'FeaturesAndSkills', separator: innerSep},
+            {name: 'EdgePart', within: 'FeaturePart', separator: ' '},
+              {name: 'EdgeStats', within: 'EdgePart', separator: ''},
+                {name: 'Edge Points', within: 'EdgeStats', format: '<b>Edges</b> (%V points):'},
+              {name: 'Edges', within: 'EdgePart', format: '%V', separator: listSep},
+            {name: 'Hindrances', within: 'FeaturePart', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -1444,11 +1638,11 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Skill Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
             {name: 'Combat Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
             {name: 'Save Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Magic Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
+            {name: 'Power Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
         );
       }
       viewer.addElements(
-          {name: 'Skill Dies', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
+          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -1463,6 +1657,7 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Toughness', within: 'CombatStats'},
               {name: 'Initiative', within: 'CombatStats'},
               {name: 'Parry', within: 'CombatStats'},
+              {name: 'Pace', within: 'CombatStats'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
               {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
@@ -1488,9 +1683,9 @@ SWADE.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-        {name: 'Magic', within: '_top', separator: outerSep,
-         format: '<b>Magic</b><br/>%V'},
-          {name: 'SpellPart', within: 'Magic', separator: '\n'},
+        {name: 'Power', within: '_top', separator: outerSep,
+         format: '<b>Power</b><br/>%V'},
+          {name: 'SpellPart', within: 'Power', separator: '\n'},
             {name: 'SpellStats', within: 'SpellPart', separator: innerSep},
               {name: 'Spells Known', within: 'SpellStats', separator: listSep},
               {name: 'Spell Slots', within: 'SpellStats', separator:listSep},
@@ -1498,11 +1693,11 @@ SWADE.createViewers = function(rules, viewers) {
                format: '<b>Attack</b>: %V', separator: listSep},
               {name: 'Spell Difficulty Class', within: 'SpellStats',
                format: '<b>Spell DC</b>: %V', separator: listSep},
-          {name: 'Spells', within: 'Magic', columns: '1L', separator: null}
+          {name: 'Spells', within: 'Power', columns: '1L', separator: null}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
-          {name: 'Magic Notes', within: 'Magic', separator: noteSep}
+          {name: 'Power Notes', within: 'Power', separator: noteSep}
         );
       }
       viewer.addElements(
@@ -1577,7 +1772,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Feature') {
     var sections =
-      ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
+      ['ability', 'combat', 'companion', 'feature', 'power', 'skill'];
     result.push(
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
@@ -1661,22 +1856,24 @@ SWADE.initialEditorElements = function() {
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
-    ['experience', 'Experience', 'text', [8]],
-    ['levels', 'Class Levels', 'bag', 'levels'],
     ['imageUrl', 'Image URL', 'text', [20]],
-    ['agility', 'Agility', 'select-one', raises],
-    ['smarts', 'Smarts', 'select-one', raises],
-    ['spirit', 'Spirit', 'select-one', raises],
-    ['strength', 'Srength', 'select-one', raises],
-    ['vigor', 'Vigor', 'select-one', raises],
+    ['agilityAllocation', 'Agility', 'select-one', raises],
+    ['smartsAllocation', 'Smarts', 'select-one', raises],
+    ['spiritAllocation', 'Spirit', 'select-one', raises],
+    ['strengthAllocation', 'Srength', 'select-one', raises],
+    ['vigorAllocation', 'Vigor', 'select-one', raises],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['gender', 'Gender', 'text', [10]],
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
+    ['advances', 'Advances', 'text', [4]],
+    ['improvementPoints.ability', 'Ability Improvements', 'text', [4]],
+    ['improvementPoints.edge', 'Edge Improvements', 'text', [4]],
+    ['improvementPoints.skill', 'Skill Improvements', 'text', [4]],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
-    ['skills', 'Skills', 'bag', 'skills'],
+    ['skillAllocations', 'Skills', 'bag', 'skills'],
     ['languages', 'Languages', 'set', 'languages'],
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
@@ -1832,27 +2029,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         attributes[attr + 'Adjust'] += 1;
       howMany--;
     }
-  } else if(attribute == 'deity') {
-    /* Pick a deity that's no more than one alignment position removed. */
-    var aliInfo = attributes.alignment.match(/^([CLN]).*\s([GEN])/);
-    var aliPat;
-    if(aliInfo == null) /* Neutral character */
-      aliPat = 'N[EG]?|[CL]N';
-    else if(aliInfo[1] == 'N') /* NG or NE */
-      aliPat = 'N|[CLN]' + aliInfo[2];
-    else if(aliInfo[2] == 'N') /* CN or LN */
-      aliPat = 'N|' + aliInfo[1] + '[GNE]';
-    else /* [LC]G or [LC]E */
-      aliPat = aliInfo[1] + '[N' + aliInfo[2] + ']|N' + aliInfo[2];
-    choices = [];
-    var deities = this.getChoices('deities');
-    for(attr in deities) {
-      if(deities[attr].match('=' + aliPat + '\\b'))
-        choices.push(attr);
-    }
-    if(choices.length > 0)
-      attributes.deity = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'edges' || attribute == 'features') {
+  } else if(attribute == 'edges') {
     var debug = [];
     attribute = attribute == 'edges' ? 'edge' : 'selectableFeature';
     var countPrefix = attribute + 'Count.';
@@ -1931,20 +2108,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'gender') {
     attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
-  } else if(attribute == 'hitPoints') {
-    attributes.hitPoints = 0;
-    for(var clas in this.getChoices('levels')) {
-      if((attr = attributes['levels.' + clas]) == null)
-        continue;
-      matchInfo = this.getChoices('levels')[clas].match(/^((\d+)?d)?(\d+)$/);
-      var number = matchInfo == null || matchInfo[2] == null ||
-                   matchInfo[2] == '' ? 1 : matchInfo[2];
-      var sides = matchInfo == null || matchInfo[3] == null ||
-                  matchInfo[3] == '' ? 6 : matchInfo[3];
-      attributes.hitPoints += number * sides;
-      while(--attr > 0)
-        attributes.hitPoints += QuilvynUtils.random(number, number * sides);
-    }
   } else if(attribute == 'languages') {
     attrs = this.applyRules(attributes);
     howMany = attrs.languageCount;
