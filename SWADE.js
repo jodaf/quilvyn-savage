@@ -45,7 +45,9 @@ function SWADE() {
   rules.defineChoice('extras',
     'edges', 'edgePoints', 'hinderences', 'sanityNotes', 'validationNotes'
   );
-  rules.defineChoice('preset', 'race:Race,select-one,races');
+  rules.defineChoice('preset',
+    'race:Race,select-one,races', 'advances:Advances,text,4'
+  );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
@@ -71,17 +73,17 @@ SWADE.CHOICES = [
  * dependencies among attributes when generating random characters.
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
-  'name', 'race', 'gender', 'advances', 'attributes', 'edges', 'hindrances',
-  'skills', 'armor', 'weapons', 'shield', 'powers'
+  'name', 'race', 'gender', 'advances', 'improvements', 'attributes', 'edges',
+  'hindrances', 'skills', 'armor', 'weapons', 'shield', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
 SWADE.ATTRIBUTES = {
-  'Agility':'',
-  'Smarts':'',
-  'Spirit':'',
-  'Strength':'',
-  'Vigor':''
+  'agility':'',
+  'smarts':'',
+  'spirit':'',
+  'strength':'',
+  'vigor':''
 };
 SWADE.ARMORS = {
   // TODO
@@ -682,7 +684,9 @@ SWADE.RACES = {
 };
 SWADE.SHIELDS = {
   'None':'AC=0',
-  'Shield':'AC=2'
+  'Small':'AC=1',
+  'Medium':'AC=2',
+  'Large':'AC=3'
 };
 SWADE.SKILLS = {
   'Academics':'Attribute=smarts',
@@ -728,7 +732,6 @@ SWADE.WEAPONS = {
 SWADE.attributeRules = function(rules) {
 
   for(var a in SWADE.ATTRIBUTES) {
-    a = a.toLowerCase();
     rules.defineRule(a + 'Level', a + 'Allocation', '=', null);
     rules.defineRule(a, a + 'Level', '=', 'Math.min(4 + source * 2, 12)');
     rules.defineRule(a + 'Modifier', a + 'Level', '=', 'Math.max(source-3, 0)');
@@ -923,7 +926,7 @@ SWADE.talentRules = function(
   QuilvynRules.validAllocationRules
     (rules, 'edgePoints', 'edgePoints', 'Sum "^edges\\."');
   QuilvynRules.validAllocationRules
-    (rules, 'skillPoints', 'skillPoints', 'Sum "^skillAllocations\\."');
+    (rules, 'skillPoints', 'skillPoints', 'Sum "^skillAllocation\\."');
 
 };
 
@@ -1169,11 +1172,11 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     var note =
       name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
     if(sections[i] == 'ability')
-      rules.defineRule(matchInfo[2].toLowerCase() + 'Points',
+      rules.defineRule(matchInfo[2].toLowerCase() + 'Level',
         'abilityNotes.' + note, '+', matchInfo[1]
       );
     else if(sections[i] == 'skill')
-      rules.defineRule('skillPoints.' + matchInfo[2],
+      rules.defineRule('skillLevel.' + matchInfo[2],
         'skillNotes.' + note, '+', matchInfo[1]
       );
   }
@@ -1318,22 +1321,22 @@ SWADE.skillRules = function(rules, name, attribute, core) {
   }
   if(attribute) {
     attribute = attribute.toLowerCase();
-    if(!(attribute.charAt(0).toUpperCase() + attribute.substring(1) in SWADE.ATTRIBUTES)) {
+    if(!(attribute in SWADE.ATTRIBUTES)) {
       console.log('Bad attribute "' + attribute + '" for skill ' + name);
       return;
     }
   }
 
   rules.defineRule
-    ('skillLevels.' + name, 'skillAllocations.' + name, '=', null);
+    ('skillLevel.' + name, 'skillAllocation.' + name, '=', null);
   if(core && core != 'n' && core != 'N') {
-    rules.defineRule('skillLevels.' + name, 'agility', '^=', '0');
+    rules.defineRule('skillLevel.' + name, 'agility', '^=', '0');
   }
   rules.defineRule('skills.' + name,
-    'skillLevels.' + name, '=', 'Math.min(4 + source * 2, 12)'
+    'skillLevel.' + name, '=', 'Math.min(4 + source * 2, 12)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillLevels.' + name, '=', 'Math.max(source - 3, 0)'
+    'skillLevel.' + name, '=', 'Math.max(source - 3, 0)'
   );
   rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
@@ -1873,7 +1876,7 @@ SWADE.initialEditorElements = function() {
     ['improvementPoints.skill', 'Skill Improvements', 'text', [4]],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
-    ['skillAllocations', 'Skills', 'bag', 'skills'],
+    ['skillAllocation', 'Skills', 'bag', 'skills'],
     ['languages', 'Languages', 'set', 'languages'],
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
@@ -1996,283 +1999,82 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var i;
   var matchInfo;
 
-  if(attribute == 'armor') {
-    var armors = this.getChoices('armors');
-    attrs = this.applyRules(attributes);
-    choices = [];
-    for(attr in armors) {
-      var weight = QuilvynUtils.getAttrValue(armors[attr], 'Weight');
-      if(weight == null)
-        weight = 0;
-      else if((weight + '').match(/light/i))
-        weight = 1;
-      else if((weight + '').match(/medium/i))
-        weight = 2;
-      else if((weight + '').match(/heavy/i))
-        weight = 3;
-      if(weight == 0 ||
-         attrs['armorProficiency.Heavy'] ||
-         weight <= 2 && attrs['armorProficiency.Medium'] ||
-         weight == 1 && attrs['armorProficiency.Light'] ||
-         attrs['armorProficiency.' + attr])
-        choices.push(attr);
+  if(attribute == 'advances') {
+    if(attributes.advances == null) {
+      howMany = QuilvynUtils.random(0, 9);
+      attributes.advances = howMany<5 ? 0 : howMany<8 ? 1 : howMany<9 ? 2 : 3;
+      if(QuilvynUtils.random(0, 9) >= 7)
+        attributes.advances += 4;
     }
-    attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'boosts') {
-    var attrs = this.applyRules(attributes);
-    howMany = (attrs.abilityBoosts || 0) - QuilvynUtils.sumMatching(attributes, /Adjust$/);
+  } else if(attribute == 'armor') {
+    // TODO
+  } else if(attribute == 'attributes') {
+    attrs = this.applyRules(attributes);
+    for(attr in SWADE.ATTRIBUTES) {
+      attributes[attr + 'Allocation'] = 0;
+    }
+    howMany = attrs.attributePoints;
     while(howMany > 0) {
-      attr = QuilvynUtils.randomKey(SWADE.ATTRIBUTES).toLowerCase();
-      if(attributes[attr + 'Adjust'] == null)
-        attributes[attr + 'Adjust'] = 1;
-      else
-        attributes[attr + 'Adjust'] += 1;
+      attr = QuilvynUtils.randomKey(SWADE.ATTRIBUTES);
+      attributes[attr + 'Allocation']++;
       howMany--;
     }
   } else if(attribute == 'edges') {
-    var debug = [];
-    attribute = attribute == 'edges' ? 'edge' : 'selectableFeature';
-    var countPrefix = attribute + 'Count.';
-    var prefix = attribute + 's';
-    var suffix = attribute.charAt(0).toUpperCase() + attribute.substring(1);
-    var toAllocateByType = {};
-    attrs = this.applyRules(attributes);
-    for(attr in attrs) {
-      if(attr.startsWith(countPrefix)) {
-        toAllocateByType[attr.replace(countPrefix, '')] = attrs[attr];
-      }
-    }
-    var availableChoices = {};
-    var allChoices = this.getChoices(prefix);
-    for(attr in allChoices) {
-      var types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Type');
-      if(types.indexOf('General') < 0)
-        types.push('General');
-      if(attrs[prefix + '.' + attr] != null) {
-        for(i = 0; i < types.length; i++) {
-          var t = types[i];
-          if(toAllocateByType[t] != null && toAllocateByType[t] > 0) {
-            debug.push(prefix + '.' + attr + ' reduces ' + t + ' feats from ' + toAllocateByType[t]);
-            toAllocateByType[t]--;
-            break;
-          }
-        }
-      } else if(attrs['features.' + attr] == null) {
-        availableChoices[attr] = types;
-      }
-    }
-    for(attr in toAllocateByType) {
-      var availableChoicesInType = {};
-      for(var a in availableChoices) {
-        if(attr == 'General' || availableChoices[a].includes(attr))
-          availableChoicesInType[a] = '';
-      }
-      howMany = toAllocateByType[attr];
-      debug.push('Choose ' + howMany + ' ' + attr + ' ' + prefix);
-      while(howMany > 0 &&
-            (choices=QuilvynUtils.getKeys(availableChoicesInType)).length > 0) {
-        debug.push(
-          'Pick ' + howMany + ' from ' +
-          QuilvynUtils.getKeys(availableChoicesInType).length
-        );
-        var pick;
-        var picks = {};
-        pickAttrs(picks, '', choices, howMany, 1);
-        debug.push('From ' + QuilvynUtils.getKeys(picks).join(", ") + ' reject');
-        for(pick in picks) {
-          attributes[prefix + '.' + pick] = 1;
-          delete availableChoicesInType[pick];
-        }
-        var validate = this.applyRules(attributes);
-        for(pick in picks) {
-          var name = pick.charAt(0).toLowerCase() +
-                     pick.substring(1).replaceAll(' ', '').
-                     replace(/\(/g, '\\(').replace(/\)/g, '\\)');
-          if(QuilvynUtils.sumMatching
-               (validate,
-                new RegExp('^(sanity|validation)Notes.'+name+suffix)) != 0) {
-            delete attributes[prefix + '.' + pick];
-            debug[debug.length - 1] += ' ' + name;
-          } else {
-            howMany--;
-            delete availableChoices[pick];
-          }
-        }
-      }
-      debug.push('xxxxxxx');
-    }
-    if(window.DEBUG) {
-      var notes = attributes.notes;
-      attributes.notes =
-        (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
-    }
+    // TODO
   } else if(attribute == 'gender') {
     attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
-  } else if(attribute == 'languages') {
-    attrs = this.applyRules(attributes);
-    howMany = attrs.languageCount;
-    choices = [];
-    for(attr in this.getChoices('languages')) {
-      if(attrs['languages.' + attr])
-        howMany--;
-      else
-        choices.push(attr);
+  } else if(attribute == 'hindrances') {
+    var allHindrances = this.getChoices('hindrances');
+    howMany = 4;
+    for(attr in attributes) {
+      matchInfo = attr.match(/^hindrances\.(.*)$/);
+      if(!matchInfo)
+        continue;
+      howMany -= allHindrances[matchInfo[1]].includes('Major') ? 2 : 1;
     }
-    pickAttrs(attributes, 'languages.', choices, howMany, 1);
-  } else if(attribute == 'levels') {
-    var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
-    if(!attributes.level) {
-      if(assignedLevels > 0)
-        attributes.level = assignedLevels
-      else if(attributes.experience)
-        attributes.level =
-          Math.floor((1 + Math.sqrt(1 + attributes.experience/125)) / 2);
-      else
-        // Random 1..8 with each value half as likely as the previous one.
-        attributes.level =
-          9 - Math.floor(Math.log(QuilvynUtils.random(2, 511)) / Math.log(2));
-    }
-    var max = SWADE.LEVELS_EXPERIENCE[attributes.level] * 1000 - 1;
-    var min = SWADE.LEVELS_EXPERIENCE[attributes.level - 1] * 1000;
-    if(!attributes.experience || attributes.experience < min)
-      attributes.experience = QuilvynUtils.random(min, max);
-    choices = QuilvynUtils.getKeys(this.getChoices('levels'));
-    if(assignedLevels == 0) {
-      var classesToChoose =
-        attributes.level == 1 || QuilvynUtils.random(1,10) < 9 ? 1 : 2;
-      // Find choices that are valid or can be made so
-      while(classesToChoose > 0) {
-        var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
-        attributes[which] = 1;
-        if(QuilvynUtils.sumMatching(this.applyRules(attributes),
-             /^validationNotes.*(BaseAttack|CasterLevel|Spells)/) == 0) {
-          assignedLevels++;
-          classesToChoose--;
-        } else {
-          delete attributes[which];
-        }
+    while(howMany > 0) {
+      var type = howMany==1 || QuilvynUtils.random(0, 9)<8 ? 'Minor' : 'Major';
+      choices = [];
+      for(attr in allHindrances) {
+        if(!('hindrances.' + attr in attributes) &&
+           allHindrances[attr].includes(type))
+          choices.push(attr);
       }
+      attr = choices[QuilvynUtils.random(0, choices.length - 1)];
+      attributes['hindrances.' + attr] = 1;
+      howMany -= allHindrances[attr].includes('Major') ? 2 : 1;
     }
-    while(assignedLevels < attributes.level) {
-      var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
-      while(!attributes[which]) {
-        which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
-      }
-      attributes[which]++;
-      assignedLevels++;
-    }
-    delete attributes.level;
+  } else if(attribute == 'improvements') {
+    // TODO
   } else if(attribute == 'name') {
     attributes['name'] = SWADE.randomName(attributes['race']);
-  } else if(attribute == 'shield') {
-    attrs = this.applyRules(attributes);
-    choices = [''];
-    for(attr in this.getChoices('shields')) {
-      if(attr == 'None' ||
-         attrs['armorProficiency.Shield'] ||
-         attrs['armorProficiency.' + attr]) {
-        choices.push(attr);
-      }
-    }
-    attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'skills' || attribute == 'tools') {
-    attrs = this.applyRules(attributes);
-    var group = this.getChoices(attribute);
-    for(attr in attrs) {
-    var pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
-      if((matchInfo = attr.match(pat)) == null ||
-         !matchInfo[1].match(/\bChoose\b/i))
-        continue;
-      var pieces = matchInfo[1].split('/');
-      for(i = 0; i < pieces.length; i++) {
-        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
-        if(!matchInfo)
-          continue;
-        var count = matchInfo[1] * 1;
-        if(matchInfo[2].match(/^any$/i)) {
-          choices = QuilvynUtils.getKeys(group);
-        } else {
-          choices = matchInfo[2].split(/\s*,\s*/);
-          for(var j = choices.length - 1; j >= 0; j--) {
-            if(choices[j].match(/^any\s+/i)) {
-              var type = choices[j].replace(/^any\s+/, '');
-              for(var item in group) {
-                if(group[item].includes(type))
-                  choices.push(item);
-              }
-              choices.splice(j, 1);
-            }
-          }
-        }
-        for(var k = choices.length - 1; k >= 0; k--) {
-          if(!attrs[attribute + 'Chosen.' + choices[k]])
-            continue;
-          count--;
-          choices.splice(k, 1);
-        }
-      }
-      pickAttrs(attributes, attribute + 'Chosen.', choices, count, 1);
-    }
-    pickAttrs(
-      attributes, attribute + 'Chosen.', QuilvynUtils.getKeys(group),
-      attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
-      QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen'), 1
-    );
-  } else if(attribute == 'spells') {
-    var availableSpellsByGroupAndLevel = {};
-    var groupAndLevel;
-    attrs = this.applyRules(attributes);
-    for(attr in this.getChoices('spells')) {
-      groupAndLevel = attr.split('(')[1].split(' ')[0];
-      if(availableSpellsByGroupAndLevel[groupAndLevel] == null)
-        availableSpellsByGroupAndLevel[groupAndLevel] = [];
-      availableSpellsByGroupAndLevel[groupAndLevel].push(attr);
-    }
-    for(attr in attrs) {
-      if((matchInfo = attr.match(/^spellSlots\.(.*)/)) == null)
-        continue;
-      groupAndLevel = matchInfo[1];
-      howMany = attrs[attr];
-      choices = availableSpellsByGroupAndLevel[groupAndLevel];
-      if(choices != null) {
-        var slots = attrs['spellSlots.' + groupAndLevel];
-        if(slots != null && slots < howMany) {
-          howMany = slots;
-        }
-        pickAttrs
-          (attributes, 'spells.', choices, howMany -
-           QuilvynUtils.sumMatching(attributes, '^spells\\..*[(]' + groupAndLevel + '[^0]'), 1);
-      }
-    }
-  } else if(attribute == 'weapons') {
-    var weapons = this.getChoices('weapons');
-    attrs = this.applyRules(attributes);
-    choices = [];
-    for(attr in weapons) {
-      var category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');
-      if(category == null)
-        category = 0;
-      else if((category + '').match(/simple/i))
-        category = 1;
-      else if((category + '').match(/martial/i))
-        category = 2;
-      if(category == 0 ||
-         attrs['weaponProficiency.Martial'] ||
-         category == 1 && attrs['weaponProficiency.Simple'] ||
-         attrs['weaponProficiency.' + attr]) {
-        choices.push(attr);
-      }
-    }
-    pickAttrs(attributes, 'weapons.', choices,
-              3 - QuilvynUtils.sumMatching(attributes, /^weapons\./), 1);
-  } else if(
-     attribute == 'agility' || attribute == 'smarts' || attribute == 'spirit' ||
-     attribute == 'strength' || attribute == 'vigor'
-  ) {
-    attributes[attribute] = 1;
   } else if(this.getChoices(attribute + 's') != null) {
     attributes[attribute] =
       QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
+  } else if(attribute == 'powers') {
+    // TODO
+  } else if(attribute == 'shield') {
+    // TODO
+  } else if(attribute == 'skills') {
+    var allSkills = this.getChoices('skills');
+    attrs = this.applyRules(attributes);
+    howMany = attrs.skillPoints;
+    for(attr in attrs) {
+      if(attr.match(/^skillAllocation\./))
+        howMany -= attributes[attr];
+    }
+    while(howMany > 0) {
+      attr = QuilvynUtils.randomKey(allSkills);
+      attr = 'skillAllocation.' + attr;
+      if(attributes[attr] && attributes[attr] >= 4)
+        continue;
+      if(!attributes[attr])
+        attributes[attr] = 0;
+      attributes[attr]++;
+      howMany--;
+    }
+  } else if(attribute == 'weapons') {
+    // TODO
   }
 
 };
