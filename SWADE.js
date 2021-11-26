@@ -73,8 +73,8 @@ SWADE.CHOICES = [
  * dependencies among attributes when generating random characters.
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
-  'name', 'race', 'gender', 'advances', 'improvements', 'attributes', 'edges',
-  'hindrances', 'skills', 'armor', 'weapons', 'shield', 'powers'
+  'name', 'race', 'gender', 'advances', 'hindrances', 'improvements',
+  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -308,33 +308,41 @@ SWADE.FEATURES = {
   'Berserk':
     'Section=combat ' +
     'Note="After injury, rage causes +1 strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
-  'Block':'Section=feature Note="TODO"',
+  'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':'Section=feature Note="TODO"',
   'Brave':'Section=save Note="+2 fear checks, -2 fear roll"',
-  'Brawler':'Section=feature Note="TODO"',
+  'Brawler':
+    'Section=combat ' +
+    'Note="+%V Toughness/+d%1 damage or +%2 damage die w/fists or natural weapons"',
   'Brawny':'Section=feature Note="TODO"',
-  'Bruiser':'Section=feature Note="TODO"',
+  'Bruiser':'Section=combat Note="Increased Brawler effects"',
   'Brute':'Section=feature Note="TODO"',
-  'Calculating':'Section=feature Note="TODO"',
+  'Calculating':
+    'Section=combat ' +
+    'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':'Section=feature Note="TODO"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
   'Chi':'Section=feature Note="TODO"',
   'Combat Acrobat':'Section=feature Note="TODO"',
-  'Combat Reflexes':'Section=feature Note="TODO"',
+  'Combat Reflexes':'Section=combat Note="+2 on recovery rolls"',
   'Command Presence':'Section=feature Note="TODO"',
   'Command':'Section=feature Note="TODO"',
   'Common Bond':'Section=feature Note="TODO"',
   'Concentration':'Section=feature Note="TODO"',
   'Connections':'Section=feature Note="TODO"',
-  'Counterattack':'Section=feature Note="TODO"',
+  'Counterattack':
+    'Section=combat Note="Free Attack after failed foe attack %V/rd"',
   'Danger Sense':'Section=feature Note="TODO"',
-  'Dead Shot':'Section=feature Note="TODO"',
-  'Dodge':'Section=feature Note="TODO"',
-  'Double Tap':'Section=feature Note="TODO"',
+  'Dead Shot':
+    'Section=combat ' +
+    'Note="Joker Action Card gives dbl damage from first thowing or shooting"',
+  'Dodge':'Section=combat Note="-2 foe ranged attacks"',
+  'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
   'Expert':'Section=feature Note="TODO"',
   'Extra Effort':'Section=feature Note="TODO"',
-  'Extraction':'Section=feature Note="TODO"',
+  'Extraction':
+    'Section=combat Note="Negate attack of %V foes when withdrawing"',
   'Fame':
     'Section=feature,skill ' +
     'Note=' +
@@ -342,44 +350,55 @@ SWADE.FEATURES = {
       '"+2 Persuasion influencing friendly individuals"',
   'Fast Healer':
     'Section=combat Note="+2 Vigor (natural healing), check every 3 dy"',
-  'Feint':'Section=feature Note="TODO"',
+  'Feint':
+    'Section=skill ' +
+    'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
   'Fervor':'Section=feature Note="TODO"',
-  'Filthy Rich':'Section=feature Note="5x starting funds"',
-  'First Strike':'Section=feature Note="TODO"',
+  'Filthy Rich':'Section=feature Note="+2x Rich effects"',
+  'First Strike':
+    'Section=combat Note="Free attack against %V foes moving into reach"',
   'Fleet-Footed':'Section=ability Note="+2 Pace/+1 run die"',
   'Followers':'Section=feature Note="TODO"',
-  'Free Runner':'Section=feature Note="TODO"',
-  'Frenzy':'Section=feature Note="TODO"',
+  'Free Runner':
+    'Section=skill ' +
+    'Note="Move full Pace on difficult ground/+2 Athletics (climbing)/+2 on foot chases"',
+  'Frenzy':'Section=combat Note="Extra Fighting die on %V attcks/rd"',
   'Gadgeteer':'Section=feature Note="TODO"',
-  'Giant Killer':'Section=feature Note="TODO"',
-  'Great Luck':'Section=feature Note="+1 Benny each session"',
-  'Hard To Kill':'Section=feature Note="TODO"',
-  'Harder To Kill':'Section=feature Note="TODO"',
+  'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
+  'Great Luck':'Section=feature Note="+1 Luck effects"',
+  'Hard To Kill':
+    'Section=save Note="Ignore Wound penalties to avoid bleeding out"',
+  'Harder To Kill':'Section=save Note="50% chance to cheat death"',
   'Healer':'Section=feature Note="TODO"',
   'Hold The Line!':'Section=feature Note="TODO"',
   'Holy/Unholy Warrior':'Section=feature Note="TODO"',
   'Humiliate':'Section=feature Note="TODO"',
   'Improved Arcane Resistance':'Section=feature Note="TODO"',
-  'Improved Block':'Section=feature Note="TODO"',
-  'Improved Counterattack':'Section=feature Note="TODO"',
-  'Improved Dodge':'Section=feature Note="TODO"',
-  'Improved Extraction':'Section=feature Note="TODO"',
-  'Improved First Strike':'Section=feature Note="TODO"',
-  'Improved Frenzy':'Section=feature Note="TODO"',
-  'Improved Level Headed':'Section=feature Note="TODO"',
+  'Improved Block':'Section=combat Note="+1 Block effects"',
+  'Improved Counterattack':
+    'Section=combat Note="Two additional Counterattacks"',
+  'Improved Dodge':'Section=combat Note="+2 to evade area attacks"',
+  'Improved Extraction':
+    'Section=combat Note="Increase Extraction effects by 2"',
+  'Improved First Strike':
+    'Section=combat Note="Increase First Strike effects by 2"',
+  'Improved Frenzy':'Section=combat Note="Increase Frenzy effects by 1"',
+  'Improved Level Headed':
+    'Section=combat Note="Increase Level Headed effects by 1"',
   'Improved Nerves Of Steel':'Section=feature Note="TODO"',
   'Improved Rapid Fire':'Section=feature Note="TODO"',
   'Improved Rapid Recharge':'Section=feature Note="TODO"',
   'Improved Sweep':'Section=feature Note="TODO"',
   'Improved Trademark Weapon':'Section=feature Note="TODO"',
-  'Improvisational Fighter':'Section=feature Note="TODO"',
+  'Improvisational Fighter':
+    'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':'Section=feature Note="TODO"',
   'Investigator':'Section=feature Note="TODO"',
-  'Iron Jaw':'Section=feature Note="TODO"',
+  'Iron Jaw':'Section=combat Note="+2 soak/+2 vs. knockout"',
   'Iron Will':'Section=feature Note="TODO"',
   'Jack-Of-All-Trades':'Section=feature Note="TODO"',
-  'Killer Instinct':'Section=feature Note="TODO"',
-  'Level Headed':'Section=feature Note="TODO"',
+  'Killer Instinct':'Section=skill Note="Reroll sel-initiated opposed test"',
+  'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
   'Linguist':'Section=feature Note="TODO"',
   'Liquid Courage':'Section=feature Note="TODO"',
   'Luck':'Section=feature Note="+%V Benny each session"',
@@ -426,9 +445,7 @@ SWADE.FEATURES = {
   'Trademark Weapon (%weapon)':'Section=feature Note="TODO"',
   'Two-Fisted':'Section=feature Note="TODO"',
   'Two-Gun Kid':'Section=feature Note="TODO"',
-  'Very Attractive':
-    'Section=skill ' +
-    'Note="+1 Performance (attracted target)/+1 Persuasion (attracted target)"',
+  'Very Attractive':'Section=skill Note="+1 Attractive effects"',
   'Weapon Master':'Section=feature Note="TODO"',
   'Wizard':'Section=feature Note="TODO"',
   'Woodsman':'Section=feature Note="TODO"',
@@ -648,6 +665,9 @@ SWADE.HINDRANCES = {
   'Young (Major)':'Level=Major',
   'Young (Minor)':'Level=Minor'
 };
+SWADE.POWERS = {
+  // TODO
+};
 SWADE.RACES = {
   'Android':
     'Features=' +
@@ -721,9 +741,6 @@ SWADE.SKILLS = {
   'Taunt':'Attribute=smarts',
   'Weird Science':'Attribute=smarts',
 };
-SWADE.POWERS = {
-  // TODO
-};
 SWADE.WEAPONS = {
   // TODO
 };
@@ -755,7 +772,7 @@ SWADE.attributeRules = function(rules) {
   QuilvynRules.validAllocationRules
     (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvementPoints', 'improvementPoints.total', 'Sum "^improvementPoints.(ability|edge|skill|hinderance)$"');
+    (rules, 'improvementPoints', 'improvementPoints.total', 'Sum "^improvementPoints.(ability|edge|skill|hindrance)$"');
 
 };
 
@@ -1143,6 +1160,49 @@ SWADE.edgeRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.attractive',
       '', '=', '1',
       'skillNotes.veryAttractive', '+', '1'
+    );
+  } else if(name == 'Block') {
+    rules.defineRule('combatNotes.block',
+      '', '=', '1',
+      'combatNotes.improvedBlock', '+', '1'
+    );
+  } else if(name == 'Brawler') {
+    rules.defineRule('combatNotes.brawler',
+      '', '=', '1',
+      'combatNotes.bruiser', '+', '1'
+    );
+    rules.defineRule('combatNotes.brawler.1',
+      '', '=', '4',
+      'combatNotes.bruiser', '+', '2'
+    );
+    rules.defineRule('combatNotes.brawler.2',
+      '', '=', '1',
+      'combatNotes.bruiser', '+', '1'
+    );
+  } else if(name == 'Counterattack') {
+    rules.defineRule('combatNotes.counterattack',
+      '', '=', '1',
+      'combatNotes.improvedCounterattack', '+', '1'
+    );
+  } else if(name == 'Extraction') {
+    rules.defineRule('combatNotes.extraction',
+      '', '=', '1',
+      'combatNotes.improvedExtraction', '+', '2'
+    );
+  } else if(name == 'First Strike') {
+    rules.defineRule('combatNotes.firstStrike',
+      '', '=', '1',
+      'combatNotes.improvedFirstStrike', '+', '2'
+    );
+  } else if(name == 'Frenzy') {
+    rules.defineRule('combatNotes.frenzy',
+      '', '=', '1',
+      'combatNotes.improvedFrenzy', '+', '1'
+    );
+  } else if(name == 'Level Headed') {
+    rules.defineRule('combatNotes.levelHeaded',
+      '', '=', '2',
+      'combatNotes.improvedLevelHeaded', '+', '1'
     );
   } else if(name == 'Luck') {
     rules.defineRule('featureNotes.luck',
@@ -1856,6 +1916,7 @@ SWADE.choiceEditorElements = function(rules, type) {
 /* Returns the elements in a basic 5E character editor. */
 SWADE.initialEditorElements = function() {
   var raises = [0, 1, 2, 3, 4, 5, 6];
+  var improvementTypes = ['Ability', 'Edge', 'Hindrance', 'Skill'];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
@@ -1871,9 +1932,7 @@ SWADE.initialEditorElements = function() {
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
-    ['improvementPoints.ability', 'Ability Improvements', 'text', [4]],
-    ['improvementPoints.edge', 'Edge Improvements', 'text', [4]],
-    ['improvementPoints.skill', 'Skill Improvements', 'text', [4]],
+    ['improvements', 'Improvement Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
     ['skillAllocation', 'Skills', 'bag', 'skills'],
@@ -2000,7 +2059,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var matchInfo;
 
   if(attribute == 'advances') {
-    if(attributes.advances == null) {
+    if(!attributes.advances) {
       howMany = QuilvynUtils.random(0, 9);
       attributes.advances = howMany<5 ? 0 : howMany<8 ? 1 : howMany<9 ? 2 : 3;
       if(QuilvynUtils.random(0, 9) >= 7)
@@ -2020,7 +2079,41 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       howMany--;
     }
   } else if(attribute == 'edges') {
-    // TODO
+    attrs = this.applyRules(attributes);
+    howMany = attrs.edgePoints || 0;
+    choices = {};
+    var allEdges = this.getChoices('edges');
+    for(attr in allEdges) {
+      if(attrs['edges.' + attr] == null)
+        choices[attr] = '';
+    }
+    console.log('Choose ' + howMany + ' edges');
+    while(howMany > 0) {
+      console.log('Pick ' + howMany + ' from ' + Object.keys(choices).length);
+      var pick;
+      var picks = {};
+      pickAttrs(picks, '', Object.keys(choices), howMany, 1);
+      console.log(picks);
+      console.log('From ' + Object.keys(picks).join(", ") + ' reject');
+      for(pick in picks) {
+        attributes['edges.' + pick] = 1;
+        delete choices[pick];
+      }
+      var validate = this.applyRules(attributes);
+      for(pick in picks) {
+        var name = pick.charAt(0).toLowerCase() +
+                   pick.substring(1).replaceAll(' ', '').
+                   replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+        if(QuilvynUtils.sumMatching
+             (validate,
+              new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
+          delete attributes['edges.' + pick];
+          console.log(name);
+        } else {
+          howMany--;
+        }
+      }
+    }
   } else if(attribute == 'gender') {
     attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
   } else if(attribute == 'hindrances') {
@@ -2045,7 +2138,22 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       howMany -= allHindrances[attr].includes('Major') ? 2 : 1;
     }
   } else if(attribute == 'improvements') {
-    // TODO
+    attrs = this.applyRules(attributes);
+    howMany = (attrs['improvementPoints.total'] || 0) -
+              (attrs['improvementPoints.ability'] || 0) -
+              (attrs['improvementPoints.edge'] || 0) -
+              (attrs['improvementPoints.hindrance'] || 0) -
+              (attrs['improvementPoints.skill'] || 0);
+    // Note: not allocating improvements to removing hindrances
+    while(howMany > 0) {
+      attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'skill' :
+             QuilvynUtils.random(0, 1) == 0 ? 'edge' : 'ability';
+      if(attributes['improvementPoints.' + attr] == null)
+        attributes['improvementPoints.' + attr] = 0;
+      var allocation = attr == 'skill' ? 1 : 2;
+      attributes['improvementPoints.' + attr] += allocation;
+      howMany -= allocation;
+    }
   } else if(attribute == 'name') {
     attributes['name'] = SWADE.randomName(attributes['race']);
   } else if(this.getChoices(attribute + 's') != null) {
