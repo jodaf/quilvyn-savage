@@ -296,7 +296,7 @@ SWADE.FEATURES = {
   'Arcane Resistance':
     'Section=save Note="-2 others\' targeted arcane skill, -2 magical damage"',
   'Aristocrat':
-    'Section=feature ' +
+    'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
   'Artificer':'Section=feature Note="TODO"',
   'Assassin':'Section=feature Note="TODO"',
@@ -307,13 +307,13 @@ SWADE.FEATURES = {
   'Beast Master':'Section=feature Note="TODO"',
   'Berserk':
     'Section=combat ' +
-    'Note="After injury, rage causes +1 strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
+    'Note="After injury, rage gives +1 Strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':'Section=feature Note="TODO"',
   'Brave':'Section=save Note="+2 fear checks, -2 fear roll"',
   'Brawler':
     'Section=combat ' +
-    'Note="+%V Toughness/+d%1 damage or +%2 damage die w/fists or natural weapons"',
+    'Note="+%V Toughness/+d%1 damage or +%2 damage improvement w/fists or natural weapons"',
   'Brawny':'Section=feature Note="TODO"',
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
   'Brute':'Section=feature Note="TODO"',
@@ -357,12 +357,12 @@ SWADE.FEATURES = {
   'Filthy Rich':'Section=feature Note="+2x Rich effects"',
   'First Strike':
     'Section=combat Note="Free attack against %V foes moving into reach"',
-  'Fleet-Footed':'Section=ability Note="+2 Pace/+1 run die"',
+  'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run die"',
   'Followers':'Section=feature Note="TODO"',
   'Free Runner':
     'Section=skill ' +
     'Note="Move full Pace on difficult ground/+2 Athletics (climbing)/+2 on foot chases"',
-  'Frenzy':'Section=combat Note="Extra Fighting die on %V attcks/rd"',
+  'Frenzy':'Section=combat Note="Extra Fighting improvement on %V attacks/rd"',
   'Gadgeteer':'Section=feature Note="TODO"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
   'Great Luck':'Section=feature Note="+1 Luck effects"',
@@ -461,92 +461,120 @@ SWADE.FEATURES = {
   'Bad Eyes (Major)':'Section=skill Note="-2 vision-linked"',
   'Bad Eyes (Minor)':'Section=skill Note="-1 vision-linked"',
   'Bad Luck':'Section=feature Note="-1 Benny each session"',
-  'Big Mouth':'Section=feature Note="TODO"',
-  'Blind':'Section=feature Note="TODO"',
+  'Big Mouth':'Section=feature Note="Cannot keep secrets"',
+  'Blind':'Section=feature Note="-6 visual tasks/+1 Edge Points"',
   'Bloodthirsty':'Section=combat Note="Cruel w/foes"',
   "Can't Swim":
     'Section=combat,skill ' +
-    'Note="Swim pace %{pace//3}","-2 Athletics (swimming)"',
-  'Cautious':'Section=feature Note="TODO"',
+    'Note="Swim Pace %{pace//3}","-2 Athletics (swimming)"',
+  'Cautious':'Section=feature Note="Requires detailed plan before acting"',
   'Clueless (Major)':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
-  'Clueless (Minor)':'Section=feature Note="TODO"',
-  'Clumsy':'Section=feature Note="TODO"',
-  'Code Of Honor':'Section=feature Note="TODO"',
-  'Curious':'Section=feature Note="TODO"',
-  'Death Wish':'Section=feature Note="TODO"',
-  'Delusional (Major)':'Section=feature Note="TODO"',
-  'Delusional (Minor)':'Section=feature Note="TODO"',
-  'Doubting Thomas':'Section=feature Note="TODO"',
-  'Driven (Major)':'Section=feature Note="TODO"',
-  'Driven (Minor)':'Section=feature Note="TODO"',
-  'Elderly':'Section=feature Note="TODO"',
-  'Enemy (Major)':'Section=feature Note="TODO"',
-  'Enemy (Minor)':'Section=feature Note="TODO"',
-  'Greedy (Major)':'Section=feature Note="TODO"',
-  'Greedy (Minor)':'Section=feature Note="TODO"',
-  'Habit (Major)':'Section=feature Note="TODO"',
-  'Habit (Minor)':'Section=feature Note="TODO"',
-  'Hard Of Hearing (Major)':'Section=feature Note="TODO"',
-  'Hard Of Hearing (Minor)':'Section=feature Note="TODO"',
-  'Heroic':'Section=feature Note="TODO"',
-  'Hesitant':'Section=feature Note="TODO"',
-  'Illiterate':'Section=feature Note="TODO"',
-  'Impulsive':'Section=feature Note="TODO"',
-  'Jealous (Major)':'Section=feature Note="TODO"',
-  'Jealous (Minor)':'Section=feature Note="TODO"',
-  'Loyal':'Section=feature Note="TODO"',
-  'Mean':'Section=feature Note="TODO"',
-  'Mild Mannered':'Section=feature Note="TODO"',
-  'Mute':'Section=feature Note="TODO"',
-  'Obese':'Section=feature Note="TODO"',
-  'Obligation (Major)':'Section=feature Note="TODO"',
-  'Obligation (Minor)':'Section=feature Note="TODO"',
-  'One Arm':'Section=feature Note="TODO"',
-  'One Eye':'Section=feature Note="TODO"',
+  'Clumsy':'Section=skill Note="-2 Athletics/-2 Stealth"',
+  'Code Of Honor':'Section=feature Note="Insists on acting nobly"',
+  'Curious':
+    'Section=feature Note="Insists on investigating every mystery and secret"',
+  'Death Wish':'Section=feature Note="Will risk death for useful goal"',
+  'Delusional (Major)':
+    'Section=feature Note="Frequently acts on conspiracy belief"',
+  'Delusional (Minor)':'Section=feature Note="Harmless conspiracy belief"',
+  'Doubting Thomas':
+    'Section=feature Note="Overly skeptical of supernatural reality"',
+  'Driven (Major)':
+    'Section=feature Note="Overriding desire to fulfill personal goal"',
+  'Driven (Minor)':'Section=feature Note="Actions shaped by personal goal"',
+  'Elderly':
+    'Section=ability,combat,skill ' +
+    'Note="-1 Agility/-1 Strength/-1 Vigor","Pace -1","+5 Skill Points"',
+  'Enemy (Major)':
+    'Section=feature Note="Powerful individual or group wants character dead"',
+  'Enemy (Minor)':'Section=feature Note="Individual wants character dead"',
+  'Greedy (Major)':
+    'Section=feature Note="Adamant about getting more than a fair share"',
+  'Greedy (Minor)':'Section=feature Note="Stingy and materialistic"',
+  'Habit (Major)':
+    'Section=feature Note="Dangerous physical or mental addiction"',
+  'Habit (Minor)':'Section=feature Note="Harmless but irritating compulsion"',
+  'Hard Of Hearing (Major)':
+    'Section=skill Note="Deaf, automatically fails Notice (hearing)"',
+  'Hard Of Hearing (Minor)':'Section=skill Note="-4 Notice (hearing)"',
+  'Heroic':'Section=feature Note="Always tries to help others"',
+  'Hesitant':'Section=combat Note="Use lowest of 2 Action Cards"',
+  'Illiterate':'Section=feature Note="Cannot read or write"',
+  'Impulsive':'Section=feature Note="Always acts without thinking"',
+  'Jealous (Major)':
+    'Section=feature Note="Always envious about others\' accomplishments"',
+  'Jealous (Minor)':
+    'Section=feature Note="Focused jealousy about one topic or person"',
+  'Loyal':'Section=feature Note="Always takes risks for friends"',
+  'Mean':
+    'Section=feature,skill ' +
+    'Note="Ill-tempered and disagreeable","-1 Persuasion"',
+  'Mild Mannered':'Section=skill Note="-2 Intimidation"',
+  'Mute':'Section=feature Note="Cannot speak"',
+  'Obese':'Section=combat Note="+1 Size/-1 Pace/-1 Run die"',
+  'Obligation (Major)':'Section=feature Note="Regular responsibility 40 hr/wk"',
+  'Obligation (Minor)':'Section=feature Note="Regular responsibility 20 hr/wk"',
+  'One Arm':'Section=skill Note="-4 on two-handed tasks"',
+  'One Eye':'Section=feature Note="-2 vision-depended tasks 10 yards distant"',
   'Outsider (Major)':
     'Section=feature,skill ' +
     'Note="No legal rights","-2 Persuasion (other races)"',
   'Outsider (Minor)':'Section=skill Note="-2 Persuasion (other races)"',
-  'Overconfident':'Section=feature Note="TODO"',
+  'Overconfident':'Section=feature Note="Excessive belief in capabilities"',
   'Pacifist (Major)':
     'Section=combat ' +
     'Note="Will not fight living creatures, use nonlethal methods only in defense"',
-  'Pacifist (Minor)':'Section=feature Note="TODO"',
-  'Phobia (Major)':'Section=feature Note="TODO"',
-  'Phobia (Minor)':'Section=feature Note="TODO"',
-  'Poverty':'Section=feature Note="TODO"',
-  'Quirk':'Section=feature Note="TODO"',
-  'Secret (Major)':'Section=feature Note="TODO"',
-  'Secret (Minor)':'Section=feature Note="TODO"',
-  'Shamed (Major)':'Section=feature Note="TODO"',
-  'Shamed (Minor)':'Section=feature Note="TODO"',
-  'Slow (Major)':'Section=feature Note="TODO"',
-  'Slow (Minor)':'Section=feature Note="TODO"',
-  'Small':'Section=feature Note="TODO"',
-  'Stubborn':'Section=feature Note="TODO"',
-  'Suspicious (Major)':'Section=feature Note="TODO"',
-  'Suspicious (Minor)':'Section=feature Note="TODO"',
-  'Thin Skinned (Major)':'Section=feature Note="TODO"',
-  'Thin Skinned (Minor)':'Section=feature Note="TODO"',
-  'Tongue-Tied':'Section=feature Note="TODO"',
-  'Ugly (Major)':'Section=feature Note="TODO"',
-  'Ugly (Minor)':'Section=feature Note="TODO"',
-  'Vengeful (Major)':'Section=feature Note="TODO"',
-  'Vengeful (Minor)':'Section=feature Note="TODO"',
+  'Pacifist (Minor)':
+    'Section=feature ' +
+    'Note="Will harm others only when no other option available"',
+  'Phobia (Major)':'Section=feature Note="-2 in presence of fear target"',
+  'Phobia (Minor)':'Section=feature Note="-1 in presence of fear target"',
+  'Poverty':
+    'Section=feature Note="Half starting funds, lose half funds each wk"',
+  'Quirk':'Section=feature Note="Minor compulsion causes occasional trouble"',
+  'Secret (Major)':
+    'Section=feature ' +
+    'Note="Hides knowledge to protect self or others from major trouble"',
+  'Secret (Minor)':
+    'Section=feature ' +
+    'Note="Hides knowledge to protect self or others from minor trouble"',
+  'Shamed (Major)':'Section=feature Note="Past event causes social antagonism"',
+  'Shamed (Minor)':'Section=feature Note="Past event causes self-doubt"',
+  'Slow (Major)':'Section=combat,skill Note="-2 Pace","-2 Athletics"',
+  'Slow (Minor)':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Small':'Section=ability Note="-1 Size"',
+  'Stubborn':'Section=feature Note="Never admits error"',
+  'Suspicious (Major)':'Section=feature Note="-2 others\' Support rolls"',
+  'Suspicious (Minor)':'Section=feature Note="Frequent trust issues"',
+  'Thin Skinned (Major)':'Section=skill Note="-4 vs. Taunt"',
+  'Thin Skinned (Minor)':'Section=skill Note="-2 vs. Taunt"',
+  'Tongue-Tied':
+    'Section=skill ' +
+    'Note="-1 Intimidation (speech)/-1 Performance (speech)/-1 Persuasion (speech)/-1 Taunt (speech)"',
+  'Ugly (Major)':'Section=skill Note="-2 Persuasion"',
+  'Ugly (Minor)':'Section=skill Note="-1 Persuasion"',
+  'Vengeful (Major)':'Section=feature Note="Revenge is primary concern"',
+  'Vengeful (Minor)':'Section=feature Note="Spends time plotting revenge"',
   'Vow (Minor)':
     'Section=feature Note="Broad requiremens on behavior and actions"',
   'Vow (Major)':
     'Section=feature Note="Strict requirements on behavior and actions"',
-  'Wanted (Major)':'Section=feature Note="TODO"',
-  'Wanted (Minor)':'Section=feature Note="TODO"',
-  'Yellow':'Section=feature Note="TODO"',
-  'Young (Major)':'Section=feature Note="TODO"',
-  'Young (Minor)':'Section=feature Note="TODO"',
+  'Wanted (Major)':
+    'Section=feature Note="Significant trouble from local law enforcement"',
+  'Wanted (Minor)':
+    'Section=feature Note="Trouble from distant law or minor infractions"',
+  'Yellow':'Section=save,skill Note="-2 vs. Fear","-2 vs. Intimidation"',
+  'Young (Major)':
+    'Section=feature ' +
+    'Note="-2 Skill Points/-2 Attribute Points/+2 Benny each session"',
+  'Young (Minor)':
+    'Section=feature ' +
+    'Note="-2 Skill Points/-1 Attribute Points/+1 Benny each session"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
   'Agile':'Section=ability Note="+1 Agility die"',
-  'Aquatic':'Section=combat Note="Cannot drown, swim pace %{pace}"',
+  'Aquatic':'Section=combat Note="Cannot drown, swim Pace %{pace}"',
   'Armor +2':'Section=combat Note="+2 Parry"',
   'Bite':'Section=combat Note="Can attack w/Fangs"',
   'Claws':'Section=combat Note="Can attack w/Claws"',
@@ -561,17 +589,17 @@ SWADE.FEATURES = {
     'Section=combat,save Note="+4 damage from cold","-4 vs. cold effects"',
   'Flight':
     'Section=combat,skill ' +
-    'Note="Fly pace 12","Use Athletics for flight maneuvers"',
+    'Note="Fly Pace 12","Use Athletics for flight maneuvers"',
   'Frail':
     'Section=combat Note="-1 Toughness"',
   'Heritage':
-    'Section=feature Note="+2 Improvement Points (Ability Die or Edge)"',
+    'Section=feature Note="+2 Improvements (Ability or Edge)"',
   'Keen Senses':'Section=skill Note="+1 Notice die"',
   'Low Light Vision':
     'Section=feature Note="Ignore penalties for dim and dark illumination"',
   'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
   'Reduced Pace':'Section=combat Note="-1 Pace"',
-  'Size -1':'Section=combat Note="-1 Toughness"',
+  'Small':'Section=ability Note="-1 Size"',
   'Spirited':'Section=ability Note="+1 Spirit die"',
   'Tough':'Section=ability Note="+1 Vigor die"',
   'Toughness':'Section=combat Note="+1 Toughness"',
@@ -597,7 +625,6 @@ SWADE.HINDRANCES = {
   "Can't Swim":'Level=Minor',
   'Cautious':'Level=Minor',
   'Clueless (Major)':'Level=Major',
-  'Clueless (Minor)':'Level=Minor',
   'Clumsy':'Level=Major',
   'Code Of Honor':'Level=Major',
   'Curious':'Level=Major',
@@ -689,7 +716,7 @@ SWADE.RACES = {
       'Heritage,"Low Light Vision","Outsider (Minor)"',
   'Half-Folk':
     'Features=' +
-      'Luck,"Reduced Pace","Size -1",Spirited',
+      'Luck,"Reduced Pace",Small,Spirited',
   'Human':
     'Features=' +
       'Adaptable',
@@ -758,10 +785,10 @@ SWADE.attributeRules = function(rules) {
     );
   }
   rules.defineRule('advances', '', '^=', '0');
-  rules.defineRule('improvementPoints.total', 'advances', '=', 'source * 2');
+  rules.defineRule('improvementPoints', 'advances', '=', 'source * 2');
   rules.defineRule('attributePoints',
     '', '=', '5',
-    'improvementPoints.ability', '+', 'Math.floor(source / 2)'
+    'improvementAllocation.ability', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule
     ('abilityNotes.attributePoints', 'attributePoints', '=', null);
@@ -769,10 +796,12 @@ SWADE.attributeRules = function(rules) {
   rules.defineRule('rank',
     'advances', '=', 'source<4 ? "Novice" : source<8 ? "Seasoned" : source<12 ? "Veteran" : source<16 ? "Heroic" : "Legendary"'
   );
+  rules.defineRule('run', '', '=', '6');
+  rules.defineRule('size', '', '=', '0');
   QuilvynRules.validAllocationRules
     (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvementPoints', 'improvementPoints.total', 'Sum "^improvementPoints.(ability|edge|skill|hindrance)$"');
+    (rules, 'improvements', 'improvementPoints', 'Sum "^improvementAllocation.(ability|edge|skill|hindrance)$"');
 
 };
 
@@ -815,70 +844,23 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
   }
 
-  rules.defineRule('abilityNotes.armorSpeedAdjustment',
-    'armorStrShortfall', '=', 'source > 0 ? -10 : null'
+  rules.defineRule('combatNotes.fightingParryModifier',
+    'skillModifer.Fighting', '=', 'source / 2'
   );
+  rules.defineRule('combatNotes.sizeToughnessModifier', 'size', '=', null);
   rules.defineRule
-    ('armorClass', 'combatNotes.dexterityArmorClassAdjustment', '+', null);
-  rules.defineRule('armorStrShortfall',
-    'armorStrRequirement', '=', null,
-    'strength', '+', '-source'
-  );
-  rules.defineRule('attacksPerRound', '', '=', '1');
-  rules.defineRule('betterAttackAdjustment',
-    'combatNotes.dexterityAttackAdjustment', '=', null,
-    'combatNotes.strengthAttackAdjustment', '^', null
-  );
-  rules.defineRule('betterDamageAdjustment',
-    'combatNotes.dexterityDamageAdjustment', '=', null,
-    'combatNotes.strengthDamageAdjustment', '^', null
-  );
-  rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
-    'dexterityModifier', '=', null,
-    'armorWeight', '*', 'source == 3 ? 0 : null'
-  );
-  rules.defineRule
-    ('combatNotes.dexterityAttackAdjustment', 'dexterityModifier', '=', null);
-  rules.defineRule
-    ('combatNotes.dexterityDamageAdjustment', 'dexterityModifier', '=', null);
-  rules.defineRule
-    ('combatNotes.strengthAttackAdjustment', 'strengthModifier', '=', null);
-  rules.defineRule
-    ('combatNotes.strengthDamageAdjustment', 'strengthModifier', '=', null);
-  rules.defineRule('features.Nonproficient Armor',
-    // Modify heavy so that Prof (Light+Medium) doesn't suffice for heavy armor
-    'armorWeight', '=', 'source == 3 ? 4 : source',
-    'armorProficiency.Light', '+', '-1',
-    'armorProficiency.Medium', '+', '-2',
-    'armorProficiency.Heavy', '+', '-4',
-    '', '^', '0'
-  );
-  rules.defineRule('features.Two-Handed Weapon With Shield',
-    'shield', '?', 'source != "None"'
-  );
+    ('combatNotes.vigorToughnessModifier', 'vigor', '=', 'source / 2');
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
   rules.defineRule('parry',
     '', '=', '2',
-    'skillModifier.Fighting', '+', 'source / 2'
+    'combatNotes.fightingParryModifier', '+', null
   );
-  rules.defineRule('toughness', 'vigor', '=', 'source / 2 + 2');
+  rules.defineRule('toughness',
+    '', '=', '2',
+    'combatNotes.vigorToughnessModifier', '+', null,
+    'combatNotes.sizeToughnessModifier', '+', null
+  );
   rules.defineRule('weapons.Unarmed', '', '=', '1');
-
-  for(var ability in SWADE.ATTRIBUTES) {
-    rules.defineRule('saveBonus.' + ability,
-      'saveProficiency.' + ability, '?', null,
-      'proficiencyBonus', '=', null
-    );
-    rules.defineRule('save.' + ability,
-      ability.toLowerCase() + 'Modifier', '=', null,
-      'saveBonus.' + ability, '+', null
-    );
-  }
-
-  QuilvynRules.validAllocationRules
-    (rules, 'armorProficiency', 'armorChoiceCount', 'Sum "^armorsChosen\\."');
-  QuilvynRules.validAllocationRules
-    (rules, 'weaponProficiency', 'weaponChoiceCount', 'Sum "^weaponsChosen\\."');
 
 };
 
@@ -933,11 +915,11 @@ SWADE.talentRules = function(
   }
   rules.defineRule('edgePoints',
     '', '=', '1',
-    'improvementPoints.edge', '+', 'Math.floor(source / 2)'
+    'improvementAllocation.edge', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule('skillPoints',
     '', '=', '12',
-    'improvementPoints.skill', '+', 'source'
+    'improvementAllocation.skill', '+', 'source'
   );
   rules.defineRule('skillNotes.skillPoints', 'skillPoints', '=', null);
   QuilvynRules.validAllocationRules
@@ -1226,19 +1208,26 @@ SWADE.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < sections.length; i++) {
-    var matchInfo = notes[i].match(/^([-+]\d+) ([A-Z]\w+) die$/);
-    if(!matchInfo)
-      continue;
-    var note =
-      name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-    if(sections[i] == 'ability')
-      rules.defineRule(matchInfo[2].toLowerCase() + 'Level',
-        'abilityNotes.' + note, '+', matchInfo[1]
-      );
-    else if(sections[i] == 'skill')
-      rules.defineRule('skillLevel.' + matchInfo[2],
-        'skillNotes.' + note, '+', matchInfo[1]
-      );
+    var section = sections[i];
+    var pieces = notes[i].split(/\s*\/\s*/);
+    for(var j = 0; j < pieces.length; j++) {
+      var matchInfo = pieces[j].match(/^([-+]\d+) ([A-Z]\w+) die$/);
+      if(!matchInfo)
+        continue;
+      var note =
+        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+      if(section == 'ability')
+        rules.defineRule(matchInfo[2].toLowerCase() + 'Level',
+          section + 'Notes.' + note, '+', matchInfo[1]
+        );
+      else if(matchInfo[2] == 'Run')
+        rules.defineRule
+          ('run', section + 'Notes.' + note, '+', matchInfo[1] + ' * 2');
+      else if(sections[i] == 'skill')
+        rules.defineRule('skillLevel.' + matchInfo[2],
+          section + 'Notes.' + note, '+', matchInfo[1]
+        );
+    }
   }
 };
 
@@ -1267,7 +1256,7 @@ SWADE.goodyRules = function(
 SWADE.hindranceRules = function(rules, name, level) {
   // TODO
   rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
-  rules.defineRule('improvementPoints.total',
+  rules.defineRule('improvementPoints',
     'hindrances.' + name, '+', level=='Major' ? '2' : '1'
   );
 };
@@ -1337,8 +1326,7 @@ SWADE.raceRules = function(
  */
 SWADE.raceRulesExtra = function(rules, name) {
   if(name == 'Half-Elf') {
-    rules.defineRule
-      ('improvementPoints.total', 'featureNotes.heritage', '+', '2');
+    rules.defineRule('improvementPoints', 'featureNotes.heritage', '+', '2');
   }
 };
 
@@ -1625,6 +1613,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Toughness', within: 'Section 1', format: '<b>HP</b> %V'},
             {name: 'Initiative', within: 'Section 1', format: '<b>Initiative</b> %V'},
             {name: 'Pace', within: 'Section 1', format: '<b>Pace</b> %V'},
+            {name: 'Run', within: 'Section 1', format: '<b>Run</b> %V'},
             {name: 'Toughness', within: 'Section 1', format: '<b>AC</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
@@ -1656,6 +1645,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
             {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Rank', within: 'Identity', format: ' <b>%V Adventurer</b>'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Attributes', within: '_top', separator: outerSep},
           {name: 'Abilities', within: 'Attributes', separator: innerSep},
@@ -1665,14 +1655,13 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Strength', within: 'Abilities'},
             {name: 'Vigor', within: 'Abilities'},
           {name: 'Description', within: 'Attributes', separator: innerSep},
+            {name: 'Size', within: 'Description'},
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
-            {name: 'AdvanceInfo', within: 'AbilityStats', separator: ''},
-              {name: 'Advances', within: 'AdvanceInfo'},
-              {name: 'Rank', within: 'AdvanceInfo', format: ' (%V)'},
-            {name: 'Improvement Points', within: 'AbilityStats',
-             separator: listSep}
+            {name: 'Advances', within: 'AbilityStats'},
+            {name: 'Improvement Points', within: 'AbilityStats'},
+            {name: 'Improvement Allocation', within: 'AbilityStats', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -1705,7 +1694,8 @@ SWADE.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
+          {name: 'Skill Points', within: 'FeaturesAndSkills', format: '<b>Skills</b> (%V Points):'},
+          {name: 'Skills', within: 'FeaturesAndSkills', format: '%V', columns: '3LE', separator: null},
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -1720,7 +1710,9 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Toughness', within: 'CombatStats'},
               {name: 'Initiative', within: 'CombatStats'},
               {name: 'Parry', within: 'CombatStats'},
-              {name: 'Pace', within: 'CombatStats'},
+              {name: 'Speed', within: 'CombatStats', separator: ''},
+                {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b>: %V'},
+                {name: 'Run', within: 'Speed', format: '/+d%V'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
               {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
@@ -1915,17 +1907,17 @@ SWADE.choiceEditorElements = function(rules, type) {
 
 /* Returns the elements in a basic 5E character editor. */
 SWADE.initialEditorElements = function() {
-  var raises = [0, 1, 2, 3, 4, 5, 6];
+  var allocations = [0, 1, 2, 3, 4, 5, 6];
   var improvementTypes = ['Ability', 'Edge', 'Hindrance', 'Skill'];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
-    ['agilityAllocation', 'Agility', 'select-one', raises],
-    ['smartsAllocation', 'Smarts', 'select-one', raises],
-    ['spiritAllocation', 'Spirit', 'select-one', raises],
-    ['strengthAllocation', 'Srength', 'select-one', raises],
-    ['vigorAllocation', 'Vigor', 'select-one', raises],
+    ['agilityAllocation', 'Agility', 'select-one', allocations],
+    ['smartsAllocation', 'Smarts', 'select-one', allocations],
+    ['spiritAllocation', 'Spirit', 'select-one', allocations],
+    ['strengthAllocation', 'Srength', 'select-one', allocations],
+    ['vigorAllocation', 'Vigor', 'select-one', allocations],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['gender', 'Gender', 'text', [10]],
@@ -2084,7 +2076,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     choices = {};
     var allEdges = this.getChoices('edges');
     for(attr in allEdges) {
-      if(attrs['edges.' + attr] == null)
+      if(attrs['features.' + attr] == null)
         choices[attr] = '';
     }
     console.log('Choose ' + howMany + ' edges');
@@ -2117,6 +2109,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'gender') {
     attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
   } else if(attribute == 'hindrances') {
+    attrs = this.applyRules(attributes);
     var allHindrances = this.getChoices('hindrances');
     howMany = 4;
     for(attr in attributes) {
@@ -2129,8 +2122,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       var type = howMany==1 || QuilvynUtils.random(0, 9)<8 ? 'Minor' : 'Major';
       choices = [];
       for(attr in allHindrances) {
-        if(!('hindrances.' + attr in attributes) &&
-           allHindrances[attr].includes(type))
+        if(!('features.' + attr in attrs) && allHindrances[attr].includes(type))
           choices.push(attr);
       }
       attr = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -2139,19 +2131,19 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'improvements') {
     attrs = this.applyRules(attributes);
-    howMany = (attrs['improvementPoints.total'] || 0) -
-              (attrs['improvementPoints.ability'] || 0) -
-              (attrs['improvementPoints.edge'] || 0) -
-              (attrs['improvementPoints.hindrance'] || 0) -
-              (attrs['improvementPoints.skill'] || 0);
+    howMany = (attrs['improvementPoints'] || 0) -
+              (attrs['improvementAllocation.ability'] || 0) -
+              (attrs['improvementAllocation.edge'] || 0) -
+              (attrs['improvementAllocation.hindrance'] || 0) -
+              (attrs['improvementAllocation.skill'] || 0);
     // Note: not allocating improvements to removing hindrances
     while(howMany > 0) {
       attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'skill' :
              QuilvynUtils.random(0, 1) == 0 ? 'edge' : 'ability';
-      if(attributes['improvementPoints.' + attr] == null)
-        attributes['improvementPoints.' + attr] = 0;
+      if(attributes['improvementAllocation.' + attr] == null)
+        attributes['improvementAllocation.' + attr] = 0;
       var allocation = attr == 'skill' ? 1 : 2;
-      attributes['improvementPoints.' + attr] += allocation;
+      attributes['improvementAllocation.' + attr] += allocation;
       howMany -= allocation;
     }
   } else if(attribute == 'name') {
