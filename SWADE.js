@@ -212,8 +212,14 @@ SWADE.EDGES = {
   'Steady Hands':'Type=combat Require="agility >= 8"',
   'Sweep':'Type=combat Require="strength >= 8","skills.Fighting >= 8"',
   'Improved Sweep':'Type=combat Require="advances >= 8","features.Sweep"',
-  'Trademark Weapon (%weapon)':'Type=combat Require="skills.%weapon >= 8"',
-  'Improved Trademark Weapon (%weapon)':'Type=combat Require="advances >= 4"',
+  'Trademark Weapon (%weapon)':
+    'Type=combat ' +
+    'Imply="weapons.%weapon" ' +
+    'Require="skills.%weapon >= 8"',
+  'Improved Trademark Weapon (%weapon)':
+    'Type=combat ' +
+    'Imply="weapons.%weapon" ' +
+    'Require="advances >= 4","features.Trademark Weapon (%weapon)"',
   'Two-Fisted':'Type=combat Require="agility >= 8"',
   'Two-Gun Kid':'Type=combat Require="agility >= 8"',
   // Leadership
@@ -846,7 +852,95 @@ SWADE.SKILLS = {
   'Weird Science':'Attribute=smarts',
 };
 SWADE.WEAPONS = {
-  // TODO
+
+  'Unarmed':'Damage=0 MinStr=0 Weight=0 Category=Un',
+  'Hand Axe':'Damage=d6 MinStr=6 Weight=2 Category=1h',
+  'Battle Axe':'Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
+  'Great Axe':'Damage=d10 MinStr=10 Weight=7 Category=2h',
+  'Light Club':'Damage=d4 MinStr=4 Weight=2 Category=1h',
+  'Heavy Club':'Damage=d6 MinStr=6 Weight=5 Category=1h',
+  'Dagger':'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Knife':'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Flail':'Damage=d6 MinStr=6 Weight=3 Category=1h',
+  'Halberd':'Damage=d8 MinStr=8 Weight=6 Category=2h',
+  'Katana':'Damage=d6+1 MinStr=8 Weight=3 Category=2h',
+  'Lance':'Damage=d8 MinStr=8 Weight=6 Category=1h',
+  'Mace':'Damage=d6 MinStr=6 Weight=4 Category=1h',
+  'Maul':'Damage=d10 MinStr=10 Weight=10 Category=2h',
+  'Pike':'Damage=d8 MinStr=8 Weight=18 Category=2h',
+  'Rapier':'Damage=d4 MinStr=4 Weight=2 Category=1h',
+  'Spear':'Damage=d6 MinStr=6 Weight=3 Category=2h',
+  'Staff':'Damage=d4 MinStr=4 Weight=4 Category=2h',
+  'Great Sword':'Damage=d10 MinStr=10 Weight=6 Category=2h',
+  'Long Sword':'Damage=d8 MinStr=8 Weight=3 Category=1h',
+  'Short Sword':'Damage=d6 MinStr=6 Weight=2 Category=1h',
+  'Warhammer':'Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
+  'Bangstick':'Damage=3d6 MinStr=6 Weight=2 Category=1h',
+  'Bayonet':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Billy Club':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Baton':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Brass Knuckles':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Chainsaw':'Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
+  'Switchblade':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Survival Knife':'Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Molecuar Knife':'Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
+  'Molecuar Sword':'Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
+  'Laser Sword':'Damage=d6+8 MinStr=4 Weight=2 Category=1h AP=12',
+
+  'Throwing Axe':'Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
+  'Bow':'Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
+  'Hand Drawn Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=10 AP=2',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=10 AP=2',
+  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
+  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
+  'Sling':'Damage=d4 MinStr=4 Weight=1 Category=R Range=4',
+  'Spear':'Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
+  'Compound Bow':'Damage=d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
+  'Crossbow':'Damage=d6 MinStr=6 Weight=7 Category=R Range=15 AP=2',
+  'Flintlock Pistol':'Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
+  'Brown Bess':'Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
+  'Blunderbuss':'Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
+  'Kentucky Rifle':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
+  'Springfield Model 1861':'Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
+  'Derringer':'Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
+  'Police Revolver':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
+  'Colt Peacemaker':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
+  'Smith & Wesson':'Damage=2d6+1 MinStr=4 Weight=5 Category=R Range=12 AP=1',
+  'Colt 1911':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
+  'Desert Eagle':'Damage=2d6+1 MinStr=6 Weight=8 Category=R Range=15 AP=2',
+  'Glock':'Damage=2d6 MinStr=4 Weight=3 Category=R Range=12 AP=1',
+  'Ruger':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
+  'H&K MP5':'Damage=2d6 MinStr=6 Weight=10 Category=R Range=12 AP=1 ROF=3',
+  'Tommy Gun':'Damage=2d6+1 MinStr=6 Weight=13 Category=R Range=12 AP=1 ROF=3',
+  'Uzi':'Damage=2d6 MinStr=4 Weight=9 Category=R Range=12 AP=1 ROF=3',
+  'Double-Barrel Shotgun':'Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
+  'Pump Action Shotgun':'Damage=3d6 MinStr=4 Weight=8 Category=R Range=12',
+  'Sawed-Off Shotgun':'Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
+  'Streetsweeper':'Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
+  'Barrett Rifle':'Damage=2d10 MinStr=8 Weight=35 Category=R Range=50 AP=4',
+  'M1 Garand':'Damage=2d8 MinStr=6 Weight=10 Category=R Range=24 AP=2',
+  'Hunting Rifle':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2',
+  'Sharps Big 50':'Damage=2d10 MinStr=8 Weight=11 Category=R Range=30 AP=2',
+  'Spencer Carbine':'Damage=2d8 MinStr=4 Weight=8 Category=R Range=20 AP=2',
+  "Wincester '73":'Damage=2d8-1 MinStr=6 Weight=10 Category=R Range=24 AP=2',
+  'AK47':'Damage=2d8+1 MinStr=6 Weight=10 Category=R Range=24 AP=2 ROF=3',
+  'M-16':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2 ROF=3',
+  'Steyr AUG':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2 ROF=3',
+  'Browning Automatic Rifle':
+    'Damage=2d8 MinStr=8 Weight=17 Category=R Range=20 AP=2 ROF=3',
+  'Gatling Gun':'Damage=2d8 MinStr=0 Weight=170 Category=R Range=24 AP=2 ROF=3',
+  'Minigun':'Damage=2d8+1 MinStr=10 Weight=85 Category=R Range=30 AP=2 ROF=5',
+  'M2 Browning':'Damage=2d10 MinStr=0 Weight=84 Category=R Range=50 AP=4 ROF=3',
+  'M60':'Damage=2d8+1 MinStr=8 Weight=33 Category=R Range=30 AP=2 ROF=3',
+  'MG42':'Damage=2d8+1 MinStr=10 Weight=26 Category=R Range=30 AP=2 ROF=4',
+  'SAW':'Damage=2d8 MinStr=8 Weight=20 Category=R Range=30 AP=2 ROF=4',
+  'Laser Pistol':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=15 AP=2',
+  'Laser SMG':'Damage=2d6 MinStr=4 Weight=4 Category=R Range=15 AP=2 ROF=4',
+  'Laser Rifle':'Damage=2d6 MinStr=6 Weight=8 Category=R Range=30 AP=2 ROF=3',
+  'Gatling Laser':
+    'Damage=3d6+4 MinStr=8 Weight=20 Category=R Range=50 AP=2 ROF=4'
+ 
 };
 
 /* Defines the rules related to character abilities. */
@@ -889,7 +983,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   QuilvynUtils.checkAttrTable(armors, ['Armor', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable(shields, ['Parry', 'Cover', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable
-    (weapons, ['Category', 'Damage', 'Property', 'Range']);
+    (weapons, ['Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF']);
 
   for(var armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
@@ -1140,10 +1234,13 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     }
   } else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Property'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'Range')
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
+      QuilvynUtils.getAttrValue(attrs, 'AP'),
+      QuilvynUtils.getAttrValue(attrs, 'ROF')
     );
   else {
     console.log('Unknown choice type "' + type + '"');
@@ -1600,19 +1697,13 @@ SWADE.powerRules = function(
  * specified, the weapon can be used as a ranged weapon with a range increment
  * of #range# feet.
  */
-SWADE.weaponRules = function(rules, name, category, properties, damage, range) {
+SWADE.weaponRules = function(
+  rules, name, damage, minStr, weight, category, range, armorPiercing,
+  rateOfFire
+) {
 
   if(!name) {
     console.log('Bad name for weapon  "' + name + '"');
-    return;
-  }
-  if(category == null ||
-     !(category + '').match(/^([0-2]|unarmed|simple|martial)$/i)) {
-    console.log('Bad category "' + category + '" for weapon ' + name);
-    return;
-  }
-  if(!Array.isArray(properties)) {
-    console.log('Bad properties list "' + properties + '" for weapon ' + name);
     return;
   }
   var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
@@ -1620,102 +1711,58 @@ SWADE.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
+  if(typeof minStr != 'number') {
+    console.log('Bad minStr "' + minStr + '" for weapon ' + name);
+  }
   if(range && typeof range != 'number') {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
+  if(armorPiercing && typeof armorPiercing != 'number') {
+    console.log('Bad AP "' + armorPiercing + '" for weapon ' + name);
+  }
+  if(rateOfFire && typeof rateOfFire != 'number') {
+    console.log('Bad ROF "' + rateOfFire + '" for weapon ' + name);
+  }
 
-  if((category + '').match(/^[0-2]$/))
-    ; // empty
-  else if(category.match(/^unarmed$/i))
-    category = 0;
-  else if(category.match(/^simple$/i))
-    category = 1;
-  else if(category.match(/^martial$/i))
-    category = 2;
-
-  var isFinessed = properties.includes('finesse') || properties.includes('Fi');
-  var isRanged = properties.includes('ranged') || properties.includes('R');
-  var is2h = properties.includes('two-handed') || properties.includes('2h');
+  var isRanged = category == 'R' || category == 'ranged';
+  var is2h = category == '2h' || category == 'two-handed';
 
   var damage = matchInfo[1];
+  var prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var weaponName = 'weapons.' + name;
-  var format = '%V (%1 %2%3' + (range ? " R%4'" : '') + ')';
+  var format = '%V (%1 %2%3%4' + (range ? " R%5'" : '') + ')';
 
-  if(damage.startsWith('d'))
-    damage = '1' + damage;
-
-  rules.defineChoice('notes',
-    weaponName + ':' + format,
-    'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
-  );
-
-  if(category > 0) {
-    rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
-      weaponName, '?', null,
-      'proficiencyBonus', '=', '-source',
-      'weaponProficiency.Martial', '^', '0',
-      'weaponProficiency.' + name, '^', '0'
-    );
-    if(category == 1) {
-      rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
-        'weaponProficiency.Simple', '^', '0'
-      );
-    }
-  }
-  rules.defineRule('weaponProficiencyBonus.' + name,
-    weaponName, '?', null,
-    'proficiencyBonus', '=', null,
-    'sanityNotes.nonproficientWeaponPenalty.' + name, 'v', 'source == 0 ? null : 0'
-  );
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
-    isFinessed ? 'betterAttackAdjustment' :
-      isRanged ? 'combatNotes.dexterityAttackAdjustment' :
-                 'combatNotes.strengthAttackAdjustment', '+', null,
     isRanged ? 'attackBonus.Ranged' : 'attackBonus.Melee', '+', null,
-    'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );
   rules.defineRule('damageBonus.' + name,
     weaponName, '=', '0',
-    isFinessed ? 'betterDamageAdjustment' :
-      isRanged ? 'combatNotes.dexterityDamageAdjustment' :
-                 'combatNotes.strengthDamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
-  if(!range) {
-    rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
-    rules.defineRule('damageBonus.' + name, 'monkMeleeDamageBonus', '+', null);
-  }
+  rules.defineRule(prefix + 'DamageModifier', 'strength', '=', '0');
 
+  rules.defineChoice('notes', weaponName + ':' + format);
   rules.defineRule(weaponName + '.1',
     'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
   rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
-  if(properties.includes('Ve') || properties.includes('versatile'))
-    rules.defineRule(weaponName + '.2',
-      'shield', '=', 'source == "None" ? SWADE.VERSATILE_WEAPON_DAMAGE["' + damage + '"] : null'
-    );
-  rules.defineRule(weaponName + '.3',
-    'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
+  rules.defineRule(weaponName + '.3', weaponName, '=', '""');
+  if(!isRanged) {
+    rules.defineRule(weaponName + '.3', 'strength', '=', '"+d" + source');
+  }
+  rules.defineRule(weaponName + '.4',
+    prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
   );
   if(range) {
     rules.defineRule('range.' + name,
       weaponName, '=', range,
       'weaponRangeAdjustment.' + name, '+', null
     );
-    rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
-  } else {
-    rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
+    rules.defineRule(weaponName + '.5', 'range.' + name, '=', null);
   }
-
-  if(is2h)
-    rules.defineRule
-      ('features.Two-Handed Weapon With Shield', weaponName, '=', '1');
-
-  rules.defineRule('weaponProficiency.' + name,
-    'weaponsChosen.' + name, '=', 'source ? 1 : null'
-  );
 
 };
 
@@ -2266,14 +2313,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(attrs['features.' + attr] == null)
         choices[attr] = '';
     }
-    console.log('Choose ' + howMany + ' edges');
     while(howMany > 0) {
-      console.log('Pick ' + howMany + ' from ' + Object.keys(choices).length);
       var pick;
       var picks = {};
       pickAttrs(picks, '', Object.keys(choices), howMany, 1);
-      console.log(picks);
-      console.log('From ' + Object.keys(picks).join(", ") + ' reject');
       for(pick in picks) {
         attributes['edges.' + pick] = 1;
         delete choices[pick];
@@ -2287,7 +2330,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
              (validate,
               new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
           delete attributes['edges.' + pick];
-          console.log(name);
         } else {
           howMany--;
         }
@@ -2359,7 +2401,19 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       howMany--;
     }
   } else if(attribute == 'weapons') {
-    // TODO
+    attrs = this.applyRules(attributes);
+    var allWeapons = this.getChoices('weapons');
+    choices = [];
+    howMany = 3;
+    for(attr in attributes)
+      if(attr.startsWith('weapons.'))
+        howMany--;
+    for(attr in allWeapons) {
+      var minStr = QuilvynUtils.getAttrValue(allWeapons[attr], 'MinStr');
+      if(!minStr || attrs.strength >= minStr)
+        choices.push(attr);
+    }
+    pickAttrs(attributes, 'weapons.', choices, howMany, 1);
   }
 
 };
