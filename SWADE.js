@@ -771,6 +771,168 @@ SWADE.HINDRANCES = {
 };
 SWADE.POWERS = {
   // TODO
+  'Arcane Protection':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Banish':
+    'Advances=8 ' +
+    'Description="TODO"',
+  'Barrier':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Beast Friend':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Blast':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Blind':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Bolt':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Boost/Lower Trait':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Burrow':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Burst':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Confusion':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Damage Field':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Darksight':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Deflection':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Detect/Conceal Arcana':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Disguise':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Dispel':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Divination':
+    'Advances=12 ' +
+    'Description="TODO"',
+  'Drain Power Points':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Elemental Manipulation':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Empathy':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Entangle':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Environmental Protection':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Farsight':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Fear':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Fly':
+    'Advances=8 ' +
+    'Description="TODO"',
+  'Growth/Shrink':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Havoc':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Healing':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Illusion':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Intangibility':
+    'Advances=12 ' +
+    'Description="TODO"',
+  'Invisibility':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Light/Darkness':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Mind Link':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Mind Reading':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Mind Wipe':
+    'Advances=8 ' +
+    'Description="TODO"',
+  'Object Reading':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Protection':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Puppet':
+    'Advances=8 ' +
+    'Description="TODO"',
+  'Relief':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Resurrection':
+    'Advances=12 ' +
+    'Description="TODO"',
+  'Shape Change':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Sloth/Speed':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Slumber':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Smite':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Sound/Silence':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Speak Language':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Stun':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Summon Ally':
+    'Advances=0 ' +
+    'Description="TODO"',
+  'Telekinesis':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Teleport':
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Wall Walker':
+    'Advances=0 ' +
+    'Description="TODO"',
+  "Warrior's Gift":
+    'Advances=4 ' +
+    'Description="TODO"',
+  'Zombie':
+    'Advances=8 ' +
+    'Description="TODO"'
 };
 SWADE.RACES = {
   'Android':
@@ -1040,8 +1202,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 /* Defines rules related to basic character identity. */
 SWADE.identityRules = function(rules, races) {
 
-  QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'SpellSlots', 'Spells']);
+  QuilvynUtils.checkAttrTable(races, ['Features']);
 
   for(var race in races) {
     rules.choiceRules(rules, 'Race', race, races[race]);
@@ -1051,7 +1212,10 @@ SWADE.identityRules = function(rules, races) {
 
 /* Defines rules related to powers. */
 SWADE.magicRules = function(rules, powers) {
-  // TODO
+  QuilvynUtils.checkAttrTable(powers, ['Advances', 'Description']);
+  for(var power in powers) {
+    rules.choiceRules(rules, 'Power', power, powers[power]);
+  }
   rules.defineRule('hasArcaneBackground',
     'features.Arcane Background (Gifted)', '=', '1',
     'features.Arcane Background (Magic)', '=', '1',
@@ -1211,27 +1375,12 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
       QuilvynUtils.getAttrValue(attrs, 'Core')
     );
-  else if(type == 'Power') {
-    var description = QuilvynUtils.getAttrValue(attrs, 'Description');
-    var groupLevels = QuilvynUtils.getAttrValueArray(attrs, 'Level');
-    var school = QuilvynUtils.getAttrValue(attrs, 'School');
-    var schoolAbbr = school.substring(0, 4);
-    for(var i = 0; i < groupLevels.length; i++) {
-      var matchInfo = groupLevels[i].match(/^(\D+)(\d+)$/);
-      if(!matchInfo) {
-        console.log('Bad level "' + groupLevels[i] + '" for spell ' + name);
-        continue;
-      }
-      var group = matchInfo[1];
-      var level = matchInfo[2] * 1;
-      var fullName = name + '(' + group + level + ' ' + schoolAbbr + ')';
-      // TODO indicate domain spells in attributes?
-      var domainSpell = SWADE.PATHS[group + ' Domain'] != null;
-      SWADE.spellRules
-        (rules, fullName, school, group, level, description, domainSpell);
-      rules.addChoice('spells', fullName, attrs);
-    }
-  } else if(type == 'Weapon')
+  else if(type == 'Power')
+    SWADE.powerRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Advances'),
+      QuilvynUtils.getAttrValue(attrs, 'Description')
+    );
+  else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
@@ -1245,7 +1394,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature' && type != 'Power') {
+  if(type != 'Feature') {
     type =
       type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
     rules.addChoice(type, name, attrs);
@@ -1730,14 +1879,9 @@ SWADE.skillRules = function(rules, name, attribute, core) {
 };
 
 /*
- * Defines in #rules# the rules associated with spell #name#, which is from
- * magic school #school#. #casterGroup# and #level# are used to compute any
- * saving throw value required by the spell. #description# is a verbose
- * description of the spell's effects.
+ * TODO
  */
-SWADE.powerRules = function(
-  rules, name, school, casterGroup, level, description, domainSpell
-) {
+SWADE.powerRules = function(rules, name, advances, description) {
   // TODO
 };
 
@@ -2219,7 +2363,7 @@ SWADE.initialEditorElements = function() {
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
-    ['spells', 'Spells', 'fset', 'spells'],
+    ['powers', 'Powers', 'fset', 'powers'],
     ['notes', 'Notes', 'textarea', [40,10]],
     ['hiddenNotes', 'Hidden Notes', 'textarea', [40,10]]
   ];
