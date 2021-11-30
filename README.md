@@ -6,8 +6,7 @@ the Savage Worlds RPG, applying the rules of the
 
 ### Requirements
 
-quilvyn-savage relies on the core and srd35 modules installed by the
-quilvyn-core package.
+quilvyn-savage relies on the core modules installed by the quilvyn-core package.
 
 ### Installation
 
@@ -17,8 +16,7 @@ following lines to the file plugins/plugins.js:
 
     RULESETS["Savage Worlds Adventurer's Edition"] = {
       url:'plugins/SWADE.js',
-      group:'Savage Worlds',
-      require:'SRD35.js'
+      group:'Savage Worlds'
     };
 
 ### Usage

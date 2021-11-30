@@ -43,7 +43,7 @@ function SWADE() {
 
   SWADE.createViewers(rules, SWADE.VIEWERS);
   rules.defineChoice('extras',
-    'edges', 'edgePoints', 'hinderences', 'sanityNotes', 'validationNotes'
+    'edges', 'edgePoints', 'hindrences', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'advances:Advances,text,4'
@@ -394,7 +394,7 @@ SWADE.FEATURES = {
   'Danger Sense':'Section=feature Note="TODO"',
   'Dead Shot':
     'Section=combat ' +
-    'Note="Joker Action Card gives dbl damage from first thowing or shooting"',
+    'Note="Joker Action Card gives dbl damage from first throwing or shooting"',
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
@@ -460,7 +460,7 @@ SWADE.FEATURES = {
   'Iron Jaw':'Section=combat Note="+2 soak/+2 vs. knockout"',
   'Iron Will':'Section=feature Note="TODO"',
   'Jack-Of-All-Trades':'Section=feature Note="TODO"',
-  'Killer Instinct':'Section=skill Note="Reroll sel-initiated opposed test"',
+  'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed test"',
   'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
   // TODO how to implement this?
   'Linguist':'Section=feature Note="d6 in %{smarts//2} Language skills"',
@@ -470,8 +470,7 @@ SWADE.FEATURES = {
     'Section=feature ' +
     'Note="Trade move for +1 Athletics (Throwing), +1 Shooting, or -2 attack penalties"',
   'Martial Artist':
-    'Section=combat ' +
-    'Note="+%V attack with fists and feed, do %{d{strength}+d4 damage"',
+    'Section=combat Note="+%V attack unarmed, do d4+d%{strength} damage"',
   'Martial Warrior':'Section=feature Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=feature Note="TODO"',
   'Master':'Section=feature Note="TODO"',
@@ -510,7 +509,7 @@ SWADE.FEATURES = {
   'Streetwise':'Section=feature Note="TODO"',
   'Strong Willed':'Section=feature Note="TODO"',
   'Sweep':
-    'Section=combat Note="Take %V attack pentaly to attack all within reach"',
+    'Section=combat Note="Take %V attack penalty to attack all within reach"',
   'Tactician':'Section=combat Note="Give %V extra action cards to extras"',
   'Thief':'Section=feature Note="TODO"',
   'Tough As Nails':'Section=feature Note="TODO"',
@@ -634,7 +633,7 @@ SWADE.FEATURES = {
   'Vengeful (Major)':'Section=feature Note="Revenge is primary concern"',
   'Vengeful (Minor)':'Section=feature Note="Spends time plotting revenge"',
   'Vow (Minor)':
-    'Section=feature Note="Broad requiremens on behavior and actions"',
+    'Section=feature Note="Broad requirements on behavior and actions"',
   'Vow (Major)':
     'Section=feature Note="Strict requirements on behavior and actions"',
   'Wanted (Major)':
@@ -883,8 +882,8 @@ SWADE.WEAPONS = {
   'Chainsaw':'Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
   'Switchblade':'Damage=d4 MinStr=4 Weight=1 Category=1h',
   'Survival Knife':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Molecuar Knife':'Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
-  'Molecuar Sword':'Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
+  'Molecular Knife':'Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
+  'Molecular Sword':'Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
   'Laser Sword':'Damage=d6+8 MinStr=4 Weight=2 Category=1h AP=12',
 
   'Throwing Axe':'Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
@@ -1016,7 +1015,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   }
 
   rules.defineRule('combatNotes.fightingParryModifier',
-    'skillModifer.Fighting', '=', 'source / 2'
+    'skillModifier.Fighting', '=', 'source / 2'
   );
   rules.defineRule('combatNotes.sizeToughnessModifier', 'size', '=', null);
   rules.defineRule
@@ -1425,6 +1424,10 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.martialWarrior', '+', '1'
     );
+    rules.defineRule
+      ('attackBonus.Unarmed', 'combatNotes.martialArtist', '+', null);
+    rules.defineRule
+      ('weapons.Unarmed.2', 'combatNotes.martialArtist', '=', '"d4"');
   } else if(name == 'Nerves Of Steel') {
     rules.defineRule('combatNotes.nervesOfSteel',
       '', '=', '1',
@@ -1466,30 +1469,80 @@ SWADE.edgeRulesExtra = function(rules, name) {
  * the two must have the same number of elements.
  */
 SWADE.featureRules = function(rules, name, sections, notes) {
-  // TBD Move out of SRD35
-  SRD35.featureRules(rules, name, sections, notes);
+
+  if(!name) {
+    console.log('Empty feature name');
+    return;
+  }
+  if(!Array.isArray(sections) || sections.length == 0) {
+    console.log('Bad sections list "' + sections + '" for feature ' + name);
+    return;
+  }
+  if(!Array.isArray(notes)) {
+    console.log('Bad notes list "' + notes + '" for feature ' + name);
+    return;
+  }
+  if(sections.length != notes.length) {
+    console.log(sections.length + ' sections, ' + notes.length + ' notes for feature ' + name);
+    return;
+  }
+
+  var prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+
   for(var i = 0; i < sections.length; i++) {
+
     var section = sections[i];
-    var pieces = notes[i].split(/\s*\/\s*/);
+    var effects = notes[i];
+    var matchInfo;
+    var note = section + 'Notes.' + prefix;
+
+    rules.defineChoice('notes', note + ':' + effects);
+    rules.defineRule
+      (note, 'features.' + name, effects.indexOf('%V') >= 0 ? '?' : '=', null);
+
+    var pieces = effects.split('/');
+
     for(var j = 0; j < pieces.length; j++) {
-      var matchInfo = pieces[j].match(/^([-+]\d+) ([A-Z]\w+) die$/);
+
+      matchInfo = pieces[j].match(/^([-+x](\d+(\.\d+)?|%[V1-9]))\s+(.*)$/);
       if(!matchInfo)
         continue;
-      var note =
-        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-      if(section == 'ability')
-        rules.defineRule(matchInfo[2].toLowerCase() + 'Level',
-          section + 'Notes.' + note, '+', matchInfo[1]
-        );
-      else if(matchInfo[2] == 'Run')
-        rules.defineRule
-          ('run', section + 'Notes.' + note, '+', matchInfo[1] + ' * 2');
-      else if(sections[i] == 'skill')
-        rules.defineRule('skillLevel.' + matchInfo[2],
-          section + 'Notes.' + note, '+', matchInfo[1]
-        );
+
+      var adjust = matchInfo[1];
+      var adjusted = matchInfo[4];
+      var adjustor =
+        adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
+      var op = adjust.startsWith('x') ? '*' : '+';
+      if(op == '*')
+        adjust = adjust.substring(1);
+
+      if(section == 'save' && adjusted.match(/^[A-Z]\w*$/)) {
+        adjusted = 'save.' + adjusted;
+      } else if(section == 'skill' &&
+                adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
+        adjusted = 'skillModifier.' + adjusted;
+      } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
+        adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
+      } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
+        adjusted = adjusted.replace(' die', '');
+        if(section == 'ability')
+          adjusted += 'Level'
+        else if(sections == 'skill')
+          adjusted = 'skillLevel.' + adjusted;
+        else
+          adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1);
+      } else {
+        continue;
+      }
+      rules.defineRule(adjusted,
+        adjustor, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
+      );
+
     }
+
   }
+
 };
 
 /*
@@ -1685,9 +1738,7 @@ SWADE.skillRules = function(rules, name, attribute, core) {
 SWADE.powerRules = function(
   rules, name, school, casterGroup, level, description, domainSpell
 ) {
-  // TBD Move out of SRD35
-  SRD35.spellRules
-    (rules, name, school, casterGroup, level, description, domainSpell);
+  // TODO
 };
 
 /*
@@ -2152,7 +2203,7 @@ SWADE.initialEditorElements = function() {
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
     ['spiritAllocation', 'Spirit', 'select-one', allocations],
-    ['strengthAllocation', 'Srength', 'select-one', allocations],
+    ['strengthAllocation', 'Strength', 'select-one', allocations],
     ['vigorAllocation', 'Vigor', 'select-one', allocations],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
@@ -2195,8 +2246,8 @@ SWADE.randomName = function(race) {
     race = 'Elf';
   else if(race.match(/Gnome/))
     race = 'Gnome';
-  else if(race.match(/Halfling/))
-    race = 'Halfling';
+  else if(race.match(/Half-Folk/))
+    race = 'Half-Folk';
   else if(race.match(/Orc/))
     race = 'Orc';
   else if(race.match(/Tiefling/))
@@ -2211,7 +2262,7 @@ SWADE.randomName = function(race) {
   };
   var consonants = {
     'Dragonborn':'bcdfghjklmnprstvwz', 'Dwarf':'dgkmnprst', 'Elf':'fhlmnpqswy',
-    'Gnome':'bdghjlmnprstw', 'Halfling':'bdfghlmnprst',
+    'Gnome':'bdghjlmnprstw', 'Half-Folk':'bdfghlmnprst',
     'Human': 'bcdfghjklmnprstvwz', 'Orc': 'dgjkprtvxz',
     'Tiefling': 'bcdfghjklmnprstvwz'
   }[race];
@@ -2219,7 +2270,7 @@ SWADE.randomName = function(race) {
   var leading = 'ghjqvwy';
   var vowels = {
     'Dragonborn':'aeiou', 'Dwarf':'aeiou', 'Elf':'aeioy', 'Gnome':'aeiou',
-    'Halfling':'aeiou', 'Human':'aeiou', 'Orc':'aou', 'Tiefling':'aeiou'
+    'Half-Folk':'aeiou', 'Human':'aeiou', 'Orc':'aou', 'Tiefling':'aeiou'
   }[race];
   var diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
   var syllables = QuilvynUtils.random(0, 99);
@@ -2630,9 +2681,6 @@ SWADE.ruleNotes = function() {
     '    Boost2, Ability Boost3, etc. In the editor, text boxes next to\n' +
     '    each of the six basic attributes are used to enter the number of\n' +
     '    improvements to each.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn presents sub-race choices (e.g., Lightfoot vs. Stout\n' +
-    '    Halfling) as separate races in the editor Race menu.\n' +
     '  </li><li>\n' +
     '    Quilvyn includes spells granted by individual warlock patrons in\n' +
     '    the warlock spell list.\n' +
