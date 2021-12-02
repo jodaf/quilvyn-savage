@@ -280,7 +280,10 @@ SWADE.EDGES = {
     'Type=professional ' +
     'Require="smarts >= 6","skills.Notice >= 8","skills.Repair >= 6"',
   'Mr. Fix It':'Type=professional Require="skills.Repair >= 8"',
-  'Scholar':'Type=professional Require="skills.Research >= 8"',
+  'Scholar (Academics)':'Type=professional Require="skills.Research >= 8"',
+  'Scholar (Battle)':'Type=professional Require="skills.Research >= 8"',
+  'Scholar (Occult)':'Type=professional Require="skills.Research >= 8"',
+  'Scholar (Science)':'Type=professional Require="skills.Research >= 8"',
   'Soldier':'Type=professional Require="strength >= 6","vigor >= 6"',
   'Thief':
     'Type=professional ' +
@@ -334,8 +337,11 @@ SWADE.EDGES = {
 SWADE.FEATURES = {
 
   // Edges
-  'Ace':'Section=feature Note="TODO"',
-  'Acrobat':'Section=feature Note="TODO"',
+  'Ace':
+    'Section=skill ' +
+    'Note="Ignore 2 penalty points on Boating, Driving, and Piloting, spend Benny to Soak vehicle damage"',
+  'Acrobat':
+    'Section=skill Note="Reroll Athletics (balance, tumble, or grapple)"',
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, parry bonuses stack"',
@@ -353,8 +359,9 @@ SWADE.FEATURES = {
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
-  'Artificer':'Section=feature Note="TODO"',
-  'Assassin':'Section=feature Note="TODO"',
+  'Artificer':'Section=magic Note="Create arcane devices"',
+  'Assassin':
+    'Section=combat Note="+2 damage to Vulnerable foes and during The Drop"',
   'Attractive':
     'Section=skill ' +
     'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
@@ -364,7 +371,9 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="After injury, rage gives +1 Strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
-  'Bolster':'Section=feature Note="TODO"',
+  'Bolster':
+    'Section=combat ' +
+    'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
   'Brave':'Section=save Note="+2 fear checks, -2 fear roll"',
   'Brawler':
     'Section=combat ' +
@@ -380,15 +389,22 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':'Section=feature Note="TODO"',
+  'Channeling':
+    'Section=magic ' +
+    'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
   'Chi':'Section=feature Note="TODO"',
-  'Combat Acrobat':'Section=feature Note="TODO"',
+  'Combat Acrobat':
+    'Section=combat ' +
+    'Note="Foes -1 attack when self aware of attack and unrestrained"',
   'Combat Reflexes':'Section=combat Note="+2 on recovery rolls"',
   'Command':'Section=feature Note="Extras in %V yd +1 recover from Shaken or Stunned"',
   'Command Presence':'Section=feature Note="Increased Command effects"',
-  'Common Bond':'Section=feature Note="TODO"',
-  'Concentration':'Section=feature Note="TODO"',
-  'Connections':'Section=feature Note="TODO"',
+  'Common Bond':
+    'Section=feature Note="Communication allows transfer of Bennies to allies"',
+  'Concentration':'Section=magic Note="Dbl power duration"',
+  'Connections':
+    'Section=feature Note="Call in favors from acquaintence or organization"',
   'Counterattack':
     'Section=combat Note="Free Attack after failed foe attack %V/rd"',
   'Danger Sense':'Section=feature Note="TODO"',
@@ -399,7 +415,8 @@ SWADE.FEATURES = {
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
   'Expert':'Section=feature Note="TODO"',
-  'Extra Effort':'Section=feature Note="TODO"',
+  'Extra Effort':
+    'Section=magic Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
   'Extraction':
     'Section=combat Note="Negate attack of %V foes when withdrawing"',
   'Fame':
@@ -423,7 +440,7 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="Move full Pace on difficult ground/+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':'Section=combat Note="Extra Fighting improvement on %V attacks/rd"',
-  'Gadgeteer':'Section=feature Note="TODO"',
+  'Gadgeteer':'Section=magic Note="Jury rig arcane device from availble parts"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
@@ -431,8 +448,10 @@ SWADE.FEATURES = {
   'Harder To Kill':'Section=save Note="50% chance to cheat death"',
   'Healer':'Section=feature Note="TODO"',
   'Hold The Line!':'Section=feature Note="Extras in command range +1 Toughness"',
-  'Holy/Unholy Warrior':'Section=feature Note="TODO"',
-  'Humiliate':'Section=feature Note="TODO"',
+  'Holy/Unholy Warrior':
+    'Section=magic ' +
+    'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
+  'Humiliate':'Section=combat Note="Reroll Taunt"',
   'Improved Arcane Resistance':
     'Section=save Note="+2 Arcane Resistance Effects"',
   'Improved Block':'Section=combat Note="Increased Block effects"',
@@ -449,17 +468,20 @@ SWADE.FEATURES = {
   'Improved Nerves Of Steel':
     'Section=combat Note="Increased Nerves Of Steel effects"',
   'Improved Rapid Fire':'Section=combat Note="Increased Rapid Fire effects"',
-  'Improved Rapid Recharge':'Section=feature Note="TODO"',
+  'Improved Rapid Recharge':
+    'Section=magic Note="Increased Rapid Recharge effects"',
   'Improved Sweep':'Section=combat Note="Increased Sweep effects"',
   'Improved Trademark Weapon (%weapons)':
     'Section=combat Note="Increased Trademark Weapon effects"',
   'Improvisational Fighter':
     'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':'Section=skill Note="Use Battle to give all extras in command range +1 on chosen trait"',
-  'Investigator':'Section=feature Note="TODO"',
+  'Investigator':'Section=skill Note="+2 Research (sifting for information)"',
   'Iron Jaw':'Section=combat Note="+2 soak/+2 vs. knockout"',
-  'Iron Will':'Section=feature Note="TODO"',
-  'Jack-Of-All-Trades':'Section=feature Note="TODO"',
+  'Iron Will':'Section=save Note="+2 resist powers"',
+  'Jack-Of-All-Trades':
+    'Section=skill ' +
+    'Note="Successful Smarts roll gives d4 on chosen skill (d6 with Raise)"',
   'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed test"',
   'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
   // TODO how to implement this?
@@ -475,43 +497,55 @@ SWADE.FEATURES = {
   'Master Of Arms':'Section=feature Note="TODO"',
   'Master':'Section=feature Note="TODO"',
   'Master Tactician':'Section=combat Note="Increased Tactician effects"',
-  'McGyver':'Section=feature Note="TODO"',
-  'Menacing':'Section=feature Note="TODO"',
-  'Mentalist':'Section=feature Note="TODO"',
+  'McGyver':'Section=combat Note="Successful Repair roll creates explosive"',
+  'Menacing':'Section=skill Note="+2 Intimidation"',
+  'Mentalist':'Section=skill Note="+2 Psionics"',
   'Mighty Blow':
     'Section=combat ' +
     'Note="Joker Action Card gives double damage on first Fighting attack"',
-  'Mr. Fix It':'Section=feature Note="TODO"',
+  'Mr. Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
-  'New Powers':'Section=feature Note="TODO"',
+  'New Powers':'Section=magic Note="Know 2 additional powers"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
-  'Power Points':'Section=feature Note="TODO"',
-  'Power Surge':'Section=feature Note="TODO"',
+  'Power Points':'Section=magic Note="+5 Power Points"',
+  'Power Surge':'Section=magic Note="Recover 10 Power Points when Joker drawn"',
   'Professional':'Section=feature Note="TODO"',
-  'Provoke':'Section=feature Note="TODO"',
+  'Provoke':
+    'Section=combat Note="Taunted foe -2 to attack target other than self"',
   'Quick':'Section=combat Note="Redraw action cards under 6"',
-  'Rabble-Rouser':'Section=feature Note="TODO"',
+  'Rabble-Rouser':
+    'Section=combat Note="Taunt or Intimidate all within medium blast range"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
-  'Rapid Recharge':'Section=feature Note="TODO"',
-  'Reliable':'Section=feature Note="TODO"',
-  'Retort':'Section=feature Note="TODO"',
+  'Rapid Recharge':'Section=magic Note="Recover %V Power Points/hr"',
+  'Reliable':'Section=combat Note="Reroll Support"',
+  'Retort':
+    'Section=feature Note="Raise on Intimidation or Taunt test distracts foe"',
   'Rich':'Section=feature Note="%Vx starting funds"',
   'Rock And Roll':'Section=combat Note="Trade move for ignoring recoil"',
   'Scavenger':'Section=feature Note="TODO"',
-  'Scholar':'Section=feature Note="TODO"',
+  'Scholar (Academics)':'Section=feature Note="+2 Academics"',
+  'Scholar (Battle)':'Section=feature Note="+2 Battle"',
+  'Scholar (Occult)':'Section=feature Note="+2 Occult"',
+  'Scholar (Science)':'Section=feature Note="+2 Science"',
   'Sidekick':'Section=feature Note="TODO"',
-  'Soldier':'Section=feature Note="TODO"',
-  'Soul Drain':'Section=feature Note="TODO"',
+  'Soldier':
+    'Section=ability ' +
+    'Note="+1 Strength die (Encumbrance)/Reroll Vigor (environmental hazards)"',
+  'Soul Drain':
+    'Section=magic Note="Suffer level of Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
-  'Streetwise':'Section=feature Note="TODO"',
-  'Strong Willed':'Section=feature Note="TODO"',
+  'Streetwise':
+    'Section=skill ' +
+    'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
+  'Strong Willed':'Section=save Note="+2 resist Test with Smarts or Spirit"',
   'Sweep':
     'Section=combat Note="Take %V attack penalty to attack all within reach"',
   'Tactician':'Section=combat Note="Give %V extra action cards to extras"',
-  'Thief':'Section=feature Note="TODO"',
+  'Thief':
+    'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
   'Tough As Nails':'Section=feature Note="TODO"',
   'Tougher Than Nails':'Section=feature Note="TODO"',
   'Trademark Weapon (%weapon)':
@@ -524,10 +558,12 @@ SWADE.FEATURES = {
     'Note="No multi-action penalty for firing or throw weapon with each hand"',
   'Very Attractive':'Section=skill Note="+1 Attractive effects"',
   'Weapon Master':'Section=feature Note="TODO"',
-  'Wizard':'Section=feature Note="TODO"',
-  'Woodsman':'Section=feature Note="TODO"',
-  'Work The Crowd':'Section=feature Note="TODO"',
-  'Work The Room':'Section=feature Note="TODO"',
+  'Wizard':'Section=magic Note="Spend 1 Power Point to change power trapping"',
+  'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
+  'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
+  'Work The Room':
+    'Section=skill ' +
+    'Note="+1 die to Support with Persuasion or Performance %V/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -770,168 +806,221 @@ SWADE.HINDRANCES = {
   'Young (Minor)':'Level=Minor'
 };
 SWADE.POWERS = {
-  // TODO
   'Arcane Protection':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Banish':
     'Advances=8 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Barrier':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Beast Friend':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Blast':
     'Advances=4 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Blind':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Bolt':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Boost/Lower Trait':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Burrow':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Burst':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Confusion':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Damage Field':
     'Advances=4 ' +
+    'PowerPoints=4 ' +
     'Description="TODO"',
   'Darksight':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Deflection':
     'Advances=0 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Disguise':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Dispel':
     'Advances=4 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Divination':
     'Advances=12 ' +
+    'PowerPoints=5 ' +
     'Description="TODO"',
   'Drain Power Points':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Elemental Manipulation':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Empathy':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Entangle':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Environmental Protection':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Farsight':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Fear':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Fly':
     'Advances=8 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Growth/Shrink':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Havoc':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Healing':
     'Advances=0 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Illusion':
     'Advances=0 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Intangibility':
     'Advances=12 ' +
+    'PowerPoints=5 ' +
     'Description="TODO"',
   'Invisibility':
     'Advances=4 ' +
+    'PowerPoints=5 ' +
     'Description="TODO"',
   'Light/Darkness':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Mind Link':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Mind Reading':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Mind Wipe':
     'Advances=8 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Object Reading':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Protection':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Puppet':
     'Advances=8 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Relief':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Resurrection':
     'Advances=12 ' +
+    'PowerPoints=30 ' +
     'Description="TODO"',
   'Shape Change':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Sloth/Speed':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Slumber':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Smite':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Sound/Silence':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Speak Language':
     'Advances=0 ' +
+    'PowerPoints=1 ' +
     'Description="TODO"',
   'Stun':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Summon Ally':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Telekinesis':
     'Advances=4 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"',
   'Teleport':
     'Advances=4 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   'Wall Walker':
     'Advances=0 ' +
+    'PowerPoints=2 ' +
     'Description="TODO"',
   "Warrior's Gift":
     'Advances=4 ' +
+    'PowerPoints=4 ' +
     'Description="TODO"',
   'Zombie':
     'Advances=8 ' +
+    'PowerPoints=3 ' +
     'Description="TODO"'
 };
 SWADE.RACES = {
@@ -1212,7 +1301,8 @@ SWADE.identityRules = function(rules, races) {
 
 /* Defines rules related to powers. */
 SWADE.magicRules = function(rules, powers) {
-  QuilvynUtils.checkAttrTable(powers, ['Advances', 'Description']);
+  QuilvynUtils.checkAttrTable
+    (powers, ['Advances', 'PowerPoints', 'Description']);
   for(var power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
   }
@@ -1378,6 +1468,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Power')
     SWADE.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
+      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
   else if(type == 'Weapon')
@@ -1587,6 +1678,11 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.improvedRapidFire', '+', '1'
     );
+  } else if(name == 'Rapid Recharge') {
+    rules.defineRule('magicNotes.rapidRecharge',
+      '', '=', '10',
+      'magicNotes.improvedRapidRecharge', '+', '10'
+    );
   } else if(name == 'Rich') {
     rules.defineRule('featureNotes.rich',
       '', '=', '3',
@@ -1608,6 +1704,11 @@ SWADE.edgeRulesExtra = function(rules, name) {
     rules.defineRule(note,
       '', '=', '1',
       note.replace('trademark', 'improvedTrademark'), '+', '1'
+    );
+  } else if(name == 'Work The Room') {
+    rules.defineRule('skillNotes.workTheRoom',
+      '', '=', '1',
+      'skillNotes.workTheCrowd', '+', '1'
     );
   }
 };
@@ -1881,7 +1982,22 @@ SWADE.skillRules = function(rules, name, attribute, core) {
 /*
  * TODO
  */
-SWADE.powerRules = function(rules, name, advances, description) {
+SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
+  if(!name) {
+    console.log('Empty power name');
+    return;
+  }
+  if(typeof advances != 'number') {
+    console.log('Bad advances "' + advances + '" for power ' + name);
+  }
+  if(typeof powerPoints != 'number') {
+    console.log('Bad powerPoints "' + powerPoints + '" for power ' + name);
+  }
+  if(!description) {
+    console.log('Empty description for power ' + name);
+  }
+  rules.defineChoice
+    ('notes', 'spells.' + name + ': (' + powerPoints + ' PP)' + description);
   // TODO
 };
 
@@ -1898,7 +2014,7 @@ SWADE.weaponRules = function(
 ) {
 
   if(!name) {
-    console.log('Bad name for weapon  "' + name + '"');
+    console.log('Empty weapon name');
     return;
   }
   var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
