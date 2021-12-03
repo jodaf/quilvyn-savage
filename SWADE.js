@@ -581,119 +581,120 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
   'Anemic':'Section=save Note="-2 Vigor (resist disease)"',
-  'Arrogant':'Section=combat Note="Always take on biggest threat"',
-  'Bad Eyes (Major)':'Section=skill Note="-2 vision-linked"',
-  'Bad Eyes (Minor)':'Section=skill Note="-1 vision-linked"',
-  'Bad Luck':'Section=feature Note="-1 Benny each session"',
+  'Arrogant+':'Section=combat Note="Always takes on biggest threat"',
+  'Bad Eyes':'Section=skill Note="-1 visual tasks"',
+  'Bad Eyes+':'Section=skill Note="-2 visual tasks"',
+  'Bad Luck+':'Section=feature Note="-1 Benny each session"',
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
-  'Blind':'Section=feature Note="-6 visual tasks/+1 Edge Points"',
-  'Bloodthirsty':'Section=combat Note="Cruel w/foes"',
+  'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 visual tasks"',
+  'Bloodthirsty+':'Section=combat Note="Cruel to foes"',
   "Can't Swim":
     'Section=combat,skill ' +
     'Note="Swim Pace %{pace//3}","-2 Athletics (swimming)"',
   'Cautious':'Section=feature Note="Requires detailed plan before acting"',
-  'Clueless (Major)':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
-  'Clumsy':'Section=skill Note="-2 Athletics/-2 Stealth"',
-  'Code Of Honor':'Section=feature Note="Insists on acting nobly"',
-  'Curious':
+  'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
+  'Clumsy+':'Section=skill Note="-2 Athletics/-2 Stealth"',
+  'Code Of Honor+':'Section=feature Note="Always insists on acting nobly"',
+  'Curious+':
     'Section=feature Note="Insists on investigating every mystery and secret"',
   'Death Wish':'Section=feature Note="Will risk death for useful goal"',
-  'Delusional (Major)':
-    'Section=feature Note="Frequently acts on conspiracy belief"',
-  'Delusional (Minor)':'Section=feature Note="Harmless conspiracy belief"',
+  'Delusional':'Section=feature Note="Has harmless conspiracy belief"',
+  'Delusional+':'Section=feature Note="Frequently acts on conspiracy belief"',
   'Doubting Thomas':
     'Section=feature Note="Overly skeptical of supernatural reality"',
-  'Driven (Major)':
-    'Section=feature Note="Overriding desire to fulfill personal goal"',
-  'Driven (Minor)':'Section=feature Note="Actions shaped by personal goal"',
-  'Elderly':
+  'Driven':'Section=feature Note="Actions shaped by personal goal"',
+  'Driven+':
+    'Section=feature Note="Has overwhelming desire to fulfill personal goal"',
+  'Elderly+':
     'Section=ability,combat,skill ' +
     'Note="-1 Agility/-1 Strength/-1 Vigor","Pace -1","+5 Skill Points"',
-  'Enemy (Major)':
+  'Enemy':'Section=feature Note="Individual wants character dead"',
+  'Enemy+':
     'Section=feature Note="Powerful individual or group wants character dead"',
-  'Enemy (Minor)':'Section=feature Note="Individual wants character dead"',
-  'Greedy (Major)':
+  'Greedy':'Section=feature Note="Stingy and materialistic"',
+  'Greedy+':
     'Section=feature Note="Adamant about getting more than a fair share"',
-  'Greedy (Minor)':'Section=feature Note="Stingy and materialistic"',
-  'Habit (Major)':
-    'Section=feature Note="Dangerous physical or mental addiction"',
-  'Habit (Minor)':'Section=feature Note="Harmless but irritating compulsion"',
-  'Hard Of Hearing (Major)':
+  'Habit':'Section=feature Note="Has harmless but irritating compulsion"',
+  'Habit+':'Section=feature Note="Has dangerous physical or mental addiction"',
+  'Hard Of Hearing':'Section=skill Note="-4 Notice (hearing)"',
+  'Hard Of Hearing+':
     'Section=skill Note="Deaf, automatically fails Notice (hearing)"',
-  'Hard Of Hearing (Minor)':'Section=skill Note="-4 Notice (hearing)"',
-  'Heroic':'Section=feature Note="Always tries to help others"',
-  'Hesitant':'Section=combat Note="Use lowest of 2 Action Cards"',
+  'Heroic+':'Section=feature Note="Always tries to help others"',
+  'Hesitant':'Section=combat Note="Uses lowest of 2 Action Cards"',
   'Illiterate':'Section=feature Note="Cannot read or write"',
-  'Impulsive':'Section=feature Note="Always acts without thinking"',
-  'Jealous (Major)':
+  'Impulsive+':'Section=feature Note="Always acts without thinking"',
+  'Jealous':'Section=feature Note="Has focused evny about one topic or person"',
+  'Jealous+':
     'Section=feature Note="Always envious about others\' accomplishments"',
-  'Jealous (Minor)':
-    'Section=feature Note="Focused jealousy about one topic or person"',
   'Loyal':'Section=feature Note="Always takes risks for friends"',
   'Mean':
     'Section=feature,skill ' +
     'Note="Ill-tempered and disagreeable","-1 Persuasion"',
   'Mild Mannered':'Section=skill Note="-2 Intimidation"',
-  'Mute':'Section=feature Note="Cannot speak"',
+  'Mute+':'Section=feature Note="Cannot speak"',
   'Obese':'Section=ability,combat Note="+1 Size","-1 Pace/-1 Run die"',
-  'Obligation (Major)':'Section=feature Note="Regular responsibility 40 hr/wk"',
-  'Obligation (Minor)':'Section=feature Note="Regular responsibility 20 hr/wk"',
-  'One Arm':'Section=skill Note="-4 on two-handed tasks"',
-  'One Eye':'Section=feature Note="-2 vision-depended tasks 10 yards distant"',
-  'Outsider (Major)':
+  'Obligation':
+    'Section=feature Note="Has regular responsibility that occupies 20 hr/wk"',
+  'Obligation+':
+    'Section=feature Note="Has regular responsibility that occupies 40 hr/wk"',
+  'One Arm+':'Section=skill Note="-4 on two-handed tasks"',
+  'One Eye+':'Section=feature Note="-2 visual tasks 10 yards distant"',
+  'Outsider':'Section=skill Note="-2 Persuasion (other races)"',
+  'Outsider+':
     'Section=feature,skill ' +
-    'Note="No legal rights","-2 Persuasion (other races)"',
-  'Outsider (Minor)':'Section=skill Note="-2 Persuasion (other races)"',
-  'Overconfident':'Section=feature Note="Excessive belief in capabilities"',
-  'Pacifist (Major)':
+    'Note="Has no legal rights","-2 Persuasion (other races)"',
+  'Overconfident+':
+    'Section=feature Note="Has excessive opinion of own capabilities"',
+  'Pacifist':
     'Section=combat ' +
-    'Note="Will not fight living creatures, use nonlethal methods only in defense"',
-  'Pacifist (Minor)':
-    'Section=feature ' +
     'Note="Will harm others only when no other option available"',
-  'Phobia (Major)':'Section=feature Note="-2 in presence of fear target"',
-  'Phobia (Minor)':'Section=feature Note="-1 in presence of fear target"',
+  'Pacifist+':
+    'Section=combat ' +
+    'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
+  'Phobia':'Section=feature Note="-1 in presence of fear target"',
+  'Phobia+':'Section=feature Note="-2 in presence of fear target"',
   'Poverty':
-    'Section=feature Note="Half starting funds, lose half funds each wk"',
-  'Quirk':'Section=feature Note="Minor compulsion causes occasional trouble"',
-  'Secret (Major)':
+    'Section=feature Note="Starts with half funds, loses half funds each wk"',
+  'Quirk':
     'Section=feature ' +
-    'Note="Hides knowledge to protect self or others from major trouble"',
-  'Secret (Minor)':
+    'Note="Has minor compulsion that occasionally causes trouble"',
+  'Secret':
     'Section=feature ' +
     'Note="Hides knowledge to protect self or others from minor trouble"',
-  'Shamed (Major)':'Section=feature Note="Past event causes social antagonism"',
-  'Shamed (Minor)':'Section=feature Note="Past event causes self-doubt"',
-  'Slow (Major)':'Section=combat,skill Note="-2 Pace","-2 Athletics"',
-  'Slow (Minor)':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Secret+':
+    'Section=feature ' +
+    'Note="Hides knowledge to protect self or others from major trouble"',
+  'Shamed':'Section=feature Note="Past event causes self-doubt"',
+  'Shamed+':'Section=feature Note="Past event causes social antagonism"',
+  'Slow':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Slow+':'Section=combat,skill Note="-2 Pace","-2 Athletics"',
   'Small':'Section=ability Note="-1 Size"',
   'Stubborn':'Section=feature Note="Never admits error"',
-  'Suspicious (Major)':'Section=feature Note="-2 others\' Support rolls"',
-  'Suspicious (Minor)':'Section=feature Note="Frequent trust issues"',
-  'Thin Skinned (Major)':'Section=skill Note="-4 vs. Taunt"',
-  'Thin Skinned (Minor)':'Section=skill Note="-2 vs. Taunt"',
-  'Tongue-Tied':
+  'Suspicious':'Section=feature Note="Has frequent trust issues"',
+  'Suspicious+':'Section=feature Note="Allies -2 on Support rolls"',
+  'Thin Skinned':'Section=skill Note="-2 vs. Taunt"',
+  'Thin Skinned+':'Section=skill Note="-4 vs. Taunt"',
+  'Tongue-Tied+':
     'Section=skill ' +
     'Note="-1 Intimidation (speech)/-1 Performance (speech)/-1 Persuasion (speech)/-1 Taunt (speech)"',
-  'Ugly (Major)':'Section=skill Note="-2 Persuasion"',
-  'Ugly (Minor)':'Section=skill Note="-1 Persuasion"',
-  'Vengeful (Major)':'Section=feature Note="Revenge is primary concern"',
-  'Vengeful (Minor)':'Section=feature Note="Spends time plotting revenge"',
-  'Vow (Minor)':
-    'Section=feature Note="Broad requirements on behavior and actions"',
-  'Vow (Major)':
-    'Section=feature Note="Strict requirements on behavior and actions"',
-  'Wanted (Major)':
-    'Section=feature Note="Significant trouble from local law enforcement"',
-  'Wanted (Minor)':
-    'Section=feature Note="Trouble from distant law or minor infractions"',
-  'Yellow':'Section=save,skill Note="-2 vs. Fear","-2 vs. Intimidation"',
-  'Young (Major)':
-    'Section=feature ' +
-    'Note="-2 Skill Points/-2 Attribute Points/+2 Benny each session"',
-  'Young (Minor)':
+  'Ugly':'Section=skill Note="-1 Persuasion"',
+  'Ugly+':'Section=skill Note="-2 Persuasion"',
+  'Vengeful':'Section=feature Note="Spends time plotting revenge"',
+  'Vengeful+':'Section=feature Note="Places primary concern on revenge"',
+  'Vow':'Section=feature Note="Has broad restrictions on behavior and actions"',
+  'Vow+':
+    'Section=feature Note="Has tight restrictinos on behavior and actions"',
+  'Wanted':
+    'Section=feature Note="Has trouble with distant law or minor infractions"',
+  'Wanted+':
+    'Section=feature Note="Has significant trouble with local law enforcement"',
+  'Yellow+':'Section=save,skill Note="-2 vs. Fear","-2 vs. Intimidation"',
+  'Young':
     'Section=feature ' +
     'Note="-2 Skill Points/-1 Attribute Points/+1 Benny each session"',
+  'Young+':
+    'Section=feature ' +
+    'Note="-2 Skill Points/-2 Attribute Points/+2 Benny each session"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
@@ -737,84 +738,84 @@ SWADE.GOODIES = {
   // TODO
 };
 SWADE.HINDRANCES = {
-  'All Thumbs':'Level=Minor',
-  'Anemic':'Level=Minor',
-  'Arrogant':'Level=Major',
-  'Bad Eyes (Major)':'Level=Major',
-  'Bad Eyes (Minor)':'Level=Minor',
-  'Bad Luck':'Level=Major',
-  'Big Mouth':'Level=Minor',
-  'Blind':'Level=Major',
-  'Bloodthirsty':'Level=Major',
-  "Can't Swim":'Level=Minor',
-  'Cautious':'Level=Minor',
-  'Clueless (Major)':'Level=Major',
-  'Clumsy':'Level=Major',
-  'Code Of Honor':'Level=Major',
-  'Curious':'Level=Major',
-  'Death Wish':'Level=Minor',
-  'Delusional (Major)':'Level=Major',
-  'Delusional (Minor)':'Level=Minor',
-  'Doubting Thomas':'Level=Minor',
-  'Driven (Major)':'Level=Major',
-  'Driven (Minor)':'Level=Minor',
-  'Elderly':'Level=Major',
-  'Enemy (Major)':'Level=Major',
-  'Enemy (Minor)':'Level=Minor',
-  'Greedy (Major)':'Level=Major',
-  'Greedy (Minor)':'Level=Minor',
-  'Habit (Major)':'Level=Major',
-  'Habit (Minor)':'Level=Minor',
-  'Hard Of Hearing (Major)':'Level=Major',
-  'Hard Of Hearing (Minor)':'Level=Minor',
-  'Heroic':'Level=Major',
-  'Hesitant':'Level=Minor',
-  'Illiterate':'Level=Minor',
-  'Impulsive':'Level=Major',
-  'Jealous (Major)':'Level=Major',
-  'Jealous (Minor)':'Level=Minor',
-  'Loyal':'Level=Minor',
-  'Mean':'Level=Minor',
-  'Mild Mannered':'Level=Minor',
-  'Mute':'Level=Major',
-  'Obese':'Level=Minor',
-  'Obligation (Major)':'Level=Major',
-  'Obligation (Minor)':'Level=Minor',
-  'One Arm':'Level=Major',
-  'One Eye':'Level=Major',
-  'Outsider (Major)':'Level=Major',
-  'Outsider (Minor)':'Level=Minor',
-  'Overconfident':'Level=Major',
-  'Pacifist (Major)':'Level=Major',
-  'Pacifist (Minor)':'Level=Minor',
-  'Phobia (Major)':'Level=Major',
-  'Phobia (Minor)':'Level=Minor',
-  'Poverty':'Level=Minor',
-  'Quirk':'Level=Minor',
-  'Secret (Major)':'Level=Major',
-  'Secret (Minor)':'Level=Minor',
-  'Shamed (Major)':'Level=Major',
-  'Shamed (Minor)':'Level=Minor',
-  'Slow (Major)':'Level=Major',
-  'Slow (Minor)':'Level=Minor',
-  'Small':'Level=Minor',
-  'Stubborn':'Level=Minor',
-  'Suspicious (Major)':'Level=Major',
-  'Suspicious (Minor)':'Level=Minor',
-  'Thin Skinned (Major)':'Level=Major',
-  'Thin Skinned (Minor)':'Level=Minor',
-  'Tongue-Tied':'Level=Major',
-  'Ugly (Major)':'Level=Major',
-  'Ugly (Minor)':'Level=Minor',
-  'Vengeful (Major)':'Level=Major',
-  'Vengeful (Minor)':'Level=Minor',
-  'Vow (Major)':'Level=Major',
-  'Vow (Minor)':'Level=Minor',
-  'Wanted (Major)':'Level=Major',
-  'Wanted (Minor)':'Level=Minor',
-  'Yellow':'Level=Major',
-  'Young (Major)':'Level=Major',
-  'Young (Minor)':'Level=Minor'
+  'All Thumbs':'Severity=Minor',
+  'Anemic':'Severity=Minor',
+  'Arrogant+':'Severity=Major',
+  'Bad Eyes':'Severity=Minor',
+  'Bad Eyes+':'Severity=Major',
+  'Bad Luck+':'Severity=Major',
+  'Big Mouth':'Severity=Minor',
+  'Blind+':'Severity=Major',
+  'Bloodthirsty+':'Severity=Major',
+  "Can't Swim":'Severity=Minor',
+  'Cautious':'Severity=Minor',
+  'Clueless+':'Severity=Major',
+  'Clumsy+':'Severity=Major',
+  'Code Of Honor+':'Severity=Major',
+  'Curious+':'Severity=Major',
+  'Death Wish':'Severity=Minor',
+  'Delusional':'Severity=Minor',
+  'Delusional+':'Severity=Major',
+  'Doubting Thomas':'Severity=Minor',
+  'Driven':'Severity=Minor',
+  'Driven+':'Severity=Major',
+  'Elderly+':'Severity=Major',
+  'Enemy':'Severity=Minor',
+  'Enemy+':'Severity=Major',
+  'Greedy':'Severity=Minor',
+  'Greedy+':'Severity=Major',
+  'Habit':'Severity=Minor',
+  'Habit+':'Severity=Major',
+  'Hard Of Hearing':'Severity=Minor',
+  'Hard Of Hearing+':'Severity=Major',
+  'Heroic+':'Severity=Major',
+  'Hesitant':'Severity=Minor',
+  'Illiterate':'Severity=Minor',
+  'Impulsive+':'Severity=Major',
+  'Jealous':'Severity=Minor',
+  'Jealous+':'Severity=Major',
+  'Loyal':'Severity=Minor',
+  'Mean':'Severity=Minor',
+  'Mild Mannered':'Severity=Minor',
+  'Mute+':'Severity=Major',
+  'Obese':'Severity=Minor',
+  'Obligation':'Severity=Minor',
+  'Obligation+':'Severity=Major',
+  'One Arm+':'Severity=Major',
+  'One Eye+':'Severity=Major',
+  'Outsider':'Severity=Minor',
+  'Outsider+':'Severity=Major',
+  'Overconfident+':'Severity=Major',
+  'Pacifist':'Severity=Minor',
+  'Pacifist+':'Severity=Major',
+  'Phobia':'Severity=Minor',
+  'Phobia+':'Severity=Major',
+  'Poverty':'Severity=Minor',
+  'Quirk':'Severity=Minor',
+  'Secret':'Severity=Minor',
+  'Secret+':'Severity=Major',
+  'Shamed':'Severity=Minor',
+  'Shamed+':'Severity=Major',
+  'Slow':'Severity=Minor',
+  'Slow+':'Severity=Major',
+  'Small':'Severity=Minor',
+  'Stubborn':'Severity=Minor',
+  'Suspicious':'Severity=Minor',
+  'Suspicious+':'Severity=Major',
+  'Thin Skinned':'Severity=Minor',
+  'Thin Skinned+':'Severity=Major',
+  'Tongue-Tied+':'Severity=Major',
+  'Ugly':'Severity=Minor',
+  'Ugly+':'Severity=Major',
+  'Vengeful':'Severity=Minor',
+  'Vengeful+':'Severity=Major',
+  'Vow':'Severity=Minor',
+  'Vow+':'Severity=Major',
+  'Wanted':'Severity=Minor',
+  'Wanted+':'Severity=Major',
+  'Yellow+':'Severity=Major',
+  'Young':'Severity=Minor',
+  'Young+':'Severity=Major'
 };
 SWADE.POWERS = {
   'Arcane Protection':
@@ -1037,7 +1038,7 @@ SWADE.POWERS = {
 SWADE.RACES = {
   'Android':
     'Features=' +
-      'Construct,"Outsider (Major)","Pacifist (Major)","Vow (Major)"',
+      'Construct,"Outsider+","Pacifist+","Vow+"',
   'Aquarian':
     'Features=' +
       'Aquatic,Dependency,"Low Light Vision",Toughness',
@@ -1052,7 +1053,7 @@ SWADE.RACES = {
       'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision","Outsider (Minor)"',
+      'Heritage,"Low Light Vision","Outsider"',
   'Half-Folk':
     'Features=' +
       'Luck,"Reduced Pace",Small,Spirited',
@@ -1066,7 +1067,7 @@ SWADE.RACES = {
   'Saurian':
     'Features=' +
       '"Armor +2",Bite,"Environmental Weakness","Keen Senses",' +
-      '"Outsider (Minor)"'
+      '"Outsider"'
 };
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
@@ -1365,7 +1366,7 @@ SWADE.talentRules = function(
 
   QuilvynUtils.checkAttrTable(edges, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
-  QuilvynUtils.checkAttrTable(hindrances, ['Level']);
+  QuilvynUtils.checkAttrTable(hindrances, ['Severity']);
   QuilvynUtils.checkAttrTable(skills, ['Attribute', 'Core']);
 
   for(var goody in goodies) {
@@ -1456,7 +1457,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Hindrance')
     SWADE.hindranceRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Level'),
+      QuilvynUtils.getAttrValue(attrs, 'Severity'),
     );
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
@@ -1808,6 +1809,8 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       } else if(section == 'skill' &&
                 adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
         adjusted = 'skillModifier.' + adjusted;
+      } else if(adjusted.toLowerCase() in SWADE.ATTRIBUTES) {
+        adjusted = adjusted.toLowerCase() + 'Modifier';
       } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
         adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
       } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
@@ -1851,14 +1854,24 @@ SWADE.goodyRules = function(
 };
 
 /*
- * TODO
+ * Defines in #rules#A the rules associated with hindrance #name#, which has
+ * level #severity# (Major or Minor).
  */
-SWADE.hindranceRules = function(rules, name, level) {
-  // TODO
+SWADE.hindranceRules = function(rules, name, severity) {
+  if(!name) {
+    console.log('Empty hindrance name');
+    return;
+  }
+  if(severity != 'Minor' && severity != 'Major') {
+    console.log('Bad severity "' + severity + '" for hindrance ' + name);
+    return;
+  }
   rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
-  rules.defineRule('improvementPoints',
-    'hindrances.' + name, '+', level=='Major' ? '2' : '1'
+  rules.defineRule('hindrancePoints',
+    'hindrances.' + name, '+', severity=='Major' ? '2' : '1',
+    '', 'v', '4'
   );
+  rules.defineRule('improvementPoints', 'hindrancePoints', '+=', null);
 };
 
 /*
@@ -2698,7 +2711,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       var type = howMany==1 || QuilvynUtils.random(0, 9)<8 ? 'Minor' : 'Major';
       choices = [];
       for(attr in allHindrances) {
-        if(!('features.' + attr in attrs) && allHindrances[attr].includes(type))
+        if(allHindrances[attr].includes(type) &&
+           !('features.' + attr in attrs) &&
+           !('features.' + attr + '+' in attrs) &&
+           !('features.' + attr.replace('+', '') in attrs))
           choices.push(attr);
       }
       attr = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -2969,17 +2985,8 @@ SWADE.ruleNotes = function() {
     '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    The Expertise features of bards and rogues are renamed Bard\n' +
-    '    Expertise and Rogue Expertise to distinguish the two.\n' +
-    '  </li><li>\n' +
-    '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter are presented as feats named Ability Boost, Ability\n' +
-    '    Boost2, Ability Boost3, etc. In the editor, text boxes next to\n' +
-    '    each of the six basic attributes are used to enter the number of\n' +
-    '    improvements to each.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn includes spells granted by individual warlock patrons in\n' +
-    '    the warlock spell list.\n' +
+    '    Major hindrances are noted by a "+" after the name. For example,\n' +
+    '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +
@@ -2987,21 +2994,12 @@ SWADE.ruleNotes = function() {
     '<h3>Limitations</h3>\n' +
     '<p>\n' +
     '<ul>\n' +
-    '  <li>\n' +
-    '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
-    '    or equipment. These items can be entered in the Notes section.\n' +
-    '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +
     '\n' +
     '<h3>Known Bugs</h3>\n' +
     '<p>\n' +
     '<ul>\n' +
-    '  <li>\n' +
-    '    Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
-    '    gives multiclass characters the complete set of proficiencies for\n' +
-    '    each class.\n' +
-    '  </li>\n' +
     '</ul>\n' +
     '</p>\n';
 };
