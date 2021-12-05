@@ -143,7 +143,7 @@ SWADE.EDGES = {
     'Type=background Require="features.Arcane Resistance"',
   'Aristocrat':'Type=background',
   'Attractive':'Type=background Require="vigor >= 6"',
-  'Very Attractive':'Type=background Require="feature.Attractive"',
+  'Very Attractive':'Type=background Require="features.Attractive"',
   'Berserk':'Type=background',
   'Brave':'Type=background Require="spirit >= 6"',
   'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
@@ -151,7 +151,7 @@ SWADE.EDGES = {
   'Charismatic':'Type=background Require="spirit >= 6"',
   'Elan':'Type=background Require="spirit >= 6"',
   'Fame':'Type=background',
-  'Famous':'Type=background Require="advances >= 4","features.fame"',
+  'Famous':'Type=background Require="advances >= 4","features.Fame"',
   'Fast Healer':'Type=background Require="vigor >= 8"',
   'Fleet-Footed':'Type=background Require="agility >= 6"',
   'Linguist':'Type=background Require="smarts >= 6"',
@@ -159,7 +159,7 @@ SWADE.EDGES = {
   'Great Luck':'Type=background Require="features.Luck"',
   'Quick':'Type=background Require="agility >= 8"',
   'Rich':'Type=background',
-  'Filthy Rich':'Type=background Require="feature.Rich"',
+  'Filthy Rich':'Type=background Require="features.Rich"',
   // Combat
   'Block':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Block':'Type=combat Require="advances >= 8","features.Block"',
@@ -212,10 +212,14 @@ SWADE.EDGES = {
   'Steady Hands':'Type=combat Require="agility >= 8"',
   'Sweep':'Type=combat Require="strength >= 8","skills.Fighting >= 8"',
   'Improved Sweep':'Type=combat Require="advances >= 8","features.Sweep"',
-  'Trademark Weapon (%weapon)':
+  'Trademark Weapon (%melee)':
     'Type=combat ' +
-    'Imply="weapons.%weapon" ' +
-    'Require="skills.%weapon >= 8"',
+    'Imply="weapons.%melee" ' +
+    'Require="skills.Fighting >= 8"',
+  'Trademark Weapon (%ranged)':
+    'Type=combat ' +
+    'Imply="weapons.%ranged" ' +
+    'Require="skills.Shooting >= 8"',
   'Improved Trademark Weapon (%weapon)':
     'Type=combat ' +
     'Imply="weapons.%weapon" ' +
@@ -344,7 +348,7 @@ SWADE.FEATURES = {
     'Section=skill Note="Reroll Athletics (balance, tumble, or grapple)"',
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
-    'Section=combat Note="No off-hand penalty, parry bonuses stack"',
+    'Section=combat Note="No off-hand penalty, Parry bonuses stack"',
   'Arcane Background (Gifted)':'Section=feature Note="Access to arcane powers"',
   'Arcane Background (Magic)':'Section=feature Note="Access to arcane powers"',
   'Arcane Background (Miracles)':
@@ -355,7 +359,7 @@ SWADE.FEATURES = {
     'Section=feature Note="Access to arcane powers"',
   'Arcane Resistance':
     'Section=save ' +
-    'Note="-%V others\' targeted arcane skill, -%V magical damage"',
+    'Note="%V others\' targeted arcane skill, %V magical damage"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
@@ -371,22 +375,20 @@ SWADE.FEATURES = {
     'Note="Has animal companion, other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="After injury, rage gives +1 Strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
+    'Note="Injury gives +1 Strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
     'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
-  'Brave':'Section=save Note="+2 fear checks, -2 fear roll"',
-  'Brawler':
-    'Section=combat ' +
-    'Note="+%V Toughness/+d%1 damage or +%2 damage improvement w/fists or natural weapons"',
+  'Brave':'Section=save Note="+2 fear checks, -2 fear table roll"',
+  'Brawler':'Section=combat Note="+%V Toughness/+%1 Unarmed damage die"',
   'Brawny':
     'Section=ability ' +
     'Note="+1 Size/+1 Strength die for encumbrance and minimum strength requirements"',
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
   'Brute':
     'Section=combat,skill ' +
-    'Note="Use Strength for Athletics","+1/+2/+4 thrown weapon range"',
+    'Note="+1/+2/+4 thrown weapon range","Use Strength for Athletics"',
   'Calculating':
     'Section=combat ' +
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
@@ -429,7 +431,7 @@ SWADE.FEATURES = {
     'Section=feature,skill ' +
     'Note=' +
       '"%Vx fee from performing",' +
-      '"+%V Persuasion influencing friendly individuals"',
+      '"+%V Persuasion (influencing friendly individuals)"',
   'Famous':'Section=feature Note="Increased Fame effects"',
   'Fast Healer':
     'Section=combat Note="+2 Vigor (natural healing), check every 3 dy"',
@@ -443,9 +445,11 @@ SWADE.FEATURES = {
   'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run die"',
   'Followers':'Section=feature Note="Gain 5 Soldier followers"',
   'Free Runner':
-    'Section=skill ' +
-    'Note="Move full Pace on difficult ground/+2 Athletics (climbing)/+2 on foot chases"',
-  'Frenzy':'Section=combat Note="Extra Fighting improvement on %V attacks/rd"',
+    'Section=combat,skill ' +
+    'Note=' +
+      '"Move full Pace on difficult ground",' +
+      '"+2 Athletics (climbing)/+2 on foot chases"',
+  'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':'Section=magic Note="Jury rig arcane device from availble parts"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
@@ -459,18 +463,17 @@ SWADE.FEATURES = {
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
   'Humiliate':'Section=combat Note="Reroll Taunt"',
   'Improved Arcane Resistance':
-    'Section=save Note="+2 Arcane Resistance Effects"',
+    'Section=save Note="Increased Arcane Resistance effects"',
   'Improved Block':'Section=combat Note="Increased Block effects"',
   'Improved Counterattack':
-    'Section=combat Note="Two additional Counterattacks"',
-  'Improved Dodge':'Section=combat Note="+2 to evade area attacks"',
-  'Improved Extraction':
-    'Section=combat Note="Increase Extraction effects by 2"',
+    'Section=combat Note="Increased Counterattack effects"',
+  'Improved Dodge':'Section=combat Note="+2 Evading area attacks"',
+  'Improved Extraction':'Section=combat Note="Increased Extraction effects"',
   'Improved First Strike':
-    'Section=combat Note="Increase First Strike effects by 2"',
+    'Section=combat Note="Increased First Strike effects"',
   'Improved Frenzy':'Section=combat Note="Increased Frenzy effects"',
   'Improved Level Headed':
-    'Section=combat Note="Increase Level Headed effects by 1"',
+    'Section=combat Note="Increased Level Headed effects"',
   'Improved Nerves Of Steel':
     'Section=combat Note="Increased Nerves Of Steel effects"',
   'Improved Rapid Fire':'Section=combat Note="Increased Rapid Fire effects"',
@@ -488,7 +491,7 @@ SWADE.FEATURES = {
   'Jack-Of-All-Trades':
     'Section=skill ' +
     'Note="Successful Smarts roll gives d4 on chosen skill (d6 with Raise)"',
-  'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed test"',
+  'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed Test"',
   'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
   // TODO how to implement this?
   'Linguist':'Section=feature Note="d6 in %{smarts//2} Language skills"',
@@ -500,8 +503,8 @@ SWADE.FEATURES = {
     'Section=feature ' +
     'Note="Trade move for +1 Athletics (Throwing), +1 Shooting, or -2 attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%V attack unarmed, do d4+d%{strength} damage"',
-  'Martial Warrior':'Section=feature Note="Increased Martial Artist effects"',
+    'Section=combat Note="+%V Unarmed attack, +%1 Unarmed damage die"',
+  'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Incresed Weapon Master effects"',
   'Master (%attribute)':'Section=feature Note="Use d10 for Wild Die"',
   'Master (%skill)':'Section=feature Note="Use d10 for Wild Die"',
@@ -511,7 +514,7 @@ SWADE.FEATURES = {
   'Mentalist':'Section=skill Note="+2 Psionics"',
   'Mighty Blow':
     'Section=combat ' +
-    'Note="Joker Action Card gives double damage on first Fighting attack"',
+    'Note="Joker Action Card gives dbl damage on first Fighting attack"',
   'Mr. Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
@@ -523,7 +526,7 @@ SWADE.FEATURES = {
   'Professional (%skill)':'Section=skill Note="+%V %skill"',
   'Provoke':
     'Section=combat Note="Taunted foe -2 to attack target other than self"',
-  'Quick':'Section=combat Note="Redraw action cards under 6"',
+  'Quick':'Section=combat Note="Redraw Action Card under 6"',
   'Rabble-Rouser':
     'Section=combat Note="Taunt or Intimidate all within medium blast range"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
@@ -552,8 +555,7 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':'Section=save Note="+2 resist Test with Smarts or Spirit"',
-  'Sweep':
-    'Section=combat Note="Take %V attack penalty to attack all within reach"',
+  'Sweep':'Section=combat Note="Attack on all within reach at -%1 attack"',
   'Tactician':'Section=combat Note="Give %V extra action cards to extras"',
   'Thief':
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
@@ -563,11 +565,12 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %weapon"',
   'Two-Fisted':
-    'Section=combat Note="No multi-attack penalty for second Fighting attack"',
+    'Section=combat ' +
+    'Note="No multi-attack penalty for Fighting attack with each hand"',
   'Two-Gun Kid':
     'Section=combat ' +
-    'Note="No multi-action penalty for firing or throw weapon with each hand"',
-  'Very Attractive':'Section=skill Note="+1 Attractive effects"',
+    'Note="No multi-action penalty for firing or throwing weapon from each hand"',
+  'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':'Section=combat Note="+%V Parry/d%1 bonus damage"',
   'Wizard':'Section=magic Note="Spend 1 Power Point to change power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
@@ -718,7 +721,7 @@ SWADE.FEATURES = {
   'Frail':
     'Section=combat Note="-1 Toughness"',
   'Heritage':
-    'Section=feature Note="+2 Improvements (Ability or Edge)"',
+    'Section=feature Note="+2 Improvements (Attribute or Edge)"',
   'Keen Senses':'Section=skill Note="+1 Notice die"',
   'Low Light Vision':
     'Section=feature Note="Ignore penalties for dim and dark illumination"',
@@ -1224,7 +1227,7 @@ SWADE.attributeRules = function(rules) {
   rules.defineRule('improvementPoints', 'advances', '=', 'source * 2');
   rules.defineRule('attributePoints',
     '', '=', '5',
-    'improvementAllocation.ability', '+', 'Math.floor(source / 2)'
+    'improvementAllocation.Attribute', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule
     ('abilityNotes.attributePoints', 'attributePoints', '=', null);
@@ -1232,12 +1235,13 @@ SWADE.attributeRules = function(rules) {
   rules.defineRule('rank',
     'advances', '=', 'source<4 ? "Novice" : source<8 ? "Seasoned" : source<12 ? "Veteran" : source<16 ? "Heroic" : "Legendary"'
   );
-  rules.defineRule('run', '', '=', '6');
+  rules.defineRule('runLevel', '', '=', '0');
+  rules.defineRule('run', 'runLevel', '=', 'Math.min(6 + source * 2, 12)');
   rules.defineRule('size', '', '=', '0');
   QuilvynRules.validAllocationRules
     (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvements', 'improvementPoints', 'Sum "^improvementAllocation.(ability|edge|skill|hindrance)$"');
+    (rules, 'improvements', 'improvementPoints', 'Sum "^improvementAllocation.(Attribute|Edge|Skill|Hindrance)$"');
 
 };
 
@@ -1409,11 +1413,11 @@ SWADE.talentRules = function(
 
   rules.defineRule('edgePoints',
     '', '=', '1',
-    'improvementAllocation.edge', '+', 'Math.floor(source / 2)'
+    'improvementAllocation.Edge', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule('skillPoints',
     '', '=', '12',
-    'improvementAllocation.skill', '+', 'source'
+    'improvementAllocation.Skill', '+', 'source'
   );
   rules.defineRule('skillNotes.skillPoints', 'skillPoints', '=', null);
   QuilvynRules.validAllocationRules
@@ -1623,12 +1627,15 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.bruiser', '+', '1'
     );
     rules.defineRule('combatNotes.brawler.1',
-      '', '=', '4',
-      'combatNotes.bruiser', '+', '2'
-    );
-    rules.defineRule('combatNotes.brawler.2',
       '', '=', '1',
       'combatNotes.bruiser', '+', '1'
+    );
+    rules.defineRule('damageLevel.Unarmed',
+      'combatNotes.brawler', '^=', '0',
+      'combatNotes.brawler.1', '+', null
+    );
+    rules.defineRule('weapons.Unarmed.2',
+      'damageLevel.Unarmed', '=', '"d" + (2 + source * 2)'
     );
   } else if(name == 'Command') {
     rules.defineRule('featureNotes.command',
@@ -1638,7 +1645,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Counterattack') {
     rules.defineRule('combatNotes.counterattack',
       '', '=', '1',
-      'combatNotes.improvedCounterattack', '+', '1'
+      'combatNotes.improvedCounterattack', '+', '2'
     );
   } else if(name == 'Extraction') {
     rules.defineRule('combatNotes.extraction',
@@ -1679,10 +1686,19 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.martialWarrior', '+', '1'
     );
+    rules.defineRule('combatNotes.martialArtist.1',
+      '', '=', '1',
+      'combatNotes.martialWarrior', '+', '1'
+    );
     rules.defineRule
       ('attackBonus.Unarmed', 'combatNotes.martialArtist', '+', null);
-    rules.defineRule
-      ('weapons.Unarmed.2', 'combatNotes.martialArtist', '=', '"d4"');
+    rules.defineRule('damageLevel.Unarmed',
+      'combatNotes.martialArtist', '^=', '0',
+      'combatNotes.martialArtist.1', '+', null
+    );
+    rules.defineRule('weapons.Unarmed.2',
+      'damageLevel.Unarmed', '=', '"d" + (2 + source * 2)'
+    );
   } else if(name == 'Nerves Of Steel') {
     rules.defineRule('combatNotes.nervesOfSteel',
       '', '=', '1',
@@ -1712,9 +1728,9 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'featureNotes.filthyRich', '^', '5'
     );
   } else if(name == 'Sweep') {
-    rules.defineRule('combatNotes.sweep',
-      '', '=', '-2',
-      'combatNotes.improvedSweep', '^', '0'
+    rules.defineRule('combatNotes.sweep.1',
+      'features.Sweep', '=', '2',
+      'combatNotes.improvedSweep', 'v', '0'
     );
   } else if(name == 'Tactician') {
     rules.defineRule('combatNotes.tactician',
@@ -1815,8 +1831,8 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
       } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
         adjusted = adjusted.replace(' die', '');
-        if(section == 'ability')
-          adjusted += 'Level'
+        if(section == 'ability' || adjusted == 'Run')
+          adjusted = adjusted.toLowerCase() + 'Level'
         else if(sections == 'skill')
           adjusted = 'skillLevel.' + adjusted;
         else
@@ -2010,11 +2026,11 @@ SWADE.skillRules = function(rules, name, attribute, core) {
     }
   }
 
-  rules.defineRule
-    ('skillLevel.' + name, 'skillAllocation.' + name, '=', null);
   if(core && core != 'n' && core != 'N') {
-    rules.defineRule('skillLevel.' + name, 'agility', '^=', '0');
+    rules.defineRule('skillLevel.' + name, 'agility', '=', '0');
   }
+  rules.defineRule
+    ('skillLevel.' + name, 'skillAllocation.' + name, '+=', null);
   rules.defineRule('skills.' + name,
     'skillLevel.' + name, '=', 'Math.min(4 + source * 2, 12)'
   );
@@ -2123,6 +2139,10 @@ SWADE.weaponRules = function(
     );
     rules.defineRule(weaponName + '.5', 'range.' + name, '=', null);
   }
+  if(isRanged)
+    rules.defineChoice('rangeds', name + ':');
+  else
+    rules.defineChoice('melees', name + ':');
 
 };
 
@@ -2375,11 +2395,7 @@ SWADE.createViewers = function(rules, viewers) {
 SWADE.choiceEditorElements = function(rules, type) {
   var result = [];
   var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  if(type == 'Alignment')
-    result.push(
-      // empty
-    );
-  else if(type == 'Armor') {
+  if(type == 'Armor') {
     var zeroToFifty = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
     var minusTenToZero = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0];
     var tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
@@ -2471,7 +2487,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Skill')
     result.push(
-      ['Ability', 'Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
+      ['Attribute', 'Attribute', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
       ['Class', 'Class Skill', 'text', [30]]
     );
   else if(type == 'Spell') {
@@ -2504,7 +2520,7 @@ SWADE.choiceEditorElements = function(rules, type) {
 /* Returns the elements in a basic 5E character editor. */
 SWADE.initialEditorElements = function() {
   var allocations = [0, 1, 2, 3, 4, 5, 6];
-  var improvementTypes = ['Ability', 'Edge', 'Hindrance', 'Skill'];
+  var improvementTypes = ['Attribute', 'Edge', 'Hindrance', 'Skill'];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
@@ -2515,12 +2531,11 @@ SWADE.initialEditorElements = function() {
     ['strengthAllocation', 'Strength', 'select-one', allocations],
     ['vigorAllocation', 'Vigor', 'select-one', allocations],
     ['player', 'Player', 'text', [20]],
-    ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['gender', 'Gender', 'text', [10]],
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
-    ['improvements', 'Improvement Allocation', 'bag', improvementTypes],
+    ['improvementAllocation', 'Improvement Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
     ['skillAllocation', 'Skills', 'bag', 'skills'],
@@ -2724,10 +2739,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'improvements') {
     attrs = this.applyRules(attributes);
     howMany = (attrs['improvementPoints'] || 0) -
-              (attrs['improvementAllocation.ability'] || 0) -
-              (attrs['improvementAllocation.edge'] || 0) -
-              (attrs['improvementAllocation.hindrance'] || 0) -
-              (attrs['improvementAllocation.skill'] || 0);
+              (attrs['improvementAllocation.Attribute'] || 0) -
+              (attrs['improvementAllocation.Edge'] || 0) -
+              (attrs['improvementAllocation.Hindrance'] || 0) -
+              (attrs['improvementAllocation.Skill'] || 0);
     // Note: not allocating improvements to removing hindrances
     while(howMany > 0) {
       attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'skill' :
