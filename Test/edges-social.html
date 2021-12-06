@@ -3,20 +3,21 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Edges-Leadership</title>
+  <title>Edges-Social</title>
   <script>
 var attributes = {
-  "_path":"ztest/swade/edges/leadership", 
-  "advances":9, "agilityAllocation":2, "armor":"Bronze Corselet", "edges.Command":1, 
-  "edges.Command Presence":1, "edges.Fervor":1, "edges.Hold The Line!":1, "edges.Inspire":1, 
-  "edges.Master Tactician":1, "edges.Natural Leader":1, "edges.Tactician":1, "gender":"Male", 
-  "hindrances.Cautious":1, "hindrances.Mean":1, "hindrances.Ugly+":1, 
-  "improvementAllocation.Attribute":10, "improvementAllocation.Edge":6, "improvementAllocation.Skill":2, 
-  "name":"Edges-Leadership", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Athletics":1, 
-  "skillAllocation.Battle":1, "skillAllocation.Fighting":2, "skillAllocation.Healing":1, 
-  "skillAllocation.Language":1, "skillAllocation.Occult":2, "skillAllocation.Research":1, 
-  "skillAllocation.Science":2, "skillAllocation.Shooting":2, "skillAllocation.Survival":1, 
-  "smartsAllocation":2, "spiritAllocation":2, "strengthAllocation":2, "vigorAllocation":2, 
+  "_path":"ztest/swade/edges/social", "advances":9, 
+  "agilityAllocation":2, "armor":"Bronze Corselet", "edges.Bolster":1, "edges.Brave":1, 
+  "edges.Common Bond":1, "edges.Connections":1, "edges.Humiliate":1, "edges.Iron Will":1, 
+  "edges.Menacing":1, "edges.Provoke":1, "edges.Rabble-Rouser":1, "edges.Reliable":1, 
+  "edges.Retort":1, "edges.Streetwise":1, "edges.Strong Willed":1, "edges.Work The Crowd":1, 
+  "edges.Work The Room":1, "gender":"Male", "hindrances.Cautious":1, "hindrances.Mean":1, 
+  "hindrances.Ugly+":1, "improvementAllocation.Attribute":10, "improvementAllocation.Edge":6, 
+  "improvementAllocation.Skill":2, "name":"Edges-Social", "race":"Avion", "shield":"Ballistic Shield", 
+  "skillAllocation.Athletics":2, "skillAllocation.Battle":1, "skillAllocation.Fighting":1, 
+  "skillAllocation.Intimidation":1, "skillAllocation.Notice":1, "skillAllocation.Repair":2, 
+  "skillAllocation.Stealth":2, "skillAllocation.Survival":2, "skillAllocation.Taunt":2, 
+  "smartsAllocation":3, "spiritAllocation":2, "strengthAllocation":2, "vigorAllocation":1, 
   "weapons.Dagger":1, "weapons.Gatling Gun":1, "weapons.Long Bow":1
 };
   </script>
@@ -26,7 +27,7 @@ var attributes = {
 <tr style="text-align:center">
   <td style="border:1px solid black">  <table id="Header" style="width:100%">
   <tr style="text-align:center">
-    <td><b>Edges-Leadership</b> -- <b>Male</b> <b>Avion</b> <b>Veteran Adventurer</b></td>
+    <td><b>Edges-Social</b> -- <b>Male</b> <b>Avion</b> <b>Veteran Adventurer</b></td>
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
@@ -35,10 +36,10 @@ var attributes = {
     <td>    <table id="Abilities" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d8</td>
-      <td><b>Smarts</b>: d8</td>
+      <td><b>Smarts</b>: d10</td>
       <td><b>Spirit</b>: d8</td>
       <td><b>Strength</b>: d8</td>
-      <td><b>Vigor</b>: d8</td>
+      <td><b>Vigor</b>: d6</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -62,7 +63,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Command Presence; Command; Fervor; Hold The Line!; Inspire; Master Tactician; Natural Leader; Tactician</td>
+      <td><b>Edges</b> (4 points): Bolster; Brave; Common Bond; Connections; Humiliate; Iron Will; Menacing; Provoke; Rabble-Rouser; Reliable; Retort; Streetwise; Strong Willed; Work The Crowd; Work The Room</td>
       <td><b>Hindrances</b>: Cautious; Mean; Ugly+</td>
       <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses; Reduced Pace</td>
     </tr></table>
@@ -70,19 +71,13 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
     <tr style="text-align:center">
-      <td><i>Command Presence: Increased Command effects</i></td>
-    </tr><tr style="text-align:center">
       <td>Cautious: Requires detailed plan before acting</td>
     </tr><tr style="text-align:center">
-      <td>Command: R20 yd Extras +1 to recover from Shaken or Stunned</td>
+      <td>Common Bond: Communication allows transfer of Bennies to allies</td>
     </tr><tr style="text-align:center">
-      <td>Fervor: R20 yd Extras +1 Fighting damage</td>
-    </tr><tr style="text-align:center">
-      <td>Hold The Line!: Commanded extras +1 Toughness</td>
+      <td>Connections: Call in favors from acquaintence or organization</td>
     </tr><tr style="text-align:center">
       <td>Mean: Ill-tempered and disagreeable</td>
-    </tr><tr style="text-align:center">
-      <td>Natural Leader: Apply Leadership Edges to Wild Cards</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -93,24 +88,20 @@ var attributes = {
     <col style="width:33%"/>
     <col style="width:34%"/>
     <tr style="text-align:left">
-      <td>Athletics: (agi) d6</td>
-      <td>Language: (sma) d6</td>
-      <td>Science: (sma) d8</td>
+      <td>Athletics: (agi) d8</td>
+      <td>Intimidation: (spi) d6+2</td>
+      <td>Stealth: (agi) d8</td>
     </tr><tr style="text-align:left">
       <td>Battle: (sma) d6</td>
-      <td>Notice: (sma) d6</td>
-      <td>Shooting: (agi) d8</td>
+      <td>Notice: (sma) d8</td>
+      <td>Survival: (sma) d8</td>
     </tr><tr style="text-align:left">
       <td>Common Knowledge: (sma) d4</td>
-      <td>Occult: (sma) d8</td>
-      <td>Stealth: (agi) d4</td>
-    </tr><tr style="text-align:left">
-      <td>Fighting: (agi) d8</td>
       <td>Persuasion: (spi) d4-3</td>
-      <td>Survival: (sma) d6</td>
+      <td>Taunt: (sma) d8</td>
     </tr><tr style="text-align:left">
-      <td>Healing: (sma) d6</td>
-      <td>Research: (sma) d6</td>
+      <td>Fighting: (agi) d6</td>
+      <td>Repair: (sma) d8</td>
       <td></td>
     </tr></table>
 </td>
@@ -121,13 +112,25 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Mean: -1 Persuasion</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Menacing: +2 Intimidation</i></td>
+    </tr><tr style="text-align:center">
       <td><i>Ugly+: -2 Persuasion</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Work The Crowd: Increased Work The Room effects</i></td>
     </tr><tr style="text-align:center">
       <td>Can't Swim: -2 Athletics (swimming)</td>
     </tr><tr style="text-align:center">
       <td>Flight: Use Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
-      <td>Inspire: R20 yd Use Battle to give extras +1 on chosen trait</td>
+      <td>Humiliate: Reroll Taunt</td>
+    </tr><tr style="text-align:center">
+      <td>Rabble-Rouser: Taunt or Intimidate all within medium blast range</td>
+    </tr><tr style="text-align:center">
+      <td>Retort: Raise on Intimidation or Taunt test distracts foe</td>
+    </tr><tr style="text-align:center">
+      <td>Streetwise: +2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)</td>
+    </tr><tr style="text-align:center">
+      <td>Work The Room: +1 die to Support with Persuasion or Performance 2/rd</td>
     </tr></table>
 </td>
   </tr></table>
@@ -139,7 +142,7 @@ var attributes = {
     <tr style="text-align:center">
       <td>      <table id="CombatStats" style="width:100%">
       <tr style="text-align:center">
-        <td><b>Toughness</b>: 8 (3)</td>
+        <td><b>Toughness</b>: 7 (3)</td>
         <td><b>Parry</b>: 5 (3)</td>
         <td><b>Cover</b>: -4</td>
         <td><b>Pace/Run</b>: 5/+d6</td>
@@ -158,17 +161,33 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Frail: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Master Tactician: Increased Tactician effects</i></td>
-      </tr><tr style="text-align:center">
         <td><i>Reduced Pace: -1 Pace</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Vigor Toughness Modifier: +4</i></td>
+        <td><i>Vigor Toughness Modifier: +3</i></td>
+      </tr><tr style="text-align:center">
+        <td>Bolster: Successful foe Test removes Distracted or Vulnerable from ally</td>
       </tr><tr style="text-align:center">
         <td>Can't Swim: Swim Pace 1</td>
       </tr><tr style="text-align:center">
         <td>Flight: Fly Pace 12</td>
       </tr><tr style="text-align:center">
-        <td>Tactician: R20 Distribute 2 extra action cards to extras</td>
+        <td>Provoke: Taunted foe -2 to attack target other than self</td>
+      </tr><tr style="text-align:center">
+        <td>Reliable: Reroll Support</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="SavePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Save Notes</b>:       <table id="SaveNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td>Brave: +2 fear checks, -2 fear table roll</td>
+      </tr><tr style="text-align:center">
+        <td>Iron Will: +2 resist powers</td>
+      </tr><tr style="text-align:center">
+        <td>Strong Willed: +2 resist Test with Smarts or Spirit</td>
       </tr></table>
 </td>
     </tr></table>
@@ -180,7 +199,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>: Edge Points Allocation: 4 available vs. 8 allocated</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 4 available vs. 15 allocated</td>
     </tr></table>
 </td>
   </tr></table>

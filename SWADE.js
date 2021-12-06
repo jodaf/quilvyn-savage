@@ -276,14 +276,14 @@ SWADE.EDGES = {
     'Type=professional Require="advances >= 4","features.Acrobat"',
   'Assassin':
     'Type=professional ' +
-    'Require="agility >= 8","skills.Fighting >= 6","stealth >= 8"',
+    'Require="agility >= 8","skills.Fighting >= 6","skills.Stealth >= 8"',
   'Investigator':
     'Type=professional Require="smarts >= 6","skills.Research >= 8"',
   'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
   'McGyver':
     'Type=professional ' +
     'Require="smarts >= 6","skills.Notice >= 8","skills.Repair >= 6"',
-  'Mr. Fix It':'Type=professional Require="skills.Repair >= 8"',
+  'Mister Fix It':'Type=professional Require="skills.Repair >= 8"',
   'Scholar (Academics)':'Type=professional Require="skills.Research >= 8"',
   'Scholar (Battle)':'Type=professional Require="skills.Research >= 8"',
   'Scholar (Occult)':'Type=professional Require="skills.Research >= 8"',
@@ -299,7 +299,9 @@ SWADE.EDGES = {
   'Connections':'Type=social',
   'Humiliate':'Type=social Require="skills.Taunt >= 8"',
   'Menacing':
-    'Type=social Require="features.Bloodthirsty || features.Mean || features.Ruthless || features.Ugly"',
+    'Type=social ' +
+    'Imply=skills.Intimidation ' +
+    'Require="features.Bloodthirsty || features.Mean || features.Ruthless || features.Ugly"',
   'Provoke':'Type=social Require="skills.Taunt >= 6"',
   'Rabble-Rouser':'Type=social Require="spirit >= 8"',
   'Reliable':'Type=social Require="spirit >= 8"',
@@ -318,13 +320,15 @@ SWADE.EDGES = {
   'Champion':'Type=weird Require="spirit >= 8","skills.Fighting >= 6"',
   'Chi':'Type=weird Require="advances >= 8","features.Martial Warrior"',
   'Danger Sense':'Type=weird',
-  'Healer':'Type=weird Require="spirit >= 8"',
+  'Healer':'Type=weird Imply=skills.HealingRequire="spirit >= 8"',
   'Liquid Courage':'Type=weird Require="vigor >= 8"',
   'Scavenger':'Type=weird Require="features.Luck"',
   // Legendary
   'Followers':'Type=legendary Require="advances >= 16"',
-  'Professional (%trait)':
-    'Type=legendary Require="advances >= 16","%trait == 12"',
+  'Professional (%attribute)':
+    'Type=legendary Require="advances >= 16","%attribute == 12"',
+  'Professional (%skill)':
+    'Type=legendary Require="advances >= 16","skills.%skill == 12"',
   'Expert (%trait)':
     'Type=legendary Require="advances >= 16","features.Professional (%trait)"',
   'Master (%trait)':
@@ -369,7 +373,7 @@ SWADE.FEATURES = {
   'Attractive':
     'Section=skill ' +
     'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
-  'Beast Bond':'Section=companion Note="Spend Bennies on companion animals"',
+  'Beast Bond':'Section=feature Note="Spend Bennies on companion animals"',
   'Beast Master':
     'Section=feature ' +
     'Note="Has animal companion, other animals will not attack first"',
@@ -423,7 +427,7 @@ SWADE.FEATURES = {
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
   'Expert':'Section=feature Note="TODO"',
-  'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
+  'Expert (%attribute)':'Section=ability Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
     'Section=magic Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
@@ -464,7 +468,7 @@ SWADE.FEATURES = {
   'Holy/Unholy Warrior':
     'Section=magic ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
-  'Humiliate':'Section=combat Note="Reroll Taunt"',
+  'Humiliate':'Section=skill Note="Reroll Taunt"',
   'Improved Arcane Resistance':
     'Section=save Note="Increased Arcane Resistance effects"',
   'Improved Block':'Section=combat Note="Increased Block effects"',
@@ -511,8 +515,8 @@ SWADE.FEATURES = {
     'Section=combat Note="+%V Unarmed attack, +%1 Unarmed damage die"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Incresed Weapon Master effects"',
-  'Master (%attribute)':'Section=feature Note="Use d10 for Wild Die"',
-  'Master (%skill)':'Section=feature Note="Use d10 for Wild Die"',
+  'Master (%attribute)':'Section=ability Note="Use d10 for Wild Die"',
+  'Master (%skill)':'Section=skill Note="Use d10 for Wild Die"',
   'Master Tactician':'Section=combat Note="Increased Tactician effects"',
   'McGyver':'Section=combat Note="Successful Repair roll creates explosive"',
   'Menacing':'Section=skill Note="+2 Intimidation"',
@@ -520,37 +524,37 @@ SWADE.FEATURES = {
   'Mighty Blow':
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage on first Fighting attack"',
-  'Mr. Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
+  'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
   'New Powers':'Section=magic Note="Know 2 additional powers"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
   'Power Points':'Section=magic Note="+5 Power Points"',
   'Power Surge':'Section=magic Note="Recover 10 Power Points when Joker drawn"',
-  'Professional (%attribute)':'Section=skill Note="+%V %attribute"',
+  'Professional (%attribute)':'Section=ability Note="+%V %attribute"',
   'Professional (%skill)':'Section=skill Note="+%V %skill"',
   'Provoke':
     'Section=combat Note="Taunted foe -2 to attack target other than self"',
   'Quick':'Section=combat Note="Redraw Action Card under 6"',
   'Rabble-Rouser':
-    'Section=combat Note="Taunt or Intimidate all within medium blast range"',
+    'Section=skill Note="Taunt or Intimidate all within medium blast range"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
   'Rapid Recharge':'Section=magic Note="Recover %V Power Points/hr"',
   'Reliable':'Section=combat Note="Reroll Support"',
   'Retort':
-    'Section=feature Note="Raise on Intimidation or Taunt test distracts foe"',
+    'Section=skill Note="Raise on Intimidation or Taunt test distracts foe"',
   'Rich':'Section=feature Note="%Vx starting funds"',
   'Rock And Roll':'Section=combat Note="Trade move for ignoring recoil"',
   'Scavenger':
     'Section=combat Note="Recover knowledge or equipment 1/encounter"',
-  'Scholar (Academics)':'Section=feature Note="+2 Academics"',
-  'Scholar (Battle)':'Section=feature Note="+2 Battle"',
-  'Scholar (Occult)':'Section=feature Note="+2 Occult"',
-  'Scholar (Science)':'Section=feature Note="+2 Science"',
+  'Scholar (Academics)':'Section=skill Note="+2 Academics"',
+  'Scholar (Battle)':'Section=skill Note="+2 Battle"',
+  'Scholar (Occult)':'Section=skill Note="+2 Occult"',
+  'Scholar (Science)':'Section=skill Note="+2 Science"',
   'Sidekick':'Section=feature Note="Special bond with companion"',
   'Soldier':
     'Section=ability ' +
-    'Note="+1 Strength die (Encumbrance)/Reroll Vigor (environmental hazards)"',
+    'Note="+1 Strength die (encumbrance)/Reroll Vigor (environmental hazards)"',
   'Soul Drain':
     'Section=magic Note="Suffer level of Fatigue to recover 5 Power Points"',
   'Steady Hands':
@@ -566,7 +570,7 @@ SWADE.FEATURES = {
     'Note="R%{commandRange} Distribute %V extra action cards to extras"',
   'Thief':
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
-  'Tough As Nails':'Section=feature Note="Take %V wounds before incapacitated"',
+  'Tough As Nails':'Section=combat Note="Take %V wounds before incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%weapon)':
     'Section=combat ' +
@@ -1121,6 +1125,7 @@ SWADE.SKILLS = {
   'Stealth':'Attribute=agility Core=y',
   'Survival':'Attribute=smarts',
   'Taunt':'Attribute=smarts',
+  'Thievery':'Attribute=agility',
   'Weird Science':'Attribute=smarts',
 };
 SWADE.WEAPONS = {
@@ -1221,7 +1226,7 @@ SWADE.attributeRules = function(rules) {
   for(var a in SWADE.ATTRIBUTES) {
     rules.defineRule(a + 'Level', a + 'Allocation', '=', null);
     rules.defineRule(a, a + 'Level', '=', 'Math.min(4 + source * 2, 12)');
-    rules.defineRule(a + 'Modifier', a + 'Level', '=', 'Math.max(source-3, 0)');
+    rules.defineRule(a + 'Modifier', a + 'Level', '=', 'Math.max(source-4, 0)');
     rules.defineChoice('notes', a + ':d%V%1');
     rules.defineRule(a + '.1',
       a + 'Modifier', '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
@@ -1714,7 +1719,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
   } else if((matchInfo = name.match(/^Professional \(([\w\s]*)\)$/)) != null) {
     var focus = matchInfo[1];
     note = (focus.toLowerCase() in SWADE.ATTRIBUTES ? 'ability' : 'skill') +
-           'notes.professional(' + matchInfo[1].replaceAll(' ', '') + ')';
+           'Notes.professional(' + matchInfo[1].replaceAll(' ', '') + ')';
     rules.defineRule(note,
       '', '=', '1',
       note.replace('professional', 'expert'), '+', '1'
@@ -2042,7 +2047,7 @@ SWADE.skillRules = function(rules, name, attribute, core) {
     'skillLevel.' + name, '=', 'Math.min(4 + source * 2, 12)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillLevel.' + name, '=', 'Math.max(source - 3, 0)'
+    'skillLevel.' + name, '=', 'Math.max(source - 4, 0)'
   );
   rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
