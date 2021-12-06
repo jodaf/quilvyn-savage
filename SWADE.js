@@ -402,7 +402,9 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="Foes -1 attack when self aware of attack and unrestrained"',
   'Combat Reflexes':'Section=combat Note="+2 on recovery rolls"',
-  'Command':'Section=feature Note="Extras in %V yd +1 recover from Shaken or Stunned"',
+  'Command':
+    'Section=feature ' +
+    'Note="R%{commandRange} yd Extras +1 to recover from Shaken or Stunned"',
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
@@ -438,7 +440,8 @@ SWADE.FEATURES = {
   'Feint':
     'Section=skill ' +
     'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
-  'Fervor':'Section=feature Note="Extras in command range +1 Fighting"',
+  'Fervor':
+    'Section=feature Note="R%{commandRange} yd Extras +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
     'Section=combat Note="Free attack against %V foes moving into reach"',
@@ -457,7 +460,7 @@ SWADE.FEATURES = {
     'Section=save Note="Ignore Wound penalties to avoid bleeding out"',
   'Harder To Kill':'Section=save Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
-  'Hold The Line!':'Section=feature Note="Extras in command range +1 Toughness"',
+  'Hold The Line!':'Section=feature Note="Commanded extras +1 Toughness"',
   'Holy/Unholy Warrior':
     'Section=magic ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
@@ -484,7 +487,9 @@ SWADE.FEATURES = {
     'Section=combat Note="Increased Trademark Weapon effects"',
   'Improvisational Fighter':
     'Section=combat Note="No penalty w/improvised weapons"',
-  'Inspire':'Section=skill Note="Use Battle to give all extras in command range +1 on chosen trait"',
+  'Inspire':
+    'Section=skill ' +
+    'Note="R%{commandRange} yd Use Battle to give extras +1 on chosen trait"',
   'Investigator':'Section=skill Note="+2 Research (sifting for information)"',
   'Iron Jaw':'Section=combat Note="+2 soak/+2 vs. knockout"',
   'Iron Will':'Section=save Note="+2 resist powers"',
@@ -556,7 +561,9 @@ SWADE.FEATURES = {
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':'Section=save Note="+2 resist Test with Smarts or Spirit"',
   'Sweep':'Section=combat Note="Attack on all within reach at -%1 attack"',
-  'Tactician':'Section=combat Note="Give %V extra action cards to extras"',
+  'Tactician':
+    'Section=combat ' +
+    'Note="R%{commandRange} Distribute %V extra action cards to extras"',
   'Thief':
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
   'Tough As Nails':'Section=feature Note="Take %V wounds before incapacitated"',
@@ -1638,8 +1645,8 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'damageLevel.Unarmed', '=', '"d" + (2 + source * 2)'
     );
   } else if(name == 'Command') {
-    rules.defineRule('featureNotes.command',
-      '', '=', '10',
+    rules.defineRule('commandRange',
+      'features.Command', '=', '10',
       'featureNotes.commandPresence', '+', '10'
     );
   } else if(name == 'Counterattack') {
