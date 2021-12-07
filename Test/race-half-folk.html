@@ -8,12 +8,13 @@
 var attributes = {
   "_path":"ztest/swade/race/half-folk", 
   "agilityAllocation":2, "armor":"Cloth Jacket", "edges.Beast Bond":1, "gender":"Male", 
-  "name":"Race-Half-Folk", "race":"Half-Folk", "shield":"Medium Polymer", "skillAllocation.Battle":1, 
-  "skillAllocation.Electronics":2, "skillAllocation.Hacking":1, "skillAllocation.Intimidation":1, 
-  "skillAllocation.Performance":1, "skillAllocation.Persuasion":1, "skillAllocation.Piloting":1, 
-  "skillAllocation.Repair":1, "skillAllocation.Research":1, "skillAllocation.Shooting":2, 
-  "smartsAllocation":0, "spiritAllocation":0, "strengthAllocation":0, "vigorAllocation":3, 
-  "weapons.Baton":1, "weapons.Smith & Wesson":1, "weapons.Uzi":1
+  "hindrances.Small":1, "improvementAllocation.Skill":1, "name":"Race-Half-Folk", 
+  "race":"Half-Folk", "shield":"Medium Polymer", "skillAllocation.Athletics":1, 
+  "skillAllocation.Battle":1, "skillAllocation.Electronics":2, "skillAllocation.Hacking":1, 
+  "skillAllocation.Intimidation":1, "skillAllocation.Performance":1, "skillAllocation.Persuasion":1, 
+  "skillAllocation.Piloting":1, "skillAllocation.Repair":1, "skillAllocation.Research":1, 
+  "skillAllocation.Shooting":2, "smartsAllocation":0, "spiritAllocation":0, "strengthAllocation":0, 
+  "vigorAllocation":3, "weapons.Baton":1, "weapons.Smith & Wesson":1, "weapons.Uzi":1
 };
   </script>
 </head>
@@ -26,9 +27,11 @@ var attributes = {
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
-  <td style="border:1px solid black">  <table id="Attributes" style="width:100%">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
   <tr style="text-align:center">
-    <td>    <table id="Abilities" style="width:100%">
+    <td><b>Attributes</b> (5 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d8</td>
       <td><b>Smarts</b>: d4</td>
@@ -38,54 +41,16 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td>    <table id="Description" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Size</b>: -1</td>
-    </tr></table>
-</td>
+    <td><b>Attribute Notes</b>: <i>Spirited: +1 Spirit die</i></td>
   </tr><tr style="text-align:center">
-    <td>    <table id="AbilityStats" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Advances</b>: 0</td>
-      <td><b>Improvement Points</b>: 0</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td><b>Ability Notes</b>:     <table id="AbilityNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td><i>Small: -1 Size</i></td>
-    </tr><tr style="text-align:center">
-      <td><i>Spirited: +1 Spirit die</i></td>
-    </tr></table>
-</td>
-  </tr></table>
-</td>
-</tr><tr style="text-align:center">
-  <td style="border:1px solid black"><b>Features/Skills</b><br/>  <table id="FeaturesAndSkills" style="width:100%">
-  <tr style="text-align:center">
-    <td>    <table id="FeaturePart" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Edges</b> (1 points): Beast Bond</td>
-      <td><b>Half-Folk Features</b>: Luck; Reduced Pace; Small; Spirited</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td>Beast Bond: Spend Bennies on companion animals</td>
-    </tr><tr style="text-align:center">
-      <td>Luck: +1 Benny each session</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td><b>Skills</b> (12 Points):</td>
+    <td><b>Skills</b> (13 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
     <col style="width:33%"/>
     <col style="width:34%"/>
     <tr style="text-align:left">
-      <td>Athletics: (agi) d4</td>
+      <td>Athletics: (agi) d6</td>
       <td>Intimidation: (spi) d4</td>
       <td>Repair: (sma) d4</td>
     </tr><tr style="text-align:left">
@@ -106,6 +71,42 @@ var attributes = {
       <td></td>
     </tr></table>
 </td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: -1</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 0</td>
+      <td><b>Improvement Points</b>: 1</td>
+      <td><b>Improvement Allocation</b>: Skill</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Description Notes</b>: <i>Size-1: -1 Size</i></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (1 points): Beast Bond</td>
+      <td><b>Hindrances</b>: Small</td>
+      <td><b>Half-Folk Features</b>: Luck; Reduced Pace; Size -1; Spirited</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Beast Bond: Spend Bennies on companion animals</td>
+    </tr><tr style="text-align:center">
+      <td>Luck: +1 Benny each session</td>
+    </tr></table>
+</td>
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
@@ -115,7 +116,7 @@ var attributes = {
     <tr style="text-align:center">
       <td>      <table id="CombatStats" style="width:100%">
       <tr style="text-align:center">
-        <td><b>Toughness</b>: 7 (1)</td>
+        <td><b>Toughness</b>: 6 (1)</td>
         <td><b>Parry</b>: 4 (2)</td>
         <td><b>Cover</b>: -2</td>
         <td><b>Pace/Run</b>: 5/+d4</td>
@@ -134,7 +135,9 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Size Toughness Modifier: -1</i></td>
+        <td><i>Size-1: -1 Toughness</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Small: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +5</i></td>
       </tr></table>

@@ -8,7 +8,8 @@
 var attributes = {
   "_path":"ztest/swade/race/aquarian", 
   "agilityAllocation":2, "armor":"Cloth Jacket", "edges.Beast Bond":1, "gender":"Male", 
-  "name":"Race-Aquarian", "race":"Aquarian", "shield":"Medium Polymer", "skillAllocation.Battle":1, 
+  "hindrances.Cautious":1, "improvementAllocation.Skill":1, "name":"Race-Aquarian", "race":"Aquarian", 
+  "shield":"Medium Polymer", "skillAllocation.Athletics":1, "skillAllocation.Battle":1, 
   "skillAllocation.Electronics":2, "skillAllocation.Hacking":1, "skillAllocation.Intimidation":1, 
   "skillAllocation.Performance":1, "skillAllocation.Persuasion":1, "skillAllocation.Piloting":1, 
   "skillAllocation.Repair":1, "skillAllocation.Research":1, "skillAllocation.Shooting":2, 
@@ -26,9 +27,11 @@ var attributes = {
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
-  <td style="border:1px solid black">  <table id="Attributes" style="width:100%">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
   <tr style="text-align:center">
-    <td>    <table id="Abilities" style="width:100%">
+    <td><b>Attributes</b> (5 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d8</td>
       <td><b>Smarts</b>: d4</td>
@@ -38,50 +41,14 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td>    <table id="Description" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Size</b>: 0</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td>    <table id="AbilityStats" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Advances</b>: 0</td>
-      <td><b>Improvement Points</b>: 0</td>
-    </tr></table>
-</td>
-  </tr></table>
-</td>
-</tr><tr style="text-align:center">
-  <td style="border:1px solid black"><b>Features/Skills</b><br/>  <table id="FeaturesAndSkills" style="width:100%">
-  <tr style="text-align:center">
-    <td>    <table id="FeaturePart" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Edges</b> (1 points): Beast Bond</td>
-      <td><b>Aquarian Features</b>: Aquatic; Dependency; Low Light Vision; Toughness</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td>Aquatic: Cannot drown</td>
-    </tr><tr style="text-align:center">
-      <td>Beast Bond: Spend Bennies on companion animals</td>
-    </tr><tr style="text-align:center">
-      <td>Dependency: Must spend 1 hr/dy in native environment or becomes fatigued</td>
-    </tr><tr style="text-align:center">
-      <td>Low Light Vision: Ignores penalties for dim and dark illumination</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td><b>Skills</b> (12 Points):</td>
+    <td><b>Skills</b> (13 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
     <col style="width:33%"/>
     <col style="width:34%"/>
     <tr style="text-align:left">
-      <td>Athletics: (agi) d4</td>
+      <td>Athletics: (agi) d6</td>
       <td>Intimidation: (spi) d4</td>
       <td>Repair: (sma) d4</td>
     </tr><tr style="text-align:left">
@@ -100,6 +67,46 @@ var attributes = {
       <td>Hacking: (sma) d4</td>
       <td>Piloting: (agi) d4</td>
       <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 0</td>
+      <td><b>Improvement Points</b>: 1</td>
+      <td><b>Improvement Allocation</b>: Skill</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (1 points): Beast Bond</td>
+      <td><b>Hindrances</b>: Cautious</td>
+      <td><b>Aquarian Features</b>: Aquatic; Dependency; Low Light Vision; Toughness</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Aquatic: Cannot drown</td>
+    </tr><tr style="text-align:center">
+      <td>Beast Bond: Spend Bennies on companion animals</td>
+    </tr><tr style="text-align:center">
+      <td>Cautious: Requires detailed plan before acting</td>
+    </tr><tr style="text-align:center">
+      <td>Dependency: Must spend 1 hr/dy in native environment or becomes fatigued</td>
+    </tr><tr style="text-align:center">
+      <td>Low Light Vision: Ignores penalties for dim and dark illumination</td>
     </tr></table>
 </td>
   </tr></table>
