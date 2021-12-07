@@ -23,11 +23,11 @@ var attributes = {
   "hindrances.Cautious":1, "hindrances.Mean":1, "hindrances.Ugly+":1, 
   "improvementAllocation.Attribute":10, "improvementAllocation.Edge":6, "improvementAllocation.Skill":2, 
   "name":"Edges-Combat", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Athletics":1, 
-  "skillAllocation.Battle":1, "skillAllocation.Fighting":2, "skillAllocation.Healing":1, 
-  "skillAllocation.Language":1, "skillAllocation.Occult":2, "skillAllocation.Research":1, 
-  "skillAllocation.Science":2, "skillAllocation.Shooting":2, "skillAllocation.Survival":1, 
-  "smartsAllocation":2, "spiritAllocation":2, "strengthAllocation":2, "vigorAllocation":2, 
-  "weapons.Dagger":1, "weapons.Gatling Gun":1, "weapons.Long Bow":1
+  "skillAllocation.Battle":1, "skillAllocation.Fighting":3, "skillAllocation.Healing":1, 
+  "skillAllocation.Occult":1, "skillAllocation.Research":1, "skillAllocation.Science":2, 
+  "skillAllocation.Shooting":3, "skillAllocation.Survival":1, "smartsAllocation":2, "spiritAllocation":2, 
+  "strengthAllocation":2, "vigorAllocation":2, "weapons.Dagger":1, "weapons.Gatling Gun":1, 
+  "weapons.Long Bow":1
 };
   </script>
 </head>
@@ -96,23 +96,23 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Athletics: (agi) d6</td>
-      <td>Language: (sma) d6</td>
-      <td>Science: (sma) d8</td>
-    </tr><tr style="text-align:left">
-      <td>Battle: (sma) d6</td>
       <td>Notice: (sma) d6</td>
       <td>Shooting: (agi) d8</td>
     </tr><tr style="text-align:left">
-      <td>Common Knowledge: (sma) d4</td>
-      <td>Occult: (sma) d8</td>
+      <td>Battle: (sma) d4</td>
+      <td>Occult: (sma) d4</td>
       <td>Stealth: (agi) d4</td>
     </tr><tr style="text-align:left">
-      <td>Fighting: (agi) d8</td>
+      <td>Common Knowledge: (sma) d4</td>
       <td>Persuasion: (spi) d4-3</td>
-      <td>Survival: (sma) d6</td>
+      <td>Survival: (sma) d4</td>
     </tr><tr style="text-align:left">
-      <td>Healing: (sma) d6</td>
-      <td>Research: (sma) d6</td>
+      <td>Fighting: (agi) d8</td>
+      <td>Research: (sma) d4</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d4</td>
+      <td>Science: (sma) d6</td>
       <td></td>
     </tr></table>
 </td>
@@ -129,7 +129,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Feint: Force foe to oppose Fighting test with Smarts instead of Agility</td>
     </tr><tr style="text-align:center">
-      <td>Flight: Use Athletics for flight maneuvers</td>
+      <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
       <td>Free Runner: +2 Athletics (climbing)/+2 on foot chases</td>
     </tr><tr style="text-align:center">
@@ -148,7 +148,7 @@ var attributes = {
         <td><b>Toughness</b>: 10 (3)</td>
         <td><b>Parry</b>: 7 (3)</td>
         <td><b>Cover</b>: -4</td>
-        <td><b>Pace/Run</b>: 5/+d6</td>
+        <td><b>Pace/Run</b>: 5/+d4</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -194,7 +194,7 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Martial Warrior: Increased Martial Artist effects</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Reduced Pace: -1 Pace</i></td>
+        <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +4</i></td>
       </tr><tr style="text-align:center">

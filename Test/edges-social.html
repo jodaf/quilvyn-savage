@@ -16,7 +16,7 @@ var attributes = {
   "improvementAllocation.Skill":2, "name":"Edges-Social", "race":"Avion", "shield":"Ballistic Shield", 
   "skillAllocation.Athletics":2, "skillAllocation.Battle":1, "skillAllocation.Fighting":1, 
   "skillAllocation.Intimidation":1, "skillAllocation.Notice":1, "skillAllocation.Repair":2, 
-  "skillAllocation.Stealth":2, "skillAllocation.Survival":2, "skillAllocation.Taunt":2, 
+  "skillAllocation.Stealth":1, "skillAllocation.Survival":2, "skillAllocation.Taunt":3, 
   "smartsAllocation":3, "spiritAllocation":2, "strengthAllocation":2, "vigorAllocation":1, 
   "weapons.Dagger":1, "weapons.Gatling Gun":1, "weapons.Long Bow":1
 };
@@ -89,19 +89,19 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Athletics: (agi) d8</td>
-      <td>Intimidation: (spi) d6+2</td>
-      <td>Stealth: (agi) d8</td>
+      <td>Intimidation: (spi) d4+2</td>
+      <td>Stealth: (agi) d6</td>
     </tr><tr style="text-align:left">
-      <td>Battle: (sma) d6</td>
+      <td>Battle: (sma) d4</td>
       <td>Notice: (sma) d8</td>
-      <td>Survival: (sma) d8</td>
+      <td>Survival: (sma) d6</td>
     </tr><tr style="text-align:left">
       <td>Common Knowledge: (sma) d4</td>
       <td>Persuasion: (spi) d4-3</td>
       <td>Taunt: (sma) d8</td>
     </tr><tr style="text-align:left">
-      <td>Fighting: (agi) d6</td>
-      <td>Repair: (sma) d8</td>
+      <td>Fighting: (agi) d4</td>
+      <td>Repair: (sma) d6</td>
       <td></td>
     </tr></table>
 </td>
@@ -120,7 +120,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Can't Swim: -2 Athletics (swimming)</td>
     </tr><tr style="text-align:center">
-      <td>Flight: Use Athletics for flight maneuvers</td>
+      <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
       <td>Humiliate: Reroll Taunt</td>
     </tr><tr style="text-align:center">
@@ -145,7 +145,7 @@ var attributes = {
         <td><b>Toughness</b>: 7 (3)</td>
         <td><b>Parry</b>: 5 (3)</td>
         <td><b>Cover</b>: -4</td>
-        <td><b>Pace/Run</b>: 5/+d6</td>
+        <td><b>Pace/Run</b>: 5/+d4</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -161,7 +161,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Frail: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Reduced Pace: -1 Pace</i></td>
+        <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +3</i></td>
       </tr><tr style="text-align:center">

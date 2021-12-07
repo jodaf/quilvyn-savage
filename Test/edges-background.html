@@ -14,7 +14,7 @@ var attributes = {
   "edges.Fast Healer":1, "edges.Filthy Rich":1, "edges.Fleet-Footed":1, "edges.Great Luck":1, 
   "edges.Improved Arcane Resistance":1, "edges.Linguist":1, "edges.Luck":1, "edges.Quick":1, "edges.Rich":1, 
   "edges.Very Attractive":1, "gender":"Male", "hindrances.Cautious":1, "hindrances.Mean":1, 
-  "hindrances.Ugly+":1, "improvementAllocation.Ability":6, "improvementAllocation.Edge":12, 
+  "hindrances.Ugly+":1, "improvementAllocation.Attribute":6, "improvementAllocation.Edge":12, 
   "name":"Edges-Background", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Academics":1, 
   "skillAllocation.Athletics":1, "skillAllocation.Battle":1, "skillAllocation.Healing":1, 
   "skillAllocation.Language":1, "skillAllocation.Occult":3, "skillAllocation.Research":1, 
@@ -55,7 +55,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 9</td>
       <td><b>Improvement Points</b>: 18</td>
-      <td><b>Improvement Allocation</b>: Ability: 6; Edge: 12</td>
+      <td><b>Improvement Allocation</b>: Attribute: 6; Edge: 12</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -106,24 +106,24 @@ var attributes = {
     <col style="width:33%"/>
     <col style="width:34%"/>
     <tr style="text-align:left">
-      <td>Academics: (sma) d6</td>
-      <td>Language: (sma) d6</td>
-      <td>Science: (sma) d8</td>
+      <td>Academics: (sma) d4</td>
+      <td>Language: (sma) d4</td>
+      <td>Science: (sma) d6</td>
     </tr><tr style="text-align:left">
       <td>Athletics: (agi) d6</td>
       <td>Notice: (sma) d6+2</td>
       <td>Stealth: (agi) d4</td>
     </tr><tr style="text-align:left">
-      <td>Battle: (sma) d6</td>
-      <td>Occult: (sma) d10</td>
-      <td>Survival: (sma) d6</td>
+      <td>Battle: (sma) d4</td>
+      <td>Occult: (sma) d8</td>
+      <td>Survival: (sma) d4</td>
     </tr><tr style="text-align:left">
       <td>Common Knowledge: (sma) d4</td>
       <td>Persuasion: (spi) d4-3</td>
       <td></td>
     </tr><tr style="text-align:left">
-      <td>Healing: (sma) d6</td>
-      <td>Research: (sma) d6</td>
+      <td>Healing: (sma) d4</td>
+      <td>Research: (sma) d4</td>
       <td></td>
     </tr></table>
 </td>
@@ -152,7 +152,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Fame: +2 Persuasion (influencing friendly individuals)</td>
     </tr><tr style="text-align:center">
-      <td>Flight: Use Athletics for flight maneuvers</td>
+      <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr></table>
 </td>
   </tr></table>
@@ -167,7 +167,7 @@ var attributes = {
         <td><b>Toughness</b>: 9 (3)</td>
         <td><b>Parry</b>: 5 (3)</td>
         <td><b>Cover</b>: -4</td>
-        <td><b>Pace/Run</b>: 7/+d8</td>
+        <td><b>Pace/Run</b>: 7/+d6</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -185,7 +185,7 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Frail: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Reduced Pace: -1 Pace</i></td>
+        <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
       </tr><tr style="text-align:center">
         <td><i>Size Toughness Modifier: +1</i></td>
       </tr><tr style="text-align:center">
@@ -229,15 +229,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
-      <tr style="text-align:center">
-        <td>Attribute Points Allocation: 5 available vs. 8 allocated</td>
-      </tr><tr style="text-align:center">
-        <td>Edge Points Allocation: 7 available vs. 24 allocated</td>
-      </tr><tr style="text-align:center">
-        <td>Improvements Allocation: 18 available vs. 12 allocated</td>
-      </tr></table>
-</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 7 available vs. 24 allocated</td>
     </tr></table>
 </td>
   </tr></table>

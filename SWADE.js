@@ -320,7 +320,7 @@ SWADE.EDGES = {
   'Champion':'Type=weird Require="spirit >= 8","skills.Fighting >= 6"',
   'Chi':'Type=weird Require="advances >= 8","features.Martial Warrior"',
   'Danger Sense':'Type=weird',
-  'Healer':'Type=weird Imply=skills.HealingRequire="spirit >= 8"',
+  'Healer':'Type=weird Imply=skills.Healing Require="spirit >= 8"',
   'Liquid Courage':'Type=weird Require="vigor >= 8"',
   'Scavenger':'Type=weird Require="features.Luck"',
   // Legendary
@@ -572,9 +572,12 @@ SWADE.FEATURES = {
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
   'Tough As Nails':'Section=combat Note="Take %V wounds before incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
-  'Trademark Weapon (%weapon)':
+  'Trademark Weapon (%melee)':
     'Section=combat ' +
-    'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %weapon"',
+    'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %melee"',
+  'Trademark Weapon (%ranged)':
+    'Section=combat ' +
+    'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %ranged"',
   'Two-Fisted':
     'Section=combat ' +
     'Note="No multi-attack penalty for Fighting attack with each hand"',
@@ -697,7 +700,7 @@ SWADE.FEATURES = {
   'Vengeful+':'Section=feature Note="Places primary concern on revenge"',
   'Vow':'Section=feature Note="Has broad restrictions on behavior and actions"',
   'Vow+':
-    'Section=feature Note="Has tight restrictinos on behavior and actions"',
+    'Section=feature Note="Has tight restrictions on behavior and actions"',
   'Wanted':
     'Section=feature Note="Has trouble with distant law or minor infractions"',
   'Wanted+':
@@ -712,36 +715,77 @@ SWADE.FEATURES = {
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
+  'Additional Action':
+    'Section=combat Note="Ignore 2 points of Multi-Action penalties"',
   'Agile':'Section=ability Note="+1 Agility die"',
-  'Aquatic':'Section=combat Note="Cannot drown, swim Pace %{pace}"',
+  'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
   'Armor +2':'Section=combat Note="+2 Parry"',
-  'Bite':'Section=combat Note="Can attack w/Fangs"',
-  'Claws':'Section=combat Note="Can attack w/Claws"',
+  'Big':
+    'Section=feature,skill ' +
+    'Note=' +
+      '"Difficulty finding armor and clothing that fits",' +
+      '"-2 using standard equipment"',
+  'Bite':'Section=combat Note="Fangs are Natural Weapon"',
+  'Burrowing':
+    'Section=feature Note="Can burrow into loose earth and surprise foes"',
+  'Cannot Speak':'Section=feature Note="Cannot talk to other species"',
+  'Claws':'Section=combat Note="Claws are Natural Weapon"',
   'Construct':
     'Section=combat,save ' +
     'Note=' +
-      '"Ignore one level of Wound modifiers",' +
+      '"Ignores one level of Wound modifiers, requires Repair to heal",' +
       '"+2 Shaken recovery, immune to disease and poison"',
   'Dependency':
-    'Section=feature Note="Immerse in water 1 hr/dy or fatigued"',
-  'Environmental Weakness':
+    'Section=feature ' +
+    'Note="Must spend 1 hr/dy in native environment or becomes fatigued"',
+  "Doesn't Breathe":
+    'Section=save Note="Has immunity to inhaled toxins and suffocation"',
+  'Environmental Resistance (Cold)':
+    'Section=combat,save Note="-4 damage from cold","+4 vs. cold effects"',
+  'Environmental Weakness (Cold)':
     'Section=combat,save Note="+4 damage from cold","-4 vs. cold effects"',
   'Flight':
     'Section=combat,skill ' +
-    'Note="Fly Pace 12","Use Athletics for flight maneuvers"',
+    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
   'Frail':
     'Section=combat Note="-1 Toughness"',
+  'Hardy':'Section=combat Note="Does not incur Wound from 2nd Shaken result"',
   'Heritage':
     'Section=feature Note="+2 Improvements (Attribute or Edge)"',
+  'Horns':'Section=combat Note="Horns are Natural Weapon"',
+  'Immune To Disease':'Section=save Note="Has immunity to disease"',
+  'Immune To Poison':'Section=save Note="Has immunity to poison"',
+  'Infravision':
+    'Section=combat ' +
+    'Note="Half penalties when attacking warm invisibile targets"',
   'Keen Senses':'Section=skill Note="+1 Notice die"',
+  'Large':'Section=ability Note="+1 Size"',
+  'Leaper':
+    'Section=combat,skill ' +
+    'Note="+4 damage when leaping during Wild Attack","x2 Jump distance"',
   'Low Light Vision':
-    'Section=feature Note="Ignore penalties for dim and dark illumination"',
+    'Section=feature Note="Ignores penalties for dim and dark illumination"',
+  'No Vital Organs':'Section=combat Note="No extra damage from Called Shot"',
+  'Pace':'Section=combat Note="+1 Pace/+1 Run die"',
+  'Parry':'Section=combat Note="+1 Parry"',
+  'Poisonous Touch':
+    'Section=combat Note="Touch causes Mild Poison effects (Vig neg)"',
+  'Poor Parry':'Section=combat Note="-1 Parry"',
   'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
-  'Reduced Pace':'Section=combat Note="-1 Pace"',
+  'Reach':'Section=combat Note="+1 Reach"',
+  'Reduced Pace':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Regeneration':'Section=save Note="Make natural healing roll 1/dy"',
+  'Semi-Aquatic':'Section=feature Note="Can hold breath for 15 min"',
+  'Sleep Reduction':'Section=feature Note="Needs only 4 hr sleep/dy"',
   'Small':'Section=ability Note="-1 Size"',
+  'Smart':'Section=ability Note="+1 Smarts die"',
   'Spirited':'Section=ability Note="+1 Spirit die"',
+  'Strong':'Section=ability Note="+1 Strength die"',
   'Tough':'Section=ability Note="+1 Vigor die"',
   'Toughness':'Section=combat Note="+1 Toughness"',
+  'Wall Walker':
+    'Section=combat ' +
+    'Note="Normal Pace on vertical surfaces, %{pace//2} on inverted"',
 
   // Misc
   'Attribute Points':'Section=ability Note="%V to distribute"',
@@ -1067,7 +1111,7 @@ SWADE.RACES = {
       'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision","Outsider"',
+      'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
     'Features=' +
       'Luck,"Reduced Pace",Small,Spirited',
@@ -1076,12 +1120,12 @@ SWADE.RACES = {
       'Adaptable',
   'Rakashan':
     'Features=' +
-      'Agile,Bite,Claws,Bloodthirsty,"Can\'t Swim","Low Light Vision",' +
+      'Agile,Bite,Claws,Bloodthirsty+,"Can\'t Swim","Low Light Vision",' +
       '"Racial Enemy"',
   'Saurian':
     'Features=' +
-      '"Armor +2",Bite,"Environmental Weakness","Keen Senses",' +
-      '"Outsider"'
+      '"Armor +2",Bite,"Environmental Weakness (Cold)","Keen Senses",' +
+      'Outsider'
 };
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
@@ -1253,7 +1297,7 @@ SWADE.attributeRules = function(rules) {
   QuilvynRules.validAllocationRules
     (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvements', 'improvementPoints', 'Sum "^improvementAllocation.(Attribute|Edge|Skill|Hindrance)$"');
+    (rules, 'improvementPoints', 'improvementPoints', 'Sum "^improvementAllocation.(Attribute|Edge|Skill|Hindrance)$"');
 
 };
 
@@ -1959,6 +2003,13 @@ SWADE.raceRules = function(
     }
   }
 
+  SWADE.weaponRules(rules, 'Bite', 'd4', 0, 0, 'Un', null, null, null);
+  SWADE.weaponRules(rules, 'Claws', 'd4', 0, 0, 'Un', null, null, null);
+  SWADE.weaponRules(rules, 'Horns', 'd4', 0, 0, 'Un', null, null, null);
+  rules.defineRule('weapons.Bite', 'features.Bite', '=', null);
+  rules.defineRule('weapons.Claws', 'features.Claws', '=', null);
+  rules.defineRule('weapons.Horns', 'features.Horns', '=', null);
+
 };
 
 /*
@@ -2039,15 +2090,15 @@ SWADE.skillRules = function(rules, name, attribute, core) {
   }
 
   if(core && core != 'n' && core != 'N') {
-    rules.defineRule('skillLevel.' + name, 'agility', '=', '0');
+    rules.defineRule('skillLevel.' + name, 'agility', '=', '1');
   }
   rules.defineRule
     ('skillLevel.' + name, 'skillAllocation.' + name, '+=', null);
   rules.defineRule('skills.' + name,
-    'skillLevel.' + name, '=', 'Math.min(4 + source * 2, 12)'
+    'skillLevel.' + name, '=', 'Math.min(2 + source * 2, 12)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillLevel.' + name, '=', 'Math.max(source - 4, 0)'
+    'skillLevel.' + name, '=', 'Math.max(source - 5, 0)'
   );
   rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
@@ -2674,7 +2725,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var matchInfo;
 
   if(attribute == 'advances') {
-    if(!attributes.advances) {
+    if(attributes.advances === null) {
       howMany = QuilvynUtils.random(0, 9);
       attributes.advances = howMany<5 ? 0 : howMany<8 ? 1 : howMany<9 ? 2 : 3;
       if(QuilvynUtils.random(0, 9) >= 7)
@@ -2757,8 +2808,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
               (attrs['improvementAllocation.Skill'] || 0);
     // Note: not allocating improvements to removing hindrances
     while(howMany > 0) {
-      attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'skill' :
-             QuilvynUtils.random(0, 1) == 0 ? 'edge' : 'ability';
+      attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'Skill' :
+             QuilvynUtils.random(0, 1) == 0 ? 'Edge' : 'Ability';
       if(attributes['improvementAllocation.' + attr] == null)
         attributes['improvementAllocation.' + attr] = 0;
       var allocation = attr == 'skill' ? 1 : 2;

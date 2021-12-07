@@ -12,11 +12,11 @@ var attributes = {
   "edges.Jack-Of-All-Trades":1, "edges.McGyver":1, "edges.Mister Fix It":1, "edges.Scholar (Battle)":1, 
   "edges.Soldier":1, "edges.Thief":1, "edges.Woodsman":1, "gender":"Male", 
   "hindrances.Cautious":1, "hindrances.Mean":1, "hindrances.Ugly+":1, 
-  "improvementAllocation.Attribute":10, "improvementAllocation.Edge":6, "improvementAllocation.Skill":2, 
+  "improvementAllocation.Attribute":10, "improvementAllocation.Edge":1, "improvementAllocation.Skill":7, 
   "name":"Edges-Professional", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Athletics":2, 
-  "skillAllocation.Battle":1, "skillAllocation.Fighting":1, "skillAllocation.Notice":1, 
-  "skillAllocation.Repair":2, "skillAllocation.Research":2, "skillAllocation.Stealth":2, 
-  "skillAllocation.Survival":2, "skillAllocation.Thievery":1, "smartsAllocation":3, "spiritAllocation":2, 
+  "skillAllocation.Battle":1, "skillAllocation.Fighting":2, "skillAllocation.Notice":1, 
+  "skillAllocation.Repair":3, "skillAllocation.Research":3, "skillAllocation.Stealth":2, 
+  "skillAllocation.Survival":3, "skillAllocation.Thievery":2, "smartsAllocation":3, "spiritAllocation":2, 
   "strengthAllocation":2, "vigorAllocation":1, "weapons.Dagger":1, "weapons.Gatling Gun":1, 
   "weapons.Long Bow":1
 };
@@ -53,7 +53,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 9</td>
       <td><b>Improvement Points</b>: 18</td>
-      <td><b>Improvement Allocation</b>: Attribute: 10; Edge: 6; Skill: 2</td>
+      <td><b>Improvement Allocation</b>: Attribute: 10; Edge: 1; Skill: 7</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -65,7 +65,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Ace; Acrobat; Assassin; Combat Acrobat; Investigator; Jack-Of-All-Trades; Mc Gyver; Mister Fix It; Scholar (Battle); Soldier; Thief; Woodsman</td>
+      <td><b>Edges</b> (1 points): Ace; Acrobat; Assassin; Combat Acrobat; Investigator; Jack-Of-All-Trades; Mc Gyver; Mister Fix It; Scholar (Battle); Soldier; Thief; Woodsman</td>
       <td><b>Hindrances</b>: Cautious; Mean; Ugly+</td>
       <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses; Reduced Pace</td>
     </tr></table>
@@ -79,7 +79,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (14 Points):</td>
+    <td><b>Skills</b> (19 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -90,7 +90,7 @@ var attributes = {
       <td>Notice: (sma) d8</td>
       <td>Stealth: (agi) d8</td>
     </tr><tr style="text-align:left">
-      <td>Battle: (sma) d6+2</td>
+      <td>Battle: (sma) d4+2</td>
       <td>Persuasion: (spi) d4-3</td>
       <td>Survival: (sma) d8+2</td>
     </tr><tr style="text-align:left">
@@ -126,7 +126,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Can't Swim: -2 Athletics (swimming)</td>
     </tr><tr style="text-align:center">
-      <td>Flight: Use Athletics for flight maneuvers</td>
+      <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
       <td>Investigator: +2 Research (sifting for information)</td>
     </tr><tr style="text-align:center">
@@ -145,7 +145,7 @@ var attributes = {
         <td><b>Toughness</b>: 7 (3)</td>
         <td><b>Parry</b>: 5 (3)</td>
         <td><b>Cover</b>: -4</td>
-        <td><b>Pace/Run</b>: 5/+d6</td>
+        <td><b>Pace/Run</b>: 5/+d4</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -161,7 +161,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Frail: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Reduced Pace: -1 Pace</i></td>
+        <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +3</i></td>
       </tr><tr style="text-align:center">
@@ -185,7 +185,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>: Edge Points Allocation: 4 available vs. 12 allocated</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 1 available vs. 12 allocated</td>
     </tr></table>
 </td>
   </tr></table>
