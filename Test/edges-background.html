@@ -14,13 +14,13 @@ var attributes = {
   "edges.Fast Healer":1, "edges.Filthy Rich":1, "edges.Fleet-Footed":1, "edges.Great Luck":1, 
   "edges.Improved Arcane Resistance":1, "edges.Linguist":1, "edges.Luck":1, "edges.Quick":1, "edges.Rich":1, 
   "edges.Very Attractive":1, "gender":"Male", "hindrances.Cautious":1, "hindrances.Mean":1, 
-  "hindrances.Ugly+":1, "improvementAllocation.Attribute":6, "improvementAllocation.Edge":12, 
-  "name":"Edges-Background", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Academics":1, 
-  "skillAllocation.Athletics":1, "skillAllocation.Battle":1, "skillAllocation.Healing":1, 
-  "skillAllocation.Language":1, "skillAllocation.Occult":3, "skillAllocation.Research":1, 
-  "skillAllocation.Science":2, "skillAllocation.Survival":1, "smartsAllocation":1, "spiritAllocation":2, 
-  "strengthAllocation":1, "vigorAllocation":2, "weapons.Gatling Gun":1, "weapons.H&K MP5":1, 
-  "weapons.Long Bow":1
+  "hindrances.Ugly+":1, "improvementPointsAllocation.Attribute":6, 
+  "improvementPointsAllocation.Edge":16, "name":"Edges-Background", "race":"Avion", "shield":"Ballistic Shield", 
+  "skillAllocation.Academics":1, "skillAllocation.Athletics":1, "skillAllocation.Battle":1, 
+  "skillAllocation.Healing":1, "skillAllocation.Language":1, "skillAllocation.Occult":3, 
+  "skillAllocation.Research":1, "skillAllocation.Science":2, "skillAllocation.Survival":1, 
+  "smartsAllocation":1, "spiritAllocation":2, "strengthAllocation":1, "vigorAllocation":2, 
+  "weapons.Gatling Gun":1, "weapons.H&K MP5":1, "weapons.Long Bow":1
 };
   </script>
 </head>
@@ -114,7 +114,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 9</td>
       <td><b>Improvement Points</b>: 22</td>
-      <td><b>Improvement Allocation</b>: Attribute: 6; Edge: 12</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 6; Edge: 16</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -126,7 +126,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (7 points): Alertness; Ambidextrous; Arcane Background (Gifted); Arcane Resistance; Aristocrat; Attractive; Berserk; Brave; Brawny; Brute; Charismatic; Elan; Fame; Famous; Fast Healer; Filthy Rich; Fleet-Footed; Great Luck; Improved Arcane Resistance; Linguist; Luck; Quick; Rich; Very Attractive</td>
+      <td><b>Edges</b> (9 points): Alertness; Ambidextrous; Arcane Background (Gifted); Arcane Resistance; Aristocrat; Attractive; Berserk; Brave; Brawny; Brute; Charismatic; Elan; Fame; Famous; Fast Healer; Filthy Rich; Fleet-Footed; Great Luck; Improved Arcane Resistance; Linguist; Luck; Quick; Rich; Very Attractive</td>
       <td><b>Hindrances</b>: Cautious; Mean; Ugly+</td>
       <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses; Reduced Pace</td>
     </tr></table>
@@ -229,13 +229,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
-      <tr style="text-align:center">
-        <td>Edge Points Allocation: 7 available vs. 24 allocated</td>
-      </tr><tr style="text-align:center">
-        <td>Improvement Points Allocation: 22 available vs. 18 allocated</td>
-      </tr></table>
-</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 9 available vs. 24 allocated</td>
     </tr></table>
 </td>
   </tr></table>

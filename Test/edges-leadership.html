@@ -11,13 +11,13 @@ var attributes = {
   "edges.Command Presence":1, "edges.Fervor":1, "edges.Hold The Line!":1, "edges.Inspire":1, 
   "edges.Master Tactician":1, "edges.Natural Leader":1, "edges.Tactician":1, "gender":"Male", 
   "hindrances.Cautious":1, "hindrances.Mean":1, "hindrances.Ugly+":1, 
-  "improvementAllocation.Attribute":10, "improvementAllocation.Edge":6, "improvementAllocation.Skill":2, 
-  "name":"Edges-Leadership", "race":"Avion", "shield":"Ballistic Shield", "skillAllocation.Athletics":1, 
-  "skillAllocation.Battle":2, "skillAllocation.Fighting":2, "skillAllocation.Healing":1, 
-  "skillAllocation.Language":1, "skillAllocation.Occult":2, "skillAllocation.Research":1, 
-  "skillAllocation.Science":1, "skillAllocation.Shooting":2, "skillAllocation.Survival":1, 
-  "smartsAllocation":2, "spiritAllocation":2, "strengthAllocation":2, "vigorAllocation":2, 
-  "weapons.Dagger":1, "weapons.Gatling Gun":1, "weapons.Long Bow":1
+  "improvementPointsAllocation.Attribute":10, "improvementPointsAllocation.Edge":10, 
+  "improvementPointsAllocation.Skill":2, "name":"Edges-Leadership", "race":"Avion", "shield":"Ballistic Shield", 
+  "skillAllocation.Athletics":1, "skillAllocation.Battle":2, "skillAllocation.Fighting":2, 
+  "skillAllocation.Healing":1, "skillAllocation.Language":1, "skillAllocation.Occult":2, 
+  "skillAllocation.Research":1, "skillAllocation.Science":1, "skillAllocation.Shooting":2, 
+  "skillAllocation.Survival":1, "smartsAllocation":2, "spiritAllocation":2, "strengthAllocation":2, 
+  "vigorAllocation":2, "weapons.Dagger":1, "weapons.Gatling Gun":1, "weapons.Long Bow":1
 };
   </script>
 </head>
@@ -99,7 +99,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 9</td>
       <td><b>Improvement Points</b>: 22</td>
-      <td><b>Improvement Allocation</b>: Attribute: 10; Edge: 6; Skill: 2</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 10; Edge: 10; Skill: 2</td>
     </tr></table>
 </td>
   </tr></table>
@@ -109,7 +109,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Command Presence; Command; Fervor; Hold The Line!; Inspire; Master Tactician; Natural Leader; Tactician</td>
+      <td><b>Edges</b> (6 points): Command Presence; Command; Fervor; Hold The Line!; Inspire; Master Tactician; Natural Leader; Tactician</td>
       <td><b>Hindrances</b>: Cautious; Mean; Ugly+</td>
       <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses; Reduced Pace</td>
     </tr></table>
@@ -182,13 +182,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
-      <tr style="text-align:center">
-        <td>Edge Points Allocation: 4 available vs. 8 allocated</td>
-      </tr><tr style="text-align:center">
-        <td>Improvement Points Allocation: 22 available vs. 18 allocated</td>
-      </tr></table>
-</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 6 available vs. 8 allocated</td>
     </tr></table>
 </td>
   </tr></table>

@@ -1279,7 +1279,7 @@ SWADE.attributeRules = function(rules) {
   rules.defineRule('improvementPoints', 'advances', '=', 'source * 2');
   rules.defineRule('attributePoints',
     '', '=', '5',
-    'improvementAllocation.Attribute', '+', 'Math.floor(source / 2)'
+    'improvementPointsAllocation.Attribute', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule('pace', '', '=', '6');
   rules.defineRule('rank',
@@ -1294,7 +1294,7 @@ SWADE.attributeRules = function(rules) {
   QuilvynRules.validAllocationRules
     (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvementPoints', 'improvementPoints', 'Sum "^improvementAllocation.(Attribute|Edge|Skill|Hindrance)$"');
+    (rules, 'improvementPoints', 'improvementPoints', 'Sum "^improvementPointsAllocation.(Attribute|Edge|Skill|Hindrance)$"');
 
 };
 
@@ -1464,11 +1464,11 @@ SWADE.talentRules = function(
 
   rules.defineRule('edgePoints',
     '', '=', '1',
-    'improvementAllocation.Edge', '+', 'Math.floor(source / 2)'
+    'improvementPointsAllocation.Edge', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule('skillPoints',
     '', '=', '12',
-    'improvementAllocation.Skill', '+', 'source'
+    'improvementPointsAllocation.Skill', '+', 'source'
   );
   QuilvynRules.validAllocationRules
     (rules, 'edgePoints', 'edgePoints', 'Sum "^edges\\."');
@@ -2358,7 +2358,7 @@ SWADE.createViewers = function(rules, viewers) {
           {name: 'AdvanceStats', within: 'Characteristics', separator: innerSep},
             {name: 'Advances', within: 'AdvanceStats'},
             {name: 'Improvement Points', within: 'AdvanceStats'},
-            {name: 'Improvement Allocation', within: 'AdvanceStats', separator: listSep}
+            {name: 'Improvement Points Allocation', within: 'AdvanceStats', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2613,7 +2613,7 @@ SWADE.initialEditorElements = function() {
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
-    ['improvementAllocation', 'Improvement Allocation', 'bag', improvementTypes],
+    ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
     ['languages', 'Languages', 'set', 'languages'],
@@ -2816,18 +2816,18 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'improvements') {
     attrs = this.applyRules(attributes);
     howMany = (attrs['improvementPoints'] || 0) -
-              (attrs['improvementAllocation.Attribute'] || 0) -
-              (attrs['improvementAllocation.Edge'] || 0) -
-              (attrs['improvementAllocation.Hindrance'] || 0) -
-              (attrs['improvementAllocation.Skill'] || 0);
+              (attrs['improvementPointsAllocation.Attribute'] || 0) -
+              (attrs['improvementPointsAllocation.Edge'] || 0) -
+              (attrs['improvementPointsAllocation.Hindrance'] || 0) -
+              (attrs['improvementPointsAllocation.Skill'] || 0);
     // Note: not allocating improvements to removing hindrances
     while(howMany > 0) {
       attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'Skill' :
              QuilvynUtils.random(0, 1) == 0 ? 'Edge' : 'Attribute';
-      if(attributes['improvementAllocation.' + attr] == null)
-        attributes['improvementAllocation.' + attr] = 0;
+      if(attributes['improvementPointsAllocation.' + attr] == null)
+        attributes['improvementPointsAllocation.' + attr] = 0;
       var allocation = attr == 'skill' ? 1 : 2;
-      attributes['improvementAllocation.' + attr] += allocation;
+      attributes['improvementPointsAllocation.' + attr] += allocation;
       howMany -= allocation;
     }
   } else if(attribute == 'name') {

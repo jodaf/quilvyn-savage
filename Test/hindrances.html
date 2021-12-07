@@ -30,12 +30,13 @@ var attributes = {
   "hindrances.Ugly":1, "hindrances.Ugly+":1, "hindrances.Vengeful":1, "hindrances.Vengeful+":1, 
   "hindrances.Vow":1, "hindrances.Vow+":1, "hindrances.Wanted":1, "hindrances.Wanted+":1, 
   "hindrances.Yellow+":1, "hindrances.Young":1, "hindrances.Young+":1, 
-  "improvementAllocation.Attribute":2, "improvementAllocation.Skill":2, "name":"Hindrances", "race":"Avion", 
-  "shield":"Small", "skillAllocation.Academics":1, "skillAllocation.Faith":2, 
-  "skillAllocation.Fighting":1, "skillAllocation.Language":1, "skillAllocation.Performance":1, 
-  "skillAllocation.Piloting":1, "skillAllocation.Psionics":1, "skillAllocation.Shooting":1, 
-  "skillAllocation.Spellcasting":1, "smartsAllocation":0, "spiritAllocation":1, "strengthAllocation":0, 
-  "vigorAllocation":1, "weapons.Billy Club":1, "weapons.Colt Peacemaker":1, "weapons.Uzi":1
+  "improvementPointsAllocation.Attribute":2, "improvementPointsAllocation.Skill":6, "name":"Hindrances", "race":"Avion", 
+  "shield":"Small", "skillAllocation.Academics":2, "skillAllocation.Athletics":3, 
+  "skillAllocation.Faith":2, "skillAllocation.Fighting":1, "skillAllocation.Language":1, 
+  "skillAllocation.Performance":1, "skillAllocation.Piloting":1, "skillAllocation.Psionics":1, 
+  "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":1, "smartsAllocation":0, 
+  "spiritAllocation":1, "strengthAllocation":0, "vigorAllocation":1, "weapons.Billy Club":1, 
+  "weapons.Colt Peacemaker":1, "weapons.Uzi":1
 };
   </script>
 </head>
@@ -64,18 +65,18 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td><b>Attribute Notes</b>: <i>Elderly+: -1 Agility/-1 Strength/-1 Vigor</i></td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (10 Points):</td>
+    <td><b>Skills</b> (14 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
     <col style="width:33%"/>
     <col style="width:34%"/>
     <tr style="text-align:left">
-      <td>Academics: (sma) d4</td>
+      <td>Academics: (sma) d6</td>
       <td>Language: (sma) d4</td>
       <td>Psionics: (sma) d4</td>
     </tr><tr style="text-align:left">
-      <td>Athletics: (agi) d4-4</td>
+      <td>Athletics: (agi) d10-4</td>
       <td>Notice: (sma) d6-1</td>
       <td>Shooting: (agi) d4</td>
     </tr><tr style="text-align:left">
@@ -155,7 +156,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 2</td>
       <td><b>Improvement Points</b>: 8</td>
-      <td><b>Improvement Allocation</b>: Attribute: 2; Skill: 2</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 2; Skill: 6</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -355,16 +356,6 @@ var attributes = {
         <td>Yellow+: -2 vs. Fear</td>
       </tr></table>
 </td>
-    </tr></table>
-</td>
-  </tr></table>
-</td>
-</tr><tr style="text-align:center">
-  <td style="border:1px solid black"><b>Notes</b><br/>  <table id="NotesArea" style="width:100%">
-  <tr style="text-align:center">
-    <td>    <table id="ValidationPart" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Validation Errors</b>: Improvement Points Allocation: 8 available vs. 4 allocated</td>
     </tr></table>
 </td>
   </tr></table>
