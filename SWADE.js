@@ -512,7 +512,7 @@ SWADE.FEATURES = {
     'Section=feature ' +
     'Note="Trade move for +1 Athletics (Throwing), +1 Shooting, or -2 attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%V Unarmed attack, +%1 Unarmed damage die"',
+    'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage die"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Incresed Weapon Master effects"',
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
@@ -1264,9 +1264,13 @@ SWADE.WEAPONS = {
 SWADE.attributeRules = function(rules) {
 
   for(var a in SWADE.ATTRIBUTES) {
-    rules.defineRule(a + 'Level', a + 'Allocation', '=', null);
-    rules.defineRule(a, a + 'Level', '=', 'Math.min(4 + source * 2, 12)');
-    rules.defineRule(a + 'Modifier', a + 'Level', '=', 'Math.max(source-4, 0)');
+    rules.defineRule(a + 'Step', a + 'Allocation', '=', 'source + 1');
+    rules.defineRule(a,
+      a + 'Step', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
+    );
+    rules.defineRule(a + 'Modifier',
+      a + 'Step', '=', 'source<1 ? source - 1 : source>5 ? source - 5 : 0'
+    );
     rules.defineChoice('notes', a + ':d%V%1');
     rules.defineRule(a + '.1',
       a + 'Modifier', '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
@@ -1285,8 +1289,13 @@ SWADE.attributeRules = function(rules) {
   rules.defineRule('rank',
     'advances', '=', 'source<4 ? "Novice" : source<8 ? "Seasoned" : source<12 ? "Veteran" : source<16 ? "Heroic" : "Legendary"'
   );
-  rules.defineRule('runLevel', '', '=', '0');
-  rules.defineRule('run', 'runLevel', '=', 'Math.min(6 + source * 2, 12)');
+  rules.defineRule('runStep', '', '=', '2');
+  rules.defineRule('run',
+    'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
+  );
+  rules.defineRule('runModifier',
+    'runStep', '=', 'source<1 ? source - 1 : source>5 ? "+" + (source - 5) : ""'
+  );
   rules.defineRule('size',
     '', '=', '0',
     'race', '^', '-1'
@@ -1681,12 +1690,12 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.bruiser', '+', '1'
     );
-    rules.defineRule('damageLevel.Unarmed',
+    rules.defineRule('damageStep.Unarmed',
       'combatNotes.brawler', '^=', '0',
       'combatNotes.brawler.1', '+', null
     );
     rules.defineRule('weapons.Unarmed.2',
-      'damageLevel.Unarmed', '=', '"d" + (2 + source * 2)'
+      'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
   } else if(name == 'Command') {
     rules.defineRule('commandRange',
@@ -1743,12 +1752,12 @@ SWADE.edgeRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('attackBonus.Unarmed', 'combatNotes.martialArtist', '+', null);
-    rules.defineRule('damageLevel.Unarmed',
+    rules.defineRule('damageStep.Unarmed',
       'combatNotes.martialArtist', '^=', '0',
       'combatNotes.martialArtist.1', '+', null
     );
     rules.defineRule('weapons.Unarmed.2',
-      'damageLevel.Unarmed', '=', '"d" + (2 + source * 2)'
+      'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
   } else if(name == 'Nerves Of Steel') {
     rules.defineRule('combatNotes.nervesOfSteel',
@@ -1883,9 +1892,9 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
         adjusted = adjusted.replace(' die', '');
         if(section == 'attribute' || adjusted == 'Run')
-          adjusted = adjusted.toLowerCase() + 'Level'
+          adjusted = adjusted.toLowerCase() + 'Step'
         else if(sections == 'skill')
-          adjusted = 'skillLevel.' + adjusted;
+          adjusted = 'skillStep.' + adjusted;
         else
           adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1);
       } else {
@@ -1984,27 +1993,27 @@ SWADE.raceRules = function(
   var matchInfo;
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-  var raceLevel = prefix + 'Level';
+  var raceAdvances = prefix + 'Advances';
 
-  rules.defineRule(raceLevel,
+  rules.defineRule(raceAdvances,
     'race', '?', 'source == "' + name + '"',
     'advances', '=', 'source + 1'
   );
 
   if(requires.length > 0)
     QuilvynRules.prerequisiteRules
-      (rules, 'validation', prefix + 'Race', raceLevel, requires);
+      (rules, 'validation', prefix + 'Race', raceAdvances, requires);
 
-  SWADE.featureListRules(rules, features, name, raceLevel, false);
-  SWADE.featureListRules(rules, selectables, name, raceLevel, true);
+  SWADE.featureListRules(rules, features, name, raceAdvances, false);
+  SWADE.featureListRules(rules, selectables, name, raceAdvances, true);
   rules.defineSheetElement(name + ' Features', 'Hindrances+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
   if(languages.length > 0) {
-    rules.defineRule('languageCount', raceLevel, '=', languages.length);
+    rules.defineRule('languageCount', raceAdvances, '=', languages.length);
     for(var i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
-        rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
+        rules.defineRule('languages.' + languages[i], raceAdvances, '=', '1');
     }
   }
 
@@ -2095,15 +2104,15 @@ SWADE.skillRules = function(rules, name, attribute, core) {
   }
 
   if(core && core != 'n' && core != 'N') {
-    rules.defineRule('skillLevel.' + name, 'agility', '=', '1');
+    rules.defineRule('skillStep.' + name, '', '=', '1');
   }
   rules.defineRule
-    ('skillLevel.' + name, 'skillAllocation.' + name, '+=', null);
+    ('skillStep.' + name, 'skillAllocation.' + name, '+=', null);
   rules.defineRule('skills.' + name,
-    'skillLevel.' + name, '=', 'Math.min(2 + source * 2, 12)'
+    'skillStep.' + name, '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillLevel.' + name, '=', 'Math.max(source - 5, 0)'
+    'skillStep.' + name, '=', 'source<1 ? source  - 1 : source>5 ? source - 5 : 0'
   );
   rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
@@ -2291,9 +2300,10 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
               {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
               {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Initiative', within: 'Section 1', format: '<b>Initiative</b> %V'},
-            {name: 'Pace', within: 'Section 1', format: '<b>Pace</b> %V'},
-            {name: 'Run', within: 'Section 1', format: '<b>Run</b> %V'},
+            {name: 'Speed', within: 'Section 1', separator:''},
+              {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b> %V'},
+              {name: 'Run', within: 'Speed', format: '/+d%V'},
+              {name: 'Run Modifier', within: 'Speed', format: '%V'},
             {name: 'Toughness', within: 'Section 1', format: '<b>Toughness</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
@@ -2406,6 +2416,7 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Speed', within: 'CombatStats', separator: ''},
                 {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b>: %V'},
                 {name: 'Run', within: 'Speed', format: '/+d%V'},
+                {name: 'Run Modifier', within: 'Speed', format: '%V'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
               {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
@@ -2488,19 +2499,6 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Equipment', 'Equipment', 'text', [40]],
       ['Features', 'Features', 'text', [40]],
       ['Languages', 'Languages', 'text', [40]]
-    );
-  } else if(type == 'Class') {
-    result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
-      ['HitDie', 'Hit Die', 'select-one', ['d4', 'd6', 'd8', 'd10', 'd12']],
-      ['Features', 'Features', 'text', [40]],
-      ['Selectables', 'Selectable Features', 'text', [40]],
-      ['Languages', 'Languages', 'text', [30]],
-      ['CasterLevelArcane', 'Arcane Level', 'text', [10]],
-      ['CasterLevelDivine', 'Divine Level', 'text', [10]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [40]]
     );
   } else if(type == 'Deity')
     result.push(
