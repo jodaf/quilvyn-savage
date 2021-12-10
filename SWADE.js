@@ -55,7 +55,7 @@ function SWADE() {
   SWADE.identityRules(rules, SWADE.RACES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
-     SWADE.SKILLS);
+     SWADE.LANGUAGES, SWADE.SKILLS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -426,7 +426,6 @@ SWADE.FEATURES = {
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
-  'Expert':'Section=feature Note="TODO"',
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
@@ -790,6 +789,67 @@ SWADE.FEATURES = {
 };
 SWADE.GOODIES = {
   // TODO
+  'Agility':
+    'Pattern="([-+]\\d)\\s+agi(?:lity)?(?:$|\\s+$|\\s+[^d])|agi(?:lity)?\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=agilityModifier ' +
+    'Section=attribute Note="%V Agility"',
+  'Agility Die':
+    'Pattern="([-+]\\d)\\s+agi(?:lity)?\\s+die|agi(?:lity)?\\s+die\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=agilityStep ' +
+    'Section=attribute Note="%V Agility die"',
+  'Smarts':
+    'Pattern="([-+]\\d)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=smartsModifier ' +
+    'Section=attribute Note="%V Ability"',
+  'Smarts Die':
+    'Pattern="([-+]\\d)\\s+sma(?:rts)?\\s+die|sma(?:rts)?\\s+die\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=smartsStep ' +
+    'Section=attribute Note="%V Ability die"',
+  'Spirit':
+    'Pattern="([-+]\\d)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=spiritModifier ' +
+    'Section=attribute Note="%V Spirit"',
+  'Spirit Die':
+    'Pattern="([-+]\\d)\\s+spi(?:rit)?\\s+die|spi(?:rit)?\\s+die\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=spiritStep ' +
+    'Section=attribute Note="%V Spirit die"',
+  'Strength':
+    'Pattern="([-+]\\d)\\s+str(?:ength)?(?:$|\\s+$|\\s+[^d])|str(?:ength)?\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=strengthModifier ' +
+    'Section=attribute Note="%V Strength"',
+  'Strength Die':
+    'Pattern="([-+]\\d)\\s+str(?:ength)?\\s+die|str(?:ength)?\\s+die\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=strengthStep ' +
+    'Section=attribute Note="%V Strength die"',
+  'Vigor':
+    'Pattern="([-+]\\d)\\s+vig(?:or)?(?:$|\\s+$|\\s+[^d])|vig(?:or)?\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=vigorModifier ' +
+    'Section=attribute Note="%V Vigor"',
+  'Vigor Die':
+    'Pattern="([-+]\\d)\\s+vig(?:or)?\\s+die|vig(?:or)?\\s+die\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=vigorStep ' +
+    'Section=attribute Note="%V Vigor die"'
+  // TODO
 };
 SWADE.HINDRANCES = {
   'All Thumbs':'Severity=Minor',
@@ -1092,37 +1152,51 @@ SWADE.POWERS = {
 SWADE.RACES = {
   'Android':
     'Features=' +
-      'Construct,"Outsider+","Pacifist+","Vow+"',
+      'Construct,"Outsider+","Pacifist+","Vow+" ' +
+    'Languages=Android',
   'Aquarian':
     'Features=' +
-      'Aquatic,Dependency,"Low Light Vision",Toughness',
+      'Aquatic,Dependency,"Low Light Vision",Toughness ' +
+    'Languages=Aquarian',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace"',
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
+    'Languages=Avion',
   'Dwarf':
     'Features=' +
-      '"Low Light Vision","Reduced Pace",Tough',
+      '"Low Light Vision","Reduced Pace",Tough ' +
+    'Languages=Dwarf',
   'Elf':
     'Features=' +
-      'Agile,"All Thumbs","Low Light Vision"',
+      'Agile,"All Thumbs","Low Light Vision" ' +
+    'Languages=Elf',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision",Outsider',
+      'Heritage,"Low Light Vision",Outsider ' +
+    'Languages=Elf,Human',
   'Half-Folk':
     'Features=' +
-      'Luck,"Reduced Pace","Size -1",Spirited',
+      'Luck,"Reduced Pace","Size -1",Spirited ' +
+    'Languages=Half-Folk',
   'Human':
     'Features=' +
-      'Adaptable',
+      'Adaptable ' +
+    'Languages=Human',
   'Rakashan':
     'Features=' +
       'Agile,Bite,Claws,Bloodthirsty+,"Can\'t Swim","Low Light Vision",' +
-      '"Racial Enemy"',
+      '"Racial Enemy" ' +
+    'Languages=Rakashan',
   'Saurian':
     'Features=' +
       '"Armor +2",Bite,"Environmental Weakness (Cold)","Keen Senses",' +
-      'Outsider'
+      'Outsider ' +
+    'Languages=Saurian'
 };
+SWADE.LANGUAGES = {};
+for(var r in SWADE.RACES) {
+  SWADE.LANGUAGES[r] = '';
+}
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small':'Parry=1 Cover=0 MinStr=4 Weight=4',
@@ -1149,7 +1223,7 @@ SWADE.SKILLS = {
   'Hacking':'Attribute=smarts',
   'Healing':'Attribute=smarts',
   'Intimidation':'Attribute=spirit',
-  'Language':'Attribute=smarts',
+  'Language (%language)':'Attribute=smarts',
   'Notice':'Attribute=smarts Core=y',
   'Occult':'Attribute=smarts',
   'Performance':'Attribute=spirit',
@@ -1264,7 +1338,10 @@ SWADE.WEAPONS = {
 SWADE.attributeRules = function(rules) {
 
   for(var a in SWADE.ATTRIBUTES) {
-    rules.defineRule(a + 'Step', a + 'Allocation', '=', 'source + 1');
+    rules.defineRule(a + 'Step',
+      '', '=', '1',
+      a + 'Allocation', '+', null
+    );
     rules.defineRule(a,
       a + 'Step', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
     );
@@ -1369,7 +1446,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 /* Defines rules related to basic character identity. */
 SWADE.identityRules = function(rules, races) {
 
-  QuilvynUtils.checkAttrTable(races, ['Features']);
+  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
   for(var race in races) {
     rules.choiceRules(rules, 'Race', race, races[race]);
@@ -1422,7 +1499,7 @@ SWADE.magicRules = function(rules, powers) {
 
 /* Defines rules related to character aptitudes. */
 SWADE.talentRules = function(
-  rules, edges, features, goodies, hindrances, skills
+  rules, edges, features, goodies, hindrances, languages, skills
 ) {
 
   var c;
@@ -1431,6 +1508,7 @@ SWADE.talentRules = function(
   QuilvynUtils.checkAttrTable(edges, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
   QuilvynUtils.checkAttrTable(hindrances, ['Severity']);
+  QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Attribute', 'Core']);
 
   for(var goody in goodies) {
@@ -1439,16 +1517,26 @@ SWADE.talentRules = function(
   for(var hindrance in hindrances) {
     rules.choiceRules(rules, 'Hindrance', hindrance, hindrances[hindrance]);
   }
+  for(var language in languages) {
+    rules.choiceRules(rules, 'Language', language, languages[language]);
+  }
   for(var skill in skills) {
-    rules.choiceRules(rules, 'Skill', skill, skills[skill]);
-    rules.choiceRules(rules, 'Goody', skill,
-      'Pattern="([-+]\\d).*\\s+' + skill + '\\s+Skill|' + skill + '\\s+skill\\s+([-+]\\d)"' +
-      'Effect=add ' +
-      'Value="$1 || $2" ' +
-      'Attribute="skills.' + skill + '" ' +
-      'Section=skill Note="%V ' + skill + '"'
-    );
-    rules.defineChoice('traits', skill);
+    if((matchInfo = skill.match(/(%(\w+))/)) != null) {
+      for(c in rules.getChoices(matchInfo[2] + 's')) {
+        rules.choiceRules
+          (rules, 'Skill', skill.replace(matchInfo[1], c), skills[skill].replaceAll(matchInfo[1], c));
+      }
+    } else {
+      rules.choiceRules(rules, 'Skill', skill, skills[skill]);
+      rules.choiceRules(rules, 'Goody', skill,
+        'Pattern="([-+]\\d).*\\s+' + skill + '\\s+Skill|' + skill + '\\s+skill\\s+([-+]\\d)"' +
+        'Effect=add ' +
+        'Value="$1 || $2" ' +
+        'Attribute="skills.' + skill + '" ' +
+        'Section=skill Note="%V ' + skill + '"'
+      );
+      rules.defineChoice('traits', skill);
+    }
   }
   for(var edge in edges) {
     if((matchInfo = edge.match(/(%(\w+))/)) != null) {
@@ -1523,11 +1611,12 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Severity'),
     );
     SWADE.hindranceRulesExtra(rules, name);
-  } else if(type == 'Race') {
+  } else if(type == 'Language')
+    SWADE.languageRules(rules, name)
+  else if(type == 'Race') {
     SWADE.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
     SWADE.raceRulesExtra(rules, name);
@@ -1663,7 +1752,6 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADE.edgeRulesExtra = function(rules, name) {
-  // TODO
   var matchInfo;
   var note;
   if(name == 'Arcane Resistance') {
@@ -1960,14 +2048,21 @@ SWADE.hindranceRulesExtra = function(rules, name) {
   }
 };
 
+/* Defines in #rules# the rules associated with language #name#. */
+SWADE.languageRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty language name');
+    return;
+  }
+  // No rules pertain to language
+};
+
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features and #languages# any automatic languages.
+ * of hard prerequisites #requires#. #features# list associated features and
+ * #languages# any automatic languages.
  */
-SWADE.raceRules = function(
-  rules, name, requires, features, selectables, languages
-) {
+SWADE.raceRules = function(rules, name, requires, features, languages) {
 
   if(!name) {
     console.log('Empty race name');
@@ -1979,10 +2074,6 @@ SWADE.raceRules = function(
   }
   if(!Array.isArray(features)) {
     console.log('Bad features list "' + features + '" for race ' + name);
-    return;
-  }
-  if(!Array.isArray(selectables)) {
-    console.log('Bad selectables list "' + selectables + '" for race ' + name);
     return;
   }
   if(!Array.isArray(languages)) {
@@ -1997,7 +2088,7 @@ SWADE.raceRules = function(
 
   rules.defineRule(raceAdvances,
     'race', '?', 'source == "' + name + '"',
-    'advances', '=', 'source + 1'
+    'advances', '=', null
   );
 
   if(requires.length > 0)
@@ -2005,15 +2096,14 @@ SWADE.raceRules = function(
       (rules, 'validation', prefix + 'Race', raceAdvances, requires);
 
   SWADE.featureListRules(rules, features, name, raceAdvances, false);
-  SWADE.featureListRules(rules, selectables, name, raceAdvances, true);
   rules.defineSheetElement(name + ' Features', 'Hindrances+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
   if(languages.length > 0) {
-    rules.defineRule('languageCount', raceAdvances, '=', languages.length);
     for(var i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
-        rules.defineRule('languages.' + languages[i], raceAdvances, '=', '1');
+        rules.defineRule
+          ('skillStep.Language ('+languages[i]+')', raceAdvances, '+=', '3');
     }
   }
 
@@ -2105,9 +2195,17 @@ SWADE.skillRules = function(rules, name, attribute, core) {
 
   if(core && core != 'n' && core != 'N') {
     rules.defineRule('skillStep.' + name, '', '=', '1');
+    rules.defineRule('skillStepPastAttribute.' + name, '', '=', '1');
   }
-  rules.defineRule
-    ('skillStep.' + name, 'skillAllocation.' + name, '+=', null);
+  rules.defineRule('skillStepPastAttribute.' + name,
+    'skillAllocation.' + name, '+=', null,
+    attribute + 'Step', '+', '-source',
+    '', '^', '0'
+  );
+  rules.defineRule('skillStep.' + name,
+    'skillAllocation.' + name, '+=', null,
+    'skillStepPastAttribute.' + name, '+', '-Math.ceil(source / 2)'
+  );
   rules.defineRule('skills.' + name,
     'skillStep.' + name, '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
   );
@@ -2122,7 +2220,9 @@ SWADE.skillRules = function(rules, name, attribute, core) {
 };
 
 /*
- * TODO
+ * Defines in #rules# the rules associated with power #name#, which may be
+ * acquired only after #advances# advances and requires #powerPoints# Power
+ * Points to use. #description# is a concise description of the power's effects.
  */
 SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
   if(!name) {
@@ -2139,7 +2239,7 @@ SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
     console.log('Empty description for power ' + name);
   }
   rules.defineChoice
-    ('notes', 'spells.' + name + ': (' + powerPoints + ' PP)' + description);
+    ('notes', 'powers.' + name + ': (' + powerPoints + ' PP)' + description);
   // TODO
 };
 
@@ -2494,12 +2594,6 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Str', 'Min Str', 'select-one', tenToEighteen],
       ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']]
     );
-  } else if(type == 'Background') {
-    result.push(
-      ['Equipment', 'Equipment', 'text', [40]],
-      ['Features', 'Features', 'text', [40]],
-      ['Languages', 'Languages', 'text', [40]]
-    );
   } else if(type == 'Deity')
     result.push(
       ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
@@ -2614,7 +2708,6 @@ SWADE.initialEditorElements = function() {
     ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
-    ['languages', 'Languages', 'set', 'languages'],
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
@@ -3047,6 +3140,10 @@ SWADE.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
+    '  </li>\n' +
+    '  <li>\n' +
+    '    Quilvyn assumes that every race has its own language and that\n' +
+    '    half-elf characters know both Elf and Human.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +
