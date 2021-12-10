@@ -50,7 +50,7 @@ function SWADE() {
   );
 
   SWADE.attributeRules(rules);
-  SWADE.combatRules(rules, SWADE.ARMORS_TORSO, SWADE.SHIELDS, SWADE.WEAPONS);
+  SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.magicRules(rules, SWADE.POWERS);
   SWADE.identityRules(rules, SWADE.RACES);
   SWADE.talentRules
@@ -85,49 +85,39 @@ SWADE.ATTRIBUTES = {
   'strength':'',
   'vigor':''
 };
-SWADE.ARMORS_TORSO = {
-  'None':'Armor=0 MinStr=10 Weight=0',
-  'Cloth Jacket':'Armor=1 MinStr=4 Weight=5',
-  'Cloth Robes':'Armor=1 MinStr=4 Weight=8',
-  'Leather Jacket':'Armor=2 MinStr=6 Weight=8',
-  'Chain Shirt':'Armor=3 MinStr=8 Weight=25',
-  'Chain Leggings':'Armor=3 MinStr=8 Weight=10',
-  'Bronze Corselet':'Armor=3 MinStr=8 Weight=13',
-  'Plate Corselet':'Armor=4 MinStr=10 Weight=30',
-  'Leather Jacket':'Armor=1 MinStr=4 Weight=5',
-  'Kevlar Jacket':'Armor=2 MinStr=4 Weight=8',
-  'Flak Jacket':'Armor=2 MinStr=6 Weight=10',
-  'Kevlar Vest':'Armor=2 MinStr=6 Weight=5',
-  'Kevlar Vest With Ceramic Inserts':'Armor=4 MinStr=8 Weight=17',
-  'Bulletproof Suit':'Armor=10 MinStr=12 Weight=80',
-  'Body Armor':'Armor=4 MinStr=4 Weight=4',
-  'Infantry Battle Suit':'Armor=6 MinStr=6 Weight=12'
-};
-SWADE.ARMORS_ARMS = {
-  'None':'Armor=0 MinStr=10 Weight=0',
-  'Bronze Vambraces':'Armor=3 MinStr=8 Weight=5',
-  'Plate Vambraces':'Armor=4 MinStr=10 Weight=10'
-};
-SWADE.ARMORS_HEAD = {
-  'None':'Armor=0 MinStr=10 Weight=0',
-  'Cloth Cap':'Armor=1 MinStr=4 Weight=1',
-  'Leather Cap':'Armor=2 MinStr=6 Weight=1',
-  'Bronze Helmet':'Armor=3 MinStr=8 Weight=6',
-  'Chain Hood':'Armor=3 MinStr=8 Weight=4',
-  'Heavy Helm':'Armor=4 MinStr=10 Weight=8',
-  'Bike Helmet':'Armor=2 MinStr=4 Weight=1',
-  'Motorcycle Helmet':'Armor=3 MinStr=4 Weight=3',
-  'Kevlar Helmet':'Armor=4 MinStr=4 Weight=5',
-  'Battle Helmet':'Armor=6 MinStr=6 Weight=2'
-};
-SWADE.ARMORS_LEGS = {
-  'None':'Armor=0 MinStr=10 Weight=0',
-  'Cloth Leggings':'Armor=1 MinStr=4 Weight=5',
-  'Leather Leggings':'Armor=2 MinStr=6 Weight=7',
-  'Bronze Greaves':'Armor=3 MinStr=8 Weight=6',
-  'Plate Greaves':'Armor=4 MinStr=10 Weight=10',
-  'Leather Chaps':'Armor=1 MinStr=4 Weight=5',
-  'Kevlar Jeans':'Armor=2 MinStr=4 Weight=4'
+SWADE.ARMORS = {
+  'Cloth Jacket':'Area=Torso Armor=1 MinStr=4 Weight=5',
+  'Cloth Robes':'Area=Torso Armor=1 MinStr=4 Weight=8',
+  'Leather Jacket':'Area=Torso Armor=2 MinStr=6 Weight=8',
+  'Chain Shirt':'Area=Torso Armor=3 MinStr=8 Weight=25',
+  'Chain Leggings':'Area=Torso Armor=3 MinStr=8 Weight=10',
+  'Bronze Corselet':'Area=Torso Armor=3 MinStr=8 Weight=13',
+  'Plate Corselet':'Area=Torso Armor=4 MinStr=10 Weight=30',
+  'Leather Jacket':'Area=Torso Armor=1 MinStr=4 Weight=5',
+  'Kevlar Jacket':'Area=Torso Armor=2 MinStr=4 Weight=8',
+  'Flak Jacket':'Area=Torso Armor=2 MinStr=6 Weight=10',
+  'Kevlar Vest':'Area=Torso Armor=2 MinStr=6 Weight=5',
+  'Kevlar Vest With Ceramic Inserts':'Area=Torso Armor=4 MinStr=8 Weight=17',
+  'Bulletproof Suit':'Area=Torso Armor=10 MinStr=12 Weight=80',
+  'Body Armor':'Area=Torso Armor=4 MinStr=4 Weight=4',
+  'Infantry Battle Suit':'Area=Torso Armor=6 MinStr=6 Weight=12',
+  'Bronze Vambraces':'Area=Arms Armor=3 MinStr=8 Weight=5',
+  'Plate Vambraces':'Area=Arms Armor=4 MinStr=10 Weight=10',
+  'Cloth Cap':'Area=Head Armor=1 MinStr=4 Weight=1',
+  'Leather Cap':'Area=Head Armor=2 MinStr=6 Weight=1',
+  'Bronze Helmet':'Area=Head Armor=3 MinStr=8 Weight=6',
+  'Chain Hood':'Area=Head Armor=3 MinStr=8 Weight=4',
+  'Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8',
+  'Bike Helmet':'Area=Head Armor=2 MinStr=4 Weight=1',
+  'Motorcycle Helmet':'Area=Head Armor=3 MinStr=4 Weight=3',
+  'Kevlar Helmet':'Area=Head Armor=4 MinStr=4 Weight=5',
+  'Battle Helmet':'Area=Head Armor=6 MinStr=6 Weight=2',
+  'Cloth Leggings':'Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Leather Leggings':'Area=Legs Armor=2 MinStr=6 Weight=7',
+  'Bronze Greaves':'Area=Legs Armor=3 MinStr=8 Weight=6',
+  'Plate Greaves':'Area=Legs Armor=4 MinStr=10 Weight=10',
+  'Leather Chaps':'Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Kevlar Jeans':'Area=Legs Armor=2 MinStr=4 Weight=4'
 };
 SWADE.EDGES = {
   // Background
@@ -1387,7 +1377,7 @@ SWADE.attributeRules = function(rules) {
 /* Defines the rules related to combat. */
 SWADE.combatRules = function(rules, armors, shields, weapons) {
 
-  QuilvynUtils.checkAttrTable(armors, ['Armor', 'MinStr', 'Weight']);
+  QuilvynUtils.checkAttrTable(armors, ['Area', 'Armor', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable(shields, ['Parry', 'Cover', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable
     (weapons, ['Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF']);
@@ -1581,6 +1571,7 @@ SWADE.talentRules = function(
 SWADE.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Armor')
     SWADE.armorRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Area'),
       QuilvynUtils.getAttrValue(attrs, 'Armor'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
@@ -1660,14 +1651,18 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
 };
 
 /*
- * Defines in #rules# the rules associated with armor #name#, which adds
- * #armor# to the character's Toughness, requires a strength of #minStr# to
- * use effectively, and weighs #weight#.
+ * Defines in #rules# the rules associated with armor #name#, which covers
+ * the body areas listed in #areas#, adds #armor# to the character's Toughness,
+ * requires a strength of #minStr# to use effectively, and weighs #weight#.
  */
-SWADE.armorRules = function(rules, name, armor, minStr, weight) {
+SWADE.armorRules = function(rules, name, areas, armor, minStr, weight) {
 
   if(!name) {
     console.log('Empty armor name');
+    return;
+  }
+  if(!Array.isArray(areas)) {
+    console.log('Bad areas "' + areas + '" for armor ' + name);
     return;
   }
   if(typeof armor != 'number') {
@@ -1683,26 +1678,10 @@ SWADE.armorRules = function(rules, name, armor, minStr, weight) {
     return;
   }
 
-  if(rules.armorStats == null) {
-    rules.armorStats = {
-      armor:{},
-      minStr:{},
-      weight:{}
-    };
-  }
-  rules.armorStats.armor[name] = armor;
-  rules.armorStats.minStr[name] = minStr;
-  rules.armorStats.weight[name] = weight;
-
-  rules.defineRule('armorToughness',
-    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.armor) + '[source]'
-  );
-  rules.defineRule('armorMinStr',
-    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.minStr) + '[source]'
-  );
-  rules.defineRule('armorWeight',
-    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.weight) + '[source]'
-  );
+  if(areas.includes('Torso') || areas.includes('Body'))
+    rules.defineRule('armorToughness', 'armor.' + name, '+=', armor);
+  rules.defineRule('armorMinStr', 'armor.' + name, '+=', minStr);
+  rules.defineRule('armorWeight', 'armor.' + name, '+=', weight);
 
 };
 
@@ -2708,7 +2687,7 @@ SWADE.initialEditorElements = function() {
     ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
-    ['armor', 'Armor', 'select-one', 'armors'],
+    ['armor', 'Armor', 'set', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
     ['powers', 'Powers', 'fset', 'powers'],
@@ -2836,6 +2815,21 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(QuilvynUtils.random(0, 9) >= 7)
         attributes.advances += 4;
     }
+  } else if(attribute == 'armor') {
+    var allArmors = this.getChoices('armors');
+    choices = [];
+    howMany = 1;
+    for(attr in allArmors) {
+      var torsoArmor = allArmors[attr].match(/Body|Torso/);
+      if(attributes[attr]) {
+        if(torsoArmor)
+          howMany = 0;
+        continue;
+      }
+      if(torsoArmor)
+        choices.push(attr);
+    }
+    pickAttrs(attributes, 'armor.', choices, howMany, 1);
   } else if(attribute == 'attributes') {
     attrs = this.applyRules(attributes);
     for(attr in SWADE.ATTRIBUTES) {
