@@ -46,13 +46,14 @@ function SWADE() {
     'edges', 'edgePoints', 'hindrences', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Race,select-one,races', 'advances:Advances,text,4'
+    'race:Race,select-one,races', 'era:Era,select-one,eras',
+    'advances:Advances,text,4'
   );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.magicRules(rules, SWADE.POWERS);
-  SWADE.identityRules(rules, SWADE.RACES);
+  SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
      SWADE.LANGUAGES, SWADE.SKILLS);
@@ -65,15 +66,15 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Armor', 'Edge', 'Feature', 'Goody', 'Hindrance', 'Race', 'Shield', 'Skill',
-  'Spell', 'Weapon'
+  'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Race', 'Shield',
+  'Skill', 'Spell', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
  * dependencies among attributes when generating random characters.
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
-  'name', 'race', 'gender', 'advances', 'hindrances', 'improvements',
+  'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
   'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
@@ -86,38 +87,49 @@ SWADE.ATTRIBUTES = {
   'vigor':''
 };
 SWADE.ARMORS = {
-  'Cloth Jacket':'Area=Torso Armor=1 MinStr=4 Weight=5',
-  'Cloth Robes':'Area=Torso Armor=1 MinStr=4 Weight=8',
-  'Leather Jacket':'Area=Torso Armor=2 MinStr=6 Weight=8',
-  'Chain Shirt':'Area=Torso Armor=3 MinStr=8 Weight=25',
-  'Chain Leggings':'Area=Torso Armor=3 MinStr=8 Weight=10',
-  'Bronze Corselet':'Area=Torso Armor=3 MinStr=8 Weight=13',
-  'Plate Corselet':'Area=Torso Armor=4 MinStr=10 Weight=30',
-  'Leather Jacket':'Area=Torso Armor=1 MinStr=4 Weight=5',
-  'Kevlar Jacket':'Area=Torso Armor=2 MinStr=4 Weight=8',
-  'Flak Jacket':'Area=Torso Armor=2 MinStr=6 Weight=10',
-  'Kevlar Vest':'Area=Torso Armor=2 MinStr=6 Weight=5',
-  'Kevlar Vest With Ceramic Inserts':'Area=Torso Armor=4 MinStr=8 Weight=17',
-  'Bulletproof Suit':'Area=Torso Armor=10 MinStr=12 Weight=80',
-  'Body Armor':'Area=Torso Armor=4 MinStr=4 Weight=4',
-  'Infantry Battle Suit':'Area=Torso Armor=6 MinStr=6 Weight=12',
-  'Bronze Vambraces':'Area=Arms Armor=3 MinStr=8 Weight=5',
-  'Plate Vambraces':'Area=Arms Armor=4 MinStr=10 Weight=10',
-  'Cloth Cap':'Area=Head Armor=1 MinStr=4 Weight=1',
-  'Leather Cap':'Area=Head Armor=2 MinStr=6 Weight=1',
-  'Bronze Helmet':'Area=Head Armor=3 MinStr=8 Weight=6',
-  'Chain Hood':'Area=Head Armor=3 MinStr=8 Weight=4',
-  'Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8',
-  'Bike Helmet':'Area=Head Armor=2 MinStr=4 Weight=1',
-  'Motorcycle Helmet':'Area=Head Armor=3 MinStr=4 Weight=3',
-  'Kevlar Helmet':'Area=Head Armor=4 MinStr=4 Weight=5',
-  'Battle Helmet':'Area=Head Armor=6 MinStr=6 Weight=2',
-  'Cloth Leggings':'Area=Legs Armor=1 MinStr=4 Weight=5',
-  'Leather Leggings':'Area=Legs Armor=2 MinStr=6 Weight=7',
-  'Bronze Greaves':'Area=Legs Armor=3 MinStr=8 Weight=6',
-  'Plate Greaves':'Area=Legs Armor=4 MinStr=10 Weight=10',
-  'Leather Chaps':'Area=Legs Armor=1 MinStr=4 Weight=5',
-  'Kevlar Jeans':'Area=Legs Armor=2 MinStr=4 Weight=4'
+
+  'Cloth Jacket':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=5',
+  'Cloth Robes':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=8',
+  'Cloth Leggings':'Era=Medieval Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Cloth Cap':'Era=Medieval Area=Head Armor=1 MinStr=4 Weight=1',
+
+  'Leather Jacket':'Era=Medieval Area=Torso Armor=2 MinStr=6 Weight=8',
+  'Leather Leggings':'Era=Medieval Area=Legs Armor=2 MinStr=6 Weight=7',
+  'Leather Cap':'Era=Medieval Area=Head Armor=2 MinStr=6 Weight=1',
+
+  'Chain Shirt':'Era=Medieval Area=Torso Armor=3 MinStr=8 Weight=25',
+  'Chain Leggings':'Era=Medieval Area=Legs Armor=3 MinStr=8 Weight=10',
+  'Chain Hood':'Era=Medieval Area=Head Armor=3 MinStr=8 Weight=4',
+
+  'Bronze Corselet':'Era=Ancient Area=Torso Armor=3 MinStr=8 Weight=13',
+  'Bronze Vambraces':'Era=Ancient Area=Arms Armor=3 MinStr=8 Weight=5',
+  'Bronze Greaves':'Era=Ancient Area=Legs Armor=3 MinStr=8 Weight=6',
+  'Bronze Helmet':'Era=Ancient Area=Head Armor=3 MinStr=8 Weight=6',
+
+
+  'Plate Corselet':'Era=Medieval Area=Torso Armor=4 MinStr=10 Weight=30',
+  'Plate Vambraces':'Era=Medieval Area=Arms Armor=4 MinStr=10 Weight=10',
+  'Plate Greaves':'Era=Medieval Area=Legs Armor=4 MinStr=10 Weight=10',
+  'Plate Heavy Helm':'Era=Medieval Area=Head Armor=4 MinStr=10 Weight=8',
+
+  'Thick Coat':'Era=Modern Area=Torso Armor=1 MinStr=4 Weight=5',
+  'Leather Chaps':'Era=Modern Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Kevlar Jacket':'Era=Modern Area=Torso Armor=2 MinStr=4 Weight=8',
+  'Kevlar Jeans':'Era=Modern Area=Legs Armor=2 MinStr=4 Weight=4',
+  'Bike Helmet':'Era=Modern Area=Head Armor=2 MinStr=4 Weight=1',
+  'Motorcycle Helmet':'Era=Modern Area=Head Armor=3 MinStr=4 Weight=3',
+
+  'Flak Jacket':'Era=Modern Area=Torso Armor=2 MinStr=6 Weight=10',
+  'Kevlar Vest':'Era=Modern Area=Torso Armor=2 MinStr=6 Weight=5',
+  'Kevlar Vest With Ceramic Inserts':
+     'Era=Modern Area=Torso Armor=4 MinStr=8 Weight=17',
+  'Kevlar Helmet':'Era=Modern Area=Head Armor=4 MinStr=4 Weight=5',
+  'Bombproof Suit':'Era=Modern Area=Torso Armor=10 MinStr=12 Weight=80',
+
+  'Body Armor':'Era=Future Area=Torso Armor=4 MinStr=4 Weight=4',
+  'Infantry Battle Suit':'Era=Future Area=Torso Armor=6 MinStr=6 Weight=12',
+  'Battle Helmet':'Era=Future Area=Head Armor=6 MinStr=6 Weight=2'
+
 };
 SWADE.EDGES = {
   // Background
@@ -331,6 +343,12 @@ SWADE.EDGES = {
     'Type=legendary Require="advances >= 16","skills.Fighting >= 12"',
   'Master Of Arms':
     'Type=legendary Require="advances >= 16","features.Weapon Master"'
+};
+SWADE.ERAS = {
+  'Ancient':'',
+  'Medieval':'',
+  'Modern':'',
+  'Future':''
 };
 SWADE.FEATURES = {
 
@@ -778,7 +796,6 @@ SWADE.FEATURES = {
 
 };
 SWADE.GOODIES = {
-  // TODO
   'Agility':
     'Pattern="([-+]\\d)\\s+agi(?:lity)?(?:$|\\s+$|\\s+[^d])|agi(?:lity)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -1188,15 +1205,15 @@ for(var r in SWADE.RACES) {
   SWADE.LANGUAGES[r] = '';
 }
 SWADE.SHIELDS = {
-  'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
-  'Small':'Parry=1 Cover=0 MinStr=4 Weight=4',
-  'Medium':'Parry=2 Cover=-2 MinStr=6 Weight=8',
-  'Large':'Parry=3 Cover=-4 MinStr=8 Weight=12',
-  'Riot Shield':'Parry=3 Cover=-4 MinStr=4 Weight=5',
-  'Ballistic Shield':'Parry=3 Cover=-4 MinStr=6 Weight=9',
-  'Small Polymer':'Parry=1 Cover=0 MinStr=4 Weight=2',
-  'Medium Polymer':'Parry=2 Cover=-2 MinStr=4 Weight=4',
-  'Large Polymer':'Parry=3 Cover=-4 MinStr=6 Weight=6'
+  'None':'Era=Ancient,Medieval,Modern,Future Parry=0 Cover=0 MinStr=0 Weight=0',
+  'Small':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
+  'Medium':'Era=Ancient,Medieval Parry=2 Cover=-2 MinStr=6 Weight=8',
+  'Large':'Era=Ancient,Medieval Parry=3 Cover=-4 MinStr=8 Weight=12',
+  'Riot Shield':'Era=Modern Parry=3 Cover=-4 MinStr=4 Weight=5',
+  'Ballistic Shield':'Era=Modern Parry=3 Cover=-4 MinStr=6 Weight=9',
+  'Small Polymer':'Era=Future Parry=1 Cover=0 MinStr=4 Weight=2',
+  'Medium Polymer':'Era=Future Parry=2 Cover=-2 MinStr=4 Weight=4',
+  'Large Polymer':'Era=Future Parry=3 Cover=-4 MinStr=6 Weight=6'
 };
 SWADE.SKILLS = {
   'Academics':'Attribute=smarts',
@@ -1234,93 +1251,136 @@ SWADE.SKILLS = {
 };
 SWADE.WEAPONS = {
 
-  'Unarmed':'Damage=0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Damage=d6 MinStr=6 Weight=2 Category=1h',
-  'Battle Axe':'Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
-  'Great Axe':'Damage=d10 MinStr=10 Weight=7 Category=2h',
-  'Light Club':'Damage=d4 MinStr=4 Weight=2 Category=1h',
-  'Heavy Club':'Damage=d6 MinStr=6 Weight=5 Category=1h',
-  'Dagger':'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Knife':'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Damage=d6 MinStr=6 Weight=3 Category=1h',
-  'Halberd':'Damage=d8 MinStr=8 Weight=6 Category=2h',
-  'Katana':'Damage=d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Damage=d8 MinStr=8 Weight=6 Category=1h',
-  'Mace':'Damage=d6 MinStr=6 Weight=4 Category=1h',
-  'Maul':'Damage=d10 MinStr=10 Weight=10 Category=2h',
-  'Pike':'Damage=d8 MinStr=8 Weight=18 Category=2h',
-  'Rapier':'Damage=d4 MinStr=4 Weight=2 Category=1h',
-  'Spear':'Damage=d6 MinStr=6 Weight=3 Category=2h',
-  'Staff':'Damage=d4 MinStr=4 Weight=4 Category=2h',
-  'Great Sword':'Damage=d10 MinStr=10 Weight=6 Category=2h',
-  'Long Sword':'Damage=d8 MinStr=8 Weight=3 Category=1h',
-  'Short Sword':'Damage=d6 MinStr=6 Weight=2 Category=1h',
-  'Warhammer':'Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
-  'Bangstick':'Damage=3d6 MinStr=6 Weight=2 Category=1h',
-  'Bayonet':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Billy Club':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Baton':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Brass Knuckles':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Chainsaw':'Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
-  'Switchblade':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Survival Knife':'Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Molecular Knife':'Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
-  'Molecular Sword':'Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
-  'Laser Sword':'Damage=d6+8 MinStr=4 Weight=2 Category=1h AP=12',
+  'Unarmed':
+    'Era=Ancient,Medieval,Modern,Future Damage=0 MinStr=0 Weight=0 Category=Un',
+  'Hand Axe':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
+  'Battle Axe':'Era=Medieval Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
+  'Great Axe':'Era=Medieval Damage=d10 MinStr=10 Weight=7 Category=2h',
+  'Light Club':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
+  'Heavy Club':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=5 Category=1h',
+  'Dagger':
+    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Knife':
+    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Flail':'Era=Medieval Damage=d6 MinStr=6 Weight=3 Category=1h',
+  'Halberd':'Era=Medieval Damage=d8 MinStr=8 Weight=6 Category=2h',
+  'Katana':'Era=Medieval Damage=d6+1 MinStr=8 Weight=3 Category=2h',
+  'Lance':'Era=Medieval Damage=d8 MinStr=8 Weight=6 Category=1h',
+  'Mace':'Era=Medieval Damage=d6 MinStr=6 Weight=4 Category=1h',
+  'Maul':'Era=Medieval Damage=d10 MinStr=10 Weight=10 Category=2h',
+  'Pike':'Era=Medieval Damage=d8 MinStr=8 Weight=18 Category=2h',
+  'Rapier':'Era=Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
+  'Spear':
+    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=2h Range=3',
+  'Staff':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=4 Category=2h',
+  'Great Sword':'Era=Medieval Damage=d10 MinStr=10 Weight=6 Category=2h',
+  'Long Sword':'Era=Medieval Damage=d8 MinStr=8 Weight=3 Category=1h',
+  'Short Sword':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
+  'Warhammer':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
+  'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
+  'Bayonet':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Billy Club':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Baton':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Brass Knuckles':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
+  'Switchblade':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Survival Knife':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Molecular Knife':'Era=Future Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
+  'Molecular Sword':'Era=Future Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
+  'Laser Sword':'Era=Future Damage=d6+8 MinStr=4 Weight=2 Category=1h AP=12',
 
-  'Throwing Axe':'Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Bow':'Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
-  'Hand Drawn Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
-  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=10 AP=2',
-  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=10 AP=2',
-  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
-  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Sling':'Damage=d4 MinStr=4 Weight=1 Category=R Range=4',
-  'Spear':'Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Compound Bow':'Damage=d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
-  'Crossbow':'Damage=d6 MinStr=6 Weight=7 Category=R Range=15 AP=2',
-  'Flintlock Pistol':'Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
-  'Brown Bess':'Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
-  'Blunderbuss':'Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
-  'Kentucky Rifle':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
-  'Springfield Model 1861':'Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
-  'Derringer':'Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
-  'Police Revolver':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
-  'Colt Peacemaker':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
-  'Smith & Wesson':'Damage=2d6+1 MinStr=4 Weight=5 Category=R Range=12 AP=1',
-  'Colt 1911':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
-  'Desert Eagle':'Damage=2d6+1 MinStr=6 Weight=8 Category=R Range=15 AP=2',
-  'Glock':'Damage=2d6 MinStr=4 Weight=3 Category=R Range=12 AP=1',
-  'Ruger':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
-  'H&K MP5':'Damage=2d6 MinStr=6 Weight=10 Category=R Range=12 AP=1 ROF=3',
-  'Tommy Gun':'Damage=2d6+1 MinStr=6 Weight=13 Category=R Range=12 AP=1 ROF=3',
-  'Uzi':'Damage=2d6 MinStr=4 Weight=9 Category=R Range=12 AP=1 ROF=3',
-  'Double-Barrel Shotgun':'Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
-  'Pump Action Shotgun':'Damage=3d6 MinStr=4 Weight=8 Category=R Range=12',
-  'Sawed-Off Shotgun':'Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
-  'Streetsweeper':'Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
-  'Barrett Rifle':'Damage=2d10 MinStr=8 Weight=35 Category=R Range=50 AP=4',
-  'M1 Garand':'Damage=2d8 MinStr=6 Weight=10 Category=R Range=24 AP=2',
-  'Hunting Rifle':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2',
-  'Sharps Big 50':'Damage=2d10 MinStr=8 Weight=11 Category=R Range=30 AP=2',
-  'Spencer Carbine':'Damage=2d8 MinStr=4 Weight=8 Category=R Range=20 AP=2',
-  "Wincester '73":'Damage=2d8-1 MinStr=6 Weight=10 Category=R Range=24 AP=2',
-  'AK47':'Damage=2d8+1 MinStr=6 Weight=10 Category=R Range=24 AP=2 ROF=3',
-  'M-16':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2 ROF=3',
-  'Steyr AUG':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=24 AP=2 ROF=3',
+  'Throwing Axe':
+    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
+  'Bow':'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
+  'Hand Drawn Crossbow':
+    'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=R AP=2 Range=10',
+  'Heavy Crossbow':
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
+  'Heavy Crossbow':
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
+  'Long Bow':
+    'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
+  'Net':'Era=Medieval Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
+  'Sling':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=R Range=4',
+  'Compound Bow':
+    'Era=Medieval Damage=d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
+  'Crossbow':
+    'Era=Medieval Damage=d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
+  'Flintlock Pistol':
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
+  'Brown Bess':'Era=Modern Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
+  'Blunderbuss':'Era=Modern Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
+  'Kentucky Rifle':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
+  'Springfield Model 1861':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
+  'Derringer':'Era=Modern Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
+  'Police Revolver':
+    'Era=Modern Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
+  'Colt Peacemaker':
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
+  'Smith & Wesson':
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=5 Category=R AP=1 Range=12',
+  'Colt 1911':
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
+  'Desert Eagle':
+    'Era=Modern Damage=2d6+1 MinStr=6 Weight=8 Category=R AP=2 Range=15',
+  'Glock':'Era=Modern Damage=2d6 MinStr=4 Weight=3 Category=R AP=1 Range=12',
+  'Ruger':'Era=Modern Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
+  'H&K MP5':
+    'Era=Modern Damage=2d6 MinStr=6 Weight=10 Category=R AP=1 Range=12 ROF=3',
+  'Tommy Gun':
+    'Era=Modern Damage=2d6+1 MinStr=6 Weight=13 Category=R AP=1 Range=12 ROF=3',
+  'Uzi':
+    'Era=Modern Damage=2d6 MinStr=4 Weight=9 Category=R AP=1 Range=12 ROF=3',
+  'Double-Barrel Shotgun':
+    'Era=Modern Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
+  'Pump Action Shotgun':
+    'Era=Modern Damage=3d6 MinStr=4 Weight=8 Category=R Range=12',
+  'Sawed-Off Shotgun':
+    'Era=Modern Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
+  'Streetsweeper':
+    'Era=Modern Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
+  'Barrett Rifle':
+    'Era=Modern Damage=2d10 MinStr=8 Weight=35 Category=R AP=4 Range=50',
+  'M1 Garand':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+  'Hunting Rifle':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24',
+  'Sharps Big 50':
+    'Era=Modern Damage=2d10 MinStr=8 Weight=11 Category=R AP=2 Range=30',
+  'Spencer Carbine':
+    'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=R AP=2 Range=20',
+  "Wincester '73":
+    'Era=Modern Damage=2d8-1 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+  'AK47':
+    'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=R AP=2 Range=24 ROF=3',
+  'M-16':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
+  'Steyr AUG':
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
   'Browning Automatic Rifle':
-    'Damage=2d8 MinStr=8 Weight=17 Category=R Range=20 AP=2 ROF=3',
-  'Gatling Gun':'Damage=2d8 MinStr=0 Weight=170 Category=R Range=24 AP=2 ROF=3',
-  'Minigun':'Damage=2d8+1 MinStr=10 Weight=85 Category=R Range=30 AP=2 ROF=5',
-  'M2 Browning':'Damage=2d10 MinStr=0 Weight=84 Category=R Range=50 AP=4 ROF=3',
-  'M60':'Damage=2d8+1 MinStr=8 Weight=33 Category=R Range=30 AP=2 ROF=3',
-  'MG42':'Damage=2d8+1 MinStr=10 Weight=26 Category=R Range=30 AP=2 ROF=4',
-  'SAW':'Damage=2d8 MinStr=8 Weight=20 Category=R Range=30 AP=2 ROF=4',
-  'Laser Pistol':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=15 AP=2',
-  'Laser SMG':'Damage=2d6 MinStr=4 Weight=4 Category=R Range=15 AP=2 ROF=4',
-  'Laser Rifle':'Damage=2d6 MinStr=6 Weight=8 Category=R Range=30 AP=2 ROF=3',
+    'Era=Modern Damage=2d8 MinStr=8 Weight=17 Category=R AP=2 Range=20 ROF=3',
+  'Gatling Gun':
+    'Era=Modern Damage=2d8 MinStr=0 Weight=170 Category=R AP=2 Range=24 ROF=3',
+  'Minigun':
+    'Era=Modern Damage=2d8+1 MinStr=10 Weight=85 Category=R AP=2 Range=30 ROF=5',
+  'M2 Browning':
+    'Era=Modern Damage=2d10 MinStr=0 Weight=84 Category=R AP=4 Range=50 ROF=3',
+  'M60':
+    'Era=Modern Damage=2d8+1 MinStr=8 Weight=33 Category=R AP=2 Range=30 ROF=3',
+  'MG42':
+    'Era=Modern Damage=2d8+1 MinStr=10 Weight=26 Category=R AP=2 Range=30 ROF=4',
+  'SAW':
+    'Era=Modern Damage=2d8 MinStr=8 Weight=20 Category=R AP=2 Range=30 ROF=4',
+  'Laser Pistol':
+    'Era=Future Damage=2d6 MinStr=4 Weight=2 Category=R AP=2 Range=15',
+  'Laser SMG':
+    'Era=Future Damage=2d6 MinStr=4 Weight=4 Category=R AP=2 Range=15 ROF=4',
+  'Laser Rifle':
+    'Era=Future Damage=2d6 MinStr=6 Weight=8 Category=R AP=2 Range=30 ROF=3',
   'Gatling Laser':
-    'Damage=3d6+4 MinStr=8 Weight=20 Category=R Range=50 AP=2 ROF=4'
+    'Era=Future Damage=3d6+4 MinStr=8 Weight=20 Category=R AP=2 Range=50 ROF=4'
  
 };
 
@@ -1377,10 +1437,12 @@ SWADE.attributeRules = function(rules) {
 /* Defines the rules related to combat. */
 SWADE.combatRules = function(rules, armors, shields, weapons) {
 
-  QuilvynUtils.checkAttrTable(armors, ['Area', 'Armor', 'MinStr', 'Weight']);
-  QuilvynUtils.checkAttrTable(shields, ['Parry', 'Cover', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable
-    (weapons, ['Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF']);
+    (armors, ['Era', 'Area', 'Armor', 'MinStr', 'Weight']);
+  QuilvynUtils.checkAttrTable
+    (shields, ['Era', 'Parry', 'Cover', 'MinStr', 'Weight']);
+  QuilvynUtils.checkAttrTable
+    (weapons, ['Era', 'Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF']);
 
   for(var armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
@@ -1402,12 +1464,6 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
       'Attribute=' + prefix + 'AttackModifier,' + prefix + 'DamageModifier ' +
       'Value="$1 || $2" ' +
       'Section=combat Note="%V Attack and damage"'
-    );
-    rules.choiceRules(rules, 'Goody', weapon + ' Proficiency',
-      'Pattern="' + pattern + '\\s+proficiency" ' +
-      'Effect=set ' +
-      'Attribute="weaponProficiency.' + weapon + '" ' +
-      'Section=combat Note="Proficiency in ' + weapon + '"'
     );
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
   }
@@ -1434,12 +1490,16 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADE.identityRules = function(rules, races) {
+SWADE.identityRules = function(rules, races, eras) {
 
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
+  QuilvynUtils.checkAttrTable(eras, []);
 
   for(var race in races) {
     rules.choiceRules(rules, 'Race', race, races[race]);
+  }
+  for(var era in eras) {
+    rules.choiceRules(rules, 'Era', era, eras[era]);
   }
 
 };
@@ -1571,6 +1631,7 @@ SWADE.talentRules = function(
 SWADE.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Armor')
     SWADE.armorRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValueArray(attrs, 'Area'),
       QuilvynUtils.getAttrValue(attrs, 'Armor'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
@@ -1583,7 +1644,9 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Type')
     );
     SWADE.edgeRulesExtra(rules, name);
-  } else if(type == 'Feature')
+  } else if(type == 'Era')
+    SWADE.eraRules(rules, name);
+  else if(type == 'Feature')
     SWADE.featureRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
@@ -1604,6 +1667,12 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     SWADE.hindranceRulesExtra(rules, name);
   } else if(type == 'Language')
     SWADE.languageRules(rules, name)
+  else if(type == 'Power')
+    SWADE.powerRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Advances'),
+      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
+      QuilvynUtils.getAttrValue(attrs, 'Description')
+    );
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -1613,6 +1682,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     SWADE.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
     SWADE.shieldRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Parry'),
       QuilvynUtils.getAttrValue(attrs, 'Cover'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
@@ -1623,20 +1693,15 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
       QuilvynUtils.getAttrValue(attrs, 'Core')
     );
-  else if(type == 'Power')
-    SWADE.powerRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Advances'),
-      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
-    );
   else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight'),
       QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'AP'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'ROF')
     );
   else {
@@ -1651,14 +1716,19 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
 };
 
 /*
- * Defines in #rules# the rules associated with armor #name#, which covers
- * the body areas listed in #areas#, adds #armor# to the character's Toughness,
- * requires a strength of #minStr# to use effectively, and weighs #weight#.
+ * Defines in #rules# the rules associated with armor #name#, found during era
+ * #eras#, which covers the body areas listed in #areas#, adds #armor# to the
+ * character's Toughness, requires a strength of #minStr# to use effectively,
+ * and weighs #weight#.
  */
-SWADE.armorRules = function(rules, name, areas, armor, minStr, weight) {
+SWADE.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
 
   if(!name) {
     console.log('Empty armor name');
+    return;
+  }
+  if(!Array.isArray(eras)) {
+    console.log('Bad eras "' + eras + '" for armor ' + name);
     return;
   }
   if(!Array.isArray(areas)) {
@@ -1893,6 +1963,15 @@ SWADE.edgeRulesExtra = function(rules, name) {
   }
 };
 
+/* Defines in #rules# the rules associated with language #name#. */
+SWADE.eraRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty era name');
+    return;
+  }
+  // No rules pertain to era
+};
+
 /*
  * Defines in #rules# the rules associated with feature #name#. #sections# lists
  * the sections of the notes related to the feature and #notes# the note texts;
@@ -2086,9 +2165,18 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     }
   }
 
-  SWADE.weaponRules(rules, 'Bite', 'd4', 0, 0, 'Un', null, null, null);
-  SWADE.weaponRules(rules, 'Claws', 'd4', 0, 0, 'Un', null, null, null);
-  SWADE.weaponRules(rules, 'Horns', 'd4', 0, 0, 'Un', null, null, null);
+  SWADE.weaponRules(
+    rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    'Un', null, null, null
+  );
+  SWADE.weaponRules(
+    rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    'Un', null, null, null
+  );
+  SWADE.weaponRules(
+    rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    'Un', null, null, null
+  );
   rules.defineRule('weapons.Bite', 'features.Bite', '=', null);
   rules.defineRule('weapons.Claws', 'features.Claws', '=', null);
   rules.defineRule('weapons.Horns', 'features.Horns', '=', null);
@@ -2106,13 +2194,17 @@ SWADE.raceRulesExtra = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with shield #name#, which adds #ac#
- * to the character's armor class.
+ * Defines in #rules# the rules associated with shield #name#, found during
+ * eras #eras#, which adds #ac# to the character's armor class.
  */
-SWADE.shieldRules = function(rules, name, parry, cover, minStr, weight) {
+SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
 
   if(!name) {
     console.log('Empty shield name');
+    return;
+  }
+  if(!Array.isArray(eras)) {
+    console.log('Bad eras "' + eras + '" for shield ' + name);
     return;
   }
   if(typeof parry != 'number') {
@@ -2218,24 +2310,28 @@ SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
     console.log('Empty description for power ' + name);
   }
   rules.defineChoice
-    ('notes', 'powers.' + name + ': (' + powerPoints + ' PP)' + description);
+    ('notes', 'powers.' + name + ': (' + powerPoints + ' PP) ' + description);
   // TODO
 };
 
 /*
- * Defines in #rules# the rules associated with weapon #name#, which requires a
- * #category# proficiency level to use effectively and has weapon properties
- * #properties#. The weapon does #damage# HP on a successful attack. If
+ * Defines in #rules# the rules associated with weapon #name#, found during
+ * eras #eras#, which belongs to category #category# and requires #minStr# to
+ * use effectively. The weapon does #damage# HP on a successful attack. If
  * specified, the weapon can be used as a ranged weapon with a range increment
  * of #range# feet.
  */
 SWADE.weaponRules = function(
-  rules, name, damage, minStr, weight, category, range, armorPiercing,
+  rules, name, eras, damage, minStr, weight, category, armorPiercing, range,
   rateOfFire
 ) {
 
   if(!name) {
     console.log('Empty weapon name');
+    return;
+  }
+  if(!Array.isArray(eras)) {
+    console.log('Bad eras "' + eras + '" for weapon ' + name);
     return;
   }
   var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
@@ -2414,6 +2510,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
             {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Rank', within: 'Identity', format: ' <b>%V Adventurer</b>'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
@@ -2531,7 +2628,7 @@ SWADE.createViewers = function(rules, viewers) {
                format: '<b>Attack</b>: %V', separator: listSep},
               {name: 'Spell Difficulty Class', within: 'SpellStats',
                format: '<b>Spell DC</b>: %V', separator: listSep},
-          {name: 'Spells', within: 'Power', columns: '1L', separator: null}
+          {name: 'Powers', within: 'Power', columns: '1L', separator: null}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2671,9 +2768,9 @@ SWADE.initialEditorElements = function() {
   var improvementTypes = ['Attribute', 'Edge', 'Hindrance', 'Skill'];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
+    ['era', 'Era', 'select-one', 'eras'],
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
-    ['player', 'Player', 'text', [20]],
     ['gender', 'Gender', 'text', [10]],
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
@@ -2683,6 +2780,7 @@ SWADE.initialEditorElements = function() {
     ['skillAllocation', 'Skills', 'bag', 'skills'],
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
+    ['player', 'Player', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
     ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
     ['edges', 'Edges', 'set', 'edges'],
@@ -2804,6 +2902,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var attr;
   var attrs;
   var choices;
+  var era;
   var howMany;
   var i;
   var matchInfo;
@@ -2817,6 +2916,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'armor') {
     var allArmors = this.getChoices('armors');
+    era = attributes.era || 'Modern';
     choices = [];
     howMany = 1;
     for(attr in allArmors) {
@@ -2826,7 +2926,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
           howMany = 0;
         continue;
       }
-      if(torsoArmor)
+      if(torsoArmor && allArmors[attr].includes(era))
         choices.push(attr);
     }
     pickAttrs(attributes, 'armor.', choices, howMany, 1);
@@ -2873,7 +2973,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   } else if(attribute == 'gender') {
-    attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
+    attributes.gender = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
   } else if(attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
     var allHindrances = this.getChoices('hindrances');
@@ -2916,12 +3016,22 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       howMany -= allocation;
     }
   } else if(attribute == 'name') {
-    attributes['name'] = SWADE.randomName(attributes['race']);
+    attributes['name'] = SWADE.randomName(attributes.race);
   } else if(this.getChoices(attribute + 's') != null) {
     attributes[attribute] =
       QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
   } else if(attribute == 'powers') {
     // TODO
+  } else if(attribute == 'shield') {
+    attrs = this.applyRules(attributes);
+    era = attributes.era || 'Modern';
+    var allShields = this.getChoices('shields');
+    choices = [];
+    for(attr in allShields) {
+      if(allShields[attr].includes(era))
+        choices.push(attr);
+    }
+    attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     var allSkills = this.getChoices('skills');
     attrs = this.applyRules(attributes);
@@ -2942,6 +3052,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'weapons') {
     attrs = this.applyRules(attributes);
+    era = attributes.era || 'Modern';
     var allWeapons = this.getChoices('weapons');
     choices = [];
     howMany = 3;
@@ -2950,7 +3061,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         howMany--;
     for(attr in allWeapons) {
       var minStr = QuilvynUtils.getAttrValue(allWeapons[attr], 'MinStr');
-      if(!minStr || attrs.strength >= minStr)
+      if((!minStr || attrs.strength >= minStr) &&
+         allWeapons[attr].includes(era))
         choices.push(attr);
     }
     pickAttrs(attributes, 'weapons.', choices, howMany, 1);
