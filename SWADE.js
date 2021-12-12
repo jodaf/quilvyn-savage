@@ -106,14 +106,13 @@ SWADE.ARMORS = {
   'Bronze Greaves':'Era=Ancient Area=Legs Armor=3 MinStr=8 Weight=6',
   'Bronze Helmet':'Era=Ancient Area=Head Armor=3 MinStr=8 Weight=6',
 
-
   'Plate Corselet':'Era=Medieval Area=Torso Armor=4 MinStr=10 Weight=30',
   'Plate Vambraces':'Era=Medieval Area=Arms Armor=4 MinStr=10 Weight=10',
   'Plate Greaves':'Era=Medieval Area=Legs Armor=4 MinStr=10 Weight=10',
   'Plate Heavy Helm':'Era=Medieval Area=Head Armor=4 MinStr=10 Weight=8',
 
-  'Thick Coat':'Era=Modern Area=Torso Armor=1 MinStr=4 Weight=5',
-  'Leather Chaps':'Era=Modern Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Thick Coat':'Era=Victorian,Modern Area=Torso Armor=1 MinStr=4 Weight=5',
+  'Leather Chaps':'Era=Victorian,Modern Area=Legs Armor=1 MinStr=4 Weight=5',
   'Kevlar Jacket':'Era=Modern Area=Torso Armor=2 MinStr=4 Weight=8',
   'Kevlar Jeans':'Era=Modern Area=Legs Armor=2 MinStr=4 Weight=4',
   'Bike Helmet':'Era=Modern Area=Head Armor=2 MinStr=4 Weight=1',
@@ -347,6 +346,8 @@ SWADE.EDGES = {
 SWADE.ERAS = {
   'Ancient':'',
   'Medieval':'',
+  'Colonial':'',
+  'Victorian':'',
   'Modern':'',
   'Future':''
 };
@@ -1221,13 +1222,13 @@ SWADE.SKILLS = {
   'Battle':'Attribute=smarts',
   'Boating':'Attribute=agility',
   'Common Knowledge':'Attribute=smarts Core=y',
-  'Driving':'Attribute=agility',
-  'Electronics':'Attribute=smarts',
+  'Driving':'Attribute=agility Era=Modern,Future',
+  'Electronics':'Attribute=smarts Era=Modern,Future',
   'Faith':'Attribute=spirit',
   'Fighting':'Attribute=agility',
   'Focus':'Attribute=spirit',
   'Gambling':'Attribute=smarts',
-  'Hacking':'Attribute=smarts',
+  'Hacking':'Attribute=smarts Era=Modern,Future',
   'Healing':'Attribute=smarts',
   'Intimidation':'Attribute=spirit',
   'Language (%language)':'Attribute=smarts',
@@ -1235,7 +1236,7 @@ SWADE.SKILLS = {
   'Occult':'Attribute=smarts',
   'Performance':'Attribute=spirit',
   'Persuasion':'Attribute=spirit Core=y',
-  'Piloting':'Attribute=agility',
+  'Piloting':'Attribute=agility Era=Modern,Future',
   'Psionics':'Attribute=smarts',
   'Repair':'Attribute=smarts',
   'Research':'Attribute=smarts',
@@ -1252,16 +1253,19 @@ SWADE.SKILLS = {
 SWADE.WEAPONS = {
 
   'Unarmed':
-    'Era=Ancient,Medieval,Modern,Future Damage=0 MinStr=0 Weight=0 Category=Un',
+    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
+    'Damage=0 MinStr=0 Weight=0 Category=Un',
   'Hand Axe':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
   'Battle Axe':'Era=Medieval Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
   'Great Axe':'Era=Medieval Damage=d10 MinStr=10 Weight=7 Category=2h',
   'Light Club':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
   'Heavy Club':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=5 Category=1h',
   'Dagger':
-    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
+    'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
   'Knife':
-    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
+    'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
   'Flail':'Era=Medieval Damage=d6 MinStr=6 Weight=3 Category=1h',
   'Halberd':'Era=Medieval Damage=d8 MinStr=8 Weight=6 Category=2h',
   'Katana':'Era=Medieval Damage=d6+1 MinStr=8 Weight=3 Category=2h',
@@ -1273,15 +1277,17 @@ SWADE.WEAPONS = {
   'Spear':
     'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=2h Range=3',
   'Staff':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=4 Category=2h',
-  'Great Sword':'Era=Medieval Damage=d10 MinStr=10 Weight=6 Category=2h',
-  'Long Sword':'Era=Medieval Damage=d8 MinStr=8 Weight=3 Category=1h',
-  'Short Sword':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
+  'Great Sword':
+    'Era=Medieval,Colonial Damage=d10 MinStr=10 Weight=6 Category=2h',
+  'Long Sword':'Era=Medieval,Colonial Damage=d8 MinStr=8 Weight=3 Category=1h',
+  'Short Sword':'Era=Medieval,Colonial Damage=d6 MinStr=6 Weight=2 Category=1h',
   'Warhammer':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
   'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
-  'Bayonet':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Billy Club':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Baton':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Brass Knuckles':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Bayonet':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Billy Club':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Baton':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Brass Knuckles':
+    'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
   'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
   'Switchblade':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
   'Survival Knife':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
@@ -1307,20 +1313,22 @@ SWADE.WEAPONS = {
   'Crossbow':
     'Era=Medieval Damage=d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
   'Flintlock Pistol':
-    'Era=Modern Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
-  'Brown Bess':'Era=Modern Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
-  'Blunderbuss':'Era=Modern Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
+    'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
+  'Brown Bess':
+    'Era=Colonial Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
+  'Blunderbuss':
+    'Era=Colonial Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
   'Kentucky Rifle':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
+    'Era=Colonial Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
   'Springfield Model 1861':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
-  'Derringer':'Era=Modern Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
+    'Era=Victorian Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
+  'Derringer':'Era=Victorian Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
   'Police Revolver':
-    'Era=Modern Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
+    'Era=Victorian Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
   'Colt Peacemaker':
-    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
+    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
   'Smith & Wesson':
-    'Era=Modern Damage=2d6+1 MinStr=4 Weight=5 Category=R AP=1 Range=12',
+    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=5 Category=R AP=1 Range=12',
   'Colt 1911':
     'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
   'Desert Eagle':
@@ -1559,7 +1567,7 @@ SWADE.talentRules = function(
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
   QuilvynUtils.checkAttrTable(hindrances, ['Severity']);
   QuilvynUtils.checkAttrTable(languages, []);
-  QuilvynUtils.checkAttrTable(skills, ['Attribute', 'Core']);
+  QuilvynUtils.checkAttrTable(skills, ['Era', 'Attribute', 'Core']);
 
   for(var goody in goodies) {
     rules.choiceRules(rules, 'Goody', goody, goodies[goody]);
@@ -1691,7 +1699,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Skill')
     SWADE.skillRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValue(attrs, 'Core')
+      QuilvynUtils.getAttrValue(attrs, 'Core'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Era')
     );
   else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
@@ -2248,9 +2257,10 @@ SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
 
 /*
  * Defines in #rules# the rules associated with skill #name#, associated with
- * #attribute# (one of 'agility', 'spirit', etc.).
+ * #attribute# (one of 'agility', 'spirit', etc.). If specified, the skill is
+ * available only in the eras listed in #eras#.
  */
-SWADE.skillRules = function(rules, name, attribute, core) {
+SWADE.skillRules = function(rules, name, attribute, core, eras) {
 
   if(!name) {
     console.log('Empty skill name');
@@ -2262,6 +2272,9 @@ SWADE.skillRules = function(rules, name, attribute, core) {
       console.log('Bad attribute "' + attribute + '" for skill ' + name);
       return;
     }
+  }
+  if(!Array.isArray(eras)) {
+    console.log('Bad eras "' + eras + '" for skill ' + name);
   }
 
   if(core && core != 'n' && core != 'N') {
@@ -3034,6 +3047,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     var allSkills = this.getChoices('skills');
+    era = attributes.era;
     attrs = this.applyRules(attributes);
     howMany = attrs.skillPoints;
     for(attr in attrs) {
@@ -3042,6 +3056,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
+      if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
+        continue;
       attr = 'skillAllocation.' + attr;
       if(attributes[attr] && attributes[attr] >= 4)
         continue;
