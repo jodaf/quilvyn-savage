@@ -943,135 +943,157 @@ SWADE.POWERS = {
   'Arcane Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Foes suffer -2 (Raise -4) to affect target for 5 rd"',
   'Banish':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Arcane skill vs. target Spirit inflicts Shaken, Raise causes Wound, incapacity returns to native plane"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Creates a 10 yd long by 2 yd high wall for 5 rd"',
   'Beast Friend':
     'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description="TODO"',
+    'PowerPoints=1/Size ' +
+    'Description=' +
+      '"R%{smarts*2} yd Target can speak with and control beast actions for 10 min"',
   'Blast':
     'Advances=4 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*4} yd Medium blast inflicts 2d6 (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target suffers -2 on vision tasks (Raise -4) (Vigor removes 2 points)"',
   'Bolt':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*4} yd Inflicts 2d6 damage (Raise 3d6)"',
   'Boost/Lower Trait':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*4} yd Target gains +1 Trait die (Raise +2) for 5 rd or target suffers -1 Trait die (Raise -2) (Spirit recovers 1 die)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target can merge into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="Cone inflicts 2d6 damage (Raise 3d6)"',
   'Confusion':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target suffers Distracted and Vulnerable for 1 rd (Sma neg)"',
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Creatures adjacent to taget suffer 2d4 damage"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
   'Deflection':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Foes suffer -2 attack rolls (Raise -4) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target can detect supernatural effects for 5 rd or target aura concealed for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target assumes another\'s appearance for 10 min"',
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Arcane skill vs. arcane skill roll (-2 if types differ) to end targeted power"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"Self 1 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Arcane skill vs. target Spirit (-2 if types differ) to drain 1d6 PP (Raise adds drained PP to self)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Performs minor elemental manipulation for 5 rd"',
   'Empathy':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Arcane skill vs. target Spirit to learn target emotions and surface thoughts, +1 Indimidation, Persuasion, Performance, and Taunt (Raise +2)"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Restrains target until breaks free"',
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target protected from environmental hazards for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target sees up to 1 mile (Raise half Range penalties)"',
   'Fear':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target extra flees, Wild Card suffers Fear Table (Fear save neg)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target gains 12 Fly for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description="TODO"',
+    'PowerPoints=2/Size ' +
+    'Description="R%{smarts*2} yd Target gains or loses Toughness and Strength die for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Creatures in Medium Blast or Cone thrown 2d6 x 2 yd (Str neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description="Touched recovers 1 Wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Creates 4 yd radius visual illusion for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target unaffected by physical world for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target invisible (foes -4 sight-based actions) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Large Blast bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -2315,9 +2337,6 @@ SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
   }
   if(typeof advances != 'number') {
     console.log('Bad advances "' + advances + '" for power ' + name);
-  }
-  if(typeof powerPoints != 'number') {
-    console.log('Bad powerPoints "' + powerPoints + '" for power ' + name);
   }
   if(!description) {
     console.log('Empty description for power ' + name);
