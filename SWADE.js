@@ -43,7 +43,7 @@ function SWADE() {
 
   SWADE.createViewers(rules, SWADE.VIEWERS);
   rules.defineChoice('extras',
-    'edges', 'edgePoints', 'hindrences', 'sanityNotes', 'validationNotes'
+    'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
@@ -242,9 +242,9 @@ SWADE.EDGES = {
     'Require="advances >= 4","smarts >= 8","features.Command","skills.Battle >= 6"',
   'Master Tactician':'Type=combat Require="advances >= 8","features.Tactician"',
   // Power
-  'Artificer':'Type=power Require="advances >= 4",hasArcaneBackground',
-  'Channeling':'Type=power Require="advances >= 4",hasArcaneBackground',
-  'Concentration':'Type=power Require="advances >= 4",hasArcaneBackground',
+  'Artificer':'Type=power Require="advances >= 4","powerPoints >= 1"',
+  'Channeling':'Type=power Require="advances >= 4","powerPoints >= 1"',
+  'Concentration':'Type=power Require="advances >= 4","powerPoints >= 1"',
   'Extra Effort':
     'Type=power ' +
     'Require="advances >= 4","features.Arcane Background (Gifted)","skills.Focus >= 6"',
@@ -257,16 +257,16 @@ SWADE.EDGES = {
   'Mentalist':
     'Type=power ' +
     'Require="advances >= 4","features.Arcane Background (Psionics)","skills.Psionics >= 6"',
-  'New Powers':'Type=power Require=hasArcaneBackground"',
-  'Power Points':'Type=power Require=hasArcaneBackground"',
-  'Power Surge':'Type=power Require="hasArcaneBackground","arcaneSkill >= 8"',
+  'New Powers':'Type=power Require="powerPoints >= 1"',
+  'Power Points':'Type=power Require="powerPoints >= 1"',
+  'Power Surge':'Type=power Require="powerPoints >= 1","arcaneSkill >= 8"',
   'Rapid Recharge':
-    'Type=power Require="advances >= 4","spirit >= 6",hasArcaneBackground',
+    'Type=power Require="advances >= 4","spirit >= 6","powerPoints >= 1"',
   'Improved Rapid Recharge':
     'Type=power Require="advances >= 8","features.Rapid Recharge"',
   'Soul Drain':
     'Type=power ' +
-    'Require="advances >= 4",hasArcaneBackground,"arcaneSkill >= 10"',
+    'Require="advances >= 4","powerPoints >= 1","arcaneSkill >= 10"',
   'Wizard':
     'Type=power ' +
     'Require="advances >= 4","features.Arcane Background (Magic)","skills.Spellcasting >= 6"',
@@ -362,21 +362,21 @@ SWADE.FEATURES = {
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, Parry bonuses stack"',
-  'Arcane Background (Gifted)':'Section=feature Note="Access to arcane powers"',
-  'Arcane Background (Magic)':'Section=feature Note="Access to arcane powers"',
+  'Arcane Background (Gifted)':'Section=power Note="1 Power/15 Power Points"',
+  'Arcane Background (Magic)':'Section=power Note="3 Powers/10 Power Points"',
   'Arcane Background (Miracles)':
-    'Section=feature Note="Access to arcane powers"',
+    'Section=power Note="3 Powers/10 Power Points"',
   'Arcane Background (Psionics)':
-    'Section=feature Note="Access to arcane powers"',
+    'Section=power Note="3 Powers/10 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=feature Note="Access to arcane powers"',
+    'Section=power Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=save ' +
     'Note="%V others\' targeted arcane skill, %V magical damage"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
-  'Artificer':'Section=magic Note="Create arcane devices"',
+  'Artificer':'Section=power Note="Create arcane devices"',
   'Assassin':
     'Section=combat Note="+2 damage to Vulnerable foes and during The Drop"',
   'Attractive':
@@ -407,7 +407,7 @@ SWADE.FEATURES = {
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':'Section=combat Note="+2 damage vs. opposite alignment"',
   'Channeling':
-    'Section=magic ' +
+    'Section=power ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
   'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 natural damage 1/encounter"',
@@ -421,9 +421,9 @@ SWADE.FEATURES = {
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
-  'Concentration':'Section=magic Note="Dbl power duration"',
+  'Concentration':'Section=power Note="Dbl power duration"',
   'Connections':
-    'Section=feature Note="Call in favors from acquaintence or organization"',
+    'Section=feature Note="Call in favors from acquaintance or organization"',
   'Counterattack':
     'Section=combat Note="Free Attack after failed foe attack %V/rd"',
   'Danger Sense':
@@ -438,7 +438,7 @@ SWADE.FEATURES = {
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
-    'Section=magic Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
+    'Section=power Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
   'Extraction':
     'Section=combat Note="Negate attack of %V foes when withdrawing"',
   'Fame':
@@ -465,7 +465,8 @@ SWADE.FEATURES = {
       '"Move full Pace on difficult ground",' +
       '"+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
-  'Gadgeteer':'Section=magic Note="Jury rig arcane device from availble parts"',
+  'Gadgeteer':
+    'Section=power Note="Jury rig arcane device from available parts"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
@@ -474,7 +475,7 @@ SWADE.FEATURES = {
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':'Section=feature Note="Commanded extras +1 Toughness"',
   'Holy/Unholy Warrior':
-    'Section=magic ' +
+    'Section=power ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
   'Humiliate':'Section=skill Note="Reroll Taunt"',
   'Improved Arcane Resistance':
@@ -493,7 +494,7 @@ SWADE.FEATURES = {
     'Section=combat Note="Increased Nerves Of Steel effects"',
   'Improved Rapid Fire':'Section=combat Note="Increased Rapid Fire effects"',
   'Improved Rapid Recharge':
-    'Section=magic Note="Increased Rapid Recharge effects"',
+    'Section=power Note="Increased Rapid Recharge effects"',
   'Improved Sweep':'Section=combat Note="Increased Sweep effects"',
   'Improved Trademark Weapon (%weapon)':
     'Section=combat Note="Increased Trademark Weapon effects"',
@@ -522,7 +523,7 @@ SWADE.FEATURES = {
   'Martial Artist':
     'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage die"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
-  'Master Of Arms':'Section=combat Note="Incresed Weapon Master effects"',
+  'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
   'Master (%skill)':'Section=skill Note="Use d10 for Wild Die"',
   'Master Tactician':'Section=combat Note="Increased Tactician effects"',
@@ -535,10 +536,10 @@ SWADE.FEATURES = {
   'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
-  'New Powers':'Section=magic Note="Know 2 additional powers"',
+  'New Powers':'Section=power Note="Know 2 additional powers"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
-  'Power Points':'Section=magic Note="+5 Power Points"',
-  'Power Surge':'Section=magic Note="Recover 10 Power Points when Joker drawn"',
+  'Power Points':'Section=power Note="+5 Power Points"',
+  'Power Surge':'Section=power Note="Recover 10 Power Points when Joker drawn"',
   'Professional (%attribute)':'Section=attribute Note="+%V %attribute"',
   'Professional (%skill)':'Section=skill Note="+%V %skill"',
   'Provoke':
@@ -547,7 +548,7 @@ SWADE.FEATURES = {
   'Rabble-Rouser':
     'Section=skill Note="Taunt or Intimidate all within medium blast range"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
-  'Rapid Recharge':'Section=magic Note="Recover %V Power Points/hr"',
+  'Rapid Recharge':'Section=power Note="Recover %V Power Points/hr"',
   'Reliable':'Section=combat Note="Reroll Support"',
   'Retort':
     'Section=skill Note="Raise on Intimidation or Taunt test distracts foe"',
@@ -564,7 +565,7 @@ SWADE.FEATURES = {
     'Section=attribute ' +
     'Note="+1 Strength die (encumbrance)/Reroll Vigor (environmental hazards)"',
   'Soul Drain':
-    'Section=magic Note="Suffer level of Fatigue to recover 5 Power Points"',
+    'Section=power Note="Suffer level of Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
@@ -594,7 +595,7 @@ SWADE.FEATURES = {
     'Note="No multi-action penalty for firing or throwing weapon from each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':'Section=combat Note="+%V Parry/d%1 bonus damage"',
-  'Wizard':'Section=magic Note="Spend 1 Power Point to change power trapping"',
+  'Wizard':'Section=power Note="Spend 1 Power Point to change power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
@@ -648,7 +649,7 @@ SWADE.FEATURES = {
   'Hesitant':'Section=combat Note="Uses lowest of 2 Action Cards"',
   'Illiterate':'Section=feature Note="Cannot read or write"',
   'Impulsive+':'Section=feature Note="Always acts without thinking"',
-  'Jealous':'Section=feature Note="Has focused evny about one topic or person"',
+  'Jealous':'Section=feature Note="Has focused envy about one topic or person"',
   'Jealous+':
     'Section=feature Note="Always envious about others\' accomplishments"',
   'Loyal':'Section=feature Note="Always takes risks for friends"',
@@ -765,7 +766,7 @@ SWADE.FEATURES = {
   'Immune To Poison':'Section=save Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
-    'Note="Half penalties when attacking warm invisibile targets"',
+    'Note="Half penalties when attacking warm invisible targets"',
   'Keen Senses':'Section=skill Note="+1 Notice die"',
   'Leaper':
     'Section=combat,skill ' +
@@ -949,7 +950,7 @@ SWADE.POWERS = {
     'Advances=8 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Arcane skill vs. target Spirit inflicts Shaken, Raise causes Wound, incapacity returns to native plane"',
+      '"R%{smarts*2} yd Target suffers Shaken (Raise 1 Wound), incapacity returns to native plane (Spi neg)"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -995,7 +996,7 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creatures adjacent to taget suffer 2d4 damage"',
+      '"R%{smarts*2} yd Creatures adjacent to target suffer 2d4 damage"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1005,12 +1006,12 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Foes suffer -2 attack rolls (Raise -4) on target for 5 rd"',
+      '"R%{smarts*2} yd Foes suffer -2 attacks(Raise -4) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target can detect supernatural effects for 5 rd or target aura concealed for 1 hr"',
+      '"R%{smarts*2} yd Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1020,7 +1021,7 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Arcane skill vs. arcane skill roll (-2 if types differ) to end targeted power"',
+      '"R%{smarts*2} yd End targeted power (Arcane skill neg, +2 if types differ)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
@@ -1029,7 +1030,7 @@ SWADE.POWERS = {
   'Drain Power Points':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Arcane skill vs. target Spirit (-2 if types differ) to drain 1d6 PP (Raise adds drained PP to self)"',
+    'Description="R%{smarts*2} yd Drains 1d6 PP (Raise adds drained PP to self) (Spi neg, +2 if types differ)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1038,7 +1039,7 @@ SWADE.POWERS = {
   'Empathy':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*2} yd Arcane skill vs. target Spirit to learn target emotions and surface thoughts, +1 Indimidation, Persuasion, Performance, and Taunt (Raise +2)"',
+    'Description="R%{smarts*2} Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2) (Spi neg)"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1047,7 +1048,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target protected from environmental hazards for 1 hr"',
+      '"R%{smarts*2} yd Target gains protection from hazards for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1069,7 +1070,7 @@ SWADE.POWERS = {
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Creatures in Medium Blast or Cone thrown 2d6 x 2 yd (Str neg)"',
+    'Description="R%{smarts*2} yd Throws creatures in Medium Blast or Cone 2d6 x 2 yd (Str neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1083,101 +1084,113 @@ SWADE.POWERS = {
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target unaffected by physical world for 5 rd"',
+      '"R%{smarts*2} yd Target becomes unaffected by physical world for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target invisible (foes -4 sight-based actions) for 5 rd"',
+      '"R%{smarts*2} yd Target becomes invisible (foes -4 sight-based actions) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Large Blast bright light or darkness for 10 min"',
+      '"R%{smarts*2} yd Creates Large Blast bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Self gains 1 truthful answer from target (Sma neg)"',
   'Mind Wipe':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target forgets up to 30 min event (Sma neg)"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"Self sees five yr of events that occurred w/in 10 yds of touched object (Raise 100 yr and 20 yd)"',
   'Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target gains +2 Armor (Raise +4) for 5 rd"',
   'Puppet':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Self controls target actions (Spi neg) for 5 rd"',
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target recovers 1 Fatigue level (Raise 2 levels)"',
   'Resurrection':
     'Advances=12 ' +
     'PowerPoints=30 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"Successful -8 casting roll returns touched 1 yr corpse to life with 3 Wounds and Exhausted (Raise 0 Wounds)"',
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description="Caster takes animal form for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target gains dbl Pace for 5 rd or suffers half pace (Spi ends)"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target sleeps for 1 hr (Spi neg)"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
   'Sound/Silence':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*10} yd Creates sound up to shout or R%{smarts*2} yd Mutes Large Blast Template for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target speaks unknown language for 10 min"',
   'Stun':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target stunned (Vig neg)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Creates obedient servant for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*4} yd Moves items remotely as Strength d10 (Raise d12) for 5 rd"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target teleports 24 yd (Raise 48 yd)"',
   'Wall Walker':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R%{smarts*2} yd Target move at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="TODO"',
+    'Description="R%{smarts*2} yd Target gains combat Edge effects for 5 rd"',
   'Zombie':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="TODO"'
+    'Description="R%{smarts*2} yd Animates and controls corpse for 1 hr"'
 };
 SWADE.RACES = {
   'Android':
@@ -1541,40 +1554,6 @@ SWADE.magicRules = function(rules, powers) {
   for(var power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
   }
-  rules.defineRule('hasArcaneBackground',
-    'features.Arcane Background (Gifted)', '=', '1',
-    'features.Arcane Background (Magic)', '=', '1',
-    'features.Arcane Background (Miracles)', '=', '1',
-    'features.Arcane Background (Psionics)', '=', '1',
-    'features.Arcane Background (Weird Science)', '=', '1'
-  );
-  rules.defineRule('arcaneSkill',
-    'arcaneSkillGifted', '=', null,
-    'arcaneSkillMagic', '=', null,
-    'arcaneSkillMiracles', '=', null,
-    'arcaneSkillPsionics', '=', null,
-    'arcaneSkillWeirdScience', '=', null
-  );
-  rules.defineRule('arcaneSkillGifted',
-    'features.Arcane Background (Gifted)', '?', null,
-    'skills.Focus', '=', null
-  );
-  rules.defineRule('arcaneSkillMagic',
-    'features.Arcane Background (Magic)', '?', null,
-    'skills.Spellcasting', '=', null
-  );
-  rules.defineRule('arcaneSkillMiracles',
-    'features.Arcane Background (Miracles)', '?', null,
-    'skills.Faith', '=', null
-  );
-  rules.defineRule('arcaneSkillPsionics',
-    'features.Arcane Background (Psionics)', '?', null,
-    'skills.Psionics', '=', null
-  );
-  rules.defineRule('arcaneSkillWeirdScience',
-    'features.Arcane Background (Weird Science)', '?', null,
-    'skills.Weird Science', '=', null
-  );
 };
 
 /* Defines rules related to character aptitudes. */
@@ -1834,7 +1813,57 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
 SWADE.edgeRulesExtra = function(rules, name) {
   var matchInfo;
   var note;
-  if(name == 'Arcane Resistance') {
+  if(name == 'Arcane Background (Gifted)') {
+    rules.defineRule('arcaneSkill', 'arcaneSkillGifted', '=', null);
+    rules.defineRule('arcaneSkillGifted',
+      'features.Arcane Background (Gifted)', '?', null,
+      'skills.Focus', '=', null
+    );
+    rules.defineRule
+      ('powerCount', 'powerNotes.arcaneBackground(Gifted)', '+=', '1');
+    rules.defineRule
+      ('powerPoints', 'powerNotes.arcaneBackground(Gifted)', '+=', '15');
+  } else if(name == 'Arcane Background (Magic)') {
+    rules.defineRule('arcaneSkill', 'arcaneSkillMagic', '=', null);
+    rules.defineRule('arcaneSkillMagic',
+      'features.Arcane Background (Magic)', '?', null,
+      'skills.Spellcasting', '=', null
+    );
+    rules.defineRule
+      ('powerCount', 'powerNotes.arcaneBackground(Magic)', '+=', '3');
+    rules.defineRule
+      ('powerPoints', 'powerNotes.arcaneBackground(Magic)', '+=', '10');
+  } else if(name == 'Arcane Background (Miracles)') {
+    rules.defineRule('arcaneSkill', 'arcaneSkillMiracles', '=', null);
+    rules.defineRule('arcaneSkillMiracles',
+      'features.Arcane Background (Miracles)', '?', null,
+      'skills.Faith', '=', null
+    );
+    rules.defineRule
+      ('powerCount', 'powerNotes.arcaneBackground(Miracles)', '+=', '3');
+    rules.defineRule
+      ('powerPoints', 'powerNotes.arcaneBackground(Miracles)', '+=', '10');
+  } else if(name == 'Arcane Background (Psionics)') {
+    rules.defineRule('arcaneSkill', 'arcaneSkillPsionics', '=', null);
+    rules.defineRule('arcaneSkillPsionics',
+      'features.Arcane Background (Psionics)', '?', null,
+      'skills.Psionics', '=', null
+    );
+    rules.defineRule
+      ('powerCount', 'powerNotes.arcaneBackground(Psionics)', '+=', '3');
+    rules.defineRule
+      ('powerPoints', 'powerNotes.arcaneBackground(Psionics)', '+=', '10');
+  } else if(name == 'Arcane Background (Weird Science)') {
+    rules.defineRule('arcaneSkill', 'arcaneSkillWeirdScience', '=', null);
+    rules.defineRule('arcaneSkillWeirdScience',
+      'features.Arcane Background (Weird Science)', '?', null,
+      'skills.Weird Science', '=', null
+    );
+    rules.defineRule
+      ('powerCount', 'powerNotes.arcaneBackground(Weird Science)', '+=', '2');
+    rules.defineRule
+      ('powerPoints', 'powerNotes.arcaneBackground(Weird Science)', '+=', '15');
+  } else if(name == 'Arcane Resistance') {
     rules.defineRule('saveNotes.arcaneResistance',
       '', '=', '-2',
       'saveNotes.improvedArcaneResistance', '+', '-2'
@@ -1946,9 +1975,9 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedRapidFire', '+', '1'
     );
   } else if(name == 'Rapid Recharge') {
-    rules.defineRule('magicNotes.rapidRecharge',
+    rules.defineRule('powerNotes.rapidRecharge',
       '', '=', '10',
-      'magicNotes.improvedRapidRecharge', '+', '10'
+      'powerNotes.improvedRapidRecharge', '+', '10'
     );
   } else if(name == 'Rich') {
     rules.defineRule('featureNotes.rich',
@@ -2525,6 +2554,7 @@ SWADE.createViewers = function(rules, viewers) {
           {name: 'Section 2', within: '_top', separator: '; '},
             {name: 'Edges', within: 'Section 2', separator: '/'},
             {name: 'Hindrances', within: 'Section 2', separator: '/'},
+            {name: 'Power Points', within: 'Section 2', separator: '/'},
             {name: 'Powers', within: 'Section 2', separator: '/'},
             {name: 'Notes', within: 'Section 2'},
             {name: 'Hidden Notes', within: 'Section 2', format: '%V'}
@@ -2652,14 +2682,9 @@ SWADE.createViewers = function(rules, viewers) {
       viewer.addElements(
         {name: 'Power', within: '_top', separator: outerSep,
          format: '<b>Power</b><br/>%V'},
-          {name: 'SpellPart', within: 'Power', separator: '\n'},
-            {name: 'SpellStats', within: 'SpellPart', separator: innerSep},
-              {name: 'Spells Known', within: 'SpellStats', separator: listSep},
-              {name: 'Spell Slots', within: 'SpellStats', separator:listSep},
-              {name: 'Spell Attack Modifier', within: 'SpellStats',
-               format: '<b>Attack</b>: %V', separator: listSep},
-              {name: 'Spell Difficulty Class', within: 'SpellStats',
-               format: '<b>Spell DC</b>: %V', separator: listSep},
+          {name: 'PowerStats', within: 'Power', separator: innerSep},
+            {name: 'Power Count', within: 'PowerStats'},
+            {name: 'Power Points', within: 'PowerStats'},
           {name: 'Powers', within: 'Power', columns: '1L', separator: null}
       );
       if(name != 'Collected Notes') {
@@ -2815,7 +2840,7 @@ SWADE.initialEditorElements = function() {
     ['player', 'Player', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
     ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
-    ['edges', 'Edges', 'set', 'edges'],
+    ['edges', 'Edges', 'bag', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
     ['armor', 'Armor', 'set', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
