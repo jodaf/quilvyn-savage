@@ -16,12 +16,14 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 */
 
 /*jshint esversion: 6 */
+/* jshint forin: false */
+/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
 "use strict";
 
 /*
  * This module loads the rules from the Savage Worlds Adventure Edition Core
  * Rules. The SWADE function contains methods that load rules for particular
- * parts of the rules: raceRules for character races, powerRules for powers,
+ * parts of the rules: raceRules for character races, arcaneRules for powers,
  * etc. These member methods can be called independently in order to use a
  * subset of the SWADE rules. Similarly, the constant fields of SWADE
  * (SKILLS, EDGES, etc.) can be manipulated to modify the choices.
@@ -52,7 +54,7 @@ function SWADE() {
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
-  SWADE.magicRules(rules, SWADE.POWERS);
+  SWADE.arcaneRules(rules, SWADE.SOURCES, SWADE.POWERS);
   SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
@@ -66,8 +68,8 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Race', 'Shield',
-  'Skill', 'Spell', 'Weapon'
+  'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power', 'Race',
+  'Shield', 'Skill', 'Source', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -134,11 +136,7 @@ SWADE.EDGES = {
   // Background
   'Alertness':'Type=background',
   'Ambidextrous':'Type=background Require="agility >= 8"',
-  'Arcane Background (Gifted)':'Type=background',
-  'Arcane Background (Magic)':'Type=background',
-  'Arcane Background (Miracles)':'Type=background',
-  'Arcane Background (Psionics)':'Type=background',
-  'Arcane Background (Weird Science)':'Type=background',
+  'Arcane Background (%source)':'Type=background',
   'Arcane Resistance':'Type=background Require="spirit >= 8"',
   'Improved Arcane Resistance':
     'Type=background Require="features.Arcane Resistance"',
@@ -362,21 +360,21 @@ SWADE.FEATURES = {
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, Parry bonuses stack"',
-  'Arcane Background (Gifted)':'Section=power Note="1 Power/15 Power Points"',
-  'Arcane Background (Magic)':'Section=power Note="3 Powers/10 Power Points"',
+  'Arcane Background (Gifted)':'Section=arcana Note="1 Power/15 Power Points"',
+  'Arcane Background (Magic)':'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Miracles)':
-    'Section=power Note="3 Powers/10 Power Points"',
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Psionics)':
-    'Section=power Note="3 Powers/10 Power Points"',
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=power Note="2 Powers/15 Power Points"',
+    'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=save ' +
     'Note="%V others\' targeted arcane skill, %V magical damage"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
-  'Artificer':'Section=power Note="Create arcane devices"',
+  'Artificer':'Section=arcana Note="Create arcane devices"',
   'Assassin':
     'Section=combat Note="+2 damage to Vulnerable foes and during The Drop"',
   'Attractive':
@@ -407,7 +405,7 @@ SWADE.FEATURES = {
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':'Section=combat Note="+2 damage vs. opposite alignment"',
   'Channeling':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
   'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 natural damage 1/encounter"',
@@ -421,7 +419,7 @@ SWADE.FEATURES = {
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
-  'Concentration':'Section=power Note="Dbl power duration"',
+  'Concentration':'Section=arcana Note="Dbl power duration"',
   'Connections':
     'Section=feature Note="Call in favors from acquaintance or organization"',
   'Counterattack':
@@ -438,7 +436,7 @@ SWADE.FEATURES = {
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
-    'Section=power Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
+    'Section=arcana Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
   'Extraction':
     'Section=combat Note="Negate attack of %V foes when withdrawing"',
   'Fame':
@@ -466,7 +464,7 @@ SWADE.FEATURES = {
       '"+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':
-    'Section=power Note="Jury rig arcane device from available parts"',
+    'Section=arcana Note="Jury rig arcane device from available parts"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
@@ -475,7 +473,7 @@ SWADE.FEATURES = {
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':'Section=feature Note="Commanded extras +1 Toughness"',
   'Holy/Unholy Warrior':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
   'Humiliate':'Section=skill Note="Reroll Taunt"',
   'Improved Arcane Resistance':
@@ -494,7 +492,7 @@ SWADE.FEATURES = {
     'Section=combat Note="Increased Nerves Of Steel effects"',
   'Improved Rapid Fire':'Section=combat Note="Increased Rapid Fire effects"',
   'Improved Rapid Recharge':
-    'Section=power Note="Increased Rapid Recharge effects"',
+    'Section=arcana Note="Increased Rapid Recharge effects"',
   'Improved Sweep':'Section=combat Note="Increased Sweep effects"',
   'Improved Trademark Weapon (%weapon)':
     'Section=combat Note="Increased Trademark Weapon effects"',
@@ -536,10 +534,10 @@ SWADE.FEATURES = {
   'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
-  'New Powers':'Section=power Note="Know 2 additional powers"',
+  'New Powers':'Section=arcana Note="Know 2 additional powers"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
-  'Power Points':'Section=power Note="+5 Power Points"',
-  'Power Surge':'Section=power Note="Recover 10 Power Points when Joker drawn"',
+  'Power Points':'Section=arcana Note="+5 Power Points"',
+  'Power Surge':'Section=arcana Note="Recover 10 Power Points when Joker drawn"',
   'Professional (%attribute)':'Section=attribute Note="+%V %attribute"',
   'Professional (%skill)':'Section=skill Note="+%V %skill"',
   'Provoke':
@@ -548,7 +546,7 @@ SWADE.FEATURES = {
   'Rabble-Rouser':
     'Section=skill Note="Taunt or Intimidate all within medium blast range"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
-  'Rapid Recharge':'Section=power Note="Recover %V Power Points/hr"',
+  'Rapid Recharge':'Section=arcana Note="Recover %V Power Points/hr"',
   'Reliable':'Section=combat Note="Reroll Support"',
   'Retort':
     'Section=skill Note="Raise on Intimidation or Taunt test distracts foe"',
@@ -565,7 +563,7 @@ SWADE.FEATURES = {
     'Section=attribute ' +
     'Note="+1 Strength die (encumbrance)/Reroll Vigor (environmental hazards)"',
   'Soul Drain':
-    'Section=power Note="Suffer level of Fatigue to recover 5 Power Points"',
+    'Section=arcana Note="Suffer level of Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
@@ -595,7 +593,7 @@ SWADE.FEATURES = {
     'Note="No multi-action penalty for firing or throwing weapon from each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':'Section=combat Note="+%V Parry/d%1 bonus damage"',
-  'Wizard':'Section=power Note="Spend 1 Power Point to change power trapping"',
+  'Wizard':'Section=arcana Note="Spend 1 Power Point to change power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
@@ -810,18 +808,30 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
     'Section=attribute Note="%V Agility die"',
+  'Power Points':
+    'Pattern="([-+]\\d)\\s+power\s+points|power\s+points\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=powerPoints ' +
+    'Section=arcana Note="%V Power Points"',
+  'Powers':
+    'Pattern="([-+]\\d)\\s+powers|powers\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=powerCount ' +
+    'Section=arcana Note="%V Powers"',
   'Smarts':
     'Pattern="([-+]\\d)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=smartsModifier ' +
-    'Section=attribute Note="%V Ability"',
+    'Section=attribute Note="%V Smarts"',
   'Smarts Die':
     'Pattern="([-+]\\d)\\s+sma(?:rts)?\\s+die|sma(?:rts)?\\s+die\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=smartsStep ' +
-    'Section=attribute Note="%V Ability die"',
+    'Section=attribute Note="%V Smarts die"',
   'Spirit':
     'Pattern="([-+]\\d)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -1285,6 +1295,13 @@ SWADE.SKILLS = {
   'Thievery':'Attribute=agility',
   'Weird Science':'Attribute=smarts',
 };
+SWADE.SOURCES = {
+  'Gifted':'Skill=Focus',
+  'Magic':'Skill=Spellcasting',
+  'Miracles':'Skill=Faith',
+  'Psionics':'Skill=Psionics',
+  'Weird Science':'Skill="Weird Science"'
+};
 SWADE.WEAPONS = {
 
   'Unarmed':
@@ -1335,8 +1352,6 @@ SWADE.WEAPONS = {
   'Bow':'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
   'Hand Drawn Crossbow':
     'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=R AP=2 Range=10',
-  'Heavy Crossbow':
-    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
   'Heavy Crossbow':
     'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
   'Long Bow':
@@ -1427,7 +1442,7 @@ SWADE.WEAPONS = {
  
 };
 
-/* Defines the rules related to character abilities. */
+/* Defines the rules related to character attributes and description. */
 SWADE.attributeRules = function(rules) {
 
   for(var a in SWADE.ATTRIBUTES) {
@@ -1455,16 +1470,8 @@ SWADE.attributeRules = function(rules) {
     '', '=', '5',
     'improvementPointsAllocation.Attribute', '+', 'Math.floor(source / 2)'
   );
-  rules.defineRule('pace', '', '=', '6');
   rules.defineRule('rank',
     'advances', '=', 'source<4 ? "Novice" : source<8 ? "Seasoned" : source<12 ? "Veteran" : source<16 ? "Heroic" : "Legendary"'
-  );
-  rules.defineRule('runStep', '', '=', '2');
-  rules.defineRule('run',
-    'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
-  );
-  rules.defineRule('runModifier',
-    'runStep', '=', 'source<1 ? source - 1 : source>5 ? "+" + (source - 5) : ""'
   );
   rules.defineRule('size',
     '', '=', '0',
@@ -1518,10 +1525,18 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
     ('combatNotes.vigorToughnessModifier', 'vigor', '=', 'source / 2');
   rules.defineRule('cover', 'shieldCover', '=', null);
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
+  rules.defineRule('pace', '', '=', '6');
   rules.defineRule('parry',
     '', '=', '2',
     'shieldParry', '+', null,
     'combatNotes.fightingParryModifier', '+', null
+  );
+  rules.defineRule('runStep', '', '=', '2');
+  rules.defineRule('run',
+    'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
+  );
+  rules.defineRule('runModifier',
+    'runStep', '=', 'source<1 ? source - 1 : source>5 ? "+" + (source - 5) : ""'
   );
   rules.defineRule('toughness',
     '', '=', '2',
@@ -1535,24 +1550,28 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 /* Defines rules related to basic character identity. */
 SWADE.identityRules = function(rules, races, eras) {
 
-  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
   QuilvynUtils.checkAttrTable(eras, []);
+  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
-  for(var race in races) {
-    rules.choiceRules(rules, 'Race', race, races[race]);
-  }
   for(var era in eras) {
     rules.choiceRules(rules, 'Era', era, eras[era]);
+  }
+  for(var race in races) {
+    rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
 };
 
 /* Defines rules related to powers. */
-SWADE.magicRules = function(rules, powers) {
+SWADE.arcaneRules = function(rules, sources, powers) {
   QuilvynUtils.checkAttrTable
     (powers, ['Advances', 'PowerPoints', 'Description']);
+  QuilvynUtils.checkAttrTable(sources, ['Skill']);
   for(var power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
+  }
+  for(var source in sources) {
+    rules.choiceRules(rules, 'Source', source, sources[source]);
   }
 };
 
@@ -1566,6 +1585,8 @@ SWADE.talentRules = function(
 
   QuilvynUtils.checkAttrTable(edges, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+  QuilvynUtils.checkAttrTable
+    (goodies, ['Pattern', 'Effect', 'Value', 'Attribute', 'Section', 'Note']);
   QuilvynUtils.checkAttrTable(hindrances, ['Severity']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Era', 'Attribute', 'Core']);
@@ -1671,11 +1692,11 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Hindrance') {
     SWADE.hindranceRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Severity'),
+      QuilvynUtils.getAttrValue(attrs, 'Severity')
     );
     SWADE.hindranceRulesExtra(rules, name);
   } else if(type == 'Language')
-    SWADE.languageRules(rules, name)
+    SWADE.languageRules(rules, name);
   else if(type == 'Power')
     SWADE.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
@@ -1702,6 +1723,10 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
       QuilvynUtils.getAttrValue(attrs, 'Core'),
       QuilvynUtils.getAttrValueArray(attrs, 'Era')
+    );
+  else if(type == 'Source')
+    SWADE.sourceRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Skill')
     );
   else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
@@ -1799,10 +1824,6 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
     QuilvynRules.prerequisiteRules
       (rules, 'sanity', prefix + 'Edge', 'edges.' + name, implies);
   rules.defineRule('features.' + name, 'edges.' + name, '=', null);
-  for(var i = 0; i < types.length; i++) {
-    if(types[i] != 'General')
-      rules.defineRule('sum' + types[i] + 'Edges', 'edges.' + name, '+=', null);
-  }
 
 };
 
@@ -1814,55 +1835,30 @@ SWADE.edgeRulesExtra = function(rules, name) {
   var matchInfo;
   var note;
   if(name == 'Arcane Background (Gifted)') {
-    rules.defineRule('arcaneSkill', 'arcaneSkillGifted', '=', null);
-    rules.defineRule('arcaneSkillGifted',
-      'features.Arcane Background (Gifted)', '?', null,
-      'skills.Focus', '=', null
-    );
     rules.defineRule
-      ('powerCount', 'powerNotes.arcaneBackground(Gifted)', '+=', '1');
+      ('powerCount', 'arcanaNotes.arcaneBackground(Gifted)', '+=', '1');
     rules.defineRule
-      ('powerPoints', 'powerNotes.arcaneBackground(Gifted)', '+=', '15');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Gifted)', '+=', '15');
   } else if(name == 'Arcane Background (Magic)') {
-    rules.defineRule('arcaneSkill', 'arcaneSkillMagic', '=', null);
-    rules.defineRule('arcaneSkillMagic',
-      'features.Arcane Background (Magic)', '?', null,
-      'skills.Spellcasting', '=', null
-    );
     rules.defineRule
-      ('powerCount', 'powerNotes.arcaneBackground(Magic)', '+=', '3');
+      ('powerCount', 'arcanaNotes.arcaneBackground(Magic)', '+=', '3');
     rules.defineRule
-      ('powerPoints', 'powerNotes.arcaneBackground(Magic)', '+=', '10');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Magic)', '+=', '10');
   } else if(name == 'Arcane Background (Miracles)') {
-    rules.defineRule('arcaneSkill', 'arcaneSkillMiracles', '=', null);
-    rules.defineRule('arcaneSkillMiracles',
-      'features.Arcane Background (Miracles)', '?', null,
-      'skills.Faith', '=', null
-    );
     rules.defineRule
-      ('powerCount', 'powerNotes.arcaneBackground(Miracles)', '+=', '3');
+      ('powerCount', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '3');
     rules.defineRule
-      ('powerPoints', 'powerNotes.arcaneBackground(Miracles)', '+=', '10');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '10');
   } else if(name == 'Arcane Background (Psionics)') {
-    rules.defineRule('arcaneSkill', 'arcaneSkillPsionics', '=', null);
-    rules.defineRule('arcaneSkillPsionics',
-      'features.Arcane Background (Psionics)', '?', null,
-      'skills.Psionics', '=', null
-    );
     rules.defineRule
-      ('powerCount', 'powerNotes.arcaneBackground(Psionics)', '+=', '3');
+      ('powerCount', 'arcanaNotes.arcaneBackground(Psionics)', '+=', '3');
     rules.defineRule
-      ('powerPoints', 'powerNotes.arcaneBackground(Psionics)', '+=', '10');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Psionics)', '+=', '10');
   } else if(name == 'Arcane Background (Weird Science)') {
-    rules.defineRule('arcaneSkill', 'arcaneSkillWeirdScience', '=', null);
-    rules.defineRule('arcaneSkillWeirdScience',
-      'features.Arcane Background (Weird Science)', '?', null,
-      'skills.Weird Science', '=', null
-    );
     rules.defineRule
-      ('powerCount', 'powerNotes.arcaneBackground(Weird Science)', '+=', '2');
+      ('powerCount', 'arcanaNotes.arcaneBackground(Weird Science)', '+=', '2');
     rules.defineRule
-      ('powerPoints', 'powerNotes.arcaneBackground(Weird Science)', '+=', '15');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Weird Science)', '+=', '15');
   } else if(name == 'Arcane Resistance') {
     rules.defineRule('saveNotes.arcaneResistance',
       '', '=', '-2',
@@ -1975,9 +1971,9 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedRapidFire', '+', '1'
     );
   } else if(name == 'Rapid Recharge') {
-    rules.defineRule('powerNotes.rapidRecharge',
+    rules.defineRule('arcanaNotes.rapidRecharge',
       '', '=', '10',
-      'powerNotes.improvedRapidRecharge', '+', '10'
+      'arcanaNotes.improvedRapidRecharge', '+', '10'
     );
   } else if(name == 'Rich') {
     rules.defineRule('featureNotes.rich',
@@ -2080,7 +2076,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
 
       var adjust = matchInfo[1];
       var adjusted = matchInfo[4];
-      var adjustor =
+      var adjuster =
         adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
       var op = adjust.startsWith('x') ? '*' : '+';
       if(op == '*')
@@ -2098,7 +2094,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
         adjusted = adjusted.replace(' die', '');
         if(section == 'attribute' || adjusted == 'Run')
-          adjusted = adjusted.toLowerCase() + 'Step'
+          adjusted = adjusted.toLowerCase() + 'Step';
         else if(sections == 'skill')
           adjusted = 'skillStep.' + adjusted;
         else
@@ -2107,7 +2103,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         continue;
       }
       rules.defineRule(adjusted,
-        adjustor, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
+        adjuster, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
       );
 
     }
@@ -2176,6 +2172,26 @@ SWADE.languageRules = function(rules, name) {
 };
 
 /*
+ * Defines in #rules# the rules associated with power #name#, which may be
+ * acquired only after #advances# advances and requires #powerPoints# Power
+ * Points to use. #description# is a concise description of the power's effects.
+ */
+SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
+  if(!name) {
+    console.log('Empty power name');
+    return;
+  }
+  if(typeof advances != 'number') {
+    console.log('Bad advances "' + advances + '" for power ' + name);
+  }
+  if(!description) {
+    console.log('Empty description for power ' + name);
+  }
+  rules.defineChoice
+    ('notes', 'powers.' + name + ': (' + powerPoints + ' PP) ' + description);
+};
+
+/*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# list associated features and
  * #languages# any automatic languages.
@@ -2199,7 +2215,6 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     return;
   }
 
-  var matchInfo;
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var raceAdvances = prefix + 'Advances';
@@ -2255,7 +2270,8 @@ SWADE.raceRulesExtra = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with shield #name#, found during
- * eras #eras#, which adds #ac# to the character's armor class.
+ * eras #eras#, which adds #parry# to the character's Parry, provides #cover#
+ * cover, requires #minStr# to handle, and weighs #weight#.
  */
 SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
 
@@ -2345,9 +2361,10 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
     'skillStep.' + name, '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillStep.' + name, '=', 'source<1 ? source  - 1 : source>5 ? source - 5 : 0'
+    'skillStep.' + name, '=', 'source<1 ? source-1 : source>5 ? source-5 : 0'
   );
-  rules.defineChoice('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
+  rules.defineChoice
+    ('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
     'skillModifier.' + name, '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
   );
@@ -2355,32 +2372,25 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
 };
 
 /*
- * Defines in #rules# the rules associated with power #name#, which may be
- * acquired only after #advances# advances and requires #powerPoints# Power
- * Points to use. #description# is a concise description of the power's effects.
+ * Defines in #rules# the rules associated with arcane power source #name#,
+ * which draws on skill #skill# when casting.
  */
-SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
-  if(!name) {
-    console.log('Empty power name');
-    return;
-  }
-  if(typeof advances != 'number') {
-    console.log('Bad advances "' + advances + '" for power ' + name);
-  }
-  if(!description) {
-    console.log('Empty description for power ' + name);
-  }
-  rules.defineChoice
-    ('notes', 'powers.' + name + ': (' + powerPoints + ' PP) ' + description);
-  // TODO
+SWADE.sourceRules = function(rules, name, skill) {
+  var compactSkill = skill.replaceAll(' ', '');
+  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '=', null);
+  rules.defineRule('arcaneSkill' + compactSkill,
+    'features.Arcane Background (' + name + ')', '?', null,
+    'skills.' + skill, '=', null
+  );
 };
 
 /*
  * Defines in #rules# the rules associated with weapon #name#, found during
- * eras #eras#, which belongs to category #category# and requires #minStr# to
- * use effectively. The weapon does #damage# HP on a successful attack. If
- * specified, the weapon can be used as a ranged weapon with a range increment
- * of #range# feet.
+ * eras #eras#, which belongs to category #category#, requires #minStr# to use
+ * effectively, and weighs #weight#. The weapon does #damage# HP on a
+ * successful attack. If specified, the weapon bypasses #armorPiercing# points
+ * of armor. Also if specified, the weapon can be used as a ranged weapon with
+ * a range increment of #range# feet, firing #rateOfFire# per round.
  */
 SWADE.weaponRules = function(
   rules, name, eras, damage, minStr, weight, category, armorPiercing, range,
@@ -2403,6 +2413,14 @@ SWADE.weaponRules = function(
   if(typeof minStr != 'number') {
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }
+  if(typeof weight != 'number') {
+    console.log('Bad minStr "' + minStr + '" for weapon ' + name);
+  }
+  if(category == null ||
+     !(category + '').match(/^(1h|2h|R|Un|one-handed|two-handed|ranged|unarmed)$/i)) {
+    console.log('Bad category "' + category + '" for weapon ' + name);
+    return;
+  }
   if(range && typeof range != 'number') {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
@@ -2414,9 +2432,8 @@ SWADE.weaponRules = function(
   }
 
   var isRanged = category == 'R' || category == 'ranged';
-  var is2h = category == '2h' || category == 'two-handed';
 
-  var damage = matchInfo[1];
+  damage = matchInfo[1];
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var weaponName = 'weapons.' + name;
@@ -2435,7 +2452,7 @@ SWADE.weaponRules = function(
 
   rules.defineChoice('notes', weaponName + ':' + format);
   rules.defineRule(weaponName + '.1',
-    'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
+    'attackBonus.' + name, '=', 'QuilvynUtils.signed(source)'
   );
   rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
   rules.defineRule(weaponName + '.3', weaponName, '=', '""');
@@ -2471,26 +2488,6 @@ SWADE.featureListRules = function(
 ) {
   QuilvynRules.featureListRules
     (rules, features, setName, levelAttr, selectable);
-  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replaceAll(' ', '') + 'Features';
-  for(var i = 0; i < features.length; i++) {
-    var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
-    if(!matchInfo)
-      continue;
-    var group = matchInfo[1].toLowerCase();
-    var elements = matchInfo[2].split('/');
-    for(var j = 0; j < elements.length; j++) {
-      matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
-      if(matchInfo) {
-        rules.defineRule
-          (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
-      } else {
-        rules.defineRule(group + 'Proficiency.' + elements[j],
-          setName + '.' + feature, '=', '1'
-        );
-      }
-    }
-  }
 };
 
 /*
@@ -2582,7 +2579,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Smarts', within: 'Attributes'},
             {name: 'Spirit', within: 'Attributes'},
             {name: 'Strength', within: 'Attributes'},
-            {name: 'Vigor', within: 'Attributes'},
+            {name: 'Vigor', within: 'Attributes'}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2591,7 +2588,7 @@ SWADE.createViewers = function(rules, viewers) {
       }
       viewer.addElements(
           {name: 'Skill Points', within: 'Characteristics', format: '<b>Skills</b> (%V Points):'},
-          {name: 'Skills', within: 'Characteristics', format: '%V', columns: '3LE', separator: null},
+          {name: 'Skills', within: 'Characteristics', format: '%V', columns: '3LE', separator: null}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2636,7 +2633,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Feature Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
             {name: 'Combat Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
             {name: 'Save Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Power Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
+            {name: 'Arcane Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
         );
       }
       viewer.addElements(
@@ -2655,14 +2652,10 @@ SWADE.createViewers = function(rules, viewers) {
                 {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b>: %V'},
                 {name: 'Run', within: 'Speed', format: '/+d%V'},
                 {name: 'Run Modifier', within: 'Speed', format: '%V'},
-              {name: 'Attacks Per Round', within: 'CombatStats'},
-            {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
-              {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
-              {name: 'Weapon Proficiency', within: 'CombatProfs', separator: listSep},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
-              {name: 'Weapons', within: 'Gear', separator: listSep},
+              {name: 'Weapons', within: 'Gear', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2671,7 +2664,6 @@ SWADE.createViewers = function(rules, viewers) {
       }
       viewer.addElements(
           {name: 'SavePart', within: 'Combat', separator: '\n'},
-            {name: 'Save Proficiency', within: 'SavePart', separator: listSep},
             {name: 'Save', within: 'SavePart', separator: listSep}
       );
       if(name != 'Collected Notes') {
@@ -2680,16 +2672,16 @@ SWADE.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-        {name: 'Power', within: '_top', separator: outerSep,
-         format: '<b>Power</b><br/>%V'},
-          {name: 'PowerStats', within: 'Power', separator: innerSep},
+        {name: 'Arcana', within: '_top', separator: outerSep,
+         format: '<b>Arcana</b><br/>%V'},
+          {name: 'PowerStats', within: 'Arcana', separator: innerSep},
             {name: 'Power Count', within: 'PowerStats'},
             {name: 'Power Points', within: 'PowerStats'},
-          {name: 'Powers', within: 'Power', columns: '1L', separator: null}
+          {name: 'Powers', within: 'Arcana', columns: '1L', separator: null}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
-          {name: 'Power Notes', within: 'Power', separator: noteSep}
+          {name: 'Arcana Notes', within: 'Arcana', separator: noteSep}
         );
       }
       viewer.addElements(
@@ -2715,33 +2707,26 @@ SWADE.createViewers = function(rules, viewers) {
  */
 SWADE.choiceEditorElements = function(rules, type) {
   var result = [];
+  var dieTypes = ['4', '6', '8', '10', '12'];
+  var sections =
+    ['arcana', 'attribute', 'combat', 'description', 'feature', 'skill'];
   var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Armor') {
-    var zeroToFifty = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-    var minusTenToZero = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0];
-    var tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+    var areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
     result.push(
-      ['AC', 'AC Bonus', 'select-one', [0, 1, 2, 3, 4, 5]],
-      ['Bulky', 'Bulky', 'checkbox', ['']],
-      ['Dex', 'Max Dex', 'select-one', zeroToTen],
-      ['Str', 'Min Str', 'select-one', tenToEighteen],
-      ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']]
+      ['Era', 'Era', 'text', [30]],
+      ['Area', 'Area Covered', 'select-one', areas],
+      ['Armor', 'Armor', 'select-one', zeroToTen],
+      ['MinStr', 'Min Strength', 'select-one', dieTypes],
+      ['Weight', 'Weight', 'text', [2]]
     );
-  } else if(type == 'Deity')
-    result.push(
-      ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
-      ['Domain', 'Domains', 'text', [30]],
-      ['Sphere', 'Sphere', 'text', [15]]
-    );
-  else if(type == 'Edge')
+  } else if(type == 'Edge')
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
       ['Imply', 'Implies', 'text', [40]],
       ['Type', 'Types', 'text', [20]]
     );
   else if(type == 'Feature') {
-    var sections =
-      ['attribute', 'combat', 'companion', 'description', 'feature', 'power', 'skill'];
     result.push(
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
@@ -2759,61 +2744,50 @@ SWADE.choiceEditorElements = function(rules, type) {
     result.push(
       // empty
     );
-  else if(type == 'Path')
+  else if(type == 'Power') {
+    var zeroToSixteen =
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
-      ['Group', 'Group', 'text', [15]],
-      ['Level', 'Level', 'text', [15]],
-      ['Features', 'Features', 'text', [40]],
-      ['Selectables', 'Features', 'text', [40]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [40]]
+      ['Advances', 'Advances', 'select-one', zeroToSixteen],
+      ['Power Points', 'Power Pooints', 'select-one', zeroToTen],
+      ['Description', 'Description', 'text', [60]]
     );
-  else if(type == 'Race')
+  } else if(type == 'Race')
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
-      ['Selectables', 'Selectables', 'text', [60]],
-      ['Languages', 'Languages', 'text', [30]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [80]]
-    );
-  else if(type == 'School')
-    result.push(
-      ['Features', 'Features', 'text', [40]]
+      ['Languages', 'Languages', 'text', [30]]
     );
   else if(type == 'Shield')
     result.push(
-      ['AC', 'Armor Class', 'select-one', [1, 2, 3, 4, 5]]
+      ['Era', 'Era', 'text', [30]],
+      ['Parry', 'Parry', 'select-one', zeroToTen],
+      ['Cover', 'Cover', 'select-one', zeroToTen],
+      ['MinStr', 'Min Strength', 'select-one', dieTypes],
+      ['Weight', 'Weight', 'text', [2]]
     );
   else if(type == 'Skill')
     result.push(
-      ['Attribute', 'Attribute', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['Class', 'Class Skill', 'text', [30]]
+      ['Era', 'Era', 'text', [30]],
+      ['Attribute', 'Attribute', 'select-one', QuilvynUtils.getKeys(rules.getChoices('attributes'))],
+      ['Core', 'Core', 'checkbox', ['']]
     );
-  else if(type == 'Spell') {
-    var zeroToNine = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  else if(type == 'Source')
     result.push(
-      ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
-      ['Group', 'Caster Group', 'text', [15]],
-      ['Level', 'Level', 'select-one', zeroToNine],
-      ['Description', 'Description', 'text', [60]]
-    );
-  } else if(type == 'Tool')
-    result.push(
-      ['Type', 'Type', 'text', [20]]
+      ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))]
     );
   else if(type == 'Weapon') {
-    var oneToFive = [1, 2, 3, 4, 5];
-    var sixteenToTwenty = [16, 17, 18, 19, 20];
     var zeroToOneFifty =
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
-      ['Category', 'Category', 'select-one', ['Simple', 'Martial']],
-      ['Property', 'Property', 'select-one', ['Unarmed', 'Light', 'One-Handed', 'Two-Handed', 'Ranged']],
+      ['Era', 'Era', 'text', [30]],
+      ['Category', 'Category', 'select-one', ['Unarmed', 'One-Handed', 'Two-Handed', 'Ranged']],
       ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SWADE.VERSATILE_WEAPON_DAMAGE)],
-      ['Range', 'Range in Feet', 'select-one', zeroToOneFifty]
+      ['MinStr', 'Min Strength', 'select-one', dieTypes],
+      ['Weight', 'Weight', 'text', [2]],
+      ['AP', 'Armor Piercing', 'select-one', zeroToTen],
+      ['Range', 'Range in Yards', 'select-one', zeroToOneFifty],
+      ['ROF', 'Rate of Fire', 'select-one', zeroToTen]
     );
   }
   return result;
@@ -2961,7 +2935,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var choices;
   var era;
   var howMany;
-  var i;
   var matchInfo;
 
   if(attribute == 'advances') {
@@ -3057,7 +3030,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'improvements') {
     attrs = this.applyRules(attributes);
-    howMany = (attrs['improvementPoints'] || 0) -
+    howMany = (attrs.improvementPoints || 0) -
               (attrs['improvementPointsAllocation.Attribute'] || 0) -
               (attrs['improvementPointsAllocation.Edge'] || 0) -
               (attrs['improvementPointsAllocation.Hindrance'] || 0) -
@@ -3073,7 +3046,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       howMany -= allocation;
     }
   } else if(attribute == 'name') {
-    attributes['name'] = SWADE.randomName(attributes.race);
+    attributes.name = SWADE.randomName(attributes.race);
   } else if(this.getChoices(attribute + 's') != null) {
     attributes[attribute] =
       QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
@@ -3173,7 +3146,7 @@ SWADE.makeValid = function(attributes) {
           if(matchInfo != null) {
             break;
           }
-          choices = choices.slice(0, index).concat(choice.slice(index + 1));
+          choices = choices.slice(0, index).concat(choices.slice(index + 1));
         }
         if(matchInfo == null) {
           continue;
@@ -3183,7 +3156,7 @@ SWADE.makeValid = function(attributes) {
         var toFixName = matchInfo[1].replace(/\s+$/, '');
         var toFixOp = matchInfo[3] == null ? '>=' : matchInfo[3];
         var toFixValue =
-          matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');;
+          matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');
         if(toFixName.match(/^(Max|Sum)/)) {
           toFixCombiner = toFixName.substring(0, 3);
           toFixName = toFixName.substring(4).replace(/^\s+/, '');
