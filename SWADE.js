@@ -396,16 +396,16 @@ SWADE.FEATURES = {
     'Note="Has animal companion, other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury gives +1 Strength die, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
+    'Note="Injury gives +1 Strength step, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
     'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
   'Brave':'Section=save Note="+2 fear checks, -2 fear table roll"',
-  'Brawler':'Section=combat Note="+%V Toughness/+%1 Unarmed damage die"',
+  'Brawler':'Section=combat Note="+%V Toughness/+%1 Unarmed damage step"',
   'Brawny':
     'Section=description ' +
-    'Note="+1 Size/+1 Strength die for encumbrance and minimum strength requirements"',
+    'Note="+1 Size/+1 Strength step for encumbrance and minimum strength requirements"',
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
   'Brute':
     'Section=combat,skill ' +
@@ -465,7 +465,7 @@ SWADE.FEATURES = {
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
     'Section=combat Note="Free attack against %V foes moving into reach"',
-  'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run die"',
+  'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
   'Followers':'Section=feature Note="Gain 5 Soldier followers"',
   'Free Runner':
     'Section=combat,skill ' +
@@ -523,13 +523,13 @@ SWADE.FEATURES = {
   'Linguist':'Section=feature Note="d6 in %{smarts//2} Language skills"',
   'Liquid Courage':
     'Section=attribute ' +
-    'Note="Drinking alcohol gives +1 Vigor die, -1 Smarts and Agility for 1 hr"',
+    'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts and Agility for 1 hr"',
   'Luck':'Section=feature Note="+%V Benny each session"',
   'Marksman':
     'Section=feature ' +
     'Note="Trade move for +1 Athletics (Throwing), +1 Shooting, or -2 attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage die"',
+    'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage step"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
@@ -571,7 +571,7 @@ SWADE.FEATURES = {
   'Sidekick':'Section=feature Note="Special bond with companion"',
   'Soldier':
     'Section=attribute ' +
-    'Note="+1 Strength die (encumbrance)/Reroll Vigor (environmental hazards)"',
+    'Note="+1 Strength step (encumbrance)/Reroll Vigor (environmental hazards)"',
   'Soul Drain':
     'Section=arcana Note="Suffer level of Fatigue to recover 5 Power Points"',
   'Steady Hands':
@@ -608,7 +608,7 @@ SWADE.FEATURES = {
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
     'Section=skill ' +
-    'Note="+1 die to Support with Persuasion or Performance %V/rd"',
+    'Note="+1 step to Support with Persuasion or Performance %V/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -624,7 +624,7 @@ SWADE.FEATURES = {
   'Bloodthirsty+':'Section=combat Note="Cruel to foes"',
   "Can't Swim":
     'Section=combat,skill ' +
-    'Note="Swim Pace %{pace//3}","-2 Athletics (swimming)"',
+    'Note="Move 1/3 speed through water","-2 Athletics (swimming)"',
   'Cautious':'Section=feature Note="Requires detailed plan before acting"',
   'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
   'Clumsy+':'Section=skill Note="-2 Athletics/-2 Stealth"',
@@ -666,7 +666,7 @@ SWADE.FEATURES = {
     'Note="Ill-tempered and disagreeable","-1 Persuasion"',
   'Mild Mannered':'Section=skill Note="-2 Intimidation"',
   'Mute+':'Section=feature Note="Cannot speak"',
-  'Obese':'Section=description,combat Note="+1 Size","-1 Pace/-1 Run die"',
+  'Obese':'Section=description,combat Note="+1 Size","-1 Pace/-1 Run step"',
   'Obligation':
     'Section=feature Note="Has regular responsibility that occupies 20 hr/wk"',
   'Obligation+':
@@ -700,7 +700,7 @@ SWADE.FEATURES = {
     'Note="Hides knowledge to protect self or others from major trouble"',
   'Shamed':'Section=feature Note="Past event causes self-doubt"',
   'Shamed+':'Section=feature Note="Past event causes social antagonism"',
-  'Slow':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Slow':'Section=combat Note="-1 Pace/-1 Run step"',
   'Slow+':'Section=combat,skill Note="-2 Pace","-2 Athletics"',
   'Small':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Stubborn':'Section=feature Note="Never admits error"',
@@ -734,7 +734,7 @@ SWADE.FEATURES = {
   'Adaptable':'Section=feature Note="+1 Edge Points"',
   'Additional Action':
     'Section=combat Note="Ignore 2 points of Multi-Action penalties"',
-  'Agile':'Section=attribute Note="+1 Agility die"',
+  'Agile':'Section=attribute Note="+1 Agility step"',
   'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
   'Armor +2':'Section=combat Note="+2 Parry"',
   'Big':
@@ -768,37 +768,38 @@ SWADE.FEATURES = {
     'Section=combat Note="-1 Toughness"',
   'Hardy':'Section=combat Note="Does not incur Wound from 2nd Shaken result"',
   'Heritage':
-    'Section=feature Note="+2 Improvements (Attribute or Edge)"',
+    'Section=description Note="+2 Improvement Points (Attribute or Edge)"',
   'Horns':'Section=combat Note="Horns are Natural Weapon"',
   'Immune To Disease':'Section=save Note="Has immunity to disease"',
   'Immune To Poison':'Section=save Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
     'Note="Half penalties when attacking warm invisible targets"',
-  'Keen Senses':'Section=skill Note="+1 Notice die"',
+  'Keen Senses (Avion)':'Section=skill Note="+1 Notice step"',
+  'Keen Senses (Saurian)':'Section=feature Note="Alertness edge"',
   'Leaper':
     'Section=combat,skill ' +
     'Note="+4 damage when leaping during Wild Attack","x2 Jump distance"',
   'Low Light Vision':
     'Section=feature Note="Ignores penalties for dim and dark illumination"',
   'No Vital Organs':'Section=combat Note="No extra damage from Called Shot"',
-  'Pace':'Section=combat Note="+1 Pace/+1 Run die"',
+  'Pace':'Section=combat Note="+1 Pace/+1 Run step"',
   'Parry':'Section=combat Note="+1 Parry"',
   'Poisonous Touch':
     'Section=combat Note="Touch causes Mild Poison effects (Vig neg)"',
   'Poor Parry':'Section=combat Note="-1 Parry"',
   'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
   'Reach':'Section=combat Note="+1 Reach"',
-  'Reduced Pace':'Section=combat Note="-1 Pace/-1 Run die"',
+  'Reduced Pace':'Section=combat Note="-1 Pace/-1 Run step"',
   'Regeneration':'Section=save Note="Make natural healing roll 1/dy"',
   'Semi-Aquatic':'Section=feature Note="Can hold breath for 15 min"',
   'Size -1':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Size +1':'Section=combat,description Note="+1 Toughness","+1 Size"',
   'Sleep Reduction':'Section=feature Note="Needs only 4 hr sleep/dy"',
-  'Smart':'Section=attribute Note="+1 Smarts die"',
-  'Spirited':'Section=attribute Note="+1 Spirit die"',
-  'Strong':'Section=attribute Note="+1 Strength die"',
-  'Tough':'Section=attribute Note="+1 Vigor die"',
+  'Smart':'Section=attribute Note="+1 Smarts step"',
+  'Spirited':'Section=attribute Note="+1 Spirit step"',
+  'Strong':'Section=attribute Note="+1 Strength step"',
+  'Tough':'Section=attribute Note="+1 Vigor step"',
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
     'Section=combat ' +
@@ -812,12 +813,12 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=agilityModifier ' +
     'Section=attribute Note="%V Agility"',
-  'Agility Die':
-    'Pattern="([-+]\\d)\\s+agi(?:lity)?\\s+die|agi(?:lity)?\\s+die\\s+([-+]\\d)" ' +
+  'Agility Step':
+    'Pattern="([-+]\\d)\\s+agi(?:lity)?\\s+step|agi(?:lity)?\\s+step\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
-    'Section=attribute Note="%V Agility die"',
+    'Section=attribute Note="%V Agility step"',
   'Power Points':
     'Pattern="([-+]\\d)\\s+power\s+points|power\s+points\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -836,48 +837,48 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=smartsModifier ' +
     'Section=attribute Note="%V Smarts"',
-  'Smarts Die':
-    'Pattern="([-+]\\d)\\s+sma(?:rts)?\\s+die|sma(?:rts)?\\s+die\\s+([-+]\\d)" ' +
+  'Smarts Step':
+    'Pattern="([-+]\\d)\\s+sma(?:rts)?\\s+step|sma(?:rts)?\\s+step\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=smartsStep ' +
-    'Section=attribute Note="%V Smarts die"',
+    'Section=attribute Note="%V Smarts step"',
   'Spirit':
     'Pattern="([-+]\\d)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=spiritModifier ' +
     'Section=attribute Note="%V Spirit"',
-  'Spirit Die':
-    'Pattern="([-+]\\d)\\s+spi(?:rit)?\\s+die|spi(?:rit)?\\s+die\\s+([-+]\\d)" ' +
+  'Spirit Step':
+    'Pattern="([-+]\\d)\\s+spi(?:rit)?\\s+step|spi(?:rit)?\\s+step\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=spiritStep ' +
-    'Section=attribute Note="%V Spirit die"',
+    'Section=attribute Note="%V Spirit step"',
   'Strength':
     'Pattern="([-+]\\d)\\s+str(?:ength)?(?:$|\\s+$|\\s+[^d])|str(?:ength)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=strengthModifier ' +
     'Section=attribute Note="%V Strength"',
-  'Strength Die':
-    'Pattern="([-+]\\d)\\s+str(?:ength)?\\s+die|str(?:ength)?\\s+die\\s+([-+]\\d)" ' +
+  'Strength Step':
+    'Pattern="([-+]\\d)\\s+str(?:ength)?\\s+step|str(?:ength)?\\s+step\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=strengthStep ' +
-    'Section=attribute Note="%V Strength die"',
+    'Section=attribute Note="%V Strength step"',
   'Vigor':
     'Pattern="([-+]\\d)\\s+vig(?:or)?(?:$|\\s+$|\\s+[^d])|vig(?:or)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=vigorModifier ' +
     'Section=attribute Note="%V Vigor"',
-  'Vigor Die':
-    'Pattern="([-+]\\d)\\s+vig(?:or)?\\s+die|vig(?:or)?\\s+die\\s+([-+]\\d)" ' +
+  'Vigor Step':
+    'Pattern="([-+]\\d)\\s+vig(?:or)?\\s+step|vig(?:or)?\\s+step\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=vigorStep ' +
-    'Section=attribute Note="%V Vigor die"'
+    'Section=attribute Note="%V Vigor step"'
   // TODO
 };
 SWADE.HINDRANCES = {
@@ -998,7 +999,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*4} yd Target gains +1 Trait die (Raise +2) for 5 rd or target suffers -1 Trait die (Raise -2) (Spirit recovers 1 die)"',
+      '"R%{smarts*4} yd Target gains +1 Trait step (Raise +2) for 5 rd or target suffers -1 Trait step (Raise -2) (Spirit recovers 1 step)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1086,7 +1087,7 @@ SWADE.POWERS = {
   'Growth/Shrink':
     'Advances=4 ' +
     'PowerPoints=2/Size ' +
-    'Description="R%{smarts*2} yd Target gains or loses Toughness and Strength die for 5 rd"',
+    'Description="R%{smarts*2} yd Target gains or loses Toughness and Strength step for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1223,7 +1224,7 @@ SWADE.RACES = {
     'Languages=Aquarian',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
+      '"Can\'t Swim",Flight,Frail,"Keen Senses (Avion)","Reduced Pace" ' +
     'Languages=Avion',
   'Dwarf':
     'Features=' +
@@ -1252,8 +1253,8 @@ SWADE.RACES = {
     'Languages=Rakashan',
   'Saurian':
     'Features=' +
-      '"Armor +2",Bite,"Environmental Weakness (Cold)","Keen Senses",' +
-      'Outsider ' +
+      '"Armor +2",Bite,"Environmental Weakness (Cold)",' +
+      '"Keen Senses (Saurian)",Outsider ' +
     'Languages=Saurian'
 };
 SWADE.LANGUAGES = {};
@@ -2113,8 +2114,8 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         adjusted = adjusted.toLowerCase() + 'Modifier';
       } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
         adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
-      } else if(adjusted.match(/^[A-Z]\w+ die$/)) {
-        adjusted = adjusted.replace(' die', '');
+      } else if(adjusted.match(/^[A-Z]\w+ step$/)) {
+        adjusted = adjusted.replace(' step', '');
         if(section == 'attribute' || adjusted == 'Run')
           adjusted = adjusted.toLowerCase() + 'Step';
         else if(sections == 'skill')
@@ -2274,9 +2275,9 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
     'Un', null, null, null
   );
-  rules.defineRule('weapons.Bite', 'features.Bite', '=', null);
-  rules.defineRule('weapons.Claws', 'features.Claws', '=', null);
-  rules.defineRule('weapons.Horns', 'features.Horns', '=', null);
+  rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
+  rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
+  rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
 
 };
 
@@ -2286,7 +2287,12 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
  */
 SWADE.raceRulesExtra = function(rules, name) {
   if(name == 'Half-Elf') {
-    rules.defineRule('improvementPoints', 'featureNotes.heritage', '+', '2');
+    rules.defineRule('improvementPoints',
+      'descriptionNotes.heritage', '+', '2'
+    );
+  } else if(name == 'Saurian') {
+    rules.defineRule
+      ('features.Alertness', 'featureNotes.keenSenses(Saurian)', '=', '1');
   }
 };
 
