@@ -49,12 +49,13 @@ function SWADE() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4'
+    'advances:Advances,text,4', 'arcaneFocus:Arcane Focus?,checkbox,',
+    'focusType:Focus Type,select-one,arcanas'
   );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
-  SWADE.arcaneRules(rules, SWADE.SOURCES, SWADE.POWERS);
+  SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
   SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
@@ -68,8 +69,8 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power', 'Race',
-  'Shield', 'Skill', 'Source', 'Weapon'
+  'Arcana', 'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power',
+  'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -81,6 +82,13 @@ SWADE.RANDOMIZABLE_ATTRIBUTES = [
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
+SWADE.ARCANAS = {
+  'Gifted':'Skill=Focus',
+  'Magic':'Skill=Spellcasting',
+  'Miracles':'Skill=Faith',
+  'Psionics':'Skill=Psionics',
+  'Weird Science':'Skill="Weird Science"'
+};
 SWADE.ATTRIBUTES = {
   'agility':'',
   'smarts':'',
@@ -136,7 +144,7 @@ SWADE.EDGES = {
   // Background
   'Alertness':'Type=background',
   'Ambidextrous':'Type=background Require="agility >= 8"',
-  'Arcane Background (%source)':'Type=background',
+  'Arcane Background (%arcana)':'Type=background',
   'Arcane Resistance':'Type=background Require="spirit >= 8"',
   'Improved Arcane Resistance':
     'Type=background Require="features.Arcane Resistance"',
@@ -360,14 +368,16 @@ SWADE.FEATURES = {
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, Parry bonuses stack"',
-  'Arcane Background (Gifted)':'Section=arcana Note="1 Power/15 Power Points"',
-  'Arcane Background (Magic)':'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Gifted)':
+    'Section=arcana Note="Power Count 1/Power Points 15"',
+  'Arcane Background (Magic)':
+    'Section=arcana Note="Count 3/Power Points 10"',
   'Arcane Background (Miracles)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
+    'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Psionics)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
+    'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Weird Science)':
-    'Section=arcana Note="2 Powers/15 Power Points"',
+    'Section=arcana Note="Power Count 2/Power Points 15"',
   'Arcane Resistance':
     'Section=save ' +
     'Note="%V others\' targeted arcane skill, %V magical damage"',
@@ -534,9 +544,9 @@ SWADE.FEATURES = {
   'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
   'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
-  'New Powers':'Section=arcana Note="Know 2 additional powers"',
+  'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
-  'Power Points':'Section=arcana Note="+5 Power Points"',
+  'Power Points':'Section=arcana Note="+%V Power Points"',
   'Power Surge':'Section=arcana Note="Recover 10 Power Points when Joker drawn"',
   'Professional (%attribute)':'Section=attribute Note="+%V %attribute"',
   'Professional (%skill)':'Section=skill Note="+%V %skill"',
@@ -979,7 +989,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target suffers -2 on vision tasks (Raise -4) (Vigor removes 2 points)"',
+      '"R%{smarts*2} yd Target suffers -2 on vision tasks (Raise -4) (Vig removes 2 points)"',
   'Bolt':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1192,7 +1202,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target move at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
+      '"R%{smarts*2} yd Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
@@ -1293,14 +1303,7 @@ SWADE.SKILLS = {
   'Survival':'Attribute=smarts',
   'Taunt':'Attribute=smarts',
   'Thievery':'Attribute=agility',
-  'Weird Science':'Attribute=smarts',
-};
-SWADE.SOURCES = {
-  'Gifted':'Skill=Focus',
-  'Magic':'Skill=Spellcasting',
-  'Miracles':'Skill=Faith',
-  'Psionics':'Skill=Psionics',
-  'Weird Science':'Skill="Weird Science"'
+  'Weird Science':'Attribute=smarts'
 };
 SWADE.WEAPONS = {
 
@@ -1563,15 +1566,15 @@ SWADE.identityRules = function(rules, races, eras) {
 };
 
 /* Defines rules related to powers. */
-SWADE.arcaneRules = function(rules, sources, powers) {
+SWADE.arcaneRules = function(rules, arcanas, powers) {
+  QuilvynUtils.checkAttrTable(arcanas, ['Skill']);
   QuilvynUtils.checkAttrTable
     (powers, ['Advances', 'PowerPoints', 'Description']);
-  QuilvynUtils.checkAttrTable(sources, ['Skill']);
+  for(var arcana in arcanas) {
+    rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
+  }
   for(var power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
-  }
-  for(var source in sources) {
-    rules.choiceRules(rules, 'Source', source, sources[source]);
   }
 };
 
@@ -1659,7 +1662,11 @@ SWADE.talentRules = function(
  * related to selecting that choice.
  */
 SWADE.choiceRules = function(rules, type, name, attrs) {
-  if(type == 'Armor')
+  if(type == 'Arcana')
+    SWADE.arcanaRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Skill')
+    );
+  else if(type == 'Armor')
     SWADE.armorRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValueArray(attrs, 'Area'),
@@ -1724,10 +1731,6 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Core'),
       QuilvynUtils.getAttrValueArray(attrs, 'Era')
     );
-  else if(type == 'Source')
-    SWADE.sourceRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Skill')
-    );
   else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
@@ -1748,6 +1751,19 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
     rules.addChoice(type, name, attrs);
   }
+};
+
+/*
+ * Defines in #rules# the rules associated with arcane power source #name#,
+ * which draws on skill #skill# when casting.
+ */
+SWADE.arcanaRules = function(rules, name, skill) {
+  var compactSkill = skill.replaceAll(' ', '');
+  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '=', null);
+  rules.defineRule('arcaneSkill' + compactSkill,
+    'features.Arcane Background (' + name + ')', '?', null,
+    'skills.' + skill, '=', null
+  );
 };
 
 /*
@@ -1856,9 +1872,9 @@ SWADE.edgeRulesExtra = function(rules, name) {
       ('powerPoints', 'arcanaNotes.arcaneBackground(Psionics)', '+=', '10');
   } else if(name == 'Arcane Background (Weird Science)') {
     rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Weird Science)', '+=', '2');
+      ('powerCount', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '2');
     rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Weird Science)', '+=', '15');
+      ('powerPoints', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '15');
   } else if(name == 'Arcane Resistance') {
     rules.defineRule('saveNotes.arcaneResistance',
       '', '=', '-2',
@@ -1957,6 +1973,12 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.improvedNervesOfSteel', '+', '1'
     );
+  } else if(name == 'New Powers') {
+    rules.defineRule
+      ('arcanaNotes.newPowers', 'edges.New Powers', '=', 'source * 2');
+  } else if(name == 'Power Points') {
+    rules.defineRule
+      ('arcanaNotes.powerPoints', 'edges.Power Points', '=', 'source * 5');
   } else if((matchInfo = name.match(/^Professional \(([\w\s]*)\)$/)) != null) {
     var focus = matchInfo[1];
     note = (focus.toLowerCase() in SWADE.ATTRIBUTES ? 'attribute' : 'skill') +
@@ -2372,19 +2394,6 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
 };
 
 /*
- * Defines in #rules# the rules associated with arcane power source #name#,
- * which draws on skill #skill# when casting.
- */
-SWADE.sourceRules = function(rules, name, skill) {
-  var compactSkill = skill.replaceAll(' ', '');
-  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '=', null);
-  rules.defineRule('arcaneSkill' + compactSkill,
-    'features.Arcane Background (' + name + ')', '?', null,
-    'skills.' + skill, '=', null
-  );
-};
-
-/*
  * Defines in #rules# the rules associated with weapon #name#, found during
  * eras #eras#, which belongs to category #category#, requires #minStr# to use
  * effectively, and weighs #weight#. The weapon does #damage# HP on a
@@ -2711,7 +2720,11 @@ SWADE.choiceEditorElements = function(rules, type) {
   var sections =
     ['arcana', 'attribute', 'combat', 'description', 'feature', 'skill'];
   var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  if(type == 'Armor') {
+  if(type == 'Arcana')
+    result.push(
+      ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))]
+    );
+  else if(type == 'Armor') {
     var areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
     result.push(
       ['Era', 'Era', 'text', [30]],
@@ -2771,10 +2784,6 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Era', 'Era', 'text', [30]],
       ['Attribute', 'Attribute', 'select-one', QuilvynUtils.getKeys(rules.getChoices('attributes'))],
       ['Core', 'Core', 'checkbox', ['']]
-    );
-  else if(type == 'Source')
-    result.push(
-      ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))]
     );
   else if(type == 'Weapon') {
     var zeroToOneFifty =
@@ -2974,6 +2983,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'edges') {
     attrs = this.applyRules(attributes);
     howMany = attrs.edgePoints || 0;
+    if(howMany > 0 && attrs.arcaneFocus && attrs.focusType &&
+       !attrs['edges.Arcane Background (' + attrs.focusType + ')']) {
+      attributes['edges.Arcane Background (' + attrs.focusType + ')'] = 1;
+      howMany--;
+    }
     choices = {};
     var allEdges = this.getChoices('edges');
     for(attr in allEdges) {
@@ -2984,8 +2998,14 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       var pick;
       var picks = {};
       pickAttrs(picks, '', Object.keys(choices), howMany, 1);
+      if(attrs.focusType && QuilvynUtils.random(0, 9) < 8) {
+        picks =
+          QuilvynUtils.random(0, 1)==0 ? {'New Powers':1} : {'Power Points':1};
+      }
       for(pick in picks) {
-        attributes['edges.' + pick] = 1;
+        if(!attributes['edges.' + pick])
+          attributes['edges.' + pick] = 0;
+        attributes['edges.' + pick]++;
         delete choices[pick];
       }
       var validate = this.applyRules(attributes);
@@ -3047,11 +3067,22 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'name') {
     attributes.name = SWADE.randomName(attributes.race);
-  } else if(this.getChoices(attribute + 's') != null) {
-    attributes[attribute] =
-      QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
   } else if(attribute == 'powers') {
-    // TODO
+    attrs = this.applyRules(attributes);
+    howMany = attrs.powerCount || 0;
+    choices = [];
+    var advances = attributes.advances || 0;
+    var allPowers = this.getChoices('powers');
+    for(attr in allPowers) {
+      if(attributes['powers.' + attr]) {
+        howMany--;
+        continue;
+      }
+      matchInfo = allPowers[attr].match(/Advances=(\d+)/);
+      if(!matchInfo || advances >= matchInfo[1] - 0)
+        choices.push(attr);
+    }
+    pickAttrs(attributes, 'powers.', choices, howMany, 1);
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
     era = attributes.era || 'Modern';
@@ -3099,6 +3130,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         choices.push(attr);
     }
     pickAttrs(attributes, 'weapons.', choices, howMany, 1);
+  } else if(this.getChoices(attribute + 's') != null) {
+    attributes[attribute] =
+      QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
   }
 
 };
@@ -3274,28 +3308,36 @@ SWADE.ruleNotes = function() {
     'SWADE Quilvyn Module Version ' + SWADE.VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li>\n' +
-    '  <li>\n' +
+    '  </li><li>\n' +
     '    Quilvyn assumes that every race has its own language and that\n' +
     '    half-elf characters know both Elf and Human.\n' +
+    '  </li><li>\n' +
+    '    If the Arcane Focus box is checked when creating a random\n' +
+    '    character, Quilvyn will select either New Powers or Power Points\n' +
+    '    for most of the chararacter\'s edges.\n' +
     '  </li>\n' +
     '</ul>\n' +
-    '</p>\n' +
-    '\n' +
     '<h3>Limitations</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '</ul>\n' +
-    '</p>\n' +
-    '\n' +
     '<h3>Known Bugs</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '</ul>\n' +
+    '<h3>Copyrights and Licensing</h3>\n' +
+    '<p>\n' +
+    'All copyrights to character, vehicle, and other rules and settings are\n' +
+    'owned by their respective copyright holders. This application makes no\n' +
+    'claim against any properties.\n' +
+    '</p><p>\n' +
+    'Quilvyn is not approved or endorsed by Pinnacle Entertainment Group.\n' +
+    'Portions of the materials used are property of Pinnacle Entertainment\n' +
+    'Group. © Great White Games, LLC; DBA Pinnacle Entertainment Group.\n' +
+    '</p><p>\n' +
+    'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA\n' +
+    'Pinnacle Entertainment Group.\n' +
     '</p>\n';
 };
