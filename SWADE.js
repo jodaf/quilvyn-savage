@@ -259,7 +259,7 @@ SWADE.EDGES = {
     'Require="advances >= 4","features.Arcane Background (Weird Science)","skills.Weird Science >= 6"',
   'Holy/Unholy Warrior':
     'Type=power ' +
-    'Require="advances >= 4","Arcane Background (Miracles","skills.Faith >= 6"',
+    'Require="advances >= 4","features.Arcane Background (Miracles)","skills.Faith >= 6"',
   'Mentalist':
     'Type=power ' +
     'Require="advances >= 4","features.Arcane Background (Psionics)","skills.Psionics >= 6"',
@@ -384,9 +384,9 @@ SWADE.FEATURES = {
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
-  'Artificer':'Section=arcana Note="Create arcane devices"',
+  'Artificer':'Section=arcana Note="Give items arcane powers"',
   'Assassin':
-    'Section=combat Note="+2 damage to Vulnerable foes and during The Drop"',
+    'Section=combat Note="+2 damage to Vulnerable foes and with The Drop"',
   'Attractive':
     'Section=skill ' +
     'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
@@ -422,7 +422,7 @@ SWADE.FEATURES = {
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
-  'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 natural damage 1/encounter"',
+  'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 Natural Weapon damage 1/encounter"',
   'Combat Acrobat':
     'Section=combat ' +
     'Note="Foes -1 attack when self aware of attack and unrestrained"',
@@ -434,7 +434,7 @@ SWADE.FEATURES = {
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
-  'Concentration':'Section=arcana Note="Dbl power duration"',
+  'Concentration':'Section=arcana Note="Dbl Power duration"',
   'Connections':
     'Section=feature Note="Call in favors from acquaintance or organization"',
   'Counterattack':
@@ -451,7 +451,7 @@ SWADE.FEATURES = {
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
-    'Section=arcana Note="+1 Focus for 1 Power Point, +2 for 3 Power Points"',
+    'Section=skill Note="Spend 1 or 3 Power Points to gain +1 or +2 Focus"',
   'Extraction':
     'Section=combat Note="Negate attack of %V foes when withdrawing"',
   'Fame':
@@ -466,7 +466,7 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="Force foe to oppose Fighting with Smarts instead of Agility"',
   'Fervor':
-    'Section=feature Note="R%{commandRange} yd Extras +1 Fighting damage"',
+    'Section=combat Note="R%{commandRange} yd Extras +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
     'Section=combat Note="Free attack against %V foes when moving into reach"',
@@ -487,9 +487,9 @@ SWADE.FEATURES = {
     'Note="Vigor ignores Wound penalties to avoid bleeding out"',
   'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
-  'Hold The Line!':'Section=feature Note="Commanded extras +1 Toughness"',
+  'Hold The Line!':'Section=combat Note="Commanded extras +1 Toughness"',
   'Holy/Unholy Warrior':
-    'Section=arcana ' +
+    'Section=combat ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
   'Humiliate':'Section=skill Note="Reroll Taunt"',
   'Improved Arcane Resistance':
@@ -516,13 +516,14 @@ SWADE.FEATURES = {
     'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':
     'Section=skill ' +
-    'Note="R%{commandRange} yd Use Battle to give extras +1 on chosen Trait"',
-  'Investigator':'Section=skill Note="+2 Research (sifting for information)"',
+    'Note="R%{commandRange} yd Support extras on any Trait using Battle 1/rd"',
+  'Investigator':
+    'Section=skill Note="+2 Research/+2 Notice (sifting for information)"',
   'Iron Jaw':'Section=attribute Note="+2 Vigor on Soak and vs. knockout"',
   'Iron Will':'Section=attribute Note="+2 vs. Powers"',
   'Jack-Of-All-Trades':
     'Section=skill ' +
-    'Note="Successful Smarts roll gives d4 on chosen skill (d6 with Raise)"',
+    'Note="Successful Smarts roll gives d4 on chosen skill (Raise d6)"',
   'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed Test"',
   'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
   'Linguist':
@@ -530,7 +531,7 @@ SWADE.FEATURES = {
     'Note="+%V Skill Points (d6 in in %{smarts//2} Language skills)"',
   'Liquid Courage':
     'Section=attribute ' +
-    'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts and Agility for 1 hr"',
+    'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts, Agility and associated skills for 1 hr"',
   'Luck':'Section=feature Note="+%V Benny each session"',
   'Marksman':
     'Section=feature ' +
@@ -542,31 +543,36 @@ SWADE.FEATURES = {
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
   'Master (%skill)':'Section=skill Note="Use d10 for Wild Die"',
   'Master Tactician':'Section=combat Note="Increased Tactician effects"',
-  'McGyver':'Section=combat Note="Successful Repair roll creates explosive"',
+  'McGyver':
+    'Section=skill ' +
+    'Note="Successful Repair creates improvised weapon, explosive, or tool"',
   'Menacing':'Section=skill Note="+2 Intimidation"',
-  'Mentalist':'Section=skill Note="+2 Psionics"',
+  'Mentalist':'Section=skill Note="+2 opposed Psionics"',
   'Mighty Blow':
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage on first Fighting attack"',
   'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
-  'Natural Leader':'Section=feature Note="Apply Leadership Edges to Wild Cards"',
+  'Natural Leader':'Section=feature Note="Apply Leadership edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
   'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 Damage on Benny reroll"',
   'Power Points':'Section=arcana Note="+%V Power Points"',
-  'Power Surge':'Section=arcana Note="Recover 10 Power Points when Joker drawn"',
-  'Professional (%attribute)':'Section=attribute Note="+%V %attribute"',
-  'Professional (%skill)':'Section=skill Note="+%V %skill"',
+  'Power Surge':
+    'Section=arcana Note="Recover 10 Power Points when Action Card is a joker"',
+  'Professional (%attribute)':'Section=attribute Note="+%V %attribute step"',
+  'Professional (%skill)':'Section=skill Note="+%V %skill step"',
   'Provoke':
-    'Section=combat Note="Taunted foe -2 to attack target other than self"',
+    'Section=combat ' +
+    'Note="Taunted foe -2 to attack target other than self; joker Action Card ends"',
   'Quick':'Section=combat Note="Redraw Action Card under 6"',
   'Rabble-Rouser':
-    'Section=skill Note="Taunt or Intimidate all within medium blast range"',
+    'Section=skill Note="Taunt or Intimidate all enemies in 4 yd radius"',
   'Rapid Fire':'Section=combat Note="Increase rate of fire by 1 %V/rd"',
   'Rapid Recharge':'Section=arcana Note="Recover %V Power Points/hr"',
-  'Reliable':'Section=combat Note="Reroll Support"',
+  'Reliable':'Section=skill Note="Reroll Support"',
   'Retort':
-    'Section=skill Note="Raise on Intimidation or Taunt test distracts foe"',
+    'Section=skill ' +
+    'Note="Raise on Intimidation or Taunt Test causes foe to be Distracted"',
   'Rich':'Section=feature Note="%Vx starting funds"',
   'Rock And Roll':'Section=combat Note="Trade move for ignoring recoil"',
   'Scavenger':
@@ -579,19 +585,19 @@ SWADE.FEATURES = {
   'Soldier':
     'Section=attribute ' +
     'Note="+1 Strength step (encumbrance)/Reroll Vigor (environmental hazards)"',
-  'Soul Drain':
-    'Section=arcana Note="Suffer level of Fatigue to recover 5 Power Points"',
+  'Soul Drain':'Section=arcana Note="Suffer Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
   'Streetwise':
     'Section=skill ' +
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
-  'Strong Willed':'Section=attribute Note="+2 Smarts and Spirit on Tests"',
+  'Strong Willed':
+    'Section=attribute Note="+2 Smarts and Spirit to resist Tests"',
   'Sweep':'Section=combat Note="%1Attack all within reach"',
   'Tactician':
     'Section=combat ' +
-    'Note="R%{commandRange} Distribute %V extra action cards to extras"',
+    'Note="R%{commandRange} yd Distribute %V extra Action Cards to extras"',
   'Thief':
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
   'Tough As Nails':'Section=combat Note="Take %V wounds before incapacitated"',
@@ -609,13 +615,12 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="No multi-action penalty for firing or throwing weapon from each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
-  'Weapon Master':'Section=combat Note="+%V Parry/d%1 bonus damage"',
-  'Wizard':'Section=arcana Note="Spend 1 Power Point to change power trapping"',
+  'Weapon Master':'Section=combat Note="+%V Parry/+d%1 damage on Raise"',
+  'Wizard':'Section=arcana Note="Spend 1 Power Point to change Power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
-    'Section=skill ' +
-    'Note="+1 step to Support with Persuasion or Performance %V/rd"',
+    'Section=skill Note="+1 Peformance or Persuasion step in Support %V/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -785,7 +790,7 @@ SWADE.FEATURES = {
   'Frail':'Section=combat Note="-1 Toughness"',
   'Hardy':'Section=combat Note="Does not incur Wound from 2nd Shaken result"',
   'Heritage':
-    'Section=description Note="+2 Improvement Points (Attribute or Edge)"',
+    'Section=description Note="+2 Improvement Points (attribute or edge)"',
   'Horns':'Section=combat Note="Horns are Natural Weapon"',
   'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
@@ -1004,7 +1009,7 @@ SWADE.POWERS = {
   'Blast':
     'Advances=4 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts*4} yd Medium blast inflicts 2d6 (Raise 3d6)"',
+    'Description="R%{smarts*4} yd 4 yd radius inflicts 2d6 (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1110,7 +1115,7 @@ SWADE.POWERS = {
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Throws creatures in Medium Blast or Cone 2d6 x 2 yd (Str neg)"',
+    'Description="R%{smarts*2} yd Throws creatures in 4 yd radius or 18 yd cone 2d6 x 2 yd (Str neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1134,7 +1139,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creates Large Blast bright light or darkness for 10 min"',
+      '"R%{smarts*2} yd Creates 6 yd radius bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1195,7 +1200,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*10} yd Creates sound up to shout or R%{smarts*2} yd Mutes Large Blast Template for 5 rd"',
+      '"R%{smarts*10} yd Creates sound up to shout or R%{smarts*2} yd Mutes 6 yd radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1226,7 +1231,7 @@ SWADE.POWERS = {
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="R%{smarts*2} yd Target gains combat Edge effects for 5 rd"',
+    'Description="R%{smarts*2} yd Target gains combat edge effects for 5 rd"',
   'Zombie':
     'Advances=8 ' +
     'PowerPoints=3 ' +
@@ -1784,7 +1789,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
  */
 SWADE.arcanaRules = function(rules, name, skill) {
   var compactSkill = skill.replaceAll(' ', '');
-  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '=', null);
+  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '^=', null);
   rules.defineRule('arcaneSkill' + compactSkill,
     'features.Arcane Background (' + name + ')', '?', null,
     'skills.' + skill, '=', null
