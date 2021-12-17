@@ -367,7 +367,7 @@ SWADE.FEATURES = {
     'Section=skill Note="Reroll Athletics (balance, tumble, or grapple)"',
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
-    'Section=combat Note="No off-hand penalty, Parry bonuses stack"',
+    'Section=combat Note="No off-hand penalty, weapon Parry bonuses stack"',
   'Arcane Background (Gifted)':
     'Section=arcana Note="Power Count 1/Power Points 15"',
   'Arcane Background (Magic)':
@@ -396,7 +396,7 @@ SWADE.FEATURES = {
     'Note="Has animal companion, other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)"',
+    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and critical failure hits randomly for up to 10 rd (Sma neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
@@ -411,7 +411,9 @@ SWADE.FEATURES = {
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
   'Brute':
     'Section=combat,skill ' +
-    'Note="+1/+2/+4 thrown weapon range","Use Strength for Athletics"',
+    'Note=' +
+      '"+1/+2/+4 thrown weapon range",' +
+      '"Advance Athletics relative to Strength/Use Strength with Athletics Tests"',
   'Calculating':
     'Section=combat ' +
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
@@ -424,7 +426,8 @@ SWADE.FEATURES = {
   'Combat Acrobat':
     'Section=combat ' +
     'Note="Foes -1 attack when self aware of attack and unrestrained"',
-  'Combat Reflexes':'Section=combat Note="+2 on recovery rolls"',
+  'Combat Reflexes':
+    'Section=combat Note="+2 on Shaken and Stunned recovery rolls"',
   'Command':
     'Section=feature ' +
     'Note="R%{commandRange} yd Extras +1 to recover from Shaken or Stunned"',
@@ -444,7 +447,7 @@ SWADE.FEATURES = {
     'Note="Joker Action Card gives dbl damage from first throwing or shooting"',
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
-  'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
+  'Elan':'Section=feature Note="+2 on Benny-purchased Trait rerolls"',
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
@@ -461,12 +464,12 @@ SWADE.FEATURES = {
     'Section=combat Note="+2 Vigor (natural healing), check every 3 dy"',
   'Feint':
     'Section=skill ' +
-    'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
+    'Note="Force foe to oppose Fighting with Smarts instead of Agility"',
   'Fervor':
     'Section=feature Note="R%{commandRange} yd Extras +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
-    'Section=combat Note="Free attack against %V foes moving into reach"',
+    'Section=combat Note="Free attack against %V foes when moving into reach"',
   'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
   'Followers':'Section=feature Note="Gain 5 Soldier followers"',
   'Free Runner':
@@ -494,7 +497,7 @@ SWADE.FEATURES = {
   'Improved Block':'Section=combat Note="Increased Block effects"',
   'Improved Counterattack':
     'Section=combat Note="Increased Counterattack effects"',
-  'Improved Dodge':'Section=combat Note="+2 Evading area attacks"',
+  'Improved Dodge':'Section=combat Note="+2 evading area attacks"',
   'Improved Extraction':'Section=combat Note="Increased Extraction effects"',
   'Improved First Strike':
     'Section=combat Note="Increased First Strike effects"',
@@ -513,24 +516,25 @@ SWADE.FEATURES = {
     'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':
     'Section=skill ' +
-    'Note="R%{commandRange} yd Use Battle to give extras +1 on chosen trait"',
+    'Note="R%{commandRange} yd Use Battle to give extras +1 on chosen Trait"',
   'Investigator':'Section=skill Note="+2 Research (sifting for information)"',
-  'Iron Jaw':'Section=combat Note="+2 soak/+2 vs. knockout"',
+  'Iron Jaw':'Section=attribute Note="+2 Vigor on Soak and vs. knockout"',
   'Iron Will':'Section=attribute Note="+2 vs. Powers"',
   'Jack-Of-All-Trades':
     'Section=skill ' +
     'Note="Successful Smarts roll gives d4 on chosen skill (d6 with Raise)"',
   'Killer Instinct':'Section=skill Note="Reroll self-initiated opposed Test"',
   'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
-  // TODO how to implement this?
-  'Linguist':'Section=feature Note="d6 in %{smarts//2} Language skills"',
+  'Linguist':
+    'Section=skill ' +
+    'Note="+%V Skill Points (d6 in in %{smarts//2} Language skills)"',
   'Liquid Courage':
     'Section=attribute ' +
     'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts and Agility for 1 hr"',
   'Luck':'Section=feature Note="+%V Benny each session"',
   'Marksman':
     'Section=feature ' +
-    'Note="Trade move for +1 Athletics (Throwing), +1 Shooting, or -2 attack penalties"',
+    'Note="Trade move for +1 Athletics (throwing), +1 Shooting, or -2 attack penalties"',
   'Martial Artist':
     'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage step"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
@@ -584,7 +588,7 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':'Section=attribute Note="+2 Smarts and Spirit on Tests"',
-  'Sweep':'Section=combat Note="Attack on all within reach at -%1 attack"',
+  'Sweep':'Section=combat Note="%1Attack all within reach"',
   'Tactician':
     'Section=combat ' +
     'Note="R%{commandRange} Distribute %V extra action cards to extras"',
@@ -594,10 +598,10 @@ SWADE.FEATURES = {
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%melee)':
     'Section=combat ' +
-    'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %melee"',
+    'Note="+%V Athletics (throwing), Fighting, Shooting and Parry with %melee"',
   'Trademark Weapon (%ranged)':
     'Section=combat ' +
-    'Note="+%V Athletics (Throwing), Fighting, Shooting and Parry with %ranged"',
+    'Note="+%V Athletics (throwing), Fighting, Shooting and Parry with %ranged"',
   'Two-Fisted':
     'Section=combat ' +
     'Note="No multi-attack penalty for Fighting attack with each hand"',
@@ -1328,7 +1332,7 @@ SWADE.WEAPONS = {
     'Damage=0 MinStr=0 Weight=0 Category=Un',
   'Hand Axe':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
   'Battle Axe':'Era=Medieval Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
-  'Great Axe':'Era=Medieval Damage=d10 MinStr=10 Weight=7 Category=2h',
+  'Great Axe':'Era=Medieval Damage=d10 MinStr=10 Weight=7 Category=2h Parry=-1',
   'Light Club':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
   'Heavy Club':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=5 Category=1h',
   'Dagger':
@@ -1344,17 +1348,19 @@ SWADE.WEAPONS = {
   'Mace':'Era=Medieval Damage=d6 MinStr=6 Weight=4 Category=1h',
   'Maul':'Era=Medieval Damage=d10 MinStr=10 Weight=10 Category=2h',
   'Pike':'Era=Medieval Damage=d8 MinStr=8 Weight=18 Category=2h',
-  'Rapier':'Era=Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
+  'Rapier':'Era=Medieval Damage=d4 MinStr=4 Weight=2 Category=1h Parry=1',
   'Spear':
-    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=2h Range=3',
-  'Staff':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=4 Category=2h',
+    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=2h Range=3 Parry=1',
+  'Staff':
+    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Great Sword':
     'Era=Medieval,Colonial Damage=d10 MinStr=10 Weight=6 Category=2h',
   'Long Sword':'Era=Medieval,Colonial Damage=d8 MinStr=8 Weight=3 Category=1h',
   'Short Sword':'Era=Medieval,Colonial Damage=d6 MinStr=6 Weight=2 Category=1h',
   'Warhammer':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
   'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
-  'Bayonet':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+  'Bayonet':
+    'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h Parry=1',
   'Billy Club':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
   'Baton':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
   'Brass Knuckles':
@@ -1511,7 +1517,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   QuilvynUtils.checkAttrTable
     (shields, ['Era', 'Parry', 'Cover', 'MinStr', 'Weight']);
   QuilvynUtils.checkAttrTable
-    (weapons, ['Era', 'Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF']);
+    (weapons, ['Era', 'Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF', 'Parry']);
 
   for(var armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
@@ -1537,8 +1543,10 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
   }
 
+  rules.defineChoice('notes', 'combatNotes.fightingParryModifier:+%V Parry');
   rules.defineRule('combatNotes.fightingParryModifier',
-    'skillModifier.Fighting', '=', 'source / 2'
+    'skills.Fighting', '=', 'Math.floor(source / 2)',
+    'skillModifier.Fighting', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule
     ('combatNotes.vigorToughnessModifier', 'vigor', '=', 'source / 2');
@@ -1756,7 +1764,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'AP'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'ROF')
+      QuilvynUtils.getAttrValue(attrs, 'ROF'),
+      QuilvynUtils.getAttrValue(attrs, 'Parry')
     );
   else {
     console.log('Unknown choice type "' + type + '"');
@@ -1922,6 +1931,16 @@ SWADE.edgeRulesExtra = function(rules, name) {
     rules.defineRule('weapons.Unarmed.2',
       'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
+  } else if(name == 'Brute') {
+    rules.defineRule('bruteAthleticsStepModifier',
+      'skillNotes.brute', '?', null,
+      'strengthStep', '=', null,
+      'agilityStep', '+', '-source',
+      '', '^', '0'
+    );
+    rules.defineRule('skillStepPastAttribute.Athletics',
+      'bruteAthleticsStepModifier', '+', '-source'
+    );
   } else if(name == 'Command') {
     rules.defineRule('commandRange',
       'features.Command', '=', '10',
@@ -1961,6 +1980,10 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '2',
       'combatNotes.improvedLevelHeaded', '+', '1'
     );
+  } else if(name == 'Linguist') {
+    rules.defineRule
+      ('skillNotes.linguist', 'smarts', '=', 'Math.floor(source/2) * 2');
+    rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
   } else if(name == 'Luck') {
     rules.defineRule('featureNotes.luck',
       '', '=', '1',
@@ -2020,8 +2043,8 @@ SWADE.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Sweep') {
     rules.defineRule('combatNotes.sweep.1',
-      'features.Sweep', '=', '2',
-      'combatNotes.improvedSweep', 'v', '0'
+      'features.Sweep', '=', '"-2 "',
+      'combatNotes.improvedSweep', '=', '""'
     );
   } else if(name == 'Tactician') {
     rules.defineRule('combatNotes.tactician',
@@ -2279,15 +2302,15 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
 
   SWADE.weaponRules(
     rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
-    'Un', null, null, null
+    'Un', null, null, null, null
   );
   SWADE.weaponRules(
     rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
-    'Un', null, null, null
+    'Un', null, null, null, null
   );
   SWADE.weaponRules(
     rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
-    'Un', null, null, null
+    'Un', null, null, null, null
   );
   rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
   rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
@@ -2392,12 +2415,11 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
   }
   rules.defineRule('skillStepPastAttribute.' + name,
     'skillAllocation.' + name, '+=', null,
-    attribute + 'Step', '+', '-source',
-    '', '^', '0'
+    attribute + 'Step', '+', '-source'
   );
   rules.defineRule('skillStep.' + name,
     'skillAllocation.' + name, '+=', null,
-    'skillStepPastAttribute.' + name, '+', '-Math.ceil(source / 2)'
+    'skillStepPastAttribute.' + name, '+', 'source>0 ? -Math.ceil(source / 2) : null'
   );
   rules.defineRule('skills.' + name,
     'skillStep.' + name, '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
@@ -2419,11 +2441,12 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
  * effectively, and weighs #weight#. The weapon does #damage# HP on a
  * successful attack. If specified, the weapon bypasses #armorPiercing# points
  * of armor. Also if specified, the weapon can be used as a ranged weapon with
- * a range increment of #range# feet, firing #rateOfFire# per round.
+ * a range increment of #range# feet, firing #rateOfFire# per round. Parry, if
+ * specified, indicates the parry bonus from wielding the weapon.
  */
 SWADE.weaponRules = function(
   rules, name, eras, damage, minStr, weight, category, armorPiercing, range,
-  rateOfFire
+  rateOfFire, parry
 ) {
 
   if(!name) {
@@ -2498,10 +2521,13 @@ SWADE.weaponRules = function(
     );
     rules.defineRule(weaponName + '.5', 'range.' + name, '=', null);
   }
-  if(isRanged)
-    rules.defineChoice('rangeds', name + ':');
-  else
-    rules.defineChoice('melees', name + ':');
+  if(parry) {
+    var note = 'combatNotes.' + prefix + 'ParryModifier';
+    rules.defineChoice
+      ('notes', note+':' + QuilvynUtils.signed(parry) + ' Parry when wielded');
+    rules.defineRule(note, 'weapons.' + name, '=', '1');
+  }
+  rules.defineChoice(isRanged ? 'rangeds' : 'melees', name + ':');
 
 };
 

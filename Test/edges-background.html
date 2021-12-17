@@ -17,7 +17,8 @@ var attributes = {
   "hindrances.Ugly+":1, "improvementPointsAllocation.Attribute":6, 
   "improvementPointsAllocation.Edge":16, "name":"Edges-Background", "race":"Avion", "shield":"Ballistic Shield", 
   "skillAllocation.Academics":1, "skillAllocation.Athletics":1, "skillAllocation.Battle":1, 
-  "skillAllocation.Healing":1, "skillAllocation.Language (Avion)":1, "skillAllocation.Occult":3, 
+  "skillAllocation.Healing":1, "skillAllocation.Language (Avion)":1, "skillAllocation.Language (Dwarf)":2, 
+  "skillAllocation.Language (Elf)":2, "skillAllocation.Language (Half-Folk)":2, "skillAllocation.Occult":3, 
   "skillAllocation.Research":1, "skillAllocation.Science":2, "skillAllocation.Survival":1, 
   "smartsAllocation":1, "spiritAllocation":2, "strengthAllocation":1, "vigorAllocation":2, 
   "weapons.Gatling Gun":1, "weapons.H&K MP5":1, "weapons.Long Bow":1
@@ -57,7 +58,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (12 Points):</td>
+    <td><b>Skills</b> (18 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -65,23 +66,27 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Academics: (sma) d4</td>
-      <td>Language (Avion): (sma) d10</td>
-      <td>Science: (sma) d6</td>
+      <td>Language (Dwarf): (sma) d6</td>
+      <td>Research: (sma) d4</td>
     </tr><tr style="text-align:left">
       <td>Athletics: (agi) d6</td>
-      <td>Notice: (sma) d6+2</td>
-      <td>Stealth: (agi) d4</td>
+      <td>Language (Elf): (sma) d6</td>
+      <td>Science: (sma) d6</td>
     </tr><tr style="text-align:left">
       <td>Battle: (sma) d4</td>
-      <td>Occult: (sma) d6</td>
-      <td>Survival: (sma) d4</td>
+      <td>Language (Half-Folk): (sma) d6</td>
+      <td>Stealth: (agi) d4</td>
     </tr><tr style="text-align:left">
       <td>Common Knowledge: (sma) d4</td>
-      <td>Persuasion: (spi) d4-3</td>
-      <td></td>
+      <td>Notice: (sma) d6+2</td>
+      <td>Survival: (sma) d4</td>
     </tr><tr style="text-align:left">
       <td>Healing: (sma) d4</td>
-      <td>Research: (sma) d4</td>
+      <td>Occult: (sma) d6</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Language (Avion): (sma) d10</td>
+      <td>Persuasion: (spi) d4-3</td>
       <td></td>
     </tr></table>
 </td>
@@ -90,7 +95,11 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Alertness: +2 Notice</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Brute: Advance Athletics relative to Strength/Use Strength with Athletics Tests</i></td>
+    </tr><tr style="text-align:center">
       <td><i>Keen Senses (Avion): +1 Notice step</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Linguist: +6 Skill Points (d6 in in 3 Language skills)</i></td>
     </tr><tr style="text-align:center">
       <td><i>Mean: -1 Persuasion</i></td>
     </tr><tr style="text-align:center">
@@ -101,8 +110,6 @@ var attributes = {
       <td>Aristocrat: +2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)</td>
     </tr><tr style="text-align:center">
       <td>Attractive: +2 Performance (attracted target)/+2 Persuasion (attracted target)</td>
-    </tr><tr style="text-align:center">
-      <td>Brute: Use Strength for Athletics</td>
     </tr><tr style="text-align:center">
       <td>Can't Swim: -2 Athletics (swimming)</td>
     </tr><tr style="text-align:center">
@@ -152,11 +159,9 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Cautious: Requires detailed plan before acting</td>
     </tr><tr style="text-align:center">
-      <td>Elan: +2 on Benny-purchased trait rerolls</td>
+      <td>Elan: +2 on Benny-purchased Trait rerolls</td>
     </tr><tr style="text-align:center">
       <td>Fame: 5x fee from performing</td>
-    </tr><tr style="text-align:center">
-      <td>Linguist: d6 in 3 Language skills</td>
     </tr><tr style="text-align:center">
       <td>Luck: +2 Benny each session</td>
     </tr><tr style="text-align:center">
@@ -201,9 +206,9 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +4</i></td>
       </tr><tr style="text-align:center">
-        <td>Ambidextrous: No off-hand penalty, Parry bonuses stack</td>
+        <td>Ambidextrous: No off-hand penalty, weapon Parry bonuses stack</td>
       </tr><tr style="text-align:center">
-        <td>Berserk: Injury gives +1 Strength step, wild attacks, +2 Toughness, and critical failure hits randomly for 10 rd (Sma neg)</td>
+        <td>Berserk: Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and critical failure hits randomly for up to 10 rd (Sma neg)</td>
       </tr><tr style="text-align:center">
         <td>Brute: +1/+2/+4 thrown weapon range</td>
       </tr><tr style="text-align:center">
