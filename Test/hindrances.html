@@ -23,20 +23,20 @@ var attributes = {
   "hindrances.Obligation+":1, "hindrances.One Arm+":1, "hindrances.One Eye+":1, "hindrances.Outsider":1, 
   "hindrances.Outsider+":1, "hindrances.Overconfident+":1, "hindrances.Pacifist":1, 
   "hindrances.Pacifist+":1, "hindrances.Phobia":1, "hindrances.Phobia+":1, "hindrances.Poverty":1, 
-  "hindrances.Quirk":1, "hindrances.Secret":1, "hindrances.Secret+":1, "hindrances.Shamed":1, 
-  "hindrances.Shamed+":1, "hindrances.Slow":1, "hindrances.Slow+":1, "hindrances.Small":1, 
-  "hindrances.Stubborn":1, "hindrances.Suspicious":1, "hindrances.Suspicious+":1, 
-  "hindrances.Thin Skinned":1, "hindrances.Thin Skinned+":1, "hindrances.Tongue-Tied+":1, 
-  "hindrances.Ugly":1, "hindrances.Ugly+":1, "hindrances.Vengeful":1, "hindrances.Vengeful+":1, 
-  "hindrances.Vow":1, "hindrances.Vow+":1, "hindrances.Wanted":1, "hindrances.Wanted+":1, 
-  "hindrances.Yellow+":1, "hindrances.Young":1, "hindrances.Young+":1, 
+  "hindrances.Quirk":1, "hindrances.Ruthless":1, "hindrances.Ruthless+":1, "hindrances.Secret":1, 
+  "hindrances.Secret+":1, "hindrances.Shamed":1, "hindrances.Shamed+":1, "hindrances.Slow":1, 
+  "hindrances.Slow+":1, "hindrances.Small":1, "hindrances.Stubborn":1, "hindrances.Suspicious":1, 
+  "hindrances.Suspicious+":1, "hindrances.Thin Skinned":1, "hindrances.Thin Skinned+":1, 
+  "hindrances.Tongue-Tied+":1, "hindrances.Ugly":1, "hindrances.Ugly+":1, "hindrances.Vengeful":1, 
+  "hindrances.Vengeful+":1, "hindrances.Vow":1, "hindrances.Vow+":1, "hindrances.Wanted":1, 
+  "hindrances.Wanted+":1, "hindrances.Yellow+":1, "hindrances.Young":1, "hindrances.Young+":1, 
   "improvementPointsAllocation.Attribute":2, "improvementPointsAllocation.Skill":6, "name":"Hindrances", "race":"Avion", 
   "shield":"Small", "skillAllocation.Academics":2, "skillAllocation.Athletics":3, 
   "skillAllocation.Faith":2, "skillAllocation.Fighting":1, "skillAllocation.Language (Avion)":1, 
   "skillAllocation.Performance":1, "skillAllocation.Piloting":1, "skillAllocation.Psionics":1, 
-  "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":1, "smartsAllocation":0, 
-  "spiritAllocation":1, "strengthAllocation":0, "vigorAllocation":1, "weapons.Billy Club":1, 
-  "weapons.Colt Peacemaker":1, "weapons.Uzi":1
+  "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":1, "skillAllocation.Survival":5, 
+  "smartsAllocation":0, "spiritAllocation":1, "strengthAllocation":0, "vigorAllocation":1, 
+  "weapons.Billy Club":1, "weapons.Colt Peacemaker":1, "weapons.Uzi":1
 };
   </script>
 </head>
@@ -63,9 +63,25 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Attribute Notes</b>: <i>Elderly+: -1 Agility/-1 Strength/-1 Vigor</i></td>
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Elderly+: -1 Agility/-1 Strength/-1 Vigor</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Young+: -2 Attribute Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Young: -1 Attribute Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Anemic: -2 Vigor (resist disease)</td>
+    </tr><tr style="text-align:center">
+      <td>Brave: +2 Spirit vs. fear, -2 fear table roll</td>
+    </tr><tr style="text-align:center">
+      <td>Obese: -1 Strength step (worn gear)</td>
+    </tr><tr style="text-align:center">
+      <td>Yellow+: -2 Spirit vs. fear and Intimidation</td>
+    </tr></table>
+</td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (14 Points):</td>
+    <td><b>Skills</b> (19 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -90,7 +106,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Fighting: (agi) d4</td>
       <td>Piloting: (agi) d4</td>
-      <td></td>
+      <td>Survival: (sma) d8</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -102,7 +118,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Elderly+: +5 Skill Points</i></td>
     </tr><tr style="text-align:center">
-      <td><i>Keen Senses: +1 Notice die</i></td>
+      <td><i>Keen Senses (Avion): +1 Notice step</i></td>
     </tr><tr style="text-align:center">
       <td><i>Mean: -1 Persuasion</i></td>
     </tr><tr style="text-align:center">
@@ -113,6 +129,10 @@ var attributes = {
       <td><i>Ugly+: -2 Persuasion</i></td>
     </tr><tr style="text-align:center">
       <td><i>Ugly: -1 Persuasion</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Young+: -2 Skill Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Young: -2 Skill Points</i></td>
     </tr><tr style="text-align:center">
       <td>All Thumbs: -2 using mechanical and electrical devices, critical failure breaks device</td>
     </tr><tr style="text-align:center">
@@ -141,8 +161,6 @@ var attributes = {
       <td>Thin Skinned: -2 vs. Taunt</td>
     </tr><tr style="text-align:center">
       <td>Tongue-Tied+: -1 Intimidation (speech)/-1 Performance (speech)/-1 Persuasion (speech)/-1 Taunt (speech)</td>
-    </tr><tr style="text-align:center">
-      <td>Yellow+: -2 vs. Intimidation</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -175,18 +193,14 @@ var attributes = {
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
       <td><b>Edges</b> (2 points): Brave; Elan</td>
-      <td><b>Hindrances</b>: All Thumbs; Anemic; Arrogant+; Bad Eyes+; Bad Eyes; Bad Luck+; Big Mouth; Blind+; Bloodthirsty+; Can't Swim; Cautious; Clueless+; Clumsy+; Code Of Honor+; Curious+; Death Wish; Delusional+; Delusional; Doubting Thomas; Driven+; Driven; Elderly+; Enemy+; Enemy; Greedy+; Greedy; Habit+; Habit; Hard Of Hearing+; Hard Of Hearing; Heroic+; Hesitant; Illiterate; Impulsive+; Jealous+; Jealous; Loyal; Mean; Mild Mannered; Mute+; Obese; Obligation+; Obligation; One Arm+; One Eye+; Outsider+; Outsider; Overconfident+; Pacifist+; Pacifist; Phobia+; Phobia; Poverty; Quirk; Secret+; Secret; Shamed+; Shamed; Slow+; Slow; Small; Stubborn; Suspicious+; Suspicious; Thin Skinned+; Thin Skinned; Tongue-Tied+; Ugly+; Ugly; Vengeful+; Vengeful; Vow+; Vow; Wanted+; Wanted; Yellow+; Young+; Young</td>
-      <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses; Reduced Pace</td>
+      <td><b>Hindrances</b>: All Thumbs; Anemic; Arrogant+; Bad Eyes+; Bad Eyes; Bad Luck+; Big Mouth; Blind+; Bloodthirsty+; Can't Swim; Cautious; Clueless+; Clumsy+; Code Of Honor+; Curious+; Death Wish; Delusional+; Delusional; Doubting Thomas; Driven+; Driven; Elderly+; Enemy+; Enemy; Greedy+; Greedy; Habit+; Habit; Hard Of Hearing+; Hard Of Hearing; Heroic+; Hesitant; Illiterate; Impulsive+; Jealous+; Jealous; Loyal; Mean; Mild Mannered; Mute+; Obese; Obligation+; Obligation; One Arm+; One Eye+; Outsider+; Outsider; Overconfident+; Pacifist+; Pacifist; Phobia+; Phobia; Poverty; Quirk; Ruthless+; Ruthless; Secret+; Secret; Shamed+; Shamed; Slow+; Slow; Small; Stubborn; Suspicious+; Suspicious; Thin Skinned+; Thin Skinned; Tongue-Tied+; Ugly+; Ugly; Vengeful+; Vengeful; Vow+; Vow; Wanted+; Wanted; Yellow+; Young+; Young</td>
+      <td><b>Avion Features</b>: Can't Swim; Flight; Frail; Keen Senses (Avion); Reduced Pace</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
     <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
     <tr style="text-align:center">
       <td><i>Blind+: +1 Edge Points</i></td>
-    </tr><tr style="text-align:center">
-      <td><i>Young+: -2 Skill Points/-2 Attribute Points/+2 Benny each session</i></td>
-    </tr><tr style="text-align:center">
-      <td><i>Young: -2 Skill Points/-1 Attribute Points/+1 Benny each session</i></td>
     </tr><tr style="text-align:center">
       <td>Bad Luck+: -1 Benny each session</td>
     </tr><tr style="text-align:center">
@@ -198,31 +212,31 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Curious+: Insists on investigating every mystery and secret</td>
     </tr><tr style="text-align:center">
-      <td>Death Wish: Will risk death for useful goal</td>
+      <td>Death Wish: Will risk death for valued goal</td>
     </tr><tr style="text-align:center">
       <td>Delusional+: Frequently acts on conspiracy belief</td>
     </tr><tr style="text-align:center">
       <td>Delusional: Has harmless conspiracy belief</td>
     </tr><tr style="text-align:center">
-      <td>Doubting Thomas: Overly skeptical of supernatural reality</td>
+      <td>Doubting Thomas: Insists on rationalizing supernatural events</td>
     </tr><tr style="text-align:center">
-      <td>Driven+: Has overwhelming desire to fulfill personal goal</td>
+      <td>Driven+: Has overwhelming need to fulfill personal goal</td>
     </tr><tr style="text-align:center">
-      <td>Driven: Actions shaped by personal goal</td>
+      <td>Driven: Decisions shaped by personal goal</td>
     </tr><tr style="text-align:center">
       <td>Elan: +2 on Benny-purchased trait rerolls</td>
     </tr><tr style="text-align:center">
-      <td>Enemy+: Powerful individual or group wants character dead</td>
+      <td>Enemy+: Powerful individual or group wants character eliminated</td>
     </tr><tr style="text-align:center">
-      <td>Enemy: Individual wants character dead</td>
+      <td>Enemy: Individual wants character eliminated</td>
     </tr><tr style="text-align:center">
-      <td>Greedy+: Adamant about getting more than a fair share</td>
+      <td>Greedy+: Violently insists on getting more than a fair share</td>
     </tr><tr style="text-align:center">
-      <td>Greedy: Stingy and materialistic</td>
+      <td>Greedy: Demands more than a fair share</td>
     </tr><tr style="text-align:center">
       <td>Habit+: Has dangerous physical or mental addiction</td>
     </tr><tr style="text-align:center">
-      <td>Habit: Has harmless but irritating compulsion</td>
+      <td>Habit: Has irritating but harmless compulsion</td>
     </tr><tr style="text-align:center">
       <td>Heroic+: Always tries to help others</td>
     </tr><tr style="text-align:center">
@@ -230,7 +244,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Impulsive+: Always acts without thinking</td>
     </tr><tr style="text-align:center">
-      <td>Jealous+: Always envious about others' accomplishments</td>
+      <td>Jealous+: Regularly envious of others' accomplishments and possessions</td>
     </tr><tr style="text-align:center">
       <td>Jealous: Has focused envy about one topic or person</td>
     </tr><tr style="text-align:center">
@@ -240,19 +254,19 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Mute+: Cannot speak</td>
     </tr><tr style="text-align:center">
-      <td>Obligation+: Has regular responsibility that occupies 40 hr/wk</td>
+      <td>Obligation+: Has regular responsibility that occupies 40+ hr/wk</td>
     </tr><tr style="text-align:center">
       <td>Obligation: Has regular responsibility that occupies 20 hr/wk</td>
     </tr><tr style="text-align:center">
-      <td>One Eye+: -2 visual tasks 10 yards distant</td>
+      <td>One Eye+: -2 visual tasks 10 yd distant</td>
     </tr><tr style="text-align:center">
       <td>Outsider+: Has no legal rights</td>
     </tr><tr style="text-align:center">
       <td>Overconfident+: Has excessive opinion of own capabilities</td>
     </tr><tr style="text-align:center">
-      <td>Phobia+: -2 in presence of fear target</td>
+      <td>Phobia+: -2 in presence of phobia subject</td>
     </tr><tr style="text-align:center">
-      <td>Phobia: -1 in presence of fear target</td>
+      <td>Phobia: -1 in presence of phobia subject</td>
     </tr><tr style="text-align:center">
       <td>Poverty: Starts with half funds, loses half funds each wk</td>
     </tr><tr style="text-align:center">
@@ -270,19 +284,23 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Suspicious+: Allies -2 on Support rolls</td>
     </tr><tr style="text-align:center">
-      <td>Suspicious: Has frequent trust issues</td>
+      <td>Suspicious: Trusts no one</td>
     </tr><tr style="text-align:center">
-      <td>Vengeful+: Places primary concern on revenge</td>
+      <td>Vengeful+: Places primary focus on revenge</td>
     </tr><tr style="text-align:center">
       <td>Vengeful: Spends time plotting revenge</td>
     </tr><tr style="text-align:center">
-      <td>Vow+: Has tight restrictions on behavior and actions</td>
+      <td>Vow+: Has tight restrictions on behavior and decisions</td>
     </tr><tr style="text-align:center">
-      <td>Vow: Has broad restrictions on behavior and actions</td>
+      <td>Vow: Has broad restrictions on behavior and decisions</td>
     </tr><tr style="text-align:center">
       <td>Wanted+: Has significant trouble with local law enforcement</td>
     </tr><tr style="text-align:center">
       <td>Wanted: Has trouble with distant law or minor infractions</td>
+    </tr><tr style="text-align:center">
+      <td>Young+: +2 Benny each session</td>
+    </tr><tr style="text-align:center">
+      <td>Young: +1 Benny each session</td>
     </tr></table>
 </td>
   </tr></table>
@@ -294,10 +312,10 @@ var attributes = {
     <tr style="text-align:center">
       <td>      <table id="CombatStats" style="width:100%">
       <tr style="text-align:center">
-        <td><b>Toughness</b>: 5 (2)</td>
+        <td><b>Toughness</b>: 6 (2)</td>
         <td><b>Parry</b>: 3 (1)</td>
         <td><b>Cover</b>: 0</td>
-        <td><b>Pace/Run</b>: 1/+d4-2</td>
+        <td><b>Pace/Run</b>: 0/+d4-4</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -311,27 +329,27 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
       <tr style="text-align:center">
+        <td><i>Elderly+: -1 Pace/-1 Run</i></td>
+      </tr><tr style="text-align:center">
         <td><i>Frail: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Obese: -1 Pace/-1 Run die</i></td>
+        <td><i>Obese: -1 Pace/-1 Run step/+1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Reduced Pace: -1 Pace/-1 Run die</i></td>
+        <td><i>Reduced Pace: -1 Pace/-1 Run step</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Slow+: -2 Pace</i></td>
+        <td><i>Slow+: -2 Pace/-1 Run step</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Slow: -1 Pace/-1 Run die</i></td>
+        <td><i>Slow: -1 Pace/-1 Run step</i></td>
       </tr><tr style="text-align:center">
         <td><i>Small: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +3</i></td>
       </tr><tr style="text-align:center">
-        <td>Arrogant+: Always takes on biggest threat</td>
+        <td>Arrogant+: Always takes on the biggest threat</td>
       </tr><tr style="text-align:center">
         <td>Bloodthirsty+: Cruel to foes</td>
       </tr><tr style="text-align:center">
-        <td>Can't Swim: Swim Pace 0</td>
-      </tr><tr style="text-align:center">
-        <td>Elderly+: Pace -1</td>
+        <td>Can't Swim: Move 1/3 speed through water</td>
       </tr><tr style="text-align:center">
         <td>Flight: Fly Pace 12</td>
       </tr><tr style="text-align:center">
@@ -340,20 +358,10 @@ var attributes = {
         <td>Pacifist+: Will not fight living creatures, uses nonlethal methods only in defense</td>
       </tr><tr style="text-align:center">
         <td>Pacifist: Will harm others only when no other option available</td>
-      </tr></table>
-</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
-    <td>    <table id="SavePart" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Save Notes</b>:       <table id="SaveNotes" style="width:100%">
-      <tr style="text-align:center">
-        <td>Anemic: -2 Vigor (resist disease)</td>
       </tr><tr style="text-align:center">
-        <td>Brave: +2 fear checks, -2 fear table roll</td>
+        <td>Ruthless+: Attacks any who impede personal goal</td>
       </tr><tr style="text-align:center">
-        <td>Yellow+: -2 vs. Fear</td>
+        <td>Ruthless: Attacks those opposing personal goal</td>
       </tr></table>
 </td>
     </tr></table>
