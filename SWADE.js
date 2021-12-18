@@ -1619,7 +1619,7 @@ SWADE.talentRules = function(
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
   QuilvynUtils.checkAttrTable
     (goodies, ['Pattern', 'Effect', 'Value', 'Attribute', 'Section', 'Note']);
-  QuilvynUtils.checkAttrTable(hindrances, ['Severity']);
+  QuilvynUtils.checkAttrTable(hindrances, ['Require', 'Severity']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Era', 'Attribute', 'Core']);
 
@@ -1728,6 +1728,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Hindrance') {
     SWADE.hindranceRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValue(attrs, 'Severity')
     );
     SWADE.hindranceRulesExtra(rules, name);
@@ -2197,18 +2198,28 @@ SWADE.goodyRules = function(
 };
 
 /*
- * Defines in #rules#A the rules associated with hindrance #name#, which has
- * level #severity# (Major or Minor).
+ * Defines in #rules# the rules associated with hindrance #name#, which has
+ * the list of hard prerequisites #requires# and level #severity# (Major or
+ * Minor).
  */
-SWADE.hindranceRules = function(rules, name, severity) {
+SWADE.hindranceRules = function(rules, name, requires, severity) {
   if(!name) {
     console.log('Empty hindrance name');
+    return;
+  }
+  if(!Array.isArray(requires)) {
+    console.log('Bad requires "' + requires + '" for hindrance ' + name);
     return;
   }
   if(severity != 'Minor' && severity != 'Major') {
     console.log('Bad severity "' + severity + '" for hindrance ' + name);
     return;
   }
+  var prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+  if(requires.length > 0)
+    QuilvynRules.prerequisiteRules
+      (rules, 'validation', prefix + 'Hindrance', 'advances', requires);
   rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
   rules.defineRule('hindrancePoints',
     'hindrances.' + name, '+=', severity=='Major' ? '2' : '1',
