@@ -480,7 +480,7 @@ SWADE.FEATURES = {
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':
     'Section=arcana Note="Jury rig arcane device from available parts"',
-  'Giant Killer':'Section=combat Note="+1d6 damage vs. foes 3 sizes larger"',
+  'Giant Killer':'Section=combat Note="+1d6 damage vs. foes of Size %{size+3}"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
     'Section=attribute ' +
@@ -1871,6 +1871,9 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
     QuilvynRules.prerequisiteRules
       (rules, 'sanity', prefix + 'Edge', 'edges.' + name, implies);
   rules.defineRule('features.' + name, 'edges.' + name, '=', null);
+  for(var i = 0; i < types.length; i++) {
+    rules.defineRule(types[i] + 'EdgeCount', 'features.' + name, '+=', '1');
+  }
 
 };
 
