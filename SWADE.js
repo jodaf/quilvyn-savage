@@ -56,7 +56,7 @@ function SWADE() {
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
-  SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS);
+  SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS, SWADE.DEITIES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
      SWADE.LANGUAGES, SWADE.SKILLS);
@@ -69,7 +69,7 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power',
+  'Arcana', 'Armor', 'Deity', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power',
   'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
@@ -78,7 +78,7 @@ SWADE.CHOICES = [
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
-  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'powers'
+  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'deity', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -139,6 +139,8 @@ SWADE.ARMORS = {
   'Infantry Battle Suit':'Era=Future Area=Torso Armor=6 MinStr=6 Weight=12',
   'Battle Helmet':'Era=Future Area=Head Armor=6 MinStr=6 Weight=2'
 
+};
+SWADE.DEITIES = {
 };
 SWADE.EDGES = {
   // Background
@@ -1580,11 +1582,15 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADE.identityRules = function(rules, races, eras) {
+SWADE.identityRules = function(rules, races, eras, deitys) {
 
+  QuilvynUtils.checkAttrTable(deitys, []);
   QuilvynUtils.checkAttrTable(eras, []);
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
+  for(var deity in deitys) {
+    rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
+  }
   for(var era in eras) {
     rules.choiceRules(rules, 'Era', era, eras[era]);
   }
@@ -1703,6 +1709,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
+  else if(type == 'Deity')
+    SWADE.deityRules(rules, name);
   else if(type == 'Edge') {
     SWADE.edgeRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -1835,6 +1843,15 @@ SWADE.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
   rules.defineRule('armorMinStr', 'armor.' + name, '+=', minStr);
   rules.defineRule('armorWeight', 'armor.' + name, '+=', weight);
 
+};
+
+/* Defines in #rules# the rules associated with deity #name#. */
+SWADE.deityRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty deity name');
+    return;
+  }
+  // No rules pertain to deity
 };
 
 /*
@@ -2672,6 +2689,7 @@ SWADE.createViewers = function(rules, viewers) {
       viewer.addElements(
           {name: 'Description', within: 'Characteristics', separator: innerSep},
             {name: 'Size', within: 'Description'},
+            {name: 'Deity', within: 'Description'},
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AdvanceStats', within: 'Characteristics', separator: innerSep},
@@ -2788,7 +2806,11 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]]
     );
-  } else if(type == 'Edge')
+  } else if(type == 'Deity')
+    result.push(
+      // empty
+    );
+  else if(type == 'Edge')
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
       ['Imply', 'Implies', 'text', [40]],
@@ -2873,7 +2895,7 @@ SWADE.initialEditorElements = function() {
     ['strengthAllocation', 'Strength', 'select-one', allocations],
     ['vigorAllocation', 'Vigor', 'select-one', allocations],
     ['skillAllocation', 'Skills', 'bag', 'skills'],
-    ['deity', 'Deity', 'select-one', 'deities'],
+    ['deity', 'Deity', 'select-one', 'deitys'],
     ['origin', 'Origin', 'text', [20]],
     ['player', 'Player', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
