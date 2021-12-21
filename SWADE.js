@@ -909,8 +909,8 @@ SWADE.HINDRANCES = {
   'All Thumbs':'Severity=Minor',
   'Anemic':'Severity=Minor',
   'Arrogant+':'Severity=Major',
-  'Bad Eyes':'Severity=Minor',
-  'Bad Eyes+':'Severity=Major',
+  'Bad Eyes':'Require="features.Bad Eyes+ == 0" Severity=Minor',
+  'Bad Eyes+':'Require="features.Bad Eyes == 0" Severity=Major',
   'Bad Luck+':'Severity=Major',
   'Big Mouth':'Severity=Minor',
   'Blind+':'Severity=Major',
@@ -922,70 +922,70 @@ SWADE.HINDRANCES = {
   'Code Of Honor+':'Severity=Major',
   'Curious+':'Severity=Major',
   'Death Wish':'Severity=Minor',
-  'Delusional':'Severity=Minor',
-  'Delusional+':'Severity=Major',
+  'Delusional':'Require="features.Delusional+ == 0" Severity=Minor',
+  'Delusional+':'Require="features.Delusional == 0" Severity=Major',
   'Doubting Thomas':'Severity=Minor',
-  'Driven':'Severity=Minor',
-  'Driven+':'Severity=Major',
+  'Driven':'Require="features.Driven+ == 0" Severity=Minor',
+  'Driven+':'Require="features.Driven == 0" Severity=Major',
   'Elderly+':'Severity=Major',
-  'Enemy':'Severity=Minor',
-  'Enemy+':'Severity=Major',
-  'Greedy':'Severity=Minor',
-  'Greedy+':'Severity=Major',
-  'Habit':'Severity=Minor',
-  'Habit+':'Severity=Major',
-  'Hard Of Hearing':'Severity=Minor',
-  'Hard Of Hearing+':'Severity=Major',
+  'Enemy':'Require="features.Enemy+ == 0" Severity=Minor',
+  'Enemy+':'Require="features.Enemy == 0" Severity=Major',
+  'Greedy':'Require="features.Greedy+ == 0" Severity=Minor',
+  'Greedy+':'Require="features.Greedy == 0" Severity=Major',
+  'Habit':'Require="features.Habit+ == 0" Severity=Minor',
+  'Habit+':'Require="features.Habit == 0" Severity=Major',
+  'Hard Of Hearing':'Require="features.Hard Of Hearing+ == 0" Severity=Minor',
+  'Hard Of Hearing+':'Require="features.Hard Of Hearing == 0" Severity=Major',
   'Heroic+':'Severity=Major',
   'Hesitant':'Severity=Minor',
   'Illiterate':'Severity=Minor',
   'Impulsive+':'Severity=Major',
-  'Jealous':'Severity=Minor',
-  'Jealous+':'Severity=Major',
+  'Jealous':'Require="features.Jealous+ == 0" Severity=Minor',
+  'Jealous+':'Require="features.Jealous == 0" Severity=Major',
   'Loyal':'Severity=Minor',
   'Mean':'Severity=Minor',
   'Mild Mannered':'Severity=Minor',
   'Mute+':'Severity=Major',
   'Obese':'Severity=Minor',
-  'Obligation':'Severity=Minor',
-  'Obligation+':'Severity=Major',
+  'Obligation':'Require="features.Obligation+ == 0" Severity=Minor',
+  'Obligation+':'Require="features.Obligation == 0" Severity=Major',
   'One Arm+':'Severity=Major',
   'One Eye+':'Severity=Major',
-  'Outsider':'Severity=Minor',
-  'Outsider+':'Severity=Major',
+  'Outsider':'Require="features.Outsider+ == 0" Severity=Minor',
+  'Outsider+':'Require="features.Outsider == 0" Severity=Major',
   'Overconfident+':'Severity=Major',
-  'Pacifist':'Severity=Minor',
-  'Pacifist+':'Severity=Major',
-  'Phobia':'Severity=Minor',
-  'Phobia+':'Severity=Major',
+  'Pacifist':'Require="features.Pacifist+ == 0" Severity=Minor',
+  'Pacifist+':'Require="features.Pacifist == 0" Severity=Major',
+  'Phobia':'Require="features.Phobia+ == 0" Severity=Minor',
+  'Phobia+':'Require="features.Phobia == 0" Severity=Major',
   'Poverty':'Severity=Minor',
   'Quirk':'Severity=Minor',
-  'Ruthless':'Severity=Minor',
-  'Ruthless+':'Severity=Major',
-  'Secret':'Severity=Minor',
-  'Secret+':'Severity=Major',
-  'Shamed':'Severity=Minor',
-  'Shamed+':'Severity=Major',
-  'Slow':'Severity=Minor',
-  'Slow+':'Severity=Major',
+  'Ruthless':'Require="features.Ruthless+ == 0" Severity=Minor',
+  'Ruthless+':'Require="features.Ruthless == 0" Severity=Major',
+  'Secret':'Require="features.Secret+ == 0" Severity=Minor',
+  'Secret+':'Require="features.Secret == 0" Severity=Major',
+  'Shamed':'Require="features.Shamed+ == 0" Severity=Minor',
+  'Shamed+':'Require="features.Shamed == 0" Severity=Major',
+  'Slow':'Require="features.Slow+ == 0" Severity=Minor',
+  'Slow+':'Require="features.Slow == 0" Severity=Major',
   'Small':'Severity=Minor',
   'Stubborn':'Severity=Minor',
-  'Suspicious':'Severity=Minor',
-  'Suspicious+':'Severity=Major',
-  'Thin Skinned':'Severity=Minor',
-  'Thin Skinned+':'Severity=Major',
+  'Suspicious':'Require="features.Suspicious+ == 0" Severity=Minor',
+  'Suspicious+':'Require="features.Suspicious == 0" Severity=Major',
+  'Thin Skinned':'Require="features.Thin Skinned+ == 0" Severity=Minor',
+  'Thin Skinned+':'Require="features.Thin Skinned == 0" Severity=Major',
   'Tongue-Tied+':'Severity=Major',
-  'Ugly':'Severity=Minor',
-  'Ugly+':'Severity=Major',
-  'Vengeful':'Severity=Minor',
-  'Vengeful+':'Severity=Major',
-  'Vow':'Severity=Minor',
-  'Vow+':'Severity=Major',
-  'Wanted':'Severity=Minor',
-  'Wanted+':'Severity=Major',
+  'Ugly':'Require="features.Ugly+ == 0" Severity=Minor',
+  'Ugly+':'Require="features.Ugly == 0" Severity=Major',
+  'Vengeful':'Require="features.Vengeful+ == 0" Severity=Minor',
+  'Vengeful+':'Require="features.Vengeful == 0" Severity=Major',
+  'Vow':'Require="features.Vow+ == 0" Severity=Minor',
+  'Vow+':'Require="features.Vow == 0" Severity=Major',
+  'Wanted':'Require="features.Wanted+ == 0" Severity=Minor',
+  'Wanted+':'Require="features.Wanted == 0" Severity=Major',
   'Yellow+':'Severity=Major',
-  'Young':'Severity=Minor',
-  'Young+':'Severity=Major'
+  'Young':'Require="features.Young+ == 0" Severity=Minor',
+  'Young+':'Require="features.Young == 0" Severity=Major'
 };
 SWADE.POWERS = {
   'Arcane Protection':
@@ -2239,7 +2239,7 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   if(requires.length > 0)
     QuilvynRules.prerequisiteRules
-      (rules, 'validation', prefix + 'Hindrance', 'advances', requires);
+      (rules, 'validation', prefix+'Hindrance', 'hindrances.'+name, requires);
   rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
   rules.defineRule('hindrancePoints',
     'hindrances.' + name, '+=', severity=='Major' ? '2' : '1',
@@ -3057,74 +3057,55 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       attributes[attr + 'Allocation']++;
       howMany--;
     }
-  } else if(attribute == 'edges') {
+  } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
-    howMany = attrs.edgePoints || 0;
-    if(howMany > 0 && attrs.arcaneFocus && attrs.focusType &&
+    howMany = attribute == 'edges' ? attrs.edgePoints || 0 : 4;
+    if(attribute == 'edges' && howMany > 0 &&
+       attrs.arcaneFocus && attrs.focusType &&
        !attrs['edges.Arcane Background (' + attrs.focusType + ')']) {
       attributes['edges.Arcane Background (' + attrs.focusType + ')'] = 1;
       howMany--;
     }
-    choices = {};
-    var allEdges = this.getChoices('edges');
-    for(attr in allEdges) {
-      if(attrs['features.' + attr] == null)
-        choices[attr] = '';
+    var allChoices = this.getChoices(attribute);
+    choices = [];
+    for(attr in allChoices) {
+      if(attrs['features.' + attr] != null) {
+        howMany -= attr.endsWith('+') ? 2 : 1;
+        continue;
+      }
+      choices.push(attr);
     }
     while(howMany > 0) {
       var pick;
-      var picks = {};
-      pickAttrs(picks, '', Object.keys(choices), howMany, 1);
-      if(attrs.focusType && QuilvynUtils.random(0, 9) < 8) {
-        picks =
-          QuilvynUtils.random(0, 1)==0 ? {'New Powers':1} : {'Power Points':1};
+      if(attribute == 'hindrances') {
+        var subChoices;
+        if(howMany > 1 && QuilvynUtils.random(0, 9) > 7)
+          subChoices = choices.filter(x => x.endsWith('+'));
+        else
+          subChoices = choices.filter(x => !x.endsWith('+'));
+        pick = subChoices[QuilvynUtils.random(0, subChoices.length - 1)];
+      } else if(attrs.focusType && QuilvynUtils.random(0, 9) < 8) {
+        pick = QuilvynUtils.random(0, 1)==0 ? 'New Powers' : 'Power Points';
+      } else {
+        pick = choices[QuilvynUtils.random(0, choices.length - 1)];
       }
-      for(pick in picks) {
-        if(!attributes['edges.' + pick])
-          attributes['edges.' + pick] = 0;
-        attributes['edges.' + pick]++;
-        delete choices[pick];
-      }
+      attributes[attribute + '.' + pick] =
+        (attributes[attribute + '.' + pick] || 0) + 1;
+      choices = choices.filter(x => x != pick);
       var validate = this.applyRules(attributes);
-      for(pick in picks) {
-        var name = pick.charAt(0).toLowerCase() +
-                   pick.substring(1).replaceAll(' ', '').
-                   replace(/\(/g, '\\(').replace(/\)/g, '\\)');
-        if(QuilvynUtils.sumMatching
-             (validate,
-              new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
-          delete attributes['edges.' + pick];
-        } else {
-          howMany--;
-        }
+      var name = pick.charAt(0).toLowerCase() +
+                 pick.substring(1).replaceAll(' ', '').
+                 replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+      if(QuilvynUtils.sumMatching
+           (validate,
+            new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
+        delete attributes[attribute + '.' + pick];
+      } else {
+        howMany--;
       }
     }
   } else if(attribute == 'gender') {
     attributes.gender = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
-  } else if(attribute == 'hindrances') {
-    attrs = this.applyRules(attributes);
-    var allHindrances = this.getChoices('hindrances');
-    howMany = 4;
-    for(attr in attributes) {
-      matchInfo = attr.match(/^hindrances\.(.*)$/);
-      if(!matchInfo)
-        continue;
-      howMany -= allHindrances[matchInfo[1]].includes('Major') ? 2 : 1;
-    }
-    while(howMany > 0) {
-      var type = howMany==1 || QuilvynUtils.random(0, 9)<8 ? 'Minor' : 'Major';
-      choices = [];
-      for(attr in allHindrances) {
-        if(allHindrances[attr].includes(type) &&
-           !('features.' + attr in attrs) &&
-           !('features.' + attr + '+' in attrs) &&
-           !('features.' + attr.replace('+', '') in attrs))
-          choices.push(attr);
-      }
-      attr = choices[QuilvynUtils.random(0, choices.length - 1)];
-      attributes['hindrances.' + attr] = 1;
-      howMany -= allHindrances[attr].includes('Major') ? 2 : 1;
-    }
   } else if(attribute == 'improvements') {
     attrs = this.applyRules(attributes);
     howMany = (attrs.improvementPoints || 0) -
@@ -3138,7 +3119,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
              QuilvynUtils.random(0, 1) == 0 ? 'Edge' : 'Attribute';
       if(attributes['improvementPointsAllocation.' + attr] == null)
         attributes['improvementPointsAllocation.' + attr] = 0;
-      var allocation = attr == 'skill' ? 1 : 2;
+      var allocation = attr == 'Skill' ? 1 : 2;
       attributes['improvementPointsAllocation.' + attr] += allocation;
       howMany -= allocation;
     }
@@ -3179,16 +3160,20 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(attr.match(/^skillAllocation\./))
         howMany -= attributes[attr];
     }
+    var languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
         continue;
+      if(attr.startsWith('Language')) {
+        if(languagePicked && attr != languagePicked)
+          continue;
+        languagePicked = attr;
+      }
       attr = 'skillAllocation.' + attr;
       if(attributes[attr] && attributes[attr] >= 4)
         continue;
-      if(!attributes[attr])
-        attributes[attr] = 0;
-      attributes[attr]++;
+      attributes[attr] = (attributes[attr] || 0) + 1;
       howMany--;
     }
   } else if(attribute == 'weapons') {
