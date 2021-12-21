@@ -98,6 +98,8 @@ SWADE.ATTRIBUTES = {
 };
 SWADE.ARMORS = {
 
+  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+
   'Cloth Jacket':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=5',
   'Cloth Robes':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=8',
   'Cloth Leggings':'Era=Medieval Area=Legs Armor=1 MinStr=4 Weight=5',
@@ -2628,6 +2630,7 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b> %V'},
               {name: 'Run', within: 'Speed', format: '/+d%V'},
               {name: 'Run Modifier', within: 'Speed', format: '%V'},
+            {name: 'Parry', within: 'Section 1', format: '<b>Parry</b> %V'},
             {name: 'Toughness', within: 'Section 1', format: '<b>Toughness</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
@@ -2732,12 +2735,12 @@ SWADE.createViewers = function(rules, viewers) {
          format: '<b>Combat</b><br/>%V'},
           {name: 'CombatPart', within: 'Combat', separator: '\n'},
             {name: 'CombatStats', within: 'CombatPart', separator: innerSep},
-              {name: 'ToughnessInfo', within: 'CombatStats', separator: ''},
-                {name: 'Toughness', within: 'ToughnessInfo'},
-                {name: 'Armor Toughness', within: 'ToughnessInfo', format: ' (%V)'},
               {name: 'ParryInfo', within: 'CombatStats', separator: ''},
                 {name: 'Parry', within: 'ParryInfo'},
                 {name: 'Shield Parry', within: 'ParryInfo', format: ' (%V)'},
+              {name: 'ToughnessInfo', within: 'CombatStats', separator: ''},
+                {name: 'Toughness', within: 'ToughnessInfo'},
+                {name: 'Armor Toughness', within: 'ToughnessInfo', format: ' (%V)'},
               {name: 'Cover', within: 'CombatStats'},
               {name: 'Speed', within: 'CombatStats', separator: ''},
                 {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b>: %V'},
