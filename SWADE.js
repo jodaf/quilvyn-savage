@@ -994,83 +994,83 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Foes suffer -2 (Raise -4) to affect target for 5 rd"',
+      '"R%{smarts}%{in} Foes suffer -2 (Raise -4) to affect target for 5 rd"',
   'Banish':
     'Advances=8 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target suffers Shaken (Raise 1 Wound), incapacity returns to native plane (Spi neg)"',
+      '"R%{smarts}%{in} Target suffers Shaken (Raise 1 Wound), incapacity returns to native plane (Spi neg)"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creates a 10 yd long by 2 yd high wall for 5 rd"',
+      '"R%{smarts}%{in} Creates a 10 yd long by 2 yd high wall for 5 rd"',
   'Beast Friend':
     'Advances=0 ' +
     'PowerPoints=1/Size ' +
     'Description=' +
-      '"R%{smarts*2} yd Target can speak with and control beast actions for 10 min"',
+      '"R%{smarts}%{in} Target can speak with and control beast actions for 10 min"',
   'Blast':
     'Advances=4 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts*4} yd 4 yd radius inflicts 2d6 (Raise 3d6)"',
+    'Description="R%{smarts*2}%{in} 4 yd radius inflicts 2d6 (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target suffers -2 on vision tasks (Raise -4) (Vig removes 2 points)"',
+      '"R%{smarts}%{in} Target suffers -2 on vision tasks (Raise -4) (Vig removes 2 points)"',
   'Bolt':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*4} yd Inflicts 2d6 damage (Raise 3d6)"',
+    'Description="R%{smarts*2}%{in} Inflicts 2d6 damage (Raise 3d6)"',
   'Boost/Lower Trait':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*4} yd Target gains +1 Trait step (Raise +2) for 5 rd or target suffers -1 Trait step (Raise -2) (Spirit recovers 1 step)"',
+      '"R%{smarts*2}%{in} Target gains +1 Trait step (Raise +2) for 5 rd or target suffers -1 Trait step (Raise -2) (Spirit recovers 1 step)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Target can merge into earth for 5 rd"',
+    'Description="R%{smarts}%{in} Target can merge into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="Cone inflicts 2d6 damage (Raise 3d6)"',
+    'Description="9%{in} cone inflicts 2d6 damage (Raise 3d6)"',
   'Confusion':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target suffers Distracted and Vulnerable for 1 rd (Sma neg)"',
+      '"R%{smarts}%{in} Target suffers Distracted and Vulnerable for 1 rd (Sma neg)"',
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creatures adjacent to target suffer 2d4 damage"',
+      '"R%{smarts}%{in} Creatures adjacent to target suffer 2d4 damage"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
+      '"R%{smarts}%{in} Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
   'Deflection':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Foes suffer -2 attacks(Raise -4) on target for 5 rd"',
+      '"R%{smarts}%{in} Foes suffer -2 attacks(Raise -4) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
+      '"R%{smarts}%{in} Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target assumes another\'s appearance for 10 min"',
+      '"R%{smarts}%{in} Target assumes another\'s appearance for 10 min"',
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd End targeted power (Arcane skill neg, +2 if types differ)"',
+      '"R%{smarts}%{in} End targeted power (Arcane skill neg, +2 if types differ)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
@@ -1079,47 +1079,47 @@ SWADE.POWERS = {
   'Drain Power Points':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Drains 1d6 PP (Raise adds drained PP to self) (Spi neg, +2 if types differ)"',
+    'Description="R%{smarts}%{in} Drains 1d6 PP (Raise adds drained PP to self) (Spi neg, +2 if types differ)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Performs minor elemental manipulation for 5 rd"',
+      '"R%{smarts}%{in} Performs minor elemental manipulation for 5 rd"',
   'Empathy':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*2} Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2) (Spi neg)"',
+    'Description="R%{smarts}%{in} Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2) (Spi neg)"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Restrains target until breaks free"',
+    'Description="R%{smarts}%{in} Restrains target until breaks free"',
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target gains protection from hazards for 1 hr"',
+      '"R%{smarts}%{in} Target gains protection from hazards for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target sees up to 1 mile (Raise half Range penalties)"',
+      '"R%{smarts}%{in} Target sees up to 1 mile (Raise half Range penalties)"',
   'Fear':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target extra flees, Wild Card rolls on fear table (Spi neg)"',
+      '"R%{smarts}%{in} Target extra flees, Wild Card rolls on fear table (Spi neg)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts*2} yd Target gains 12 Fly for 5 rd"',
+    'Description="R%{smarts}%{in} Target gains 12 Fly for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
     'PowerPoints=2/Size ' +
-    'Description="R%{smarts*2} yd Target gains or loses Toughness and Strength step for 5 rd"',
+    'Description="R%{smarts}%{in} Target gains or loses Toughness and Strength step for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Throws creatures in 4 yd radius or 18 yd cone 2d6 x 2 yd (Str neg)"',
+    'Description="R%{smarts}%{in} Throws creatures in 4 yd radius or 18 yd cone 2d6 x 2 yd (Str neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1128,36 +1128,36 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creates 4 yd radius visual illusion for 5 rd"',
+      '"R%{smarts}%{in} Creates 4 yd radius visual illusion for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target becomes unaffected by physical world for 5 rd"',
+      '"R%{smarts}%{in} Target becomes unaffected by physical world for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target becomes invisible (foes -4 sight-based actions) for 5 rd"',
+      '"R%{smarts}%{in} Target becomes invisible (foes -4 sight-based actions) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Creates 6 yd radius bright light or darkness for 10 min"',
+      '"R%{smarts}%{in} Creates 6 yd radius bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
+      '"R%{smarts}%{in} Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Self gains 1 truthful answer from target (Sma neg)"',
+      '"R%{smarts}%{in} Self gains 1 truthful answer from target (Sma neg)"',
   'Mind Wipe':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts*2} yd Target forgets up to 30 min event (Sma neg)"',
+    'Description="R%{smarts}%{in} Target forgets up to 30 min event (Sma neg)"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1166,17 +1166,17 @@ SWADE.POWERS = {
   'Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*2} yd Target gains +2 Armor (Raise +4) for 5 rd"',
+    'Description="R%{smarts}%{in} Target gains +2 Armor (Raise +4) for 5 rd"',
   'Puppet':
     'Advances=8 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2} yd Self controls target actions (Spi neg) for 5 rd"',
+      '"R%{smarts}%{in} Self controls target actions (Spi neg) for 5 rd"',
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target recovers 1 Fatigue level (Raise 2 levels)"',
+      '"R%{smarts}%{in} Target recovers 1 Fatigue level (Raise 2 levels)"',
   'Resurrection':
     'Advances=12 ' +
     'PowerPoints=30 ' +
@@ -1190,56 +1190,56 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target gains dbl Pace for 5 rd or suffers half pace (Spi ends)"',
+      '"R%{smarts}%{in} Target gains dbl Pace for 5 rd or suffers half pace (Spi ends)"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Target sleeps for 1 hr (Spi neg)"',
+    'Description="R%{smarts}%{in} Target sleeps for 1 hr (Spi neg)"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
+      '"R%{smarts}%{in} Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
   'Sound/Silence':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Description=' +
-      '"R%{smarts*10} yd Creates sound up to shout or R%{smarts*2} yd Mutes 6 yd radius for 5 rd"',
+      '"R%{smarts*5}%{in} Creates sound up to shout or R%{smarts*2} yd Mutes 6 yd radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*2} yd Target speaks unknown language for 10 min"',
+    'Description="R%{smarts}%{in} Target speaks unknown language for 10 min"',
   'Stun':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Target stunned (Vig neg)"',
+    'Description="R%{smarts}%{in} Target stunned (Vig neg)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts*2} yd Creates obedient servant for 5 rd"',
+    'Description="R%{smarts}%{in} Creates obedient servant for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*4} yd Moves items remotely as Strength d10 (Raise d12) for 5 rd"',
+      '"R%{smarts*2}%{in} Moves items remotely as Strength d10 (Raise d12) for 5 rd"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target teleports 24 yd (Raise 48 yd)"',
+      '"R%{smarts}%{in} Target teleports 24 yd (Raise 48 yd)"',
   'Wall Walker':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Description=' +
-      '"R%{smarts*2} yd Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
+      '"R%{smarts}%{in} Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="R%{smarts*2} yd Target gains combat edge effects for 5 rd"',
+    'Description="R%{smarts}%{in} Target gains combat edge effects for 5 rd"',
   'Zombie':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts*2} yd Animates and controls corpse for 1 hr"'
+    'Description="R%{smarts}%{in} Animates and controls corpse for 1 hr"'
 };
 SWADE.RACES = {
   'Android':
@@ -1805,6 +1805,8 @@ SWADE.arcanaRules = function(rules, name, skill) {
     'features.Arcane Background (' + name + ')', '?', null,
     'skills.' + skill, '=', null
   );
+  // Define inch marker for use with spell descriptions
+  rules.defineRule('in', 'arcaneSkill', '=' ,'\'"\'');
 };
 
 /*
@@ -2285,6 +2287,7 @@ SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
   if(!description) {
     console.log('Empty description for power ' + name);
   }
+  // Not presently including advances in power description
   rules.defineChoice
     ('notes', 'powers.' + name + ':(' + powerPoints + ' PP) ' + description);
 };
