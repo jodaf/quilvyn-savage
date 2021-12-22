@@ -1223,7 +1223,7 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Description=' +
-      '"R%{smarts*2}%{in} Moves items remotely as Strength d10 (Raise d12) for 5 rd" (Spirit neg)',
+      '"R%{smarts*2}%{in} Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
