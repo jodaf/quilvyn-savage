@@ -486,6 +486,7 @@ SWADE.FEATURES = {
     'Section=arcana Note="Jury rig arcane device from available parts"',
   'Giant Killer':'Section=combat Note="+1d6 damage vs. foes of Size %{size+3}"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
+  'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
   'Hard To Kill':
     'Section=attribute ' +
     'Note="Vigor ignores Wound penalties to avoid bleeding out"',
@@ -1269,7 +1270,7 @@ SWADE.RACES = {
     'Languages=Elf,Human',
   'Half-Folk':
     'Features=' +
-      'Luck,"Reduced Pace","Size -1",Spirited ' +
+      '"Half-Folk Luck","Reduced Pace","Size -1",Spirited ' +
     'Languages=Half-Folk',
   'Human':
     'Features=' +
