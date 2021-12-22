@@ -238,17 +238,18 @@ SWADE.EDGES = {
   'Two-Fisted':'Type=combat Require="agility >= 8"',
   'Two-Gun Kid':'Type=combat Require="agility >= 8"',
   // Leadership
-  'Command':'Type=combat Require="smarts >= 6"',
-  'Command Presence':'Type=combat Require="advances >= 4","features.Command"',
+  'Command':'Type=leadership Require="smarts >= 6"',
+  'Command Presence':
+    'Type=leadership Require="advances >= 4","features.Command"',
   'Fervor':
-    'Type=combat Require="advances >= 8","spirit >= 8","features.Command"',
+    'Type=leadership Require="advances >= 8","spirit >= 8","features.Command"',
   'Hold The Line!':
-    'Type=combat Require="advances >= 4","smarts >= 8","features.Command"',
-  'Inspire':'Type=combat Require="advances >= 4","features.Command"',
+    'Type=leadership Require="advances >= 4","smarts >= 8","features.Command"',
+  'Inspire':'Type=leadership Require="advances >= 4","features.Command"',
   'Natural Leader':
-    'Type=combat Require="advances >= 4","spirit >= 8","features.Command"',
+    'Type=leadership Require="advances >= 4","spirit >= 8","features.Command"',
   'Tactician':
-    'Type=combat ' +
+    'Type=leadership ' +
     'Require="advances >= 4","smarts >= 8","features.Command","skills.Battle >= 6"',
   'Master Tactician':'Type=combat Require="advances >= 8","features.Tactician"',
   // Power
@@ -484,7 +485,8 @@ SWADE.FEATURES = {
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':
     'Section=arcana Note="Jury rig arcane device from available parts"',
-  'Giant Killer':'Section=combat Note="+1d6 damage vs. foes of Size %{size+3}"',
+  'Giant Killer':
+    'Section=combat Note="+1d6 damage vs. foes of Size %{size+3} or greater"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
   'Hard To Kill':
