@@ -624,7 +624,7 @@ SWADE.FEATURES = {
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
-    'Section=skill Note="+1 Peformance or Persuasion step in Support %V/rd"',
+    'Section=skill Note="+1 Performance or Persuasion step in Support %V/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -1444,7 +1444,7 @@ SWADE.WEAPONS = {
     'Era=Modern Damage=2d10 MinStr=8 Weight=11 Category=R AP=2 Range=30',
   'Spencer Carbine':
     'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=R AP=2 Range=20',
-  "Wincester '73":
+  "Winchester '73":
     'Era=Modern Damage=2d8-1 MinStr=6 Weight=10 Category=R AP=2 Range=24',
   'AK47':
     'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=R AP=2 Range=24 ROF=3',
@@ -2846,7 +2846,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
       ['Advances', 'Advances', 'select-one', zeroToSixteen],
-      ['Power Points', 'Power Pooints', 'select-one', zeroToTen],
+      ['Power Points', 'Power Points', 'select-one', zeroToTen],
       ['Description', 'Description', 'text', [60]]
     );
   } else if(type == 'Race')
@@ -3387,7 +3387,7 @@ SWADE.ruleNotes = function() {
     '  </li><li>\n' +
     '    If the Arcane Focus box is checked when creating a random\n' +
     '    character, Quilvyn will select either New Powers or Power Points\n' +
-    '    for most of the chararacter\'s edges.\n' +
+    '    for most of the character\'s edges.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Limitations</h3>\n' +
