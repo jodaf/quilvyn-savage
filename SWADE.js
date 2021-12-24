@@ -1610,7 +1610,7 @@ SWADE.identityRules = function(rules, races, eras, deitys) {
 
 /* Defines rules related to powers. */
 SWADE.arcaneRules = function(rules, arcanas, powers) {
-  QuilvynUtils.checkAttrTable(arcanas, ['Skill']);
+  QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
   QuilvynUtils.checkAttrTable
     (powers, ['Advances', 'PowerPoints', 'Description']);
   for(var arcana in arcanas) {
@@ -1707,7 +1707,8 @@ SWADE.talentRules = function(
 SWADE.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Arcana')
     SWADE.arcanaRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Skill')
+      QuilvynUtils.getAttrValue(attrs, 'Skill'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Powers')
     );
   else if(type == 'Armor')
     SWADE.armorRules(rules, name,
@@ -1802,9 +1803,10 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
 
 /*
  * Defines in #rules# the rules associated with arcane power source #name#,
- * which draws on skill #skill# when casting.
+ * which draws on skill #skill# when casting and allows access to the list of
+ * powers #powers#.
  */
-SWADE.arcanaRules = function(rules, name, skill) {
+SWADE.arcanaRules = function(rules, name, skill, powers) {
   var compactSkill = skill.replaceAll(' ', '');
   rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '^=', null);
   rules.defineRule('arcaneSkill' + compactSkill,
@@ -3141,6 +3143,18 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     choices = [];
     var advances = attributes.advances || 0;
     var allPowers = this.getChoices('powers');
+    var allArcanas = this.getChoices('arcanas');
+    var allowedPowers = null;
+    for(attr in allArcanas) {
+      if(attributes['edges.Arcane Background (' + attr + ')'] != null &&
+         allArcanas[attr].includes('Powers=')) {
+        allowedPowers = {};
+        QuilvynUtils.getAttrValueArray(allArcanas[attr], 'Powers')
+          .forEach(x => allowedPowers[x] = allPowers[x] || (console.log('Unknown spell "' + x + '"')));
+      }
+    }
+    if(allowedPowers)
+      allPowers = allowedPowers;
     for(attr in allPowers) {
       if(attributes['powers.' + attr]) {
         howMany--;
