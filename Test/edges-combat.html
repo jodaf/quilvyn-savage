@@ -54,14 +54,6 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td>Hard To Kill: Vigor ignores Wound penalties to avoid bleeding out</td>
-    </tr><tr style="text-align:center">
-      <td>Iron Jaw: +2 Vigor on Soak and vs. knockout</td>
-    </tr></table>
-</td>
-  </tr><tr style="text-align:center">
     <td><b>Skills</b> (14 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
@@ -101,7 +93,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Can't Swim: -2 Athletics (swimming)</td>
     </tr><tr style="text-align:center">
-      <td>Feint: Force foe to oppose Fighting with Smarts instead of Agility</td>
+      <td>Feint: Force foe to oppose Fighting test with Smarts instead of Agility</td>
     </tr><tr style="text-align:center">
       <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
@@ -141,8 +133,6 @@ var attributes = {
     <tr style="text-align:center">
       <td>Cautious: Requires detailed plan before acting</td>
     </tr><tr style="text-align:center">
-      <td>Marksman: Trade move for +1 Athletics (throwing), +1 Shooting, or -2 attack penalties</td>
-    </tr><tr style="text-align:center">
       <td>Mean: Ill-tempered and disagreeable</td>
     </tr></table>
 </td>
@@ -166,7 +156,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Armor</b>: Bronze Corselet</td>
         <td><b>Shield</b>: Ballistic Shield</td>
-        <td><b>Weapons</b>: Dagger: 1 (d8+d4 R3"); Gatling Gun: 1 (2d8 R24"); Long Bow: 1 (2d6 R15"); Unarmed: 1 (+2 d100)</td>
+        <td><b>Weapons</b>: Dagger: 1 (d8+d4 R3"); Gatling Gun: 1 (2d8 R24"); Long Bow: 1 (+2 2d6 R15"); Unarmed: 1 (+2 d8+d10)</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -208,6 +198,8 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Reduced Pace: -1 Pace/-1 Run step</i></td>
       </tr><tr style="text-align:center">
+        <td><i>Trademark Weapon (Long Bow): +2 attack and Parry with Long Bow</i></td>
+      </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +4</i></td>
       </tr><tr style="text-align:center">
         <td>Calculating: Ignore 2 points of penalties on 1 action when Action Card is 5 or less</td>
@@ -218,7 +210,7 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Counterattack: Free Attack after failed foe attack 3/rd</td>
       </tr><tr style="text-align:center">
-        <td>Dead Shot: Joker Action Card gives dbl damage from first throwing or shooting</td>
+        <td>Dead Shot: Joker Action Card gives dbl damage from first successful ranged attack</td>
       </tr><tr style="text-align:center">
         <td>Dodge: -2 foe ranged attacks</td>
       </tr><tr style="text-align:center">
@@ -226,7 +218,7 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Extraction: Negate attack of 3 foes when withdrawing</td>
       </tr><tr style="text-align:center">
-        <td>First Strike: Free attack against 3 foes when moving into reach</td>
+        <td>First Strike: Free attack when 3 foes move into reach</td>
       </tr><tr style="text-align:center">
         <td>Flight: Fly Pace 12</td>
       </tr><tr style="text-align:center">
@@ -234,7 +226,9 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Frenzy: Extra Fighting die on 2 attacks/rd</td>
       </tr><tr style="text-align:center">
-        <td>Giant Killer: +1d6 damage vs. foes of Size 3 or greater</td>
+        <td>Giant Killer: +1d6 damage vs. foes of size 3 or greater</td>
+      </tr><tr style="text-align:center">
+        <td>Hard To Kill: No wound penalties on Vigor tests to avoid bleeding out</td>
       </tr><tr style="text-align:center">
         <td>Harder To Kill: 50% chance to cheat death</td>
       </tr><tr style="text-align:center">
@@ -242,15 +236,19 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Improvisational Fighter: No penalty w/improvised weapons</td>
       </tr><tr style="text-align:center">
+        <td>Iron Jaw: +2 Soak rolls and vs. knockout</td>
+      </tr><tr style="text-align:center">
         <td>Level Headed: Choose best of 3 Action Cards</td>
       </tr><tr style="text-align:center">
-        <td>Mighty Blow: Joker Action Card gives dbl damage on first Fighting attack</td>
+        <td>Marksman: Trade move for +1 ranged attack or -2 ranged attack penalties</td>
+      </tr><tr style="text-align:center">
+        <td>Mighty Blow: Joker Action Card gives dbl damage on first successful melee attack</td>
       </tr><tr style="text-align:center">
         <td>Nerves Of Steel: Ignore 2 points of wound penalties</td>
       </tr><tr style="text-align:center">
-        <td>No Mercy: +2 Damage on Benny reroll</td>
+        <td>No Mercy: +2 on Benny damage reroll</td>
       </tr><tr style="text-align:center">
-        <td>Rapid Fire: Increase rate of fire by 1 2/rd</td>
+        <td>Rapid Fire: Increase ROF by 1 2/rd</td>
       </tr><tr style="text-align:center">
         <td>Rock And Roll: Trade move for ignoring recoil</td>
       </tr><tr style="text-align:center">
@@ -258,11 +256,9 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Sweep: Attack all within reach</td>
       </tr><tr style="text-align:center">
-        <td>Trademark Weapon (Long Bow): +2 Athletics (throwing), Fighting, Shooting and Parry with Long Bow</td>
+        <td>Two-Fisted: No multi-action penalty for melee attack with each hand</td>
       </tr><tr style="text-align:center">
-        <td>Two-Fisted: No multi-attack penalty for Fighting attack with each hand</td>
-      </tr><tr style="text-align:center">
-        <td>Two-Gun Kid: No multi-action penalty for firing or throwing weapon from each hand</td>
+        <td>Two-Gun Kid: No multi-action penalty for ranged attack with each hand</td>
       </tr></table>
 </td>
     </tr></table>
