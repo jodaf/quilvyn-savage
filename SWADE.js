@@ -1342,51 +1342,63 @@ SWADE.WEAPONS = {
 
   'Unarmed':
     'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
-    'Damage=0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=2 Category=1h',
-  'Battle Axe':'Era=Medieval Damage=d8 MinStr=8 Weight=4 Category=1h AP=2',
-  'Great Axe':'Era=Medieval Damage=d10 MinStr=10 Weight=7 Category=2h Parry=-1',
-  'Light Club':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=2 Category=1h',
-  'Heavy Club':'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=5 Category=1h',
+    'Damage=Str+0 MinStr=0 Weight=0 Category=Un',
+  'Hand Axe':'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
+  'Battle Axe':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=1h AP=2',
+  'Great Axe':
+    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1',
+  'Light Club':
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Heavy Club':
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
   'Dagger':
     'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
+    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
   'Knife':
     'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Era=Medieval Damage=d6 MinStr=6 Weight=3 Category=1h',
-  'Halberd':'Era=Medieval Damage=d8 MinStr=8 Weight=6 Category=2h',
-  'Katana':'Era=Medieval Damage=d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Era=Medieval Damage=d8 MinStr=8 Weight=6 Category=1h',
-  'Mace':'Era=Medieval Damage=d6 MinStr=6 Weight=4 Category=1h',
-  'Maul':'Era=Medieval Damage=d10 MinStr=10 Weight=10 Category=2h',
-  'Pike':'Era=Medieval Damage=d8 MinStr=8 Weight=18 Category=2h',
-  'Rapier':'Era=Medieval Damage=d4 MinStr=4 Weight=2 Category=1h Parry=1',
+    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Flail':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=1h',
+  'Halberd':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=2h',
+  'Javelin':
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
+  'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=2h',
+  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
+  'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=2h',
+  'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
+  'Rapier':'Era=Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
   'Spear':
-    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=2h Range=3 Parry=1',
+    'Era=Ancient,Medieval ' +
+    'Damage=Str+d6 MinStr=6 Weight=3 Category=2h Range=3 Parry=1',
   'Staff':
-    'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=4 Category=2h Parry=1',
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Great Sword':
-    'Era=Medieval,Colonial Damage=d10 MinStr=10 Weight=6 Category=2h',
-  'Long Sword':'Era=Medieval,Colonial Damage=d8 MinStr=8 Weight=3 Category=1h',
-  'Short Sword':'Era=Medieval,Colonial Damage=d6 MinStr=6 Weight=2 Category=1h',
-  'Warhammer':'Era=Medieval Damage=d6 MinStr=6 Weight=2 Category=1h AP=1',
+    'Era=Medieval,Colonial Damage=Str+d10 MinStr=10 Weight=6 Category=2h',
+  'Long Sword':
+    'Era=Medieval,Colonial Damage=Str+d8 MinStr=8 Weight=3 Category=1h',
+  'Short Sword':
+    'Era=Medieval,Colonial Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
+  'Warhammer':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h AP=1',
   'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
   'Bayonet':
-    'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h Parry=1',
-  'Billy Club':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Baton':'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h Parry=1',
+  'Billy Club':
+    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+  'Baton':'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Brass Knuckles':
-    'Era=Victorian,Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
+    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
-  'Switchblade':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Survival Knife':'Era=Modern Damage=d4 MinStr=4 Weight=1 Category=1h',
-  'Molecular Knife':'Era=Future Damage=d4+2 MinStr=4 Weight=1 Category=1h AP=2',
-  'Molecular Sword':'Era=Future Damage=d8+2 MinStr=6 Weight=2 Category=1h AP=4',
-  'Laser Sword':'Era=Future Damage=d6+8 MinStr=4 Weight=2 Category=1h AP=12',
+  'Switchblade':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+  'Survival Knife':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+  'Molecular Knife':
+    'Era=Future Damage=Str+d4+2 MinStr=4 Weight=1 Category=1h AP=2',
+  'Molecular Sword':
+    'Era=Future Damage=Str+d8+2 MinStr=6 Weight=2 Category=1h AP=4',
+  'Laser Sword':
+    'Era=Future Damage=Str+d6+8 MinStr=4 Weight=2 Category=1h AP=12',
 
   'Throwing Axe':
-    'Era=Ancient,Medieval Damage=d6 MinStr=6 Weight=3 Category=R Range=3',
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
   'Bow':'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
   'Hand Drawn Crossbow':
     'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=R AP=2 Range=10',
@@ -1395,11 +1407,12 @@ SWADE.WEAPONS = {
   'Long Bow':
     'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
   'Net':'Era=Medieval Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Sling':'Era=Ancient,Medieval Damage=d4 MinStr=4 Weight=1 Category=R Range=4',
+  'Sling':
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
   'Compound Bow':
-    'Era=Medieval Damage=d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
+    'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
   'Crossbow':
-    'Era=Medieval Damage=d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
+    'Era=Medieval Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
   'Flintlock Pistol':
     'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
   'Brown Bess':
@@ -1420,7 +1433,7 @@ SWADE.WEAPONS = {
   'Colt 1911':
     'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
   'Desert Eagle':
-    'Era=Modern Damage=2d6+1 MinStr=6 Weight=8 Category=R AP=2 Range=15',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
   'Glock':'Era=Modern Damage=2d6 MinStr=4 Weight=3 Category=R AP=1 Range=12',
   'Ruger':'Era=Modern Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
   'H&K MP5':
@@ -1448,7 +1461,7 @@ SWADE.WEAPONS = {
   'Spencer Carbine':
     'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=R AP=2 Range=20',
   "Winchester '73":
-    'Era=Modern Damage=2d8-1 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
   'AK47':
     'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=R AP=2 Range=24 ROF=3',
   'M-16':
@@ -1474,7 +1487,7 @@ SWADE.WEAPONS = {
   'Laser SMG':
     'Era=Future Damage=2d6 MinStr=4 Weight=4 Category=R AP=2 Range=15 ROF=4',
   'Laser Rifle':
-    'Era=Future Damage=2d6 MinStr=6 Weight=8 Category=R AP=2 Range=30 ROF=3',
+    'Era=Future Damage=3d6 MinStr=6 Weight=8 Category=R AP=2 Range=30 ROF=3',
   'Gatling Laser':
     'Era=Future Damage=3d6+4 MinStr=8 Weight=20 Category=R AP=2 Range=50 ROF=4'
  
@@ -2504,7 +2517,7 @@ SWADE.weaponRules = function(
     console.log('Bad eras "' + eras + '" for weapon ' + name);
     return;
   }
-  var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
+  var matchInfo = (damage + '').match(/^((Str\+)?((\d*d)?\d+)([\-+]\d+)?)$/);
   if(!matchInfo) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
@@ -2536,7 +2549,10 @@ SWADE.weaponRules = function(
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var weaponName = 'weapons.' + name;
-  var format = '%V (%1 %2%3%4' + (range ? " R%5'" : '') + ')';
+  var format = '%V (%1%2%3%4' + (range ? ' R%5"' : '') + ')';
+  var strDamage = damage.startsWith('Str+');
+  if(strDamage)
+    damage = damage.substring(4);
 
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
@@ -2551,13 +2567,13 @@ SWADE.weaponRules = function(
 
   rules.defineChoice('notes', weaponName + ':' + format);
   rules.defineRule(weaponName + '.1',
-    'attackBonus.' + name, '=', 'QuilvynUtils.signed(source)'
+    'attackBonus.' + name, '=', 'source != 0 ? QuilvynUtils.signed(source) + " " : ""'
   );
-  rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
-  rules.defineRule(weaponName + '.3', weaponName, '=', '""');
-  if(!isRanged) {
-    rules.defineRule(weaponName + '.3', 'strength', '=', '"+d" + source');
+  rules.defineRule(weaponName + '.2', weaponName, '=', '""');
+  if(strDamage) {
+    rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source + "+"');
   }
+  rules.defineRule(weaponName + '.3', weaponName, '=', '"' + damage + '"');
   rules.defineRule(weaponName + '.4',
     prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
   );
