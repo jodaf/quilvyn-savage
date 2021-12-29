@@ -3445,11 +3445,15 @@ SWADE.ruleNotes = function() {
     'owned by their respective copyright holders. This application makes no\n' +
     'claim against any properties.\n' +
     '</p><p>\n' +
-    'Quilvyn is not approved or endorsed by Pinnacle Entertainment Group.\n' +
-    'Portions of the materials used are property of Pinnacle Entertainment\n' +
-    'Group. © Great White Games, LLC; DBA Pinnacle Entertainment Group.\n' +
+    'This game references the Savage Worlds game system, available from\n' +
+    'Pinnacle Entertainment Group at www.peginc.com. Savage Worlds and all\n' +
+    'associated logos and trademarks are copyrights of Pinnacle\n' +
+    'Entertainment Group. Used with permission. Pinnacle makes no\n' +
+    'representation or warranty as to the quality, viability, or\n' +
+    'suitability for purpose of this product.\n' +
     '</p><p>\n' +
     'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA\n' +
     'Pinnacle Entertainment Group.\n' +
-    '</p>\n';
+    '</p>\n' +
+    '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://cdn-cmhfa.nitrocdn.com/sILXXMmoPZtGHchENBdSFUfGNBQKBJVN/assets/static/optimized/rev-7a1d351/wp-content/uploads/2021/04/SW_LOGO_FP_2018-300x200-1.png"/>\n';
 };
