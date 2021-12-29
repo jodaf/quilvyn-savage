@@ -70,8 +70,8 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Deity', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance', 'Power',
-  'Race', 'Shield', 'Skill', 'Weapon'
+  'Arcana', 'Armor', 'Deity', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance',
+  'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -79,7 +79,8 @@ SWADE.CHOICES = [
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
-  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'deity', 'powers'
+  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'deity',
+  'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -144,6 +145,7 @@ SWADE.ARMORS = {
 
 };
 SWADE.DEITIES = {
+  'None':''
 };
 SWADE.EDGES = {
   // Background
@@ -915,7 +917,6 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=vigorStep ' +
     'Section=attribute Note="%V Vigor step"'
-  // TODO
 };
 SWADE.HINDRANCES = {
   'All Thumbs':'Severity=Minor',
@@ -1301,7 +1302,7 @@ for(var r in SWADE.RACES) {
   SWADE.LANGUAGES[r] = '';
 }
 SWADE.SHIELDS = {
-  'None':'Era=Ancient,Medieval,Modern,Future Parry=0 Cover=0 MinStr=0 Weight=0',
+  'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
   'Medium':'Era=Ancient,Medieval Parry=2 Cover=-2 MinStr=6 Weight=8',
   'Large':'Era=Ancient,Medieval Parry=3 Cover=-4 MinStr=8 Weight=12',
@@ -2960,22 +2961,14 @@ SWADE.randomName = function(race) {
 
   if(race == null)
     race = 'Human';
-  else if(race.match(/Dragonborn/))
-    race = 'Dragonborn';
   else if(race == 'Half-Elf')
     race = QuilvynUtils.random(0, 99) < 50 ? 'Elf' : 'Human';
   else if(race.match(/Dwarf/))
     race = 'Dwarf';
   else if(race.match(/Elf/))
     race = 'Elf';
-  else if(race.match(/Gnome/))
-    race = 'Gnome';
   else if(race.match(/Half-Folk/))
     race = 'Half-Folk';
-  else if(race.match(/Orc/))
-    race = 'Orc';
-  else if(race.match(/Tiefling/))
-    race = 'Tiefling';
   else
     race = 'Human';
 
@@ -2985,16 +2978,14 @@ SWADE.randomName = function(race) {
     c:'hkt', l:'cfkmnptv', m: 'p', n:'cgkt', r: 'fv', s: 'kpt', t: 'h'
   };
   var consonants = {
-    'Dragonborn':'bcdfghjklmnprstvwz', 'Dwarf':'dgkmnprst', 'Elf':'fhlmnpqswy',
-    'Gnome':'bdghjlmnprstw', 'Half-Folk':'bdfghlmnprst',
-    'Human': 'bcdfghjklmnprstvwz', 'Orc': 'dgjkprtvxz',
-    'Tiefling': 'bcdfghjklmnprstvwz'
+    'Dwarf':'dgkmnprst', 'Elf':'fhlmnpqswy',
+    'Half-Folk':'bdfghlmnprst',
+    'Human': 'bcdfghjklmnprstvwz'
   }[race];
   var endConsonant = '';
   var leading = 'ghjqvwy';
   var vowels = {
-    'Dragonborn':'aeiou', 'Dwarf':'aeiou', 'Elf':'aeioy', 'Gnome':'aeiou',
-    'Half-Folk':'aeiou', 'Human':'aeiou', 'Orc':'aou', 'Tiefling':'aeiou'
+    'Dwarf':'aeiou', 'Elf':'aeioy', 'Half-Folk':'aeiou', 'Human':'aeiou'
   }[race];
   var diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
   var syllables = QuilvynUtils.random(0, 99);
@@ -3080,7 +3071,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
           howMany = 0;
         continue;
       }
-      if(torsoArmor && allArmors[attr].includes(era))
+      if(torsoArmor &&
+         (!allArmors[attr].includes('Era') || allArmors[attr].includes(era)))
         choices.push(attr);
     }
     pickAttrs(attributes, 'armor.', choices, howMany, 1);
@@ -3197,7 +3189,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var allShields = this.getChoices('shields');
     choices = [];
     for(attr in allShields) {
-      if(allShields[attr].includes(era))
+      if(!allShields[attr].includes('Era') || allShields[attr].includes(era))
         choices.push(attr);
     }
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -3238,7 +3230,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     for(attr in allWeapons) {
       var minStr = QuilvynUtils.getAttrValue(allWeapons[attr], 'MinStr');
       if((!minStr || attrs.strength >= minStr) &&
-         allWeapons[attr].includes(era))
+         (!allWeapons[attr].includes('Era') || allWeapons[attr].includes(era)))
         choices.push(attr);
     }
     pickAttrs(attributes, 'weapons.', choices, howMany, 1);
