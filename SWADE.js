@@ -30,7 +30,8 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  */
 function SWADE() {
 
-  var rules = new QuilvynRules('Savage Worlds', SWADE.VERSION);
+  var rules =
+    new QuilvynRules('Savage Worlds Adventure Edition', SWADE.VERSION);
   SWADE.rules = rules;
 
   rules.defineChoice('choices', SWADE.CHOICES);
@@ -635,11 +636,11 @@ SWADE.FEATURES = {
     'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
   'Anemic':'Section=attribute Note="-2 Vigor (resist disease)"',
   'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
-  'Bad Eyes':'Section=skill Note="-1 visual tasks"',
-  'Bad Eyes+':'Section=skill Note="-2 visual tasks"',
+  'Bad Eyes':'Section=skill Note="-1 on visual trait rolls"',
+  'Bad Eyes+':'Section=skill Note="-2 on visual trait rolls"',
   'Bad Luck+':'Section=feature Note="-1 Benny each session"',
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
-  'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 visual tasks"',
+  'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
   'Bloodthirsty+':'Section=combat Note="Cruel to foes"',
   "Can't Swim":
     'Section=combat,skill ' +
@@ -661,7 +662,9 @@ SWADE.FEATURES = {
   'Elderly+':
     'Section=attribute,combat,skill ' +
     'Note="-1 Agility/-1 Strength/-1 Vigor","-1 Pace/-1 Run","+5 Skill Points"',
-  'Enemy':'Section=feature Note="Individual wants character eliminated"',
+  'Enemy':
+    'Section=feature ' +
+    'Note="Individual or remote group wants character eliminated"',
   'Enemy+':
     'Section=feature ' +
     'Note="Powerful individual or group wants character eliminated"',
@@ -699,7 +702,7 @@ SWADE.FEATURES = {
   'Obligation+':
     'Section=feature Note="Has regular responsibility that occupies 40+ hr/wk"',
   'One Arm+':'Section=skill Note="-4 on two-handed tasks"',
-  'One Eye+':'Section=feature Note="-2 visual tasks 10 yd distant"',
+  'One Eye+':'Section=feature Note="-2 on visual tasks 10 yd distant"',
   'Outsider':'Section=skill Note="-2 Persuasion (other races)"',
   'Outsider+':
     'Section=feature,skill ' +
@@ -712,8 +715,10 @@ SWADE.FEATURES = {
   'Pacifist+':
     'Section=combat ' +
     'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
-  'Phobia':'Section=feature Note="-1 in presence of phobia subject"',
-  'Phobia+':'Section=feature Note="-2 in presence of phobia subject"',
+  'Phobia':
+    'Section=feature Note="-1 on trait rolls in presence of phobia subject"',
+  'Phobia+':
+    'Section=feature Note="-2 on trait rolls in presence of phobia subject"',
   'Poverty':
     'Section=feature Note="Starts with half funds, loses half funds each wk"',
   'Quirk':
@@ -758,7 +763,9 @@ SWADE.FEATURES = {
     'Note="-1 Attribute Points","+1 Benny each session","-2 Skill Points"',
   'Young+':
     'Section=attribute,feature,skill ' +
-    'Note="-2 Attribute Points","+2 Benny each session","-2 Skill Points"',
+    'Note="-2 Attribute Points",' +
+          '"Small/+2 Benny each session",' +
+          '"-2 Skill Points"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
@@ -2279,6 +2286,8 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
 SWADE.hindranceRulesExtra = function(rules, name) {
   if(name == 'Small') {
     rules.defineRule('descriptionNotes.small', 'features.Size -1', 'v', '0');
+  } else if(name == 'Young+') {
+    rules.defineRule('features.Small', 'features.Young+', '=', '1');
   }
 };
 
