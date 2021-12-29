@@ -39,6 +39,7 @@ function SWADE() {
   rules.choiceRules = SWADE.choiceRules;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
+  rules.getPlugins = SWADE.getPlugins;
   rules.makeValid = SWADE.makeValid;
   rules.randomizeOneAttribute = SWADE.randomizeOneAttribute;
   rules.defineChoice('random', SWADE.RANDOMIZABLE_ATTRIBUTES);
@@ -3403,6 +3404,11 @@ SWADE.makeValid = function(attributes) {
     attributes.notes =
       (attributes.notes ? attributes.notes + '\n' : '') + debug.join('\n');
 
+};
+
+/* Returns an array of plugins upon which this one depends. */
+SWADE.getPlugins = function() {
+  return [];
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
