@@ -1829,9 +1829,9 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
  * powers #powers#.
  */
 SWADE.arcanaRules = function(rules, name, skill, powers) {
-  var compactSkill = skill.replaceAll(' ', '');
-  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactSkill, '^=', null);
-  rules.defineRule('arcaneSkill' + compactSkill,
+  var compactName = name.replaceAll(' ', '');
+  rules.defineRule('arcaneSkill', 'arcaneSkill' + compactName, '^=', null);
+  rules.defineRule('arcaneSkill' + compactName,
     'features.Arcane Background (' + name + ')', '?', null,
     'skills.' + skill, '=', null
   );
