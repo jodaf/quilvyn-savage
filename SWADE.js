@@ -317,7 +317,7 @@ SWADE.EDGES = {
   'Menacing':
     'Type=social ' +
     'Imply=skills.Intimidation ' +
-    'Require="features.Bloodthirsty || features.Mean || features.Ruthless || features.Ugly"',
+    'Require="features.Bloodthirsty+ || features.Mean || features.Ruthless || features.Ugly"',
   'Provoke':'Type=social Require="skills.Taunt >= 6"',
   'Rabble-Rouser':'Type=social Require="spirit >= 8"',
   'Reliable':'Type=social Require="spirit >= 8"',
