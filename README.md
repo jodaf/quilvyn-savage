@@ -14,6 +14,11 @@ To use quilvyn-savage, unbundle the release package into a plugins/
 subdirectory within the Quilvyn installation directory, then append the
 following lines to the file plugins/plugins.js:
 
+    RULESETS["Savage Worlds Deluxe Edition"] = {
+      url:'plugins/SWD.js',
+      group:'Savage Worlds',
+      require:'SWADE.js'
+    };
     RULESETS["Savage Worlds Adventurer's Edition"] = {
       url:'plugins/SWADE.js',
       group:'Savage Worlds'
