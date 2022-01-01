@@ -92,7 +92,7 @@ SWD.ARCANAS = {
 SWD.ATTRIBUTES = Object.assign({}, SWADE.ATTRIBUTES);
 SWD.ARMORS = {
 
-  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'None':'Area=Body Armor=0 Weight=0',
 
   'Leather':'Era=Medieval Area=Body Armor=1 Weight=15',
   'Chain Hauberk':'Era=Medieval Area=Body Armor=2 Weight=25',
@@ -119,125 +119,66 @@ SWD.ARMORS = {
 SWD.DEITIES = {
   'None':''
 };
-SWD.EDGES = {
+SWD.EDGES_CHANGES = {
   // Background
-  'Alertness':'Type=background',
-  'Ambidextrous':'Type=background Require="agility >= 8"',
-  'Arcane Background (%arcana)':'Type=background',
-  'Arcane Resistance':'Type=background Require="spirit >= 8"',
-  'Improved Arcane Resistance':
-    'Type=background Require="features.Arcane Resistance"',
-  'Attractive':'Type=background Require="vigor >= 6"',
-  'Very Attractive':'Type=background Require="features.Attractive"',
-  'Berserk':'Type=background',
-  'Brave':'Type=background Require="spirit >= 6"',
-  'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
-  'Fast Healer':'Type=background Require="vigor >= 8"',
-  'Fleet-Footed':'Type=background Require="agility >= 6"',
-  'Linguist':'Type=background Require="smarts >= 6"',
-  'Luck':'Type=background',
-  'Great Luck':'Type=background Require="features.Luck"',
-  'Noble':'Type=background',
-  'Quick':'Type=background Require="agility >= 8"',
-  'Rich':'Type=background',
-  'Filthy Rich':'Type=background Require="features.Rich"',
+  'Aristocrat':null,
+  'Brute':null,
+  'Fame':null,
+  'Famous':null,
+  'Filthy Rich':'Require="features.Rich || features.Noble"',
   // Combat
-  'Block':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
-  'Improved Block':'Type=combat Require="advances >= 8","features.Block"',
-  'Brawler':'Type=combat Require="strength >= 8","vigor >= 8"',
-  'Bruiser':'Type=combat Require="advances >= 4","features.Brawler"',
-  'Combat Reflexes':'Type=combat Require="advances >= 8"',
-  'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
-  'Improved Counterattack':
-    'Type=combat Require="advances >= 8","features.Counterattack"',
+  'Brawler':'Require="strength >= 8"',
+  'Calculating':null,
+  'Combat Reflexes':'Require="advances >= 4"',
   'Dead Shot':
-    'Type=combat Require="skills.Athletics >= 8 || skills.Shooting >= 8"',
-  'Dodge':'Type=combat Require="advances >= 4","agility >= 8"',
-  'Improved Dodge':'Type=combat Require="advances >= 4","features.Dodge"',
+    'Require="advances >= 4","skills.Shooting >= 10 || skills.Throwing >= 10"',
+  'Improved Dodge':'Require="advances >= 8","features.Dodge"',
+  'Double Tap':null,
   'Elan':'Type=combat Require="spirit >= 8"',
-  'Extraction':'Type=combat Require="agility >= 8"',
-  'Improved Extraction':
-    'Type=combat Require="advances >= 4","features.Extraction"',
-  'First Strike':'Type=combat Require="agility >= 8"',
-  'Improved First Strike':
-    'Type=combat Require="advances >= 12","features.First Strike"',
-  'Florentine':'Type=combat Require="agility >= 8","skills.Fighting >= 8"',
-  'Frenzy':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
-  'Improved Frenzy':'Type=combat Require="advances >= 8","features.Frenzy"',
-  'Giant Killer':'Type=combat Require="advances >= 8"',
-  'Hard To Kill':'Type=combat Require="spirit >= 8"',
-  'Harder To Kill':
-    'Type=combat Require="advances >= 8","features.Hard To Kill"',
-  'Improvisational Fighter':'Type=combat Require="advances >= 4","smarts >= 6"',
-  'Killer Instinct':'Type=combat Require="advances >= 4"',
-  'Level Headed':'Type=combat Require="advances >= 4","smarts >= 8"',
-  'Improved Level Headed':
-    'Type=combat Require="advances >= 4","features.Level Headed"',
-  'Marksman':
-    'Type=combat ' +
-    'Require="advances >= 4","skills.Athletics >= 8 || skills.Shooting >= 8"',
-  'Martial Artist':'Type=combat Require="skills.Fighting >= 6"',
-  'Improved Martial Artist':
-    'Type=combat Require="advances >= 4","features.Martial Artist"',
-  'Mighty Blow':'Type=combat Require="skills.Fighting >= 8"',
-  'Nerves Of Steel':'Type=combat Require="vigor >= 8"',
-  'Improved Nerves Of Steel':'Type=combat Require="features.Nerves Of Steel"',
-  'No Mercy':'Type=combat Require="advances >= 4"',
-  'Quick Draw':'Type=combat Require="agility >= 8"',
-  'Rock And Roll':'Type=combat Require="advances >= 4","skills.Shooting >= 8"',
-  'Steady Hands':'Type=combat Require="agility >= 8"',
-  'Sweep':'Type=combat Require="strength >= 8","skills.Fighting >= 8"',
-  'Improved Sweep':'Type=combat Require="advances >= 8","features.Sweep"',
-  'Trademark Weapon (%melee)':
-    'Type=combat ' +
-    'Imply="weapons.%melee" ' +
-    'Require="skills.Fighting >= 8"',
-  'Trademark Weapon (%ranged)':
-    'Type=combat ' +
-    'Imply="weapons.%ranged" ' +
-    'Require="skills.Shooting >= 8"',
+  'Improved Extraction':'Require="features.Extraction"',
+  'Feint':null,
+  'Free Runner':null,
+  'Frenzy':'Require="advances >= 4","skills.Fighting >= 10"',
+  'Iron Jaw':null,
+  'Killer Instinct':'Require="advances >= 12"',
+  'Marksman':'Require="advances >= 4"',
+  'Mighty Blow':'Require="advances >= 4","skills.Fighting >= 10"',
+  'Rapid Fire':null,
+  'Improved Rapid Fire':null,
   'Improved Trademark Weapon (%weapon)':
-    'Type=combat ' +
     'Imply="weapons.%weapon" ' +
-    'Require="advances >= 4","features.Trademark Weapon (%weapon)"',
-  'Two-Fisted':'Type=combat Require="agility >= 8"',
+    'Require="advances >= 8","features.Trademark Weapon (%weapon)"',
+  'Two-Gun Kid':null,
   // Leadership
-  'Command':'Type=leadership Require="smarts >= 6"',
-  'Command Presence':
-    'Type=leadership Require="advances >= 4","features.Command"',
-  'Fervor':
-    'Type=leadership Require="advances >= 8","spirit >= 8","features.Command"',
-  'Hold The Line!':
-    'Type=leadership Require="advances >= 4","smarts >= 8","features.Command"',
-  'Inspire':'Type=leadership Require="advances >= 4","features.Command"',
-  'Leader Of Men':'Type=leadership Require="advances >= 4","features.Command"',
-  'Natural Leader':
-    'Type=leadership Require="advances >= 4","spirit >= 8","features.Command"',
+  'Command Presence':'Require="features.Command"',
+  'Natural Leader':'Require="spirit >= 8","features.Command"',
   'Tactician':
-    'Type=leadership ' +
-    'Require="advances >= 4","smarts >= 8","features.Command","skills.Battle >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"smarts >= 8",' +
+      '"features.Command",' +
+      '"skills.Knowledge (Battle) >= 6"',
+  'Master Tactician':null,
   // Power
-  'New Powers':'Type=power Require="powerPoints >= 1"',
-  'Power Points':'Type=power Require="powerPoints >= 1"',
-  'Rapid Recharge':
-    'Type=power Require="advances >= 4","spirit >= 6","powerPoints >= 1"',
-  'Improved Rapid Recharge':
-    'Type=power Require="advances >= 8","features.Rapid Recharge"',
-  'Power Surge':'Type=power Require="powerPoints >= 1","arcaneSkill >= 8"',
-  'Soul Drain':
-    'Type=power ' +
-    'Require="advances >= 4","powerPoints >= 1","arcaneSkill >= 10"',
+  'Artificer':null,
+  'Channeling':null,
+  'Concentration':null,
+  'Extra Effort':null,
   // Professional
-  'Ace':'Type=professional Require="agility >= 8"',
-  'Acrobat':'Type=professional Require="agility >= 8","skills.Athletics >= 8"',
+  'Acrobat':'Require="agility >= 8","strength >= 8"',
+  'Combat Acrobat':null,
   'Assassin':
-    'Type=professional ' +
-    'Require="agility >= 8","skills.Fighting >= 6","skills.Stealth >= 8"',
+    'Require=' +
+      '"agility >= 8",' +
+      '"skills.Climbing >= 6",' +
+      '"skills.Fighting >= 6",' +
+      '"skills.Stealth >= 8"',
   'Champion':
     'Type=professional ' +
     'Require=' +
       '"features.Arcane Background (Miracles)",' +
-      '"spirit >= 8","strength >= 6",' +
+      '"spirit >= 8",' +
+      '"strength >= 6",' +
       '"vigor >= 8",' +
       '"skills.Faith >= 6",' +
       '"skills.Fighting >= 8"',
@@ -250,29 +191,31 @@ SWD.EDGES = {
       '"skills.Weird Science >= 8"',
       // TODO two science knowledge skills >= 6
   'Holy/Unholy Warrior':
-    'Type=power ' +
+    'Type=professional ' +
     'Require=' +
       '"features.Arcane Background (Miracles)",' +
       '"spirit >= 8",' +
       '"skills.Faith >= 6"',
   'Investigator':
-    'Type=professional Require="smarts >= 6","skills.Research >= 8"',
-  'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
-  'McGyver':
-    'Type=professional ' +
-    'Require="smarts >= 6","skills.Notice >= 8","skills.Repair >= 6"',
+    'Require=' +
+      '"smarts >= 8",' +
+      '"skills.Investigation >= 8",' +
+      '"skills.Streetwise >= 8"',
   'Mentalist':
     'Type=professional ' +
     'Require=' +
       '"features.Arcane Background (Psionics)",' +
       '"smarts >= 8",' +
       '"skills.Psionics >= 6"',
-  'Mister Fix It':'Type=professional Require="skills.Repair >= 8"',
-  'Scholar':'Type=professional Require="skills.Research >= 8"',
-  'Soldier':'Type=professional Require="strength >= 6","vigor >= 6"',
+  // TODO d8 in 2 Knowledge skills
+  'Soldier':null,
   'Thief':
     'Type=professional ' +
-    'Require="agility >= 8","skills.Stealth >= 6","skills.Thievery >= 6"',
+    'Require=' +
+      '"agility >= 8",' +
+      '"skills.Climbing >= 6",' +
+      '"skills.Lockpicking >= 6",' +
+      '"skills.Stealth >= 8"',
   'Wizard':
     'Type=professional ' +
     'Require=' +
@@ -280,43 +223,71 @@ SWD.EDGES = {
       '"smarts >= 8",' +
       '"skills.Knowledge (Arcana) >= 8",' +
       '"skills.Spellcasting >= 6"',
-  'Woodsman':'Type=professional Require="spirit >= 6","skills.Survival >= 8"',
+  'Woodsman':
+    'Type=professional ' +
+    'Require="spirit >= 6","skills.Survival >= 8","skills.Tracking >= 8"',
   // Social
+  'Bolster':null,
   'Charismatic':'Type=social Require="spirit >= 8"',
-  'Common Bond':'Type=social Require="spirit >= 8"',
-  'Connections':'Type=social',
-  'Strong Willed':'Type=social Require="spirit >= 8"',
+  'Humiliate':null,
+  'Menacing':null,
+  'Provoke':null,
+  'Rabble-Rouser':null,
+  'Reliable':null,
+  'Retort':null,
+  'Streetwise':null,
+  'Strong Willed':'Require="skils.Intimidation >= 6","skills.Taunt >= 6"',
+  'Iron Will':null,
+  'Work The Room':null,
+  'Work The Crowd':null,
   // Weird
-  'Beast Bond':'Type=weird',
-  'Beast Master':'Type=weird Require="spirit >= 8"',
-  'Healer':'Type=weird Imply=skills.Healing Require="spirit >= 8"',
-  'Liquid Courage':'Type=weird Require="vigor >= 8"',
-  'Scavenger':'Type=weird Require="features.Luck"',
+  'Chi':null,
+  'Danger Sense':null,
   // Legendary
-  'Followers':'Type=legendary Require="advances >= 16"',
+  'Tough As Nails':'Type=legendary Require="advances >= 16"'
+
+};
+SWD.EDGES = {
+  // Background
+  'Noble':'Type=background',
+  // Combat
+  'Florentine':'Type=combat Require="agility >= 8","skills.Fighting >= 8"',
+  'Improved Martial Artist':
+    'Type=combat ' +
+    'Require="advances >= 8","features.Martial Artist","skills.Fighting >= 10"',
+  'Quick Draw':'Type=combat Require="agility >= 8"',
+  // Leadership
+  'Leader Of Men':'Type=leadership Require="advances >= 4","features.Command"',
+  // Professional
+  'Adept':
+    'Type=professional ' +
+    'Require=' +
+      '"features.Arcane Background (Miracles)",' +
+      '"features.Martial Artist",' +
+      '"skills.Faith >= 8",' +
+      '"skills.Fighting >= 8"',
+  'Scholar':'Type=professional"',
+  // Legendary
   'Martial Arts Master':
     'Type=legendary ' +
     'Require=' +
       '"advances >= 16",' +
       '"features.Improved Martial Artist",' +
       '"skills.Fighting >= 12"',
-  'Professional (%attribute)':
-    'Type=legendary Require="advances >= 16","%attribute == 12"',
-  'Professional (%skill)':
-    'Type=legendary Require="advances >= 16","skills.%skill == 12"',
-  'Expert (%trait)':
-    'Type=legendary Require="advances >= 16","features.Professional (%trait)"',
-  'Master (%trait)':
-    'Type=legendary Require="advances >= 16","features.Expert (%trait)"',
-  'Sidekick':'Type=legendary Require="advances >= 16"',
-  'Tough As Nails':'Type=legendary Require="advances >= 16","vigor >= 8"',
   'Improved Tough As Nails':
-    'Type=legendary Require="advances >= 16","features.Tough As Nails","vigor >= 12"',
-  'Weapon Master':
-    'Type=legendary Require="advances >= 16","skills.Fighting >= 12"',
-  'Master Of Arms':
-    'Type=legendary Require="advances >= 16","features.Weapon Master"'
+    'Type=legendary Require="advances >= 16","features.Tough As Nails"'
 };
+for(var edge in SWADE.EDGES) {
+  if(!(edge in SWD.EDGES_CHANGES))
+    SWD.EDGES[edge] = SWADE.EDGES[edge];
+  else if(SWD.EDGES_CHANGES[edge] != null)
+    SWD.EDGES[edge] = SWADE.EDGES[edge] + ' ' + SWD.EDGES_CHANGES[edge];
+}
+SWD.EDGES = Object.assign({}, SWADE.EDGES, SWD.EDGES_CHANGES);
+for(var edge in SWD.EDGES) {
+  if(!SWD.EDGES[edge])
+    delete SWD.EDGES[edge];
+}
 SWD.ERAS = {
   'Medieval':'',
   'Modern':'',
@@ -346,10 +317,6 @@ SWD.FEATURES = {
   'Arcane Resistance':
     'Section=combat ' +
     'Note="%V others\' targeted arcane skill, %V magical damage"',
-  'Aristocrat':
-    'Section=skill ' +
-    'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
-  'Artificer':'Section=arcana Note="Give items arcane powers"',
   'Assassin':
     'Section=combat Note="+2 damage to Vulnerable foes and with The Drop"',
   'Attractive':
@@ -363,9 +330,6 @@ SWD.FEATURES = {
     'Section=combat ' +
     'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and critical failure hits randomly for up to 10 rd (Smarts-2 neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
-  'Bolster':
-    'Section=combat ' +
-    'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear, -2 fear table roll"',
   'Brawler':'Section=combat Note="+%V Toughness/+%1 Unarmed damage step"',
   'Brawny':
@@ -375,23 +339,8 @@ SWD.FEATURES = {
       '"+1 Toughness",' +
       '"+1 Size"',
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
-  'Brute':
-    'Section=combat,skill ' +
-    'Note=' +
-      '"+1/+2/+4 thrown weapon range",' +
-      '"Advance Athletics relative to Strength/Use Strength with Athletics Tests"',
-  'Calculating':
-    'Section=combat ' +
-    'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':'Section=combat Note="+2 damage vs. opposite alignment"',
-  'Channeling':
-    'Section=arcana ' +
-    'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
-  'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 Natural Weapon damage 1/encounter"',
-  'Combat Acrobat':
-    'Section=combat ' +
-    'Note="Foes -1 attack when self aware of attack and unrestrained"',
   'Combat Reflexes':
     'Section=combat Note="+2 on Shaken and Stunned recovery rolls"',
   'Command':
@@ -400,37 +349,21 @@ SWD.FEATURES = {
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
-  'Concentration':'Section=arcana Note="Dbl Power duration"',
   'Connections':
     'Section=feature Note="Call in favors from acquaintance or organization"',
   'Counterattack':
     'Section=combat Note="Free Attack after failed foe attack %V/rd"',
-  'Danger Sense':
-    'Section=skill ' +
-    'Note="+2 Notice (surprise), gain -2 Notice roll  in circumstances not usually subject to Notice"',
   'Dead Shot':
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage from first successful ranged attack"',
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
-  'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased Trait rerolls"',
   'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
-  'Extra Effort':
-    'Section=arcana Note="Spend 1 or 3 Power Points to gain +1 or +2 Focus"',
   'Extraction':
     'Section=combat Note="Negate attack of %V foes when withdrawing"',
-  'Fame':
-    'Section=feature,skill ' +
-    'Note=' +
-      '"%Vx fee from performing",' +
-      '"+%V Persuasion (influencing friendly individuals)"',
-  'Famous':'Section=feature Note="Increased Fame effects"',
   'Fast Healer':
     'Section=combat Note="+2 Vigor (natural healing), check every 3 dy"',
-  'Feint':
-    'Section=skill ' +
-    'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
   'Fervor':
     'Section=combat Note="R%{commandRange}%{in} Extras +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
@@ -438,11 +371,6 @@ SWD.FEATURES = {
     'Section=combat Note="Free attack when %V foes move into reach"',
   'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
   'Followers':'Section=feature Note="Gain 5 soldier followers"',
-  'Free Runner':
-    'Section=combat,skill ' +
-    'Note=' +
-      '"Move full Pace on difficult ground",' +
-      '"+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':
     'Section=arcana Note="Jury rig arcane device from available parts"',
@@ -459,7 +387,6 @@ SWD.FEATURES = {
   'Holy/Unholy Warrior':
     'Section=arcana ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
-  'Humiliate':'Section=skill Note="Reroll Taunt"',
   'Improved Arcane Resistance':
     'Section=combat Note="Increased Arcane Resistance effects"',
   'Improved Block':'Section=combat Note="Increased Block effects"',
@@ -474,7 +401,6 @@ SWD.FEATURES = {
     'Section=combat Note="Increased Level Headed effects"',
   'Improved Nerves Of Steel':
     'Section=combat Note="Increased Nerves Of Steel effects"',
-  'Improved Rapid Fire':'Section=combat Note="Increased Rapid Fire effects"',
   'Improved Rapid Recharge':
     'Section=arcana Note="Increased Rapid Recharge effects"',
   'Improved Sweep':'Section=combat Note="Increased Sweep effects"',
@@ -487,8 +413,6 @@ SWD.FEATURES = {
     'Note="R%{commandRange}%{in} Support all Extras on any trait using Battle 1/rd"',
   'Investigator':
     'Section=skill Note="+2 Research/+2 Notice (sifting for information)"',
-  'Iron Jaw':'Section=combat Note="+2 Soak rolls and vs. knockout"',
-  'Iron Will':'Section=attribute Note="+2 vs. Powers"',
   'Jack-Of-All-Trades':
     'Section=skill ' +
     'Note="Successful Smarts roll gives d4 on chosen skill (Raise d6)"',
@@ -510,11 +434,9 @@ SWD.FEATURES = {
   'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
   'Master (%skill)':'Section=skill Note="Use d10 for Wild Die on %skill rolls"',
-  'Master Tactician':'Section=combat Note="Increased Tactician effects"',
   'McGyver':
     'Section=skill ' +
     'Note="Use Repair to create improvised weapon, explosive, or tool"',
-  'Menacing':'Section=skill Note="+2 Intimidation"',
   'Mentalist':'Section=skill Note="+2 opposed Psionics"',
   'Mighty Blow':
     'Section=combat ' +
@@ -529,18 +451,8 @@ SWD.FEATURES = {
     'Section=arcana Note="Recover 10 Power Points when Action Card is a joker"',
   'Professional (%attribute)':'Section=attribute Note="+%V %attribute step"',
   'Professional (%skill)':'Section=skill Note="+%V %skill step"',
-  'Provoke':
-    'Section=combat ' +
-    'Note="Raise on Taunt inflicts -2 on foe attacks on other targets; joker Action Card ends"',
   'Quick':'Section=combat Note="Discard and redraw Action Cards lower than 6"',
-  'Rabble-Rouser':
-    'Section=skill Note="Taunt or Intimidate all enemies in 2%{in} radius"',
-  'Rapid Fire':'Section=combat Note="Increase ROF by 1 %V/rd"',
   'Rapid Recharge':'Section=arcana Note="Recover %V Power Points/hr"',
-  'Reliable':'Section=skill Note="Reroll Support"',
-  'Retort':
-    'Section=skill ' +
-    'Note="Raise on Intimidation or Taunt Test causes foe to be Distracted"',
   'Rich':'Section=feature Note="%Vx starting funds"',
   'Rock And Roll':'Section=combat Note="Trade move for ignoring recoil"',
   'Scavenger':
@@ -550,16 +462,10 @@ SWD.FEATURES = {
   'Scholar (Occult)':'Section=skill Note="+2 Occult"',
   'Scholar (Science)':'Section=skill Note="+2 Science"',
   'Sidekick':'Section=feature Note="Special bond with companion"',
-  'Soldier':
-    'Section=attribute ' +
-    'Note="+1 Strength step (encumbrance)/Reroll Vigor (environmental hazards)"',
   'Soul Drain':'Section=arcana Note="Suffer Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
-  'Streetwise':
-    'Section=skill ' +
-    'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':
     'Section=attribute Note="+2 Smarts (resist Tests)/+2 Spirit (resist Tests)"',
   'Sweep':'Section=combat Note="%1Attack all within reach"',
@@ -577,17 +483,11 @@ SWD.FEATURES = {
   'Two-Fisted':
     'Section=combat ' +
     'Note="No multi-action penalty for melee attack with each hand"',
-  'Two-Gun Kid':
-    'Section=combat ' +
-    'Note="No multi-action penalty for ranged attack with each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':
     'Section=combat Note="+%V Parry/+d%1 damage on melee attack Raise"',
   'Wizard':'Section=arcana Note="Spend 1 Power Point to change Power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (nature)"',
-  'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
-  'Work The Room':
-    'Section=skill Note="+1 Performance or Persuasion step in Support %V/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -680,11 +580,6 @@ SWD.FEATURES = {
   'Young':
     'Section=attribute,feature,skill ' +
     'Note="-1 Attribute Points","+1 Benny each session","-2 Skill Points"',
-  'Young+':
-    'Section=attribute,feature,skill ' +
-    'Note="-2 Attribute Points",' +
-          '"Small/+2 Benny each session",' +
-          '"-2 Skill Points"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
@@ -738,315 +633,133 @@ SWD.FEATURES = {
 
 };
 SWD.GOODIES = Object.assign({}, SWADE.GOODIES);
+SWD.HINDRANCES_CHANGES = {
+  "Can't Swim":null,
+  'Clumsy+':null,
+  'Driven':null,
+  'Driven+':null,
+  'Hesitant':null,
+  'Impulsive+':null,
+  'Jealous':null,
+  'Jealous+':null,
+  'Mild Mannered':null,
+  'Mute+':null,
+  'Obligation':null,
+  'Obligation+':null,
+  'Outsider+':null,
+  'Ruthless':null,
+  'Ruthless+':null,
+  'Secret':null,
+  'Secret+':null,
+  'Shamed':null,
+  'Shamed+':null,
+  'Slow':null,
+  'Slow+':null,
+  'Small':null,
+  'Suspicious':null,
+  'Suspicious+':null,
+  'Thin Skinned':null,
+  'Thin Skinned+':null,
+  'Tongue-Tied+':null,
+  'Ugly+':null,
+  'Young':null,
+};
 SWD.HINDRANCES = {
-  'All Thumbs':'Severity=Minor',
-  'Anemic':'Severity=Minor',
-  'Arrogant+':'Severity=Major',
-  'Bad Eyes':'Require="features.Bad Eyes+ == 0" Severity=Minor',
-  'Bad Eyes+':'Require="features.Bad Eyes == 0" Severity=Major',
-  'Bad Luck+':'Severity=Major',
-  'Big Mouth':'Severity=Minor',
-  'Blind+':'Severity=Major',
-  'Bloodthirsty+':'Severity=Major',
-  'Cautious':'Severity=Minor',
-  'Clueless+':'Severity=Major',
-  'Code Of Honor+':'Severity=Major',
-  'Curious+':'Severity=Major',
-  'Death Wish':'Severity=Minor',
-  'Delusional':'Require="features.Delusional+ == 0" Severity=Minor',
-  'Delusional+':'Require="features.Delusional == 0" Severity=Major',
-  'Doubting Thomas':'Severity=Minor',
-  'Elderly+':'Severity=Major',
-  'Enemy':'Require="features.Enemy+ == 0" Severity=Minor',
-  'Enemy+':'Require="features.Enemy == 0" Severity=Major',
-  'Greedy':'Require="features.Greedy+ == 0" Severity=Minor',
-  'Greedy+':'Require="features.Greedy == 0" Severity=Major',
-  'Habit':'Require="features.Habit+ == 0" Severity=Minor',
-  'Habit+':'Require="features.Habit == 0" Severity=Major',
-  'Hard Of Hearing':'Require="features.Hard Of Hearing+ == 0" Severity=Minor',
-  'Hard Of Hearing+':'Require="features.Hard Of Hearing == 0" Severity=Major',
-  'Heroic+':'Severity=Major',
-  'Illiterate':'Severity=Minor',
   'Lame+':'Severity=Major',
-  'Loyal':'Severity=Minor',
-  'Mean':'Severity=Minor',
-  'Obese':'Severity=Minor',
-  'One Arm+':'Severity=Major',
-  'One Eye+':'Severity=Major',
   'One Leg+':'Severity=Major',
-  'Outsider':'Severity=Minor',
-  'Overconfident+':'Severity=Major',
-  'Pacifist':'Require="features.Pacifist+ == 0" Severity=Minor',
-  'Pacifist+':'Require="features.Pacifist == 0" Severity=Major',
-  'Phobia':'Require="features.Phobia+ == 0" Severity=Minor',
-  'Phobia+':'Require="features.Phobia == 0" Severity=Major',
-  'Poverty':'Severity=Minor',
-  'Quirk':'Severity=Minor',
-  'Small+':'Severity=Major',
-  'Stubborn':'Severity=Minor',
-  'Ugly':'Require="features.Ugly+ == 0" Severity=Minor',
-  'Vengeful':'Require="features.Vengeful+ == 0" Severity=Minor',
-  'Vengeful+':'Require="features.Vengeful == 0" Severity=Major',
-  'Vow':'Require="features.Vow+ == 0" Severity=Minor',
-  'Vow+':'Require="features.Vow == 0" Severity=Major',
-  'Wanted':'Require="features.Wanted+ == 0" Severity=Minor',
-  'Wanted+':'Require="features.Wanted == 0" Severity=Major',
-  'Yellow+':'Severity=Major',
-  'Young+':'Require="features.Young == 0" Severity=Major'
+  'Small+':'Severity=Major'
+};
+for(var hindrance in SWADE.HINDRANCES) {
+  if(!(hindrance in SWD.HINDRANCES_CHANGES))
+    SWD.HINDRANCES[hindrance] = SWADE.HINDRANCES[hindrance];
+  else if(SWD.HINDRANCES_CHANGES[hindrance])
+    SWD.HINDRANCES[hindrance] =
+      SWADE.HINDRANCES[hindrance] + ' ' + SWD.HINDRANCES_CHANGES[hindrance];
+}
+SWD.POWERS_CHANGES = {
+  'Arcane Protection':null,
+  'Barrier':'PowerPoints=1/Section',
+  'Blast':'PowerPoints=2-6',
+  'Blind':'PowerPoints=2-6',
+  'Bolt':'PowerPoints=1/missile',
+  'Burrow':'PowerPoints=3',
+  'Deflection':'PowerPoints=2',
+  'Disguise':'PowerPoints=3-5',
+  'Dispel':'PowerPoints=3',
+  'Drain Power Points':
+    'Advances=12 ' +
+    'PowerPoints=3',
+  'Empathy':null,
+  'Entangle':'PowerPoints=2-4',
+  'Farsight':'PowerPoints=3',
+  'Havoc':
+    'Advances=4 ' +
+    'PowerPoints=2-4',
+  'Illusion':null,
+  'Light/Darkness':null,
+  'Mind Link':null,
+  'Mind Reading':'PowerPoints=3',
+  'Mind Wipe':null,
+  'Object Reading':null,
+  'Protection':null,
+  'Relief':null,
+  'Resurrection':null,
+  'Sloth/Speed':null,
+  'Sound/Silence':null,
+  'Summon Ally':'PowerPoints=3+',
+  'Telekinesis':'PowerPoints=5',
+  'Teleport':'PowerPoints=3+'
 };
 SWD.POWERS = {
-  'Arcane Protection':
+  'Armor':
     'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Foes suffer -2 (Raise -4) to affect target for 5 rd"',
-  'Banish':
+    'PowerPoints=2 ' +
+    'Range=touch ' +
+    'Description=TODO',
+  'Greater Healing':
     'Advances=8 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target suffers Shaken (Raise 1 Wound), returns to native plane if incapacitated (Spirit neg)"',
-  'Barrier':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates a 5%{in} long by 1%{in} high wall for 5 rd"',
-  'Beast Friend':
-    'Advances=0 ' +
-    'PowerPoints=1/Size ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target can speak with and control beast actions for 10 min"',
-  'Blast':
-    'Advances=4 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts*2}%{in} Choice of 1%{in} or 2%{in} radius inflicts 2d6 damage (Raise 3d6)"',
-  'Blind':
+    'PowerPoints=10 ' +
+    'Range=touch ' +
+    'Description=TODO',
+  'Light/Obscure':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target suffers -2 on vision tasks (Raise -4) (Vigor neg 2 points (Raise 4) each rd)"',
-  'Bolt':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description="R%{smarts*2}%{in} Inflicts 2d6 damage (Raise 3d6)"',
-  'Boost/Lower Trait':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts*2}%{in} Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step each rd)"',
-  'Burrow':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target can merge into earth for 5 rd"',
-  'Burst':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description="9%{in} cone inflicts 2d6 damage (Raise 3d6)"',
-  'Confusion':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target suffers Distracted and Vulnerable for 1 rd (Smarts neg) (Raise Smarts -2)"',
-  'Damage Field':
-    'Advances=4 ' +
-    'PowerPoints=4 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creatures adjacent to target suffer 2d4 damage"',
-  'Darksight':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
-  'Deflection':
-    'Advances=0 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Foes suffer -2 attacks (Raise -4) on target for 5 rd"',
-  'Detect/Conceal Arcana':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
-  'Disguise':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target assumes another\'s appearance for 10 min"',
-  'Dispel':
-    'Advances=4 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} End targeted power (Arcane skill neg, +2 if types differ)"',
-  'Divination':
-    'Advances=12 ' +
-    'PowerPoints=5 ' +
-    'Description=' +
-      '"Self 1 min contact with otherworld force grants arcane skill roll to gain information"',
-  'Drain Power Points':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Drains 1d6 PP (Raise adds drained PP to self) (Spirit neg, +2 if types differ)"',
-  'Elemental Manipulation':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Performs minor elemental manipulation for 5 rd"',
-  'Empathy':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt for 5 rd (Raise +2) (Spirit neg)"',
-  'Entangle':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target suffers Restrained (Raise Bound)"',
-  'Environmental Protection':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target gains protection from hazards for 1 hr"',
-  'Farsight':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target sees up to 1 mile for 5 rd (Raise half Range penalties)"',
-  'Fear':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target Extra flees, Wild Card rolls on fear table (Spirit neg) (Raise -2)"',
-  'Fly':
-    'Advances=8 ' +
-    'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Target gains 12 Fly for 5 rd"',
-  'Growth/Shrink':
-    'Advances=4 ' +
-    'PowerPoints=2/Size ' +
-    'Description="R%{smarts}%{in} Target gains or loses Toughness and Strength step for 5 rd"',
-  'Havoc':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Distracts and throws creatures in 2%{in} radius or 9%{in} cone 2d6%{in} (Strength neg) (Raise Strength -2)"',
-  'Healing':
-    'Advances=0 ' +
-    'PowerPoints=3 ' +
-    'Description="Touched recovers 1 Wound (Raise 2) suffered in past hr"',
-  'Illusion':
-    'Advances=0 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates 2%{in} radius visual illusion for 5 rd"',
-  'Intangibility':
-    'Advances=12 ' +
-    'PowerPoints=5 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target becomes unaffected by physical world for 5 rd (Spirit neg)"',
-  'Invisibility':
-    'Advances=4 ' +
-    'PowerPoints=5 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd"',
-  'Light/Darkness':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
       '"R%{smarts}%{in} Creates 3%{in} radius bright light or darkness for 10 min"',
-  'Mind Link':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
-  'Mind Reading':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Self gains 1 truthful answer from target (Smarts neg)"',
-  'Mind Wipe':
-    'Advances=8 ' +
-    'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Target forgets up to 30 min event (Smarts neg)"',
-  'Object Reading':
+  'Pummel':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"Self sees five yr of events that occurred w/in 10 yd of touched object (Raise 100 yr and 20 yd)"',
-  'Protection':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Target gains +2 Armor (Raise +4) for 5 rd"',
-  'Puppet':
-    'Advances=8 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target obeys self (Raise complete control) for 5 rd (Spirit neg)"',
-  'Relief':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target recovers 1 Fatigue level or Shaken (Raise 2 levels or Stunned)"',
-  'Resurrection':
-    'Advances=12 ' +
-    'PowerPoints=30 ' +
-    'Description=' +
-      '"Successful -8 casting roll returns touched 1 yr corpse to life with 3 Wounds and Exhausted (Raise 0 Wounds)"',
-  'Shape Change':
-    'Advances=0 ' +
-    'PowerPoints=3+ ' +
-    'Description="Caster takes animal form for 5 rd"',
-  'Sloth/Speed':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
-  'Slumber':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target sleeps for 1 hr (Spirit neg)"',
-  'Smite':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
-  'Sound/Silence':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts*5}%{in} Creates sound up to shout or R%{smarts}%{in} Mutes 3%{in} radius for 5 rd"',
-  'Speak Language':
-    'Advances=0 ' +
-    'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Target speaks unknown language for 10 min"',
-  'Stun':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target Stunned (Vigor neg)"',
-  'Summon Ally':
-    'Advances=0 ' +
-    'PowerPoints=2+ ' +
-    'Description="R%{smarts}%{in} Creates obedient servant for 5 rd"',
-  'Telekinesis':
-    'Advances=4 ' +
-    'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts*2}%{in} Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
-  'Teleport':
-    'Advances=4 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target teleports 12%{in} (Raise 24%{in})"',
-  'Wall Walker':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
-  "Warrior's Gift":
+    'Range=smarts ' +
+    'Description=TODO',
+  'Quickness':
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="R%{smarts}%{in} Target gains combat edge effects for 5 rd"',
-  'Zombie':
-    'Advances=8 ' +
-    'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Animates and controls corpse for 1 hr"'
+    'Range=touch ' +
+    'Description=TODO',
+  'Slow':
+    'Advances=4 ' +
+    'PowerPoints=2 ' +
+    'Range=smarts*2 ' +
+    'Description=' +
+      '"R%{smarts}%{in} Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
+  'Speed':
+    'Advances=0 ' +
+    'PowerPoints=1 ' +
+    'Range=touch ' +
+    'Description=TODO',
+  'Succor':
+    'Advances=0 ' +
+    'PowerPoints=1 ' +
+    'Range=touch ' +
+    'Description=TODO'
 };
+for(var power in SWADE.POWERS) {
+  if(!(power in SWD.POWERS_CHANGES))
+    SWD.POWERS[power] = SWADE.POWERS[power];
+  else if(SWD.POWERS_CHANGES[power])
+    SWD.POWERS[power] = SWADE.POWERS[power] + ' ' + SWD.POWERS_CHANGES[power];
+}
 SWD.RACES = {
   'Android':
     'Features=' +
@@ -1376,6 +1089,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
     SWD.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
   else if(type == 'Race') {
@@ -1531,11 +1245,14 @@ SWD.languageRules = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with power #name#, which may be
- * acquired only after #advances# advances and requires #powerPoints# Power
- * Points to use. #description# is a concise description of the power's effects.
+ * acquired only after #advances# advances, requires #powerPoints# Power Points
+ * to use, and can be cast at range #range#. #description# is a concise
+ * description of the power's effects.
  */
-SWD.powerRules = function(rules, name, advances, powerPoints, description) {
-  SWADE.powerRules(rules, name, advances, powerPoints, description);
+SWD.powerRules = function(
+  rules, name, advances, powerPoints, range, description
+) {
+  SWADE.powerRules(rules, name, advances, powerPoints, range, description);
   // No changes needed to the rules defined by base method
 };
 
