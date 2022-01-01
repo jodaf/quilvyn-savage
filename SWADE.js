@@ -254,7 +254,11 @@ SWADE.EDGES = {
     'Type=leadership Require="advances >= 4","spirit >= 8","features.Command"',
   'Tactician':
     'Type=leadership ' +
-    'Require="advances >= 4","smarts >= 8","features.Command","skills.Battle >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"smarts >= 8",' +
+      '"features.Command",' +
+      '"skills.Battle >= 6"',
   'Master Tactician':'Type=combat Require="advances >= 8","features.Tactician"',
   // Power
   'Artificer':'Type=power Require="advances >= 4","powerPoints >= 1"',
@@ -262,16 +266,28 @@ SWADE.EDGES = {
   'Concentration':'Type=power Require="advances >= 4","powerPoints >= 1"',
   'Extra Effort':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Gifted)","skills.Focus >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"features.Arcane Background (Gifted)",' +
+      '"skills.Focus >= 6"',
   'Gadgeteer':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Weird Science)","skills.Weird Science >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"features.Arcane Background (Weird Science)",' +
+      '"skills.Weird Science >= 6"',
   'Holy/Unholy Warrior':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Miracles)","skills.Faith >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"features.Arcane Background (Miracles)",' +
+      '"skills.Faith >= 6"',
   'Mentalist':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Psionics)","skills.Psionics >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"features.Arcane Background (Psionics)",' +
+      '"skills.Psionics >= 6"',
   'New Powers':'Type=power Require="powerPoints >= 1"',
   'Power Points':'Type=power Require="powerPoints >= 1"',
   'Power Surge':'Type=power Require="powerPoints >= 1","arcaneSkill >= 8"',
@@ -284,7 +300,10 @@ SWADE.EDGES = {
     'Require="advances >= 4","powerPoints >= 1","arcaneSkill >= 10"',
   'Wizard':
     'Type=power ' +
-    'Require="advances >= 4","features.Arcane Background (Magic)","skills.Spellcasting >= 6"',
+    'Require=' +
+      '"advances >= 4",' +
+      '"features.Arcane Background (Magic)",' +
+      '"skills.Spellcasting >= 6"',
   // Professional
   'Ace':'Type=professional Require="agility >= 8"',
   'Acrobat':'Type=professional Require="agility >= 8","skills.Athletics >= 8"',
@@ -317,7 +336,9 @@ SWADE.EDGES = {
   'Menacing':
     'Type=social ' +
     'Imply=skills.Intimidation ' +
-    'Require="features.Bloodthirsty+ || features.Mean || features.Ruthless || features.Ugly"',
+    'Require=' +
+      '"features.Bloodthirsty+ || features.Mean || features.Ruthless || ' +
+      'features.Ugly"',
   'Provoke':'Type=social Require="skills.Taunt >= 6"',
   'Rabble-Rouser':'Type=social Require="spirit >= 8"',
   'Reliable':'Type=social Require="spirit >= 8"',
@@ -352,7 +373,8 @@ SWADE.EDGES = {
   'Sidekick':'Type=legendary Require="advances >= 16"',
   'Tough As Nails':'Type=legendary Require="advances >= 16","vigor >= 8"',
   'Tougher Than Nails':
-    'Type=legendary Require="advances >= 16","features.Tough As Nails","vigor >= 12"',
+    'Type=legendary ' +
+    'Require="advances >= 16","features.Tough As Nails","vigor >= 12"',
   'Weapon Master':
     'Type=legendary Require="advances >= 16","skills.Fighting >= 12"',
   'Master Of Arms':
@@ -1005,254 +1027,295 @@ SWADE.POWERS = {
   'Arcane Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Foes suffer -2 (Raise -4) to affect target for 5 rd"',
+    'Range=smarts ' +
+    'Description="Foes suffer -2 (Raise -4) to affect target for 5 rd"',
   'Banish':
     'Advances=8 ' +
     'PowerPoints=3 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target suffers Shaken (Raise 1 Wound), returns to native plane if incapacitated (Spirit neg)"',
+      '"Target suffers Shaken (Raise 1 Wound), returns to native plane if incapacitated (Spirit neg)"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates a 5%{in} long by 1%{in} high wall for 5 rd"',
+    'Range=smarts ' +
+    'Description="Creates a 5%{in} long by 1%{in} high wall for 5 rd"',
   'Beast Friend':
     'Advances=0 ' +
     'PowerPoints=1/Size ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target can speak with and control beast actions for 10 min"',
+    'Range=smarts ' +
+    'Description="Target can speak with and control beast actions for 10 min"',
   'Blast':
     'Advances=4 ' +
     'PowerPoints=3 ' +
+    'Range=smarts*2 ' +
     'Description=' +
-      '"R%{smarts*2}%{in} Choice of 1%{in} or 2%{in} radius inflicts 2d6 damage (Raise 3d6)"',
+      '"Choice of 1%{in} or 2%{in} radius inflicts 2d6 damage (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target suffers -2 on vision tasks (Raise -4) (Vigor neg 2 points (Raise 4) each rd)"',
+      '"Target suffers -2 on vision tasks (Raise -4) (Vigor neg 2 points (Raise 4) each rd)"',
   'Bolt':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts*2}%{in} Inflicts 2d6 damage (Raise 3d6)"',
+    'Range=smarts*2 ' +
+    'Description="Inflicts 2d6 damage (Raise 3d6)"',
   'Boost/Lower Trait':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts*2 ' +
     'Description=' +
-      '"R%{smarts*2}%{in} Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target can merge into earth for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target can merge into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="9%{in} cone inflicts 2d6 damage (Raise 3d6)"',
+    'Range=9 ' +
+    'Description="Cone inflicts 2d6 damage (Raise 3d6)"',
   'Confusion':
     'Advances=0 ' +
     'PowerPoints=1 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target suffers Distracted and Vulnerable for 1 rd (Smarts neg) (Raise Smarts -2)"',
+      '"Target suffers Distracted and Vulnerable for 1 rd (Smarts neg) (Raise Smarts -2)"',
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creatures adjacent to target suffer 2d4 damage"',
+    'Range=smarts ' +
+    'Description="Creatures adjacent to target suffer 2d4 damage"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
+      '"Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
   'Deflection':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Foes suffer -2 attacks (Raise -4) on target for 5 rd"',
+    'Range=smarts ' +
+    'Description="Foes suffer -2 attacks (Raise -4) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
+      '"Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target assumes another\'s appearance for 10 min"',
+    'Range=smarts ' +
+    'Description="Target assumes another\'s appearance for 10 min"',
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} End targeted power (Arcane skill neg, +2 if types differ)"',
+    'Range=smarts ' +
+    'Description="End targeted power (Arcane skill neg, +2 if types differ)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
+    'Range=self ' +
     'Description=' +
-      '"Self 1 min contact with otherworld force grants arcane skill roll to gain information"',
+      '"1 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Drains 1d6 PP (Raise adds drained PP to self) (Spirit neg, +2 if types differ)"',
+    'Range=smarts ' +
+    'Description="Drains 1d6 PP (Raise adds drained PP to self) (Spirit neg, +2 if types differ)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Performs minor elemental manipulation for 5 rd"',
+    'Range=smarts ' +
+    'Description="Performs minor elemental manipulation for 5 rd"',
   'Empathy':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt for 5 rd (Raise +2) (Spirit neg)"',
+    'Range=smarts ' +
+    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt for 5 rd (Raise +2) (Spirit neg)"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target suffers Restrained (Raise Bound)"',
+    'Range=smarts ' +
+    'Description="Target suffers Restrained (Raise Bound)"',
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target gains protection from hazards for 1 hr"',
+      '"Target gains protection from hazards for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target sees up to 1 mile for 5 rd (Raise half Range penalties)"',
+      '"Target sees up to 1 mile for 5 rd (Raise half Range penalties)"',
   'Fear':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target Extra flees, Wild Card rolls on fear table (Spirit neg) (Raise -2)"',
+      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg) (Raise -2)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Target gains 12 Fly for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target gains 12 Fly for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
     'PowerPoints=2/Size ' +
-    'Description="R%{smarts}%{in} Target gains or loses Toughness and Strength step for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target gains or loses Toughness and Strength step for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Distracts and throws creatures in 2%{in} radius or 9%{in} cone 2d6%{in} (Strength neg) (Raise Strength -2)"',
+    'Range=smarts ' +
+    'Description="Distracts and throws creatures in 2%{in} radius or 9%{in} cone 2d6%{in} (Strength neg) (Raise Strength -2)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description="Touched recovers 1 Wound (Raise 2) suffered in past hr"',
+    'Range=touch ' +
+    'Description="Restores 1 Wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates 2%{in} radius visual illusion for 5 rd"',
+    'Range=smarts ' +
+    'Description="Creates 2%{in} radius visual illusion for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target becomes unaffected by physical world for 5 rd (Spirit neg)"',
+      '"Target becomes unaffected by physical world for 5 rd (Spirit neg)"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd"',
+      '"Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates 3%{in} radius bright light or darkness for 10 min"',
+    'Range=smarts ' +
+    'Description="Creates 3%{in} radius bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
+      '"Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Self gains 1 truthful answer from target (Smarts neg)"',
+    'Range=smarts ' +
+    'Description="Self gains 1 truthful answer from target (Smarts neg)"',
   'Mind Wipe':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Target forgets up to 30 min event (Smarts neg)"',
+    'Range=smarts ' +
+    'Description="Target forgets up to 30 min event (Smarts neg)"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
+    'Range=self ' +
     'Description=' +
-      '"Self sees five yr of events that occurred w/in 10 yd of touched object (Raise 100 yr and 20 yd)"',
+      '"Shows five yr of events that occurred w/in 10 yd of touched object (Raise 100 yr and 20 yd)"',
   'Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Target gains +2 Armor (Raise +4) for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target gains +2 Armor (Raise +4) for 5 rd"',
   'Puppet':
     'Advances=8 ' +
     'PowerPoints=3 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target obeys self (Raise complete control) for 5 rd (Spirit neg)"',
+      '"Target obeys self (Raise complete control) for 5 rd (Spirit neg)"',
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target recovers 1 Fatigue level or Shaken (Raise 2 levels or Stunned)"',
+      '"Target recovers 1 Fatigue level or Shaken (Raise 2 levels or Stunned)"',
   'Resurrection':
     'Advances=12 ' +
     'PowerPoints=30 ' +
+    'Range=touch ' +
     'Description=' +
-      '"Successful -8 casting roll returns touched 1 yr corpse to life with 3 Wounds and Exhausted (Raise 0 Wounds)"',
+      '"Successful -8 casting roll returns 1 yr corpse to life with 3 Wounds and Exhausted (Raise 0 Wounds)"',
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=3+ ' +
-    'Description="Caster takes animal form for 5 rd"',
+    'Range=self ' +
+    'Description="Transforms into animal form for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
+      '"Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target sleeps for 1 hr (Spirit neg)"',
+    'Range=smarts ' +
+    'Description="Target sleeps for 1 hr (Spirit neg)"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
   'Sound/Silence':
     'Advances=0 ' +
     'PowerPoints=1 ' +
+    'Range=smarts*5 ' +
     'Description=' +
-      '"R%{smarts*5}%{in} Creates sound up to shout or R%{smarts}%{in} Mutes 3%{in} radius for 5 rd"',
+      '"Creates sound up to shout or R%{smarts}%{in} Mutes 3%{in} radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Description="R%{smarts}%{in} Target speaks unknown language for 10 min"',
+    'Range=smarts ' +
+    'Description="Target speaks unknown language for 10 min"',
   'Stun':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Description="R%{smarts}%{in} Target Stunned (Vigor neg)"',
+    'Range=smarts ' +
+    'Description="Target Stunned (Vigor neg)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2+ ' +
-    'Description="R%{smarts}%{in} Creates obedient servant for 5 rd"',
+    'Range=smarts ' +
+    'Description="Creates obedient servant for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=3 ' +
+    'Range=smarts*2 ' +
     'Description=' +
-      '"R%{smarts*2}%{in} Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
+      '"Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Description=' +
-      '"R%{smarts}%{in} Target teleports 12%{in} (Raise 24%{in})"',
+    'Range=smarts ' +
+    'Description="Target teleports 12%{in} (Raise 24%{in})"',
   'Wall Walker':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range=smarts ' +
     'Description=' +
-      '"R%{smarts}%{in} Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
+      '"Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Description="R%{smarts}%{in} Target gains combat edge effects for 5 rd"',
+    'Range=smarts ' +
+    'Description="Target gains combat edge effects for 5 rd"',
   'Zombie':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Description="R%{smarts}%{in} Animates and controls corpse for 1 hr"'
+    'Range=smarts ' +
+    'Description="Animates and controls corpse for 1 hr"'
 };
 SWADE.RACES = {
   'Android':
@@ -1634,7 +1697,7 @@ SWADE.identityRules = function(rules, races, eras, deitys) {
 SWADE.arcaneRules = function(rules, arcanas, powers) {
   QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
   QuilvynUtils.checkAttrTable
-    (powers, ['Advances', 'PowerPoints', 'Description']);
+    (powers, ['Advances', 'PowerPoints', 'Range', 'Description']);
   for(var arcana in arcanas) {
     rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
   }
@@ -1777,6 +1840,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     SWADE.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
   else if(type == 'Race') {
@@ -2304,10 +2368,13 @@ SWADE.languageRules = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with power #name#, which may be
- * acquired only after #advances# advances and requires #powerPoints# Power
- * Points to use. #description# is a concise description of the power's effects.
+ * acquired only after #advances# advances, requires #powerPoints# Power Points
+ * to use, and can be cast at range #range#. #description# is a concise
+ * description of the power's effects.
  */
-SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
+SWADE.powerRules = function(
+  rules, name, advances, powerPoints, range, description)
+{
   if(!name) {
     console.log('Empty power name');
     return;
@@ -2315,12 +2382,21 @@ SWADE.powerRules = function(rules, name, advances, powerPoints, description) {
   if(typeof advances != 'number') {
     console.log('Bad advances "' + advances + '" for power ' + name);
   }
+  if(!range) {
+    console.log('Empty range for power ' + name);
+  }
   if(!description) {
     console.log('Empty description for power ' + name);
   }
+  if(range == 'self')
+    range = 'RSelf';
+  else if(range == 'touch')
+    range = 'RTouch';
+  else
+    range = 'R%{' + range + '}%{in}';
   // Not presently including advances in power description
   rules.defineChoice
-    ('notes', 'powers.' + name + ':(' + powerPoints + ' PP) ' + description);
+    ('notes', 'powers.' + name + ':(' + powerPoints + ' PP) ' + range + ' ' + description);
 };
 
 /*
