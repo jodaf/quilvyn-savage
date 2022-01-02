@@ -2388,10 +2388,9 @@ SWADE.powerRules = function(
   if(!description) {
     console.log('Empty description for power ' + name);
   }
-  if(range == 'self')
-    range = 'RSelf';
-  else if(range == 'touch')
-    range = 'RTouch';
+  if((range+'').match(/^(self|sight|touch)$/i))
+    range =
+      'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase();
   else
     range = 'R%{' + range + '}%{in}';
   // Not presently including advances in power description
