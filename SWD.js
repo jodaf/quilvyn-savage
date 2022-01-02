@@ -283,11 +283,6 @@ for(var edge in SWADE.EDGES) {
   else if(SWD.EDGES_CHANGES[edge] != null)
     SWD.EDGES[edge] = SWADE.EDGES[edge] + ' ' + SWD.EDGES_CHANGES[edge];
 }
-SWD.EDGES = Object.assign({}, SWADE.EDGES, SWD.EDGES_CHANGES);
-for(var edge in SWD.EDGES) {
-  if(!SWD.EDGES[edge])
-    delete SWD.EDGES[edge];
-}
 SWD.ERAS = {
   'Medieval':'',
   'Modern':'',
@@ -304,13 +299,13 @@ SWD.FEATURES = {
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, weapon Parry bonuses stack"',
-  'Arcane Background (Gifted)':
-    'Section=arcana Note="Power Count 1/Power Points 15"',
   'Arcane Background (Magic)':
     'Section=arcana Note="Count 3/Power Points 10"',
   'Arcane Background (Miracles)':
     'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Psionics)':
+    'Section=arcana Note="Power Count 3/Power Points 10"',
+  'Arcane Background (Super Powers)':
     'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Weird Science)':
     'Section=arcana Note="Power Count 2/Power Points 15"',
@@ -848,156 +843,117 @@ SWD.SKILLS = {
 };
 SWD.WEAPONS = {
 
-  'Unarmed':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
-    'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
-  'Battle Axe':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=1h AP=2',
-  'Great Axe':
-    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1',
-  'Light Club':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Heavy Club':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
-  'Dagger':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Knife':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=1h',
-  'Halberd':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=2h',
-  'Javelin':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
-  'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
-  'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=2h',
-  'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
-  'Rapier':'Era=Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
-  'Spear':
-    'Era=Ancient,Medieval ' +
-    'Damage=Str+d6 MinStr=6 Weight=3 Category=2h Range=3 Parry=1',
-  'Staff':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
-  'Great Sword':
-    'Era=Medieval,Colonial Damage=Str+d10 MinStr=10 Weight=6 Category=2h',
-  'Long Sword':
-    'Era=Medieval,Colonial Damage=Str+d8 MinStr=8 Weight=3 Category=1h',
-  'Short Sword':
-    'Era=Medieval,Colonial Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
-  'Warhammer':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h AP=1',
-  'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
-  'Bayonet':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h Parry=1',
-  'Billy Club':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Baton':'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Brass Knuckles':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
-  'Switchblade':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Survival Knife':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Molecular Knife':
-    'Era=Future Damage=Str+d4+2 MinStr=4 Weight=1 Category=1h AP=2',
-  'Molecular Sword':
-    'Era=Future Damage=Str+d8+2 MinStr=6 Weight=2 Category=1h AP=4',
-  'Laser Sword':
-    'Era=Future Damage=Str+d6+8 MinStr=4 Weight=2 Category=1h AP=12',
+  'Unarmed':'Era=Medieval,Modern,Future Damage=Str+d0 Weight=0 Category=Un',
+  'Dagger':'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=1h Range=3',
+  'Knife':'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=1h Range=3',
+  'Great Sword':'Era=Medieval Damage=Str+d10 Weight=12 Category=2h Parry=-1',
+  'Flail':'Era=Medieval Damage=Str+d6 Weight=8 Category=1h',
+  'Katana':'Era=Medieval Damage=Str+d6+2 Weight=6 Category=2h AP=2',
+  'Long Sword':'Era=Medieval Damage=Str+d8 Weight=8 Category=1h',
+  'Rapier':'Era=Medieval Damage=Str+d4 Weight=3 Category=1h Parry=1',
+  'Short Sword':'Era=Medieval Damage=Str+d6 Weight=4 Category=1h',
 
-  'Throwing Axe':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Bow':'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
-  'Hand Drawn Crossbow':
-    'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=R AP=2 Range=10',
-  'Heavy Crossbow':
-    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
-  'Long Bow':
-    'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
-  'Net':'Era=Medieval Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Sling':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
-  'Compound Bow':
-    'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
-  'Crossbow':
-    'Era=Medieval Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
-  'Flintlock Pistol':
-    'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
-  'Brown Bess':
-    'Era=Colonial Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
-  'Blunderbuss':
-    'Era=Colonial Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
+  'Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=1h',
+  'Battle Axe':'Era=Medieval Damage=Str+d8 Weight=10 Category=1h',
+  'Great Axe':'Era=Medieval Damage=Str+d10 Weight=15 Category=2h AP=1 Parry=-1',
+  'Maul':'Era=Medieval Damage=Str+d8 Weight=20 Category=2h AP=2 Parry=-1',
+  'Warhammer':'Era=Medieval Damage=Str+d6 Weight=8 Category=1h AP=1',
+
+  'Halberd':'Era=Medieval Damage=Str+d8 Weight=15 Category=2h',
+  'Lance':'Era=Medieval Damage=Str+d8 Weight=10 Category=1h AP=2',
+  'Pike':'Era=Medieval Damage=Str+d8 Weight=25 Category=2h',
+  'Staff':'Era=Medieval Damage=Str+d4 Weight=8 Category=2h Parry=1',
+  'Spear':'Era=Medieval Damage=Str+d6 Weight=5 Category=2h Range=3 Parry=1',
+
+  'Bangstick':'Era=Modern Damage=3d6 Weight=2 Category=1h',
+  'Bayonet':'Era=Modern Damage=Str+d6 Weight=1 Category=1h Parry=1',
+  'Billy Club':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
+  'Baton':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
+  'Brass Knuckles':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
+  'Chainsaw':'Era=Modern Damage=2d6+4 Weight=20 Category=1h',
+  'Switchblade':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
+  'Survival Knife':'Era=Modern Damage=Str+d4 Weight=3 Category=1h',
+
+  'Molecular Knife':'Era=Future Damage=Str+d4+2 Weight=1 Category=1h AP=2',
+  'Molecular Sword':'Era=Future Damage=Str+d8+2 Weight=8 Category=1h AP=4',
+  'Laser Sword':'Era=Future Damage=Str+d6+8 Weight=5 Category=1h AP=12',
+
+  'Throwing Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=R Range=3',
+  'Bow':'Era=Medieval Damage=2d6 Weight=3 MinStr=6 Category=R Range=12',
+  'Crossbow':'Era=Medieval Damage=2d6 Weight=10 MinStr=6 Category=R Range=15',
+  'English Long Bow':
+    'Era=Medieval Damage=2d6 Weight=5 MinStr=8 Category=R Range=15',
+  'Sling':'Era=Medieval Damage=Str+d4 Weight=1 Category=R Range=4',
+
+  'Brown Bess':'Era=Modern Damage=2d8 Weight=15 MinStr=6 Category=R Range=10',
+  'Blunderbuss':'Era=Modern Damage=3d6 Weight=12 MinStr=6 Category=R Range=10',
+  'Flintlock Pistol':'Era=Modern Damage=2d6+1 Weight=3 Category=R Range=5',
   'Kentucky Rifle':
-    'Era=Colonial Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
-  'Springfield Model 1861':
-    'Era=Victorian Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
-  'Derringer':'Era=Victorian Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
-  'Police Revolver':
-    'Era=Victorian Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
-  'Colt Peacemaker':
-    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
-  'Smith & Wesson':
-    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=5 Category=R AP=1 Range=12',
-  'Colt 1911':
-    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
-  'Desert Eagle':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
-  'Glock':'Era=Modern Damage=2d6 MinStr=4 Weight=3 Category=R AP=1 Range=12',
-  'Ruger':'Era=Modern Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
-  'H&K MP5':
-    'Era=Modern Damage=2d6 MinStr=6 Weight=10 Category=R AP=1 Range=12 ROF=3',
+    'Era=Modern Damage=2d8 Weight=8 MinStr=6 Category=R Range=15 AP=2',
+  'Springfield':'Era=Modern Damage=2d8 Weight=11 MinStr=6 Category=R Range=15',
+
+  'Derringer':'Era=Modern Damage=2d6+1 Weight=2 Category=R Range=5 AP=1',
+  'Colt Dragoon':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12',
+  'Colt 1911':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12',
+  'S&W 44':'Era=Modern Damage=2d6+1 Weight=5 Category=R Range=12 AP=1',
+  'Desert Eagle':'Era=Modern Damage=2d8 Weight=8 Category=R Range=15 AP=2',
+  'Glock':'Era=Modern Damage=2d6 Weight=3 Category=R AP=1 Range=12 AP=1',
+  'Peacemaker':'Era=Modern Damage=2d6+1 Weight=3 Category=R AP=1 Range=12 AP=1',
+  'Ruger':'Era=Modern Damage=2d4 Weight=2 Category=R Range=10',
+  'S&W 357':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12 AP=1',
+  'H&K MP5':'Era=Modern Damage=2d6 Weight=10 Category=R AP=1 Range=12 ROF=3',
   'Tommy Gun':
-    'Era=Modern Damage=2d6+1 MinStr=6 Weight=13 Category=R AP=1 Range=12 ROF=3',
-  'Uzi':
-    'Era=Modern Damage=2d6 MinStr=4 Weight=9 Category=R AP=1 Range=12 ROF=3',
-  'Double-Barrel Shotgun':
-    'Era=Modern Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
-  'Pump Action Shotgun':
-    'Era=Modern Damage=3d6 MinStr=4 Weight=8 Category=R Range=12',
-  'Sawed-Off Shotgun':
-    'Era=Modern Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
-  'Streetsweeper':
-    'Era=Modern Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
+    'Era=Modern Damage=2d6+1 Weight=13 Category=R AP=1 Range=12 ROF=3',
+  'Uzi':'Era=Modern Damage=2d6 Weight=9 Category=R AP=1 Range=12 ROF=3',
+
+  'Double-Barrel Shotgun':'Era=Modern Damage=3d6 Weight=11 Category=R Range=12',
+  'Pump Action Shotgun':'Era=Modern Damage=3d6 Weight=8 Category=R Range=12',
+  'Streetsweeper':'Era=Modern Damage=3d6 Weight=10 Category=R Range=12',
+
   'Barrett Rifle':
-    'Era=Modern Damage=2d10 MinStr=8 Weight=35 Category=R AP=4 Range=50',
-  'M1 Garand':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
-  'Hunting Rifle':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d10 Weight=35 MinStr=8 Category=R AP=4 Range=50',
+  'M1':'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24',
+  'Kar98':'Era=Modern Damage=2d8 Weight=9 MinStr=6 Category=R AP=2 Range=24',
   'Sharps Big 50':
-    'Era=Modern Damage=2d10 MinStr=8 Weight=11 Category=R AP=2 Range=30',
-  'Spencer Carbine':
-    'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=R AP=2 Range=20',
-  "Winchester '73":
-    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d10 Weight=11 MinStr=8 Category=R AP=2 Range=30',
+  'Spencer Carbine':'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=20',
+  "Winchester '76":
+    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24',
+
   'AK47':
-    'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=R AP=2 Range=24 ROF=3',
-  'M-16':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=10 MinStr=6 Category=R AP=2 Range=24 ROF=3',
+  'H&K G3':
+    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24 ROF=3',
+  'M-16':'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=24 ROF=3',
   'Steyr AUG':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
-  'Browning Automatic Rifle':
-    'Era=Modern Damage=2d8 MinStr=8 Weight=17 Category=R AP=2 Range=20 ROF=3',
+    'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=24 ROF=3',
+
   'Gatling Gun':
-    'Era=Modern Damage=2d8 MinStr=0 Weight=170 Category=R AP=2 Range=24 ROF=3',
-  'Minigun':
-    'Era=Modern Damage=2d8+1 MinStr=10 Weight=85 Category=R AP=2 Range=30 ROF=5',
+    'Era=Modern Damage=2d8 Weight=40 Category=R AP=2 Range=24 ROF=3',
   'M2 Browning':
-    'Era=Modern Damage=2d10 MinStr=0 Weight=84 Category=R AP=4 Range=50 ROF=3',
+    'Era=Modern Damage=2d10 Weight=84 Category=R AP=4 Range=50 ROF=3',
+  'M1919':'Era=Modern Damage=2d8 Weight=32 Category=R AP=2 Range=24 ROF=3',
   'M60':
-    'Era=Modern Damage=2d8+1 MinStr=8 Weight=33 Category=R AP=2 Range=30 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=33 MinStr=8 Category=R AP=2 Range=30 ROF=3',
+  '7.7 MG':'Era=Modern Damage=2d8 Weight=85 Category=R AP=2 Range=30 ROF=3',
+  'MG34':
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=3',
   'MG42':
-    'Era=Modern Damage=2d8+1 MinStr=10 Weight=26 Category=R AP=2 Range=30 ROF=4',
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=4',
   'SAW':
-    'Era=Modern Damage=2d8 MinStr=8 Weight=20 Category=R AP=2 Range=30 ROF=4',
-  'Laser Pistol':
-    'Era=Future Damage=2d6 MinStr=4 Weight=2 Category=R AP=2 Range=15',
-  'Laser SMG':
-    'Era=Future Damage=2d6 MinStr=4 Weight=4 Category=R AP=2 Range=15 ROF=4',
+    'Era=Modern Damage=2d8 Weight=20 MinStr=8 Category=R AP=2 Range=30 ROF=4',
+  'Besa MG':
+    'Era=Modern Damage=2d8 Weight=54 MinStr=8 Category=R AP=2 Range=40 ROF=3',
+  'DTMG':
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=3',
+  '14.5mm MG':
+    'Era=Modern Damage=3d6 Weight=26 MinStr=8 Category=R AP=2 Range=50 ROF=3',
+
+  'Laser Pistol':'Era=Future Damage=3d6 Weight=4 Category=R Range=15',
   'Laser Rifle':
-    'Era=Future Damage=3d6 MinStr=6 Weight=8 Category=R AP=2 Range=30 ROF=3',
-  'Gatling Laser':
-    'Era=Future Damage=3d6+4 MinStr=8 Weight=20 Category=R AP=2 Range=50 ROF=4'
+    'Era=Future Damage=3d6 Weight=8 MinStr=6 Category=R Range=30 ROF=3',
+  'Laser MG':
+    'Era=Future Damage=3d6 Weight=15 MinStr=8 Category=R Range=50 ROF=5'
  
 };
 
@@ -1117,7 +1073,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
     SWD.weaponRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
+      QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
       QuilvynUtils.getAttrValue(attrs, 'Weight'),
       QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'AP'),
