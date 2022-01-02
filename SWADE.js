@@ -402,7 +402,7 @@ SWADE.FEATURES = {
   'Arcane Background (Gifted)':
     'Section=arcana Note="Power Count 1/Power Points 15"',
   'Arcane Background (Magic)':
-    'Section=arcana Note="Count 3/Power Points 10"',
+    'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Miracles)':
     'Section=arcana Note="Power Count 3/Power Points 10"',
   'Arcane Background (Psionics)':
