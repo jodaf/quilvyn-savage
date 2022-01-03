@@ -236,7 +236,7 @@ SWD.EDGES_CHANGES = {
   'Reliable':null,
   'Retort':null,
   'Streetwise':null,
-  'Strong Willed':'Require="skils.Intimidation >= 6","skills.Taunt >= 6"',
+  'Strong Willed':'Require="skills.Intimidation >= 6","skills.Taunt >= 6"',
   'Iron Will':null,
   'Work The Room':null,
   'Work The Crowd':null,
@@ -358,7 +358,7 @@ SWD.FEATURES = {
   'Healer':'SWADE',
   'Hold The Line!':'SWADE',
   'Holy/Unholy Warrior':
-    'Section=arcana Note="Spend 1 Power Point repluse supernatural creatures"',
+    'Section=arcana Note="Spend 1 Power Point repulse supernatural creatures"',
   'Improved Arcane Resistance':'SWADE',
   'Improved Block':'SWADE',
   'Improved Counterattack':'SWADE',
@@ -454,144 +454,128 @@ SWD.FEATURES = {
   // Hindrances
   'All Thumbs':
     'Section=skill ' +
-    'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
-  'Anemic':'Section=attribute Note="-2 Vigor (resist disease)"',
-  'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
-  'Bad Eyes':'Section=skill Note="-1 on visual trait rolls"',
-  'Bad Eyes+':'Section=skill Note="-2 on visual trait rolls"',
-  'Bad Luck+':'Section=feature Note="-1 Benny each session"',
-  'Big Mouth':'Section=feature Note="Cannot keep secrets"',
-  'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
-  'Bloodthirsty+':'Section=combat Note="Cruel to foes"',
-  'Cautious':'Section=feature Note="Requires detailed plan before acting"',
-  'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
-  'Code Of Honor+':'Section=feature Note="Always insists on acting nobly"',
-  'Curious+':
-    'Section=feature Note="Insists on investigating every mystery and secret"',
-  'Death Wish':'Section=feature Note="Will risk death for valued goal"',
-  'Delusional':'Section=feature Note="Has harmless conspiracy belief"',
-  'Delusional+':'Section=feature Note="Frequently acts on conspiracy belief"',
-  'Doubting Thomas':
-    'Section=feature Note="Insists on rationalizing supernatural events"',
+    'Note="-2 using mechanical and electrical devices, roll of 1 breaks device"',
+  'Anemic':'SWADE',
+  'Arrogant+':'SWADE',
+  'Bad Eyes':'Section=skill Note="Must wear corrective lenses"',
+  'Bad Eyes+':
+    'Section=skill Note="-2 on visual trait rolls and distance attacks"',
+  'Bad Luck+':'SWADE',
+  'Big Mouth':'SWADE',
+  'Blind+':'SWADE',
+  'Bloodthirsty+':'Section=skill Note="-4 Charisma"',
+  'Cautious':'SWADE',
+  'Clueless+':'Section=skill Note="-2 Common Knowledge"',
+  'Code Of Honor+':'SWADE',
+  'Curious+':'SWADE',
+  'Death Wish':'SWADE',
+  'Delusional':'SWADE',
+  'Delusional+':'SWADE',
+  'Doubting Thomas':'SWADE',
   'Elderly+':
     'Section=attribute,combat,skill ' +
-    'Note="-1 Agility/-1 Strength/-1 Vigor","-1 Pace/-1 Run","+5 Skill Points"',
-  'Enemy':
-    'Section=feature ' +
-    'Note="Individual or remote group wants character eliminated"',
-  'Enemy+':
-    'Section=feature ' +
-    'Note="Powerful individual or group wants character eliminated"',
-  'Greedy':'Section=feature Note="Demands more than a fair share"',
-  'Greedy+':
-    'Section=feature ' +
-    'Note="Violently insists on getting more than a fair share"',
-  'Habit':'Section=feature Note="Has irritating but harmless compulsion"',
-  'Habit+':'Section=feature Note="Has dangerous physical or mental addiction"',
-  'Hard Of Hearing':'Section=skill Note="-4 Notice (hearing)"',
-  'Hard Of Hearing+':
-    'Section=skill Note="Deaf, automatically fails Notice (hearing)"',
-  'Heroic+':'Section=feature Note="Always tries to help others"',
-  'Illiterate':'Section=feature Note="Cannot read or write"',
-  'Lame':'Section=feature Note="TODO"',
-  'Loyal':'Section=feature Note="Always takes risks for friends"',
+    'Note="-1 Strength step/-1 Vigor step","-1 Pace","+5 Skill Points"',
+  'Enemy':'SWADE',
+  'Enemy+':'SWADE',
+  'Greedy':'SWADE',
+  'Greedy+':'SWADE',
+  'Habit':
+    'Section=feature,skill ' +
+    'Note="Has irritating but harmless compulsion","-1 Charisma"',
+  'Habit+':'SWADE',
+  'Hard Of Hearing':'Section=skill Note="-2 Notice (hearing)"',
+  'Hard Of Hearing+':'SWADE',
+  'Heroic+':'SWADE',
+  'Illiterate':'SWADE',
+  'Lame':'Section=combat Note="-2 Pace/-1 Run step"',
+  'Loyal':'SWADE',
   'Mean':
     'Section=feature,skill ' +
-    'Note="Ill-tempered and disagreeable","-1 Persuasion"',
-  'Obese':
-    'Section=attribute,combat,description ' +
-    'Note=' +
-      '"-1 Strength step (worn gear)",' +
-      '"-1 Pace/-1 Run step/+1 Toughness",' +
-      '"+1 Size"',
-  'One Arm+':'Section=skill Note="-4 on two-handed tasks"',
-  'One Eye+':'Section=feature Note="-2 on visual tasks 10 yd distant"',
-  'One Leg+':'Section=feature Note="TODO"',
-  'Outsider':'Section=skill Note="-2 Persuasion (other races)"',
-  'Overconfident+':
-    'Section=feature Note="Has excessive opinion of own capabilities"',
-  'Pacifist':
-    'Section=combat ' +
-    'Note="Will harm others only when no other option available"',
-  'Pacifist+':
-    'Section=combat ' +
-    'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
+    'Note="Ill-tempered and disagreeable","-2 Charisma"',
+  'Obese':'Section=combat Note="-1 Pace/-1 Run step/+1 Toughness"',
+  'One Arm+':'SWADE',
+  'One Eye+':
+    'Section=feature Note="-2 on visual tasks requiring depth perception"',
+  'One Leg+':'Section=combat Note="-4 Pace/Cannot run"',
+  'Outsider':'Section=skill Note="-2 Charisma (other races)"',
+  'Overconfident+':'SWADE',
+  'Pacifist':'SWADE',
+  'Pacifist+':'SWADE',
   'Phobia':
-    'Section=feature Note="-1 on trait rolls in presence of phobia subject"',
-  'Phobia+':
     'Section=feature Note="-2 on trait rolls in presence of phobia subject"',
-  'Poverty':
-    'Section=feature Note="Starts with half funds, loses half funds each wk"',
-  'Quirk':
-    'Section=feature ' +
-    'Note="Has minor compulsion that occasionally causes trouble"',
-  'Small+':'Section=combat,description Note="-1 Toughness","-1 Size"',
-  'Stubborn':'Section=feature Note="Never admits error"',
-  'Ugly':'Section=skill Note="-1 Persuasion"',
-  'Vengeful':'Section=feature Note="Spends time plotting revenge"',
-  'Vengeful+':'Section=feature Note="Places primary focus on revenge"',
-  'Vow':
-    'Section=feature Note="Has broad restrictions on behavior and decisions"',
-  'Vow+':
-    'Section=feature Note="Has tight restrictions on behavior and decisions"',
-  'Wanted':
-    'Section=feature Note="Has trouble with distant law or minor infractions"',
-  'Wanted+':
-    'Section=feature Note="Has significant trouble with local law enforcement"',
-  'Yellow+':'Section=attribute Note="-2 Spirit vs. fear and Intimidation"',
+  'Phobia+':
+    'Section=feature Note="-4 on trait rolls in presence of phobia subject"',
+  'Poverty':'SWADE',
+  'Quirk':'SWADE',
+  'Small+':'Section=combat Note="-1 Toughness"',
+  'Stubborn':'SWADE',
+  'Ugly':'Section=skill Note="-2 Charisma"',
+  'Vengeful':'SWADE',
+  'Vengeful+':'SWADE',
+  'Vow':'SWADE',
+  'Vow+':'SWADE',
+  'Wanted':'SWADE',
+  'Wanted+':'SWADE',
+  'Yellow+':'Section=attribute Note="-2 Spirit vs. fear"',
   'Young':
     'Section=attribute,feature,skill ' +
-    'Note="-1 Attribute Points","+1 Benny each session","-2 Skill Points"',
+    'Note="-2 Attribute Points","+1 Benny each session","-2 Skill Points"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
-  'Advanced Civilization':'Section=feature Note=TODO',
-  'Agile':'Section=attribute Note="+1 Agility step"',
-  'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
+  'Advanced Civilization':'Section=attribute Note="+1 Smarts step"',
+  'Agile':'SWADE',
+  'Aquatic':
+    'Section=combat,feature,skill ' +
+    'Note="Swim Pace %{pace}","Cannot drown","d6 in Swimming"',
   'Asimov Circuits':'Section=feature Note="Has Pacific+ hindrance"',
+  'Atlantean Tough':'Section=combat Note="+1 Toughness"',
+  'Bite':'SWADE',
   'Burrowing':
     'Section=feature Note="Can burrow into loose earth and surprise foes"',
-  'Claws':'Section=combat Note="Claws are Natural Weapon"',
+  'Claws':'SWADE',
   'Construct':
     'Section=attribute,combat ' +
     'Note=' +
       '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores one level of Wound modifiers, requires Repair to heal"',
-  'Dehydration':'Section=feature Note=TODO',
-  'Flight':
-    'Section=combat,skill ' +
-    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
+      '"Ignores Wound modifiers, requires Repair to heal"',
+  'Dehydration':
+    'Section=feature Note="Requires 1 hr immersion/dy to avoid fatigue"',
+  'Flight':'Section=combat Note="Fly Pace %{pace}"',
   'Fortunate':'Section=feature Note="+1 Benny each session"',
-  'Heritage':
-    'Section=description Note="+2 Improvement Points (attribute or edge)"',
+  'Hardy':'Section=combat Note="Not wounded by second Shaken result"',
+  'Heritage':'SWADE',
   'Hollow-Boned':'Section=combat Note="-1 Toughness"',
-  'Infravision':
-    'Section=combat ' +
-    'Note="Half penalties when attacking warm invisible targets"',
   'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
-  'Keen Senses':'Section=skill Note="+2 Notice (specific sense)"',
-  'Low Light Vision':
-    'Section=feature Note="Ignores penalties for dim and dark illumination"',
-  'Mostly Human':'Section=feature Note=TODO',
-  'Multiple Limbs':'Section=feature Note=TODO',
-  'Natural Weapons':'Section=combat Note=TODO',
+  'Infravision':
+    'Section=combat ' +
+    'Note="Half penalties when attacking in bad lighting"',
+  'Low Light Vision':'SWADE',
+  'Mostly Human':'Section=feature Note="+1 Edge Points"',
+  'Multiple Limbs':
+    'Section=combat Note="Extra actions w/out multi-action penalty"',
+  'Natural Weapons':'Section=combat Note="Has Bite, Claws, and Tail features"',
   'Poison':'Section=combat Note="Touch causes Mild Poison effects (Vigor neg)"',
-  'Potent Poison':'Section=combat Note="TODO"',
+  'Potent Poison':'Section=combat Note="Poison target -%V Vigor to resist"',
   'Programming':'Section=skill Note="+2 Skill Points"',
-  'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
-  'Recharge':'Section=feature Note=TODO',
-  'Saurian Senses':'Section=feature Note="Alertness edge"',
-  'Semi-Aquatic':'Section=feature Note="Can hold breath for 15 min"',
-  'Slow':'Section=combat Note="-1 Pace"',
-  'Small':'Section=combat,description Note="-1 Toughness","-1 Size"',
-  'Spirited':'Section=attribute Note="+1 Spirit step"',
+  'Racial Enemy':'Section=skill Note="-4 Charisma (racial enemy)"',
+  'Recharge':
+    'Section=feature ' +
+    'Note="Requires access to power source 1/dy to avoid fatigue"',
+  'Saurian Senses':'Section=skill Note="+2 Notice"',
+  'Semi-Aquatic':'SWADE',
+  'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
+  'Slow':'SWADE',
+  'Spirited':'SWADE',
   'Strong':'Section=attribute Note="+1 Strength step"',
-  'Tough':'Section=attribute Note="+1 Vigor step"',
+  'Tail':'SWADE',
+  'Tough':'SWADE',
+  'Unnatural':'Section=feature Note="-2 arcane power effects"',
   'Wall Walker':
     'Section=combat ' +
     'Note="Normal Pace on vertical surfaces, %{pace//2} on inverted"',
-  'Warm Natured':'Section=feature Note=TODO'
+  'Warm Natured':'Section=attribute Note="-4 Vigor (resist cold)"'
 
 };
 for(var feature in SWD.FEATURES) {
@@ -802,7 +786,7 @@ SWD.SKILLS = {
   'Research':'Attribute=smarts',
   'Riding':'Attribute=agility',
   'Shooting':'Attribute=agility',
-  'Spellcating':'Attribute=smarts',
+  'Spellcasting':'Attribute=smarts',
   'Stealth':'Attribute=agility',
   'Streetwise':'Attribute=smarts',
   'Survival':'Attribute=smarts',
@@ -1247,8 +1231,22 @@ SWD.raceRules = function(rules, name, requires, features, languages) {
  * derived directly from the attributes passed to raceRules.
  */
 SWD.raceRulesExtra = function(rules, name) {
-  SWADE.raceRulesExtra(rules, name);
-  // No changes needed to the rules defined by base method
+  rules.defineRule
+    ('is' + name, 'race', '=', 'source == "' + name + '" ? 1 : null');
+  if(name == 'Android') {
+    rules.defineRule
+      ('features.Pacifist+', 'featureNotes.asimovCircuits', '=', '1');
+  } else if(name == 'Atlantean') {
+    rules.defineRule('skillStep.Swimming', 'skillNotes.aquatic', '+=', '2');
+  } else if(name == 'Rakashan') {
+    rules.defineRule('damageStep.Claws',
+      'weapons.Claws', '?', null,
+      'isRakashan', '^=', '2'
+    );
+    rules.defineRule('weapons.Claws.3',
+      'damageStep.Claws', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
+    );
+  }
 };
 
 /*
