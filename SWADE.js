@@ -454,7 +454,9 @@ SWADE.FEATURES = {
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
   'Charismatic':'Section=skill Note="Reroll Persuasion"',
-  'Chi':'Section=combat Note="Reroll failed attack, force foe attack reroll, or gain +d6 Natural Weapon damage 1/encounter"',
+  'Chi':
+    'Section=combat ' +
+    'Note="Reroll failed attack, force foe attack reroll, or gain +d6 Natural Weapon damage 1/encounter"',
   'Combat Acrobat':
     'Section=combat ' +
     'Note="Foes -1 attack when self aware of attack and unrestrained"',
@@ -462,7 +464,7 @@ SWADE.FEATURES = {
     'Section=combat Note="+2 on Shaken and Stunned recovery rolls"',
   'Command':
     'Section=feature ' +
-    'Note="R%{commandRange}%{in} Extras +1 to recover from Shaken or Stunned"',
+    'Note="R%{commandRange}%{in} Commanded +1 to recover from Shaken or Stunned"',
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
@@ -498,7 +500,7 @@ SWADE.FEATURES = {
     'Section=skill ' +
     'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
   'Fervor':
-    'Section=combat Note="R%{commandRange}%{in} Extras +1 Fighting damage"',
+    'Section=combat Note="R%{commandRange}%{in} Commanded +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
     'Section=combat Note="Free attack when %V foes move into reach"',
@@ -515,13 +517,13 @@ SWADE.FEATURES = {
   'Giant Killer':
     'Section=combat Note="+1d6 damage vs. foes of size %{size+3} or greater"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
-  'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
   'Hard To Kill':
     'Section=combat ' +
     'Note="No wound penalties on Vigor tests to avoid bleeding out"',
   'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
-  'Hold The Line!':'Section=combat Note="Commanded Extras +1 Toughness"',
+  'Hold The Line!':
+    'Section=combat Note="R%{commandRange} Commanded +1 Toughness"',
   'Holy/Unholy Warrior':
     'Section=arcana ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
@@ -586,7 +588,8 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage on first successful melee attack"',
   'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
-  'Natural Leader':'Section=feature Note="Apply leadership edges to Wild Cards"',
+  'Natural Leader':
+    'Section=feature Note="Apply leadership edges to Wild Cards"',
   'Nerves Of Steel':'Section=combat Note="Ignore %V points of wound penalties"',
   'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 on Benny damage reroll"',
@@ -631,7 +634,7 @@ SWADE.FEATURES = {
   'Sweep':'Section=combat Note="%1Attack all within reach"',
   'Tactician':
     'Section=combat ' +
-    'Note="R%{commandRange}%{in} Distribute %V Action Cards to Extras"',
+    'Note="R%{commandRange}%{in} Distribute %V Action Cards to commanded"',
   'Thief':
     'Section=skill Note="+1 Climb (urban)/+1 Stealth (urban)/+1 Thievery"',
   'Tough As Nails':'Section=combat Note="Take %V wounds before incapacitated"',
@@ -827,6 +830,7 @@ SWADE.FEATURES = {
     'Section=combat,skill ' +
     'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
+  'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
   'Hardy':'Section=combat Note="Does not incur Wound from 2nd Shaken result"',
   'Heritage':
     'Section=description Note="+2 Improvement Points (attribute or edge)"',
