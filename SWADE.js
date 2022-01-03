@@ -864,6 +864,7 @@ SWADE.FEATURES = {
   'Smart':'Section=attribute Note="+1 Smarts step"',
   'Spirited':'Section=attribute Note="+1 Spirit step"',
   'Strong':'Section=attribute Note="+1 Strength step"',
+  'Tail':'Section=combat Note="Tail is Natural Weapon"',
   'Tough':'Section=attribute Note="+1 Vigor step"',
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
@@ -2463,9 +2464,14 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
     'Un', null, null, null, null
   );
+  SWADE.weaponRules(
+    rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    'Un', null, null, null, null
+  );
   rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
   rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
   rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
+  rules.defineRule('weapons.Tail', 'combatNotes.tail', '=', null);
 
 };
 
