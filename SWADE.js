@@ -2266,7 +2266,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       if(op == '*')
         adjust = adjust.substring(1);
 
-      if(section == 'skill' && adjusted != 'Skill Points' &&
+      if(section == 'skill' && adjusted != 'Skill Points' && adjusted != 'Charisma' &&
          adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
         adjusted = 'skillModifier.' + adjusted;
       } else if(adjusted == 'Run' ||
