@@ -454,10 +454,9 @@ SWD.FEATURES = {
   'Woodsman':'Section=skill Note="+2 Survival (wilds)/+2 Stealth (wilds)/+2 Tracking (wilds)"',
 
   // Hindrances
-  'All Thumbs':
-    'Section=skill ' +
-    'Note="-2 using mechanical and electrical devices, roll of 1 breaks device"',
-  'Anemic':'SWADE',
+  'All Thumbs':'Section=skill Note="-2 Repair/Roll of 1 breaks device"',
+  'Anemic':
+    'Section=feature Note="-2 Fatigue checks (resist poison and disease)"',
   'Arrogant+':'SWADE',
   'Bad Eyes':'Section=skill Note="Must wear corrective lenses"',
   'Bad Eyes+':
@@ -473,7 +472,7 @@ SWD.FEATURES = {
   'Death Wish':'SWADE',
   'Delusional':'SWADE',
   'Delusional+':'SWADE',
-  'Doubting Thomas':'SWADE',
+  'Doubting Thomas':'Section=attribute Note="-2 vs. supernatural horror"',
   'Elderly+':
     'Section=attribute,combat,skill ' +
     'Note="-1 Strength step/-1 Vigor step","-1 Pace","+5 Skill Points"',
@@ -489,7 +488,7 @@ SWD.FEATURES = {
   'Hard Of Hearing+':'SWADE',
   'Heroic+':'SWADE',
   'Illiterate':'SWADE',
-  'Lame':'Section=combat Note="-2 Pace/-1 Run step"',
+  'Lame+':'Section=combat Note="-2 Pace/-1 Run step"',
   'Loyal':'SWADE',
   'Mean':
     'Section=feature,skill ' +
@@ -497,8 +496,9 @@ SWD.FEATURES = {
   'Obese':'Section=combat Note="-1 Pace/-1 Run step/+1 Toughness"',
   'One Arm+':'SWADE',
   'One Eye+':
-    'Section=feature Note="-2 on visual tasks requiring depth perception"',
-  'One Leg+':'Section=combat Note="-4 Pace/Cannot run"',
+    'Section=feature,skill ' +
+    'Note="-2 on visual tasks requiring depth perception","-1 Charisma"',
+  'One Leg+':'Section=combat,skill Note="-4 Pace/Cannot run","-2 Swimming"',
   'Outsider':'Section=skill Note="-2 Charisma (other races)"',
   'Overconfident+':'SWADE',
   'Pacifist':'SWADE',
@@ -519,7 +519,7 @@ SWD.FEATURES = {
   'Wanted':'SWADE',
   'Wanted+':'SWADE',
   'Yellow+':'Section=attribute Note="-2 Spirit vs. fear"',
-  'Young':
+  'Young+':
     'Section=attribute,feature,skill ' +
     'Note="-2 Attribute Points","+1 Benny each session","-2 Skill Points"',
 
@@ -772,7 +772,7 @@ SWD.SKILLS = {
   'Gambling':'Attribute=smarts',
   'Healing':'Attribute=smarts',
   'Intimidation':'Attribute=spirit',
-  'Investigations':'Attribute=smarts',
+  'Investigation':'Attribute=smarts',
   'Knowledge':'Attribute=smarts',
   'Lockpicking':'Attribute=agility',
   'Notice':'Attribute=smarts',
@@ -940,9 +940,14 @@ SWD.talentRules = function(
   SWADE.talentRules
     (rules, edges, features, goodies, hindrances, languages, skills);
   rules.defineChoice
-    ('notes', 'skillNotes.charisma:+%V Persuasion/+%V Streetwise');
+    ('notes', 'skillNotes.charisma:%V Persuasion/%V Streetwise');
   rules.defineRule('charisma', 'advances', '=', '0');
-  rules.defineRule('skillRules.charisma', 'charisma', '=', null);
+  rules.defineRule
+    ('skillNotes.charisma', 'charisma', '=', 'QuilvynUtils.signed(source)');
+  rules.defineRule
+    ('skillModifier.Persuasion', 'skillNotes.charisma', '+=', null);
+  rules.defineRule
+    ('skillModifier.Streetwise', 'skillNotes.charisma', '+=', null);
 };
 
 /*
