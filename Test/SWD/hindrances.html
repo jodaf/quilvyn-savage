@@ -27,9 +27,9 @@ var attributes = {
   "improvementPointsAllocation.Skill":2, "name":"Hindrances", "race":"Saurian", "shield":"Medium", 
   "skillAllocation.Boating":1, "skillAllocation.Climbing":2, "skillAllocation.Faith":1, 
   "skillAllocation.Gambling":1, "skillAllocation.Healing":1, "skillAllocation.Intimidation":2, 
-  "skillAllocation.Investigations":1, "skillAllocation.Research":1, "skillAllocation.Riding":1, 
-  "skillAllocation.Stealth":1, "skillAllocation.Streetwise":1, "skillAllocation.Tracking":1, 
-  "smartsAllocation":1, "spiritAllocation":1, "strengthAllocation":2, "vigorAllocation":1, 
+  "skillAllocation.Investigation":1, "skillAllocation.Research":1, "skillAllocation.Riding":1, 
+  "skillAllocation.Stealth":2, "skillAllocation.Streetwise":2, "skillAllocation.Tracking":2, 
+  "smartsAllocation":1, "spiritAllocation":1, "strengthAllocation":0, "vigorAllocation":1, 
   "weapons.Dagger":1, "weapons.Flail":1, "weapons.Spear":1
 };
   </script>
@@ -45,14 +45,14 @@ var attributes = {
 </tr><tr style="text-align:center">
   <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
   <tr style="text-align:center">
-    <td><b>Attributes</b> (6 Points):</td>
+    <td><b>Attributes</b> (4 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d6</td>
       <td><b>Smarts</b>: d6</td>
       <td><b>Spirit</b>: d6</td>
-      <td><b>Strength</b>: d6</td>
+      <td><b>Strength</b>: d4-1</td>
       <td><b>Vigor</b>: d4</td>
     </tr></table>
 </td>
@@ -61,7 +61,9 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Elderly+: -1 Strength step/-1 Vigor step</i></td>
     </tr><tr style="text-align:center">
-      <td>Anemic: -2 Vigor (resist disease)</td>
+      <td><i>Young+: -2 Attribute Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Doubting Thomas: -2 vs. supernatural horror</td>
     </tr><tr style="text-align:center">
       <td>Warm Natured: -4 Vigor (resist cold)</td>
     </tr><tr style="text-align:center">
@@ -69,7 +71,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (19 Points):</td>
+    <td><b>Skills</b> (17 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -80,23 +82,27 @@ var attributes = {
       <td>Healing: (sma) d4</td>
       <td>Riding: (agi) d4</td>
     </tr><tr style="text-align:left">
-      <td>Climbing: (str) d6</td>
+      <td>Climbing: (str) d4</td>
       <td>Intimidation: (spi) d6</td>
-      <td>Stealth: (agi) d4</td>
+      <td>Stealth: (agi) d6</td>
     </tr><tr style="text-align:left">
       <td>Faith: (spi) d4</td>
-      <td>Investigations: (sma) d4</td>
-      <td>Streetwise: (sma) d4</td>
+      <td>Investigation: (sma) d4</td>
+      <td>Streetwise: (sma) d6-10</td>
     </tr><tr style="text-align:left">
       <td>Gambling: (sma) d4</td>
       <td>Research: (sma) d4</td>
-      <td>Tracking: (sma) d4</td>
+      <td>Tracking: (sma) d6</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
     <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
     <tr style="text-align:center">
+      <td><i>All Thumbs: -2 Repair/Roll of 1 breaks device</i></td>
+    </tr><tr style="text-align:center">
       <td><i>Bloodthirsty+: -4 Charisma</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Charisma: -10 Persuasion/-10 Streetwise</i></td>
     </tr><tr style="text-align:center">
       <td><i>Clueless+: -2 Common Knowledge</i></td>
     </tr><tr style="text-align:center">
@@ -106,11 +112,15 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Mean: -2 Charisma</i></td>
     </tr><tr style="text-align:center">
+      <td><i>One Eye+: -1 Charisma</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>One Leg+: -2 Swimming</i></td>
+    </tr><tr style="text-align:center">
       <td><i>Saurian Senses: +2 Notice</i></td>
     </tr><tr style="text-align:center">
       <td><i>Ugly: -2 Charisma</i></td>
     </tr><tr style="text-align:center">
-      <td>All Thumbs: -2 using mechanical and electrical devices, roll of 1 breaks device</td>
+      <td><i>Young+: -2 Skill Points</i></td>
     </tr><tr style="text-align:center">
       <td>Bad Eyes+: -2 on visual trait rolls and distance attacks</td>
     </tr><tr style="text-align:center">
@@ -159,6 +169,8 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Blind+: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
+      <td>Anemic: -2 Fatigue checks (resist poison and disease)</td>
+    </tr><tr style="text-align:center">
       <td>Bad Luck+: -1 Benny each session</td>
     </tr><tr style="text-align:center">
       <td>Big Mouth: Cannot keep secrets</td>
@@ -174,8 +186,6 @@ var attributes = {
       <td>Delusional+: Frequently acts on conspiracy belief</td>
     </tr><tr style="text-align:center">
       <td>Delusional: Has harmless conspiracy belief</td>
-    </tr><tr style="text-align:center">
-      <td>Doubting Thomas: Insists on rationalizing supernatural events</td>
     </tr><tr style="text-align:center">
       <td>Enemy+: Powerful individual or group wants character eliminated</td>
     </tr><tr style="text-align:center">
@@ -224,6 +234,8 @@ var attributes = {
       <td>Wanted+: Has significant trouble with local law enforcement</td>
     </tr><tr style="text-align:center">
       <td>Wanted: Has trouble with distant law or minor infractions</td>
+    </tr><tr style="text-align:center">
+      <td>Young+: +1 Benny each session</td>
     </tr></table>
 </td>
   </tr></table>
@@ -238,7 +250,7 @@ var attributes = {
         <td><b>Parry</b>: 3 (1)</td>
         <td><b>Toughness</b>: 6 (2)</td>
         <td><b>Cover</b>: -2</td>
-        <td><b>Pace/Run</b>: 0/+d4</td>
+        <td><b>Pace/Run</b>: -2/+d4-1</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -246,7 +258,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Armor</b>: Chain Hauberk</td>
         <td><b>Shield</b>: Medium</td>
-        <td><b>Weapons</b>: Bite: 1 (d6+d4); Claws: 1 (d6+d4); Dagger: 1 (d6+d4 R3"); Flail: 1 (d6+d6); Spear: 1 (d6+d6 R3"); Tail: 1 (d6+d4); Unarmed: 1 (d6+d0)</td>
+        <td><b>Weapons</b>: Bite: 1 (d4+d4); Claws: 1 (d4+d4); Dagger: 1 (d4+d4 R3"); Flail: 1 (d4+d6); Spear: 1 (d4+d6 R3"); Tail: 1 (d4+d4); Unarmed: 1 (d4+d0)</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -257,6 +269,8 @@ var attributes = {
         <td><i>Claws: Claws are a Natural Weapon</i></td>
       </tr><tr style="text-align:center">
         <td><i>Elderly+: -1 Pace</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Lame+: -2 Pace/-1 Run step</i></td>
       </tr><tr style="text-align:center">
         <td><i>Natural Weapons: Has Bite, Claws, and Tail features</i></td>
       </tr><tr style="text-align:center">
@@ -325,8 +339,6 @@ var attributes = {
         <td>Phobia Hindrance: Requires phobia feature (currently 1)+ == 0</td>
       </tr><tr style="text-align:center">
         <td>Phobia+Hindrance: Requires phobia feature (currently 1) == 0</td>
-      </tr><tr style="text-align:center">
-        <td>Skill Points Allocation: 19 available vs. 14 allocated</td>
       </tr><tr style="text-align:center">
         <td>Vengeful Hindrance: Requires vengeful feature (currently 1)+ == 0</td>
       </tr><tr style="text-align:center">
