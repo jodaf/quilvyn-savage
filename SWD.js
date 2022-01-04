@@ -326,12 +326,14 @@ SWD.FEATURES = {
   'Champion':'Section=combat Note="+2 damage and Toughness vs. opposite alignment"',
   'Charismatic':'Section=skill Note="+2 Charisma"',
   'Combat Reflexes':'Section=combat Note="+2 on Shaken recovery rolls"',
-  'Command':'SWADE',
+  'Command':
+    'Section=feature ' +
+    'Note="R%{commandRange}%{in} Commanded +%V to recover from Shaken or Stunned"',
   'Command Presence':'SWADE',
   'Common Bond':'SWADE',
   'Connections':'SWADE',
   'Counterattack':
-    'Section=combat Note="Free %1Attack after failed foe attack"',
+    'Section=combat Note="Free %1attack after failed foe attack"',
   'Danger Sense':
     'Section=combat Note="Can make Notice-2 text before surprise attack"',
   'Dead Shot':'SWADE',
@@ -374,7 +376,7 @@ SWD.FEATURES = {
   'Improved Sweep':'SWADE',
   'Improved Trademark Weapon (%weapon)':'SWADE',
   'Improvisational Fighter':'SWADE',
-  'Inspire':'Section=combat Note="Increased Command effects"',
+  'Inspire':'Section=feature Note="Increased Command effects"',
   'Investigator':
     'Section=skill ' +
     'Note="+2 Investigation/+2 Streetwise/+2 Notice (sifting for information)"',
@@ -435,7 +437,7 @@ SWD.FEATURES = {
   'Sweep':'SWADE',
   'Tactician':
     'Section=combat ' +
-    'Note="R%{commandRange}%{in} Roll Knowledge (Battle), distribute 1 Action Card to commanded for each success and raise"',
+    'Note="R%{commandRange}%{in} Roll Knowledge (Battle), distribute %V Action Card to commanded for each success and raise"',
   'Thief':
     'Section=skill ' +
     'Note="+1 Climbing/+1 Lockpick/+1 Stealth (urban)/+1 Notice (traps)/+1 Repair (traps)"',
@@ -528,7 +530,7 @@ SWD.FEATURES = {
   'Aquatic':
     'Section=combat,feature,skill ' +
     'Note="Swim Pace %{pace}","Cannot drown","d6 in Swimming"',
-  'Asimov Circuits':'Section=feature Note="Has Pacific+ hindrance"',
+  'Asimov Circuits':'Section=feature Note="Has Pacifist+ hindrance"',
   'Atlantean Tough':'Section=combat Note="+1 Toughness"',
   'Bite':'SWADE',
   'Burrowing':
@@ -538,7 +540,7 @@ SWD.FEATURES = {
     'Section=attribute,combat ' +
     'Note=' +
       '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores Wound modifiers, requires Repair to heal"',
+      '"Ignores wound modifiers, requires Repair to heal"',
   'Dehydration':
     'Section=feature Note="Requires 1 hr immersion/dy to avoid fatigue"',
   'Flight':'Section=combat Note="Fly Pace %{pace}"',
@@ -566,7 +568,7 @@ SWD.FEATURES = {
   'Saurian Senses':'Section=skill Note="+2 Notice"',
   'Semi-Aquatic':'SWADE',
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
-  'Slow':'SWADE',
+  'Slow':'Section=combat Note="-1 Pace"',
   'Spirited':'SWADE',
   'Strong':'Section=attribute Note="+1 Strength step"',
   'Tail':'SWADE',
@@ -712,7 +714,7 @@ SWD.RACES = {
     'Languages=Android',
   'Atlantean':
     'Features=' +
-      '"Advanced Civilization",Aquatic,Dehydration,Tough ' +
+      '"Advanced Civilization",Aquatic,"Atlantean Tough",Dehydration ' +
     'Languages=Atlantean',
   'Avion':
     'Features=' +
@@ -1093,12 +1095,16 @@ SWD.edgeRulesExtra = function(rules, name) {
       'skillNotes.veryAttractive', '+', '2'
     );
   } else if(name == 'Command') {
-    rules.defineRule('combatNotes.command',
+    rules.defineRule('commandRange',
+      'features.Command', '=', '5',
+      'featureNotes.commandPresence', '+', '5'
+    );
+    rules.defineRule('featureNotes.command',
       '', '=', '1',
-      'combatNotes.inspire', '+', '1'
+      'featureNotes.inspire', '+', '1'
     );
   } else if(name == 'Counterattack') {
-    rules.defineRule('combatNotes.counterattack',
+    rules.defineRule('combatNotes.counterattack.1',
       '', '=', '"-2 "',
       'combatNotes.improvedCounterattack', '=', '""'
     );
@@ -1108,10 +1114,12 @@ SWD.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedDodge', '+', '1'
     );
   } else if(name == 'Frenzy') {
-    rules.defineRule('combatNotes.frenzy',
+    rules.defineRule('combatNotes.frenzy.1',
       '', '=', '", all at -2"',
       'combatNotes.improvedFrenzy', '=', '""'
     );
+  } else if(name == 'Linguist') {
+    ; // Negate SWADE rules
   } else if(name == 'Martial Artist') {
     rules.defineRule('damageStep.Unarmed',
       'combatNotes.martialArtist', '^=', '0',
@@ -1226,21 +1234,26 @@ SWD.raceRules = function(rules, name, requires, features, languages) {
  * derived directly from the attributes passed to raceRules.
  */
 SWD.raceRulesExtra = function(rules, name) {
-  rules.defineRule
-    ('is' + name, 'race', '=', 'source == "' + name + '" ? 1 : null');
   if(name == 'Android') {
     rules.defineRule
       ('features.Pacifist+', 'featureNotes.asimovCircuits', '=', '1');
   } else if(name == 'Atlantean') {
     rules.defineRule('skillStep.Swimming', 'skillNotes.aquatic', '+=', '2');
+  } else if(name == 'Half-Elf') {
+    rules.defineRule('improvementPoints',
+      'descriptionNotes.heritage', '+', '2'
+    );
   } else if(name == 'Rakashan') {
-    rules.defineRule('damageStep.Claws',
-      'weapons.Claws', '?', null,
-      'isRakashan', '^=', '2'
-    );
+    rules.defineRule
+      ('isRakashan', 'race', '=', 'source == "Rakashan" ? 1 : null');
+    rules.defineRule('damageStep.Claws', 'isRakashan', '^=', '2');
     rules.defineRule('weapons.Claws.3',
-      'damageStep.Claws', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
+      'damageStep.Claws', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
+  } else if(name == 'Saurian') {
+    rules.defineRule('features.Bite', 'combatNotes.naturalWeapons', '=', '1');
+    rules.defineRule('features.Claws', 'combatNotes.naturalWeapons', '=', '1');
+    rules.defineRule('features.Tail', 'combatNotes.naturalWeapons', '=', '1');
   }
 };
 
