@@ -3289,11 +3289,17 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(attr.match(/^skillAllocation\./))
         howMany -= attributes[attr];
     }
+    var knowledgePicked = null;
     var languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
         continue;
+      if(attr.startsWith('Knowledge')) {
+        if(knowledgePicked && attr != knowledgePicked)
+          continue;
+        knowledgePicked = attr;
+      }
       if(attr.startsWith('Language')) {
         if(languagePicked && attr != languagePicked)
           continue;
