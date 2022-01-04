@@ -573,7 +573,7 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="Trade move for +1 ranged attack or -2 ranged attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%V Unarmed attack/+%1 Unarmed damage step"',
+    'Section=combat Note="+%1 Unarmed attack/+%V Unarmed damage step"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':'Section=attribute Note="Use d10 for Wild Die"',
@@ -2123,9 +2123,9 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.martialWarrior', '+', '1'
     );
     rules.defineRule
-      ('attackBonus.Unarmed', 'combatNotes.martialArtist', '+', null);
+      ('attackBonus.Unarmed', 'combatNotes.martialArtist.1', '+', null);
     rules.defineRule
-      ('damageStep.Unarmed', 'combatNotes.martialArtist.1', '+=', null);
+      ('damageStep.Unarmed', 'combatNotes.martialArtist', '+=', null);
     rules.defineRule('weapons.Unarmed.3',
       'damageStep.Unarmed', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
