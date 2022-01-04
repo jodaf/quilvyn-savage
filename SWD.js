@@ -300,7 +300,8 @@ SWD.FEATURES = {
   'Alertness':'SWADE',
   'Ambidextrous':'Section=combat Note="No off-hand penalty"',
   'Arcane Background (Magic)':'SWADE',
-  'Arcane Background (Miracles)':'SWADE',
+  'Arcane Background (Miracles)':
+    'Section=arcana Note="Power Count 2/Power Points 10"',
   'Arcane Background (Psionics)':'SWADE',
   'Arcane Background (Super Powers)':
     'Section=arcana Note="Power Count 1/Power Points 20"',
@@ -389,7 +390,7 @@ SWD.FEATURES = {
   'Level Headed':'SWADE',
   'Linguist':
     'Section=skill ' +
-    'Note="Knows %{smarts} languages, Smarts-2 to understand other familiar tongues"',
+    'Note="+%V Skill Points (d4 in in %{smarts} Knowledge (Language) skills), Smarts-2 to understand other familiar tongues"',
   'Liquid Courage':
     'Section=attribute ' +
     'Note="Drinking alcohol gives +1 Vigor step, ignore 1 wound penalty for 1 hr"',
@@ -466,7 +467,7 @@ SWD.FEATURES = {
   'Blind+':'SWADE',
   'Bloodthirsty+':'Section=skill Note="-4 Charisma"',
   'Cautious':'SWADE',
-  'Clueless+':'Section=skill Note="-2 Common Knowledge"',
+  'Clueless+':'Section=attribute Note="-2 Smarts (common knowledge)"',
   'Code Of Honor+':'SWADE',
   'Curious+':'SWADE',
   'Death Wish':'SWADE',
@@ -768,22 +769,28 @@ SWD.SKILLS = {
   'Climbing':'Attribute=strength',
   'Driving':'Attribute=agility Era=Modern,Future',
   'Fighting':'Attribute=agility',
-  'Faith':'Attribute=spirit',
   'Gambling':'Attribute=smarts',
   'Healing':'Attribute=smarts',
   'Intimidation':'Attribute=spirit',
   'Investigation':'Attribute=smarts',
-  'Knowledge':'Attribute=smarts',
+  'Knowledge (Academics)':'Attribute=smarts',
+  'Knowledge (Battle)':'Attribute=smarts',
+  'Knowledge (Computers)':'Attribute=smarts Era=Modern,Future',
+  'Knowledge (Electronics)':'Attribute=smarts Era=Modern,Future',
+  'Knowledge (History)':'Attribute=smarts',
+  'Knowledge (Journalism)':'Attribute=smarts',
+  'Knowledge (Language (%language))':'Attribute=smarts',
+  'Knowledge (Law)':'Attribute=smarts',
+  'Knowledge (Medicine)':'Attribute=smarts',
+  'Knowledge (Occult)':'Attribute=smarts',
+  'Knowledge (Science)':'Attribute=smarts',
   'Lockpicking':'Attribute=agility',
   'Notice':'Attribute=smarts',
   'Persuasion':'Attribute=spirit',
   'Piloting':'Attribute=agility Era=Modern,Future',
-  'Psionics':'Attribute=smarts',
   'Repair':'Attribute=smarts',
-  'Research':'Attribute=smarts',
   'Riding':'Attribute=agility',
   'Shooting':'Attribute=agility',
-  'Spellcasting':'Attribute=smarts',
   'Stealth':'Attribute=agility',
   'Streetwise':'Attribute=smarts',
   'Survival':'Attribute=smarts',
@@ -791,6 +798,10 @@ SWD.SKILLS = {
   'Taunt':'Attribute=smarts',
   'Throwing':'Attribute=agility',
   'Tracking':'Attribute=smarts',
+  // Arcane Background skills
+  'Faith':'Attribute=spirit',
+  'Psionics':'Attribute=smarts',
+  'Spellcasting':'Attribute=smarts',
   'Weird Science':'Attribute=smarts'
 };
 SWD.WEAPONS = {
@@ -1124,7 +1135,8 @@ SWD.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedFrenzy', '=', '""'
     );
   } else if(name == 'Linguist') {
-    ; // Negate SWADE rules
+    rules.defineRule('skillNotes.linguist', 'smarts', '=', null)
+    rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
   } else if(name == 'Martial Artist') {
     rules.defineRule('damageStep.Unarmed',
       'combatNotes.martialArtist', '^=', '0',
