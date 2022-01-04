@@ -807,16 +807,16 @@ SWADE.FEATURES = {
     'Note=' +
       '"Difficulty finding armor and clothing that fits",' +
       '"-2 using standard equipment"',
-  'Bite':'Section=combat Note="Fangs are Natural Weapon"',
+  'Bite':'Section=combat Note="Fangs are a Natural Weapon"',
   'Burrowing':
     'Section=feature Note="Can burrow into loose earth and surprise foes"',
   'Cannot Speak':'Section=feature Note="Cannot talk to other species"',
-  'Claws':'Section=combat Note="Claws are Natural Weapon"',
+  'Claws':'Section=combat Note="Claws are a Natural Weapon"',
   'Construct':
     'Section=attribute,combat ' +
     'Note=' +
       '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores one level of Wound modifiers, requires Repair to heal"',
+      '"Ignores one level of wound modifiers, requires Repair to heal"',
   'Dependency':
     'Section=feature ' +
     'Note="Must spend 1 hr/dy in native environment or becomes fatigued"',
@@ -834,7 +834,7 @@ SWADE.FEATURES = {
   'Hardy':'Section=combat Note="Does not incur Wound from 2nd Shaken result"',
   'Heritage':
     'Section=description Note="+2 Improvement Points (attribute or edge)"',
-  'Horns':'Section=combat Note="Horns are Natural Weapon"',
+  'Horns':'Section=combat Note="Horns are a Natural Weapon"',
   'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
   'Infravision':
@@ -864,7 +864,7 @@ SWADE.FEATURES = {
   'Smart':'Section=attribute Note="+1 Smarts step"',
   'Spirited':'Section=attribute Note="+1 Spirit step"',
   'Strong':'Section=attribute Note="+1 Strength step"',
-  'Tail':'Section=combat Note="Tail is Natural Weapon"',
+  'Tail':'Section=combat Note="Tail is a Natural Weapon"',
   'Tough':'Section=attribute Note="+1 Vigor step"',
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
@@ -2048,15 +2048,12 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.bruiser', '+', '1'
     );
     rules.defineRule('combatNotes.brawler.1',
-      '', '=', '1',
+      'features.Brawler', '=', '1',
       'combatNotes.bruiser', '+', '1'
     );
-    rules.defineRule('damageStep.Unarmed',
-      'combatNotes.brawler', '^=', '0',
-      'combatNotes.brawler.1', '+', null
-    );
+    rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler.1', '+=', null);
     rules.defineRule('weapons.Unarmed.3',
-      'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
+      'damageStep.Unarmed', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
   } else if(name == 'Brute') {
     rules.defineRule('bruteAthleticsStepModifier',
@@ -2122,17 +2119,15 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.martialWarrior', '+', '1'
     );
     rules.defineRule('combatNotes.martialArtist.1',
-      '', '=', '1',
+      'features.Martial Artist', '=', '1',
       'combatNotes.martialWarrior', '+', '1'
     );
     rules.defineRule
       ('attackBonus.Unarmed', 'combatNotes.martialArtist', '+', null);
-    rules.defineRule('damageStep.Unarmed',
-      'combatNotes.martialArtist', '^=', '0',
-      'combatNotes.martialArtist.1', '+', null
-    );
+    rules.defineRule
+      ('damageStep.Unarmed', 'combatNotes.martialArtist.1', '+=', null);
     rules.defineRule('weapons.Unarmed.3',
-      'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
+      'damageStep.Unarmed', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
     );
   } else if(name == 'Nerves Of Steel') {
     rules.defineRule('combatNotes.nervesOfSteel',
@@ -2453,19 +2448,19 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
   }
 
   SWADE.weaponRules(
-    rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
     'Un', null, null, null, null
   );
   SWADE.weaponRules(
-    rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
     'Un', null, null, null, null
   );
   SWADE.weaponRules(
-    rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
     'Un', null, null, null, null
   );
   SWADE.weaponRules(
-    rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'd4', 0, 0,
+    rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
     'Un', null, null, null, null
   );
   rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
@@ -2660,18 +2655,22 @@ SWADE.weaponRules = function(
     weaponName, '=', '0',
     'weaponDamageAdjustment.' + name, '+', null
   );
-  rules.defineRule(prefix + 'DamageModifier', 'strength', '=', '0');
 
   rules.defineChoice('notes', weaponName + ':' + format);
   rules.defineRule(weaponName + '.1',
     'attackBonus.' + name, '=', 'source != 0 ? QuilvynUtils.signed(source) + " " : ""'
   );
-  rules.defineRule(weaponName + '.2', weaponName, '=', '""');
+  rules.defineRule(weaponName + '.2',
+    weaponName, '?', null,
+    '', '=', '""'
+  );
   if(strDamage) {
     rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source + "+"');
-  }
+  } 
   rules.defineRule(weaponName + '.3', weaponName, '=', '"' + damage + '"');
   rules.defineRule(weaponName + '.4',
+    weaponName, '?', null,
+    '', '=', '""',
     prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
   );
   if(range) {
@@ -3185,7 +3184,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var allChoices = this.getChoices(attribute);
     choices = [];
     for(attr in allChoices) {
-      if(attrs['features.' + attr] != null) {
+      if(attrs[attribute + '.' + attr] != null) {
         howMany -= attr.endsWith('+') ? 2 : 1;
         continue;
       }
@@ -3217,7 +3216,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
             new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
         delete attributes[attribute + '.' + pick];
       } else {
-        howMany--;
+        howMany -= pick.endsWith('+') ? 2 : 1;
       }
     }
   } else if(attribute == 'gender') {
@@ -3233,10 +3232,12 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     while(howMany > 0) {
       attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'Skill' :
              QuilvynUtils.random(0, 1) == 0 ? 'Edge' : 'Attribute';
-      if(attributes['improvementPointsAllocation.' + attr] == null)
-        attributes['improvementPointsAllocation.' + attr] = 0;
       var allocation = attr == 'Skill' ? 1 : 2;
-      attributes['improvementPointsAllocation.' + attr] += allocation;
+      if(attributes['improvementPointsAllocation.' + attr] == null)
+        attributes['improvementPointsAllocation.' + attr] = allocation;
+      else
+        attributes['improvementPointsAllocation.' + attr] = // Force number
+          attributes['improvementPointsAllocation.' + attr] - 0 + allocation;
       howMany -= allocation;
     }
   } else if(attribute == 'name') {
@@ -3301,7 +3302,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       attr = 'skillAllocation.' + attr;
       if(attributes[attr] && attributes[attr] >= 4)
         continue;
-      attributes[attr] = (attributes[attr] || 0) + 1;
+      attributes[attr] = (attributes[attr] || 0) - 0 + 1; // Force number
       howMany--;
     }
   } else if(attribute == 'weapons') {
