@@ -665,44 +665,39 @@ SWD.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
-    'Description=TODO',
+    'Description="Gives +2 Armor (Raise +4) for 3 rd"',
   'Greater Healing':
     'Advances=8 ' +
     'PowerPoints=10 ' +
     'Range=touch ' +
-    'Description=TODO',
-  'Light/Obscure':
-    'Advances=0 ' +
-    'PowerPoints=2 ' +
-    'Range=smarts ' +
-    'Description=' +
-      '"R%{smarts}%{in} Creates 3%{in} radius bright light or darkness for 10 min"',
+    'Description="Restores 1 wound (Raise 2 wounds) w/out time limit or removes poison, disease, or sickness"',
+  'Light/Obscure':SWADE.POWERS['Light/Darkness'],
   'Pummel':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
-    'Description=TODO',
+    'Range=9 ' +
+    'Description="Cone pushes creatures 2d6%{in} (Strength-2 neg)"',
   'Quickness':
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Range=touch ' +
-    'Description=TODO',
+    'Description="Target gains second action for 3 rd (Raise also redraw Action Cards below 8)"',
   'Slow':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts*2 ' +
     'Description=' +
-      '"R%{smarts}%{in} Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
+      '"Target move counts as action (Raise also redraw Action Cards above 10) for 3 rd (Spirit neg)"',
   'Speed':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description=TODO',
+    'Description="Target dbl Pace (Raise also Run as free action) for 3 rd"',
   'Succor':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description=TODO'
+    'Description="Removes 1 level of fatigue (Raise 2 levels) and Shaken"'
 };
 for(var power in SWADE.POWERS) {
   if(!(power in SWD.POWERS_CHANGES))
