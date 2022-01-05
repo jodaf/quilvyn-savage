@@ -8,28 +8,29 @@
 var attributes = {
   "_path":"ztest/swd/edges/combat", "advances":12, 
   "agilityAllocation":3, "armor.Leather":1, "deity":"None", "edges.Block":1, "edges.Brawler":1, 
-  "edges.Bruiser":1, "edges.Combat Reflexes":1, "edges.Counterattack":1, "edges.Dodge":1, 
-  "edges.Elan":1, "edges.Extraction":1, "edges.First Strike":1, "edges.Florentine":1, 
-  "edges.Frenzy":1, "edges.Giant Killer":1, "edges.Hard To Kill":1, "edges.Harder To Kill":1, 
-  "edges.Improved Block":1, "edges.Improved Counterattack":1, "edges.Improved Dodge":1, 
-  "edges.Improved Extraction":1, "edges.Improved First Strike":1, "edges.Improved Frenzy":1, 
-  "edges.Improved Level Headed":1, "edges.Improved Martial Artist":1, "edges.Improved Nerves Of Steel":1, 
-  "edges.Improved Sweep":1, "edges.Improved Trademark Weapon (Axe)":1, 
+  "edges.Bruiser":1, "edges.Combat Reflexes":1, "edges.Counterattack":1, "edges.Dead Shot":1, 
+  "edges.Dodge":1, "edges.Elan":1, "edges.Extraction":1, "edges.First Strike":1, 
+  "edges.Florentine":1, "edges.Frenzy":1, "edges.Giant Killer":1, "edges.Hard To Kill":1, 
+  "edges.Harder To Kill":1, "edges.Improved Block":1, "edges.Improved Counterattack":1, 
+  "edges.Improved Dodge":1, "edges.Improved Extraction":1, "edges.Improved First Strike":1, 
+  "edges.Improved Frenzy":1, "edges.Improved Level Headed":1, "edges.Improved Martial Artist":1, 
+  "edges.Improved Nerves Of Steel":1, "edges.Improved Sweep":1, "edges.Improved Trademark Weapon (Axe)":1, 
   "edges.Improvisational Fighter":1, "edges.Killer Instinct":1, "edges.Level Headed":1, "edges.Marksman":1, 
-  "edges.Martial Artist":1, "edges.Nerves Of Steel":1, "edges.No Mercy":1, "edges.Quick Draw":1, 
-  "edges.Rock And Roll":1, "edges.Steady Hands":1, "edges.Sweep":1, "edges.Trademark Weapon (Axe)":1, 
-  "edges.Two-Fisted":1, "era":"Medieval", "focusType":"Miracles", "gender":"Male", 
-  "hindrances.Enemy":1, "hindrances.Habit":1, "hindrances.Quirk":1, "hindrances.Ugly":1, 
-  "improvementPointsAllocation.Attribute":14, "improvementPointsAllocation.Skill":14, "name":"Edges-Combat", 
-  "race":"Human", "shield":"None", "skillAllocation.Climbing":1, "skillAllocation.Faith":1, 
-  "skillAllocation.Fighting":4, "skillAllocation.Gambling":1, "skillAllocation.Intimidation":1, 
+  "edges.Martial Artist":1, "edges.Mighty Blow":1, "edges.Nerves Of Steel":1, "edges.No Mercy":1, 
+  "edges.Quick Draw":1, "edges.Rock And Roll":1, "edges.Steady Hands":1, "edges.Sweep":1, 
+  "edges.Trademark Weapon (Axe)":1, "edges.Two-Fisted":1, "era":"Medieval", "focusType":"Miracles", 
+  "gender":"Male", "hindrances.Enemy":1, "hindrances.Habit":1, "hindrances.Quirk":1, 
+  "hindrances.Ugly":1, "improvementPointsAllocation.Attribute":14, 
+  "improvementPointsAllocation.Skill":14, "name":"Edges-Combat", "race":"Human", "shield":"None", 
+  "skillAllocation.Climbing":1, "skillAllocation.Faith":1, "skillAllocation.Fighting":4, 
+  "skillAllocation.Gambling":1, "skillAllocation.Intimidation":1, 
   "skillAllocation.Knowledge (Language (Atlantean))":1, "skillAllocation.Knowledge (Language (Avion))":1, 
   "skillAllocation.Knowledge (Language (Dwarf))":1, "skillAllocation.Knowledge (Language (Elf))":1, 
   "skillAllocation.Knowledge (Language (Half-Elf))":1, "skillAllocation.Knowledge (Language (Half-Folk))":1, 
   "skillAllocation.Knowledge (Language (Half-Orc))":1, "skillAllocation.Knowledge (Language (Rakashan))":1, 
-  "skillAllocation.Notice":1, "skillAllocation.Shooting":3, "skillAllocation.Spellcasting":1, 
+  "skillAllocation.Notice":1, "skillAllocation.Shooting":4, "skillAllocation.Spellcasting":1, 
   "skillAllocation.Survival":1, "skillAllocation.Swimming":1, "skillAllocation.Taunt":1, 
-  "skillAllocation.Weird Science":2, "smartsAllocation":2, "spiritAllocation":3, "strengthAllocation":2, 
+  "skillAllocation.Weird Science":1, "smartsAllocation":2, "spiritAllocation":3, "strengthAllocation":2, 
   "vigorAllocation":2, "weapons.Axe":1, "weapons.Great Axe":1, "weapons.Unarmed":1
 };
   </script>
@@ -66,7 +67,7 @@ var attributes = {
     <tr style="text-align:left">
       <td>Climbing: (str) d4</td>
       <td>Knowledge (Language (Dwarf)): (sma) d4</td>
-      <td>Shooting: (agi) d8</td>
+      <td>Shooting: (agi) d10</td>
     </tr><tr style="text-align:left">
       <td>Faith: (spi) d4</td>
       <td>Knowledge (Language (Elf)): (sma) d4</td>
@@ -86,7 +87,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Knowledge (Language (Atlantean)): (sma) d4</td>
       <td>Knowledge (Language (Rakashan)): (sma) d4</td>
-      <td>Weird Science: (sma) d6</td>
+      <td>Weird Science: (sma) d4</td>
     </tr><tr style="text-align:left">
       <td>Knowledge (Language (Avion)): (sma) d4</td>
       <td>Notice: (sma) d4</td>
@@ -127,7 +128,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (2 points): Block; Brawler; Bruiser; Combat Reflexes; Counterattack; Dodge; Elan; Extraction; First Strike; Florentine; Frenzy; Giant Killer; Hard To Kill; Harder To Kill; Improved Block; Improved Counterattack; Improved Dodge; Improved Extraction; Improved First Strike; Improved Frenzy; Improved Level Headed; Improved Martial Artist; Improved Nerves Of Steel; Improved Sweep; Improved Trademark Weapon (Axe); Improvisational Fighter; Killer Instinct; Level Headed; Marksman; Martial Artist; Nerves Of Steel; No Mercy; Quick Draw; Rock And Roll; Steady Hands; Sweep; Trademark Weapon (Axe); Two-Fisted</td>
+      <td><b>Edges</b> (2 points): Block; Brawler; Bruiser; Combat Reflexes; Counterattack; Dead Shot; Dodge; Elan; Extraction; First Strike; Florentine; Frenzy; Giant Killer; Hard To Kill; Harder To Kill; Improved Block; Improved Counterattack; Improved Dodge; Improved Extraction; Improved First Strike; Improved Frenzy; Improved Level Headed; Improved Martial Artist; Improved Nerves Of Steel; Improved Sweep; Improved Trademark Weapon (Axe); Improvisational Fighter; Killer Instinct; Level Headed; Marksman; Martial Artist; Mighty Blow; Nerves Of Steel; No Mercy; Quick Draw; Rock And Roll; Steady Hands; Sweep; Trademark Weapon (Axe); Two-Fisted</td>
       <td><b>Hindrances</b>: Enemy; Habit; Quirk; Ugly</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
@@ -212,6 +213,8 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Counterattack: Free attack after failed foe attack</td>
       </tr><tr style="text-align:center">
+        <td>Dead Shot: Joker Action Card gives dbl damage from first successful ranged attack</td>
+      </tr><tr style="text-align:center">
         <td>Dodge: -2 foe ranged attacks, +2 evading area attacks</td>
       </tr><tr style="text-align:center">
         <td>Extraction: Can make Agility test to negate attack of all foes when withdrawing</td>
@@ -235,6 +238,8 @@ var attributes = {
         <td>Level Headed: Choose best of 3 Action Cards</td>
       </tr><tr style="text-align:center">
         <td>Marksman: Trade move for +2 ranged attack</td>
+      </tr><tr style="text-align:center">
+        <td>Mighty Blow: Joker Action Card gives dbl damage on first successful melee attack</td>
       </tr><tr style="text-align:center">
         <td>Nerves Of Steel: Ignore 2 points of wound penalties</td>
       </tr><tr style="text-align:center">
@@ -260,7 +265,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>: Edge Points Allocation: 2 available vs. 38 allocated</td>
+      <td><b>Validation Errors</b>: Edge Points Allocation: 2 available vs. 40 allocated</td>
     </tr></table>
 </td>
   </tr></table>
