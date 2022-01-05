@@ -362,10 +362,18 @@ SWADE.EDGES = {
   'Scavenger':'Type=weird Require="features.Luck"',
   // Legendary
   'Followers':'Type=legendary Require="advances >= 16"',
-  'Professional (%attribute)':
-    'Type=legendary Require="advances >= 16","%attribute == 12"',
+  'Professional (Agility)':
+    'Type=legendary Require="advances >= 16","agility >= 12"',
+  'Professional (Smarts)':
+    'Type=legendary Require="advances >= 16","smarts >= 12"',
+  'Professional (Spirit)':
+    'Type=legendary Require="advances >= 16","spirit >= 12"',
+  'Professional (Strength)':
+    'Type=legendary Require="advances >= 16","strength >= 12"',
+  'Professional (Vigor)':
+    'Type=legendary Require="advances >= 16","vigor >= 12"',
   'Professional (%skill)':
-    'Type=legendary Require="advances >= 16","skills.%skill == 12"',
+    'Type=legendary Require="advances >= 16","skills.%skill >= 12"',
   'Expert (%trait)':
     'Type=legendary Require="advances >= 16","features.Professional (%trait)"',
   'Master (%trait)':
@@ -449,7 +457,7 @@ SWADE.FEATURES = {
   'Calculating':
     'Section=combat ' +
     'Note="Ignore 2 points of penalties on 1 action when Action Card is 5 or less"',
-  'Champion':'Section=combat Note="+2 damage vs. opposite alignment"',
+  'Champion':'Section=combat Note="+2 damage vs. opposed alignment"',
   'Channeling':
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
@@ -482,7 +490,8 @@ SWADE.FEATURES = {
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
   'Elan':'Section=feature Note="+2 on Benny-purchased Trait rerolls"',
-  'Expert (%attribute)':'Section=skill Note="Increased Professional effects"',
+  'Expert (%attribute)':
+    'Section=attribute Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
   'Extra Effort':
     'Section=arcana Note="Spend 1 or 3 Power Points to gain +1 or +2 Focus"',
@@ -513,7 +522,7 @@ SWADE.FEATURES = {
       '"+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
   'Gadgeteer':
-    'Section=arcana Note="Jury rig arcane device from available parts"',
+    'Section=arcana Note="Can jury rig arcane device from available parts"',
   'Giant Killer':
     'Section=combat Note="+1d6 damage vs. foes of size %{size+3} or greater"',
   'Great Luck':'Section=feature Note="Increased Luck effects"',
@@ -523,7 +532,7 @@ SWADE.FEATURES = {
   'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':
-    'Section=combat Note="R%{commandRange} Commanded +1 Toughness"',
+    'Section=combat Note="R%{commandRange}%{in} Commanded +1 Toughness"',
   'Holy/Unholy Warrior':
     'Section=arcana ' +
     'Note="Spend 1-4 Power Points to add equal amount to Soak roll"',
@@ -596,7 +605,11 @@ SWADE.FEATURES = {
   'Power Points':'Section=arcana Note="+%V Power Points"',
   'Power Surge':
     'Section=arcana Note="Recover 10 Power Points when Action Card is a joker"',
-  'Professional (%attribute)':'Section=attribute Note="+%V %attribute step"',
+  'Professional (Agility)':'Section=attribute Note="+%V Agility step"',
+  'Professional (Smarts)':'Section=attribute Note="+%V Smarts step"',
+  'Professional (Spirit)':'Section=attribute Note="+%V Spirit step"',
+  'Professional (Strength)':'Section=attribute Note="+%V Strength step"',
+  'Professional (Vigor)':'Section=attribute Note="+%V Vigor step"',
   'Professional (%skill)':'Section=skill Note="+%V %skill step"',
   'Provoke':
     'Section=combat ' +
