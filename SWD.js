@@ -164,6 +164,7 @@ SWD.EDGES_CHANGES = {
   'Channeling':null,
   'Concentration':null,
   'Extra Effort':null,
+  'New Powers':null,
   // Professional
   'Acrobat':'Require="agility >= 8","strength >= 8"',
   'Combat Acrobat':null,
@@ -243,7 +244,8 @@ SWD.EDGES_CHANGES = {
   // Weird
   'Chi':null,
   // Legendary
-  'Tough As Nails':'Type=legendary Require="advances >= 16"'
+  'Tough As Nails':'Type=legendary Require="advances >= 16"',
+  'Tougher Than Nails':null
 
 };
 SWD.EDGES = {
@@ -257,6 +259,8 @@ SWD.EDGES = {
   'Quick Draw':'Type=combat Require="agility >= 8"',
   // Leadership
   'Leader Of Men':'Type=leadership Require="advances >= 4","features.Command"',
+  // Power
+  'New Power':'Type=power Require="powerPoints >= 1"',
   // Professional
   'Adept':
     'Type=professional ' +
@@ -290,9 +294,11 @@ SWD.ERAS = {
 SWD.FEATURES = {
 
   // Edges
-  'Ace':'SWADE',
+  'Ace':
+    'Section=skill ' +
+    'Note="+2 Boating/+2 Driving/+2 Piloting/Spend Benny to Soak vehicle damage"',
   'Acrobat':
-    'Section=attribute,skill ' +
+    'Section=attribute,combat ' +
     'Note="+1 Agility (acrobatic maneuvers)","+1 Parry"',
   'Adept':
     'Section=arcana ' +
@@ -314,7 +320,7 @@ SWD.FEATURES = {
   'Beast Master':'SWADE',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +2 Fighting, Strength, damage, and Toughness, -2 Parry , ignore Wound penalties, and 1 on Fighting die hits randomly (Smarts-2 neg)"',
+    'Note="Injury causes +2 Fighting, Strength, melee damage, and Toughness, -2 Parry , ignore Wound penalties, and 1 on Fighting die hits randomly (Smarts-2 neg)"',
   'Block':'Section=combat Note="+%V Parry"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear"',
   'Brawler':'Section=combat Note="+2 Unarmed damage"',
@@ -324,7 +330,9 @@ SWD.FEATURES = {
       '"+1 Strength step (encumbrance and minimum strength requirements)",' +
       '"+1 Toughness"',
   'Bruiser':'Section=combat Note="Roll d8 for unarmed damage Raise"',
-  'Champion':'Section=combat Note="+2 damage and Toughness vs. opposite alignment"',
+  'Champion':
+    'Section=combat ' +
+    'Note="+2 damage and Toughness vs. supernatural creatures of opposed alignment"',
   'Charismatic':'Section=skill Note="+2 Charisma"',
   'Combat Reflexes':'Section=combat Note="+2 on Shaken recovery rolls"',
   'Command':
@@ -336,13 +344,15 @@ SWD.FEATURES = {
   'Counterattack':
     'Section=combat Note="Free %1attack after failed foe attack"',
   'Danger Sense':
-    'Section=combat Note="Can make Notice-2 text before surprise attack"',
+    'Section=combat Note="Can test Notice-2 before surprise attack"',
   'Dead Shot':'SWADE',
   'Dodge':'Section=combat Note="-%V foe ranged attacks, +%V evading area attacks"',
   'Elan':'SWADE',
   'Expert (%attribute)':'SWADE',
   'Expert (%skill)':'SWADE',
-  'Extraction':'SWADE',
+  'Extraction':
+    'Section=combat ' +
+    'Note="Can make Agility test to negate attack of %V when withdrawing"',
   'Fast Healer':'Section=combat Note="+2 Vigor (natural healing)"',
   'Fervor':'SWADE',
   'Filthy Rich':'SWADE',
@@ -361,12 +371,14 @@ SWD.FEATURES = {
   'Healer':'SWADE',
   'Hold The Line!':'SWADE',
   'Holy/Unholy Warrior':
-    'Section=arcana Note="Spend 1 Power Point repulse supernatural creatures"',
+    'Section=arcana ' +
+    'Note="R%{spirit}%{in} Spend 1 Power Point to shake supernatural creatures (Spirit neg; ciritical failure destroyed)"',
   'Improved Arcane Resistance':'SWADE',
   'Improved Block':'SWADE',
   'Improved Counterattack':'SWADE',
   'Improved Dodge':'Section=combat Note="Increased Dodge effects"',
-  'Improved Extraction':'SWADE',
+  'Improved Extraction':
+    'Section=combat Note="Raise on extraction test negates attack of all foes"',
   'Improved First Strike':'SWADE',
   'Improved Frenzy':'SWADE',
   'Improved Level Headed':'SWADE',
@@ -375,6 +387,8 @@ SWD.FEATURES = {
   'Improved Nerves Of Steel':'SWADE',
   'Improved Rapid Recharge':'SWADE',
   'Improved Sweep':'SWADE',
+  'Improved Tough As Nails':
+    'Section=combat Note="Increased Tough As Nails effects"',
   'Improved Trademark Weapon (%weapon)':'SWADE',
   'Improvisational Fighter':'SWADE',
   'Inspire':'Section=feature Note="Increased Command effects"',
@@ -382,11 +396,11 @@ SWD.FEATURES = {
     'Section=skill ' +
     'Note="+2 Investigation/+2 Streetwise/+2 Notice (sifting for information)"',
   'Jack-Of-All-Trades':
-    'Section=skill Note="Roll d4 on any untrained smarts skill"',
+    'Section=skill Note="Roll d4 on untrained smarts skills"',
   'Killer Instinct':
     'Section=skill Note="Can reroll 1s and wins ties on opposed tests"',
   'Leader Of Men':
-    'Section=combat Note="R%{commandRange} Commanded use d10 wild die"',
+    'Section=combat Note="R%{commandRange}%{in} Commanded use d10 wild die"',
   'Level Headed':'SWADE',
   'Linguist':
     'Section=skill ' +
@@ -396,7 +410,7 @@ SWD.FEATURES = {
     'Note="Drinking alcohol gives +1 Vigor step, ignore 1 wound penalty for 1 hr"',
   'Luck':'SWADE',
   'Marksman':'Section=combat Note="Trade move for +2 ranged attack"',
-  'Martial Artist':'Section=combat Note="+%1 Unarmed damage step"',
+  'Martial Artist':'Section=combat Note="+%V Unarmed damage step"',
   'Martial Arts Master':'Section=combat Note="+2 Unarmed damage"',
   'Master Of Arms':'SWADE',
   'Master (%attribute)':'SWADE',
@@ -407,10 +421,10 @@ SWD.FEATURES = {
   'Mighty Blow':'SWADE',
   'Mister Fix It':'SWADE',
   'Natural Leader':
-    'Section=feature Note="R%{commandRange} Share bennies with commanded"',
+    'Section=feature Note="R%{commandRange}%{in} Share bennies with commanded"',
   'Nerves Of Steel':'SWADE',
   'New Power':'Section=arcana Note="+1 Power Count"',
-  'No Mercy':'Section=combat Note="Spend Benny to reroll damage"',
+  'No Mercy':'Section=combat Note="Can spend Benny to reroll damage"',
   'Noble':
     'Section=feature,skill ' +
     'Note="Has Rich feature","+2 Charisma"',
@@ -418,7 +432,11 @@ SWD.FEATURES = {
   'Power Surge':
     'Section=arcana ' +
     'Note="Recover 2d6 Power Points when Action Card is a joker"',
-  'Professional (%attribute)':'SWADE',
+  'Professional (Agility)':'SWADE',
+  'Professional (Smarts)':'SWADE',
+  'Professional (Spirit)':'SWADE',
+  'Professional (Strength)':'SWADE',
+  'Professional (Vigor)':'SWADE',
   'Professional (%skill)':'SWADE',
   'Quick':'SWADE',
   'Quick Draw':'Section=combat Note="Draw weapon as free action"',
@@ -428,6 +446,7 @@ SWD.FEATURES = {
   'Scavenger':'Section=combat Note="Recover equipment 1/encounter"',
   'Scholar':'Section=skill Note="+2 on 2 chosen skills"',
   'Sidekick':'SWADE',
+  'Soul Drain':'Section=arcana Note="Spirit roll to recover Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
@@ -441,9 +460,8 @@ SWD.FEATURES = {
     'Note="R%{commandRange}%{in} Roll Knowledge (Battle), distribute %V Action Card to commanded for each success and raise"',
   'Thief':
     'Section=skill ' +
-    'Note="+1 Climbing/+1 Lockpick/+1 Stealth (urban)/+1 Notice (traps)/+1 Repair (traps)"',
+    'Note="+2 Climbing/+2 Lockpicking/+2 Notice (traps)/+1 Repair (traps)/+2 Stealth (urban)"',
   'Tough As Nails':'Section=combat Note="+%V Toughness"',
-  'Tougher Than Nails':'SWADE',
   'Trademark Weapon (%melee)':
     'Section=combat Note="+%V attack with %melee"',
   'Trademark Weapon (%ranged)':
@@ -452,7 +470,7 @@ SWD.FEATURES = {
   'Very Attractive':'SWADE',
   'Weapon Master':'Section=combat Note="+%V Parry"',
   'Wizard':'Section=arcana Note="Raises reduce Power Point cost of casting"',
-  'Woodsman':'Section=skill Note="+2 Survival (wilds)/+2 Stealth (wilds)/+2 Tracking (wilds)"',
+  'Woodsman':'Section=skill Note="+2 Stealth (wilds)/+2 Survival (wilds)/+2 Tracking (wilds)"',
 
   // Hindrances
   'All Thumbs':'Section=skill Note="-2 Repair/Roll of 1 breaks device"',
@@ -774,6 +792,7 @@ SWD.SKILLS = {
   'Intimidation':'Attribute=spirit',
   'Investigation':'Attribute=smarts',
   'Knowledge (Academics)':'Attribute=smarts',
+  'Knowledge (Arcana)':'Attribute=smarts',
   'Knowledge (Battle)':'Attribute=smarts',
   'Knowledge (Computers)':'Attribute=smarts Era=Modern,Future',
   'Knowledge (Electronics)':'Attribute=smarts Era=Modern,Future',
@@ -1105,11 +1124,28 @@ SWD.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWD.edgeRulesExtra = function(rules, name) {
-  if(name == 'Attractive') {
+  if(name == 'Arcane Background (Miracles)') {
+    rules.defineRule
+      ('powerCount', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '2');
+    rules.defineRule
+      ('powerPoints', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '10');
+  } else if(name == 'Arcane Background (Super Powers)') {
+    rules.defineRule
+      ('powerCount', 'arcanaNotes.arcaneBackground(SuperPowers)', '+=', '1');
+    rules.defineRule
+      ('powerPoints', 'arcanaNotes.arcaneBackground(SuperPowers)', '+=', '20');
+  } else if(name == 'Arcane Background (Weird Science)') {
+    rules.defineRule
+      ('powerCount', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '1');
+    rules.defineRule
+      ('powerPoints', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '10');
+  } else if(name == 'Attractive') {
     rules.defineRule('skillNotes.attractive',
       '', '=', '2',
       'skillNotes.veryAttractive', '+', '2'
     );
+  } else if(name == 'Brawler') {
+    rules.defineRule('unarmedDamageModifier', 'combatNotes.brawler', '+=', '2');
   } else if(name == 'Command') {
     rules.defineRule('commandRange',
       'features.Command', '=', '5',
@@ -1129,6 +1165,11 @@ SWD.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'combatNotes.improvedDodge', '+', '1'
     );
+  } else if(name == 'Extraction') {
+    rules.defineRule('combatNotes.extraction',
+      '', '=', '"1 foe"',
+      'combatNotes.improvedExtraction', '=', '"all foes"'
+    );
   } else if(name == 'Frenzy') {
     rules.defineRule('combatNotes.frenzy.1',
       '', '=', '", all at -2"',
@@ -1138,13 +1179,13 @@ SWD.edgeRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.linguist', 'smarts', '=', null)
     rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
   } else if(name == 'Martial Artist') {
-    rules.defineRule('damageStep.Unarmed',
-      'combatNotes.martialArtist', '^=', '0',
+    SWADE.edgeRulesExtra(rules, name);
+    rules.defineRule('combatNotes.martialArtist',
       'combatNotes.improvedMartialArtist', '+', '1'
     );
-    rules.defineRule('weapons.Unarmed.3',
-      'damageStep.Unarmed', '=', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
-    );
+  } else if(name == 'Martial Arts Master') {
+    rules.defineRule
+      ('unarmedDamageModifier', 'combatNotes.martialArtsMaster', '+=', '2');
   } else if(name == 'Noble') {
     rules.defineRule('features.Rich', 'featureNotes.noble', '=', '1');
   } else if(name == 'Rapid Recharge') {
@@ -1155,7 +1196,7 @@ SWD.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Tough As Nails') {
     rules.defineRule('combatNotes.toughAsNails',
       '', '=', '1',
-      'combatNotes.tougherThanNails', '+', '1'
+      'combatNotes.improvedToughAsNails', '+', '1'
     );
   } else {
     SWADE.edgeRulesExtra(rules, name);
