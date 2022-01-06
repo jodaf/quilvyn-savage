@@ -723,7 +723,7 @@ SWD.POWERS_CHANGES = {
   'Mind Wipe':null,
   'Object Reading':null,
   'Protection':null,
-  'Puppet:'"Target obeys self for 3 rd (Spirit neg)"',
+  'Puppet':'Description="Target obeys self for 3 rd (Spirit neg)"',
   'Relief':null,
   'Resurrection':null,
   'Shape Change':'Description="Transforms into animal form for 1 min"',
