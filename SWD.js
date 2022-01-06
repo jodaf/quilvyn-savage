@@ -372,7 +372,7 @@ SWD.FEATURES = {
   'Hold The Line!':'SWADE',
   'Holy/Unholy Warrior':
     'Section=arcana ' +
-    'Note="R%{spirit}%{in} Spend 1 Power Point to shake supernatural creatures (Spirit neg; ciritical failure destroyed)"',
+    'Note="R%{spirit}%{in} Spend 1 Power Point to shake supernatural creatures (Spirit neg; critical failure destroyed)"',
   'Improved Arcane Resistance':'SWADE',
   'Improved Block':'SWADE',
   'Improved Counterattack':'SWADE',
