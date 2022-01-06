@@ -1067,8 +1067,7 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=smarts*2 ' +
-    'Description=' +
-      '"Choice of 1%{in} or 2%{in} radius inflicts 2d6 damage (Raise 3d6)"',
+    'Description="2%{in} radius inflicts 2d6 damage (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1090,7 +1089,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Target can merge into earth for 5 rd"',
+    'Description="Allows merging into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1101,7 +1100,7 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target suffers Distracted and Vulnerable for 1 rd (Smarts neg) (Raise Smarts -2)"',
+      '"Target suffers Distracted and Vulnerable for 1 rd (Smarts neg)"',
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
@@ -1159,7 +1158,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Target suffers Restrained (Raise Bound)"',
+    'Description="Restrains target (Raise binds)"',
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1177,22 +1176,24 @@ SWADE.POWERS = {
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg) (Raise -2)"',
+      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
     'Range=smarts ' +
-    'Description="Target gains 12 Fly for 5 rd"',
+    'Description="Target can fly for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
-    'PowerPoints=2/Size ' +
+    'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Target gains or loses Toughness and Strength step for 5 rd"',
+    'Description=' +
+      '"Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Distracts and throws creatures in 2%{in} radius or 9%{in} cone 2d6%{in} (Strength neg) (Raise Strength -2)"',
+    'Description=' +
+      '"Distracts and throws creatures in 2%{in} radius or 9%{in} cone 2d6%{in} (Strength neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
