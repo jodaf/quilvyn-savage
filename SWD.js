@@ -649,37 +649,107 @@ for(var hindrance in SWADE.HINDRANCES) {
 }
 SWD.POWERS_CHANGES = {
   'Arcane Protection':null,
-  'Barrier':'PowerPoints=1/Section',
-  'Blast':'PowerPoints=2-6',
-  'Blind':'PowerPoints=2-6',
-  'Bolt':'PowerPoints=1/missile',
-  'Burrow':'PowerPoints=3',
-  'Deflection':'PowerPoints=2',
-  'Disguise':'PowerPoints=3-5',
+  'Barrier':
+    'PowerPoints=1/Section ' +
+    'Description="Creates sections of 1%{in} high wall for PP rd"',
+  'Beast Friend':
+    'PowerPoints=3+2xSize ' +
+    'Range=smarts*50',
+  'Blast':
+    'PowerPoints=2-6 ' +
+    'Range=24 ' +
+    'Description="2%{in} radius inflicts 2d6 damage"',
+  'Blind':
+    'Range=12 ' +
+    'Description=' +
+      '"Target Shaken and suffers -2 on Parry (Agility neg, 1 on die also suffers -6 trait tests) for 1 rd"',
+  'Bolt':
+    'PowerPoints=1/missile ' +
+    'Range=12 ' +
+    'Description="Inflicts 2d6 damage"',
+  'Boost/Lower Trait':
+    'Range=smarts ' +
+    'Description=' +
+      '"Target gains +1 Trait step or suffers -1 Trait step (Raise +2 or -2 (Spirit neg)) for 3 rd"',
+  'Burrow':
+    'PowerPoints=3 ' +
+    'Range=self',
+  'Burst':
+    'Description="Cone inflicts 2d10 damage"',
+  'Confusion':
+    'Range=smarts*2 ' +
+    'Description="Target suffers Shaken (Smarts-2 neg)"',
+  'Damage Field':
+    'Range=touch ' +
+    'Description="Target touch inflicts 2d6 (Raise 2d8) damage for 3 rd"',
+  'Darksight':
+    'Range=touch ' +
+    'Description=' +
+      '"Target ignores half illumination penalties (Raise 5 pts) for 1 hr"',
+  'Deflection':
+    'PowerPoints=2 ' +
+    'Range=touch',
   'Dispel':'PowerPoints=3',
+  'Disguise':
+    'PowerPoints=2 ' +
+    'Range=touch',
   'Drain Power Points':
     'Advances=12 ' +
-    'PowerPoints=3',
+    'PowerPoints=3 ' +
+    'Description="Drains 1d6+1 PP (Raise 1d8+1) (Spirit neg, +2 if types differ)"',
   'Empathy':null,
-  'Entangle':'PowerPoints=2-4',
-  'Farsight':'PowerPoints=3',
+  'Entangle':
+    'Description=' +
+      '"Impedes target (Raise binds) (Agility neg, Agility or Strength ends)"',
+  'Farsight':
+    'PowerPoints=3 ' +
+    'Range=touch ' +
+    'Description=' +
+      '"Target half range penalties (Raise dbl range increments) for 3 rd"',
+  'Fear':'Range=smarts*2',
+  'Fly':'Range=touch',
   'Havoc':
     'Advances=4 ' +
-    'PowerPoints=2-4',
+    'PowerPoints=2 ' +
+    'Range=smarts*2 ' +
+    'Description=' +
+      '"Distracts and throws creatures in 2%{in} radius 2d6%{in} (Strength neg)"',
   'Illusion':null,
+  'Intangibility':'Range=touch',
+  'Invisibility':'Range=self',
   'Light/Darkness':null,
   'Mind Link':null,
   'Mind Reading':'PowerPoints=3',
   'Mind Wipe':null,
   'Object Reading':null,
   'Protection':null,
+  'Puppet:'"Target obeys self for 3 rd (Spirit neg)"',
   'Relief':null,
   'Resurrection':null,
+  'Shape Change':'Description="Transforms into animal form for 1 min"',
   'Sloth/Speed':null,
+  'Slumber':
+    'Range=smarts*2 ' +
+    'Description="Target sleeps for 1 min (Spirit neg)"',
   'Sound/Silence':null,
+  'Speak Language':'Range=touch',
+  'Stun':
+    'Range=12 ' +
+    'Description="Target Shaken (Vigor neg)"',
   'Summon Ally':'PowerPoints=3+',
-  'Telekinesis':'PowerPoints=5',
-  'Teleport':'PowerPoints=3+'
+  'Telekinesis':
+    'PowerPoints=5 ' +
+    'Range=smarts ' +
+    'Description=' +
+      '"Moves %{spirit*10} lb item (Raise %{spirit*50} lb) remotely for 3 rd"',
+  'Teleport':
+    'PowerPoints=3+ ' +
+    'Range=self ' +
+    'Description="Teleports PPx10%{in} (Raise PPx15%{in})"',
+  "Warrior's Gift":'Range=touch',
+  'Zombie':
+    'Description=' +
+      '"Animates and controls corpse for 1 hr (Raise 1d6 hr, 2 until destroyed)"'
 };
 SWD.POWERS = {
   'Armor':
@@ -692,12 +762,14 @@ SWD.POWERS = {
     'PowerPoints=10 ' +
     'Range=touch ' +
     'Description="Restores 1 wound (Raise 2 wounds) w/out time limit or removes poison, disease, or sickness"',
-  'Light/Obscure':SWADE.POWERS['Light/Darkness'],
+  'Light/Obscure':SWADE.POWERS['Light/Darkness'] + ' ' +
+    'Description=' +
+      '"Creates 3%{in} radius bright light for 30 min or darkness for 3 rd"',
   'Pummel':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=9 ' +
-    'Description="Cone pushes creatures 2d6%{in} (Strength-2 neg)"',
+    'Description="Cone pushes creatures 2d6%{in} (Strength neg)"',
   'Quickness':
     'Advances=4 ' +
     'PowerPoints=4 ' +
@@ -722,9 +794,9 @@ SWD.POWERS = {
 };
 for(var power in SWADE.POWERS) {
   if(!(power in SWD.POWERS_CHANGES))
-    SWD.POWERS[power] = SWADE.POWERS[power];
+    SWD.POWERS[power] = SWADE.POWERS[power].replace(' 5 rd', ' 3 rd');
   else if(SWD.POWERS_CHANGES[power])
-    SWD.POWERS[power] = SWADE.POWERS[power] + ' ' + SWD.POWERS_CHANGES[power];
+    SWD.POWERS[power] = SWADE.POWERS[power].replace(' 5 rd', ' 3 rd') + ' ' + SWD.POWERS_CHANGES[power];
 }
 SWD.RACES = {
   'Android':
