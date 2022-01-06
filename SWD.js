@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Quilvyn, QuilvynRules, QuilvynUtils, SWADE */
 "use strict";
 
 /*
@@ -881,15 +881,17 @@ SWD.WEAPONS = {
   'Desert Eagle':'Era=Modern Damage=2d8 Weight=8 Category=R Range=15 AP=2',
   'Glock':'Era=Modern Damage=2d6 Weight=3 Category=R AP=1 Range=12 AP=1',
   'Peacemaker':'Era=Modern Damage=2d6+1 Weight=3 Category=R AP=1 Range=12 AP=1',
-  'Ruger':'Era=Modern Damage=2d4 Weight=2 Category=R Range=10',
+  'Ruger':'Era=Modern Damage=2d6+1 Weight=2 Category=R Range=10',
   'S&W 357':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12 AP=1',
   'H&K MP5':'Era=Modern Damage=2d6 Weight=10 Category=R AP=1 Range=12 ROF=3',
+  'MP40':'Era=Modern Damage=2d6 Weight=11 Category=R AP=1 Range=12 ROF=3',
   'Tommy Gun':
     'Era=Modern Damage=2d6+1 Weight=13 Category=R AP=1 Range=12 ROF=3',
   'Uzi':'Era=Modern Damage=2d6 Weight=9 Category=R AP=1 Range=12 ROF=3',
 
   'Double-Barrel Shotgun':'Era=Modern Damage=3d6 Weight=11 Category=R Range=12',
   'Pump Action Shotgun':'Era=Modern Damage=3d6 Weight=8 Category=R Range=12',
+  'Sawed Off DB':'Era=Modern Damage=3d6 Weight=6 Category=R Range=5',
   'Streetsweeper':'Era=Modern Damage=3d6 Weight=10 Category=R Range=12',
 
   'Barrett Rifle':
@@ -1176,7 +1178,7 @@ SWD.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedFrenzy', '=', '""'
     );
   } else if(name == 'Linguist') {
-    rules.defineRule('skillNotes.linguist', 'smarts', '=', null)
+    rules.defineRule('skillNotes.linguist', 'smarts', '=', null);
     rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
   } else if(name == 'Martial Artist') {
     SWADE.edgeRulesExtra(rules, name);
