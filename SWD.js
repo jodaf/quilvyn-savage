@@ -1440,26 +1440,6 @@ SWD.ruleNotes = function() {
     '<h2>SWD Quilvyn Module Notes</h2>\n' +
     'SWD Quilvyn Module Version ' + SWD.VERSION + '\n' +
     '\n' +
-    '<h3>Usage Notes</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '    Major hindrances are noted by a "+" after the name. For example,\n' +
-    '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn assumes that every race has its own language and that\n' +
-    '    half-elf characters know both Elf and Human.\n' +
-    '  </li><li>\n' +
-    '    If the Arcane Focus box is checked when creating a random\n' +
-    '    character, Quilvyn will select either New Powers or Power Points\n' +
-    '    for most of the character\'s edges.\n' +
-    '  </li>\n' +
-    '</ul>\n' +
-    '<h3>Limitations</h3>\n' +
-    '<ul>\n' +
-    '</ul>\n' +
-    '<h3>Known Bugs</h3>\n' +
-    '<ul>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +

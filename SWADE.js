@@ -3537,12 +3537,6 @@ SWADE.ruleNotes = function() {
     '    for most of the character\'s edges.\n' +
     '  </li>\n' +
     '</ul>\n' +
-    '<h3>Limitations</h3>\n' +
-    '<ul>\n' +
-    '</ul>\n' +
-    '<h3>Known Bugs</h3>\n' +
-    '<ul>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
