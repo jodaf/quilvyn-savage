@@ -3214,7 +3214,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
           subChoices = choices.filter(x => !x.endsWith('+'));
         pick = subChoices[QuilvynUtils.random(0, subChoices.length - 1)];
       } else if(attrs.focusType && QuilvynUtils.random(0, 9) < 8) {
-        pick = QuilvynUtils.random(0, 1)==0 ? 'New Powers' : 'Power Points';
+        pick = QuilvynUtils.random(0, 1) == 0 ? 'Power Points' :
+               'New Powers' in allChoices ? 'New Powers' : 'New Power';
       } else {
         pick = choices[QuilvynUtils.random(0, choices.length - 1)];
       }
