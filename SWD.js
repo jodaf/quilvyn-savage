@@ -40,17 +40,17 @@ function SWD() {
   SWD.rules = rules;
 
   rules.defineChoice('choices', SWD.CHOICES);
-  rules.choiceEditorElements = SWADE.choiceEditorElements;
+  rules.choiceEditorElements = SWD.choiceEditorElements;
   rules.choiceRules = SWD.choiceRules;
-  rules.editorElements = SWADE.initialEditorElements();
-  rules.getFormats = SWADE.getFormats;
+  rules.editorElements = SWD.initialEditorElements();
+  rules.getFormats = SWD.getFormats;
   rules.getPlugins = SWD.getPlugins;
-  rules.makeValid = SWADE.makeValid;
-  rules.randomizeOneAttribute = SWADE.randomizeOneAttribute;
+  rules.makeValid = SWD.makeValid;
+  rules.randomizeOneAttribute = SWD.randomizeOneAttribute;
   rules.defineChoice('random', SWD.RANDOMIZABLE_ATTRIBUTES);
   rules.ruleNotes = SWD.ruleNotes;
 
-  SWADE.createViewers(rules, SWADE.VIEWERS);
+  SWD.createViewers(rules, SWD.VIEWERS);
   rules.defineChoice('extras',
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
@@ -81,6 +81,7 @@ SWD.CHOICES = [].concat(SWADE.CHOICES);
  * dependencies among attributes when generating random characters.
  */
 SWD.RANDOMIZABLE_ATTRIBUTES = [].concat(SWADE.RANDOMIZABLE_ATTRIBUTES);
+SWD.VIEWERS = [].concat(SWADE.VIEWERS);
 
 SWD.ARCANAS = {
   'Magic':'Skill=Spellcasting',
@@ -423,7 +424,7 @@ SWD.FEATURES = {
   'Natural Leader':
     'Section=feature Note="R%{commandRange}%{in} Share bennies with commanded"',
   'Nerves Of Steel':'SWADE',
-  'New Power':'Section=arcana Note="+1 Power Count"',
+  'New Power':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="Can spend Benny to reroll damage"',
   'Noble':
     'Section=feature,skill ' +
@@ -1260,6 +1261,8 @@ SWD.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Martial Arts Master') {
     rules.defineRule
       ('unarmedDamageModifier', 'combatNotes.martialArtsMaster', '+=', '2');
+  } else if(name == 'New Power') {
+    rules.defineRule('arcanaNotes.newPower', 'edges.New Power', '=', null);
   } else if(name == 'Noble') {
     rules.defineRule('features.Rich', 'featureNotes.noble', '=', '1');
   } else if(name == 'Rapid Recharge') {
@@ -1428,6 +1431,30 @@ SWD.weaponRules = function(
   );
   // No changes needed to the rules defined by base method
 };
+
+/*
+ * Returns the dictionary of attribute formats associated with character sheet
+ * format #viewer# in #rules#.
+ */
+SWD.getFormats = SWADE.getFormats;
+
+/* Returns an ObjectViewer loaded with the default character sheet format. */
+SWD.createViewers = SWADE.createViewers;
+
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+SWD.choiceEditorElements = SWADE.choiceEditorElements;
+
+/* Returns the elements in a basic 5E character editor. */
+SWD.initialEditorElements = SWADE.initialEditorElements;
+
+/* Sets #attributes#'s #attribute# attribute to a random value. */
+SWD.randomizeOneAttribute = SWADE.randomizeOneAttribute;
+
+/* Fixes as many validation errors in #attributes# as possible. */
+SWD.makeValid = SWADE.makeValid;
 
 /* Returns an array of plugins upon which this one depends. */
 SWD.getPlugins = function() {
