@@ -1046,7 +1046,8 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
-    'Description="Foes suffer -2 (Raise -4) to affect target for 5 rd"',
+    'Description=' +
+      '"Foes suffer -2 (Raise -4) on arcane attacks and damage against target for 5 rd"',
   'Banish':
     'Advances=8 ' +
     'PowerPoints=3 ' +
