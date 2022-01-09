@@ -1382,9 +1382,6 @@ SWD.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('isRakashan', 'race', '=', 'source == "Rakashan" ? 1 : null');
     rules.defineRule('damageStep.Claws', 'isRakashan', '^=', '2');
-    rules.defineRule('weapons.Claws.3',
-      'damageStep.Claws', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
-    );
   } else if(name == 'Saurian') {
     rules.defineRule('features.Bite', 'combatNotes.naturalWeapons', '=', '1');
     rules.defineRule('features.Claws', 'combatNotes.naturalWeapons', '=', '1');

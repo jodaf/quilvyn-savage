@@ -1596,9 +1596,8 @@ SWADE.attributeRules = function(rules) {
     rules.defineRule(a,
       a + 'Step', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
     );
-    rules.defineRule(a + 'Modifier',
-      a + 'Step', '=', 'source<1 ? source - 1 : source>5 ? source - 5 : 0'
-    );
+    rules.defineRule
+      (a + 'Modifier', a + 'Step', '=', 'source>5 ? source - 5 : 0');
     rules.defineChoice('notes', a + ':d%V%1');
     rules.defineRule(a + '.1',
       a + 'Modifier', '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
@@ -1682,9 +1681,8 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('run',
     'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
   );
-  rules.defineRule('runModifier',
-    'runStep', '=', 'source<1 ? source - 1 : source>5 ? "+" + (source - 5) : ""'
-  );
+  rules.defineRule
+    ('runModifier', 'runStep', '=', 'source>5 ? "+" + (source - 5) : ""');
   rules.defineRule('toughness',
     '', '=', '2',
     'armorToughness', '+', null,
@@ -2067,9 +2065,6 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.bruiser', '+', '1'
     );
     rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler.1', '+=', null);
-    rules.defineRule('weapons.Unarmed.3',
-      'damageStep.Unarmed', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
-    );
   } else if(name == 'Brute') {
     rules.defineRule('bruteAthleticsStepModifier',
       'skillNotes.brute', '?', null,
@@ -2141,9 +2136,6 @@ SWADE.edgeRulesExtra = function(rules, name) {
       ('attackBonus.Unarmed', 'combatNotes.martialArtist.1', '+', null);
     rules.defineRule
       ('damageStep.Unarmed', 'combatNotes.martialArtist', '+=', null);
-    rules.defineRule('weapons.Unarmed.3',
-      'damageStep.Unarmed', '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 1 : source>5 ? "+" + (source - 5) : "")'
-    );
   } else if(name == 'Nerves Of Steel') {
     rules.defineRule('combatNotes.nervesOfSteel',
       '', '=', '1',
@@ -2592,7 +2584,7 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
     'skillStep.' + name, '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
   );
   rules.defineRule('skillModifier.' + name,
-    'skillStep.' + name, '=', 'source<1 ? source-1 : source>5 ? source-5 : 0'
+    'skillStep.' + name, '=', 'source<1 ? source-2 : source>5 ? source-5 : 0'
   );
   rules.defineChoice
     ('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
@@ -2682,7 +2674,10 @@ SWADE.weaponRules = function(
   if(strDamage) {
     rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source + "+"');
   } 
-  rules.defineRule(weaponName + '.3', weaponName, '=', '"' + damage + '"');
+  rules.defineRule(weaponName + '.3',
+    weaponName, '=', '"' + damage + '"',
+    'damageStep.' + name, '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 2 : source>5 ? "+" + (source - 5) : "")'
+  );
   rules.defineRule(weaponName + '.4',
     weaponName, '?', null,
     '', '=', '""',
