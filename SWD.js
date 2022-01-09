@@ -209,7 +209,10 @@ SWD.EDGES_CHANGES = {
       '"features.Arcane Background (Psionics)",' +
       '"smarts >= 8",' +
       '"skills.Psionics >= 6"',
-  // TODO d8 in 2 Knowledge skills
+  'Scholar (Academics)':null,
+  'Scholar (Battle)':null,
+  'Scholar (Occult)':null,
+  'Scholar (Science)':null,
   'Soldier':null,
   'Thief':
     'Type=professional ' +
