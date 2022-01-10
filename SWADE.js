@@ -2648,7 +2648,7 @@ SWADE.weaponRules = function(
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var weaponName = 'weapons.' + name;
-  var format = '%V (%1%2%3%4' + (range ? ' R%5"' : '') + ')';
+  var format = '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') + ')';
   var strDamage = damage.startsWith('Str+');
   if(strDamage)
     damage = damage.substring(4);
@@ -2671,14 +2671,21 @@ SWADE.weaponRules = function(
     weaponName, '?', null,
     '', '=', '""'
   );
-  if(strDamage) {
-    rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source + "+"');
-  } 
   rules.defineRule(weaponName + '.3',
+    weaponName, '?', null,
+    '', '=', '""'
+  );
+  if(strDamage) {
+    rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source');
+    rules.defineRule(weaponName + '.3',
+      'strengthModifier', '=', 'source<0 ? source + "+" : source>0 ? "+"+source+"+" : "+"'
+    );
+  } 
+  rules.defineRule(weaponName + '.4',
     weaponName, '=', '"' + damage + '"',
     'damageStep.' + name, '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 2 : source>5 ? "+" + (source - 5) : "")'
   );
-  rules.defineRule(weaponName + '.4',
+  rules.defineRule(weaponName + '.5',
     weaponName, '?', null,
     '', '=', '""',
     prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
@@ -2688,7 +2695,7 @@ SWADE.weaponRules = function(
       weaponName, '=', range,
       'weaponRangeAdjustment.' + name, '+', null
     );
-    rules.defineRule(weaponName + '.5', 'range.' + name, '=', null);
+    rules.defineRule(weaponName + '.6', 'range.' + name, '=', null);
   }
   if(parry) {
     var note = 'combatNotes.' + prefix + 'ParryModifier';
