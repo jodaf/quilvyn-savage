@@ -3269,11 +3269,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var allArcanas = this.getChoices('arcanas');
     var allowedPowers = null;
     for(attr in allArcanas) {
-      if(attributes['edges.Arcane Background (' + attr + ')'] != null &&
+      if(attributes['features.Arcane Background (' + attr + ')'] != null &&
          allArcanas[attr].includes('Powers=')) {
         allowedPowers = {};
         QuilvynUtils.getAttrValueArray(allArcanas[attr], 'Powers')
-          .forEach(x => allowedPowers[x] = allPowers[x] || (console.log('Unknown spell "' + x + '"')));
+          .forEach(x => allowedPowers[x] = allPowers[x] || console.log('Unknown power "' + x + '"') || '');
       }
     }
     if(allowedPowers)
