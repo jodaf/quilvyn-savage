@@ -2971,6 +2971,10 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
     );
+  } else if(type == 'Hindrance') {
+    result.push(
+      ['Severity', 'Severity', 'select-one', ['Major', 'Minor']]
+    );
   } else if(type == 'Language')
     result.push(
       // empty
@@ -2980,7 +2984,8 @@ SWADE.choiceEditorElements = function(rules, type) {
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
       ['Advances', 'Advances', 'select-one', zeroToSixteen],
-      ['Power Points', 'Power Points', 'select-one', zeroToTen],
+      ['PowerPoints', 'Power Points', 'select-one', zeroToTen],
+      ['Range', 'Range', 'text', [15]],
       ['Description', 'Description', 'text', [60]]
     );
   } else if(type == 'Race')
@@ -3009,12 +3014,13 @@ SWADE.choiceEditorElements = function(rules, type) {
     result.push(
       ['Era', 'Era', 'text', [30]],
       ['Category', 'Category', 'select-one', ['Unarmed', 'One-Handed', 'Two-Handed', 'Ranged']],
-      ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SWADE.VERSATILE_WEAPON_DAMAGE)],
+      ['Damage', 'Damage', 'text', [10]],
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]],
       ['AP', 'Armor Piercing', 'select-one', zeroToTen],
       ['Range', 'Range in Yards', 'select-one', zeroToOneFifty],
-      ['ROF', 'Rate of Fire', 'select-one', zeroToTen]
+      ['ROF', 'Rate of Fire', 'select-one', zeroToTen],
+      ['Parry', 'Parry', 'text', [2]]
     );
   }
   return result;
