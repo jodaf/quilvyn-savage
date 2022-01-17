@@ -1622,9 +1622,9 @@ SWADE.attributeRules = function(rules) {
     'race', '^', '-1'
   );
   QuilvynRules.validAllocationRules
-    (rules, 'attributePoints', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
+    (rules, 'attribute', 'attributePoints', 'Sum "^(agility|smarts|spirit|strength|vigor)Allocation$"');
   QuilvynRules.validAllocationRules
-    (rules, 'improvementPoints', 'improvementPoints', 'Sum "^improvementPointsAllocation.(Attribute|Edge|Skill|Hindrance)$"');
+    (rules, 'improvement', 'improvementPoints', 'Sum "^improvementPointsAllocation.(Attribute|Edge|Skill|Hindrance)$"');
 
 };
 
@@ -1797,9 +1797,9 @@ SWADE.talentRules = function(
     'improvementPointsAllocation.Skill', '+', 'source'
   );
   QuilvynRules.validAllocationRules
-    (rules, 'edgePoints', 'edgePoints', 'Sum "^edges\\."');
+    (rules, 'edge', 'edgePoints', 'Sum "^edges\\."');
   QuilvynRules.validAllocationRules
-    (rules, 'skillPoints', 'skillPoints', 'Sum "^skillAllocation\\."');
+    (rules, 'skill', 'skillPoints', 'Sum "^skillAllocation\\."');
 
 };
 
@@ -3160,6 +3160,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var howMany;
   var matchInfo;
 
+  if(attributes.arcaneFocus && attributes.focusType)
+    attributes['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
   if(attribute == 'advances') {
     if(attributes.advances === null) {
       howMany = QuilvynUtils.random(0, 9);
@@ -3198,12 +3200,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
     howMany = attribute == 'edges' ? attrs.edgePoints || 0 : 4;
-    if(attribute == 'edges' && howMany > 0 &&
-       attrs.arcaneFocus && attrs.focusType &&
-       !attrs['edges.Arcane Background (' + attrs.focusType + ')']) {
-      attributes['edges.Arcane Background (' + attrs.focusType + ')'] = 1;
-      howMany--;
-    }
     var allChoices = this.getChoices(attribute);
     choices = [];
     for(attr in allChoices) {
@@ -3365,6 +3361,11 @@ SWADE.makeValid = function(attributes) {
   var debug = [];
   var notes = this.getChoices('notes');
 
+  if(attributes.arcaneFocus && attributes.focusType) {
+    attributes['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
+    attributesChanged['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
+  }
+
   // If 8 passes don't get rid of all repairable problems, give up
   for(var pass = 0; pass < 8; pass++) {
 
@@ -3374,20 +3375,12 @@ SWADE.makeValid = function(attributes) {
     // Try to fix each sanity/validation note w/a non-zero value
     for(var attr in applied) {
 
-      var matchInfo =
-        attr.match(/^(sanity|validation)Notes\.(.*)([A-Z][a-z]+)/);
       var attrValue = applied[attr];
 
-      if(matchInfo == null || !attrValue || notes[attr] == null) {
+      if(!attr.match(/^(sanity|validation)Notes\./) ||
+         !attrValue || notes[attr] == null)
         continue;
-      }
 
-      var problemSource = matchInfo[2];
-      var problemCategory = matchInfo[3].substring(0, 1).toLowerCase() +
-                            matchInfo[3].substring(1).replaceAll(' ', '');
-      if(problemCategory == 'features') {
-        problemCategory = 'selectableFeatures';
-      }
       var requirements =
         notes[attr].replace(/^(Implies|Requires)\s/, '').split(/\s*\/\s*/);
 
@@ -3395,65 +3388,56 @@ SWADE.makeValid = function(attributes) {
 
         // Find a random requirement choice w/the format "name [op value]"
         var choices = requirements[i].split(/\s*\|\|\s*/);
-        while(choices.length > 0) {
+        var matchInfo = null;
+        while(matchInfo == null && choices.length > 0) {
           var index = QuilvynUtils.random(0, choices.length - 1);
           matchInfo = choices[index].match(/^([^<>!=]+)(([<>!=~]+)(.*))?/);
-          if(matchInfo != null) {
-            break;
-          }
-          choices = choices.slice(0, index).concat(choices.slice(index + 1));
+          choices.splice(index, 1);
         }
-        if(matchInfo == null) {
-          continue;
-        }
+        if(matchInfo == null)
+          continue; // No workable alternatives
 
+        var toFixAttr =
+          matchInfo[1].replace(/\s*$/, '').replace('features', 'edges');
         var toFixCombiner = null;
-        var toFixName = matchInfo[1].replace(/\s+$/, '');
         var toFixOp = matchInfo[3] == null ? '>=' : matchInfo[3];
         var toFixValue =
           matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');
-        if(toFixName.match(/^(Max|Sum)/)) {
-          toFixCombiner = toFixName.substring(0, 3);
-          toFixName = toFixName.substring(4).replace(/^\s+/, '');
+        if(toFixAttr.match(/^(Max|Sum)/)) {
+          toFixCombiner = toFixAttr.substring(0, 3);
+          toFixAttr = toFixAttr.substring(4).replace(/^\s+/, '');
         }
-        var toFixAttr = toFixName.substring(0, 1).toLowerCase() +
-                        toFixName.substring(1).replaceAll(' ', '');
 
-        // See if this attr has a set of choices (e.g., race) or a category
-        // attribute (e.g., an edge)
+        // See if this attr has a set of choices (e.g., race)
         choices = this.getChoices(toFixAttr + 's');
-        if(choices == null) {
-           choices = this.getChoices(problemCategory);
-        }
         if(choices != null) {
           // Find the set of choices that satisfy the requirement
-          var target =
-            this.getChoices(problemCategory) == null ? toFixValue : toFixName;
           var possibilities = [];
           for(var choice in choices) {
-            if((toFixOp.match(/[^!]=/) && choice == target) ||
-               (toFixOp == '!=' && choice != target) ||
-               (toFixCombiner != null && choice.indexOf(target) == 0) ||
-               (toFixOp == '=~' && choice.match(new RegExp(target))) ||
-               (toFixOp == '!~' && !choice.match(new RegExp(target)))) {
+            if((toFixOp.match(/[^!]=/) && choice == toFixAttr) ||
+               (toFixOp == '!=' && choice != toFixAttr) ||
+               (toFixCombiner != null && choice.indexOf(toFixAttr) == 0) ||
+               (toFixOp == '=~' && choice.match(new RegExp(toFixAttr))) ||
+               (toFixOp == '!~' && !choice.match(new RegExp(toFixAttr)))) {
               possibilities.push(choice);
             }
           }
           if(possibilities.length == 0) {
             continue; // No fix possible
           }
-          if(target == toFixName) {
-            toFixAttr =
-              problemCategory + '.' +
-              possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
-          } else {
-            toFixValue =
-              possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
-          }
+          toFixValue =
+            possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
         }
-        if((choices != null || attributes[toFixAttr] != null) &&
-           attributesChanged[toFixAttr] == null) {
-          // Directly-fixable problem
+        if(toFixAttr in attributesChanged)
+          continue;
+        if(toFixAttr in attributes || toFixAttr.match(/^\w+\./)) {
+          if(toFixAttr in SWADE.ATTRIBUTES) {
+            toFixValue = toFixValue / 2 - 2;
+            toFixAttr += 'Allocation';
+          } else if(toFixAttr.startsWith('skills.')) {
+            toFixValue = toFixValue / 2 - (this.getChoices('skills')[toFixAttr.replace('skills.', '')].includes('Core=y') ? 2 : 1);
+            toFixAttr = toFixAttr.replace('skills', 'skillAllocation');
+          }
           debug.push(
             attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +
             "' => '" + toFixValue + "'"
@@ -3465,44 +3449,45 @@ SWADE.makeValid = function(attributes) {
           }
           attributesChanged[toFixAttr] = toFixValue;
           fixedThisPass++;
-        } else if(problemCategory == 'total' && attrValue > 0 &&
-                  (choices = this.getChoices(problemSource)) != null) {
-          // Too many items allocated in a category
-          var possibilities = [];
-          for(var k in attributes) {
-            if(k.match('^' + problemSource + '\\.') &&
-               attributesChanged[k] == null) {
-               possibilities.push(k);
+        } else if(attr.endsWith('Allocation')) {
+          var problemSource = attr.replace(/.*\.(.*)Allocation/, '$1s');
+          if(problemSource == 'skills')
+            problemSource = 'skillAllocation';
+          var available = applied[attr + '.1'];
+          var allocated = applied[attr + '.2'];
+          if(allocated > available) {
+            var possibilities = [];
+            for(var k in attributes) {
+              if(k.match('^' + problemSource + '\\.') &&
+                 attributesChanged[k] == null) {
+                 possibilities.push(k);
+              }
             }
-          }
-          while(possibilities.length > 0 && attrValue > 0) {
-            var index = QuilvynUtils.random(0, possibilities.length - 1);
-            toFixAttr = possibilities[index];
-            possibilities =
-              possibilities.slice(0,index).concat(possibilities.slice(index+1));
-            var current = attributes[toFixAttr];
-            toFixValue = current > attrValue ? current - attrValue : 0;
-            debug.push(
-              attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +
-              "' => '" + toFixValue + "'"
-            );
-            if(toFixValue == 0) {
-              delete attributes[toFixAttr];
-            } else {
-              attributes[toFixAttr] = toFixValue;
+            while(possibilities.length > 0 && attrValue > 0) {
+              var index = QuilvynUtils.random(0, possibilities.length - 1);
+              toFixAttr = possibilities[index];
+              possibilities =
+                possibilities.slice(0,index).concat(possibilities.slice(index+1));
+              var current = attributes[toFixAttr];
+              toFixValue = current > attrValue ? current - attrValue : 0;
+              debug.push(
+                attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +
+                "' => '" + toFixValue + "'"
+              );
+              if(toFixValue == 0) {
+                delete attributes[toFixAttr];
+              } else {
+                attributes[toFixAttr] = toFixValue;
+              }
+              attrValue -= current - toFixValue;
+              // Don't do this: attributesChanged[toFixAttr] = toFixValue;
+              fixedThisPass++;
             }
-            attrValue -= current - toFixValue;
-            // Don't do this: attributesChanged[toFixAttr] = toFixValue;
+          } else if(allocated < available) {
+            this.randomizeOneAttribute(attributes, problemSource);
+            debug.push(attr + ' Allocate additional ' + problemSource);
             fixedThisPass++;
           }
-        } else if(problemCategory == 'total' && attrValue < 0 &&
-                  (choices = this.getChoices(problemSource)) != null) {
-          // Too few items allocated in a category
-          this.randomizeOneAttribute(attributes,
-            problemSource == 'selectableFeatures' ? 'features' : problemSource
-          );
-          debug.push(attr + ' Allocate additional ' + problemSource);
-          fixedThisPass++;
         }
 
       }
