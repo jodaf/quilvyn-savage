@@ -2876,10 +2876,10 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'ParryInfo', within: 'CombatStats', separator: ''},
                 {name: 'Parry', within: 'ParryInfo'},
                 {name: 'Shield Parry', within: 'ParryInfo', format: ' (%V)'},
+              {name: 'Cover', within: 'CombatStats'},
               {name: 'ToughnessInfo', within: 'CombatStats', separator: ''},
                 {name: 'Toughness', within: 'ToughnessInfo'},
                 {name: 'Armor Toughness', within: 'ToughnessInfo', format: ' (%V)'},
-              {name: 'Cover', within: 'CombatStats'},
               {name: 'Speed', within: 'CombatStats', separator: ''},
                 {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b>: %V'},
                 {name: 'Run', within: 'Speed', format: '/+d%V'},
@@ -3006,7 +3006,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     result.push(
       ['Era', 'Era', 'text', [30]],
       ['Attribute', 'Attribute', 'select-one', QuilvynUtils.getKeys(rules.getChoices('attributes'))],
-      ['Core', 'Core', 'checkbox', ['']]
+      ['Core', 'Core', 'select-one', ['N', 'Y']]
     );
   else if(type == 'Weapon') {
     var zeroToOneFifty =
@@ -3435,7 +3435,7 @@ SWADE.makeValid = function(attributes) {
             toFixValue = toFixValue / 2 - 2;
             toFixAttr += 'Allocation';
           } else if(toFixAttr.startsWith('skills.')) {
-            toFixValue = toFixValue / 2 - (this.getChoices('skills')[toFixAttr.replace('skills.', '')].includes('Core=y') ? 2 : 1);
+            toFixValue = toFixValue / 2 - (this.getChoices('skills')[toFixAttr.replace('skills.', '')].match(/Core=([y1]|true)/i) ? 2 : 1);
             toFixAttr = toFixAttr.replace('skills', 'skillAllocation');
           }
           debug.push(
