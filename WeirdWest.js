@@ -431,7 +431,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="R12%{in} allies ignore 2 points of fear penalties on fear checks"',
   'Knack (Bastard)':
     'Section=feature ' +
-    'Note="Can spend benny to see invisible and hiddeen creatures for 5 rd"',
+    'Note="Can spend benny to see invisible and hidden creatures for 5 rd"',
   "Knack (Born On All Hallows' Eve)":
     'Section=feature Note="Can spend Conviction to reroll critical failure"',
   'Knack (Born On Christmas)':
@@ -914,7 +914,7 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
       "combatNotes.improvedStitchin'", '=', '"hr"'
     );
   } else if(name == 'Supernatural Athlete') {
-    rules.defineRule('attibuteNotes.supernaturalAthlete',
+    rules.defineRule('attributeNotes.supernaturalAthlete',
       'edges.Supernatural Athlete', '=', null
     );
   } else {
