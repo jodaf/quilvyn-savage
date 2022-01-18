@@ -196,7 +196,9 @@ WeirdWest.EDGES_ADDED = {
   'Harrowed':'Type=weird Require="spirit >= 6"',
   'Knack (Bastard)':'Type=weird',
   "Knack (Born On All Hallows' Eve)":'Type=weird',
-  'Knack (Born On Christmas)':'Type=weird',
+  'Knack (Born On Christmas)':
+     'Type=weird ' +
+     'Require="features.Arcane Background (Blessed) || features.Arcane Background (Shaman)"',
   'Knack (Breech Birth)':'Type=weird',
   'Knack (Seventh Son)':'Type=weird',
   'Knack (Shooting Star)':'Type=weird',
@@ -211,18 +213,164 @@ WeirdWest.EDGES_ADDED = {
     'Type=legendary ' +
     'Require=' +
       '"advances >= 16",' +
-      // TODO Trademark Weapon
       '"skills.Shooting>=10 || skills.Fighting>=10 || skills.Athletics>=10",' +
       '"Sum \'features.Trademark Weapon\' > 0"',
   'True Grit':
-    'Type=legendary Require="advances >= 16","spirit >= 10",features.Grit'
+    'Type=legendary Require="advances >= 16","spirit >= 10",features.Grit',
+  // "Class"-specific
+  'Alchemy':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Mad Scientist)",' +
+      '"advances >= 4",' +
+      '"skills.Weird Science >= 8"',
+  'Cat Eyes':'Type=power Require=features.Harrowed',
+  'Celestial Kung Fu':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"advances >= 8",' +
+      '"features.Superior Kung Fu",' +
+      '"spirit >= 8"',
+  "Chill O' The Grave":'Type=power Require=features.Harrowed,"advances >= 4"',
+  'Claws':'Type=power Require=features.Harrowed',
+  'Fetish':
+    'Type=power ' +
+    'Require="features.Arcane Background (Shaman)","skills.Faith >= 8"',
+  'Flock':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Blessed)",' +
+      '"advances >= 8",' +
+      '"skills.Persuasion >= 8"',
+  'Ghost':'Type=power Require=features.Harrowed,"advances >= 12"',
+  'Hellfire':'Type=power Require=features.Harrowed,"advances >= 12"',
+  'Hexslinging':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Huckster)",' +
+      '"advances >= 4",' +
+      '"skills.Shooting >= 8"',
+  'High Roller':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Huckster)",' +
+      '"advances >= 4",' +
+      '"spirit >= 8",' +
+      '"skills.Spellcasting >= 6"',
+  'Improved High Roller':
+    'Type=power ' +
+    'Require=' +
+      '"advances >= 8",' +
+      '"features.High Roller"',
+  'Implacable':'Type=power Require=features.Harrowed,"advances >= 12"',
+  'Improved Cat Eyes':
+    'Type=power Require=features.Harrowed,"features.Cat Eyes"',
+  'Improved Claws':'Type=power Require=features.Harrowed,"advances >= 8"',
+  "Improved Stitchin'":
+    'Type=power ' +
+    'Require=features.Harrowed,"features.Stitchin\'","advances >= 8"',
+  'Infest':'Type=power Require=features.Harrowed',
+  'Iron Bound':
+    'Type=power Require="features.Arcane Background (Mad Scientist)"',
+  'Like An Oak':
+    'Type=professional ' +
+    'Require=' +
+      '"features.Territorial Ranger",' +
+      '"advances >= 8",' +
+      '"features.Grit"',
+  'Old Hand':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Huckster)",' +
+      '"advances >= 12",' +
+      '"skills.Spellcasting >= 10"',
+  'Ore Eater':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Mad Scientist)",' +
+      '"skills.Weird Science >= 6"',
+  'Ranger Promotion':
+    'Type=professional ' +
+    'Require=' +
+      '"features.Territorial Ranger",' +
+      '"advances >= 4"',
+  'Soul Eater':'Type=power Require=features.Harrowed,"advances >= 8"',
+  "Spirit's Favor":
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Shaman)",' +
+      '"advances >= 4",' +
+      '"skills.Faith >= 8"',
+  'Spook':'Type=power Require=features.Harrowed',
+  "Stitchin'":'Type=power Require=features.Harrowed',
+  'Supernatural Attribute':'Type=power Require=features.Harrowed',
+  'Superior Kung Fu (Drunken Style)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Eagle Claw)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Mantis)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Monkey)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Shuai Chao)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Tan Tui)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'Superior Kung Fu (Wing Chun)':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Chi Master)",' +
+      '"spirit >= 6",' +
+      '"skills.Fighting >= 8"',
+  'True Believer':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Blessed)",' +
+      '"spirit >= 10",' +
+      '"skills.Faith >= 6"',
+  'True Genius':
+    'Type=power ' +
+    'Require="features.Arcane Background (Mad Scientist)","smarts >= 8"',
+  'Whateley Blood':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Huckster)"',
+  'Wither':'Type=power Require=features.Harrowed'
 };
 WeirdWest.EDGES = Object.assign({}, SWADE.EDGES, WeirdWest.EDGES_ADDED);
 delete WeirdWest.EDGES['Arcane Background (%arcana)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.FEATURES_ADDED = {
   // Edges
-  'Agent':'Section=feature Note="TODO"',
+  'Agent':'Section=feature Note="Member of covert government agency"',
+  'Alchemy':
+    'Section=power ' +
+    'Note="Spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
   'Arcane Background (Blessed)':
     'Section=arcana Note="Power Count 3/Power Points 15"',
   'Arcane Background (Chi Master)':
@@ -233,35 +381,134 @@ WeirdWest.FEATURES_ADDED = {
     'Section=arcana Note="Power Count 2/Power Points 15"',
   'Arcane Background (Shaman)':
     'Section=arcana Note="Power Count 2/Power Points 15"',
-  'Behold A Pale Horse':'Section=feature Note="TODO"',
-  'Born In The Saddle':'Section=feature Note="TODO"',
-  'Card Shape':'Section=feature Note="TODO"',
-  'Damned':'Section=feature Note="TODO"',
-  "Don't Get 'im Riled!":'Section=feature Note="TODO"',
-  'Duelist':'Section=feature Note="TODO"',
-  'Fan The Hammer':'Section=feature Note="TODO"',
-  'Fast As Lightning':'Section=feature Note="TODO"',
-  'Gallows Humor':'Section=feature Note="TODO"',
-  'Grit':'Section=feature Note="TODO"',
-  'Guts':'Section=feature Note="TODO"',
-  'Harrowed':'Section=feature Note="TODO"',
-  'Improved Fan The Hammer':'Section=feature Note="TODO"',
-  'Knack (Bastard)':'Section=feature Note="TODO"',
-  "Knack (Born On All Hallows' Eve)":'Section=feature Note="TODO"',
-  'Knack (Born On Christmas)':'Section=feature Note="TODO"',
-  'Knack (Breech Birth)':'Section=feature Note="TODO"',
-  'Knack (Seventh Son)':'Section=feature Note="TODO"',
-  'Knack (Shooting Star)':'Section=feature Note="TODO"',
-  'Knack (Storm Born)':'Section=feature Note="TODO"',
-  'Quick Draw':'Section=feature Note="TODO"',
-  'Reputation':'Section=feature Note="TODO"',
-  'Right Hand Of The Devil':'Section=feature Note="TODO"',
-  'Scout':'Section=feature Note="TODO"',
-  'Soldier':'Section=feature Note="TODO"',
-  'Tale-Teller':'Section=feature Note="TODO"',
-  'Territorial Ranger':'Section=feature Note="TODO"',
-  'True Grit':'Section=feature Note="TODO"',
-  "Veteran O' The Weird West":'Section=feature Note="TODO"',
+  'Behold A Pale Horse':
+    'Section=feature ' +
+    'Note="Mount is a Wild Card with Fearless and Danger Sense"',
+  'Born In The Saddle':
+    'Section=skill Note="Reroll Riding/Mount +2 Pace and +1 Run step"',
+  'Card Sharp':'Section=skill Note="Reroll Gambling"',
+  'Cat Eyes':'Section=feature Note="No penalty in dim or dark lighting"',
+  'Celestial Kung Fu':
+    'Section=combat ' +
+    'Note="Gain additional Superior Kung Fu style, use 2 styles at once"',
+  "Chill O' The Grave":
+    'Section=combat ' +
+    'Note="Spend benny for 3%{in} radius cold blast that makes unprepared creatures Vulnerable"',
+  'Claws':SWADE.FEATURES['Claws'],
+  'Damned':'Section=feature Note="Will return as Harrowed if killed"',
+  "Don't Get 'im Riled!":
+    'Section=combat Note="Add wound level to damage rolls"',
+  'Duelist':'Section=combat Note="Gets two extra Hole Cards at start of duel"',
+  'Fan The Hammer':
+     'Section=combat Note="Can shoot up to shots in one action at %V"',
+  'Fast As Lightning':'Section=combat Note="Can take 4 actions at -6"',
+  'Fetish':'Section=skill Note="Reroll Faith"',
+  'Flock':'Section=feature Note="Has 5 townsfolk followers"',
+  'Gallows Humor':
+    'Section=skill Note="Use Taunt vs. fear, Raise gives +1 Support to allies"',
+  'Ghost':'Section=feature Note="Can become incorporeal at will"',
+  'Grit':'Section=attribute Note="Reduce penalties vs. fear by 2"',
+  'Guts':'Section=attribute Note="Reroll Vigor vs. fear"',
+  'Harrowed':'Section=feature Note="Has returned from death"',
+  'Hellfire':'Section=power Note="9%{in} code inflicts 3d6 damage 1/rd"',
+  'Hexslinging':
+    'Section=power ' +
+    'Note="Cast <i>Ammo Whammy</i>, <i>Deflection</i>, <i>Boost Trait</i> (Shooting), and <i>Protection</i> via weapon"',
+  'High Roller':
+    'Section=power Note="Draw %V extra cards for deal with the devil"',
+  'Implacable':
+    'Section=combat Note="Can take extra wound before becoming incapacitated"',
+  'Improved Cat Eyes':'Section=feature Note="No lighting penalties"',
+  'Improved Claws':'Section=feature Note="Increased Claws damage, AP 2"',
+  'Improved Fan The Hammer':
+    'Section=combat Note="Increased Fan The Hammer effects"',
+  'Improved High Roller':'Section=power Note="Increased High Roller effects"',
+  "Improved Stitchin'":'Section=combat Note="Increased Stitchin\' effects"',
+  'Infest':'Section=power Note="Can summon and control insect swarm for 5 min"',
+  'Iron Bound':'Section=feature Note="Connections with industrial science"',
+  'Like An Oak':
+    'Section=combat ' +
+    'Note="R12%{in} allies ignore 2 points of fear penalties on fear checks"',
+  'Knack (Bastard)':
+    'Section=feature ' +
+    'Note="Can spend benny to see invisible and hiddeen creatures for 5 rd"',
+  "Knack (Born On All Hallows' Eve)":
+    'Section=feature Note="Can spend Conviction to reroll critical failure"',
+  'Knack (Born On Christmas)':
+    'Section=combat ' +
+    'Note="Can spend a benny to negate power effect and shake caster (Spirit-4 neg)"',
+  'Knack (Breech Birth)':
+    'Section=combat Note="Can spend a benny to heal 1 wound"',
+  'Knack (Seventh Son)':
+    'Section=feature Note="Can spend a benny to negate another"',
+  'Knack (Shooting Star)':
+    'Section=combat Note="Can spend a benny to dbl command range"',
+  'Knack (Storm Born)':
+    'Section=attribute Note="Ignore penalties when vs. fear"',
+  'Old Hand':
+    'Section=power Note="Redraw up to 3 cards for deal with the devil"',
+  'Ore Eater':
+    'Section=power Note="+5 Power Points/May contract ghost rock fever"',
+  'Quick Draw':
+    'Section=combat,skill ' +
+    'Note="Spending a benny on an addition Action Card give two more",' +
+         '"+2 Athletcs (interrupt others\' action)"',
+  'Ranger Promotion':
+    'Section=combat ' +
+    'Note="Has moved up %V ranks in Territorial Ranger hierarchy"',
+  'Reputation':
+    'Section=skill ' +
+    'Note="+2 Intimidation or Persuasion with those who have heard stories"',
+  'Right Hand Of The Devil':
+    'Section=combat Note="Trademark weapon does extra die of damage"',
+  'Scout':
+    'Section=skill ' +
+    'Note="Notice-2 (encounters)/Alert Notice vs. Stealth/Ignore 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
+  'Soul Eater':
+    'Section=combat ' +
+    'Note="Can make Spirit-2 roll after inflicting unarmed wound to heal self wound"',
+  "Spirit's Favor":'Section=power Note="Cast chosen power as free action"',
+  'Spook':
+    'Section=power ' +
+    'Note="Target makes -2 fear check, take fatigue for 12%{in} radius effect"',
+  "Stitchin'":'Section=combat Note="Make natural healing roll 1/%1"',
+  'Superior Kung Fu (Drunken Style)':
+    'Section=combat Note="-2 Pace/Foes -2 attack"',
+  'Superior Kung Fu (Eagle Claw)':
+    'Section=combat Note="Hands are heavy weapons with AP 4"',
+  'Superior Kung Fu (Mantis)':
+    'Section=combat Note="Foe who misses is distracted or vulnerable 1/rd"',
+  'Superior Kung Fu (Monkey)':
+    'Section=combat ' +
+    'Note="+2 Parry/Make Athletics test against all adjacent foes"',
+  'Superior Kung Fu (Shuai Chao)':
+    'Section=combat Note="Can grapple after foe fails attack"',
+  'Superior Kung Fu (Tan Tui)':
+    'Section=attribute,combat ' +
+    'Note="Rise from prone costs no movement",' +
+         '"+1 kick attack die 1/rd and knocks back 1d4%{in} (Raise 1d4+2%{in})"',
+  'Superior Kung Fu (Wing Chun)':
+    'Section=combat Note="+1 Parry and foes -2 melee damage"',
+  'Supernatural Attribute':'Section=attribute Note="+%V Attribute Points"',
+  'Tale-Teller':
+    'Section=skill ' +
+    'Note="+2 Persuasion or Performance to lower fear, Raise gives supporters Conviction"',
+  'Territorial Ranger':'Section=feature Note="Member of U.S. Marshals"',
+  'True Believer':'Section=skill Note="Reroll Faith"',
+  'True Genius':
+    'Section=power Note="Spend a benny to reroll madness or malfunction"',
+  'True Grit':
+    'Section=attribute Note="Ignore penalties vs. fear, reroll fear effects"',
+  "Veteran O' The Weird West":
+     'Section=attribute,feature ' +
+     'Note="+4 Advances/+8 Improvement Points",' +
+          '"Has particular major hindrance"',
+  'Whateley Blood':
+    'Section=power,skill ' +
+    'Note="Self-fatigue gives 5 power points, self-wound 10","-1 Persuasion"',
+  'Wither':
+    'Section=power ' +
+    'Note="Touch reduces target strength (Raise strength and vigor) 1 step for 1 hr"',
   // Hindrances
   "Ailin'":
     'Section=attribute ' +
@@ -288,7 +535,7 @@ WeirdWest.FEATURES_ADDED = {
   'Trouble Magnet':
     'Section=feature Note="Increased consequences from critical failures"',
   'Trouble Magnet+':
-    'Section=feature Note="Always target of random consequences"'
+    'Section=feature Note="Always target of random consequences"',
 };
 WeirdWest.FEATURES =
   Object.assign({}, SWADE.FEATURES, WeirdWest.FEATURES_ADDED);
@@ -588,6 +835,35 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
       ('powerCount', 'arcanaNotes.arcaneBackground(Shaman)', '+=', '2');
     rules.defineRule
       ('powerPoints', 'arcanaNotes.arcaneBackground(Shaman)', '+=', '15');
+  } else if(name == 'Celestial Kung Fu') {
+    rules.defineRule('edgePoints', 'combatNotes.celestialKungFu', '+=', '1');
+  } else if(name == 'Claws') {
+    rules.defineRule('damageStep.Claws',
+      'combatNotes.claws', '+=', '2',
+      'combatNotes.improvedClaws', '+', '1'
+    );
+  } else if(name == 'Fan The Hammer') {
+    rules.defineRule('combatNotes.fanTheHammer',
+      '', '=', '-4',
+      'combatNotes.improvedFanTheHammer', '+', '2'
+    );
+  } else if(name == 'High Roller') {
+    rules.defineRule('powerNotes.highRoller',
+      '', '=', '1',
+      'powerNotes.improvedHighRoller', '+', '1'
+    );
+  } else if(name == 'Ranger Promotion') {
+    rules.defineRule
+      ('featureRules.rangerPromotion', 'edges.Ranger Promotion', '=', null);
+  } else if(name == "Stitchin'") {
+    rules.defineRule("combatNotes.stitchin'.1",
+      "features.Stitchin'", '=', '"dy"',
+      "combatNotes.improvedStitchin'", '=', '"hr"'
+    );
+  } else if(name == 'Supernatural Athlete') {
+    rules.defineRule('attibuteNotes.supernaturalAthlete',
+      'edges.Supernatural Athlete', '=', null
+    );
   } else {
     SWADE.edgeRulesExtra(rules, name);
   }
