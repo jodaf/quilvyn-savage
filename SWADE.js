@@ -81,7 +81,7 @@ SWADE.CHOICES = [
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
   'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'deity',
-  'powers'
+  'powers', 'archetype'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -887,7 +887,7 @@ SWADE.FEATURES = {
 };
 SWADE.GOODIES = {
   'Agility':
-    'Pattern="([-+]\\d)\\s+agi(?:lity)?(?:$|\\s+$|\\s+[^d])|agi(?:lity)?\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+agi(?:lity)?(?:$|\\s+$|\\s+[^d])|agi(?:lity)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=agilityModifier ' +
@@ -898,20 +898,56 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
     'Section=attribute Note="%V Agility step"',
+  'Cover':
+    'Pattern="([-+]\\d+)\\s+cover(?:$|\\s+$|\\s+[^d])|cover\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=cover ' +
+    'Section=combat Note="%V Cover"',
+  'Improvement Points':
+    'Pattern="([-+]\\d+)\\s+improvement\s+points|improvement\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=improvementPoints ' +
+    'Section=description Note="%V Improvement Points"',
+  'Pace':
+    'Pattern="([-+]\\d+)\\s+pace(?:$|\\s+$|\\s+[^d])|pace\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=pace ' +
+    'Section=combat Note="%V Pace"',
+  'Parry':
+    'Pattern="([-+]\\d+)\\s+parry(?:$|\\s+$|\\s+[^d])|parry\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=parry ' +
+    'Section=combat Note="%V Parry"',
+  'Power Count':
+    'Pattern="([-+]\\d+)\\s+power\\s+count|power\\s+count\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=powerCount ' +
+    'Section=arcana Note="%V Power Count"',
   'Power Points':
-    'Pattern="([-+]\\d)\\s+power\s+points|power\s+points\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+power\s+points|power\s+points\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=powerPoints ' +
     'Section=arcana Note="%V Power Points"',
-  'Powers':
-    'Pattern="([-+]\\d)\\s+powers|powers\\s+([-+]\\d)" ' +
+  'Run':
+    'Pattern="([-+]\\d+)\\s+run(?:$|\\s+$|\\s+[^d])|run\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
-    'Attribute=powerCount ' +
-    'Section=arcana Note="%V Powers"',
+    'Attribute=runModifier ' +
+    'Section=combat Note="%V Run"',
+  'Run Step':
+    'Pattern="([-+]\\d)\\s+run\\s+step|run\\s+step\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=runStep ' +
+    'Section=combat Note="%V Run step"',
   'Smarts':
-    'Pattern="([-+]\\d)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=smartsModifier ' +
@@ -923,7 +959,7 @@ SWADE.GOODIES = {
     'Attribute=smartsStep ' +
     'Section=attribute Note="%V Smarts step"',
   'Spirit':
-    'Pattern="([-+]\\d)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=spiritModifier ' +
@@ -935,7 +971,7 @@ SWADE.GOODIES = {
     'Attribute=spiritStep ' +
     'Section=attribute Note="%V Spirit step"',
   'Strength':
-    'Pattern="([-+]\\d)\\s+str(?:ength)?(?:$|\\s+$|\\s+[^d])|str(?:ength)?\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+str(?:ength)?(?:$|\\s+$|\\s+[^d])|str(?:ength)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=strengthModifier ' +
@@ -946,8 +982,14 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=strengthStep ' +
     'Section=attribute Note="%V Strength step"',
+  'Toughness':
+    'Pattern="([-+]\\d+)\\s+toughness(?:$|\\s+$|\\s+[^d])|toughness\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=toughness ' +
+    'Section=combat Note="%V Toughness"',
   'Vigor':
-    'Pattern="([-+]\\d)\\s+vig(?:or)?(?:$|\\s+$|\\s+[^d])|vig(?:or)?\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d+)\\s+vig(?:or)?(?:$|\\s+$|\\s+[^d])|vig(?:or)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=vigorModifier ' +
@@ -1585,6 +1627,19 @@ SWADE.WEAPONS = {
  
 };
 
+/* Defines rules related to powers. */
+SWADE.arcaneRules = function(rules, arcanas, powers) {
+  QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
+  QuilvynUtils.checkAttrTable
+    (powers, ['Advances', 'PowerPoints', 'Range', 'Description']);
+  for(var arcana in arcanas) {
+    rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
+  }
+  for(var power in powers) {
+    rules.choiceRules(rules, 'Power', power, powers[power]);
+  }
+};
+
 /* Defines the rules related to character attributes and description. */
 SWADE.attributeRules = function(rules) {
 
@@ -1646,16 +1701,14 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   }
   for(var weapon in weapons) {
     var pattern = weapon.replace(/  */g, '\\s+');
-    var prefix =
-      weapon.charAt(0).toLowerCase() + weapon.substring(1).replaceAll(' ', '');
     rules.choiceRules(rules, 'Goody', weapon,
       // To avoid triggering additional weapons with a common suffix (e.g.,
-      // "* punching dagger +2" also makes regular dagger +2), require that
-      // weapon goodies with a trailing value have no preceding word or be
-      // enclosed in parentheses.
+      // "* compound bow +2" also makes regular bow +2), require that weapon
+      // goodies with a trailing value have no preceding word or be enclosed in
+      // parentheses.
       'Pattern="([-+]\\d)\\s+' + pattern + '|(?:^\\W*|\\()' + pattern + '\\s+([-+]\\d)" ' +
       'Effect=add ' +
-      'Attribute=' + prefix + 'AttackModifier,' + prefix + 'DamageModifier ' +
+      'Attribute="attackAdjustment.' + weapon + '","damageAdjustment.' + weapon + '" ' +
       'Value="$1 || $2" ' +
       'Section=combat Note="%V Attack and damage"'
     );
@@ -1670,25 +1723,44 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('combatNotes.vigorToughnessModifier', 'vigor', '=', 'source / 2');
   rules.defineRule('cover', 'shieldCover', '=', null);
-  rules.defineRule('initiative', 'dexterityModifier', '=', null);
   rules.defineRule('pace', '', '=', '6');
   rules.defineRule('parry',
     '', '=', '2',
     'shieldParry', '+', null,
     'combatNotes.fightingParryModifier', '+', null
   );
-  rules.defineRule('runStep', '', '=', '2');
-  rules.defineRule('run',
-    'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)'
-  );
+  rules.defineRule
+    ('run', 'runStep', '=', 'Math.max(Math.min(2 + source * 2, 12), 4)');
   rules.defineRule
     ('runModifier', 'runStep', '=', 'source>5 ? "+" + (source - 5) : ""');
+  rules.defineRule('runStep', '', '=', '2');
   rules.defineRule('toughness',
     '', '=', '2',
     'armorToughness', '+', null,
     'combatNotes.vigorToughnessModifier', '+', null
   );
   rules.defineRule('weapons.Unarmed', '', '=', '1');
+
+  SWADE.weaponRules(
+    rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
+    'Un', null, null, null, null
+  );
+  SWADE.weaponRules(
+    rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
+    'Un', null, null, null, null
+  );
+  SWADE.weaponRules(
+    rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
+    'Un', null, null, null, null
+  );
+  SWADE.weaponRules(
+    rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
+    'Un', null, null, null, null
+  );
+  rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
+  rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
+  rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
+  rules.defineRule('weapons.Tail', 'combatNotes.tail', '=', null);
 
 };
 
@@ -1709,19 +1781,6 @@ SWADE.identityRules = function(rules, races, eras, deitys) {
     rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
-};
-
-/* Defines rules related to powers. */
-SWADE.arcaneRules = function(rules, arcanas, powers) {
-  QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
-  QuilvynUtils.checkAttrTable
-    (powers, ['Advances', 'PowerPoints', 'Range', 'Description']);
-  for(var arcana in arcanas) {
-    rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
-  }
-  for(var power in powers) {
-    rules.choiceRules(rules, 'Power', power, powers[power]);
-  }
 };
 
 /* Defines rules related to character aptitudes. */
@@ -1792,6 +1851,8 @@ SWADE.talentRules = function(
     '', '=', '1',
     'improvementPointsAllocation.Edge', '+', 'Math.floor(source / 2)'
   );
+  rules.defineRule('hindrancePoints', '', 'v', '4');
+  rules.defineRule('improvementPoints', 'hindrancePoints', '+=', null);
   rules.defineRule('skillPoints',
     '', '=', '12',
     'improvementPointsAllocation.Skill', '+', 'source'
@@ -1912,11 +1973,14 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
  */
 SWADE.arcanaRules = function(rules, name, skill, powers) {
   var compactName = name.replaceAll(' ', '');
+  // Define arcaneSkill for use in power effects
   rules.defineRule('arcaneSkill', 'arcaneSkill' + compactName, '^=', null);
   rules.defineRule('arcaneSkill' + compactName,
     'features.Arcane Background (' + name + ')', '?', null,
     'skills.' + skill, '=', null
   );
+  // No checking of powers list here, but randomizeOneAttribute restricts
+  // selected powers to those in the list.
 };
 
 /*
@@ -1954,7 +2018,7 @@ SWADE.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
 
   if(areas.includes('Torso') || areas.includes('Body'))
     rules.defineRule('armorToughness', 'armor.' + name, '+=', armor);
-  rules.defineRule('armorMinStr', 'armor.' + name, '+=', minStr);
+  rules.defineRule('armorMinStr', 'armor.' + name, '^=', minStr);
   rules.defineRule('armorWeight', 'armor.' + name, '+=', weight);
 
 };
@@ -2015,32 +2079,7 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
 SWADE.edgeRulesExtra = function(rules, name) {
   var matchInfo;
   var note;
-  if(name == 'Arcane Background (Gifted)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Gifted)', '+=', '1');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Gifted)', '+=', '15');
-  } else if(name == 'Arcane Background (Magic)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Magic)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Magic)', '+=', '10');
-  } else if(name == 'Arcane Background (Miracles)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '10');
-  } else if(name == 'Arcane Background (Psionics)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Psionics)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Psionics)', '+=', '10');
-  } else if(name == 'Arcane Background (Weird Science)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '2');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '15');
-  } else if(name == 'Arcane Resistance') {
+  if(name == 'Arcane Resistance') {
     rules.defineRule('combatNotes.arcaneResistance',
       '', '=', '-2',
       'combatNotes.improvedArcaneResistance', '+', '-2'
@@ -2133,7 +2172,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.martialWarrior', '+', '1'
     );
     rules.defineRule
-      ('attackBonus.Unarmed', 'combatNotes.martialArtist.1', '+', null);
+      ('attackAdjustment.Unarmed', 'combatNotes.martialArtist.1', '+', null);
     rules.defineRule
       ('damageStep.Unarmed', 'combatNotes.martialArtist', '+=', null);
   } else if(name == 'Nerves Of Steel') {
@@ -2192,7 +2231,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       note.replace('trademark', 'improvedTrademark'), '+', '1'
     );
-    rules.defineRule('attackBonus.' + weapon, note, '+', null);
+    rules.defineRule('attackAdjustment.' + weapon, note, '+', null);
   } else if(name == 'Weapon Master') {
     rules.defineRule('combatNotes.weaponMaster',
       '', '=', '1',
@@ -2260,6 +2299,11 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     var pieces = effects.split('/');
 
     for(var j = 0; j < pieces.length; j++) {
+
+      matchInfo = pieces[j].match(/^power\s+((count)|(points))\s+(\d+)$/i);
+      if(matchInfo)
+        rules.defineRule
+          ('power' + (matchInfo[2]?'Count':'Points'), note, '+=', matchInfo[4]);
 
       matchInfo = pieces[j].match(/^([-+x](\d+(\.\d+)?|%[V1-9]))\s+(.*)$/);
       if(!matchInfo)
@@ -2335,7 +2379,7 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
     console.log('Bad requires "' + requires + '" for hindrance ' + name);
     return;
   }
-  if(severity != 'Minor' && severity != 'Major') {
+  if(!(severity + '').match(/major|minor/i)) {
     console.log('Bad severity "' + severity + '" for hindrance ' + name);
     return;
   }
@@ -2346,10 +2390,8 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
       (rules, 'validation', prefix+'Hindrance', 'hindrances.'+name, requires);
   rules.defineRule('features.' + name, 'hindrances.' + name, '=', null);
   rules.defineRule('hindrancePoints',
-    'hindrances.' + name, '+=', severity=='Major' ? '2' : '1',
-    '', 'v', '4'
+    'hindrances.' + name, '+=', severity.match(/major/i) ? '2' : '1'
   );
-  rules.defineRule('improvementPoints', 'hindrancePoints', '+=', null);
 };
 
 /*
@@ -2389,6 +2431,9 @@ SWADE.powerRules = function(
   if(typeof advances != 'number') {
     console.log('Bad advances "' + advances + '" for power ' + name);
   }
+  if(!powerPoints) {
+    console.log('Bad powerPoints "' + powerPoints + '" for power ' + name);
+  }
   if(!range) {
     console.log('Empty range for power ' + name);
   }
@@ -2407,7 +2452,7 @@ SWADE.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# list associated features and
+ * of hard prerequisites #requires#. #features# lists associated features and
  * #languages# any automatic languages.
  */
 SWADE.raceRules = function(rules, name, requires, features, languages) {
@@ -2454,27 +2499,6 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     }
   }
 
-  SWADE.weaponRules(
-    rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
-  );
-  SWADE.weaponRules(
-    rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
-  );
-  SWADE.weaponRules(
-    rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
-  );
-  SWADE.weaponRules(
-    rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
-  );
-  rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
-  rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
-  rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
-  rules.defineRule('weapons.Tail', 'combatNotes.tail', '=', null);
-
 };
 
 /*
@@ -2483,9 +2507,8 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
  */
 SWADE.raceRulesExtra = function(rules, name) {
   if(name == 'Half-Elf') {
-    rules.defineRule('improvementPoints',
-      'descriptionNotes.heritage', '+', '2'
-    );
+    rules.defineRule
+      ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
   } else if(name == 'Saurian') {
     rules.defineRule
       ('features.Alertness', 'featureNotes.keenSenses(Saurian)', '=', '1');
@@ -2548,8 +2571,9 @@ SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
 
 /*
  * Defines in #rules# the rules associated with skill #name#, associated with
- * #attribute# (one of 'agility', 'spirit', etc.). If specified, the skill is
- * available only in the eras listed in #eras#.
+ * #attribute# (one of 'agility', 'spirit', etc.). #core# indicates whether or
+ * not the character automatically gets a d4 in the skill. If specified, the
+ * skill is available only in the eras listed in #eras#.
  */
 SWADE.skillRules = function(rules, name, attribute, core, eras) {
 
@@ -2616,7 +2640,7 @@ SWADE.weaponRules = function(
     console.log('Bad eras "' + eras + '" for weapon ' + name);
     return;
   }
-  var matchInfo = (damage + '').match(/^((Str\+)?((\d*d)?\d+)([\-+]\d+)?)$/);
+  var matchInfo = (damage + '').match(/^((Str\+)?((\d*)d\d+)([\-+]\d+)?)$/i);
   if(!matchInfo) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
@@ -2627,22 +2651,24 @@ SWADE.weaponRules = function(
   if(typeof weight != 'number') {
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }
-  if(category == null ||
-     !(category + '').match(/^(1h|2h|R|Un|one-handed|two-handed|ranged|unarmed)$/i)) {
+  if(!(category + '').match(/^(1h|2h|R|Un|one-handed|two-handed|ranged|unarmed)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
-  }
-  if(range && typeof range != 'number') {
-    console.log('Bad range "' + range + '" for weapon ' + name);
   }
   if(armorPiercing && typeof armorPiercing != 'number') {
     console.log('Bad AP "' + armorPiercing + '" for weapon ' + name);
   }
+  if(range && typeof range != 'number') {
+    console.log('Bad range "' + range + '" for weapon ' + name);
+  }
   if(rateOfFire && typeof rateOfFire != 'number') {
     console.log('Bad ROF "' + rateOfFire + '" for weapon ' + name);
   }
+  if(parry && typeof parry != 'number') {
+    console.log('Bad parry "' + parry + '" for weapon ' + name);
+  }
 
-  var isRanged = category == 'R' || category == 'ranged';
+  var isRanged = category.match(/^(r|ranged)$/);
 
   damage = matchInfo[1];
   var prefix =
@@ -2653,19 +2679,12 @@ SWADE.weaponRules = function(
   if(strDamage)
     damage = damage.substring(4);
 
-  rules.defineRule('attackBonus.' + name,
-    weaponName, '=', '0',
-    isRanged ? 'attackBonus.Ranged' : 'attackBonus.Melee', '+', null,
-    'weaponAttackAdjustment.' + name, '+', null
-  );
-  rules.defineRule('damageBonus.' + name,
-    weaponName, '=', '0',
-    'weaponDamageAdjustment.' + name, '+', null
-  );
-
   rules.defineChoice('notes', weaponName + ':' + format);
+  rules.defineRule('attackAdjustment.' + name, weaponName, '=', '0');
+  rules.defineRule('damageAdjustment.' + name, weaponName, '=', '0');
   rules.defineRule(weaponName + '.1',
-    'attackBonus.' + name, '=', 'source != 0 ? QuilvynUtils.signed(source) + " " : ""'
+    weaponName, '=', '""',
+    'attackAdjustment.' + name, '=', 'source!=0 ? QuilvynUtils.signed(source) + " " : ""'
   );
   rules.defineRule(weaponName + '.2',
     weaponName, '?', null,
@@ -2678,7 +2697,7 @@ SWADE.weaponRules = function(
   if(strDamage) {
     rules.defineRule(weaponName + '.2', 'strength', '=', '"d" + source');
     rules.defineRule(weaponName + '.3',
-      'strengthModifier', '=', 'source<0 ? source + "+" : source>0 ? "+"+source+"+" : "+"'
+      'strengthModifier', '=', 'source!=0 ? QuilvynUtils.signed(source) + "+" : "+"'
     );
   } 
   rules.defineRule(weaponName + '.4',
@@ -2688,12 +2707,12 @@ SWADE.weaponRules = function(
   rules.defineRule(weaponName + '.5',
     weaponName, '?', null,
     '', '=', '""',
-    prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
+    'damageAdjustment.' + name, '=', 'source==0 ? "" : QuilvynUtils.signed(source)'
   );
   if(range) {
     rules.defineRule('range.' + name,
       weaponName, '=', range,
-      'weaponRangeAdjustment.' + name, '+', null
+      'rangeAdjustment.' + name, '+', null
     );
     rules.defineRule(weaponName + '.6', 'range.' + name, '=', null);
   }
@@ -2730,16 +2749,7 @@ SWADE.getFormats = function(rules, viewer) {
   var formats = rules.getChoices('notes');
   var result = {};
   var matchInfo;
-  if(viewer == 'Collected Notes') {
-    for(format in formats) {
-      result[format] = formats[format];
-      if((matchInfo = format.match(/Notes\.(.*)$/)) != null) {
-        var feature = matchInfo[1];
-        feature = feature.charAt(0).toUpperCase() + feature.substring(1).replace(/([A-Z(])/g, ' $1');
-        formats['features.' + feature] = formats[format];
-      }
-    }
-  } else if(viewer == 'Compact') {
+  if(viewer == 'Compact') {
     for(format in formats) {
       if(!format.startsWith('powers.'))
         result[format] = formats[format];
@@ -2769,6 +2779,7 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Run', within: 'Speed', format: '/+d%V'},
               {name: 'Run Modifier', within: 'Speed', format: '%V'},
             {name: 'Parry', within: 'Section 1', format: '<b>Parry</b> %V'},
+            {name: 'Cover', within: 'Section 1', format: '<b>Cover</b> %V'},
             {name: 'Toughness', within: 'Section 1', format: '<b>Toughness</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
@@ -2802,7 +2813,8 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Rank', within: 'Identity', format: ' <b>%V Adventurer</b>'},
+            {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Archetype', within: 'Identity', format: ' <b>%V</b>'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
@@ -2936,7 +2948,8 @@ SWADE.choiceEditorElements = function(rules, type) {
   var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Arcana')
     result.push(
-      ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))]
+      ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))],
+      ['Powers', 'Powers', 'text', [60]]
     );
   else if(type == 'Armor') {
     var areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
@@ -2973,6 +2986,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     );
   } else if(type == 'Hindrance') {
     result.push(
+      ['Require', 'Prerequisites', 'text', [40]],
       ['Severity', 'Severity', 'select-one', ['Major', 'Minor']]
     );
   } else if(type == 'Language')
@@ -3036,6 +3050,7 @@ SWADE.initialEditorElements = function() {
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['gender', 'Gender', 'text', [10]],
+    ['archetype', 'Archetype', 'text', [20]],
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
     ['spiritAllocation', 'Spirit', 'select-one', allocations],
@@ -3169,6 +3184,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(QuilvynUtils.random(0, 9) >= 7)
         attributes.advances += 4;
     }
+  } else if(attribute == 'archetype') {
+    if(attributes.archetype == null)
+      attributes.archetype = 'Adventurer';
   } else if(attribute == 'armor') {
     var allArmors = this.getChoices('armors');
     era = attributes.era || 'Modern';
