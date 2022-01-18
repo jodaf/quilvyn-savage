@@ -152,7 +152,7 @@ WeirdWest.EDGES_ADDED = {
     'Type=background Require="spirit >= 6","skills.Occult >= 6"',
   // Combat
   "Don't Get 'im Riled!":'Type=combat',
-  'Duelist':'Type=combat Require="Shooting >= 6"',
+  'Duelist':'Type=combat Require="skills.Shooting >= 6"',
   'Fan The Hammer':
     'Type=combat Require="advances >= 4","agility >= 8","skills.Shooting >= 8"',
   'Improved Fan The Hammer':
@@ -173,10 +173,9 @@ WeirdWest.EDGES_ADDED = {
       '"skills.Shooting >= 6"',
   'Born In The Saddle':
     'Type=professional Require="agility >= 8","skills.Riding >= 6"',
-  'Card Shape':'Type=professional Require="skills.Gambling >= 6"',
+  'Card Sharp':'Type=professional Require="skills.Gambling >= 6"',
   'Guts':'Type=professional Require="spirit >= 6"',
   'Scout':'Type=professional Require="advances >= 4",features.Woodsman',
-  'Soldier':'Type=professional Require="strength >= 6","vigor >= 6"',
   'Tale-Teller':
     'Type=professional ' +
     'Require="skills.Performance >= 8 || skills.Persuasion >= 8"',
@@ -400,7 +399,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=combat Note="Add wound level to damage rolls"',
   'Duelist':'Section=combat Note="Gets two extra Hole Cards at start of duel"',
   'Fan The Hammer':
-     'Section=combat Note="Can shoot up to shots in one action at %V"',
+     'Section=combat Note="Can shoot up to 6 shots in one action at %V"',
   'Fast As Lightning':'Section=combat Note="Can take 4 actions at -6"',
   'Fetish':'Section=skill Note="Reroll Faith"',
   'Flock':'Section=feature Note="Has 5 townsfolk followers"',
@@ -451,7 +450,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=power Note="+5 Power Points/May contract ghost rock fever"',
   'Quick Draw':
     'Section=combat,skill ' +
-    'Note="Spending a benny on an addition Action Card give two more",' +
+    'Note="Spending a benny on an additional Action Card gives two more",' +
          '"+2 Athletcs (interrupt others\' action)"',
   'Ranger Promotion':
     'Section=combat ' +
@@ -501,8 +500,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=attribute Note="Ignore penalties vs. fear, reroll fear effects"',
   "Veteran O' The Weird West":
      'Section=attribute,feature ' +
-     'Note="+4 Advances/+8 Improvement Points",' +
-          '"Has particular major hindrance"',
+     'Note="+4 Advances","Has unique major hindrance"',
   'Whateley Blood':
     'Section=power,skill ' +
     'Note="Self-fatigue gives 5 power points, self-wound 10","-1 Persuasion"',
@@ -541,19 +539,19 @@ WeirdWest.FEATURES =
   Object.assign({}, SWADE.FEATURES, WeirdWest.FEATURES_ADDED);
 WeirdWest.GOODIES = Object.assign({}, SWADE.GOODIES);
 WeirdWest.HINDRANCES_ADDED = {
-  "Ailin'":'Severity=Minor',
-  "Ailin'+":'Severity=Major',
+  "Ailin'":'Require="hindrances.Ailin\'+ == 0" Severity=Minor',
+  "Ailin'+":'Require="hindrances.Ailin\' == 0" Severity=Major',
   'Cursed+':'Severity=Major',
   "Grim Servant O' Death+":'Severity=Major',
   'Heavy Sleeper':'Severity=Minor',
   "Lyin' Eyes":'Severity=Minor',
   'Night Terrors+':'Severity=Major',
   'Old Ways Oath':'Severity=Minor',
-  'Talisman':'Severity=Minor',
-  'Talisman+':'Severity=Major',
+  'Talisman':'Require="hindrances.Talisman+ == 0" Severity=Minor',
+  'Talisman+':'Require="hindrances.Talisman == 0" Severity=Major',
   'Tenderfoot+':'Severity=Major',
-  'Trouble Magnet':'Severity=Minor',
-  'Trouble Magnet+':'Severity=Major'
+  'Trouble Magnet':'Require="hindrances.Trouble Magnet+ == 0" Severity=Minor',
+  'Trouble Magnet+':'Require="hindrances.Trouble Magnet == 0" Severity=Major'
 };
 WeirdWest.HINDRANCES =
   Object.assign({}, SWADE.HINDRANCES, WeirdWest.HINDRANCES_ADDED);
