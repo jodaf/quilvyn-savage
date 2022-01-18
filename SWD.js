@@ -1202,28 +1202,13 @@ SWD.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWD.edgeRulesExtra = function(rules, name) {
-  if(name == 'Arcane Background (Miracles)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '2');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Miracles)', '+=', '10');
-  } else if(name == 'Arcane Background (Super Powers)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(SuperPowers)', '+=', '1');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(SuperPowers)', '+=', '20');
-  } else if(name == 'Arcane Background (Weird Science)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '1');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(WeirdScience)', '+=', '10');
-  } else if(name == 'Attractive') {
+  if(name == 'Attractive') {
     rules.defineRule('skillNotes.attractive',
       '', '=', '2',
       'skillNotes.veryAttractive', '+', '2'
     );
   } else if(name == 'Brawler') {
-    rules.defineRule('unarmedDamageModifier', 'combatNotes.brawler', '+=', '2');
+    rules.defineRule('damageAdjustment.Unarmed', 'combatNotes.brawler', '+', '2');
   } else if(name == 'Command') {
     rules.defineRule('commandRange',
       'features.Command', '=', '5',
@@ -1263,7 +1248,7 @@ SWD.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Martial Arts Master') {
     rules.defineRule
-      ('unarmedDamageModifier', 'combatNotes.martialArtsMaster', '+=', '2');
+      ('damageAdjustment.Unarmed', 'combatNotes.martialArtsMaster', '+', '2');
   } else if(name == 'New Power') {
     rules.defineRule('arcanaNotes.newPower', 'edges.New Power', '=', null);
   } else if(name == 'Noble') {
@@ -1378,9 +1363,8 @@ SWD.raceRulesExtra = function(rules, name) {
   } else if(name == 'Atlantean') {
     rules.defineRule('skillStep.Swimming', 'skillNotes.aquatic', '+=', '2');
   } else if(name == 'Half-Elf') {
-    rules.defineRule('improvementPoints',
-      'descriptionNotes.heritage', '+', '2'
-    );
+    rules.defineRule
+      ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
   } else if(name == 'Rakashan') {
     rules.defineRule
       ('isRakashan', 'race', '=', 'source == "Rakashan" ? 1 : null');
