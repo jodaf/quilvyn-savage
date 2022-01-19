@@ -311,12 +311,12 @@ SWD.FEATURES = {
   'Ambidextrous':'Section=combat Note="No off-hand penalty"',
   'Arcane Background (Magic)':'SWADE',
   'Arcane Background (Miracles)':
-    'Section=arcana Note="Power Count 2/Power Points 10"',
+    'Section=arcana Note="2 Powers/10 Power Points"',
   'Arcane Background (Psionics)':'SWADE',
   'Arcane Background (Super Powers)':
-    'Section=arcana Note="Power Count 1/Power Points 20"',
+    'Section=arcana Note="1 Power/20 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=arcana Note="Power Count 1/Power Points 10"',
+    'Section=arcana Note="1 Power/10 Power Points"',
   'Arcane Resistance':'SWADE',
   'Assassin':'Section=combat Note="+2 damage to unaware foes"',
   'Attractive':'Section=skill Note="+%V Charisma"',

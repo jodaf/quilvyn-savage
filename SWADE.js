@@ -408,15 +408,15 @@ SWADE.FEATURES = {
   'Ambidextrous':
     'Section=combat Note="No off-hand penalty, weapon Parry bonuses stack"',
   'Arcane Background (Gifted)':
-    'Section=arcana Note="Power Count 1/Power Points 15"',
+    'Section=arcana Note="1 Powers/15 Power Points"',
   'Arcane Background (Magic)':
-    'Section=arcana Note="Power Count 3/Power Points 10"',
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Miracles)':
-    'Section=arcana Note="Power Count 3/Power Points 10"',
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Psionics)':
-    'Section=arcana Note="Power Count 3/Power Points 10"',
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=arcana Note="Power Count 2/Power Points 15"',
+    'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=combat ' +
     'Note="%V others\' targeted arcane skill, %V magical damage"',
@@ -2300,10 +2300,12 @@ SWADE.featureRules = function(rules, name, sections, notes) {
 
     for(var j = 0; j < pieces.length; j++) {
 
-      matchInfo = pieces[j].match(/^power\s+((count)|(points))\s+(\d+)$/i);
+      matchInfo = pieces[j].match(/^(\d+)\s+powers?$/i);
       if(matchInfo)
-        rules.defineRule
-          ('power' + (matchInfo[2]?'Count':'Points'), note, '+=', matchInfo[4]);
+        rules.defineRule('powerCount', note, '+=', matchInfo[1]);
+      matchInfo = pieces[j].match(/^(\d+)\s+power\s+points?$/i);
+      if(matchInfo)
+        rules.defineRule('powerPoints', note, '+=', matchInfo[1]);
 
       matchInfo = pieces[j].match(/^([-+x](\d+(\.\d+)?|%[V1-9]))\s+(.*)$/);
       if(!matchInfo)
