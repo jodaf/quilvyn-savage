@@ -615,7 +615,7 @@ WeirdWest.POWERS_ADDED = {
 };
 WeirdWest.POWERS = Object.assign({}, SWADE.POWERS, WeirdWest.POWERS_ADDED);
 WeirdWest.RACES = {
-  'Human':SWADE.RACES['Human']
+  'Human':SWADE.RACES['Human'] + ' Languages=English'
 };
 WeirdWest.LANGUAGES = {
   'English':''
