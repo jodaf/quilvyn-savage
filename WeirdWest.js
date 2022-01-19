@@ -372,15 +372,15 @@ WeirdWest.FEATURES_ADDED = {
     'Section=power ' +
     'Note="Spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
   'Arcane Background (Blessed)':
-    'Section=arcana Note="Power Count 3/Power Points 15"',
+    'Section=arcana Note="3 Powers/15 Power Points"',
   'Arcane Background (Chi Master)':
-    'Section=arcana Note="Power Count 3/Power Points 15"',
+    'Section=arcana Note="3 Powers/15 Power Points"',
   'Arcane Background (Huckster)':
-    'Section=arcana Note="Power Count 3/Power Points 10"',
+    'Section=arcana Note="3 Powers/Power Points"',
   'Arcane Background (Mad Scientist)':
-    'Section=arcana Note="Power Count 2/Power Points 15"',
+    'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Background (Shaman)':
-    'Section=arcana Note="Power Count 2/Power Points 15"',
+    'Section=arcana Note="2 Powers/15 Power Points"',
   'Behold A Pale Horse':
     'Section=feature ' +
     'Note="Mount is a Wild Card with Fearless and Danger Sense"',
