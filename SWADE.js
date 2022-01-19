@@ -2670,7 +2670,7 @@ SWADE.weaponRules = function(
     console.log('Bad parry "' + parry + '" for weapon ' + name);
   }
 
-  var isRanged = category.match(/^(r|ranged)$/);
+  var isRanged = category.match(/^(r|ranged)$/i);
 
   damage = matchInfo[1];
   var prefix =
