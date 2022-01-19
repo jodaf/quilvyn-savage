@@ -1848,7 +1848,7 @@ SWADE.talentRules = function(
   }
 
   rules.defineRule('edgePoints',
-    '', '=', '1',
+    '', '=', '0',
     'improvementPointsAllocation.Edge', '+', 'Math.floor(source / 2)'
   );
   rules.defineRule('hindrancePoints', '', 'v', '4');
