@@ -213,8 +213,8 @@ WeirdWest.EDGES_ADDED = {
     'Type=legendary ' +
     'Require=' +
       '"advances >= 16",' +
-      '"skills.Shooting>=10 || skills.Fighting>=10 || skills.Athletics>=10",' +
-      '"Sum \'features.Trademark Weapon\' > 0"',
+      '"Sum \'features.Trademark Weapon\' > 0",' +
+      '"skills.Shooting>=10 || skills.Fighting>=10 || skills.Athletics>=10"',
   'True Grit':
     'Type=legendary Require="advances >= 16","spirit >= 10",features.Grit',
   // "Class"-specific
@@ -367,7 +367,7 @@ delete WeirdWest.EDGES['Arcane Background (%arcana)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.FEATURES_ADDED = {
   // Edges
-  'Agent':'Section=feature Note="Member of covert government agency"',
+  'Agent':'Section=feature Note="Works for a covert government agency"',
   'Alchemy':
     'Section=power ' +
     'Note="Spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
@@ -383,10 +383,11 @@ WeirdWest.FEATURES_ADDED = {
     'Section=arcana Note="2 Powers/15 Power Points"',
   'Behold A Pale Horse':
     'Section=feature ' +
-    'Note="Mount is a Wild Card with Fearless and Danger Sense"',
+    'Note="Mount is a Wild Card with Fearless and Danger Sense features"',
   'Born In The Saddle':
-    'Section=skill Note="Reroll Riding/Mount +2 Pace and +1 Run step"',
-  'Card Sharp':'Section=skill Note="Reroll Gambling"',
+    'Section=skill ' +
+    'Note="May reroll Riding/Mount gains +2 Pace and +1 Run step"',
+  'Card Sharp':'Section=skill Note="May reroll Gambling"',
   'Cat Eyes':'Section=feature Note="No penalty in dim or dark lighting"',
   'Celestial Kung Fu':
     'Section=combat ' +
@@ -397,18 +398,20 @@ WeirdWest.FEATURES_ADDED = {
   'Claws':SWADE.FEATURES['Claws'],
   'Damned':'Section=feature Note="Will return as Harrowed if killed"',
   "Don't Get 'im Riled!":
-    'Section=combat Note="Add wound level to damage rolls"',
+    'Section=combat Note="Adds wound level to damage rolls"',
   'Duelist':'Section=combat Note="Gets two extra Hole Cards at start of duel"',
   'Fan The Hammer':
-     'Section=combat Note="Can shoot up to 6 shots in one action at %V"',
-  'Fast As Lightning':'Section=combat Note="Can take 4 actions at -6"',
+     'Section=combat ' +
+     'Note="Can shoot up to 6 shots in one action at %V; 1 or 2 may hit bystander"',
+  'Fast As Lightning':'Section=combat Note="Can take 4 actions at -6 each"',
   'Fetish':'Section=skill Note="Reroll Faith"',
   'Flock':'Section=feature Note="Has 5 townsfolk followers"',
   'Gallows Humor':
-    'Section=skill Note="Use Taunt vs. fear, Raise gives +1 Support to allies"',
+    'Section=skill ' +
+    'Note="May use Taunt vs. fear; Raise gives +1 Support to allies"',
   'Ghost':'Section=feature Note="Can become incorporeal at will"',
-  'Grit':'Section=attribute Note="Reduce penalties vs. fear by 2"',
-  'Guts':'Section=attribute Note="Reroll Vigor vs. fear"',
+  'Grit':'Section=attribute Note="Reduces penalties vs. fear by 2"',
+  'Guts':'Section=attribute Note="May reroll Vigor vs. fear"',
   'Harrowed':'Section=feature Note="Has returned from death"',
   'Hellfire':'Section=power Note="9%{in} code inflicts 3d6 damage 1/rd"',
   'Hexslinging':
@@ -431,28 +434,29 @@ WeirdWest.FEATURES_ADDED = {
     'Note="R12%{in} allies ignore 2 points of fear penalties on fear checks"',
   'Knack (Bastard)':
     'Section=feature ' +
-    'Note="Can spend benny to see invisible and hidden creatures for 5 rd"',
+    'Note="May spend a benny to see invisible and hidden creatures for 5 rd"',
   "Knack (Born On All Hallows' Eve)":
-    'Section=feature Note="Can spend Conviction to reroll critical failure"',
+    'Section=feature Note="May spend Conviction to reroll critical failure"',
   'Knack (Born On Christmas)':
     'Section=combat ' +
-    'Note="Can spend a benny to negate power effect and shake caster (Spirit-4 neg)"',
+    'Note="May spend a benny to negate power effect and shake caster (Spirit-4 neg)"',
   'Knack (Breech Birth)':
-    'Section=combat Note="Can spend a benny to heal 1 wound"',
+    'Section=combat Note="May spend a benny to heal 1 wound"',
   'Knack (Seventh Son)':
-    'Section=feature Note="Can spend a benny to negate another"',
+    'Section=feature Note="May spend a benny to negate a benny effect"',
   'Knack (Shooting Star)':
-    'Section=combat Note="Can spend a benny to dbl command range"',
+    'Section=combat ' +
+    'Note="May spend a benny to dbl Command range for remainder of encounter"',
   'Knack (Storm Born)':
-    'Section=attribute Note="Ignore penalties on reroll vs. fear"',
+    'Section=attribute Note="Ignores penalties on benny reroll vs. fear"',
   'Old Hand':
     'Section=power Note="Redraw up to 3 cards for deal with the devil"',
   'Ore Eater':
     'Section=power Note="+5 Power Points/May contract ghost rock fever"',
   'Quick Draw':
     'Section=combat,skill ' +
-    'Note="Spending a benny on an additional Action Card gives two more",' +
-         '"+2 Athletcs (interrupt others\' action)"',
+    'Note="Gains two addition Action Cards when spending a benny",' +
+         '"+2 Athletics (interrupt others\' action)"',
   'Ranger Promotion':
     'Section=combat ' +
     'Note="Has moved up %V ranks in Territorial Ranger hierarchy"',
@@ -463,7 +467,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=combat Note="Trademark weapon does extra die of damage"',
   'Scout':
     'Section=skill ' +
-    'Note="Notice-2 (encounters)/Alert Notice vs. Stealth/Ignore 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
+    'Note="Rolls Notice-2 to detect encounters/Always alert when rolling Notice vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
   'Soul Eater':
     'Section=combat ' +
     'Note="Can make Spirit-2 roll after inflicting unarmed wound to heal self wound"',
@@ -471,7 +475,7 @@ WeirdWest.FEATURES_ADDED = {
   'Spook':
     'Section=power ' +
     'Note="Target makes -2 fear check, take fatigue for 12%{in} radius effect"',
-  "Stitchin'":'Section=combat Note="Make natural healing roll 1/%1"',
+  "Stitchin'":'Section=combat Note="Make natural healing roll 1/%V"',
   'Superior Kung Fu (Drunken Style)':
     'Section=combat Note="-2 Pace/Foes -2 attack"',
   'Superior Kung Fu (Eagle Claw)':
@@ -492,16 +496,16 @@ WeirdWest.FEATURES_ADDED = {
   'Supernatural Attribute':'Section=attribute Note="+%V Attribute Points"',
   'Tale-Teller':
     'Section=skill ' +
-    'Note="+2 Persuasion or Performance to lower fear, Raise gives supporters Conviction"',
-  'Territorial Ranger':'Section=feature Note="Member of U.S. Marshals"',
+    'Note="+2 Persuasion or Performance to lower fear; Raise gives Conviction"',
+  'Territorial Ranger':'Section=feature Note="Works for U.S. Marshals agency"',
   'True Believer':'Section=skill Note="Reroll Faith"',
   'True Genius':
     'Section=power Note="Spend a benny to reroll madness or malfunction"',
   'True Grit':
-    'Section=attribute Note="Ignore penalties vs. fear, reroll fear effects"',
+    'Section=attribute ' +
+    'Note="Ignores penalties vs. fear, may reroll fear effects"',
   "Veteran O' The Weird West":
-     'Section=attribute,feature ' +
-     'Note="+4 Advances","Has unique major hindrance"',
+     'Section=attribute,feature Note="+4 Advances","Has additional hindrance"',
   'Whateley Blood':
     'Section=power,skill ' +
     'Note="Self-fatigue gives 5 power points, self-wound 10","-1 Persuasion"',
@@ -511,12 +515,13 @@ WeirdWest.FEATURES_ADDED = {
   // Hindrances
   "Ailin'":
     'Section=attribute ' +
-    'Note="-1 vs. Fatigue, critical failure inflicts Ailin\'+"',
+    'Note="-1 vs. Fatigue; critical failure inflicts Ailin\'+"',
   "Ailin'+":
-    'Section=attribute Note="-2 vs. Fatigue, critical failure inflicts death"',
-  'Cursed+':'Section=feature Note="+1 Benny to GM each session"',
+    'Section=attribute Note="-2 vs. Fatigue; critical failure inflicts death"',
+  'Cursed+':'Section=feature Note="GM gains +1 Benny each session"',
   "Grim Servant O' Death+":
-    'Section=combat Note="+1 damage, critical failure hits ally w/Raise"',
+    'Section=combat ' +
+    'Note="+1 damage; critical failure hits nearest ally w/Raise"',
   'Heavy Sleeper':
     'Section=attribute,skill ' +
     'Note="-4 Vigor (stay awake)","-4 Notice (wake up)"',
@@ -524,17 +529,19 @@ WeirdWest.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="-1 Gambling (poker and faro)/-1 Intimidation (lies)/-1 Persuasion (lies)"',
   'Night Terrors+':
-    'Section=attribute,feature Note="-1 Spirit","Noise keeps others awake"',
+    'Section=attribute,feature ' +
+    'Note="-1 Spirit","Makes noise while sleeping that keeps others awake"',
   'Old Ways Oath':
     'Section=attribute,feature ' +
-    'Note="Reroll Spirit","Cannot use ghost rock-powered items"',
+    'Note="May reroll Spirit","Has vowed not to use ghost rock-powered items"',
   'Talisman':'Section=arcana Note="-1 casting when talisman absent"',
   'Talisman+':'Section=arcana Note="-2 casting when talisman absent"',
-  'Tenderfoot+':'Section=feature Note="Additional -1 penalty when wounded"',
+  'Tenderfoot+':
+    'Section=feature Note="Suffers additional -1 penalty when wounded"',
   'Trouble Magnet':
-    'Section=feature Note="Increased consequences from critical failures"',
-  'Trouble Magnet+':
-    'Section=feature Note="Always target of random consequences"',
+    'Section=feature ' +
+    'Note="Suffers increased consequences from critical failures"',
+  'Trouble Magnet+':'Section=feature Note="Always suffers random consequences"',
 };
 WeirdWest.FEATURES =
   Object.assign({}, SWADE.FEATURES, WeirdWest.FEATURES_ADDED);
@@ -548,8 +555,8 @@ WeirdWest.HINDRANCES_ADDED = {
   "Lyin' Eyes":'Severity=Minor',
   'Night Terrors+':'Severity=Major',
   'Old Ways Oath':'Severity=Minor',
-  'Talisman':'Require="hindrances.Talisman+ == 0" Severity=Minor',
-  'Talisman+':'Require="hindrances.Talisman == 0" Severity=Major',
+  'Talisman':'Require="hindrances.Talisman+ == 0",powerPoints Severity=Minor',
+  'Talisman+':'Require="hindrances.Talisman == 0",powerPoints Severity=Major',
   'Tenderfoot+':'Severity=Major',
   'Trouble Magnet':'Require="hindrances.Trouble Magnet+ == 0" Severity=Minor',
   'Trouble Magnet+':'Require="hindrances.Trouble Magnet == 0" Severity=Major'
@@ -615,7 +622,10 @@ WeirdWest.POWERS_ADDED = {
 };
 WeirdWest.POWERS = Object.assign({}, SWADE.POWERS, WeirdWest.POWERS_ADDED);
 WeirdWest.RACES = {
-  'Human':SWADE.RACES['Human'] + ' Languages=English'
+  'Human':
+    'Features=' +
+      'Adaptable'
+  // Dropped SWADE "Human" language; English proficiency is assumed
 };
 WeirdWest.LANGUAGES = {
   'English':''
@@ -632,6 +642,7 @@ WeirdWest.SKILLS = Object.assign({}, SWADE.SKILLS, WeirdWest.SKILLS_ADDED);
 delete WeirdWest.SKILLS['Knowledge (Electronics)'];
 delete WeirdWest.SKILLS['Knowledge (Hacking)'];
 WeirdWest.WEAPONS = {
+
   'Brass Knuckles':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Bayonet':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Club':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
@@ -645,10 +656,20 @@ WeirdWest.WEAPONS = {
   'Tomahawk':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3',
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
 
+  'Gatling Pistol':
+    'Damage=2d6 MinStr=4 Weight=5 Category=R Range=12 AP=1 ROF=3',
+  'Gatling Carbine':
+    'Damage=2d8 MinStr=6 Weight=12 Category=R Range=20 AP=2 ROF=2',
+  'Gatling Rifle':
+    'Damage=2d8 MinStr=8 Weight=17 Category=R Range=24 AP=2 ROF=2',
+  'Gatling Shotgun':'Damage=3d6 MinStr=8 Weight=15 Category=R Range=12 ROF=2',
+  'Gatling Gun':'Damage=2d8 MinStr=6 Weight=40 Category=R Range=24 AP=2 ROF=3',
+
   'Derringer':'Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
   'English 1840 Model':'Damage=2d6-1 MinStr=4 Weight=1 Category=R Range=5 AP=1',
   'Rupertus Pepperbox':'Damage=2d4 MinStr=6 Weight=1 Category=R Range=5',
   'Wesson Dagger-Pistol':'Damage=2d4 MinStr=6 Weight=1 Category=R Range=5',
+
   'Colt Army':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
   'Colt Buntline Special':
     'Damage=2d6+1 MinStr=6 Weight=3 Category=R Range=15 AP=1',
@@ -657,15 +678,18 @@ WeirdWest.WEAPONS = {
   'Colt Peacemaker':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
   'LeMat Revolver':'Damage=2d6 MinStr=6 Weight=4 Category=R Range=12 AP=1',
   'LeMat Revolver Shotgun':'Damage=3d6 MinStr=6 Weight=4 Category=R Range=5',
+
   'Colt Frontier':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
   'Colt Lightning':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
   'Colt Rainmaker':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
   'Colt Thunderer':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
   'Starr Revolver':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
+
   "Sharps '55":'Damage=2d8 MinStr=6 Weight=8 Category=R Range=20 AP=2',
   'Spencer':'Damage=2d8 MinStr=4 Weight=8 Category=R Range=20 AP=2',
   'LeMat Carbine':'Damage=2d8 MinStr=6 Weight=9 Category=R Range=20 AP=1',
   'LeMat Carbine Shotgun':'Damage=3d6 MinStr=6 Weight=9 Category=R Range=12',
+
   "Ballard '72":'Damage=2d8 MinStr=6 Weight=11 Category=R Range=24 AP=2',
   'Bullard Express':'Damage=2d10 MinStr=8 Weight=11 Category=R Range=24 AP=2',
   "Colt-Paterson Model '36":
@@ -680,15 +704,17 @@ WeirdWest.WEAPONS = {
     'Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
   "Winchester '73":'Damage=2d8-1 MinStr=6 Weight=10 Category=R Range=24 AP=2',
   "Winchester '76":'Damage=2d8 MinStr=4 Weight=7 Category=R Range=24 AP=2',
+
   'Colt Revolving Shotgun':'Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
   'Double-Barrel Shotgun':'Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
   'Sawed-Off Double-Barrel Shotgun':
     'Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
   'Single-Barrel Shotgun':'Damage=3d6 MinStr=4 Weight=6 Category=R Range=12',
-  'Winchester Level-Action':'Damage=3d6 MinStr=6 Weight=6 Category=R Range=12',
+  'Winchester Lever-Action':'Damage=3d6 MinStr=6 Weight=6 Category=R Range=12',
 
-  'Bola':'Damage=Str+1 MinStr=4 Weight=1 Category=R Range=4',
-  'Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
+  'Bola':'Damage=Str+d1 MinStr=4 Weight=1 Category=R Range=4',
+  'Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12'
+
 };
 
 /* Defines the rules related to character attributes and description. */
@@ -863,32 +889,7 @@ WeirdWest.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 WeirdWest.edgeRulesExtra = function(rules, name) {
-  if(name == 'Arcane Background (Blessed)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Blessed)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Blessed)', '+=', '15');
-  } else if(name == 'Arcane Background (Chi Master)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(ChiMaster)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(ChiMaster)', '+=', '15');
-  } else if(name == 'Arcane Background (Huckster)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Huckster)', '+=', '3');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Huckster)', '+=', '10');
-  } else if(name == 'Arcane Background (Mad Scientist)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(MadScientist)', '+=', '2');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(MadScientist)', '+=', '15');
-  } else if(name == 'Arcane Background (Shaman)') {
-    rules.defineRule
-      ('powerCount', 'arcanaNotes.arcaneBackground(Shaman)', '+=', '2');
-    rules.defineRule
-      ('powerPoints', 'arcanaNotes.arcaneBackground(Shaman)', '+=', '15');
-  } else if(name == 'Celestial Kung Fu') {
+  if(name == 'Celestial Kung Fu') {
     rules.defineRule('edgePoints', 'combatNotes.celestialKungFu', '+=', '1');
   } else if(name == 'Claws') {
     rules.defineRule('damageStep.Claws',
@@ -909,7 +910,7 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('featureRules.rangerPromotion', 'edges.Ranger Promotion', '=', null);
   } else if(name == "Stitchin'") {
-    rules.defineRule("combatNotes.stitchin'.1",
+    rules.defineRule("combatNotes.stitchin'",
       "features.Stitchin'", '=', '"dy"',
       "combatNotes.improvedStitchin'", '=', '"hr"'
     );

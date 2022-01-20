@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Power</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/power", "_timestamp":1642660171879, 
+  "advances":8, "agilityAllocation":1, "arcaneFocus":"true", "archetype":"Adventurer", 
+  "armor.Native Armor":1, "deity":"None", "edges.Arcane Background (Blessed)":1, 
+  "edges.Arcane Background (Chi Master)":1, "edges.Arcane Background (Huckster)":1, 
+  "edges.Arcane Background (Mad Scientist)":1, "edges.Arcane Background (Shaman)":1, "edges.Martial Artist":1, 
+  "edges.New Powers":2, "focusType":"Blessed", "gender":"Male", "hindrances.Suspicious+":1, 
+  "hindrances.Vow+":1, "improvementPointsAllocation.Attribute":6, 
+  "improvementPointsAllocation.Edge":14, "name":"Edges-Power", "race":"Human", "shield":"Medium Native Shield", 
+  "skillAllocation.Faith":1, "skillAllocation.Fighting":2, "skillAllocation.Focus":1, 
+  "skillAllocation.Gambling":2, "skillAllocation.Research":2, "skillAllocation.Science":2, 
+  "skillAllocation.Spellcasting":1, "skillAllocation.Weird Science":1, "smartsAllocation":2, 
+  "spiritAllocation":2, "strengthAllocation":3, "vigorAllocation":0, "weapons.Bow":1, 
+  "weapons.Enfield Musket":1, "weapons.War Club":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Power</b> -- <b>Male</b> <b>Veteran</b> <b>Adventurer</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (8 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d6</td>
+      <td><b>Smarts</b>: d8</td>
+      <td><b>Spirit</b>: d8</td>
+      <td><b>Strength</b>: d10</td>
+      <td><b>Vigor</b>: d4</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (12 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Gambling: (sma) d6</td>
+      <td>Spellcasting: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Notice: (sma) d4</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d4</td>
+      <td>Persuasion: (spi) d4</td>
+      <td>Weird Science: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Fighting: (agi) d6</td>
+      <td>Research: (sma) d6</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Focus: (spi) d4</td>
+      <td>Science: (sma) d6</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 6; Edge: 14</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (8 points): Arcane Background (Blessed): 1; Arcane Background (Chi Master): 1; Arcane Background (Huckster): 1; Arcane Background (Mad Scientist): 1; Arcane Background (Shaman): 1; Martial Artist: 1; New Powers: 2</td>
+      <td><b>Hindrances</b>: Suspicious+; Vow+</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Suspicious+: Allies -2 on Support rolls</td>
+    </tr><tr style="text-align:center">
+      <td>Vow+: Has tight restrictions on behavior and decisions</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 7 (2)</td>
+        <td><b>Cover</b>: 2</td>
+        <td><b>Toughness</b>: 5 (1)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: Native Armor</td>
+        <td><b>Shield</b>: Medium Native Shield</td>
+        <td><b>Weapons</b>: Bow: 1 (2d6 R12"); Enfield Musket: 1 (2d8 R12"); Unarmed: 1; War Club: 1 (d10+d6 R3")</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Fighting Parry Modifier: +3 Parry</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Martial Artist: +1 Unarmed attack/+1 Unarmed damage step</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +2</i></td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Arcana</b><br/>  <table id="Arcana" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="PowerStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Power Count</b>: 17</td>
+      <td><b>Power Points</b>: 60</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Arcana Notes</b>:     <table id="ArcanaNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Arcane Background (Blessed): 3 Powers/15 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Chi Master): 3 Powers/15 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Huckster): 3 Powers/Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Mad Scientist): 2 Powers/15 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Shaman): 2 Powers/15 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>New Powers: +4 Power Count</i></td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Social</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/social", "_timestamp":1642661979622, 
+  "advances":8, "agilityAllocation":1, "armor.None":1, "deity":"None", "edges.Reputation":1, 
+  "focusType":"Shaman", "gender":"Female", "hindrances.Illiterate":1, "hindrances.Slow":1, 
+  "hindrances.Wanted+":1, "improvementPointsAllocation.Attribute":14, 
+  "improvementPointsAllocation.Skill":6, "name":"Edges-Social", "race":"Human", "shield":"Small Native Shield", 
+  "skillAllocation.Athletics":1, "skillAllocation.Faith":1, "skillAllocation.Focus":1, 
+  "skillAllocation.Healing":2, "skillAllocation.Notice":2, "skillAllocation.Persuasion":1, 
+  "skillAllocation.Riding":3, "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":3, 
+  "skillAllocation.Stealth":1, "skillAllocation.Taunt":1, "skillAllocation.Weird Science":1, 
+  "smartsAllocation":2, "spiritAllocation":3, "strengthAllocation":3, "vigorAllocation":3, 
+  "weapons.Dagger":1, "weapons.Knife":1, "weapons.Unarmed":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Social</b> -- <b>Female</b> <b>Veteran</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (12 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d6</td>
+      <td><b>Smarts</b>: d8</td>
+      <td><b>Spirit</b>: d10</td>
+      <td><b>Strength</b>: d10</td>
+      <td><b>Vigor</b>: d10</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (18 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d6</td>
+      <td>Notice: (sma) d8</td>
+      <td>Stealth: (agi) d6</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Persuasion: (spi) d6</td>
+      <td>Taunt: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d4</td>
+      <td>Riding: (agi) d6</td>
+      <td>Weird Science: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Focus: (spi) d4</td>
+      <td>Shooting: (agi) d4</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d6</td>
+      <td>Spellcasting: (sma) d8</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>: Reputation: +2 Intimidation or Persuasion with those who have heard stories</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 14; Skill: 6</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (1 points): Reputation</td>
+      <td><b>Hindrances</b>: Illiterate; Slow; Wanted+</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Illiterate: Cannot read or write</td>
+    </tr><tr style="text-align:center">
+      <td>Wanted+: Has significant trouble with local law enforcement</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 3 (1)</td>
+        <td><b>Cover</b>: 1</td>
+        <td><b>Toughness</b>: 7 (0)</td>
+        <td><b>Pace/Run</b>: 5/+d4</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: None</td>
+        <td><b>Shield</b>: Small Native Shield</td>
+        <td><b>Weapons</b>: Dagger: 1; Knife: 1 (d10+d4 R3"); Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Slow: -1 Pace/-1 Run step</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +5</i></td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Legendary</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/legendary", "_timestamp":1642575536141, 
+  "advances":16, "agilityAllocation":3, "armor.None":1, "deity":"None", 
+  "edges.Behold A Pale Horse":1, "edges.Damned":1, "edges.Fast As Lightning":1, "edges.Grit":1, 
+  "edges.Guts":1, "edges.Quick":1, "edges.Reputation":1, "edges.Right Hand Of The Devil":1, 
+  "edges.Trademark Weapon (Derringer)":1, "edges.True Grit":1, "focusType":"Huckster", "gender":"Male", 
+  "hindrances.Ailin'":1, "hindrances.Stubborn":1, "hindrances.Trouble Magnet+":1, 
+  "improvementPointsAllocation.Attribute":10, "improvementPointsAllocation.Edge":18, 
+  "improvementPointsAllocation.Skill":8, "name":"Edges-Legendary", "race":"Human", "shield":"Small Native Shield", 
+  "skillAllocation.Academics":2, "skillAllocation.Battle":2, "skillAllocation.Focus":1, 
+  "skillAllocation.Gambling":1, "skillAllocation.Healing":1, "skillAllocation.Intimidation":2, 
+  "skillAllocation.Notice":3, "skillAllocation.Research":1, "skillAllocation.Science":1, 
+  "skillAllocation.Shooting":4, "skillAllocation.Stealth":1, "skillAllocation.Thievery":1, 
+  "smartsAllocation":3, "spiritAllocation":3, "strengthAllocation":0, "vigorAllocation":1, 
+  "weapons.Billy Club":1, "weapons.Dagger":1, "weapons.Derringer":1, "weapons.Knife":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Legendary</b> -- <b>Male</b> <b>Legendary</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (10 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d10</td>
+      <td><b>Smarts</b>: d10</td>
+      <td><b>Spirit</b>: d10</td>
+      <td><b>Strength</b>: d4</td>
+      <td><b>Vigor</b>: d6</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Ailin': -1 vs. Fatigue; critical failure inflicts Ailin'+</td>
+    </tr><tr style="text-align:center">
+      <td>Grit: Reduces penalties vs. fear by 2</td>
+    </tr><tr style="text-align:center">
+      <td>Guts: May reroll Vigor vs. fear</td>
+    </tr><tr style="text-align:center">
+      <td>True Grit: Ignores penalties vs. fear, may reroll fear effects</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (20 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Academics: (sma) d6</td>
+      <td>Gambling: (sma) d4</td>
+      <td>Research: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Healing: (sma) d4</td>
+      <td>Science: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Battle: (sma) d6</td>
+      <td>Intimidation: (spi) d6</td>
+      <td>Shooting: (agi) d10</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Notice: (sma) d10</td>
+      <td>Stealth: (agi) d6</td>
+    </tr><tr style="text-align:left">
+      <td>Focus: (spi) d4</td>
+      <td>Persuasion: (spi) d4</td>
+      <td>Thievery: (agi) d4</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>: Reputation: +2 Intimidation or Persuasion with those who have heard stories</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 16</td>
+      <td><b>Improvement Points</b>: 36</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 10; Edge: 18; Skill: 8</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (10 points): Behold A Pale Horse; Damned; Fast As Lightning; Grit; Guts; Quick; Reputation; Right Hand Of The Devil; Trademark Weapon (Derringer); True Grit</td>
+      <td><b>Hindrances</b>: Ailin'; Stubborn; Trouble Magnet+</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Behold APale Horse: Mount is a Wild Card with Fearless and Danger Sense features</td>
+    </tr><tr style="text-align:center">
+      <td>Damned: Will return as Harrowed if killed</td>
+    </tr><tr style="text-align:center">
+      <td>Stubborn: Never admits error</td>
+    </tr><tr style="text-align:center">
+      <td>Trouble Magnet+: Always suffers random consequences</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 3 (1)</td>
+        <td><b>Cover</b>: 1</td>
+        <td><b>Toughness</b>: 5 (0)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: None</td>
+        <td><b>Shield</b>: Small Native Shield</td>
+        <td><b>Weapons</b>: Billy Club: 1; Dagger: 1; Derringer: 1 (+1 2d4 R3"); Knife: 1 (d4+d4 R3"); Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Trademark Weapon (Derringer): +1 attack and Parry with Derringer</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +3</i></td>
+      </tr><tr style="text-align:center">
+        <td>Fast As Lightning: Can take 4 actions at -6 each</td>
+      </tr><tr style="text-align:center">
+        <td>Quick: Discard and redraw Action Cards lower than 6</td>
+      </tr><tr style="text-align:center">
+        <td>Right Hand Of The Devil: Trademark weapon does extra die of damage</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Background</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/background", "_timestamp":1642660615465, 
+  "advances":4, "agilityAllocation":2, "armor.Native Armor":1, "deity":"None", 
+  "edges.Gallows Humor":1, "edges.Veteran O' The Weird West":1, "focusType":"Shaman", "gender":"Male", 
+  "hindrances.Arrogant+":1, "hindrances.Driven":1, "hindrances.Illiterate":1, 
+  "improvementPointsAllocation.Attribute":16, "improvementPointsAllocation.Edge":2, "improvementPointsAllocation.Skill":2, 
+  "name":"Edges-Background", "race":"Human", "shield":"Small Native Shield", 
+  "skillAllocation.Athletics":1, "skillAllocation.Common Knowledge":1, "skillAllocation.Focus":1, 
+  "skillAllocation.Gambling":1, "skillAllocation.Healing":1, "skillAllocation.Occult":2, 
+  "skillAllocation.Psionics":1, "skillAllocation.Repair":1, "skillAllocation.Shooting":1, 
+  "skillAllocation.Taunt":2, "skillAllocation.Trade":1, "skillAllocation.Weird Science":1, 
+  "smartsAllocation":3, "spiritAllocation":3, "strengthAllocation":2, "vigorAllocation":3, 
+  "weapons.Billy Club":1, "weapons.Brass Knuckles":1, "weapons.Dagger":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Background</b> -- <b>Male</b> <b>Veteran</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (13 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d8</td>
+      <td><b>Smarts</b>: d10</td>
+      <td><b>Spirit</b>: d10</td>
+      <td><b>Strength</b>: d8</td>
+      <td><b>Vigor</b>: d10</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>: <i>Veteran O'The Weird West: +4 Advances</i></td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (14 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d6</td>
+      <td>Notice: (sma) d4</td>
+      <td>Shooting: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d6</td>
+      <td>Occult: (sma) d6</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Focus: (spi) d4</td>
+      <td>Persuasion: (spi) d4</td>
+      <td>Taunt: (sma) d6</td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d4</td>
+      <td>Psionics: (sma) d4</td>
+      <td>Trade: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d4</td>
+      <td>Repair: (sma) d4</td>
+      <td>Weird Science: (sma) d4</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>: Gallows Humor: May use Taunt vs. fear; Raise gives +1 Support to allies</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 16; Edge: 2; Skill: 2</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (2 points): Gallows Humor; Veteran O' The Weird West</td>
+      <td><b>Hindrances</b>: Arrogant+; Driven; Illiterate</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Driven: Decisions shaped by personal goal</td>
+    </tr><tr style="text-align:center">
+      <td>Illiterate: Cannot read or write</td>
+    </tr><tr style="text-align:center">
+      <td>Veteran O'The Weird West: Has additional hindrance</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 3 (1)</td>
+        <td><b>Cover</b>: 1</td>
+        <td><b>Toughness</b>: 8 (1)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: Native Armor</td>
+        <td><b>Shield</b>: Small Native Shield</td>
+        <td><b>Weapons</b>: Billy Club: 1; Brass Knuckles: 1 (d8+d4); Dagger: 1; Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +5</i></td>
+      </tr><tr style="text-align:center">
+        <td>Arrogant+: Always takes on the biggest threat</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Hindrances</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/hindrances", "_timestamp":1642575813525, 
+  "agilityAllocation":3, "armor.Rattler Hide Duster":1, "deity":"None", "edges.Quick":1, 
+  "focusType":"Chi Master", "gender":"Female", "hindrances.Ailin'":1, "hindrances.Ailin'+":1, 
+  "hindrances.Cursed+":1, "hindrances.Grim Servant O' Death+":1, "hindrances.Heavy Sleeper":1, 
+  "hindrances.Lyin' Eyes":1, "hindrances.Night Terrors+":1, "hindrances.Old Ways Oath":1, 
+  "hindrances.Talisman":1, "hindrances.Talisman+":1, "hindrances.Tenderfoot+":1, 
+  "hindrances.Trouble Magnet":1, "hindrances.Trouble Magnet+":1, "improvementPointsAllocation.Attribute":2, 
+  "improvementPointsAllocation.Skill":2, "name":"Hindrances", "race":"Human", "shield":"Small Native Shield", 
+  "skillAllocation.Academics":1, "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":1, 
+  "skillAllocation.Gambling":1, "skillAllocation.Healing":1, "skillAllocation.Notice":1, 
+  "skillAllocation.Occult":1, "skillAllocation.Performance":1, "skillAllocation.Repair":1, 
+  "skillAllocation.Spellcasting":2, "skillAllocation.Taunt":1, "skillAllocation.Trade":2, "smartsAllocation":0, 
+  "spiritAllocation":0, "strengthAllocation":2, "vigorAllocation":1, "weapons.Baton":1, 
+  "weapons.Brass Knuckles":1, "weapons.Dagger":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Hindrances</b> -- <b>Female</b> <b>Novice</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (6 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d10</td>
+      <td><b>Smarts</b>: d4</td>
+      <td><b>Spirit</b>: d4-1</td>
+      <td><b>Strength</b>: d8</td>
+      <td><b>Vigor</b>: d6</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Night Terrors+: -1 Spirit</i></td>
+    </tr><tr style="text-align:center">
+      <td>Ailin'+: -2 vs. Fatigue; critical failure inflicts death</td>
+    </tr><tr style="text-align:center">
+      <td>Ailin': -1 vs. Fatigue; critical failure inflicts Ailin'+</td>
+    </tr><tr style="text-align:center">
+      <td>Heavy Sleeper: -4 Vigor (stay awake)</td>
+    </tr><tr style="text-align:center">
+      <td>Old Ways Oath: May reroll Spirit</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (14 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Academics: (sma) d4</td>
+      <td>Healing: (sma) d4</td>
+      <td>Repair: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Notice: (sma) d4</td>
+      <td>Spellcasting: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Occult: (sma) d4</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d4</td>
+      <td>Performance: (spi) d4</td>
+      <td>Taunt: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d4</td>
+      <td>Persuasion: (spi) d4</td>
+      <td>Trade: (sma) d4</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>: Heavy Sleeper: -4 Notice (wake up)</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 0</td>
+      <td><b>Improvement Points</b>: 4</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 2; Skill: 2</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (1 points): Quick</td>
+      <td><b>Hindrances</b>: Ailin'+; Ailin'; Cursed+; Grim Servant O' Death+; Heavy Sleeper; Lyin' Eyes; Night Terrors+; Old Ways Oath; Talisman+; Talisman; Tenderfoot+; Trouble Magnet+; Trouble Magnet</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Cursed+: GM gains +1 Benny each session</td>
+    </tr><tr style="text-align:center">
+      <td>Night Terrors+: Makes noise while sleeping that keeps others awake</td>
+    </tr><tr style="text-align:center">
+      <td>Old Ways Oath: Has vowed not to use ghost rock-powered items</td>
+    </tr><tr style="text-align:center">
+      <td>Tenderfoot+: Suffers additional -1 penalty when wounded</td>
+    </tr><tr style="text-align:center">
+      <td>Trouble Magnet+: Always suffers random consequences</td>
+    </tr><tr style="text-align:center">
+      <td>Trouble Magnet: Suffers increased consequences from critical failures</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 3 (1)</td>
+        <td><b>Cover</b>: 1</td>
+        <td><b>Toughness</b>: 7 (2)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: Rattler Hide Duster</td>
+        <td><b>Shield</b>: Small Native Shield</td>
+        <td><b>Weapons</b>: Baton: 1; Brass Knuckles: 1 (d8+d4); Dagger: 1; Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +3</i></td>
+      </tr><tr style="text-align:center">
+        <td>Grim Servant O'Death+: +1 damage; critical failure hits nearest ally w/Raise</td>
+      </tr><tr style="text-align:center">
+        <td>Lyin'Eyes: -1 Gambling (poker and faro)/-1 Intimidation (lies)/-1 Persuasion (lies)</td>
+      </tr><tr style="text-align:center">
+        <td>Quick: Discard and redraw Action Cards lower than 6</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Arcana</b><br/>  <table id="Arcana" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Arcana Notes</b>:     <table id="ArcanaNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Talisman+: -2 casting when talisman absent</td>
+    </tr><tr style="text-align:center">
+      <td>Talisman: -1 casting when talisman absent</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Notes</b><br/>  <table id="NotesArea" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="ValidationPart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td>Ailin'+Hindrance: Requires ailin hindrance' == 0</td>
+      </tr><tr style="text-align:center">
+        <td>Ailin'Hindrance: Requires ailin hindrance'+ == 0</td>
+      </tr><tr style="text-align:center">
+        <td>Talisman Hindrance: Requires talisman hindrance (currently 1)+ == 0 and power points</td>
+      </tr><tr style="text-align:center">
+        <td>Talisman+Hindrance: Requires talisman hindrance (currently 1) == 0 and power points</td>
+      </tr><tr style="text-align:center">
+        <td>Trouble Magnet Hindrance: Requires trouble magnet hindrance (currently 1)+ == 0</td>
+      </tr><tr style="text-align:center">
+        <td>Trouble Magnet+Hindrance: Requires trouble magnet hindrance (currently 1) == 0</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Weapons</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/weapons", "_timestamp":1642664148921, 
+  "agilityAllocation":2, "armor.None":1, "deity":"None", "edges.Fame":1, "edges.Knack (Bastard)":1, 
+  "edges.Knack (Shooting Star)":1, "focusType":"Blessed", "gender":"Male", "hindrances.Phobia":1, 
+  "hindrances.Ruthless":1, "hindrances.Ugly+":1, "improvementPointsAllocation.Edge":4, 
+  "name":"Weapons", "race":"Human", "shield":"Medium Native Shield", 
+  "skillAllocation.Boating":2, "skillAllocation.Common Knowledge":2, "skillAllocation.Occult":1, 
+  "skillAllocation.Performance":2, "skillAllocation.Persuasion":1, "skillAllocation.Spellcasting":2, 
+  "skillAllocation.Stealth":1, "skillAllocation.Taunt":1, "smartsAllocation":0, "spiritAllocation":1, 
+  "strengthAllocation":2, "vigorAllocation":0, "weapons.Ballard '72":1, "weapons.Bayonet":1, 
+  "weapons.Bladed War Club":1, "weapons.Bola":1, "weapons.Bow":1, "weapons.Bowie Knife":1, 
+  "weapons.Brass Knuckles":1, "weapons.Bullard Express":1, "weapons.Club":1, "weapons.Colt Army":1, 
+  "weapons.Colt Buntline Special":1, "weapons.Colt Dragoon":1, "weapons.Colt Frontier":1, 
+  "weapons.Colt Lightning":1, "weapons.Colt Navy":1, "weapons.Colt Peacemaker":1, 
+  "weapons.Colt Rainmaker":1, "weapons.Colt Revolving Shotgun":1, "weapons.Colt Thunderer":1, 
+  "weapons.Colt-Paterson Model '36":1, "weapons.Derringer":1, "weapons.Double-Barrel Shotgun":1, 
+  "weapons.Enfield Musket":1, "weapons.English 1840 Model":1, "weapons.Evans Old Model Sporter":1, 
+  "weapons.Gatling Carbine":1, "weapons.Gatling Gun":1, "weapons.Gatling Pistol":1, 
+  "weapons.Gatling Rifle":1, "weapons.Gatling Shotgun":1, "weapons.Knife":1, "weapons.LeMat Carbine":1, 
+  "weapons.LeMat Carbine Shotgun":1, "weapons.LeMat Revolver":1, "weapons.LeMat Revolver Shotgun":1, 
+  "weapons.Plains Indian Lance":1, "weapons.Rupertus Pepperbox":1, "weapons.Saber":1, 
+  "weapons.Sawed-Off Double-Barrel Shotgun":1, "weapons.Sawed-Off Winchester":1, "weapons.Sharp's Big 50":1, 
+  "weapons.Sharps '55":1, "weapons.Single-Barrel Shotgun":1, "weapons.Spear":1, "weapons.Spencer":1, 
+  "weapons.Springfield Rifled Musket":1, "weapons.Starr Revolver":1, "weapons.Tomahawk":1, "weapons.War Club":1, 
+  "weapons.Wesson Dagger-Pistol":1, "weapons.Whip":1, "weapons.Winchester '73":1, "weapons.Winchester '76":1, 
+  "weapons.Winchester Lever-Action":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Weapons</b> -- <b>Male</b> <b>Novice</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (5 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d8</td>
+      <td><b>Smarts</b>: d4</td>
+      <td><b>Spirit</b>: d6</td>
+      <td><b>Strength</b>: d8</td>
+      <td><b>Vigor</b>: d4</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (12 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Occult: (sma) d4</td>
+      <td>Stealth: (agi) d6</td>
+    </tr><tr style="text-align:left">
+      <td>Boating: (agi) d6</td>
+      <td>Performance: (spi) d6</td>
+      <td>Taunt: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d6</td>
+      <td>Persuasion: (spi) d6-2</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Notice: (sma) d4</td>
+      <td>Spellcasting: (sma) d4</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Ugly+: -2 Persuasion</i></td>
+    </tr><tr style="text-align:center">
+      <td>Fame: +1 Persuasion (influencing friendly individuals)</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 0</td>
+      <td><b>Improvement Points</b>: 4</td>
+      <td><b>Improvement Points Allocation</b>: Edge: 4</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (3 points): Fame; Knack (Bastard); Knack (Shooting Star)</td>
+      <td><b>Hindrances</b>: Phobia; Ruthless; Ugly+</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Fame: 2x fee from performing</td>
+    </tr><tr style="text-align:center">
+      <td>Knack (Bastard): May spend a benny to see invisible and hidden creatures for 5 rd</td>
+    </tr><tr style="text-align:center">
+      <td>Phobia: -1 on trait rolls in presence of phobia subject</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 4 (2)</td>
+        <td><b>Cover</b>: 2</td>
+        <td><b>Toughness</b>: 4 (0)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: None</td>
+        <td><b>Shield</b>: Medium Native Shield</td>
+        <td><b>Weapons</b>: Ballard '72: 1 (2d8 R24"); Bayonet: 1 (d8+d4); Bladed War Club: 1 (d8+d8); Bola: 1 (d8+d1 R4"); Bow: 1 (2d6 R12"); Bowie Knife: 1 (d8+d4+1 R2"); Brass Knuckles: 1 (d8+d4); Bullard Express: 1 (2d10 R24"); Club: 1 (d8+d4); Colt Army: 1 (2d6+1 R12"); Colt Buntline Special: 1 (2d6+1 R15"); Colt Dragoon: 1 (2d6+1 R12"); Colt Frontier: 1 (2d6+1 R12"); Colt Lightning: 1 (2d6 R12"); Colt Navy: 1 (2d6 R12"); Colt Peacemaker: 1 (2d6+1 R12"); Colt Rainmaker: 1 (2d6 R12"); Colt Revolving Shotgun: 1 (3d6 R12"); Colt Thunderer: 1 (2d6 R12"); Colt-Paterson Model '36: 1 (2d10 R24"); Derringer: 1 (2d4 R3"); Double-Barrel Shotgun: 1 (3d6 R12"); Enfield Musket: 1 (2d8 R12"); English 1840 Model: 1 (2d6-1 R5"); Evans Old Model Sporter: 1 (2d8 R24"); Gatling Carbine: 1 (2d8 R20"); Gatling Gun: 1 (2d8 R24"); Gatling Pistol: 1 (2d6 R12"); Gatling Rifle: 1 (2d8 R24"); Gatling Shotgun: 1 (3d6 R12"); Knife: 1 (d8+d4 R3"); Le Mat Carbine Shotgun: 1 (3d6 R12"); Le Mat Carbine: 1 (2d8 R20"); Le Mat Revolver Shotgun: 1 (3d6 R5"); Le Mat Revolver: 1 (2d6 R12"); Plains Indian Lance: 1 (d8+d6 R2"); Rupertus Pepperbox: 1 (2d4 R5"); Saber: 1 (d8+d6); Sawed-Off Double-Barrel Shotgun: 1 (3d6 R5"); Sawed-Off Winchester: 1 (2d8-1 R12"); Sharp's Big 50: 1 (2d10 R30"); Sharps '55: 1 (2d8 R20"); Single-Barrel Shotgun: 1 (3d6 R12"); Spear: 1 (d8+d6 R3"); Spencer: 1 (2d8 R20"); Springfield Rifled Musket: 1 (2d8 R15"); Starr Revolver: 1 (2d6+1 R12"); Tomahawk: 1 (d8+d6 R3"); Unarmed: 1; War Club: 1 (d8+d6 R3"); Wesson Dagger-Pistol: 1 (2d4 R5"); Whip: 1 (d8+d4); Winchester '73: 1 (2d8-1 R24"); Winchester '76: 1 (2d8 R24"); Winchester Lever-Action: 1 (3d6 R12")</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +2</i></td>
+      </tr><tr style="text-align:center">
+        <td>Bladed War Club Parry Modifier: -1 Parry when wielded</td>
+      </tr><tr style="text-align:center">
+        <td>Knack (Shooting Star): May spend a benny to dbl Command range for remainder of encounter</td>
+      </tr><tr style="text-align:center">
+        <td>Ruthless: Attacks those opposing personal goal</td>
+      </tr><tr style="text-align:center">
+        <td>Spear Parry Modifier: +1 Parry when wielded</td>
+      </tr><tr style="text-align:center">
+        <td>Whip Parry Modifier: -1 Parry when wielded</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Combat</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/combat", "_timestamp":1642575448295, 
+  "advances":12, "agilityAllocation":3, "armor.None":1, "deity":"None", 
+  "edges.Don't Get 'im Riled!":1, "edges.Duelist":1, "edges.Fan The Hammer":1, 
+  "edges.Improved Fan The Hammer":1, "edges.Quick Draw":1, "focusType":"Shaman", "gender":"Female", 
+  "hindrances.Bad Luck+":1, "hindrances.Hard Of Hearing":1, "hindrances.Heavy Sleeper":1, 
+  "improvementPointsAllocation.Attribute":10, "improvementPointsAllocation.Edge":8, 
+  "improvementPointsAllocation.Skill":10, "name":"Edges-Combat", "race":"Human", "shield":"Medium Native Shield", 
+  "skillAllocation.Academics":1, "skillAllocation.Faith":2, "skillAllocation.Fighting":1, 
+  "skillAllocation.Gambling":2, "skillAllocation.Healing":1, "skillAllocation.Performance":1, 
+  "skillAllocation.Persuasion":2, "skillAllocation.Psionics":1, "skillAllocation.Repair":2, 
+  "skillAllocation.Research":1, "skillAllocation.Shooting":4, "skillAllocation.Spellcasting":1, 
+  "skillAllocation.Survival":1, "skillAllocation.Thievery":1, "skillAllocation.Trade":1, 
+  "smartsAllocation":2, "spiritAllocation":1, "strengthAllocation":2, "vigorAllocation":2, 
+  "weapons.Bayonet":1, "weapons.Brass Knuckles":1, "weapons.Unarmed":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Combat</b> -- <b>Female</b> <b>Heroic</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (10 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d10</td>
+      <td><b>Smarts</b>: d8</td>
+      <td><b>Spirit</b>: d6</td>
+      <td><b>Strength</b>: d8</td>
+      <td><b>Vigor</b>: d8</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>: Heavy Sleeper: -4 Vigor (stay awake)</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (22 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Academics: (sma) d4</td>
+      <td>Notice: (sma) d4</td>
+      <td>Spellcasting: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Performance: (spi) d4</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Persuasion: (spi) d6</td>
+      <td>Survival: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d6</td>
+      <td>Psionics: (sma) d4</td>
+      <td>Thievery: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Fighting: (agi) d4</td>
+      <td>Repair: (sma) d6</td>
+      <td>Trade: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d6</td>
+      <td>Research: (sma) d4</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d4</td>
+      <td>Shooting: (agi) d10</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Hard Of Hearing: -4 Notice (hearing)</td>
+    </tr><tr style="text-align:center">
+      <td>Heavy Sleeper: -4 Notice (wake up)</td>
+    </tr><tr style="text-align:center">
+      <td>Quick Draw: +2 Athletics (interrupt others' action)</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 12</td>
+      <td><b>Improvement Points</b>: 28</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 10; Edge: 8; Skill: 10</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (5 points): Don't Get 'im Riled!; Duelist; Fan The Hammer; Improved Fan The Hammer; Quick Draw</td>
+      <td><b>Hindrances</b>: Bad Luck+; Hard Of Hearing; Heavy Sleeper</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Bad Luck+: -1 Benny each session</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 6 (2)</td>
+        <td><b>Cover</b>: 2</td>
+        <td><b>Toughness</b>: 6 (0)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: None</td>
+        <td><b>Shield</b>: Medium Native Shield</td>
+        <td><b>Weapons</b>: Bayonet: 1 (d8+d4); Brass Knuckles: 1 (d8+d4); Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Fighting Parry Modifier: +2 Parry</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Improved Fan The Hammer: Increased Fan The Hammer effects</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +4</i></td>
+      </tr><tr style="text-align:center">
+        <td>Don't Get'im Riled!: Adds wound level to damage rolls</td>
+      </tr><tr style="text-align:center">
+        <td>Duelist: Gets two extra Hole Cards at start of duel</td>
+      </tr><tr style="text-align:center">
+        <td>Fan The Hammer: Can shoot up to 6 shots in one action at -2; 1 or 2 may hit bystander</td>
+      </tr><tr style="text-align:center">
+        <td>Quick Draw: Gains two addition Action Cards when spending a benny</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Weird</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/weird", "_timestamp":1642575670140, 
+  "advances":8, "agilityAllocation":0, "armor.Rattler Hide Duster":1, "deity":"None", 
+  "edges.Arcane Background (Blessed)":1, "edges.Grit":1, "edges.Guts":1, "edges.Harrowed":1, 
+  "edges.Knack (Bastard)":1, "edges.Knack (Born On All Hallows' Eve)":1, 
+  "edges.Knack (Born On Christmas)":1, "edges.Knack (Breech Birth)":1, "edges.Knack (Seventh Son)":1, 
+  "edges.Knack (Shooting Star)":1, "edges.Knack (Storm Born)":1, "focusType":"Huckster", "gender":"Male", 
+  "hindrances.Bad Eyes":1, "hindrances.Hard Of Hearing+":1, "hindrances.Obligation":1, 
+  "improvementPointsAllocation.Edge":20, "name":"Edges-Weird", "race":"Human", "shield":"Medium Native Shield", 
+  "skillAllocation.Battle":1, "skillAllocation.Common Knowledge":2, "skillAllocation.Faith":2, 
+  "skillAllocation.Gambling":1, "skillAllocation.Language (English)":2, "skillAllocation.Notice":1, 
+  "skillAllocation.Occult":1, "skillAllocation.Shooting":1, "skillAllocation.Stealth":1, 
+  "smartsAllocation":0, "spiritAllocation":4, "strengthAllocation":0, "vigorAllocation":1, 
+  "weapons.Baton":1, "weapons.Knife":1, "weapons.Unarmed":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Weird</b> -- <b>Male</b> <b>Veteran</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (5 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d4</td>
+      <td><b>Smarts</b>: d4</td>
+      <td><b>Spirit</b>: d12</td>
+      <td><b>Strength</b>: d4</td>
+      <td><b>Vigor</b>: d6</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Grit: Reduces penalties vs. fear by 2</td>
+    </tr><tr style="text-align:center">
+      <td>Guts: May reroll Vigor vs. fear</td>
+    </tr><tr style="text-align:center">
+      <td>Knack (Storm Born): Ignores penalties on benny reroll vs. fear</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (12 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Gambling: (sma) d4</td>
+      <td>Persuasion: (spi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Battle: (sma) d4</td>
+      <td>Language (English): (sma) d4</td>
+      <td>Shooting: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d6</td>
+      <td>Notice: (sma) d4</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d6</td>
+      <td>Occult: (sma) d4</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Bad Eyes: -1 on visual trait rolls</td>
+    </tr><tr style="text-align:center">
+      <td>Hard Of Hearing+: Deaf, automatically fails Notice (hearing)</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Edge: 20</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (11 points): Arcane Background (Blessed); Grit; Guts; Harrowed; Knack (Bastard); Knack (Born On All Hallows' Eve); Knack (Born On Christmas); Knack (Breech Birth); Knack (Seventh Son); Knack (Shooting Star); Knack (Storm Born)</td>
+      <td><b>Hindrances</b>: Bad Eyes; Hard Of Hearing+; Obligation</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Harrowed: Has returned from death</td>
+    </tr><tr style="text-align:center">
+      <td>Knack (Bastard): May spend a benny to see invisible and hidden creatures for 5 rd</td>
+    </tr><tr style="text-align:center">
+      <td>Knack (Born On All Hallows'Eve): May spend Conviction to reroll critical failure</td>
+    </tr><tr style="text-align:center">
+      <td>Knack (Seventh Son): May spend a benny to negate a benny effect</td>
+    </tr><tr style="text-align:center">
+      <td>Obligation: Has regular responsibility that occupies 20 hr/wk</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 4 (2)</td>
+        <td><b>Cover</b>: 2</td>
+        <td><b>Toughness</b>: 7 (2)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: Rattler Hide Duster</td>
+        <td><b>Shield</b>: Medium Native Shield</td>
+        <td><b>Weapons</b>: Baton: 1; Knife: 1 (d4+d4 R3"); Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +3</i></td>
+      </tr><tr style="text-align:center">
+        <td>Knack (Born On Christmas): May spend a benny to negate power effect and shake caster (Spirit-4 neg)</td>
+      </tr><tr style="text-align:center">
+        <td>Knack (Breech Birth): May spend a benny to heal 1 wound</td>
+      </tr><tr style="text-align:center">
+        <td>Knack (Shooting Star): May spend a benny to dbl Command range for remainder of encounter</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Arcana</b><br/>  <table id="Arcana" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="PowerStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Power Count</b>: 3</td>
+      <td><b>Power Points</b>: 15</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Arcana Notes</b>: <i>Arcane Background (Blessed): 3 Powers/15 Power Points</i></td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Powers</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/powers", "_timestamp":1642575840857, "advances":12, 
+  "agilityAllocation":1, "arcaneFocus":"true", "armor.Rattler Hide Duster":1, "deity":"None", 
+  "edges.Arcane Background (Huckster)":1, "edges.New Powers":3, "edges.Power Points":3, "focusType":"Huckster", 
+  "gender":"Female", "hindrances.Bloodthirsty+":1, "hindrances.Driven":1, "hindrances.Mean":1, 
+  "improvementPointsAllocation.Attribute":12, "improvementPointsAllocation.Edge":12, 
+  "improvementPointsAllocation.Skill":4, "name":"Powers", "powers.Ammo Whammy":1, "powers.Curse":1, 
+  "powers.Holy Symbol":1, "powers.Numb":1, "powers.Sanctify":1, "powers.Trinkets":1, 
+  "powers.Wilderness Walk":1, "race":"Human", "shield":"Medium Native Shield", 
+  "skillAllocation.Athletics":1, "skillAllocation.Faith":1, "skillAllocation.Gambling":2, 
+  "skillAllocation.Intimidation":1, "skillAllocation.Language (English)":1, "skillAllocation.Notice":1, 
+  "skillAllocation.Persuasion":2, "skillAllocation.Research":1, "skillAllocation.Science":1, 
+  "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":1, "skillAllocation.Taunt":1, 
+  "skillAllocation.Weird Science":2, "smartsAllocation":3, "spiritAllocation":2, "strengthAllocation":2, 
+  "vigorAllocation":3, "weapons.Baton":1, "weapons.Brass Knuckles":1, "weapons.Knife":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Powers</b> -- <b>Female</b> <b>Heroic</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (11 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d6</td>
+      <td><b>Smarts</b>: d10</td>
+      <td><b>Spirit</b>: d8</td>
+      <td><b>Strength</b>: d8</td>
+      <td><b>Vigor</b>: d10</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (16 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d6</td>
+      <td>Language (English): (sma) d4</td>
+      <td>Shooting: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Notice: (sma) d6</td>
+      <td>Spellcasting: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Faith: (spi) d4</td>
+      <td>Persuasion: (spi) d8-1</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d6</td>
+      <td>Research: (sma) d4</td>
+      <td>Taunt: (sma) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Intimidation: (spi) d4</td>
+      <td>Science: (sma) d4</td>
+      <td>Weird Science: (sma) d6</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>: <i>Mean: -1 Persuasion</i></td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 12</td>
+      <td><b>Improvement Points</b>: 28</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 12; Edge: 12; Skill: 4</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (7 points): Arcane Background (Huckster): 1; New Powers: 3; Power Points: 3</td>
+      <td><b>Hindrances</b>: Bloodthirsty+; Driven; Mean</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Driven: Decisions shaped by personal goal</td>
+    </tr><tr style="text-align:center">
+      <td>Mean: Ill-tempered and disagreeable</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 4 (2)</td>
+        <td><b>Cover</b>: 2</td>
+        <td><b>Toughness</b>: 9 (2)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: Rattler Hide Duster</td>
+        <td><b>Shield</b>: Medium Native Shield</td>
+        <td><b>Weapons</b>: Baton: 1; Brass Knuckles: 1 (d8+d4); Knife: 1 (d8+d4 R3"); Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +5</i></td>
+      </tr><tr style="text-align:center">
+        <td>Bloodthirsty+: Cruel to foes</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Arcana</b><br/>  <table id="Arcana" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="PowerStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Power Count</b>: 9</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Powers</b>:     <table id="Powers" style="width:100%">
+    <tr style="text-align:left">
+      <td>Ammo Whammy: (4 PP) RSelf Hex gun ammo has additional effects for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Curse: (5 PP) RTouch Target suffers 1 level fatigue and additional level each sunset</td>
+    </tr><tr style="text-align:left">
+      <td>Holy Symbol: (3 PP) RSelf Supernaturally evil creatures cannot attack self physically (Spirit neg (Raise Spirit-2)) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Numb: (2 PP) RSelf Allies in 8" radius ignore 1 point of wound or fatigue penalties (Raise 2) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Sanctify: (10 PP) RTouch Supernaturally evil creatures in 15" sq suffer fatigue (Spirit neg (Raise Spirit-2)) until next sunset</td>
+    </tr><tr style="text-align:left">
+      <td>Trinkets: (3 PP) R10" Create 1 lb item for 5 rd (Raise 5 min)</td>
+    </tr><tr style="text-align:left">
+      <td>Wilderness Walk: (2 PP) RSelf Triple speed and untraceable in wilderness for 1 hr</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Arcana Notes</b>:     <table id="ArcanaNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Arcane Background (Huckster): 3 Powers/Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>New Powers: +6 Power Count</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Power Points: +15 Power Points</i></td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Notes</b><br/>  <table id="NotesArea" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="ValidationPart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td>New Powers Edge: Requires power points</td>
+      </tr><tr style="text-align:center">
+        <td>Power Points Edge: Requires power points</td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+<!DOCTYPE html>
+<!-- Generated Wed Jan 19 2022 23:37:19 GMT-0800 (Pacific Standard Time) by Quilvyn version 2.3.6; Deadlands Weird West version 2.3.1.0; SWADE version 2.3.1.0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Edges-Professional</title>
+  <script>
+var attributes = {
+  "_path":"ztest/weirdwest/edges/professional", "_timestamp":1642661311573, 
+  "advances":8, "agilityAllocation":2, "armor.None":1, "deity":"None", "edges.Agent":1, 
+  "edges.Born In The Saddle":1, "edges.Card Sharp":1, "edges.Guts":1, "edges.Scout":1, 
+  "edges.Tale-Teller":1, "edges.Territorial Ranger":1, "edges.Woodsman":1, "focusType":"Chi Master", 
+  "gender":"Female", "hindrances.All Thumbs":1, "hindrances.Big Mouth":1, 
+  "hindrances.Heavy Sleeper":1, "hindrances.Stubborn":1, "improvementPointsAllocation.Attribute":6, 
+  "improvementPointsAllocation.Edge":8, "improvementPointsAllocation.Skill":6, "name":"Edges-Professional", 
+  "race":"Human", "shield":"Small Native Shield", "skillAllocation.Fighting":2, 
+  "skillAllocation.Gambling":2, "skillAllocation.Intimidation":2, "skillAllocation.Occult":2, 
+  "skillAllocation.Persuasion":2, "skillAllocation.Riding":2, "skillAllocation.Science":1, 
+  "skillAllocation.Shooting":2, "skillAllocation.Survival":3, "smartsAllocation":2, "spiritAllocation":2, 
+  "strengthAllocation":0, "vigorAllocation":2, "weapons.Bayonet":1, "weapons.Brass Knuckles":1, 
+  "weapons.Dagger":1
+};
+  </script>
+</head>
+<body>
+<table id="_top" style="border:1px solid black; width:100%">
+<tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Header" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Edges-Professional</b> -- <b>Female</b> <b>Veteran</b></td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
+  <tr style="text-align:center">
+    <td><b>Attributes</b> (8 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Attributes" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Agility</b>: d8</td>
+      <td><b>Smarts</b>: d8</td>
+      <td><b>Spirit</b>: d8</td>
+      <td><b>Strength</b>: d4</td>
+      <td><b>Vigor</b>: d8</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Guts: May reroll Vigor vs. fear</td>
+    </tr><tr style="text-align:center">
+      <td>Heavy Sleeper: -4 Vigor (stay awake)</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skills</b> (18 Points):</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Skills" style="width:100%">
+    <col style="width:33%"/>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <tr style="text-align:left">
+      <td>Athletics: (agi) d4</td>
+      <td>Notice: (sma) d4</td>
+      <td>Shooting: (agi) d6</td>
+    </tr><tr style="text-align:left">
+      <td>Common Knowledge: (sma) d4</td>
+      <td>Occult: (sma) d6</td>
+      <td>Stealth: (agi) d4</td>
+    </tr><tr style="text-align:left">
+      <td>Fighting: (agi) d6</td>
+      <td>Persuasion: (spi) d8</td>
+      <td>Survival: (sma) d8+2</td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d6</td>
+      <td>Riding: (agi) d6</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Intimidation: (spi) d6</td>
+      <td>Science: (sma) d4</td>
+      <td></td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Woodsman: +2 Survival/+2 Stealth (nature)</i></td>
+    </tr><tr style="text-align:center">
+      <td>All Thumbs: -2 using mechanical and electrical devices, critical failure breaks device</td>
+    </tr><tr style="text-align:center">
+      <td>Born In The Saddle: May reroll Riding/Mount gains +2 Pace and +1 Run step</td>
+    </tr><tr style="text-align:center">
+      <td>Card Sharp: May reroll Gambling</td>
+    </tr><tr style="text-align:center">
+      <td>Heavy Sleeper: -4 Notice (wake up)</td>
+    </tr><tr style="text-align:center">
+      <td>Scout: Rolls Notice-2 to detect encounters/Always alert when rolling Notice vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)</td>
+    </tr><tr style="text-align:center">
+      <td>Tale-Teller: +2 Persuasion or Performance to lower fear; Raise gives Conviction</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="Description" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Size</b>: 0</td>
+      <td><b>Deity</b>: None</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td>    <table id="AdvanceStats" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 6; Edge: 8; Skill: 6</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Features</b><br/>  <table id="FeatureSection" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="FeaturePart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Edges</b> (5 points): Agent; Born In The Saddle; Card Sharp; Guts; Scout; Tale-Teller; Territorial Ranger; Woodsman</td>
+      <td><b>Hindrances</b>: All Thumbs; Big Mouth; Heavy Sleeper; Stubborn</td>
+      <td><b>Human Features</b>: Adaptable</td>
+    </tr></table>
+</td>
+  </tr><tr style="text-align:center">
+    <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Adaptable: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Agent: Works for a covert government agency</td>
+    </tr><tr style="text-align:center">
+      <td>Big Mouth: Cannot keep secrets</td>
+    </tr><tr style="text-align:center">
+      <td>Stubborn: Never admits error</td>
+    </tr><tr style="text-align:center">
+      <td>Territorial Ranger: Works for U.S. Marshals agency</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Combat</b><br/>  <table id="Combat" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="CombatPart" style="width:100%">
+    <tr style="text-align:center">
+      <td>      <table id="CombatStats" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Parry</b>: 6 (1)</td>
+        <td><b>Cover</b>: 1</td>
+        <td><b>Toughness</b>: 6 (0)</td>
+        <td><b>Pace/Run</b>: 6/+d6</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td>      <table id="Gear" style="width:100%">
+      <tr style="text-align:center">
+        <td><b>Armor</b>: None</td>
+        <td><b>Shield</b>: Small Native Shield</td>
+        <td><b>Weapons</b>: Bayonet: 1 (d4+d4); Brass Knuckles: 1 (d4+d4); Dagger: 1; Unarmed: 1</td>
+      </tr></table>
+</td>
+    </tr><tr style="text-align:center">
+      <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td><i>Fighting Parry Modifier: +3 Parry</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Vigor Toughness Modifier: +4</i></td>
+      </tr></table>
+</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr><tr style="text-align:center">
+  <td style="border:1px solid black"><b>Notes</b><br/>  <table id="NotesArea" style="width:100%">
+  <tr style="text-align:center">
+    <td>    <table id="ValidationPart" style="width:100%">
+    <tr style="text-align:center">
+      <td><b>Validation Errors</b>: Edge Allocation: 5 available vs. 8 allocated</td>
+    </tr></table>
+</td>
+  </tr></table>
+</td>
+</tr></table>
+
+</body>
+</html>
+
