@@ -171,10 +171,18 @@ SWADE.BACKGROUNDS = {
     'Edge="Arcane Background (Psionics)" ' +
     'Attribute=smarts ' +
     'Skill=Psionics',
+  'Thief':
+    'Edge=Thief ' +
+    'Attribute=Stealth ' +
+    'Skill=Stealth,Thievery',
   'Weird Scientist':
     'Edge="Arcane Background (Weird Science)" ' +
     'Attribute=smarts ' +
-    'Skill="Weird Science"'
+    'Skill="Weird Science"',
+  'Woodsman':
+    'Edge=Woodsman ' +
+    'Attribute=spirit ' +
+    'Skill=Survival'
 };
 SWADE.DEITIES = {
   'None':''
@@ -3301,8 +3309,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       var requiredEdges = QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Edge');
       for(var i = 0; i < requiredEdges.length; i++) {
         attr = requiredEdges[i];
-        if(!attrs['features.' + attr])
+        if(!attrs['features.' + attr]) {
           attributes['edges.' + attr] = 1;
+          attrs = this.applyRules(attributes);
+        }
       }
     }
     howMany = attribute == 'edges' ? attrs.edgePoints || 0 : 4;
@@ -3310,7 +3320,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     choices = [];
     for(attr in allChoices) {
       if(attrs[attribute + '.' + attr] != null) {
-        howMany -= attr.endsWith('+') ? 2 : 1;
+        howMany -= (attr.endsWith('+') ? 2 : 1) * attrs[attribute + '.' + attr];
         continue;
       }
       choices.push(attr);
@@ -3537,6 +3547,9 @@ SWADE.makeValid = function(attributes) {
             possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
         }
         if(toFixAttr in attributesChanged)
+          continue;
+        if((toFixOp == '>=' || toFixOp == '>') &&
+           attributes[toFixAttr] > toFixValue)
           continue;
         if(toFixAttr in attributes || toFixAttr.match(/^\w+\./)) {
           if(toFixAttr in SWADE.ATTRIBUTES) {
