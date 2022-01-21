@@ -3296,6 +3296,15 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
+    if(attribute == 'edges' && attrs.background &&
+       attrs.background in this.getChoices('backgrounds')) {
+      var requiredEdges = QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Edge');
+      for(var i = 0; i < requiredEdges.length; i++) {
+        attr = requiredEdges[i];
+        if(!attrs['features.' + attr])
+          attributes['edges.' + attr] = 1;
+      }
+    }
     howMany = attribute == 'edges' ? attrs.edgePoints || 0 : 4;
     var allChoices = this.getChoices(attribute);
     choices = [];
@@ -3315,11 +3324,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         else
           subChoices = choices.filter(x => !x.endsWith('+'));
         pick = subChoices[QuilvynUtils.random(0, subChoices.length - 1)];
-      } else if(attrs.background &&
-                attrs.background in this.getChoices('backgrounds') &&
-                (pick = QuilvynUtils.getAttrValue(this.getChoices('backgrounds')[attrs.background], 'Edge')) != null &&
-                choices.includes(pick)) {
-        // Empty -- pick chosen in condition
       } else {
         pick = choices[QuilvynUtils.random(0, choices.length - 1)];
       }
