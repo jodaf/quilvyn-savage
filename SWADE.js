@@ -51,14 +51,14 @@ function SWADE() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'arcaneFocus:Arcane Focus?,checkbox,',
-    'focusType:Focus Type,select-one,arcanas'
+    'advances:Advances,text,4', 'background:Background,select-one,backgrounds'
   );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
-  SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS, SWADE.DEITIES);
+  SWADE.identityRules
+    (rules, SWADE.RACES, SWADE.ERAS, SWADE.BACKGROUNDS, SWADE.DEITIES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
      SWADE.LANGUAGES, SWADE.SKILLS);
@@ -71,8 +71,8 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Deity', 'Edge', 'Era', 'Feature', 'Goody', 'Hindrance',
-  'Power', 'Race', 'Shield', 'Skill', 'Weapon'
+  'Arcana', 'Armor', 'Background', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
+  'Hindrance', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -80,8 +80,8 @@ SWADE.CHOICES = [
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
-  'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield', 'deity',
-  'powers', 'archetype'
+  'background', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
+  'deity', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -145,6 +145,37 @@ SWADE.ARMORS = {
   'Battle Helmet':'Era=Future Area=Head Armor=6 MinStr=6 Weight=2'
 
 };
+SWADE.BACKGROUNDS = {
+  'Adventurer':'',
+  'Aristocrat':
+    'Edge=Aristocrat',
+  'Brute':
+    'Edge=Brute ' +
+    'Skill=strength,vigor',
+  'Gifted':
+    'Edge="Arcane Background (Gifted)" ' +
+    'Attribute=spirit ' +
+    'Skill=Focus',
+  'Linguist':
+    'Edge=Linguist ' +
+    'Skill=smarts',
+  'Magician':
+    'Edge="Arcane Background (Magic)" ' +
+    'Attribute=smarts ' +
+    'Skill=Spellcasting',
+  'Miracle Worker':
+    'Edge="Arcane Background (Miracles)" ' +
+    'Attribute=spirit ' +
+    'Skill=Faith',
+  'Psionicist':
+    'Edge="Arcane Background (Psionics)" ' +
+    'Attribute=smarts ' +
+    'Skill=Psionics',
+  'Weird Scientist':
+    'Edge="Arcane Background (Weird Science)" ' +
+    'Attribute=smarts ' +
+    'Skill="Weird Science"'
+};
 SWADE.DEITIES = {
   'None':''
 };
@@ -152,7 +183,11 @@ SWADE.EDGES = {
   // Background
   'Alertness':'Type=background',
   'Ambidextrous':'Type=background Require="agility >= 8"',
-  'Arcane Background (%arcana)':'Type=background',
+  'Arcane Background (Gifted)':'Type=background',
+  'Arcane Background (Magic)':'Type=background',
+  'Arcane Background (Miracles)':'Type=background',
+  'Arcane Background (Psionics)':'Type=background',
+  'Arcane Background (Weird Science)':'Type=background',
   'Arcane Resistance':'Type=background Require="spirit >= 8"',
   'Improved Arcane Resistance':
     'Type=background Require="features.Arcane Resistance"',
@@ -1765,12 +1800,16 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADE.identityRules = function(rules, races, eras, deitys) {
+SWADE.identityRules = function(rules, races, eras, backgrounds, deitys) {
 
+  QuilvynUtils.checkAttrTable(backgrounds, ['Attribute', 'Edge', 'Skill']);
   QuilvynUtils.checkAttrTable(deitys, []);
   QuilvynUtils.checkAttrTable(eras, []);
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
+  for(var background in backgrounds) {
+    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
+  }
   for(var deity in deitys) {
     rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
   }
@@ -1881,6 +1920,12 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Armor'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
+    );
+  else if(type == 'Background')
+    SWADE.backgroundRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
   else if(type == 'Deity')
     SWADE.deityRules(rules, name);
@@ -2021,6 +2066,31 @@ SWADE.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
   rules.defineRule('armorMinStr', 'armor.' + name, '^=', minStr);
   rules.defineRule('armorWeight', 'armor.' + name, '+=', weight);
 
+};
+
+/*
+ * Defines in #rules# the rules associated with background #name#.
+ * #attributes#, #edges#, and #skills# list the names of attributes, edges,
+ * and skills associated with the background.
+ */
+SWADE.backgroundRules = function(rules, name, attributes, edges, skills) {
+  if(!name) {
+    console.log('Empty background name');
+    return;
+  }
+  if(!Array.isArray(attributes)) {
+    console.log('Bad attributes "' + attributes + '" for background ' + name);
+    return;
+  }
+  if(!Array.isArray(edges)) {
+    console.log('Bad edges "' + edges + '" for background ' + name);
+    return;
+  }
+  if(!Array.isArray(skills)) {
+    console.log('Bad skills "' + edges + '" for background ' + name);
+    return;
+  }
+  // No rules pertain to background
 };
 
 /* Defines in #rules# the rules associated with deity #name#. */
@@ -2816,7 +2886,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Archetype', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Background', within: 'Identity', format: ' <b>%V</b>'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
@@ -2962,7 +3032,13 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]]
     );
-  } else if(type == 'Deity')
+  } else if(type == 'Background')
+    result.push(
+      ['Attribute', 'Attribute', 'text', [30]],
+      ['Edge', 'Edge', 'text', [30]],
+      ['Skill', 'Skill', 'text', [30]]
+    );
+  else if(type == 'Deity')
     result.push(
       // empty
     );
@@ -3052,7 +3128,7 @@ SWADE.initialEditorElements = function() {
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['gender', 'Gender', 'text', [10]],
-    ['archetype', 'Archetype', 'text', [20]],
+    ['background', 'Background', 'text', [20]],
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
     ['spiritAllocation', 'Spirit', 'select-one', allocations],
@@ -3177,8 +3253,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var howMany;
   var matchInfo;
 
-  if(attributes.arcaneFocus && attributes.focusType)
-    attributes['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
   if(attribute == 'advances') {
     if(attributes.advances === null) {
       howMany = QuilvynUtils.random(0, 9);
@@ -3186,9 +3260,12 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(QuilvynUtils.random(0, 9) >= 7)
         attributes.advances += 4;
     }
-  } else if(attribute == 'archetype') {
-    if(attributes.archetype == null)
-      attributes.archetype = 'Adventurer';
+  } else if(attribute == 'background') {
+    if(attributes.background == null) {
+      choices = QuilvynUtils.getKeys(this.getChoices('backgrounds'));
+      attributes.background =
+        choices[QuilvynUtils.random(0, choices.length - 1)];
+    }
   } else if(attribute == 'armor') {
     var allArmors = this.getChoices('armors');
     era = attributes.era || 'Modern';
@@ -3238,9 +3315,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         else
           subChoices = choices.filter(x => !x.endsWith('+'));
         pick = subChoices[QuilvynUtils.random(0, subChoices.length - 1)];
-      } else if(attrs.focusType && QuilvynUtils.random(0, 9) < 8) {
-        pick = QuilvynUtils.random(0, 1) == 0 ? 'Power Points' :
-               'New Powers' in allChoices ? 'New Powers' : 'New Power';
+      } else if(attrs.background &&
+                attrs.background in this.getChoices('backgrounds') &&
+                (pick = QuilvynUtils.getAttrValue(this.getChoices('backgrounds')[attrs.background], 'Edge')) != null &&
+                choices.includes(pick)) {
+        // Empty -- pick chosen in condition
       } else {
         pick = choices[QuilvynUtils.random(0, choices.length - 1)];
       }
@@ -3256,7 +3335,17 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
             new RegExp('^(sanity|validation)Notes.' + name)) != 0) {
         delete attributes[attribute + '.' + pick];
       } else {
+        // For casters, override 70% of edges with Power Points or New Powers
+        if(attrs.powerCount &&
+           QuilvynUtils.random(0, 9) < 7 &&
+           ('New Power' in allChoices || 'New Powers' in allChoices)) {
+          delete attributes[attribute + '.' + pick];
+          pick = QuilvynUtils.random(0, 1) == 0 && 'Power Points' in allChoices ? 'Power Points' : 'New Power' in allChoices ? 'New Power' : 'New Powers';
+          attributes[attribute + '.' + pick] =
+            (attributes[attribute + '.' + pick] || 0) + 1;
+        }
         howMany -= pick.endsWith('+') ? 2 : 1;
+        attrs = this.applyRules(attributes);
       }
     }
   } else if(attribute == 'gender') {
@@ -3380,11 +3469,6 @@ SWADE.makeValid = function(attributes) {
   var attributesChanged = {};
   var debug = [];
   var notes = this.getChoices('notes');
-
-  if(attributes.arcaneFocus && attributes.focusType) {
-    attributes['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
-    attributesChanged['edges.Arcane Background (' + attributes.focusType + ')'] = 1;
-  }
 
   // If 8 passes don't get rid of all repairable problems, give up
   for(var pass = 0; pass < 8; pass++) {

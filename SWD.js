@@ -56,14 +56,13 @@ function SWD() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'arcaneFocus:Arcane Focus?,checkbox,',
-    'focusType:Focus Type,select-one,arcanas'
+    'advances:Advances,text,4', 'background:Background,select-one,backgrounds'
   );
 
   SWD.attributeRules(rules);
   SWD.combatRules(rules, SWD.ARMORS, SWD.SHIELDS, SWD.WEAPONS);
   SWD.arcaneRules(rules, SWD.ARCANAS, SWD.POWERS);
-  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.DEITIES);
+  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.BACKGROUNDS, SWD.DEITIES);
   SWD.talentRules
     (rules, SWD.EDGES, SWD.FEATURES, SWD.GOODIES, SWD.HINDRANCES,
      SWD.LANGUAGES, SWD.SKILLS);
@@ -117,6 +116,21 @@ SWD.ARMORS = {
   'Reflective Vest':'Era=Future Area=Body Armor=10 Weight=5'
 
 };
+SWD.BACKGROUNDS_CHANGES = {
+  'Aristocrat':null,
+  'Brute':null,
+};
+SWD.BACKGROUNDS = {
+  'Super':
+    'Edge="Arcane Background (Super Powers)"'
+};
+for(var background in SWADE.BACKGROUNDS) {
+  if(!(background in SWD.BACKGROUNDS_CHANGES))
+    SWD.BACKGROUNDS[background] = SWADE.BACKGROUNDS[background];
+  else if(SWD.BACKGROUNDS_CHANGES[background] != null)
+    SWD.BACKGROUNDS[background] =
+      SWADE.BACKGROUNDS[background] + ' ' + SWD.BACKGROUNDS_CHANGES[background];
+}
 SWD.DEITIES = {
   'None':''
 };
@@ -254,6 +268,7 @@ SWD.EDGES_CHANGES = {
 };
 SWD.EDGES = {
   // Background
+  'Arcane Background (Super Powers)':'Type=background',
   'Noble':'Type=background',
   // Combat
   'Florentine':'Type=combat Require="agility >= 8","skills.Fighting >= 8"',
@@ -1030,8 +1045,8 @@ SWD.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWD.identityRules = function(rules, races, eras, deitys) {
-  SWADE.identityRules(rules, races, eras, deitys);
+SWD.identityRules = function(rules, races, eras, backgrounds, deitys) {
+  SWADE.identityRules(rules, races, eras, backgrounds, deitys);
   // No changes needed to the rules defined by base method
 };
 
@@ -1075,6 +1090,12 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Armor'),
       QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
       QuilvynUtils.getAttrValue(attrs, 'Weight')
+    );
+  else if(type == 'Background')
+    SWD.backgroundRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
   else if(type == 'Deity')
     SWD.deityRules(rules, name);
@@ -1178,6 +1199,16 @@ SWD.arcanaRules = function(rules, name, skill, powers) {
  */
 SWD.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
   SWADE.armorRules(rules, name, eras, areas, armor, minStr, weight);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with background #name#.
+ * #attributes#, #edges#, and #skills# list the names of attributes, edges,
+ * and skills associated with the background.
+ */
+SWD.backgroundRules = function(rules, name, attributes, edges, skills) {
+  SWADE.backgroundRules(rules, name, attributes, edges, skills); 
   // No changes needed to the rules defined by base method
 };
 
