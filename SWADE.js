@@ -2828,7 +2828,6 @@ SWADE.getFormats = function(rules, viewer) {
   var format;
   var formats = rules.getChoices('notes');
   var result = {};
-  var matchInfo;
   if(viewer == 'Compact') {
     for(format in formats) {
       if(!format.startsWith('powers.'))
@@ -3293,14 +3292,25 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'armor.', choices, howMany, 1);
   } else if(attribute == 'attributes') {
     attrs = this.applyRules(attributes);
+    var backgroundAttributes =
+      attrs.background && attrs.background in this.getChoices('backgrounds') ?
+        QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Attribute') : [];
     for(attr in SWADE.ATTRIBUTES) {
       attributes[attr + 'Allocation'] = 0;
     }
     howMany = attrs.attributePoints;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(SWADE.ATTRIBUTES);
-      attributes[attr + 'Allocation']++;
-      howMany--;
+      if(backgroundAttributes.length > 0 && QuilvynUtils.random(0, 9) < 6)
+        attr =
+          backgroundAttributes[QuilvynUtils.random(0, backgroundAttributes.length - 1)];
+      if(QuilvynUtils.random(0, 9) < 3)
+        attr = 'vigor';
+      // TODO Endless loop if attributePoints > 20
+      if(attributes[attr + 'Allocation'] < 4) {
+        attributes[attr + 'Allocation']++;
+        howMany--;
+      }
     }
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
@@ -3424,9 +3434,12 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
-    var allSkills = this.getChoices('skills');
-    era = attributes.era;
     attrs = this.applyRules(attributes);
+    var allSkills = this.getChoices('skills');
+    var backgroundSkills =
+      attrs.background && attrs.background in this.getChoices('backgrounds') ?
+        QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Skill') : [];
+    era = attributes.era;
     howMany = attrs.skillPoints;
     for(attr in attrs) {
       if(attr.match(/^skillAllocation\./))
@@ -3436,6 +3449,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
+      if(backgroundSkills.length > 0 && QuilvynUtils.random(0, 9) < 6)
+        attr =
+          backgroundSkills[QuilvynUtils.random(0, backgroundSkills.length - 1)];
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
         continue;
       if(attr.startsWith('Knowledge')) {
@@ -3449,7 +3465,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         languagePicked = attr;
       }
       attr = 'skillAllocation.' + attr;
-      if(attributes[attr] && attributes[attr] >= 4)
+      if(attributes[attr] && attributes[attr] >= 5)
         continue;
       attributes[attr] = (attributes[attr] || 0) - 0 + 1; // Force number
       howMany--;
