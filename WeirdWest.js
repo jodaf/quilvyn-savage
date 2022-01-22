@@ -56,11 +56,11 @@ function WeirdWest(baseRules) {
   WeirdWest.combatRules
     (rules, WeirdWest.ARMORS, WeirdWest.SHIELDS, WeirdWest.WEAPONS);
   WeirdWest.arcaneRules(rules, WeirdWest.ARCANAS, WeirdWest.POWERS);
-  WeirdWest.identityRules
-    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES);
   WeirdWest.talentRules
     (rules, WeirdWest.EDGES, WeirdWest.FEATURES, WeirdWest.GOODIES,
      WeirdWest.HINDRANCES, WeirdWest.LANGUAGES, WeirdWest.SKILLS);
+  WeirdWest.identityRules
+    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES);
 
   Quilvyn.addRuleSet(rules);
 
@@ -137,36 +137,68 @@ WeirdWest.ARMORS = {
   'Heavy Armored Duster':'Area=Torso Armor=4 MinStr=8 Weight=20'
 };
 WeirdWest.CONCEPTS = {
-  'Adventurer':'',
   'Agent':
     'Edge=Agent ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill=Fighting,Occult,Shooting',
-  'Aristocrat':SWADE.CONCEPTS['Aristocrat'],
   'Blessed':
     'Edge="Arcane Background (Blessed)" ' +
-    'Attribute=spirit ' +
+    'Attribute=Spirit ' +
     'Skill=Faith',
-  'Brute':SWADE.CONCEPTS['Brute'],
+  'Bounty Hunter': // Estimated related features
+    'Attribute=Agility ' +
+    'Skill=Shooting,Survival',
   'Chi Master':
     'Edge="Arcane Background (Chi Master)","Martial Artist" ' +
-    'Attribute=agility,spirit ' +
+    'Attribute=Agility,Spirit ' +
     'Skill=Focus',
+  'Common Folk':'',
+  'Deserter': // Estimated related features
+    'Edge=Soldier ' +
+    'Attribute=Agility,Vigor ' +
+    'Skill=Fighting,Shooting',
+  'Drifter': // Estimated related features
+    'Skill=Shooting',
+  'Escort': // Estimated related features
+    'Edge=Attractive ' +
+    'Attribute=Spirit,Vigor ' +
+    'Skill=Persuasion',
+  'Explorer': // Estimated related features
+    'Attribute=Smarts ' +
+    'Skill=Survival',
+  'Grifter': // Estimated related features
+    'Attribute=Spirit ' +
+    'Skill=Persuasion',
   'Huckster':
     'Edge="Arcane Background (Huckster)" ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill=Gambling,Spellcasting',
+  'Immigrant':'',
+  'Indian Shaman':
+    'Edge="Arcane Background (Shaman)" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Indian Warrior': // Estimated related features
+    'Attribute=Agility,Vigor ' +
+    'Skill=Fighting,Shooting',
   'Mad Scientist':
     'Edge="Arcane Background (Mad Scientist)" ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill=Science,"Weird Science"',
-  'Shaman':
-    'Edge="Arcane Background (Shaman)" ' +
-    'Attribute=spirit ' +
-    'Skill=Faith',
+  'Muckraker': // Estimated related features
+    'Edge=Investigator ' +
+    'Attribute=Smarts ' +
+    'Skill=Research',
+  'Outlaw':'',
+  'Prospector': // Estimated related features
+    'Skill=Survival',
+  'Soldier': // Estimated related features
+    'Edge=Soldier ' +
+    'Attribute=Agility,Strength,Vigor ' +
+    'Skill=Fighting,Shooting',
   'Territorial Ranger':
     'Edge="Territorial Ranger" ' +
-    'Attribute=vigor ' +
+    'Attribute=Vigor ' +
     'Skill=Fighting,Intimidation,Riding,Shooting,Survival'
 };
 WeirdWest.DEITIES = {

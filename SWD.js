@@ -62,10 +62,10 @@ function SWD() {
   SWD.attributeRules(rules);
   SWD.combatRules(rules, SWD.ARMORS, SWD.SHIELDS, SWD.WEAPONS);
   SWD.arcaneRules(rules, SWD.ARCANAS, SWD.POWERS);
-  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.CONCEPTS, SWD.DEITIES);
   SWD.talentRules
     (rules, SWD.EDGES, SWD.FEATURES, SWD.GOODIES, SWD.HINDRANCES,
      SWD.LANGUAGES, SWD.SKILLS);
+  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.CONCEPTS, SWD.DEITIES);
 
   Quilvyn.addRuleSet(rules);
 

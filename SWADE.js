@@ -57,11 +57,11 @@ function SWADE() {
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
-  SWADE.identityRules
-    (rules, SWADE.RACES, SWADE.ERAS, SWADE.CONCEPTS, SWADE.DEITIES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
      SWADE.LANGUAGES, SWADE.SKILLS);
+  SWADE.identityRules
+    (rules, SWADE.RACES, SWADE.ERAS, SWADE.CONCEPTS, SWADE.DEITIES);
 
   Quilvyn.addRuleSet(rules);
 
@@ -149,39 +149,53 @@ SWADE.CONCEPTS = {
   'Adventurer':'',
   'Aristocrat':
     'Edge=Aristocrat',
+  'Assassin':
+    'Edge=Assassin ' +
+    'Attribute=Agility ' +
+    'Skill=Fighting,Stealth',
   'Brute':
     'Edge=Brute ' +
-    'Skill=strength,vigor',
+    'Attribute=Strength,Vigor',
+  'Commander':
+    'Edge=Command ' +
+    'Attribute=Smarts',
   'Gifted':
     'Edge="Arcane Background (Gifted)" ' +
-    'Attribute=spirit ' +
+    'Attribute=Spirit ' +
     'Skill=Focus',
+  'Investigator':
+    'Edge=Investigator ' +
+    'Attribute=Smarts ' +
+    'Skill=Research',
   'Linguist':
     'Edge=Linguist ' +
-    'Skill=smarts',
+    'Attribute=Smarts',
   'Magician':
     'Edge="Arcane Background (Magic)" ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill=Spellcasting',
+  'Martial Artist':
+    'Edge="Martial Artist" ' +
+    'Skill=Fighting',
   'Miracle Worker':
     'Edge="Arcane Background (Miracles)" ' +
-    'Attribute=spirit ' +
+    'Attribute=Spirit ' +
     'Skill=Faith',
   'Psionicist':
     'Edge="Arcane Background (Psionics)" ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill=Psionics',
   'Thief':
     'Edge=Thief ' +
-    'Attribute=Stealth ' +
+    'Attribute=Agility ' +
     'Skill=Stealth,Thievery',
   'Weird Scientist':
     'Edge="Arcane Background (Weird Science)" ' +
-    'Attribute=smarts ' +
+    'Attribute=Smarts ' +
     'Skill="Weird Science"',
   'Woodsman':
     'Edge=Woodsman ' +
-    'Attribute=spirit ' +
+    'Attribute=Spirit ' +
     'Skill=Survival'
 };
 SWADE.DEITIES = {
@@ -2098,6 +2112,29 @@ SWADE.conceptRules = function(rules, name, attributes, edges, skills) {
     console.log('Bad skills "' + edges + '" for concept ' + name);
     return;
   }
+  var i, ith;
+  for(i = 0; i < attributes.length; i++) {
+    ith = attributes[i];
+    if(!rules.getChoices('attributes') ||
+       !(ith in rules.getChoices('attributes'))) {
+      console.log('Bad attribute "' + ith + '" for concept ' + name);
+      return;
+    }
+  }
+  for(i = 0; i < edges.length; i++) {
+    ith = edges[i];
+    if(!rules.getChoices('edges') || !(ith in rules.getChoices('edges'))) {
+      console.log('Bad edge "' + ith + '" for concept ' + name);
+      return;
+    }
+  }
+  for(i = 0; i < skills.length; i++) {
+    ith = skills[i];
+    if(!rules.getChoices('skills') || !(ith in rules.getChoices('skills'))) {
+      console.log('Bad skill "' + ith + '" for concept ' + name);
+      return;
+    }
+  }
   // No rules pertain to concept
 };
 
@@ -3267,11 +3304,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(QuilvynUtils.random(0, 9) >= 7)
         attributes.advances += 4;
     }
-  } else if(attribute == 'concept') {
-    if(attributes.concept == null) {
-      choices = QuilvynUtils.getKeys(this.getChoices('concepts'));
-      attributes.concept = choices[QuilvynUtils.random(0, choices.length - 1)];
-    }
   } else if(attribute == 'armor') {
     var allArmors = this.getChoices('armors');
     era = attributes.era || 'Modern';
@@ -3294,6 +3326,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var conceptAttributes =
       attrs.concept && attrs.concept in this.getChoices('concepts') ?
         QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Attribute') : [];
+    conceptAttributes = conceptAttributes.map(x => x.toLowerCase());
     for(attr in SWADE.ATTRIBUTES) {
       attributes[attr + 'Allocation'] = 0;
     }
@@ -3310,6 +3343,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         attributes[attr + 'Allocation']++;
         howMany--;
       }
+    }
+  } else if(attribute == 'concept') {
+    if(attributes.concept == null) {
+      choices = QuilvynUtils.getKeys(this.getChoices('concepts'));
+      attributes.concept = choices[QuilvynUtils.random(0, choices.length - 1)];
     }
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
