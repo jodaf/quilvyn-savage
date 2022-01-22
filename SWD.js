@@ -56,13 +56,13 @@ function SWD() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'background:Background,select-one,backgrounds'
+    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
   );
 
   SWD.attributeRules(rules);
   SWD.combatRules(rules, SWD.ARMORS, SWD.SHIELDS, SWD.WEAPONS);
   SWD.arcaneRules(rules, SWD.ARCANAS, SWD.POWERS);
-  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.BACKGROUNDS, SWD.DEITIES);
+  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.CONCEPTS, SWD.DEITIES);
   SWD.talentRules
     (rules, SWD.EDGES, SWD.FEATURES, SWD.GOODIES, SWD.HINDRANCES,
      SWD.LANGUAGES, SWD.SKILLS);
@@ -116,20 +116,20 @@ SWD.ARMORS = {
   'Reflective Vest':'Era=Future Area=Body Armor=10 Weight=5'
 
 };
-SWD.BACKGROUNDS_CHANGES = {
+SWD.CONCEPTS_CHANGES = {
   'Aristocrat':null,
   'Brute':null,
 };
-SWD.BACKGROUNDS = {
+SWD.CONCEPTS = {
   'Super':
     'Edge="Arcane Background (Super Powers)"'
 };
-for(var background in SWADE.BACKGROUNDS) {
-  if(!(background in SWD.BACKGROUNDS_CHANGES))
-    SWD.BACKGROUNDS[background] = SWADE.BACKGROUNDS[background];
-  else if(SWD.BACKGROUNDS_CHANGES[background] != null)
-    SWD.BACKGROUNDS[background] =
-      SWADE.BACKGROUNDS[background] + ' ' + SWD.BACKGROUNDS_CHANGES[background];
+for(var concept in SWADE.CONCEPTSS) {
+  if(!(concept in SWD.CONCEPTS_CHANGES))
+    SWD.CONCEPTS[concept] = SWADE.CONCEPTS[concept];
+  else if(SWD.CONCEPTS_CHANGES[concept] != null)
+    SWD.CONCEPTS[concept] =
+      SWADE.CONCEPTS[concept] + ' ' + SWD.CONCEPTS_CHANGES[concept];
 }
 SWD.DEITIES = {
   'None':''
@@ -1045,8 +1045,8 @@ SWD.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWD.identityRules = function(rules, races, eras, backgrounds, deitys) {
-  SWADE.identityRules(rules, races, eras, backgrounds, deitys);
+SWD.identityRules = function(rules, races, eras, concepts, deitys) {
+  SWADE.identityRules(rules, races, eras, concepts, deitys);
   // No changes needed to the rules defined by base method
 };
 
@@ -1091,8 +1091,8 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
-  else if(type == 'Background')
-    SWD.backgroundRules(rules, name,
+  else if(type == 'Concept')
+    SWD.conceptRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
@@ -1203,12 +1203,12 @@ SWD.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
 };
 
 /*
- * Defines in #rules# the rules associated with background #name#.
- * #attributes#, #edges#, and #skills# list the names of attributes, edges,
- * and skills associated with the background.
+ * Defines in #rules# the rules associated with concept #name#. #attributes#,
+ * #edges#, and #skills# list the names of attributes, edges, and skills
+ * associated with the concept.
  */
-SWD.backgroundRules = function(rules, name, attributes, edges, skills) {
-  SWADE.backgroundRules(rules, name, attributes, edges, skills); 
+SWD.conceptRules = function(rules, name, attributes, edges, skills) {
+  SWADE.conceptRules(rules, name, attributes, edges, skills); 
   // No changes needed to the rules defined by base method
 };
 

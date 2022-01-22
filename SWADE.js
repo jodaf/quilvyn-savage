@@ -51,14 +51,14 @@ function SWADE() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'background:Background,select-one,backgrounds'
+    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
   );
 
   SWADE.attributeRules(rules);
   SWADE.combatRules(rules, SWADE.ARMORS, SWADE.SHIELDS, SWADE.WEAPONS);
   SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
   SWADE.identityRules
-    (rules, SWADE.RACES, SWADE.ERAS, SWADE.BACKGROUNDS, SWADE.DEITIES);
+    (rules, SWADE.RACES, SWADE.ERAS, SWADE.CONCEPTS, SWADE.DEITIES);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
      SWADE.LANGUAGES, SWADE.SKILLS);
@@ -71,7 +71,7 @@ SWADE.VERSION = '2.3.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Background', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
+  'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
   'Hindrance', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
@@ -80,7 +80,7 @@ SWADE.CHOICES = [
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
-  'background', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
+  'concept', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
   'deity', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
@@ -145,7 +145,7 @@ SWADE.ARMORS = {
   'Battle Helmet':'Era=Future Area=Head Armor=6 MinStr=6 Weight=2'
 
 };
-SWADE.BACKGROUNDS = {
+SWADE.CONCEPTS = {
   'Adventurer':'',
   'Aristocrat':
     'Edge=Aristocrat',
@@ -1808,15 +1808,15 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADE.identityRules = function(rules, races, eras, backgrounds, deitys) {
+SWADE.identityRules = function(rules, races, eras, concepts, deitys) {
 
-  QuilvynUtils.checkAttrTable(backgrounds, ['Attribute', 'Edge', 'Skill']);
+  QuilvynUtils.checkAttrTable(concepts, ['Attribute', 'Edge', 'Skill']);
   QuilvynUtils.checkAttrTable(deitys, []);
   QuilvynUtils.checkAttrTable(eras, []);
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
-  for(var background in backgrounds) {
-    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
+  for(var concept in concepts) {
+    rules.choiceRules(rules, 'Concept', concept, concepts[concept]);
   }
   for(var deity in deitys) {
     rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
@@ -1929,8 +1929,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
-  else if(type == 'Background')
-    SWADE.backgroundRules(rules, name,
+  else if(type == 'Concept')
+    SWADE.conceptRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
@@ -2077,28 +2077,28 @@ SWADE.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
 };
 
 /*
- * Defines in #rules# the rules associated with background #name#.
- * #attributes#, #edges#, and #skills# list the names of attributes, edges,
- * and skills associated with the background.
+ * Defines in #rules# the rules associated with concept #name#. #attributes#,
+ * #edges#, and #skills# list the names of attributes, edges, and skills
+ * associated with the concept.
  */
-SWADE.backgroundRules = function(rules, name, attributes, edges, skills) {
+SWADE.conceptRules = function(rules, name, attributes, edges, skills) {
   if(!name) {
-    console.log('Empty background name');
+    console.log('Empty concept name');
     return;
   }
   if(!Array.isArray(attributes)) {
-    console.log('Bad attributes "' + attributes + '" for background ' + name);
+    console.log('Bad attributes "' + attributes + '" for concept ' + name);
     return;
   }
   if(!Array.isArray(edges)) {
-    console.log('Bad edges "' + edges + '" for background ' + name);
+    console.log('Bad edges "' + edges + '" for concept ' + name);
     return;
   }
   if(!Array.isArray(skills)) {
-    console.log('Bad skills "' + edges + '" for background ' + name);
+    console.log('Bad skills "' + edges + '" for concept ' + name);
     return;
   }
-  // No rules pertain to background
+  // No rules pertain to concept
 };
 
 /* Defines in #rules# the rules associated with deity #name#. */
@@ -2893,7 +2893,7 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Background', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Concept', within: 'Identity', format: ' <b>%V</b>'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
@@ -3039,7 +3039,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]]
     );
-  } else if(type == 'Background')
+  } else if(type == 'Concept')
     result.push(
       ['Attribute', 'Attribute', 'text', [30]],
       ['Edge', 'Edge', 'text', [30]],
@@ -3135,7 +3135,7 @@ SWADE.initialEditorElements = function() {
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['gender', 'Gender', 'text', [10]],
-    ['background', 'Background', 'text', [20]],
+    ['concept', 'Concept', 'text', [20]],
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
     ['spiritAllocation', 'Spirit', 'select-one', allocations],
@@ -3267,11 +3267,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(QuilvynUtils.random(0, 9) >= 7)
         attributes.advances += 4;
     }
-  } else if(attribute == 'background') {
-    if(attributes.background == null) {
-      choices = QuilvynUtils.getKeys(this.getChoices('backgrounds'));
-      attributes.background =
-        choices[QuilvynUtils.random(0, choices.length - 1)];
+  } else if(attribute == 'concept') {
+    if(attributes.concept == null) {
+      choices = QuilvynUtils.getKeys(this.getChoices('concepts'));
+      attributes.concept = choices[QuilvynUtils.random(0, choices.length - 1)];
     }
   } else if(attribute == 'armor') {
     var allArmors = this.getChoices('armors');
@@ -3292,18 +3291,18 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'armor.', choices, howMany, 1);
   } else if(attribute == 'attributes') {
     attrs = this.applyRules(attributes);
-    var backgroundAttributes =
-      attrs.background && attrs.background in this.getChoices('backgrounds') ?
-        QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Attribute') : [];
+    var conceptAttributes =
+      attrs.concept && attrs.concept in this.getChoices('concepts') ?
+        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Attribute') : [];
     for(attr in SWADE.ATTRIBUTES) {
       attributes[attr + 'Allocation'] = 0;
     }
     howMany = attrs.attributePoints;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(SWADE.ATTRIBUTES);
-      if(backgroundAttributes.length > 0 && QuilvynUtils.random(0, 9) < 6)
+      if(conceptAttributes.length > 0 && QuilvynUtils.random(0, 9) < 6)
         attr =
-          backgroundAttributes[QuilvynUtils.random(0, backgroundAttributes.length - 1)];
+          conceptAttributes[QuilvynUtils.random(0, conceptAttributes.length-1)];
       if(QuilvynUtils.random(0, 9) < 3)
         attr = 'vigor';
       // TODO Endless loop if attributePoints > 20
@@ -3314,9 +3313,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
-    if(attribute == 'edges' && attrs.background &&
-       attrs.background in this.getChoices('backgrounds')) {
-      var requiredEdges = QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Edge');
+    if(attribute == 'edges' && attrs.concept &&
+       attrs.concept in this.getChoices('concepts')) {
+      var requiredEdges =
+        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Edge');
       for(var i = 0; i < requiredEdges.length; i++) {
         attr = requiredEdges[i];
         if(!attrs['features.' + attr]) {
@@ -3436,9 +3436,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
     var allSkills = this.getChoices('skills');
-    var backgroundSkills =
-      attrs.background && attrs.background in this.getChoices('backgrounds') ?
-        QuilvynUtils.getAttrValueArray(this.getChoices('backgrounds')[attrs.background], 'Skill') : [];
+    var conceptSkills =
+      attrs.concept && attrs.concept in this.getChoices('concepts') ?
+        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Skill') : [];
     era = attributes.era;
     howMany = attrs.skillPoints;
     for(attr in attrs) {
@@ -3449,9 +3449,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
-      if(backgroundSkills.length > 0 && QuilvynUtils.random(0, 9) < 6)
+      if(conceptSkills.length > 0 && QuilvynUtils.random(0, 9) < 6)
         attr =
-          backgroundSkills[QuilvynUtils.random(0, backgroundSkills.length - 1)];
+          conceptSkills[QuilvynUtils.random(0, conceptSkills.length - 1)];
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
         continue;
       if(attr.startsWith('Knowledge')) {

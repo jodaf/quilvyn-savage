@@ -49,7 +49,7 @@ function WeirdWest(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'advances:Advances,text,4', 'background:Background,select-one,backgrounds'
+    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
   );
 
   WeirdWest.attributeRules(rules);
@@ -57,7 +57,7 @@ function WeirdWest(baseRules) {
     (rules, WeirdWest.ARMORS, WeirdWest.SHIELDS, WeirdWest.WEAPONS);
   WeirdWest.arcaneRules(rules, WeirdWest.ARCANAS, WeirdWest.POWERS);
   WeirdWest.identityRules
-    (rules, WeirdWest.RACES, WeirdWest.BACKGROUNDS, WeirdWest.DEITIES);
+    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES);
   WeirdWest.talentRules
     (rules, WeirdWest.EDGES, WeirdWest.FEATURES, WeirdWest.GOODIES,
      WeirdWest.HINDRANCES, WeirdWest.LANGUAGES, WeirdWest.SKILLS);
@@ -136,18 +136,18 @@ WeirdWest.ARMORS = {
   'Light Armored Duster':'Area=Torso Armor=2 MinStr=6 Weight=10',
   'Heavy Armored Duster':'Area=Torso Armor=4 MinStr=8 Weight=20'
 };
-WeirdWest.BACKGROUNDS = {
+WeirdWest.CONCEPTS = {
   'Adventurer':'',
   'Agent':
     'Edge=Agent ' +
     'Attribute=smarts ' +
     'Skill=Fighting,Occult,Shooting',
-  'Aristocrat':SWADE.BACKGROUNDS['Aristocrat'],
+  'Aristocrat':SWADE.CONCEPTS['Aristocrat'],
   'Blessed':
     'Edge="Arcane Background (Blessed)" ' +
     'Attribute=spirit ' +
     'Skill=Faith',
-  'Brute':SWADE.BACKGROUNDS['Brute'],
+  'Brute':SWADE.CONCEPTS['Brute'],
   'Chi Master':
     'Edge="Arcane Background (Chi Master)","Martial Artist" ' +
     'Attribute=agility,spirit ' +
@@ -808,8 +808,8 @@ WeirdWest.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-WeirdWest.identityRules = function(rules, races, backgrounds, deities) {
-  SWADE.identityRules(rules, races, {}, backgrounds, deities);
+WeirdWest.identityRules = function(rules, races, concepts, deities) {
+  SWADE.identityRules(rules, races, {}, concepts, deities);
   rules.defineEditorElement('race');
   rules.defineSheetElement('Race');
   rules.defineRule('race', 'advances', '=', '"Human"');
@@ -847,8 +847,8 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
-  else if(type == 'Background')
-    WeirdWest.backgroundRules(rules, name,
+  else if(type == 'Concept')
+    WeirdWest.conceptRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
@@ -953,12 +953,12 @@ WeirdWest.armorRules = function(rules, name, areas, armor, minStr, weight) {
 };
 
 /*
- * Defines in #rules# the rules associated with background #name#.
- * #attributes#, #edges#, and #skills# list the names of attributes, edges,
- * and skills associated with the background.
+ * Defines in #rules# the rules associated with concept #name#. #attributes#,
+ * #edges#, and #skills# list the names of attributes, edges, and skills
+ * associated with the concept.
  */
-WeirdWest.backgroundRules = function(rules, name, attributes, edges, skills) {
-  SWADE.backgroundRules(rules, name, attributes, edges, skills); 
+WeirdWest.conceptRules = function(rules, name, attributes, edges, skills) {
+  SWADE.conceptRules(rules, name, attributes, edges, skills); 
   // No changes needed to the rules defined by base method
 };
 
