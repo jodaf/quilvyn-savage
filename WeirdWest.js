@@ -130,9 +130,9 @@ WeirdWest.ARMORS = {
   'Light Armored Hat':'Area=Head Armor=1 MinStr=4 Weight=2',
   'Heavy Armored Hat':'Area=Head Armor=2 MinStr=4 Weight=4',
   'Light Armored Vest':'Area=Torso Armor=2 MinStr=4 Weight=5',
-  'Light Armored Coreset':'Area=Torso Armor=2 MinStr=4 Weight=5',
+  'Light Armored Corset':'Area=Torso Armor=2 MinStr=4 Weight=5',
   'Heavy Armored Vest':'Area=Torso Armor=4 MinStr=6 Weight=10',
-  'Heavy Armored Coreset':'Area=Torso Armor=4 MinStr=6 Weight=10',
+  'Heavy Armored Corset':'Area=Torso Armor=4 MinStr=6 Weight=10',
   'Light Armored Duster':'Area=Torso Armor=2 MinStr=6 Weight=10',
   'Heavy Armored Duster':'Area=Torso Armor=4 MinStr=8 Weight=20'
 };
@@ -475,7 +475,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="3 Powers/15 Power Points/Critical failure causes Fatigue/Power range reduced to self or touch"',
   'Arcane Background (Huckster)':
     'Section=arcana ' +
-    'Note="3 Powers/10 Power Points/Critical failure casues Fatigue/Can cast via deal with the devil"',
+    'Note="3 Powers/10 Power Points/Critical failure causes Fatigue/Can cast via deal with the devil"',
   'Arcane Background (Mad Scientist)':
     'Section=arcana ' +
     'Note="2 Powers/15 Power Points/Critical failure causes malfunction"',
