@@ -1210,12 +1210,12 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target suffers Distracted and Vulnerable for 1 rd (Smarts neg)"',
+      '"Target suffers Distracted and Vulnerable for 1 rd (Smarts neg (Raise Smarts-2))"',
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
-    'Description="Creatures adjacent to target suffer 2d4 damage"',
+    'Description="Creatures adjacent to target suffer 2d4 damage for 5 rd"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1263,7 +1263,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
-    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt for 5 rd (Raise +2) (Spirit neg)"',
+    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2) for 5 rd (Spirit neg)"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1280,7 +1280,7 @@ SWADE.POWERS = {
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target sees up to 1 mile for 5 rd (Raise half Range penalties)"',
+      '"Target sees up to 1 mile for 5 rd (Raise halves range penalties)"',
   'Fear':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1402,7 +1402,7 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts*5 ' +
     'Description=' +
-      '"Creates sound up to shout or R%{smarts}%{in} Mutes 3%{in} radius for 5 rd"',
+      '"Creates sound up to shout or R%{smarts}%{in} mutes 3%{in} radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1412,7 +1412,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Target Stunned (Vigor neg)"',
+    'Description="Target stunned (Vigor neg)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2+ ' +
