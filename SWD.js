@@ -119,12 +119,17 @@ SWD.ARMORS = {
 SWD.CONCEPTS_CHANGES = {
   'Aristocrat':null,
   'Brute':null,
+  'Gifted':null,
+  'Investigator':
+    'Skill=Investigation,Streetwise',
+  'Thief':
+    'Skill=Climbing,Lockpicking,Stealth'
 };
 SWD.CONCEPTS = {
   'Super':
     'Edge="Arcane Background (Super Powers)"'
 };
-for(var concept in SWADE.CONCEPTSS) {
+for(var concept in SWADE.CONCEPTS) {
   if(!(concept in SWD.CONCEPTS_CHANGES))
     SWD.CONCEPTS[concept] = SWADE.CONCEPTS[concept];
   else if(SWD.CONCEPTS_CHANGES[concept] != null)
@@ -689,7 +694,7 @@ SWD.POWERS_CHANGES = {
   'Boost/Lower Trait':
     'Range=smarts ' +
     'Description=' +
-      '"Target gains +1 Trait step or suffers -1 Trait step (Raise +2 or -2 (Spirit neg)) for 3 rd"',
+      '"Target gains +1 trait step or suffers -1 trait step (Raise +2 or -2 (Spirit neg)) for 3 rd"',
   'Burrow':
     'PowerPoints=3 ' +
     'Range=self',
