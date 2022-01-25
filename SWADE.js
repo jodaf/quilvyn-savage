@@ -3711,10 +3711,6 @@ SWADE.ruleNotes = function() {
     '  </li><li>\n' +
     '    Quilvyn assumes that every race has its own language and that\n' +
     '    half-elf characters know both Elf and Human.\n' +
-    '  </li><li>\n' +
-    '    If the Arcane Focus box is checked when creating a random\n' +
-    '    character, Quilvyn will select either New Powers or Power Points\n' +
-    '    for most of the character\'s edges.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
