@@ -698,13 +698,13 @@ SWD.POWERS_CHANGES = {
     'PowerPoints=3+2xSize ' +
     'Range=smarts*50',
   'Blast':
-    'PowerPoints=2-6 ' +
+    'PowerPoints=2 ' +
     'Range=24 ' +
     'Description="2%{in} radius inflicts 2d6 damage"',
   'Blind':
     'Range=12 ' +
     'Description=' +
-      '"Target Shaken and suffers -2 on Parry (Agility neg, 1 on die also suffers -6 trait tests) for 1 rd"',
+      '"Target Shaken and suffers -2 on Parry (Agility-2 neg, 1 on die also suffers -6 trait tests) for 1 rd"',
   'Bolt':
     'PowerPoints=1/missile ' +
     'Range=12 ' +
@@ -717,7 +717,7 @@ SWD.POWERS_CHANGES = {
     'PowerPoints=3 ' +
     'Range=self',
   'Burst':
-    'Description="Cone inflicts 2d10 damage"',
+    'Description="Cone inflicts 2d10 damage (Agility neg)"',
   'Confusion':
     'Range=smarts*2 ' +
     'Description="Target suffers Shaken (Smarts-2 neg)"',
@@ -726,28 +726,33 @@ SWD.POWERS_CHANGES = {
     'Description="Target touch inflicts 2d6 (Raise 2d8) damage for 3 rd"',
   'Darksight':
     'Range=touch ' +
-    'Description=' +
-      '"Target ignores half illumination penalties (Raise 5 pts) for 1 hr"',
+    'Description="Target halves illumination penalties (Raise 6 pts) for 1 hr"',
   'Deflection':
     'PowerPoints=2 ' +
     'Range=touch',
+  'Detect/Conceal Arcana':
+    'Range=sight',
   'Dispel':'PowerPoints=3',
   'Disguise':
-    'PowerPoints=2 ' +
+    'PowerPoints=3 ' +
     'Range=touch',
   'Drain Power Points':
     'Advances=12 ' +
     'PowerPoints=3 ' +
-    'Description="Drains 1d6+1 PP (Raise 1d8+1) (Spirit neg, +2 if types differ)"',
+    'Description="Drains 1d6+1 PP (Raise 1d8+2) (Spirit neg, +2 if types differ)"',
+  'Elemental Manipulation':
+    'Range=smarts*2',
   'Empathy':null,
   'Entangle':
     'Description=' +
       '"Impedes target (Raise binds) (Agility neg, Agility or Strength ends)"',
+  'Environmental Protection':
+    'Range=touch',
   'Farsight':
     'PowerPoints=3 ' +
     'Range=touch ' +
     'Description=' +
-      '"Target half range penalties (Raise dbl range increments) for 3 rd"',
+      '"Target halves range penalties (Raise dbl range increments) for 3 rd"',
   'Fear':'Range=smarts*2',
   'Fly':'Range=touch',
   'Havoc':
@@ -819,10 +824,12 @@ SWD.POWERS = {
     'Description="Target gains second action for 3 rd (Raise also redraw Action Cards below 8)"',
   'Slow':
     'Advances=4 ' +
-    'PowerPoints=2 ' +
+    'PowerPoints=1 ' +
     'Range=smarts*2 ' +
     'Description=' +
       '"Target move counts as action (Raise also redraw Action Cards above 10) for 3 rd (Spirit neg)"',
+  'Smite':
+    'Range=touch',
   'Speed':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -832,7 +839,9 @@ SWD.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description="Removes 1 level of fatigue (Raise 2 levels) and Shaken"'
+    'Description="Removes 1 level of fatigue (Raise 2 levels) and Shaken"',
+  'Wall Walker':
+    'Range=touch'
 };
 for(var power in SWADE.POWERS) {
   if(!(power in SWD.POWERS_CHANGES))
