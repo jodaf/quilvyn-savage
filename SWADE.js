@@ -572,7 +572,7 @@ SWADE.FEATURES = {
     'Section=combat Note="R%{commandRange}%{in} Commanded +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
-    'Section=combat Note="Free attack when %V foes move into reach"',
+    'Section=combat Note="Free attack when foe moves into reach %V/rd"',
   'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
   'Followers':'Section=feature Note="Has 5 soldier followers"',
   'Free Runner':
@@ -708,7 +708,7 @@ SWADE.FEATURES = {
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':
     'Section=attribute Note="+2 Smarts (resist Tests)/+2 Spirit (resist Tests)"',
-  'Sweep':'Section=combat Note="%1Attack all within reach"',
+  'Sweep':'Section=combat Note="May make %1attack on all within reach"',
   'Tactician':
     'Section=combat ' +
     'Note="R%{commandRange}%{in} May distribute %V Action Cards to commanded each rd"',
