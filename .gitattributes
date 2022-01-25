@@ -1,0 +1,3 @@
+.gitattributes export-ignore
+/Test export-ignore
+WeirdWest.js export-ignore
