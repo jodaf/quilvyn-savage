@@ -8,18 +8,16 @@
 var attributes = {
   "_path":"ztest/swd/edges/weird", "advances":16, 
   "agilityAllocation":2, "armor.Leather":1, "concept":"Adventurer", "deity":"None", 
-  "edges.Expert (Agility)":1, "edges.Followers":1, "edges.Improved Tough As Nails":1, 
-  "edges.Martial Arts Master":1, "edges.Master (Agility)":1, "edges.Master Of Arms":1, 
-  "edges.Professional (Agility)":1, "edges.Sidekick":1, "edges.Tough As Nails":1, "edges.Weapon Master":1, 
-  "era":"Medieval", "focusType":"Miracles", "gender":"Male", "hindrances.Enemy":1, 
-  "hindrances.Habit":1, "hindrances.Quirk":1, "hindrances.Ugly":1, 
-  "improvementPointsAllocation.Attribute":14, "improvementPointsAllocation.Skill":14, "name":"Edges-Weird", 
+  "edges.Beast Bond":1, "edges.Beast Master":1, "edges.Danger Sense":1, "edges.Healer":1, 
+  "edges.Liquid Courage":1, "edges.Luck":1, "edges.Scavenger":1, "era":"Medieval", 
+  "focusType":"Miracles", "gender":"Male", "hindrances.Enemy":1, "hindrances.Habit":1, 
+  "hindrances.Quirk":1, "hindrances.Ugly":1, "improvementPointsAllocation.Attribute":14, 
+  "improvementPointsAllocation.Edge":12, "improvementPointsAllocation.Skill":10, "name":"Edges-Weird", 
   "race":"Human", "shield":"None", "skillAllocation.Climbing":2, "skillAllocation.Fighting":3, 
   "skillAllocation.Healing":2, "skillAllocation.Knowledge (Arcana)":3, "skillAllocation.Notice":3, 
   "skillAllocation.Psionics":2, "skillAllocation.Streetwise":3, "skillAllocation.Survival":3, 
-  "skillAllocation.Taunt":2, "skillAllocation.Tracking":3, "smartsAllocation":3, "spiritAllocation":3, 
-  "strengthAllocation":2, "vigorAllocation":2, "weapons.Axe":1, "weapons.Great Axe":1, 
-  "weapons.Unarmed":1
+  "skillAllocation.Taunt":1, "smartsAllocation":3, "spiritAllocation":3, "strengthAllocation":2, 
+  "vigorAllocation":2, "weapons.Axe":1, "weapons.Great Axe":1, "weapons.Unarmed":1
 };
   </script>
 </head>
@@ -38,7 +36,7 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Agility</b>: d12</td>
+      <td><b>Agility</b>: d8</td>
       <td><b>Smarts</b>: d10</td>
       <td><b>Spirit</b>: d10</td>
       <td><b>Strength</b>: d8</td>
@@ -46,17 +44,9 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td><i>Expert (Agility): Increased Professional effects</i></td>
-    </tr><tr style="text-align:center">
-      <td><i>Professional (Agility): +2 Agility step</i></td>
-    </tr><tr style="text-align:center">
-      <td>Master (Agility): Use d10 for Wild Die</td>
-    </tr></table>
-</td>
+    <td><b>Attribute Notes</b>: Liquid Courage: Drinking alcohol gives +1 Vigor step, ignore 1 wound penalty for 1 hr</td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (26 Points):</td>
+    <td><b>Skills</b> (22 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -64,20 +54,16 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Climbing: (str) d6</td>
-      <td>Notice: (sma) d8</td>
-      <td>Taunt: (sma) d6</td>
+      <td>Knowledge (Arcana): (sma) d8</td>
+      <td>Streetwise: (sma) d8-3</td>
     </tr><tr style="text-align:left">
       <td>Fighting: (agi) d8</td>
-      <td>Psionics: (sma) d6</td>
-      <td>Tracking: (sma) d8</td>
-    </tr><tr style="text-align:left">
-      <td>Healing: (sma) d6</td>
-      <td>Streetwise: (sma) d8-3</td>
-      <td></td>
-    </tr><tr style="text-align:left">
-      <td>Knowledge (Arcana): (sma) d8</td>
+      <td>Notice: (sma) d8</td>
       <td>Survival: (sma) d8</td>
-      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d6+2</td>
+      <td>Psionics: (sma) d6</td>
+      <td>Taunt: (sma) d4</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -86,6 +72,8 @@ var attributes = {
       <td><i>Charisma: -3 Persuasion/-3 Streetwise</i></td>
     </tr><tr style="text-align:center">
       <td><i>Habit: -1 Charisma</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Healer: +2 Healing</i></td>
     </tr><tr style="text-align:center">
       <td><i>Ugly: -2 Charisma</i></td>
     </tr></table>
@@ -102,7 +90,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 16</td>
       <td><b>Improvement Points</b>: 36</td>
-      <td><b>Improvement Points Allocation</b>: Attribute: 14; Skill: 14</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 14; Edge: 12; Skill: 10</td>
     </tr></table>
 </td>
   </tr></table>
@@ -112,7 +100,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (1 points): Expert (Agility); Followers; Improved Tough As Nails; Martial Arts Master; Master (Agility); Master Of Arms; Professional (Agility); Sidekick; Tough As Nails; Weapon Master</td>
+      <td><b>Edges</b> (7 points): Beast Bond; Beast Master; Danger Sense; Healer; Liquid Courage; Luck; Scavenger</td>
       <td><b>Hindrances</b>: Enemy; Habit; Quirk; Ugly</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
@@ -122,15 +110,17 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptable: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
-      <td>Enemy: Individual or remote group wants character eliminated</td>
+      <td>Beast Bond: May spend Bennies on companion animals</td>
     </tr><tr style="text-align:center">
-      <td>Followers: Gain 5 soldier followers</td>
+      <td>Beast Master: Has animal companion; other animals will not attack first</td>
+    </tr><tr style="text-align:center">
+      <td>Enemy: Individual or remote group wants character eliminated</td>
     </tr><tr style="text-align:center">
       <td>Habit: Has irritating but harmless compulsion</td>
     </tr><tr style="text-align:center">
-      <td>Quirk: Has minor compulsion that occasionally causes trouble</td>
+      <td>Luck: +1 Benny each session</td>
     </tr><tr style="text-align:center">
-      <td>Sidekick: Special bond with companion</td>
+      <td>Quirk: Has minor compulsion that occasionally causes trouble</td>
     </tr></table>
 </td>
   </tr></table>
@@ -142,9 +132,9 @@ var attributes = {
     <tr style="text-align:center">
       <td>      <table id="CombatStats" style="width:100%">
       <tr style="text-align:center">
-        <td><b>Parry</b>: 8 (0)</td>
+        <td><b>Parry</b>: 6 (0)</td>
         <td><b>Cover</b>: 0</td>
-        <td><b>Toughness</b>: 9 (1)</td>
+        <td><b>Toughness</b>: 7 (1)</td>
         <td><b>Pace/Run</b>: 6/+d6</td>
       </tr></table>
 </td>
@@ -153,7 +143,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Armor</b>: Leather</td>
         <td><b>Shield</b>: None</td>
-        <td><b>Weapons</b>: Axe: 1 (d8+d6); Great Axe: 1 (d8+d10); Unarmed: 1 (d8+d0+2)</td>
+        <td><b>Weapons</b>: Axe: 1 (d8+d6); Great Axe: 1 (d8+d10); Unarmed: 1 (d8+d0)</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
@@ -161,39 +151,13 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Fighting Parry Modifier: +4 Parry</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Improved Tough As Nails: Increased Tough As Nails effects</i></td>
-      </tr><tr style="text-align:center">
-        <td><i>Martial Arts Master: +2 Unarmed damage</i></td>
-      </tr><tr style="text-align:center">
-        <td><i>Master Of Arms: Increased Weapon Master effects</i></td>
-      </tr><tr style="text-align:center">
-        <td><i>Tough As Nails: +2 Toughness</i></td>
-      </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +4</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Weapon Master: +2 Parry</i></td>
+        <td>Danger Sense: May test Notice-2 before surprise attack</td>
       </tr><tr style="text-align:center">
         <td>Great Axe Parry Modifier: -1 Parry when wielded</td>
-      </tr></table>
-</td>
-    </tr></table>
-</td>
-  </tr></table>
-</td>
-</tr><tr style="text-align:center">
-  <td style="border:1px solid black"><b>Notes</b><br/>  <table id="NotesArea" style="width:100%">
-  <tr style="text-align:center">
-    <td>    <table id="ValidationPart" style="width:100%">
-    <tr style="text-align:center">
-      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
-      <tr style="text-align:center">
-        <td>Edge Allocation: 1 available vs. 10 allocated</td>
       </tr><tr style="text-align:center">
-        <td>Improvement Allocation: 36 available vs. 28 allocated</td>
-      </tr><tr style="text-align:center">
-        <td>Martial Arts Master Edge: Requires advances (currently 16) >= 16, improved martial artist feature and fighting skill (currently 8) >= 12</td>
-      </tr><tr style="text-align:center">
-        <td>Weapon Master Edge: Requires advances (currently 16) >= 16 and fighting skill (currently 8) >= 12</td>
+        <td>Scavenger: May recover equipment 1/encounter</td>
       </tr></table>
 </td>
     </tr></table>

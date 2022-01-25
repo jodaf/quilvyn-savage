@@ -84,13 +84,13 @@ var attributes = {
       <td>Healing: (sma) d4</td>
       <td>Riding: (agi) d4</td>
     </tr><tr style="text-align:left">
-      <td>Climbing: (str) d4</td>
+      <td>Climbing: (str) d4-2</td>
       <td>Intimidation: (spi) d6</td>
       <td>Stealth: (agi) d6</td>
     </tr><tr style="text-align:left">
       <td>Faith: (spi) d4</td>
       <td>Investigation: (sma) d4</td>
-      <td>Streetwise: (sma) d6-10</td>
+      <td>Streetwise: (sma) d6-9</td>
     </tr><tr style="text-align:left">
       <td>Gambling: (sma) d4</td>
       <td>Repair: (sma) d4-2</td>
@@ -104,7 +104,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Bloodthirsty+: -4 Charisma</i></td>
     </tr><tr style="text-align:center">
-      <td><i>Charisma: -10 Persuasion/-10 Streetwise</i></td>
+      <td><i>Charisma: -9 Persuasion/-9 Streetwise</i></td>
     </tr><tr style="text-align:center">
       <td><i>Elderly+: +5 Skill Points</i></td>
     </tr><tr style="text-align:center">
@@ -112,9 +112,7 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Mean: -2 Charisma</i></td>
     </tr><tr style="text-align:center">
-      <td><i>One Eye+: -1 Charisma</i></td>
-    </tr><tr style="text-align:center">
-      <td><i>One Leg+: -2 Swimming</i></td>
+      <td><i>One Leg+: -2 Climbing/-2 Fighting/-2 Swimming</i></td>
     </tr><tr style="text-align:center">
       <td><i>Saurian Senses: +2 Notice</i></td>
     </tr><tr style="text-align:center">
@@ -122,17 +120,19 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Young+: -2 Skill Points</i></td>
     </tr><tr style="text-align:center">
-      <td>Bad Eyes+: -2 on visual trait rolls and distance attacks</td>
+      <td>Bad Eyes+: -2 on distant visual trait rolls and ranged attacks</td>
     </tr><tr style="text-align:center">
-      <td>Bad Eyes: Must wear corrective lenses</td>
+      <td>Bad Eyes: -2 on distant visual trait rolls and ranged attacks w/out corrective lenses</td>
     </tr><tr style="text-align:center">
-      <td>Blind+: -6 on visual tasks</td>
+      <td>Blind+: -6 on visual tasks, -2 on social</td>
     </tr><tr style="text-align:center">
       <td>Hard Of Hearing+: Deaf, automatically fails Notice (hearing)</td>
     </tr><tr style="text-align:center">
       <td>Hard Of Hearing: -2 Notice (hearing)</td>
     </tr><tr style="text-align:center">
       <td>One Arm+: -4 on two-handed tasks</td>
+    </tr><tr style="text-align:center">
+      <td>One Eye+: -1 Charisma unless missing eye is covered</td>
     </tr><tr style="text-align:center">
       <td>Outsider: -2 Charisma (other races)</td>
     </tr></table>
@@ -168,6 +168,8 @@ var attributes = {
     <td><b>Feature Notes</b>:     <table id="FeatureNotes" style="width:100%">
     <tr style="text-align:center">
       <td><i>Blind+: +1 Edge Points</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>One Eye+: -2 Shooting/-2 Throwing/-2 tasks requiring depth perception</i></td>
     </tr><tr style="text-align:center">
       <td>Anemic: -2 Fatigue checks (resist poison and disease)</td>
     </tr><tr style="text-align:center">
@@ -207,8 +209,6 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Mean: Ill-tempered and disagreeable</td>
     </tr><tr style="text-align:center">
-      <td>One Eye+: -2 on visual tasks requiring depth perception</td>
-    </tr><tr style="text-align:center">
       <td>Overconfident+: Has excessive opinion of own capabilities</td>
     </tr><tr style="text-align:center">
       <td>Phobia+: -4 on trait rolls in presence of phobia subject</td>
@@ -223,9 +223,9 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Stubborn: Never admits error</td>
     </tr><tr style="text-align:center">
-      <td>Vengeful+: Places primary focus on revenge</td>
+      <td>Vengeful+: Seeks revenge by any means</td>
     </tr><tr style="text-align:center">
-      <td>Vengeful: Spends time plotting revenge</td>
+      <td>Vengeful: Seeks revenge legally</td>
     </tr><tr style="text-align:center">
       <td>Vow+: Has tight restrictions on behavior and decisions</td>
     </tr><tr style="text-align:center">
@@ -264,9 +264,9 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
       <tr style="text-align:center">
-        <td><i>Bite: Fangs are a Natural Weapon</i></td>
+        <td><i>Bite: Fangs are a natural weapon</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Claws: Claws are a Natural Weapon</i></td>
+        <td><i>Claws: Claws are a natural weapon</i></td>
       </tr><tr style="text-align:center">
         <td><i>Elderly+: -1 Pace</i></td>
       </tr><tr style="text-align:center">
@@ -280,7 +280,7 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Small+: -1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Tail: Tail is a Natural Weapon</i></td>
+        <td><i>Tail: Tail is a natural weapon</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +2</i></td>
       </tr><tr style="text-align:center">
