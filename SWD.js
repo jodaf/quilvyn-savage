@@ -323,28 +323,39 @@ SWD.FEATURES = {
     'Note="+2 Boating/+2 Driving/+2 Piloting/Spend Benny to Soak vehicle damage"',
   'Acrobat':
     'Section=attribute,combat ' +
-    'Note="+1 Agility (acrobatic maneuvers)","+1 Parry"',
+    'Note="+2 Agility (acrobatic maneuvers)","+1 Parry"',
   'Adept':
     'Section=arcana ' +
-    'Note="Spend 1 power point for unarmed AP 2, activate self power as free action"',
+    'Note="May spend 1 Power Point for unarmed AP 2, activate self power as free action"',
   'Alertness':'SWADE',
   'Ambidextrous':'Section=combat Note="No off-hand penalty"',
-  'Arcane Background (Magic)':'SWADE',
+  'Arcane Background (Magic)':
+    'Section=arcana,skill ' +
+    'Note="3 Powers/10 Power Points",' +
+         '"1 on Spellcasting inflicts Shaken"',
   'Arcane Background (Miracles)':
-    'Section=arcana Note="2 Powers/10 Power Points"',
-  'Arcane Background (Psionics)':'SWADE',
+    'Section=arcana,feature ' +
+    'Note="2 Powers/10 Power Points",' +
+         '"Violating core beliefs inflicts -2 Faith for 1 wk; major sins remove powers"',
+  'Arcane Background (Psionics)':
+    'Section=arcana,skill ' +
+    'Note="3 Powers/10 Power Points",' +
+         '"1 on Psionics inflicts Shaken, critical failure shakes allies in 3%{in} radius"',
   'Arcane Background (Super Powers)':
     'Section=arcana Note="1 Power/20 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=arcana Note="1 Power/10 Power Points"',
-  'Arcane Resistance':'SWADE',
+    'Section=arcana,skill ' +
+    'Note="1 Power/10 Power Points","1 on Weird Science causes malfunction"',
+  'Arcane Resistance':
+    'Section=combat ' +
+    'Note="+%V Armor vs arcane powers/+%V trait resisting arcane powers"',
   'Assassin':'Section=combat Note="+2 damage to unaware foes"',
   'Attractive':'Section=skill Note="+%V Charisma"',
   'Beast Bond':'SWADE',
   'Beast Master':'SWADE',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +2 Fighting, Strength, melee damage, and Toughness, -2 Parry , ignore Wound penalties, and 1 on Fighting die hits randomly (Smarts-2 neg)"',
+    'Note="Injury causes +2 Fighting, Strength, melee damage, and Toughness, -2 Parry, ignores Wound penalties, and random hits on 1 on Fighting die (Smarts-2 neg)"',
   'Block':'Section=combat Note="+%V Parry"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear"',
   'Brawler':'Section=combat Note="+2 Unarmed damage"',
@@ -361,14 +372,14 @@ SWD.FEATURES = {
   'Combat Reflexes':'Section=combat Note="+2 on Shaken recovery rolls"',
   'Command':
     'Section=feature ' +
-    'Note="R%{commandRange}%{in} Commanded +%V to recover from Shaken or Stunned"',
+    'Note="R%{commandRange}%{in} Commanded +%V to recover from Shaken"',
   'Command Presence':'SWADE',
   'Common Bond':'SWADE',
   'Connections':'SWADE',
   'Counterattack':
     'Section=combat Note="Free %1attack after failed foe attack"',
   'Danger Sense':
-    'Section=combat Note="Can test Notice-2 before surprise attack"',
+    'Section=combat Note="May test Notice-2 before surprise attack"',
   'Dead Shot':'SWADE',
   'Dodge':'Section=combat Note="-%V foe ranged attacks, +%V evading area attacks"',
   'Elan':'SWADE',
@@ -376,7 +387,7 @@ SWD.FEATURES = {
   'Expert (%skill)':'SWADE',
   'Extraction':
     'Section=combat ' +
-    'Note="Can make Agility test to negate attack of %V when withdrawing"',
+    'Note="May make Agility test to negate attack of %V when withdrawing"',
   'Fast Healer':'Section=combat Note="+2 Vigor (natural healing)"',
   'Fervor':'SWADE',
   'Filthy Rich':'SWADE',
@@ -390,7 +401,9 @@ SWD.FEATURES = {
   'Gadgeteer':'SWADE',
   'Giant Killer':'SWADE',
   'Great Luck':'SWADE',
-  'Hard To Kill':'SWADE',
+  'Hard To Kill':
+    'Section=combat ' +
+    'Note="Ignores wound penalties on Vigor tests to avoid incapacitation or death"',
   'Harder To Kill':'SWADE',
   'Healer':'SWADE',
   'Hold The Line!':'SWADE',
@@ -401,8 +414,7 @@ SWD.FEATURES = {
   'Improved Block':'SWADE',
   'Improved Counterattack':'SWADE',
   'Improved Dodge':'Section=combat Note="Increased Dodge effects"',
-  'Improved Extraction':
-    'Section=combat Note="Raise on extraction test negates attack of all foes"',
+  'Improved Extraction':'SWADE',
   'Improved First Strike':'SWADE',
   'Improved Frenzy':'SWADE',
   'Improved Level Headed':'SWADE',
@@ -419,10 +431,9 @@ SWD.FEATURES = {
   'Investigator':
     'Section=skill ' +
     'Note="+2 Investigation/+2 Streetwise/+2 Notice (sifting for information)"',
-  'Jack-Of-All-Trades':
-    'Section=skill Note="Roll d4 on untrained smarts skills"',
+  'Jack-Of-All-Trades':'Section=skill Note="d4 on untrained Smarts skills"',
   'Killer Instinct':
-    'Section=skill Note="Can reroll 1s and wins ties on opposed tests"',
+    'Section=skill Note="May reroll 1s and wins ties on opposed tests"',
   'Leader Of Men':
     'Section=combat Note="R%{commandRange}%{in} Commanded use d10 wild die"',
   'Level Headed':'SWADE',
@@ -440,7 +451,7 @@ SWD.FEATURES = {
   'Master (%attribute)':'SWADE',
   'Master (%skill)':'SWADE',
   'McGyver':
-    'Section=skill Note="Can create improvised weapon, explosive, or tool"',
+    'Section=skill Note="May create improvised weapon, explosive, or tool"',
   'Mentalist':'SWADE',
   'Mighty Blow':'SWADE',
   'Mister Fix It':'SWADE',
@@ -448,14 +459,13 @@ SWD.FEATURES = {
     'Section=feature Note="R%{commandRange}%{in} Share bennies with commanded"',
   'Nerves Of Steel':'SWADE',
   'New Power':'Section=arcana Note="+%V Power Count"',
-  'No Mercy':'Section=combat Note="Can spend Benny to reroll damage"',
+  'No Mercy':'Section=combat Note="May spend Benny to reroll damage"',
   'Noble':
     'Section=feature,skill ' +
     'Note="Has Rich feature","+2 Charisma"',
   'Power Points':'SWADE',
   'Power Surge':
-    'Section=arcana ' +
-    'Note="Recover 2d6 Power Points when Action Card is a joker"',
+    'Section=arcana Note="Joker Action Card restores 2d6 Power Points"',
   'Professional (Agility)':'SWADE',
   'Professional (Smarts)':'SWADE',
   'Professional (Spirit)':'SWADE',
@@ -466,11 +476,12 @@ SWD.FEATURES = {
   'Quick Draw':'Section=combat Note="Draw weapon as free action"',
   'Rapid Recharge':'SWADE',
   'Rich':'SWADE',
-  'Rock And Roll':'Section=combat Note="Trade move for ignoring recoil"',
-  'Scavenger':'Section=combat Note="Recover equipment 1/encounter"',
+  'Rock And Roll':'SWADE',
+  'Scavenger':'Section=combat Note="May recover equipment 1/encounter"',
   'Scholar':'Section=skill Note="+2 on 2 chosen skills"',
   'Sidekick':'SWADE',
-  'Soul Drain':'Section=arcana Note="Spirit roll to recover Power Points"',
+  'Soul Drain':
+    'Section=arcana Note="May make Spirit roll to recover Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
@@ -501,12 +512,16 @@ SWD.FEATURES = {
   'Anemic':
     'Section=feature Note="-2 Fatigue checks (resist poison and disease)"',
   'Arrogant+':'SWADE',
-  'Bad Eyes':'Section=skill Note="Must wear corrective lenses"',
+  'Bad Eyes':
+     'Section=skill ' +
+     'Note="-2 on distant visual trait rolls and ranged attacks w/out corrective lenses"',
   'Bad Eyes+':
-    'Section=skill Note="-2 on visual trait rolls and distance attacks"',
+    'Section=skill Note="-2 on distant visual trait rolls and ranged attacks"',
   'Bad Luck+':'SWADE',
   'Big Mouth':'SWADE',
-  'Blind+':'SWADE',
+  'Blind+':
+    'Section=feature,skill ' +
+    'Note="+1 Edge Points","-6 on visual tasks, -2 on social"',
   'Bloodthirsty+':'Section=skill Note="-4 Charisma"',
   'Cautious':'SWADE',
   'Clueless+':'Section=attribute Note="-2 Smarts (common knowledge)"',
@@ -540,8 +555,11 @@ SWD.FEATURES = {
   'One Arm+':'SWADE',
   'One Eye+':
     'Section=feature,skill ' +
-    'Note="-2 on visual tasks requiring depth perception","-1 Charisma"',
-  'One Leg+':'Section=combat,skill Note="-4 Pace/Cannot run","-2 Swimming"',
+    'Note="-2 Shooting/-2 Throwing/-2 tasks requiring depth perception",' +
+         '"-1 Charisma unless missing eye is covered"',
+  'One Leg+':
+    'Section=combat,skill ' +
+    'Note="-4 Pace/Cannot run","-2 Climbing/-2 Fighting/-2 Swimming"',
   'Outsider':'Section=skill Note="-2 Charisma (other races)"',
   'Overconfident+':'SWADE',
   'Pacifist':'SWADE',
@@ -601,7 +619,7 @@ SWD.FEATURES = {
   'Multiple Limbs':
     'Section=combat Note="Extra actions w/out multi-action penalty"',
   'Natural Weapons':'Section=combat Note="Has Bite, Claws, and Tail features"',
-  'Poison':'Section=combat Note="Touch causes Mild Poison effects (Vigor neg)"',
+  'Poison':'Section=combat Note="Touch inflicts Mild Poison effects (Vigor neg)"',
   'Potent Poison':'Section=combat Note="Poison target -%V Vigor to resist"',
   'Programming':'Section=skill Note="+2 Skill Points"',
   'Racial Enemy':'Section=skill Note="-4 Charisma (racial enemy)"',
@@ -1238,13 +1256,19 @@ SWD.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWD.edgeRulesExtra = function(rules, name) {
-  if(name == 'Attractive') {
+  if(name == 'Arcane Resistance') {
+    rules.defineRule('combatNotes.arcaneResistance',
+      '', '=', '2',
+      'combatNotes.improvedArcaneResistance', '+', '2'
+    );
+  } else if(name == 'Attractive') {
     rules.defineRule('skillNotes.attractive',
       '', '=', '2',
       'skillNotes.veryAttractive', '+', '2'
     );
   } else if(name == 'Brawler') {
-    rules.defineRule('damageAdjustment.Unarmed', 'combatNotes.brawler', '+', '2');
+    rules.defineRule
+      ('damageAdjustment.Unarmed', 'combatNotes.brawler', '+', '2');
   } else if(name == 'Command') {
     rules.defineRule('commandRange',
       'features.Command', '=', '5',
@@ -1268,6 +1292,11 @@ SWD.edgeRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.extraction',
       '', '=', '"1 foe"',
       'combatNotes.improvedExtraction', '=', '"all foes"'
+    );
+  } else if(name == 'First Strike') {
+    rules.defineRule('combatNotes.firstStrike',
+      '', '=', '1',
+      'combatNotes.improvedFirstStrike', '=', '"all"'
     );
   } else if(name == 'Frenzy') {
     rules.defineRule('combatNotes.frenzy.1',
