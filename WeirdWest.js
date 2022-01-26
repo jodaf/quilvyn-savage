@@ -465,7 +465,7 @@ WeirdWest.FEATURES_ADDED = {
   'Agent':'Section=feature Note="Works for a covert government agency"',
   'Alchemy':
     'Section=arcana ' +
-    'Note="Spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
+    'Note="May spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
   'Arcane Background (Blessed)':
     'Section=arcana,feature ' +
     'Note="3 Powers/15 Power Points/Critical failure causes Fatigue",' +
@@ -475,7 +475,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="3 Powers/15 Power Points/Critical failure causes Fatigue/Power range reduced to self or touch"',
   'Arcane Background (Huckster)':
     'Section=arcana ' +
-    'Note="3 Powers/10 Power Points/Critical failure causes Fatigue/Can cast via deal with the devil"',
+    'Note="3 Powers/10 Power Points/Critical failure causes Fatigue/May cast via deal with the devil"',
   'Arcane Background (Mad Scientist)':
     'Section=arcana ' +
     'Note="2 Powers/15 Power Points/Critical failure causes malfunction"',
@@ -489,28 +489,28 @@ WeirdWest.FEATURES_ADDED = {
     'Section=skill ' +
     'Note="May reroll Riding/Mount gains +2 Pace and +1 Run step"',
   'Card Sharp':'Section=skill Note="May reroll Gambling"',
-  'Cat Eyes':'Section=feature Note="No penalty in dim or dark lighting"',
+  'Cat Eyes':'Section=feature Note="No penalty in %V lighting"',
   'Celestial Kung Fu':
     'Section=combat ' +
     'Note="+1 Edge Points (Superior Kung Fu style); use 2 styles at once"',
   "Chill O' The Grave":
     'Section=combat ' +
-    'Note="Spend benny for 3%{in} radius cold blast that makes unprepared creatures Vulnerable"',
+    'Note="May spend a benny for a 3%{in} radius cold blast that makes unprepared creatures vulnerable"',
   'Claws':SWADE.FEATURES['Claws'],
   'Damned':'Section=feature Note="Will return as Harrowed if killed"',
   "Don't Get 'im Riled!":
     'Section=combat Note="Adds wound level to damage rolls"',
-  'Duelist':'Section=combat Note="Gets two extra Hole Cards at start of duel"',
+  'Duelist':'Section=combat Note="Gets two extra hole cards at start of duel"',
   'Fan The Hammer':
      'Section=combat ' +
-     'Note="Can shoot up to 6 shots in one action at %V; 1 or 2 may hit bystander"',
-  'Fast As Lightning':'Section=combat Note="Can take 4 actions at -6 each"',
+     'Note="May shoot up to 6 shots in one action at %V; 1 or 2 may hit bystander"',
+  'Fast As Lightning':'Section=combat Note="May take 4 actions at -6 each"',
   'Fetish':'Section=skill Note="May reroll Faith"',
   'Flock':'Section=feature Note="Has 5 townsfolk followers"',
   'Gallows Humor':
     'Section=skill ' +
     'Note="May use Taunt vs. fear; Raise gives +1 Support to allies"',
-  'Ghost':'Section=feature Note="Can become incorporeal at will"',
+  'Ghost':'Section=feature Note="May become incorporeal at will"',
   'Grit':'Section=attribute Note="Reduces penalties vs. fear by 2"',
   'Guts':'Section=attribute Note="May reroll Vigor vs. fear"',
   'Harrowed':
@@ -523,15 +523,15 @@ WeirdWest.FEATURES_ADDED = {
   'High Roller':
     'Section=arcana Note="Draw %V extra cards for deal with the devil"',
   'Implacable':
-    'Section=combat Note="Can take extra wound before becoming incapacitated"',
-  'Improved Cat Eyes':'Section=feature Note="No lighting penalties"',
+    'Section=combat Note="Takes extra wound before incapacitated"',
+  'Improved Cat Eyes':'Section=feature Note="Increased Cat Eyes effects"',
   'Improved Claws':'Section=combat Note="Increased Claws damage, AP 2"',
   'Improved Fan The Hammer':
     'Section=combat Note="Increased Fan The Hammer effects"',
   'Improved High Roller':'Section=arcana Note="Increased High Roller effects"',
   "Improved Stitchin'":'Section=combat Note="Increased Stitchin\' effects"',
   'Infest':
-    'Section=arcana Note="Can summon and control insect swarm for 5 min"',
+    'Section=arcana Note="May summon and control insect swarm for 5 min"',
   'Iron Bound':'Section=feature Note="Connections with industrial science"',
   'Like An Oak':
     'Section=combat ' +
@@ -561,7 +561,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=arcana Note="+5 Power Points/May contract ghost rock fever"',
   'Quick Draw':
     'Section=combat,skill ' +
-    'Note="Gains two addition Action Cards when spending a benny",' +
+    'Note="Spending a benny gives two extra Action Cards",' +
          '"+2 Athletics (interrupt others\' action)"',
   'Ranger Promotion':
     'Section=feature ' +
@@ -576,27 +576,28 @@ WeirdWest.FEATURES_ADDED = {
     'Note="Rolls Notice-2 to detect encounters/Always alert when rolling Notice vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
   'Soul Eater':
     'Section=combat ' +
-    'Note="Can make Spirit-2 roll after inflicting unarmed wound to heal self wound"',
+    'Note="May make Spirit-2 roll after inflicting unarmed wound to heal self wound"',
   "Spirit's Favor":'Section=arcana Note="Cast chosen power as free action"',
   'Spook':
     'Section=arcana ' +
-    'Note="Target makes -2 fear check or trade Fatigue for 12%{in} radius effect"',
+    'Note="Targeted -2 fear check, suffer Fatigue for 12%{in} radius effect"',
   "Stitchin'":'Section=combat Note="Make natural healing roll 1/%V"',
   'Superior Kung Fu (Drunken Style)':
     'Section=combat Note="Trades -2 Pace for foes -2 attack"',
   'Superior Kung Fu (Eagle Claw)':
-    'Section=combat Note="Hands are heavy weapons with AP 4"',
+    'Section=combat Note="Hands become heavy weapons with AP 4"',
   'Superior Kung Fu (Mantis)':
-    'Section=combat Note="Makes foe who misses distracted or vulnerable 1/rd"',
+    'Section=combat ' +
+    'Note="Makes foe distracted or vulnerable after failed attack 1/rd"',
   'Superior Kung Fu (Monkey)':
     'Section=combat ' +
-    'Note="Gives +2 Parry, Athletics test on all adjacent foes as one action"',
+    'Note="Gives +2 Parry; may make Athletics test on all adjacent foes as one action"',
   'Superior Kung Fu (Shuai Chao)':
-    'Section=combat Note="Gives free grapple attempt after foe fails attack"',
+    'Section=combat Note="Gives free grapple attempt after failed foe attack"',
   'Superior Kung Fu (Tan Tui)':
     'Section=attribute,combat ' +
     'Note="Rise from prone costs no movement",' +
-         '"Gives +1 kick attack die 1/rd, success knocks back 1d4%{in} (Raise 1d4+2%{in})"',
+         '"Gives +1 unarmed damage die 1/rd, success knocks back 1d4%{in} (Raise 1d4+2%{in})"',
   'Superior Kung Fu (Wing Chun)':
     'Section=combat Note="Gives +1 Parry and foes -2 melee damage"',
   'Supernatural Attribute':'Section=attribute Note="+%V Attribute Points"',
@@ -606,7 +607,7 @@ WeirdWest.FEATURES_ADDED = {
   'Territorial Ranger':'Section=feature Note="Works for U.S. Marshals agency"',
   'True Believer':'Section=skill Note="May reroll Faith"',
   'True Genius':
-    'Section=arcana Note="Spend a benny to reroll madness or malfunction"',
+    'Section=arcana Note="May spend a benny to reroll madness or malfunction"',
   'True Grit':
     'Section=attribute ' +
     'Note="Ignores penalties vs. fear, may reroll fear effects"',
@@ -680,7 +681,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and additional level each sunset"',
+      '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
   'Detect Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -816,7 +817,8 @@ WeirdWest.WEAPONS = {
   'Sawed-Off Double-Barrel Shotgun':
     'Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
   'Single-Barrel Shotgun':'Damage=3d6 MinStr=4 Weight=6 Category=R Range=12',
-  'Winchester Lever-Action':'Damage=3d6 MinStr=6 Weight=6 Category=R Range=12',
+  'Winchester Lever-Action Shotgun':
+    'Damage=3d6 MinStr=6 Weight=6 Category=R Range=12',
 
   'Bola':'Damage=Str+d1 MinStr=4 Weight=1 Category=R Range=4',
   'Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
@@ -1018,6 +1020,11 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
   if(name == 'Agency Promotion') {
     rules.defineRule
       ('featureNotes.agencyPromotion', 'edges.Agency Promotion', '=', null);
+  } else if(name == 'Cat Eyes') {
+    rules.defineRule('featureNotes.catEyes',
+      '', '=', '"dim or dark"',
+      'featureNotes.improvedCatEyes', '=', '"any"'
+    );
   } else if(name == 'Celestial Kung Fu') {
     rules.defineRule('edgePoints', 'combatNotes.celestialKungFu', '+=', '1');
   } else if(name == 'Claws') {
@@ -1045,9 +1052,9 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
       "features.Stitchin'", '=', '"dy"',
       "combatNotes.improvedStitchin'", '=', '"hr"'
     );
-  } else if(name == 'Supernatural Athlete') {
-    rules.defineRule('attributeNotes.supernaturalAthlete',
-      'edges.Supernatural Athlete', '=', null
+  } else if(name == 'Supernatural Attribute') {
+    rules.defineRule('attributeNotes.supernaturalAttribute',
+      'edges.Supernatural Attribute', '=', null
     );
   } else {
     SWADE.edgeRulesExtra(rules, name);
