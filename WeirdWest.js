@@ -1196,11 +1196,6 @@ WeirdWest.ruleNotes = function() {
     '<h2>WeirdWest Quilvyn Module Notes</h2>\n' +
     'WeirdWest Quilvyn Module Version ' + WeirdWest.VERSION + '\n' +
     '\n' +
-    '<h3>Usage Notes</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '  </li>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
