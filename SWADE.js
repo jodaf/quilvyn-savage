@@ -3729,5 +3729,5 @@ SWADE.ruleNotes = function() {
     'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA\n' +
     'Pinnacle Entertainment Group.\n' +
     '</p>\n' +
-    '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://cdn-cmhfa.nitrocdn.com/sILXXMmoPZtGHchENBdSFUfGNBQKBJVN/assets/static/optimized/rev-7a1d351/wp-content/uploads/2021/04/SW_LOGO_FP_2018-300x200-1.png"/>\n';
+    '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };

@@ -1207,5 +1207,6 @@ WeirdWest.ruleNotes = function() {
     '© Pinnacle Entertainment Group.\n' +
     '</p><p>\n' +
     'Deadlands The Weird West © 2020 Pinnacle Entertainment Group.\n' +
-    '</p>\n';
+    '</p>\n' +
+    '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };
