@@ -11,14 +11,14 @@ var attributes = {
   "deity":"None", "edges.Cat Eyes":1, "edges.Chill O' The Grave":1, "edges.Claws":1, 
   "edges.Ghost":1, "edges.Harrowed":1, "edges.Hellfire":1, "edges.Implacable":1, 
   "edges.Improved Cat Eyes":1, "edges.Improved Claws":1, "edges.Improved Stitchin'":1, "edges.Infest":1, 
-  "edges.Soul Eater":1, "edges.Spook":1, "edges.Stitchin'":1, "edges.Wither":1, 
-  "focusType":"Huckster", "gender":"Female", "hindrances.Cautious":1, "hindrances.Jealous":1, 
-  "hindrances.Loyal":1, "hindrances.Wanted":1, "improvementPointsAllocation.Attribute":2, 
-  "improvementPointsAllocation.Edge":26, "name":"Edges-Harrowed", "race":"Human", "shield":"Medium Native Shield", 
+  "edges.Soul Eater":1, "edges.Spook":1, "edges.Stitchin'":1, "edges.Supernatural Attribute":1, 
+  "edges.Wither":1, "focusType":"Huckster", "gender":"Female", "hindrances.Cautious":1, 
+  "hindrances.Jealous":1, "hindrances.Loyal":1, "hindrances.Wanted":1, 
+  "improvementPointsAllocation.Edge":28, "name":"Edges-Harrowed", "race":"Human", "shield":"Medium Native Shield", 
   "skillAllocation.Fighting":1, "skillAllocation.Gambling":1, "skillAllocation.Language (English)":1, 
   "skillAllocation.Repair":3, "skillAllocation.Riding":1, "skillAllocation.Shooting":2, 
-  "skillAllocation.Survival":1, "skillAllocation.Taunt":2, "smartsAllocation":0, "spiritAllocation":1, 
-  "strengthAllocation":2, "vigorAllocation":1, "weapons.Sawed-Off Double-Barrel Shotgun":1, 
+  "skillAllocation.Survival":1, "skillAllocation.Taunt":2, "smartsAllocation":1, "spiritAllocation":1, 
+  "strengthAllocation":1, "vigorAllocation":1, "weapons.Sawed-Off Double-Barrel Shotgun":1, 
   "weapons.Tomahawk":1, "weapons.Winchester '73":1
 };
   </script>
@@ -39,14 +39,20 @@ var attributes = {
     <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d8</td>
-      <td><b>Smarts</b>: d4</td>
+      <td><b>Smarts</b>: d6</td>
       <td><b>Spirit</b>: d6</td>
-      <td><b>Strength</b>: d8</td>
+      <td><b>Strength</b>: d6</td>
       <td><b>Vigor</b>: d6</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Attribute Notes</b>: Harrowed: +2 Spirit (Shaken recovery)/Immune to disease and poison</td>
+    <td><b>Attribute Notes</b>:     <table id="AttributeNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Supernatural Attribute: +1 Attribute Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Harrowed: +2 Spirit (Shaken recovery)/Immune to disease and poison</td>
+    </tr></table>
+</td>
   </tr><tr style="text-align:center">
     <td><b>Skills</b> (12 Points):</td>
   </tr><tr style="text-align:center">
@@ -65,7 +71,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Fighting: (agi) d4</td>
       <td>Repair: (sma) d6</td>
-      <td>Taunt: (sma) d4</td>
+      <td>Taunt: (sma) d6</td>
     </tr><tr style="text-align:left">
       <td>Gambling: (sma) d4</td>
       <td>Riding: (agi) d4-2</td>
@@ -90,7 +96,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 12</td>
       <td><b>Improvement Points</b>: 28</td>
-      <td><b>Improvement Points Allocation</b>: Attribute: 2; Edge: 26</td>
+      <td><b>Improvement Points Allocation</b>: Edge: 28</td>
     </tr></table>
 </td>
   </tr></table>
@@ -100,7 +106,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (15 points): Cat Eyes; Chill O' The Grave; Claws; Ghost; Harrowed; Hellfire; Implacable; Improved Cat Eyes; Improved Claws; Improved Stitchin'; Infest; Soul Eater; Spook; Stitchin'; Wither</td>
+      <td><b>Edges</b> (16 points): Cat Eyes; Chill O' The Grave; Claws; Ghost; Harrowed; Hellfire; Implacable; Improved Cat Eyes; Improved Claws; Improved Stitchin'; Infest; Soul Eater; Spook; Stitchin'; Supernatural Attribute; Wither</td>
       <td><b>Hindrances</b>: Cautious; Jealous; Loyal; Wanted</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
@@ -112,13 +118,13 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Harrowed: +1 Edge Points (Harrowed edge)/Ignores 1 point of wound penalty/Doesn't breathe or drink/Smells of decay/May let the devil out for +6 trait and damage for 5 rd</i></td>
     </tr><tr style="text-align:center">
-      <td>Cat Eyes: No penalty in dim or dark lighting</td>
+      <td><i>Improved Cat Eyes: Increased Cat Eyes effects</i></td>
+    </tr><tr style="text-align:center">
+      <td>Cat Eyes: No penalty in any lighting</td>
     </tr><tr style="text-align:center">
       <td>Cautious: Requires detailed plan before acting</td>
     </tr><tr style="text-align:center">
-      <td>Ghost: Can become incorporeal at will</td>
-    </tr><tr style="text-align:center">
-      <td>Improved Cat Eyes: No lighting penalties</td>
+      <td>Ghost: May become incorporeal at will</td>
     </tr><tr style="text-align:center">
       <td>Jealous: Has focused envy about one topic or person</td>
     </tr><tr style="text-align:center">
@@ -147,13 +153,13 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Armor</b>: Heavy Armored Vest</td>
         <td><b>Shield</b>: Medium Native Shield</td>
-        <td><b>Weapons</b>: Claws: 1 (d8+d8); Sawed-Off Double-Barrel Shotgun: 1 (3d6 R5"); Tomahawk: 1 (d8+d6 R3"); Unarmed: 1; Winchester '73: 1 (2d8-1 R24")</td>
+        <td><b>Weapons</b>: Claws: 1 (d6+d8); Sawed-Off Double-Barrel Shotgun: 1 (3d6 R5"); Tomahawk: 1 (d6+d6 R3"); Unarmed: 1; Winchester '73: 1 (2d8-1 R24")</td>
       </tr></table>
 </td>
     </tr><tr style="text-align:center">
       <td><b>Combat Notes</b>:       <table id="CombatNotes" style="width:100%">
       <tr style="text-align:center">
-        <td><i>Claws: Claws are a Natural Weapon</i></td>
+        <td><i>Claws: Claws are a natural weapon</i></td>
       </tr><tr style="text-align:center">
         <td><i>Fighting Parry Modifier: +2 Parry</i></td>
       </tr><tr style="text-align:center">
@@ -165,11 +171,11 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +3</i></td>
       </tr><tr style="text-align:center">
-        <td>Chill O'The Grave: Spend benny for 3" radius cold blast that makes unprepared creatures Vulnerable</td>
+        <td>Chill O'The Grave: May spend a benny for a 3" radius cold blast that makes unprepared creatures vulnerable</td>
       </tr><tr style="text-align:center">
-        <td>Implacable: Can take extra wound before becoming incapacitated</td>
+        <td>Implacable: Takes extra wound before incapacitated</td>
       </tr><tr style="text-align:center">
-        <td>Soul Eater: Can make Spirit-2 roll after inflicting unarmed wound to heal self wound</td>
+        <td>Soul Eater: May make Spirit-2 roll after inflicting unarmed wound to heal self wound</td>
       </tr><tr style="text-align:center">
         <td>Stitchin': Make natural healing roll 1/hr</td>
       </tr></table>
@@ -185,9 +191,9 @@ var attributes = {
     <tr style="text-align:center">
       <td>Hellfire: 9" cone inflicts 3d6 damage 1/rd</td>
     </tr><tr style="text-align:center">
-      <td>Infest: Can summon and control insect swarm for 5 min</td>
+      <td>Infest: May summon and control insect swarm for 5 min</td>
     </tr><tr style="text-align:center">
-      <td>Spook: Target makes -2 fear check or trade Fatigue for 12" radius effect</td>
+      <td>Spook: Targeted -2 fear check, suffer Fatigue for 12" radius effect</td>
     </tr><tr style="text-align:center">
       <td>Wither: Touch reduces target strength (Raise strength and vigor) 1 step for 1 hr</td>
     </tr></table>
