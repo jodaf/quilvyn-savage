@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.1.0';
+SWADE.VERSION = '2.3.1.1';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -3452,7 +3452,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var allArcanas = this.getChoices('arcanas');
     var allowedPowers = null;
     for(attr in allArcanas) {
-      if(attributes['features.Arcane Background (' + attr + ')'] != null &&
+      if(attrs['features.Arcane Background (' + attr + ')'] != null &&
          allArcanas[attr].includes('Powers=')) {
         allowedPowers = {};
         QuilvynUtils.getAttrValueArray(allArcanas[attr], 'Powers')
@@ -3497,11 +3497,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
+      if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
+        continue;
       if(conceptSkills.length > 0 && QuilvynUtils.random(0, 9) < 6)
         attr =
           conceptSkills[QuilvynUtils.random(0, conceptSkills.length - 1)];
-      if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
-        continue;
       if(attr.startsWith('Knowledge')) {
         if(knowledgePicked && attr != knowledgePicked)
           continue;
