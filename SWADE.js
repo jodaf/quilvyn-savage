@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.1.1';
+SWADE.VERSION = '2.3.1.2';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -2900,6 +2900,9 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
               {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
               {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
+              {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
+              {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
+              {name: 'Concept', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Speed', within: 'Section 1', separator:''},
               {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b> %V'},
               {name: 'Run', within: 'Speed', format: '/+d%V'},
