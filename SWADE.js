@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.1.2';
+SWADE.VERSION = '2.3.1.3';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -3197,11 +3197,11 @@ SWADE.initialEditorElements = function() {
     ['player', 'Player', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
     ['improvementPointsAllocation', 'Improvement Points Allocation', 'bag', improvementTypes],
-    ['edges', 'Edges', 'bag', 'edges'],
+    ['edges', 'Edges', 'setbag', 'edges'],
     ['hindrances', 'Hindrances', 'set', 'hindrances'],
     ['armor', 'Armor', 'set', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
-    ['weapons', 'Weapons', 'bag', 'weapons'],
+    ['weapons', 'Weapons', 'setbag', 'weapons'],
     ['powers', 'Powers', 'fset', 'powers'],
     ['notes', 'Notes', 'textarea', [40,10]],
     ['hiddenNotes', 'Hidden Notes', 'textarea', [40,10]]
