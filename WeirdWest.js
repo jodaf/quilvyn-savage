@@ -66,7 +66,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.1.0';
+WeirdWest.VERSION = '2.3.2.0';
 
 WeirdWest.ARCANAS = {
   'Blessed':

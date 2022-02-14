@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.1.3';
+SWADE.VERSION = '2.3.2.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
