@@ -461,27 +461,30 @@ delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.FEATURES_ADDED = {
   // Edges
   'Agency Promotion':
-    'Section=feature Note="Has moved up %V ranks in The Agency hierarchy"',
-  'Agent':'Section=feature Note="Works for a covert government agency"',
+    'Section=feature ' +
+    'Note="Has moved up %V ranks in The Agency hierarchy, can request bigger favors"',
+  'Agent':
+    'Section=feature ' +
+    'Note="Works for and receives favors from a covert government agency"',
   'Alchemy':
     'Section=arcana ' +
     'Note="May spend 3 PP to create 3 Snake Oil, Focusing, and/or Peptonic potions lasting 1 dy"',
   'Arcane Background (Blessed)':
     'Section=arcana,feature ' +
-    'Note="3 Powers/15 Power Points/Critical failure causes Fatigue",' +
+    'Note="3 Powers/15 Power Points/Critical failure causes fatigue",' +
          '"Violating core beliefs inflicts -2 Faith for 1 wk; major sins remove powers"',
   'Arcane Background (Chi Master)':
     'Section=arcana ' +
-    'Note="3 Powers/15 Power Points/Critical failure causes Fatigue/Power range reduced to self or touch"',
+    'Note="3 Powers/15 Power Points/Critical failure causes fatigue/Power range reduced to self or touch"',
   'Arcane Background (Huckster)':
     'Section=arcana ' +
-    'Note="3 Powers/10 Power Points/Critical failure causes Fatigue/May cast via deal with the devil"',
+    'Note="3 Powers/10 Power Points/Critical failure causes fatigue/May cast via deal with the devil"',
   'Arcane Background (Mad Scientist)':
     'Section=arcana ' +
     'Note="2 Powers/15 Power Points/Critical failure causes malfunction"',
   'Arcane Background (Shaman)':
     'Section=arcana ' +
-    'Note="2 Powers/15 Power Points/Critical failure causes Fatigue"',
+    'Note="2 Powers/15 Power Points/Critical failure causes fatigue"',
   'Behold A Pale Horse':
     'Section=feature ' +
     'Note="Mount is a Wild Card with Fearless and Danger Sense features"',
@@ -568,7 +571,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="Has moved up %V ranks in Territorial Ranger hierarchy"',
   'Reputation':
     'Section=skill ' +
-    'Note="+2 Intimidation or Persuasion with those who have heard stories"',
+    'Note="+2 Intimidation (bad reputation) or may reroll Persuasion (good reputation) with those who have heard stories"',
   'Right Hand Of The Devil':
     'Section=combat Note="Trademark weapon does extra die of damage"',
   'Scout':
@@ -576,11 +579,11 @@ WeirdWest.FEATURES_ADDED = {
     'Note="Rolls Notice-2 to detect encounters/Always alert when rolling Notice vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
   'Soul Eater':
     'Section=combat ' +
-    'Note="May make Spirit-2 roll after inflicting unarmed wound to heal self wound"',
+    'Note="May make Spirit-2 roll after inflicting unarmed wound to heal self wound or reduce fatigue"',
   "Spirit's Favor":'Section=arcana Note="Cast chosen power as free action"',
   'Spook':
     'Section=arcana ' +
-    'Note="Targeted -2 fear check, suffer Fatigue for 12%{in} radius effect"',
+    'Note="Targeted -2 fear check, suffer fatigue for 12%{in} radius effect"',
   "Stitchin'":'Section=combat Note="Make natural healing roll 1/%V"',
   'Superior Kung Fu (Drunken Style)':
     'Section=combat Note="Trades -2 Pace for foes -2 attack"',
@@ -597,7 +600,7 @@ WeirdWest.FEATURES_ADDED = {
   'Superior Kung Fu (Tan Tui)':
     'Section=attribute,combat ' +
     'Note="Rise from prone costs no movement",' +
-         '"Gives +1 unarmed damage die 1/rd, success knocks back 1d4%{in} (Raise 1d4+2%{in})"',
+         '"Gives +1 unarmed damage step 1/rd, success knocks back 1d4%{in} (Raise 1d4+2%{in})"',
   'Superior Kung Fu (Wing Chun)':
     'Section=combat Note="Gives +1 Parry and foes -2 melee damage"',
   'Supernatural Attribute':'Section=attribute Note="+%V Attribute Points"',
@@ -612,7 +615,8 @@ WeirdWest.FEATURES_ADDED = {
     'Section=attribute ' +
     'Note="Ignores penalties vs. fear, may reroll fear effects"',
   "Veteran O' The Weird West":
-     'Section=attribute,feature Note="+4 Advances","Has additional hindrance"',
+     'Section=description,feature ' +
+     'Note="+4 Advances","Has additional hindrance"',
   'Whateley Blood':
     'Section=arcana,skill ' +
     'Note="Self-fatigue gives 5 power points, self-wound 10","-1 Persuasion"',
@@ -622,9 +626,9 @@ WeirdWest.FEATURES_ADDED = {
   // Hindrances
   "Ailin'":
     'Section=attribute ' +
-    'Note="-1 vs. Fatigue; critical failure inflicts Ailin\'+"',
+    'Note="-1 vs. fatigue; critical failure inflicts Ailin\'+"',
   "Ailin'+":
-    'Section=attribute Note="-2 vs. Fatigue; critical failure inflicts death"',
+    'Section=attribute Note="-2 vs. fatigue; critical failure inflicts death"',
   'Cursed+':'Section=feature Note="GM gains +1 Benny each session"',
   "Grim Servant O' Death+":
     'Section=combat ' +
@@ -720,12 +724,12 @@ WeirdWest.POWERS_ADDED = {
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=smarts ' +
-    'Description="Create 1 lb item for 5 rd (Raise 5 min)"',
+    'Description="Creates 1 lb item for 5 rd (Raise 5 min)"',
   'Wilderness Walk':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=self ' +
-    'Description="Triple speed and untraceable in wilderness for 1 hr"'
+    'Description="Gives triple speed and untraceable in wilderness for 1 hr"'
 };
 WeirdWest.POWERS = Object.assign({}, SWADE.POWERS, WeirdWest.POWERS_ADDED);
 WeirdWest.RACES = {
@@ -1054,7 +1058,7 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Supernatural Attribute') {
     rules.defineRule('attributeNotes.supernaturalAttribute',
-      'edges.Supernatural Attribute', '=', null
+      'edges.Supernatural Attribute', '=', 'source * 2'
     );
   } else {
     SWADE.edgeRulesExtra(rules, name);
@@ -1202,9 +1206,12 @@ WeirdWest.ruleNotes = function() {
     'owned by their respective copyright holders. This application makes no\n' +
     'claim against any properties.\n' +
     '</p><p>\n' +
-    'Quilvyn is not approved or endorsed by Pinnacle Entertainment Group.\n' +
-    'Portions of the materials used are property of Pinnacle Entertainment Group.\n' +
-    '© Pinnacle Entertainment Group.\n' +
+    'This game references the Savage Worlds game system, available from\n' +
+    'Pinnacle Entertainment Group at www.peginc.com. Savage Worlds and all\n' +
+    'associated logos and trademarks are copyrights of Pinnacle\n' +
+    'Entertainment Group. Used with permission. Pinnacle makes no\n' +
+    'representation or warranty as to the quality, viability, or\n' +
+    'suitability for purpose of this product.\n' +
     '</p><p>\n' +
     'Deadlands The Weird West © 2020 Pinnacle Entertainment Group.\n' +
     '</p>\n' +
