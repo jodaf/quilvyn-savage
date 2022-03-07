@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.0';
+SWADE.VERSION = '2.3.2.1';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -2571,7 +2571,7 @@ SWADE.powerRules = function(
     range =
       'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase();
   else
-    range = 'R%{' + range + '}%{in}';
+    range = 'R%{' + range + '}"';
   // Not presently including advances in power description
   rules.defineChoice
     ('notes', 'powers.' + name + ':(' + powerPoints + ' PP) ' + range + ' ' + description);
