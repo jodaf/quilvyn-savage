@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.0';
+SWD.VERSION = '2.3.2.1';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -1094,6 +1094,7 @@ SWD.talentRules = function(
 ) {
   SWADE.talentRules
     (rules, edges, features, goodies, hindrances, languages, skills);
+  rules.defineRule('skillPoints', '', '=', '15');
   rules.defineChoice
     ('notes', 'skillNotes.charisma:%V Persuasion/%V Streetwise');
   rules.defineRule('charisma', 'advances', '=', '0');
