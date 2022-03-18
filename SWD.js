@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.1';
+SWD.VERSION = '2.3.2.2';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -210,7 +210,6 @@ SWD.EDGES_CHANGES = {
       '"smarts >= 8",' +
       '"skills.Repair >= 8",' +
       '"skills.Weird Science >= 8"',
-      // TODO two science knowledge skills >= 6
   'Holy/Unholy Warrior':
     'Type=professional ' +
     'Require=' +
@@ -1526,6 +1525,13 @@ SWD.ruleNotes = function() {
     '<h2>SWD Quilvyn Module Notes</h2>\n' +
     'SWD Quilvyn Module Version ' + SWD.VERSION + '\n' +
     '\n' +
+    '<h3>Usage Notes</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '    Quilvyn does not note characters with the Gadgeteer edge who do\n' +
+    '    not have the required d6+ in two scientific Knowledge skills.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
