@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.1';
+SWADE.VERSION = '2.3.2.2';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -3351,8 +3351,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
           conceptAttributes[QuilvynUtils.random(0, conceptAttributes.length-1)];
       if(QuilvynUtils.random(0, 9) < 3)
         attr = 'vigor';
-      // TODO Endless loop if attributePoints > 20
-      if(attributes[attr + 'Allocation'] < 4) {
+      if(attributes[attr + 'Allocation'] < 4 || attrs.attributePoints > 20) {
         attributes[attr + 'Allocation']++;
         howMany--;
       }
