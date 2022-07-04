@@ -220,8 +220,8 @@ SWADE.EDGES = {
   'Brave':'Type=background Require="spirit >= 6"',
   'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
   'Brute':'Type=background Require="strength >= 6","vigor >= 6"',
-  'Charismatic':'Type=background Require="spirit >= 6"',
-  'Elan':'Type=background Require="spirit >= 6"',
+  'Charismatic':'Type=background Require="spirit >= 8"',
+  'Elan':'Type=background Require="spirit >= 8"',
   'Fame':'Type=background',
   'Famous':'Type=background Require="advances >= 4","features.Fame"',
   'Fast Healer':'Type=background Require="vigor >= 8"',
@@ -238,7 +238,7 @@ SWADE.EDGES = {
   'Brawler':'Type=combat Require="strength >= 8","vigor >= 8"',
   'Bruiser':'Type=combat Require="advances >= 4","features.Brawler"',
   'Calculating':'Type=combat Require="smarts >= 8"',
-  'Combat Reflexes':'Type=combat Require="advances >= 8"',
+  'Combat Reflexes':'Type=combat Require="advances >= 4"',
   'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Counterattack':
     'Type=combat Require="advances >= 8","features.Counterattack"',
@@ -370,7 +370,7 @@ SWADE.EDGES = {
     'Type=professional ' +
     'Require="agility >= 8","skills.Fighting >= 6","skills.Stealth >= 8"',
   'Investigator':
-    'Type=professional Require="smarts >= 6","skills.Research >= 8"',
+    'Type=professional Require="smarts >= 8","skills.Research >= 8"',
   'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
   'McGyver':
     'Type=professional ' +
