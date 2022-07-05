@@ -452,7 +452,29 @@ PF4SW.FEATURES_ADDED = {
   'Wild Shape':'Section=feature Note="FILL"',
   'Wizard':'Section=feature Note="FILL"',
   // Hindrances
-  'Timid+':SWADE.FEATURES['Yellow+']
+  'Timid+':SWADE.FEATURES['Yellow+'],
+  // Races
+  'Adaptability':'Section=feature Note="FILL"',
+  'Darkvision':'Section=skill Note="No illumination penalties up to 10\\""',
+  'Elven Magic':'Section=save Note="May reroll vs. powers"',
+  'Flexibility':'Section=ability Note="+1 step in choice of ability"',
+  'Gnome Magic':
+    'Section=magic ' +
+    'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telkinesis</i>/1 Power Point"',
+  'Intelligence':'Section=ability Note="+1 Smarts step"',
+  'Intimidating':'Section=feature Note="+1 Intimidation step"',
+  'Iron Constitution':'Section=save Note="+1 vs. poison/+1 vs. powers"',
+  'Lucky':'Section=feature Note="+1 Benny each session"',
+  'Obsessive':'Section=skill Note="d4 in choice of Smarts skill"',
+  'Orc Ferocity':'Section=feature Note="FILL"',
+  'Slender':'Section=ability,combat Note="-1 Vigor","-1 Toughness"',
+  'Stonecunning':
+    'Section=skill ' +
+    'Note="Automatic Notice+2 to note unusual stonework within 10\'"',
+  'Sure-Footed':'Section=skill Note="+1 Athletics step"',
+  'Tough':
+    'Section=attribute ' +
+    'Note="+1 Vigor step/+1 Strength step (encumbrance and equipment use)"',
 };
 PF4SW.FEATURES =
   Object.assign({}, SWADE.FEATURES, PF4SW.FEATURES_ADDED);
@@ -627,13 +649,14 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
-  else if(type == 'Race')
+  else if(type == 'Race') {
     PF4SW.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
-  else if(type == 'Shield')
+    PF4SW.raceRulesExtra(rules, name);
+  } else if(type == 'Shield')
     PF4SW.shieldRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Parry'),
       QuilvynUtils.getAttrValue(attrs, 'Cover'),
@@ -839,6 +862,16 @@ PF4SW.powerRules = function(
 PF4SW.raceRules = function(rules, name, requires, features, languages) {
   SWADE.raceRules(rules, name, requires, features, languages);
   // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with race #name# that cannot be
+ * derived directly from the attributes passed to raceRules.
+ */
+PF4SW.raceRulesExtra = function(rules, name) {
+  if(name == 'Gnome') {
+    rules.defineRule('powerPoints', 'magicRules.gnomeMagic', '+=', '1');
+  }
 };
 
 /*
