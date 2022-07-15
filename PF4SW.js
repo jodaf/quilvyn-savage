@@ -181,12 +181,34 @@ delete PF4SW.CONCEPTS['Martial Artist'];
 delete PF4SW.CONCEPTS['Psionicist'];
 delete PF4SW.CONCEPTS['Weird Scientist'];
 PF4SW.DEITIES = {
+  'Abadar':'Alignment=Neutral Domain=Earth,Nobility,Protection,Travel',
+  'Asmodeus':'Alignment=Evil Domain=Evil,Fire,Magic,Trickery',
+  'Calistria':'Alignment=Neutral Domain=Knowledge,Luck,Trickery',
+  'Cayden Cailean':'Alignment=Good Domain=Good,Strength,Travel',
+  'Desna':'Alignment=Good Domain=Good,Luck,Travel',
+  'Erastil':'Alignment=Good Domain=Animal,Community,Good,Plant',
+  'Gorum':'Alignment=Neutral Domain=Destruction,Glory,Strength,War',
+  'Gozreh':'Alignment=Neutral Domain=Air,Animal,Plant,Water,Weather',
+  'Iomedae':'Alignment=Good Domain=Glory,Good,Sun,War',
+  'Irori':'Alignment=Neutral Domain=Healing,Knowledge,Run,Strength',
+  'Lamashtu':'Alignment=Evil Domain=Evil,Madness,Strength,Trickery',
+  'Nethys':
+    'Alignment=Neutral Domain=Destruction,Knowledge,Magic,Protection,Rune',
   'None':'',
+  'Norgorber':'Alignment=Evil Domain=Death,Evil,Knowledge,Trickery',
+  'Pharasma':'Alignment=Neutral Domain=Death,Healing,Knowledge,Water',
+  'Rovagug':'Alignment=Evil Domain=Destruction,Evil,War,Weather',
+  'Sarenrae':'Alignment=Good Domain=Fire,Glory,Good,Healing,Sun',
+  'Shelyn':'Alignment=Good Domain=Air,Good,Luck,Protection',
+  'Torag':'Alignment=Good Domain=Earth,Good,Protection',
+  'Urgathoa':'Alignment=Evil Domain=Death,Evil,Magic,Strength,War',
+  'Zon-Kuthon':'Alignment=Evil Domain=Death,Destruction,Evil'
 };
 PF4SW.EDGES_ADDED = {
   // Class
   'Barbarian':'Type=class Require="strength >= 6","vigor >= 6"',
-  'Powerful Blow':'Type=class Require="advances >= 4",features.Barbarian',
+  'Powerful Blow':
+    'Type=class,Barbarian Require="advances >= 4",features.Barbarian',
   'Intimidating Glare':'Type=class Require="advances >= 8",features.Barbarian',
   'Strength Surge':'Type=class Require="advances >= 12",features.Barbarian',
   'Bard':'Type=class Require="spirit >= 6","skills.Common Knowledge >= 6"',
@@ -372,16 +394,22 @@ PF4SW.FEATURES_ADDED = {
   'Arcane Archer II':'Section=feature Note="FILL"',
   'Arcane Archer III':'Section=feature Note="FILL"',
   'Arcane Archer':'Section=feature Note="FILL"',
-  'Arcane Armor':'Section=feature Note="FILL"',
+  'Arcane Armor':'Section=magic Note="May cast in armor"',
   'Arcane Mastery':'Section=feature Note="FILL"',
   'Arcane Mastery':'Section=feature Note="FILL"',
   'Arcane Trickster II':'Section=feature Note="FILL"',
   'Arcane Trickster III':'Section=feature Note="FILL"',
   'Arcane Trickster':'Section=feature Note="FILL"',
+  'Armor Restriction (Medium)':
+    'Section=ability,skill ' +
+    'Note="-4 Ability (heavy armor or shield)",' +
+         '"-4 Ability-based skills (heavy armor or shield)"',
   'Assassin II':'Section=feature Note="FILL"',
   'Assassin III':'Section=feature Note="FILL"',
   'Assassin':'Section=feature Note="FILL"',
-  'Barbarian':'Section=feature Note="FILL"',
+  'Barbarian':
+    'Section=feature ' +
+    'Note="Has Armor Restriction (Medium), Fast, and Rage features"',
   'Bard':'Section=feature Note="FILL"',
   'Born In The Saddle':'Section=feature Note="FILL"',
   'Cleric':'Section=feature Note="FILL"',
@@ -402,18 +430,27 @@ PF4SW.FEATURES_ADDED = {
   'Eldritch Knight II':'Section=feature Note="FILL"',
   'Eldritch Knight III':'Section=feature Note="FILL"',
   'Eldritch Knight':'Section=feature Note="FILL"',
+  'Enraged':
+    'Section=feature ' +
+    'Note="Ignores 2 points of wound penalties and all fatigue"',
+  'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':'Section=feature Note="FILL"',
   'Favored Powers (Druid)':'Section=feature Note="FILL"',
   'Favored Powers (Sorcerer)':'Section=feature Note="FILL"',
   'Favored Powers (Wizard)':'Section=feature Note="FILL"',
   'Fighter':'Section=feature Note="FILL"',
   'Fix It':SWADE.FEATURES['Mister Fix It'],
-  'Formation Fighter':'Section=feature Note="FILL"',
+  'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
+  'Fury':
+    'Section=combat ' +
+    'Note="+1 Strength step; every attack must be a wild attack"',
   'Great Ki':'Section=feature Note="FILL"',
   'Improved Martial Flexibility':'Section=feature Note="FILL"',
   'Improved Rapid Shot':SWADE.FEATURES['Improved Rapid Fire'],
   'Inspire Heroics':'Section=feature Note="FILL"',
-  'Intimidating Glare':'Section=feature Note="FILL"',
+  'Intimidating Glare':
+    'Section=combat ' +
+    'Note="May take free Intimidation action when Action card is jack or better"',
   'Loremaster II':'Section=feature Note="FILL"',
   'Loremaster III':'Section=feature Note="FILL"',
   'Loremaster':'Section=feature Note="FILL"',
@@ -433,17 +470,23 @@ PF4SW.FEATURES_ADDED = {
   'Pathfinder Chronicler II':'Section=feature Note="FILL"',
   'Pathfinder Chronicler III':'Section=feature Note="FILL"',
   'Pathfinder Chronicler':'Section=feature Note="FILL"',
-  'Powerful Blow':'Section=feature Note="FILL"',
+  'Powerful Blow':'Section=combat Note="Wild attacks inflict +4 damage"',
   'Quarry':'Section=feature Note="FILL"',
+  'Rage':
+    'Section=combat ' +
+    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or Wounded (Smarts neg), afterwards fatigued until 1 hr rest"',
   'Ranger':'Section=feature Note="FILL"',
-  'Rapid Reload':'Section=feature Note="FILL"',
+  'Rapid Reload':
+    'Section=combat Note="Reduces reload value of chosen ranged weapon by 1"',
   'Rapid Shot':SWADE.FEATURES['Rapid Fire'],
+  'Reckless Abandon':
+    'Section=combat Note="Critical failure hits random target or self"',
   'Rogue':'Section=feature Note="FILL"',
   'Shadowdancer II':'Section=feature Note="FILL"',
   'Shadowdancer III':'Section=feature Note="FILL"',
   'Shadowdancer':'Section=feature Note="FILL"',
   'Sorcerer':'Section=feature Note="FILL"',
-  'Strength Surge':'Section=feature Note="FILL"',
+  'Strength Surge':'Section=combat Note="Rage increases Strength step by 2"',
   'Trap Sense':'Section=feature Note="FILL"',
   'Troubador':'Section=feature Note="FILL"',
   'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
@@ -454,10 +497,11 @@ PF4SW.FEATURES_ADDED = {
   // Hindrances
   'Timid+':SWADE.FEATURES['Yellow+'],
   // Races
-  'Adaptability':'Section=feature Note="FILL"',
+  'Adaptability':
+    'Section=ability,feature Note="+1 Ability Points","+1 Edge Points"',
   'Darkvision':'Section=skill Note="No illumination penalties up to 10\\""',
   'Elven Magic':'Section=save Note="May reroll vs. powers"',
-  'Flexibility':'Section=ability Note="+1 step in choice of ability"',
+  'Flexibility':'Section=ability Note="+1 Ability Points"',
   'Gnome Magic':
     'Section=magic ' +
     'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telkinesis</i>/1 Power Point"',
@@ -742,47 +786,12 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
-  if(name == 'Agency Promotion') {
-    rules.defineRule
-      ('featureNotes.agencyPromotion', 'edges.Agency Promotion', '=', null);
-  } else if(name == 'Cat Eyes') {
-    rules.defineRule('featureNotes.catEyes',
-      '', '=', '"dim or dark"',
-      'featureNotes.improvedCatEyes', '=', '"any"'
+  if(name == 'Barbarian') {
+    rules.defineRule('features.Armor Restriction (Medium)',
+      'featureNotes.barbarian', '=', '1'
     );
-  } else if(name == 'Celestial Kung Fu') {
-    rules.defineRule('edgePoints', 'combatNotes.celestialKungFu', '+=', '1');
-  } else if(name == 'Claws') {
-    rules.defineRule('damageStep.Claws',
-      'combatNotes.claws', '+=', '2',
-      'combatNotes.improvedClaws', '+', '1'
-    );
-  } else if(name == 'Fan The Hammer') {
-    rules.defineRule('combatNotes.fanTheHammer',
-      '', '=', '-4',
-      'combatNotes.improvedFanTheHammer', '+', '2'
-    );
-  } else if(name == 'Harrowed') {
-    rules.defineRule('edgePoints', 'featureNotes.harrowed', '+=', '1');
-  } else if(name == 'High Roller') {
-    rules.defineRule('powerNotes.highRoller',
-      '', '=', '1',
-      'powerNotes.improvedHighRoller', '+', '1'
-    );
-  } else if(name == 'Ranger Promotion') {
-    rules.defineRule
-      ('featureRules.rangerPromotion', 'edges.Ranger Promotion', '=', null);
-  } else if(name == "Stitchin'") {
-    rules.defineRule("combatNotes.stitchin'",
-      "features.Stitchin'", '=', '"dy"',
-      "combatNotes.improvedStitchin'", '=', '"hr"'
-    );
-  } else if(name == 'Supernatural Attribute') {
-    rules.defineRule('attributeNotes.supernaturalAttribute',
-      'edges.Supernatural Attribute', '=', 'source * 2'
-    );
-  } else {
-    SWADE.edgeRulesExtra(rules, name);
+    rules.defineRule('features.Fast', 'featureNotes.barbarian', '=', '1');
+    rules.defineRule('features.Rage', 'featureNotes.barbarian', '=', '1');
   }
 };
 
