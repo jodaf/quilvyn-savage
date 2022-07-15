@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.2';
+SWADE.VERSION = '2.3.2.3';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -920,7 +920,7 @@ SWADE.FEATURES = {
   'Infravision':
     'Section=combat ' +
     'Note="Half penalties when attacking warm invisible targets"',
-  'Keen Senses (Avion)':'Section=skill Note="+1 Notice step"',
+  'Keen Senses':'Section=skill Note="+1 Notice step"',
   'Keen Senses (Saurian)':'Section=feature Note="Alertness edge"',
   'Leaper':
     'Section=combat,skill ' +
@@ -965,14 +965,26 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
     'Section=attribute Note="%V Agility step"',
+  'Attribute Points':
+    'Pattern="([-+]\\d+)\\s+attribute\\s+points|attribute\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=attributePoints ' +
+    'Section=attribute Note="%V Attribute Points"',
   'Cover':
     'Pattern="([-+]\\d+)\\s+cover(?:$|\\s+$|\\s+[^d])|cover\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=cover ' +
     'Section=combat Note="%V Cover"',
+  'Edge Points':
+    'Pattern="([-+]\\d+)\\s+edge\\s+points|edge\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=edgePoints ' +
+    'Section=feature Note="%V Edge Points"',
   'Improvement Points':
-    'Pattern="([-+]\\d+)\\s+improvement\s+points|improvement\s+points\\s+([-+]\\d+)" ' +
+    'Pattern="([-+]\\d+)\\s+improvement\\s+points|improvement\\s+points\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=improvementPoints ' +
@@ -1013,6 +1025,12 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=runStep ' +
     'Section=combat Note="%V Run step"',
+  'Skill Points':
+    'Pattern="([-+]\\d+)\\s+skill\\s+points|skill\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=skillPoints ' +
+    'Section=skill Note="%V Skill Points"',
   'Smarts':
     'Pattern="([-+]\\d+)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1457,7 +1475,7 @@ SWADE.RACES = {
     'Languages=Aquarian',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses (Avion)","Reduced Pace" ' +
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
     'Languages=Avion',
   'Dwarf':
     'Features=' +
