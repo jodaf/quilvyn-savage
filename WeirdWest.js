@@ -66,7 +66,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.2.0';
+WeirdWest.VERSION = '2.3.2.1';
 
 WeirdWest.ARCANAS = {
   'Blessed':
@@ -121,11 +121,11 @@ WeirdWest.ARCANAS = {
       '"Warrior\'s Gift","Wilderness Walk"'
 };
 WeirdWest.ARMORS = {
-  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'None':'Area=Body Armor=0 MinStr=0 Weight=0',
   'Chaps':'Area=Legs Armor=1 MinStr=4 Weight=6',
   'Native Armor':'Area=Body Armor=1 MinStr=4 Weight=3',
   'Rattler Hide Chaps':'Area=Legs Armor=3 MinStr=4 Weight=4',
-  'Rattler Hide Duster':'Area=Body Armor=2 MinStr=4 Weight=4',
+  'Rattler Hide Duster':'Area=Body Armor=2 MinStr=6 Weight=4',
   "Inventor's Apron":'Area=Torso Armor=2 MinStr=4 Weight=4',
   'Light Armored Hat':'Area=Head Armor=1 MinStr=4 Weight=2',
   'Heavy Armored Hat':'Area=Head Armor=2 MinStr=4 Weight=4',

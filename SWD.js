@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.2';
+SWD.VERSION = '2.3.2.3';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -1194,7 +1194,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
     SWD.weaponRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight'),
       QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'AP'),

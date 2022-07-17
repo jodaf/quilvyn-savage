@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.2';
+SWADE.VERSION = '2.3.2.3';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -101,7 +101,7 @@ SWADE.ATTRIBUTES = {
 };
 SWADE.ARMORS = {
 
-  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'None':'Area=Body Armor=0 MinStr=0 Weight=0',
 
   'Cloth Jacket':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=5',
   'Cloth Robes':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=8',
@@ -1728,7 +1728,15 @@ SWADE.attributeRules = function(rules) {
       ('attributes', a.charAt(0).toUpperCase() + a.substring(1));
     rules.defineChoice('traits', a.charAt(0).toUpperCase() + a.substring(1));
   }
+  rules.defineChoice('notes',
+    'attributeNotes.armorAgilityPenalty:-%V Agility (d%{armorMinStr} required)'
+  );
   rules.defineRule('advances', '', '^=', '0');
+  rules.defineRule
+    ('agilityModifier', 'attributeNotes.armorAgilityPenalty', '+=', '-source');
+  rules.defineRule('attributeNotes.armorAgilityPenalty',
+    'armorStrengthStepShortfall', '=', 'source > 0 ? source : null'
+  );
   rules.defineRule('improvementPoints', 'advances', '=', 'source * 2');
   // Define inch marker for use with spell descriptions and feature texts
   rules.defineRule('in', 'advances', '=' ,'\'"\'');
@@ -1782,7 +1790,18 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
   }
 
-  rules.defineChoice('notes', 'combatNotes.fightingParryModifier:+%V Parry');
+  rules.defineChoice('notes',
+    'combatNotes.armorPacePenalty:-%V Pace (d%{armorMinStr} minimum required)',
+    'combatNotes.fightingParryModifier:+%V Parry'
+  );
+  rules.defineRule('armorStrengthStepShortfall',
+    'armorMinStr', '=', 'source / 2 - 1',
+    'strengthStep', '+', '-source',
+    '', '^', '0'
+  );
+  rules.defineRule('combatNotes.armorPacePenalty',
+    'armorStrengthStepShortfall', '=', 'source > 0 ? source : null'
+  );
   rules.defineRule('combatNotes.fightingParryModifier',
     'skills.Fighting', '=', 'Math.floor(source / 2)',
     'skillModifier.Fighting', '+', 'Math.floor(source / 2)'
@@ -1790,7 +1809,10 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('combatNotes.vigorToughnessModifier', 'vigor', '=', 'source / 2');
   rules.defineRule('cover', 'shieldCover', '=', null);
-  rules.defineRule('pace', '', '=', '6');
+  rules.defineRule('pace',
+    '', '=', '6',
+    'combatNotes.armorPacePenalty', '+', '-source'
+  );
   rules.defineRule('parry',
     '', '=', '2',
     'shieldParry', '+', null,
@@ -1918,6 +1940,9 @@ SWADE.talentRules = function(
     }
   }
 
+  rules.defineChoice('notes',
+    'skillNotes.armorAgilityPenalty:-%V Agility-linked skills (d%{armorMinStr} required)'
+  );
   rules.defineRule('edgePoints',
     '', '=', '0',
     'improvementPointsAllocation.Edge', '+', 'Math.floor(source / 2)'
@@ -1927,6 +1952,9 @@ SWADE.talentRules = function(
   rules.defineRule('skillPoints',
     '', '=', '12',
     'improvementPointsAllocation.Skill', '+', 'source'
+  );
+  rules.defineRule('skillNotes.armorAgilityPenalty',
+    'armorStrengthStepShortfall', '=', 'source > 0 ? source : null'
   );
   QuilvynRules.validAllocationRules
     (rules, 'edge', 'edgePoints', 'Sum "^edges\\."');
@@ -2687,6 +2715,9 @@ SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
   rules.shieldStats.minStr[name] = minStr;
   rules.shieldStats.weight[name] = weight;
 
+  rules.defineRule(
+    'armorMinStr', 'shield', '=', QuilvynUtils.dictLit(rules.shieldStats.minStr) + '[source]'
+  );
   rules.defineRule('shieldCover',
     'shield', '=', QuilvynUtils.dictLit(rules.shieldStats.cover) + '[source]'
   );
@@ -2737,6 +2768,11 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
   rules.defineRule('skillModifier.' + name,
     'skillStep.' + name, '=', 'source<1 ? source-2 : source>5 ? source-5 : 0'
   );
+  if(attribute == 'agility') {
+    rules.defineRule('skillModifier.' + name,
+      'skillNotes.armorAgilityPenalty', '+', 'source > 0 ? -source : null'
+    );
+  }
   rules.defineChoice
     ('notes', 'skills.' + name + ':(' + attribute.substring(0, 3) + ') d%V%1');
   rules.defineRule('skills.' + name + '.1',
@@ -2772,6 +2808,8 @@ SWADE.weaponRules = function(
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
+  if(!minStr)
+    minStr = matchInfo[3].replace(/^.*d/, '') - 0;
   if(typeof minStr != 'number') {
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }
@@ -2806,8 +2844,22 @@ SWADE.weaponRules = function(
   if(strDamage)
     damage = damage.substring(4);
 
-  rules.defineChoice('notes', weaponName + ':' + format);
+  rules.defineChoice('notes',
+    weaponName + ':' + format,
+    isRanged ?
+      ('combatNotes.' + prefix + 'StrengthPenalty:-%V attack') :
+      ('combatNotes.' + prefix + 'StrengthPenalty:Lowers damage to d%V')
+  );
   rules.defineRule('attackAdjustment.' + name, weaponName, '=', '0');
+  if(isRanged)
+    rules.defineRule('attackAdjustment.' + name,
+      'combatNotes.' + prefix + 'StrengthPenalty', '+', '-source'
+    );
+  rules.defineRule('combatNotes.' + prefix + 'StrengthPenalty',
+    weaponName, '?', null,
+    'strength', '=', 'source >= ' + minStr + ' ? null : ' +
+      (isRanged ? '(' + minStr / 2 + ' - source / 2)' : 'source')
+  );
   rules.defineRule('damageAdjustment.' + name, weaponName, '=', '0');
   rules.defineRule(weaponName + '.1',
     weaponName, '=', '""',
@@ -2831,6 +2883,10 @@ SWADE.weaponRules = function(
     weaponName, '=', '"' + damage + '"',
     'damageStep.' + name, '^', '"d" + Math.max(Math.min(2+source*2, 12), 4) + (source<1 ? source - 2 : source>5 ? "+" + (source - 5) : "")'
   );
+  if(!isRanged)
+    rules.defineRule(weaponName + '.4',
+      'combatNotes.' + prefix + 'StrengthPenalty', '=', '"' + damage.replace(/d.*/, 'd') + '" + source'
+    );
   rules.defineRule(weaponName + '.5',
     weaponName, '?', null,
     '', '=', '""',
@@ -3309,6 +3365,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   var era;
   var howMany;
   var matchInfo;
+  var minStr;
 
   if(attribute == 'advances') {
     if(attributes.advances === null) {
@@ -3318,6 +3375,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         attributes.advances += 4;
     }
   } else if(attribute == 'armor') {
+    attrs = this.applyRules(attributes);
     var allArmors = this.getChoices('armors');
     era = attributes.era || 'Modern';
     choices = [];
@@ -3329,7 +3387,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
           howMany = 0;
         continue;
       }
+      minStr = QuilvynUtils.getAttrValue(allArmors[attr], 'MinStr');
       if(torsoArmor &&
+         (!minStr || attrs.strength >= minStr) &&
          (!allArmors[attr].includes('Era') || allArmors[attr].includes(era)))
         choices.push(attr);
     }
@@ -3479,7 +3539,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     var allShields = this.getChoices('shields');
     choices = [];
     for(attr in allShields) {
-      if(!allShields[attr].includes('Era') || allShields[attr].includes(era))
+      minStr = QuilvynUtils.getAttrValue(allShields[attr], 'MinStr');
+      if((!minStr || attrs.strength >= minStr) &&
+         (!allShields[attr].includes('Era') || allShields[attr].includes(era)))
         choices.push(attr);
     }
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -3530,7 +3592,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(attr.startsWith('weapons.'))
         howMany--;
     for(attr in allWeapons) {
-      var minStr = QuilvynUtils.getAttrValue(allWeapons[attr], 'MinStr');
+      minStr = QuilvynUtils.getAttrValue(allWeapons[attr], 'MinStr');
       if((!minStr || attrs.strength >= minStr) &&
          (!allWeapons[attr].includes('Era') || allWeapons[attr].includes(era)))
         choices.push(attr);
@@ -3643,18 +3705,17 @@ SWADE.makeValid = function(attributes) {
           var available = applied[attr + '.1'];
           var allocated = applied[attr + '.2'];
           if(allocated > available) {
-            var possibilities = [];
+            choices = [];
             for(var k in attributes) {
               if(k.match('^' + problemSource + '\\.') &&
                  attributesChanged[k] == null) {
-                 possibilities.push(k);
+                 choices.push(k);
               }
             }
-            while(possibilities.length > 0 && attrValue > 0) {
-              var index = QuilvynUtils.random(0, possibilities.length - 1);
-              toFixAttr = possibilities[index];
-              possibilities =
-                possibilities.slice(0,index).concat(possibilities.slice(index+1));
+            while(choices.length > 0 && attrValue > 0) {
+              var index = QuilvynUtils.random(0, choices.length - 1);
+              toFixAttr = choices[index];
+              choices = choices.slice(0, index).concat(choices.slice(index+1));
               var current = attributes[toFixAttr];
               toFixValue = current > attrValue ? current - attrValue : 0;
               debug.push(
