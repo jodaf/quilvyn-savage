@@ -24,6 +24,16 @@ following lines to the file plugins/plugins.js:
       url:'plugins/SWADE.js',
       group:'Savage Worlds'
     };
+    RULESETS["Deadlands - The Weird West"] = {
+      url:'plugins/WeirdWest.js',
+      group:'Savage Worlds',
+      require:'SWADE.js'
+    };
+    RULESETS["Pathfinder for SWADE"] = {
+      url:'plugins/PF4SW.js',
+      group:'Savage Worlds',
+      require:'SWADE.js'
+    };
 
 ### Usage
 

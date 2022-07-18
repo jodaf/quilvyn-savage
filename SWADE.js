@@ -220,8 +220,8 @@ SWADE.EDGES = {
   'Brave':'Type=background Require="spirit >= 6"',
   'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
   'Brute':'Type=background Require="strength >= 6","vigor >= 6"',
-  'Charismatic':'Type=background Require="spirit >= 6"',
-  'Elan':'Type=background Require="spirit >= 6"',
+  'Charismatic':'Type=background Require="spirit >= 8"',
+  'Elan':'Type=background Require="spirit >= 8"',
   'Fame':'Type=background',
   'Famous':'Type=background Require="advances >= 4","features.Fame"',
   'Fast Healer':'Type=background Require="vigor >= 8"',
@@ -238,7 +238,7 @@ SWADE.EDGES = {
   'Brawler':'Type=combat Require="strength >= 8","vigor >= 8"',
   'Bruiser':'Type=combat Require="advances >= 4","features.Brawler"',
   'Calculating':'Type=combat Require="smarts >= 8"',
-  'Combat Reflexes':'Type=combat Require="advances >= 8"',
+  'Combat Reflexes':'Type=combat Require="advances >= 4"',
   'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Counterattack':
     'Type=combat Require="advances >= 8","features.Counterattack"',
@@ -370,7 +370,7 @@ SWADE.EDGES = {
     'Type=professional ' +
     'Require="agility >= 8","skills.Fighting >= 6","skills.Stealth >= 8"',
   'Investigator':
-    'Type=professional Require="smarts >= 6","skills.Research >= 8"',
+    'Type=professional Require="smarts >= 8","skills.Research >= 8"',
   'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
   'McGyver':
     'Type=professional ' +
@@ -920,7 +920,7 @@ SWADE.FEATURES = {
   'Infravision':
     'Section=combat ' +
     'Note="Half penalties when attacking warm invisible targets"',
-  'Keen Senses (Avion)':'Section=skill Note="+1 Notice step"',
+  'Keen Senses':'Section=skill Note="+1 Notice step"',
   'Keen Senses (Saurian)':'Section=feature Note="Alertness edge"',
   'Leaper':
     'Section=combat,skill ' +
@@ -971,14 +971,26 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=armorToughness ' +
     'Section=combat Note="%V Toughness"',
+  'Attribute Points':
+    'Pattern="([-+]\\d+)\\s+attribute\\s+points|attribute\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=attributePoints ' +
+    'Section=attribute Note="%V Attribute Points"',
   'Cover':
     'Pattern="([-+]\\d+)\\s+cover(?:$|\\s+$|\\s+[^d])|cover\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=cover ' +
     'Section=combat Note="%V Cover"',
+  'Edge Points':
+    'Pattern="([-+]\\d+)\\s+edge\\s+points|edge\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=edgePoints ' +
+    'Section=feature Note="%V Edge Points"',
   'Improvement Points':
-    'Pattern="([-+]\\d+)\\s+improvement\s+points|improvement\s+points\\s+([-+]\\d+)" ' +
+    'Pattern="([-+]\\d+)\\s+improvement\\s+points|improvement\\s+points\\s+([-+]\\d+)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=improvementPoints ' +
@@ -1019,6 +1031,12 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=runStep ' +
     'Section=combat Note="%V Run step"',
+  'Skill Points':
+    'Pattern="([-+]\\d+)\\s+skill\\s+points|skill\\s+points\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=skillPoints ' +
+    'Section=skill Note="%V Skill Points"',
   'Smarts':
     'Pattern="([-+]\\d+)\\s+sma(?:rts)?(?:$|\\s+$|\\s+[^d])|sma(?:rts)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1463,7 +1481,7 @@ SWADE.RACES = {
     'Languages=Aquarian',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses (Avion)","Reduced Pace" ' +
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
     'Languages=Avion',
   'Dwarf':
     'Features=' +
