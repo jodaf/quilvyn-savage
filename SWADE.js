@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.3';
+SWADE.VERSION = '2.3.2.4';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -965,6 +965,12 @@ SWADE.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
     'Section=attribute Note="%V Agility step"',
+  'Armor':
+    'Pattern="([-+]\\d+)\\s+armor(?:$|\\s+$|\\s+[^d])|armor\\s+([-+]\\d+)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=armorToughness ' +
+    'Section=combat Note="%V Toughness"',
   'Cover':
     'Pattern="([-+]\\d+)\\s+cover(?:$|\\s+$|\\s+[^d])|cover\\s+([-+]\\d+)" ' +
     'Effect=add ' +
