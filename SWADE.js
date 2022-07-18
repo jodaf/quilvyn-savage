@@ -2716,7 +2716,7 @@ SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
   rules.shieldStats.weight[name] = weight;
 
   rules.defineRule(
-    'armorMinStr', 'shield', '=', QuilvynUtils.dictLit(rules.shieldStats.minStr) + '[source]'
+    'armorMinStr', 'shield', '^=', QuilvynUtils.dictLit(rules.shieldStats.minStr) + '[source]'
   );
   rules.defineRule('shieldCover',
     'shield', '=', QuilvynUtils.dictLit(rules.shieldStats.cover) + '[source]'
@@ -2808,8 +2808,6 @@ SWADE.weaponRules = function(
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
-  if(!minStr)
-    minStr = matchInfo[3].replace(/^.*d/, '') - 0;
   if(typeof minStr != 'number') {
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }

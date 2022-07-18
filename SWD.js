@@ -1120,7 +1120,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValueArray(attrs, 'Area'),
       QuilvynUtils.getAttrValue(attrs, 'Armor'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else if(type == 'Concept')
@@ -1181,7 +1181,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Parry'),
       QuilvynUtils.getAttrValue(attrs, 'Cover'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr') || 0,
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else if(type == 'Skill')
@@ -1230,7 +1230,7 @@ SWD.arcanaRules = function(rules, name, skill, powers) {
  * and weighs #weight#.
  */
 SWD.armorRules = function(rules, name, eras, areas, armor, minStr, weight) {
-  SWADE.armorRules(rules, name, eras, areas, armor, minStr, weight);
+  SWADE.armorRules(rules, name, eras, areas, armor, minStr || 0, weight);
   // No changes needed to the rules defined by base method
 };
 
@@ -1456,7 +1456,7 @@ SWD.raceRulesExtra = function(rules, name) {
  * cover, requires #minStr# to handle, and weighs #weight#.
  */
 SWD.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
-  SWADE.shieldRules(rules, name, eras, parry, cover, minStr, weight);
+  SWADE.shieldRules(rules, name, eras, parry, cover, minStr || 0, weight);
   // No changes needed to the rules defined by base method
 };
 
@@ -1483,6 +1483,8 @@ SWD.weaponRules = function(
   rules, name, eras, damage, minStr, weight, category, armorPiercing, range,
   rateOfFire, parry
 ) {
+  if(minStr == null && (damage + '').match(/d\d+/))
+    minStr = damage.match(/d(\d+)/)[1] - 0;
   SWADE.weaponRules(
     rules, name, eras, damage, minStr, weight, category, armorPiercing, range,
     rateOfFire, parry
