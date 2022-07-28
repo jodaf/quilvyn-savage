@@ -458,6 +458,84 @@ delete WeirdWest.EDGES['Arcane Background (Miracles)'];
 delete WeirdWest.EDGES['Arcane Background (Psionics)'];
 delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
+WeirdWest.ETHNICITIES = {
+  'African American':
+    'Female=' +
+      'Amanda,Anna,Annie,Bethany,Charlotte,Elizabeth=Eliza,Ellen,Emma,Hannah,' +
+      'Harriet,Julia,Louisa,Lucy,Mary,Mattie,Millie,Nellie,Nancy,Rebecca,' +
+      'Sally,Sojourner,Susie ' +
+    'Male=' +
+      'Abraham,Alonzo,Ambrose,Booker,Elijah,Freeman,Isaac,Isaiah,Israel,King,' +
+      'Master,Moses,Perlie,Percy,Presley,Prince,Titus ' +
+    'Family=' +
+      'Brown,Davis,Harris,Jackson,Johnson,Robinson,Smith,Taylor,Thomas,' +
+      'Williams',
+  'English':
+    'Female=' +
+      'Abigail,Ada,Adelaide,Agatha,Alberta,Alice,Alma,Alvina,Amy,Angela,Anna,' +
+      'Barbara,Bernadette,Bernice,Beulah,Blanche,Camille,Candace,Caroline,' +
+      'Catherine,Cecilia,Charlotte,Charity,Christina,Claire,Clarice,Claudia,' +
+      'Clementine,Constance,Cynthia,Daisy,Deborah,Delilah,Denise,Edith,' +
+      'Eleanor,Elizabeth ' +
+    'Male=' +
+      'Aaron,Abl,Abner,Abraham,Adam,Addison,Adrian,Alan,Albert,Alexander,' +
+      'Alfred,Alvin,Ambrose,Amos,Andre,Andrew,Anthony,Archibald,Arnold,' +
+      'Arthur ' +
+    'Family=' +
+      'Adamson',
+  'French':
+    'Female=' +
+      'Alice,Anne,Annette,Antoinette,Bernadette,Blanche,Camille,Caroline,' +
+      'Catherine,Charlotte,Claire,Clementine,Constance,Cynthia ' +
+    'Male=' +
+      'Abel,Adam,Albert,Alfred,Armand,Arthur ' +
+    'Family=' +
+      'Arnette',
+  'German':
+    'Female=' +
+      'Agatha,Anna,Beatrix,Bertha,Christina,Clara,Claudia,Corinna,Dorothea,' +
+      'Edith,Elisabeth ' +
+    'Male=' +
+      'Adolf,Alexander,Anton,Arnold,August ' +
+    'Family=' +
+      'Auerbach',
+  'Irish':
+    'Female=' +
+      'Bridget ' +
+    'Male=' +
+      'Angus ' +
+    'Family=' +
+      "O'Keefe",
+  'Italian':
+    'Female=' +
+      'Ada,Adelaide,Alberta,Angela,Anna,Barbara,Beatrice,Carlotta,Carmela,' +
+      'Cecilia,Celeste ' +
+    'Male=' +
+      'Adolfo,Alberto,Alfonso,Alfredo,Alphonso,Antonio ' +
+    'Family=' +
+      'Amore',
+  'Jewish':
+    'Female=' +
+      'Abigail,Beulah,Deborah,Delilah,Denise,Elizabeth ' +
+    'Male=' +
+      'Abner,Abraham,Amos,Asa ' +
+    'Family=' +
+      'Abrams',
+  'Scottish':
+    'Female=' +
+      'Aileen ' +
+    'Male=' +
+      'Alan,Andrew,Angus,Archibald ' +
+    'Family=' +
+      'Abercrombie',
+  'Spanish':
+    'Female=' +
+      'Alma,Anabel,Carmen,Clara,Dolores ' +
+    'Male=' +
+      'Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Alphonso,Antonio ' +
+    'Family=' +
+      'Amor'
+};
 WeirdWest.FEATURES_ADDED = {
   // Edges
   'Agency Promotion':
@@ -1185,7 +1263,10 @@ WeirdWest.weaponRules = function(
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
-  SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
+  if(attribute == 'name') {
+  } else {
+    SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
+  }
 };
 
 /* Returns an array of plugins upon which this one depends. */
