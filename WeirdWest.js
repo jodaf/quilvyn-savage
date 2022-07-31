@@ -479,6 +479,7 @@ WeirdWest.NICKNAMES = {
   'Louisa':'Lou',
   'Moses':'Mo',
   'Nancy':'Nan',
+  'Nathan':'Nate',
   'Rebecca':'Becky',
   'Susan':'Sue,Susie',
   'adjectives':
@@ -519,11 +520,33 @@ WeirdWest.ETHNICITIES = {
       'Aylesworth',
   'French':
     'Female=' +
-      'Adrienne,Alice,Aline,Angeline,Anne,Annette,Antoinette,Augustine,' +
-      'Bernadette,Blanche,Camille,Caroline,' +
-      'Catherine,Charlotte,Claire,Clementine,Constance,Cynthia ' +
+      'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Alicia,Aline,Alphonsine,' +
+      'Amelie,Andrea,Angele,Angeline,Annabelle,Anne,Annette,Antoinette,' +
+      'Audrey,Augustine,Aurore,Barbara,Beatrice,Bernadette,Blanche,Camille,' +
+      'Carmen,Caroline,Catherine,Cecile,Celeste,Celestine,Charlotte,' +
+      'Christine,Claire,Clara,Claudine,Clementine,Cleo,Cloe,Clotilde,' +
+      'Constance,Coralie,Corinne,Cynthia,Delphine,Denise,Eleonore,Elaine,' +
+      'Elisabeth,Elise,Elodie,Emeline,Emelie,Emma,Ernestine,Estelle,Esther,' +
+      'Eugenie,Eulalie,Eveline,Felicie,Florence,Florine,Francis,Genevieve,' +
+      'Georgine,Geraldine,Gertrude,Gladys,Helene,Henriette,Hermine,' +
+      'Hildegarde,Hortense,Isabelle,Jeanette,Jeanne,Jeanette,Jessica,' +
+      'Josephine,Juliette,Justine,Lea,Leana,Leone,Leonie,Lisette,Louise,' +
+      'Lucie,Lucille,Madeline,Marguerite,Marie,Marion,Marthilde,Maud,Muriel,' +
+      'Nadine,Nathalie,Noemie,Odile,Olive,Pauline,Priscilla,Prudence,Rosalie,' +
+      'Rose,Sarah,Sophie,Suzanne,Therese,Valentine,Valerie,Victorine ' +
     'Male=' +
-      'Abel,Albert,Albin,Alfred,Alphonse,Anatole,Andre,Antoine,Armand,Arthur ' +
+      'Aaron,Abel,Adam,Adelard,Adolphe,Adrien,Albin,Alcide,Alexis,Alfred,' +
+      'Alphonse,Anatole,Andre,Antoine,Armand,Arthur,Auguste,Augustin,' +
+      'Benjamin,Bernard,Bertrand,Brice,Charles,Christian,Clair,Claude,Clovis,' +
+      'Cyril,Daniel,David,Denis,Edgar,Edmond,Elie,Emile,Ernest,Ethan,Eugene,' +
+      'Felix,Ferdinand,Fernand,Florian,Francis,Francois,Frederic,Gabriel,' +
+      'Gaston,Gilbert,Gustave,Guy,Hector,Henri,Horace,Jacque,Jason,Jean,' +
+      'Jonathan,Jordan,Joseph,Jules,Julien,Justin,Lionel,Louis,Lucien,Marcel,' +
+      'Martin,Matthias,Maurice,Michel,Nicolas,Noel,Octave,Pascal,Paul,Pierre,' +
+      'Raoul,Raymond,Rene,Richard,Robert,Robin,Roger,Roland,Salomon,Simon,' +
+      'Theophile,Thomas,Victor,Vincent ' +
+    'Nonbinary=' +
+      'Alix,Ange,Camille,Claude,Hyacinthe,Irenee,Leonce,Modeste ' +
     'Family=' +
       'Beauchamp,Blanchard,Boucher,Bouvier,Calvin,Chastain,Colbert,Deschamps,' +
       'Dubois,Dumas,Dupuy,Durant,Duval,Fabre,Fay,Fevre,Forest,Gage,Granger,' +
@@ -541,9 +564,13 @@ WeirdWest.ETHNICITIES = {
       'Bischoffs,Bock,Brand,Brandt,Braun,Breiner,Bumgardner,Busch',
   'Irish':
     'Female=' +
-      'Aileen,Bridget ' +
+      'Aileen,Bridget,Eileen,Elva,Ena,Honora,Kathleen,Mona,Muriel,Myrna,Nora,' +
+      'Una ' +
     'Male=' +
-      'Angus ' +
+      'Alby,Angus,Barry,Carroll,Coleman,Conley,Desmond,Kelly,Micheal,Oran,' +
+      'Orrin,Oscar,Owen,Patrick,Redmond,Shane ' +
+    'Nonbinary=' +
+      'Aran,Christy,Flann,Kelly,Kennedy,Padraigin,Patsy,Rory,Rowan,Shea ' +
     'Family=' +
       "Boyle,Braden,Brady,Brannon,Breen,Buckley,Burke,Burns,Byrne,O'Keefe",
   'Jewish':
@@ -564,9 +591,14 @@ WeirdWest.ETHNICITIES = {
   'Mixed/Other':'',
   'Scottish':
     'Female=' +
-      'Aileen,Annabel ' +
+      'Aileen,Effie,Iona,Isla,Jean,Jessie,Muriel,Una ' +
     'Male=' +
-      'Alan,Andrew,Angus,Archibald ' +
+      'Alan,Angus,Archibald,Blair,Bruce,Colin,Craig,David,Donald,Douglas,' +
+      'Duncan,Gordon,Graham,Grant,Irvine,Jock,Keith,Kenneth,Malcolm,Micheal,' +
+      'Murray,Neil,Roderick,Ronald,Ross,Roy,Scott,Stewart,Stuart,Tomas,' +
+      'Wallace ' +
+    'Nonbinary=' +
+      'Ainsley,Athol,Blair,Islay,Jamie,Rory ' +
     'Family=' +
       'Abercrombie,Abernethy,Aird,Alford,Allaway,Allen,Anders,Armour,Atchison',
   'Spanish':
