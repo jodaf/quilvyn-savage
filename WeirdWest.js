@@ -572,7 +572,24 @@ WeirdWest.ETHNICITIES = {
     'Nonbinary=' +
       'Aran,Christy,Flann,Kelly,Kennedy,Padraigin,Patsy,Rory,Rowan,Shea ' +
     'Family=' +
-      "Boyle,Braden,Brady,Brannon,Breen,Buckley,Burke,Burns,Byrne,O'Keefe",
+      'Boyle,Braden,Brady,Brannon,Breen,Brennan,Buckley,Burns,Byrne,Callahan,' +
+      'Carey,Carmody,Carroll,Casey,Cassidy,Cody,Coleman,Collins,Connell,' +
+      'Connolly,Connor,Cooney,Corcoran,Coughlin,Cummins,Cunningham,Curran,' +
+      'Curry,Daly,Delany,Dempsey,Desmond,Doherty,Dolan,Donnelly,Donovan,' +
+      'Doran,Doyle,Driscoll,Duff,Duffy,Dunn,Fallon,Fannon,Farrell,Ferguson,' +
+      'Fitzgerald,Fitzpatrick,Flanagan,Flynn,Foley,Friel,Gallagher,Grady,' +
+      'Hayden,Hayes,Hennessy,Hickey,Higgins,Hines,Hogan,Hughes,Joyce,Kane,' +
+      'Kavanagh,Kean,Keefe,Keegan,Keeley,Kelly,Kennedy,Keys,Lane,Lynch,' +
+      'Madden,Magee,Maguire,Mallon,Malone,Markey,McAdams,McAfee,McAlister,' +
+      'McBride,McCabe,McCarthy,McCauley,McClelland,McConnell,McCormick,' +
+      'McCracken,McCune,McDermott,McFarland,McGee,McGill,McGowan,McGuire,' +
+      'McKee,McMahon,McManus,McNab,McNamara,McReynolds,Milligan,Mohan,Monday,' +
+      'Moon,Mooney,Morris,Mullen,Mulligan,Mullins,Murdock,Murphy,Murray,' +
+      "Nolan,O'Brien,O'ByrneO'Connell,O'Connor,O'Donnell,O'Hara,O'Kane," +
+      "O'Leary,O'Malley,O'Neal,O'Neill,O'Sullivan,Power,Quigley,Quinlan," +
+      'Quinn,Rafferty,Ready,Reilly,Riley,Riordan,Rowan,Ryan,Seward,Shannon,' +
+      'Shea,Sheedy,Shine,Sloan,Sowards,Sullivan,Sweeney,Taggart,Teague,Tighe,' +
+      'Toole,Tracey,Wallace,Walsh,Ward',
   'Jewish':
     'Female=' +
       'Adina,Alma,Dana,Ela,Esther,Golda,Hannah,Judith,Leah,Miriam,Naomi,Neta,' +
@@ -600,14 +617,46 @@ WeirdWest.ETHNICITIES = {
     'Nonbinary=' +
       'Ainsley,Athol,Blair,Islay,Jamie,Rory ' +
     'Family=' +
-      'Abercrombie,Abernethy,Aird,Alford,Allaway,Allen,Anders,Armour,Atchison',
+      'Allaway,Atchison,Baird,Balfour,Barber,Barclay,Blackwood,Blaine,Boyd,' +
+      'Breckenridge,Bruce,Buchanan,Burns,Calhoun,Cameron,Campbell,Carr,' +
+      'Carson,Coburn,Cockburn,Cummins,Cunningham,Darrow,Davis,Drummond,Duff,' +
+      'Duffy,Dunbar,Dunn,Falconer,Faulkner,Ferguson,Finley,Fraser,Gibson,' +
+      'Grant,Greer,Hamilton,Henderson,Holmes,Houston,Hughes,Hunger,Johnston,' +
+      'Kendrick,Kerr,Knox,Laird,Lenox,Lester,Logan,Lowry,Lusk,Magee,Masson,' +
+      'Matheson,Maxwell,McAdams,McAfee,McAlister,McCabe,McCaig,McCallum,' +
+      'McCauley,McClelland,McConnell,McCormick,McCoy,McCracken,McCreery,' +
+      'McDaniel,McDonald,McDougall,McFarland,McGee,McGill,McGregor,McIntyre,' +
+      'McKay,McKee,McKenzie,McKinley,McKinney,McLain,McLean,McLeod,McNabb,' +
+      'McNeil,McQueen,McRae,McReynolds,McTaggart,Melville,Milne,Mitchell,' +
+      'Moffett,Monroe,Montgomery,Morris,Muir,Munroe,Murray,Norris,Paisley,' +
+      'Patterson,Patton,Pollock,Ralston,Ramsay,Ready,Ross,Rutherford,' +
+      'Saunders,Shaw,Sterling,Stewart,Sutherland,Taggart,Tyree,Wallace,' +
+      'Watson,Wood,Woods',
   'Spanish':
     'Female=' +
-      'Adela,Alba,Alicia,Amalia,Anita,Antonia,Carmen,Clara,Dolores ' +
+      'Ada,Adela,Adelina,Aida,Alba,Albina,Alicia,Alma,Amanda,Amalia,Amanda,' +
+      'Amelia,Ana,Anabel,Anastacia,Andrea,Angela,Anita,Antonia,Aura,Aurelia,' +
+      'Aurora,Berta,Carlota,Carmela,Carmen,Carolina,Cecilia,Celeste,Celia,' +
+      'Clara,Claudia,Cloe,Clotilde,Coral,Delfina,Delia,Diana,Dolores,Dora,' +
+      'Elba,Elena,Elisa,Eloisa,Elvira,Emma,Emilia,Esther,Eugenia,Eulalia,' +
+      'Eva,Felicia,Fidelia,Filomena,Flavia,Flora,Francisca,Genoveva,Georgina,' +
+      'Gladys,Gloria,Gracia,Gregoria,Guadelupe,Hermina,Ines,Irene,Isabel,' +
+      'Josefina,Juana,Juanita,Justina,Lady,Laura,Leonor,Lilia,Lola,Lorena,' +
+      'Lorenza,Lucia,Luisa,Luna,Luz,Magdalena,Manuela,Marcia,Margarita,Maria,' +
+      'Martina,Maltilde,Mercedes,Octavia,Oliva,Paulina,Ramona,Roberta,Rosa,' +
+      'Rosalia,Roxana,Sabina,Selena,Silvia,Sofia,Susana,Teresa,Valeria,Zaida ' +
     'Male=' +
       'Adolfo,Alberto,Alfonso,Alfredo,Alphonso,Antonio ' +
+    'Nonbinary=' +
+      'Ale,Cande,Chus,Cruz,Guadelupe,Guiomar,Lupe,Maxi,Patrocinio,Reyes,' +
+      'Trinidad,Yunuen ' +
     'Family=' +
-      'Amor'
+      'Aguilar,Alvarez,Castillo,Castro,Chavez,Contreras,Cortez,Cruz,Diaz,' +
+      'Dominguez,Estrada,Fernandez,Flores,Garcia,Garza,Gomez,Gonzalez,Guerro,' +
+      'Gutierrez,Guzman,Hernanez,Herrera,Jimenez,Juarez,Lopez,Luna,Martinez,' +
+      'Medina,Mendez,Menoza,Morales,Moreno,Munoz,Ortega,Ortiz,Perez,Ramirez,' +
+      'Ramos,Reyes,Rivera,Rodriguez,Rojas,Romero,Ruiz,Salazar,Sanchez,Soto,' +
+      'Torres,Vargas,Velasquez,vasquez'
 };
 WeirdWest.FEATURES_ADDED = {
   // Edges
