@@ -646,7 +646,14 @@ WeirdWest.ETHNICITIES = {
       'Martina,Maltilde,Mercedes,Octavia,Oliva,Paulina,Ramona,Roberta,Rosa,' +
       'Rosalia,Roxana,Sabina,Selena,Silvia,Sofia,Susana,Teresa,Valeria,Zaida ' +
     'Male=' +
-      'Adolfo,Alberto,Alfonso,Alfredo,Alphonso,Antonio ' +
+      'Abel,Abraham,Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Amado,Anastacio,' +
+      'Andreas,Angel,Antonio,Benito,Benjamin,Bernardo,Bruno,Candido,Casimiro,' +
+      'Clemente,Diego,Domingo,Elias,Emiliano,Emilio,Enrique,Epifanio,Ernesto,' +
+      'Fabian,Federico,Felipe,Felix,Fernando,Florencio,Florian,Francisco,' +
+      'Gabriel,German,Gregorio,Hector,Hugo,Ignacio,Jesus,Joaquin,Joel,Jonas,' +
+      'Jose,Juan,Julio,Leon,Lorenzo,Luis,Manuel,Miguel,Nicolas,Orlando,Pablo,' +
+      'Pedro,Rafael,Ramon,Roman,Ruben,Salomon,Salvador,Santiago,Tomas,' +
+      'Vicente ' +
     'Nonbinary=' +
       'Ale,Cande,Chus,Cruz,Guadelupe,Guiomar,Lupe,Maxi,Patrocinio,Reyes,' +
       'Trinidad,Yunuen ' +
