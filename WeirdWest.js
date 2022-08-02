@@ -1437,7 +1437,7 @@ WeirdWest.weaponRules = function(
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'name') {
     var ethnicity = attributes.ethnicity;
-    if(!(ethnicity in WeirdWest.ETHNICITIES) || !(WeirdWest.ETHNICITIES[ethnicity].includes('Family=')))
+    while(!(ethnicity in WeirdWest.ETHNICITIES) || !(WeirdWest.ETHNICITIES[ethnicity].includes('Family=')))
       ethnicity = QuilvynUtils.randomKey(WeirdWest.ETHNICITIES);
     var names = WeirdWest.ETHNICITIES[ethnicity];
     var gender =
@@ -1452,23 +1452,21 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
         nickname = choices[QuilvynUtils.random(0, choices.length - 1)];
       } else {
         nickname =
-          personalName.replace(/^([^aeiou]*[aeiou]*[^aeiouy]*).*$/i, '$1');
-        if(nickname == personalName || QuilvynUtils.random(0, 1) == 0) {
-          if(nickname.match(/[aeiou][^aeiou]$/i))
-            nickname += nickname.charAt(nickname.length - 1);
-          nickname += 'ie';
-        }
+          personalName.replace(/^([^aeiou]*[aeiou]*[^aeiouy]).*$/i, '$1');
+        if(!nickname.match(/[aeiouy]$/) &&
+           (nickname == personalName || QuilvynUtils.random(0, 1) == 0))
+          nickname += nickname.charAt(nickname.length - 1) + 'ie';
         var adjectives = WeirdWest.NICKNAMES.adjectives.split(',');
         var nouns = WeirdWest.NICKNAMES.nouns.split(',');
-        var epithet =
+        nickname =
           QuilvynUtils.random(0, 2) == 0 ?
             adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
             nouns[QuilvynUtils.random(0, nouns.length - 1)]
           : QuilvynUtils.random(0, 1) == 0 ?
-            adjectives[QuilvynUtils.random(0, adjectives.length - 1)]
+            adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
+            nickname
           :
             nouns[QuilvynUtils.random(0, nouns.length - 1)];
-        nickname = epithet + ' ' + nickname;
       }
       personalName += ' "' + nickname + '"';
     }
