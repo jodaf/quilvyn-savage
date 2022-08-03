@@ -33,8 +33,8 @@ function WeirdWest(baseRules) {
   var rules = new QuilvynRules('Deadlands Weird West', WeirdWest.VERSION);
   WeirdWest.rules = rules;
 
-  rules.defineChoice('choices', SWADE.CHOICES);
-  rules.choiceEditorElements = SWADE.choiceEditorElements;
+  rules.defineChoice('choices', WeirdWest.CHOICES);
+  rules.choiceEditorElements = WeirdWest.choiceEditorElements;
   rules.choiceRules = WeirdWest.choiceRules;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
@@ -72,9 +72,10 @@ function WeirdWest(baseRules) {
 
 WeirdWest.VERSION = '2.3.2.1';
 
-WeirdWest.CHOICES = SWADE.CHOICES.concat(['Ethnicity', 'Gender']);
+WeirdWest.CHOICES =
+  SWADE.CHOICES.filter(x => x != 'Race').concat(['Ethnicity', 'Gender']);
 WeirdWest.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.concat(['ethnicity']);
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'race').concat(['ethnicity']);
 
 WeirdWest.ARCANAS = {
   'Blessed':
@@ -467,25 +468,64 @@ delete WeirdWest.EDGES['Arcane Background (Psionics)'];
 delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.NICKNAMES = {
-  'Abraham':'Abe',
-  'Abram':'Abe',
-  'Alexander':'Alec,Alex',
-  'Alfred':'Alf,Alfie,Fred',
-  'Amanda':'Mandy',
-  'Andrew':'Andy',
-  'Anthony':'Tony',
-  'Elizabeth':'Bess,Bessie,Beth,Betsy,Betty,Eliza,Libby,Liz,Lizzy',
-  'Julia':'Jules,Julie',
-  'Louisa':'Lou',
-  'Moses':'Mo',
-  'Nancy':'Nan',
-  'Nathan':'Nate',
-  'Rebecca':'Becky',
-  'Susan':'Sue,Susie',
-  'adjectives':
-    'Big,Bloody,Dusty,Fast,Iron,Lame,Lazy,Little,Mad,Rusty,Slow,Wild',
-  'nouns':
-    'Arizona,Buffalo,Devil,Eyes,Foot,Gravedigger,Hand,Horse,Justice,Kid,Lightning,Nose,Preacher,River,Rose,Texas'
+  'Abe':'Type=short Long=Abraham,Abe',
+  'Alec':'Type=short Long=Alexander',
+  'Alex':'Type=short Long=Alexander',
+  'Alf':'Type=short Long=Alfred',
+  'Alfie':'Type=short Long=Alfred',
+  'Andy':'Type=short Long=Andrew',
+  'Becky':'Type=short Long=Rebecca',
+  'Bess':'Type=short Long=Elizabeth',
+  'Bessie':'Type=short Long=Elizabeth',
+  'Beth':'Type=short Long=Elizabeth',
+  'Betsy':'Type=short Long=Elizabeth',
+  'Betty':'Type=short Long=Elizabeth',
+  'Eliza':'Type=short Long=Elizabeth',
+  'Fred':'Type=short Long=Alfred',
+  'Jules':'Type=short Long=Julia',
+  'Julie':'Type=short Long=Julie',
+  'Libby':'Type=short Long=Elizabeth',
+  'Liz':'Type=short Long=Elizabeth',
+  'Lizzy':'Type=short Long=Elizabeth',
+  'Lou':'Type=short Long=Louisa',
+  'Mandy':'Type=short Long=Amanda',
+  'Mo':'Type=short Long=Moses',
+  'Nan':'Type=short Long=Nancy',
+  'Nate':'Type=short Long=Nathan',
+  'Sue':'Type=short Long=Susan',
+  'Susie':'Type=short Long=Susan',
+  'Tony':'Type=short Long=Anthony',
+  'Big':'Type=adjective',
+  'Bloody':'Type=adjective',
+  'Dusty':'Type=adjective',
+  'Fast':'Type=adjective',
+  'Iron':'Type=adjective',
+  'Lame':'Type=adjective',
+  'Lazy':'Type=adjective',
+  'Little':'Type=adjective',
+  'Mad':'Type=adjective',
+  'Rusty':'Type=adjective',
+  'Slow':'Type=adjective',
+  'Wild':'Type=adjective',
+  'Arizona':'Type=noun',
+  'Buffalo':'Type=animal',
+  'Deer':'Type=animal',
+  'Devil':'Type=noun',
+  'Eyes':'Type=noun',
+  'Foot':'Type=noun',
+  'Fox':'Type=animal',
+  'Gravedigger':'Type=noun',
+  'Hand':'Type=noun',
+  'Horse':'Type=animal',
+  'Justice':'Type=noun',
+  'Kid':'Type=noun',
+  'Lightning':'Type=noun',
+  'Nose':'Type=noun',
+  'Preacher':'Type=noun',
+  'River':'Type=noun',
+  'Rose':'Type=noun',
+  'Texas':'Type=noun',
+  'Wolf':'Type=animal'
 };
 WeirdWest.ETHNICITIES = {
   'African American':
@@ -554,10 +594,19 @@ WeirdWest.ETHNICITIES = {
       'Macon,Noel,Page,Petit,Picard,Roche,Rose,Royer,Salmon,Traver,Tremble',
   'German':
     'Female=' +
-      'Agatha,Agnes,Alida,Beatrix,Bertha,Christina,Clara,Claudia,Corinna,' +
-      'Dorothea,Edith,Elisabeth ' +
+      'Adele,Agatha,Agnes,Alida,Andrea,Angela,Anna,Antonia,Augusta,Ava,' +
+      'Barbara,Beatrix,Bertha,Caroline,Celina,Charlotte,Christina,Clara,' +
+      'Claudia,Cora,Corinna,Cornelia,Dana,Doris,Dorothea,Edith,Eleonore,' +
+      'Elfriede,Elisabeth,Ellen,Emilie,Erna,Esther,Flora,Frieda,Greta,' +
+      'Gretchen,Gunda,Hannah,Hedwig,Helena,Helga,Henriette,Hermina,Hilda,' +
+      'Ida,Ina,Inga,Iris,Irma,Isabell,Jessica,Johanna,Josephine,Judith,Julia,' +
+      'Juliana,Katharina,Lea,Lena,Leonie,Linda,Louisa,Lucia,Magdalena,' +
+      'Margarete,Maria,Martina,Mathilde,Melanie,Miriam,Natalie,Oda,Paula,' +
+      'Petra,Susanne,Teresa,Theresa,Wanda,Wilhelmine ' +
     'Male=' +
       'Adelbert,Adolf,Albrecht,Alois,Anton,Arnold,August ' +
+    'Nonbinary=' +
+      'Alex,Chris,Eike,Engel,Jo,Maxi,Micha,Sigi,Ulli,Willy ' +
     'Family=' +
       'Albrecht,Andreas,Armbruster,Auerbach,Backer,Bader,Bauer,Bauman,' +
       'Baumbach,Baumgartner,Beck,Behr,Beltz,Berg,Bergman,Bernhardt,Best,' +
@@ -1433,6 +1482,24 @@ WeirdWest.weaponRules = function(
   // No changes needed to the rules defined by base method
 };
 
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+WeirdWest.choiceEditorElements = function(rules, type) {
+  if(type == 'Ethnicity') {
+    return([
+      ['Female', 'Female Names', 'text', [60]],
+      ['Male', 'Male Names', 'text', [60]],
+      ['Nonbinary', 'Nonbinary Names', 'text', [60]],
+    ]);
+  } else if(type == 'Gender') {
+    return([]);
+  } else {
+    return SWADE.choiceEditorElements(rules, type);
+  }
+};
+
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'name') {
@@ -1447,8 +1514,8 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
     var personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
     if(QuilvynUtils.random(0, 1) == 1) {
       var nickname;
-      if(personalName in WeirdWest.NICKNAMES) {
-        choices = WeirdWest.NICKNAMES[personalName].split(',');
+      choices = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match('Long=.*' + personalName));
+      if(choices.length > 0) {
         nickname = choices[QuilvynUtils.random(0, choices.length - 1)];
       } else {
         nickname =
@@ -1456,8 +1523,8 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
         if(!nickname.match(/[aeiouy]$/) &&
            (nickname == personalName || QuilvynUtils.random(0, 1) == 0))
           nickname += nickname.charAt(nickname.length - 1) + 'ie';
-        var adjectives = WeirdWest.NICKNAMES.adjectives.split(',');
-        var nouns = WeirdWest.NICKNAMES.nouns.split(',');
+        var adjectives = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/adjective/));
+        var nouns = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/noun|animal/));
         nickname =
           QuilvynUtils.random(0, 2) == 0 ?
             adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
