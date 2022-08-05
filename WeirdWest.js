@@ -167,6 +167,7 @@ WeirdWest.CONCEPTS = {
     'Attribute=Agility,Vigor ' +
     'Skill=Fighting,Shooting',
   'Drifter': // Estimated related features
+    'Attribute=Agility ' +
     'Skill=Shooting',
   'Escort': // Estimated related features
     'Edge=Attractive ' +
@@ -174,7 +175,7 @@ WeirdWest.CONCEPTS = {
     'Skill=Persuasion',
   'Explorer': // Estimated related features
     'Attribute=Smarts ' +
-    'Skill=Survival',
+    'Skill=Research,Survival',
   'Grifter': // Estimated related features
     'Attribute=Spirit ' +
     'Skill=Persuasion',
@@ -201,6 +202,9 @@ WeirdWest.CONCEPTS = {
   'Outlaw':'',
   'Prospector': // Estimated related features
     'Skill=Survival',
+  'Sheriff': // Estimated related features
+    'Attribute=Agility,Spirit ' +
+    'Skill=Intimidation,Persuasion,Shooting',
   'Soldier': // Estimated related features
     'Edge=Soldier ' +
     'Attribute=Agility,Strength,Vigor ' +
@@ -208,7 +212,10 @@ WeirdWest.CONCEPTS = {
   'Territorial Ranger':
     'Edge="Territorial Ranger" ' +
     'Attribute=Vigor ' +
-    'Skill=Fighting,Intimidation,Riding,Shooting,Survival'
+    'Skill=Fighting,Intimidation,Riding,Shooting,Survival',
+  'Town Marshall': // Estimated related features
+    'Attribute=Agility,Spirit ' +
+    'Skill=Intimidation,Persuasion,Shooting'
 };
 WeirdWest.DEITIES = {
   'None':'',
@@ -594,23 +601,21 @@ WeirdWest.ETHNICITIES = {
       'Macon,Noel,Page,Petit,Picard,Roche,Rose,Royer,Salmon,Traver,Tremble',
   'German':
     'Female=' +
-      'Adele,Agatha,Agnes,Alida,Andrea,Angela,Anna,Antonia,Augusta,Ava,' +
-      'Barbara,Beatrix,Bertha,Caroline,Celina,Charlotte,Christina,Clara,' +
-      'Claudia,Cora,Corinna,Cornelia,Dana,Doris,Dorothea,Edith,Eleonore,' +
-      'Elfriede,Elisabeth,Ellen,Emilie,Erna,Esther,Flora,Frieda,Greta,' +
-      'Gretchen,Gunda,Hannah,Hedwig,Helena,Helga,Henriette,Hermina,Hilda,' +
-      'Ida,Ina,Inga,Iris,Irma,Isabell,Jessica,Johanna,Josephine,Judith,Julia,' +
-      'Juliana,Katharina,Lea,Lena,Leonie,Linda,Louisa,Lucia,Magdalena,' +
-      'Margarete,Maria,Martina,Mathilde,Melanie,Miriam,Natalie,Oda,Paula,' +
-      'Petra,Susanne,Teresa,Theresa,Wanda,Wilhelmine ' +
+      'Anna,Charlotte,Clara,Dorothea,Edith,Elfriede,Elisabeth,Erna,Frieda,' +
+      'Hedwig,Helga,Ida,Irma,Johanna,Margarete,Maria,Paula,Wilhelmine ' +
     'Male=' +
-      'Adelbert,Adolf,Albrecht,Alois,Anton,Arnold,August ' +
+      'Adolf,Albert,August,Carl,Emil,Ernst,Franz,Friedrich,Gerhard,Gustav,' +
+      'Hans,Herbert,Hermann,Karl,Moritz,Otto,Paul,Richard,Robert,Rudolf,' +
+      'Walter,Werner,Wilhelm ' +
     'Nonbinary=' +
       'Alex,Chris,Eike,Engel,Jo,Maxi,Micha,Sigi,Ulli,Willy ' +
     'Family=' +
-      'Albrecht,Andreas,Armbruster,Auerbach,Backer,Bader,Bauer,Bauman,' +
-      'Baumbach,Baumgartner,Beck,Behr,Beltz,Berg,Bergman,Bernhardt,Best,' +
-      'Bischoffs,Bock,Brand,Brandt,Braun,Breiner,Bumgardner,Busch',
+      'Albrecht,Andreas,Armbruster,Bader,Bauer,Baumbach,Baumgartner,Beck,' +
+      'Becker,Beltz,Berg,Bernhardt,Best,Bischoff,Bohn,Brandt,Braun,Breiner,' +
+      'Bruhn,Busch,Dressler,Eberhart,Everhard,Farber,Fischer,Forney,Frank,' +
+      'Fuchs,Geiger,Geissler,Gerber,Gross,Hahn,Hase,Herzog,Hirsch,Hoffmann,' +
+      'Hofmeister,Holtz,Huber,Jaeger,Kaiser,Kastner,Keller,Klein,Koch,' +
+      'Koenig,Kohl,Kohler,Kramer,Kraus,Krebs,Kruger,Kunkel',
   'Irish':
     'Female=' +
       'Aileen,Bridget,Eileen,Elva,Ena,Honora,Kathleen,Mona,Muriel,Myrna,Nora,' +
