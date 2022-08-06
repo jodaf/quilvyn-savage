@@ -75,7 +75,7 @@ WeirdWest.VERSION = '2.3.2.1';
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race').concat(['Ethnicity', 'Gender']);
 WeirdWest.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'race').concat(['ethnicity']);
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['deity','era','race'].includes(x)).concat(['ethnicity']);
 
 WeirdWest.ARCANAS = {
   'Blessed':
@@ -514,16 +514,27 @@ WeirdWest.NICKNAMES = {
   'Rusty':'Type=adjective',
   'Slow':'Type=adjective',
   'Wild':'Type=adjective',
-  'Arizona':'Type=noun',
+  'Antelope':'Type=animal',
+  'Badger':'Type=animal',
   'Buffalo':'Type=animal',
+  'Bull':'Type=animal',
+  'Coyote':'Type=animal',
   'Deer':'Type=animal',
+  'Duck':'Type=animal Move=Flies,Swims,Walks',
+  'Eagle':'Type=animal Move=Flies,Swims,Walks',
+  'Elk':'Type=animal',
+  'Fox':'Type=animal',
+  'Horse':'Type=animal',
+  'Lizard':'Type=animal',
+  'Snake':'Type=animal Move=Glides,Swims',
+  'Wolf':'Type=animal',
+  'Arizona':'Type=noun',
+  'Darkness':'Type=noun',
   'Devil':'Type=noun',
   'Eyes':'Type=noun',
   'Foot':'Type=noun',
-  'Fox':'Type=animal',
   'Gravedigger':'Type=noun',
   'Hand':'Type=noun',
-  'Horse':'Type=animal',
   'Justice':'Type=noun',
   'Kid':'Type=noun',
   'Lightning':'Type=noun',
@@ -532,9 +543,19 @@ WeirdWest.NICKNAMES = {
   'River':'Type=noun',
   'Rose':'Type=noun',
   'Texas':'Type=noun',
-  'Wolf':'Type=animal'
+  'Tree':'Type=noun',
+  'Laughs':'Type=verb',
+  'Looks':'Type=verb',
+  'From':'Type=preposition',
+  'at':'Type=preposition',
+  'in':'Type=preposition',
+  'to':'Type=preposition',
+  'Over':'Type=preposition',
+  'Through':'Type=preposition',
+  'Under':'Type=preposition'
 };
 WeirdWest.ETHNICITIES = {
+  'American Indian':'',
   'African American':
     'Female=' +
       'Amanda,Anna,Bethany,Charlotte,Elizabeth,Ellen,Emma,Hannah,Harriet,' +
@@ -615,7 +636,13 @@ WeirdWest.ETHNICITIES = {
       'Bruhn,Busch,Dressler,Eberhart,Everhard,Farber,Fischer,Forney,Frank,' +
       'Fuchs,Geiger,Geissler,Gerber,Gross,Hahn,Hase,Herzog,Hirsch,Hoffmann,' +
       'Hofmeister,Holtz,Huber,Jaeger,Kaiser,Kastner,Keller,Klein,Koch,' +
-      'Koenig,Kohl,Kohler,Kramer,Kraus,Krebs,Kruger,Kunkel',
+      'Koenig,Kohl,Kohler,Kramer,Kraus,Krebs,Kruger,Kunkel,Lang,Lehr,Linden,' +
+      'Lowe,Mandel,Mann,Marquardt,Meissner,Messer,Messner,Metzger,Meyer,' +
+      'Moser,Muller,Neumann,Plank,Pletcher,Post,Rapp,Reis,Reiter,Rettig,' +
+      'Reuter,Richter,Ritter,Roth,Schindler,Schmidt,Schneider,Schreiber,' +
+      'Schroeder,Schuler,Schultz,Schumacher,Schwartz,Shriver,Spitz,Stark,' +
+      'Stein,Stroman,Stuber,Stuck,Trump,Vogel,Vogt,Voss,Wagner,Weber,West,' +
+      'Winkler,Winter,Wirth,Wolf,Ziegler,Zimmerman',
   'Irish':
     'Female=' +
       'Aileen,Bridget,Eileen,Elva,Ena,Honora,Kathleen,Mona,Muriel,Myrna,Nora,' +
@@ -1508,7 +1535,39 @@ WeirdWest.choiceEditorElements = function(rules, type) {
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'name') {
+    var adjectives =
+      QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/adjective/));
     var ethnicity = attributes.ethnicity;
+    var fullName;
+    var nouns =
+      QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/noun/));
+    if(ethnicity == 'American Indian') {
+      var animals =
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/animal/));
+      var prepositions =
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/preposition/));
+      var verbs =
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/verb/));
+      if(QuilvynUtils.random(0, 1) == 0) {
+        fullName =
+          adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
+          animals[QuilvynUtils.random(0, animals.length - 1)];
+      } else {
+        var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
+        var moves =
+          QuilvynUtils.getAttrValueArray(WeirdWest.NICKNAMES[animal], 'Move');
+        if(moves.length == 0)
+          moves = ['Leaps', 'Runs', 'Swims', 'Walks'];
+        verbs = verbs.concat(moves);
+        fullName =
+          animal + ' Who ' +
+          verbs[QuilvynUtils.random(0, verbs.length - 1)] + ' ' +
+          prepositions[QuilvynUtils.random(0, prepositions.length - 1)] + ' ' +
+          nouns[QuilvynUtils.random(0, nouns.length - 1)];
+      }
+      attributes.name = fullName;
+      return;
+    }
     while(!(ethnicity in WeirdWest.ETHNICITIES) || !(WeirdWest.ETHNICITIES[ethnicity].includes('Family=')))
       ethnicity = QuilvynUtils.randomKey(WeirdWest.ETHNICITIES);
     var names = WeirdWest.ETHNICITIES[ethnicity];
@@ -1528,8 +1587,6 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
         if(!nickname.match(/[aeiouy]$/) &&
            (nickname == personalName || QuilvynUtils.random(0, 1) == 0))
           nickname += nickname.charAt(nickname.length - 1) + 'ie';
-        var adjectives = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/adjective/));
-        var nouns = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/noun|animal/));
         nickname =
           QuilvynUtils.random(0, 2) == 0 ?
             adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
@@ -1544,7 +1601,7 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
     }
     choices = QuilvynUtils.getAttrValueArray(names, 'Family');
     var familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
-    var fullName = personalName + ' ' + familyName;
+    fullName = personalName + ' ' + familyName;
     if(ethnicity == 'Chinese')
       fullName = familyName + ' ' + personalName;
     attributes.name = fullName;
