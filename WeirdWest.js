@@ -506,6 +506,7 @@ WeirdWest.NICKNAMES = {
   'Bloody':'Type=adjective',
   'Dusty':'Type=adjective',
   'Fast':'Type=adjective',
+  'Fighting':'Type=adjective',
   'Iron':'Type=adjective',
   'Lame':'Type=adjective',
   'Lazy':'Type=adjective',
@@ -525,8 +526,8 @@ WeirdWest.NICKNAMES = {
   'Elk':'Type=animal',
   'Fox':'Type=animal',
   'Horse':'Type=animal',
-  'Lizard':'Type=animal',
-  'Snake':'Type=animal Move=Glides,Swims',
+  'Lizard':'Type=animal Move=Crawls,Swims',
+  'Snake':'Type=animal Move=Crawls,Swims',
   'Wolf':'Type=animal',
   'Arizona':'Type=noun',
   'Darkness':'Type=noun',
@@ -538,10 +539,9 @@ WeirdWest.NICKNAMES = {
   'Justice':'Type=noun',
   'Kid':'Type=noun',
   'Lightning':'Type=noun',
-  'Nose':'Type=noun',
   'Preacher':'Type=noun',
   'River':'Type=noun',
-  'Rose':'Type=noun',
+  'Shadows':'Type=noun',
   'Texas':'Type=noun',
   'Tree':'Type=noun',
   'Laughs':'Type=verb',
@@ -588,33 +588,26 @@ WeirdWest.ETHNICITIES = {
       'Aylesworth',
   'French':
     'Female=' +
-      'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Alicia,Aline,Alphonsine,' +
-      'Amelie,Andrea,Angele,Angeline,Annabelle,Anne,Annette,Antoinette,' +
-      'Audrey,Augustine,Aurore,Barbara,Beatrice,Bernadette,Blanche,Camille,' +
-      'Carmen,Caroline,Catherine,Cecile,Celeste,Celestine,Charlotte,' +
-      'Christine,Claire,Clara,Claudine,Clementine,Cleo,Cloe,Clotilde,' +
-      'Constance,Coralie,Corinne,Cynthia,Delphine,Denise,Eleonore,Elaine,' +
-      'Elisabeth,Elise,Elodie,Emeline,Emelie,Emma,Ernestine,Estelle,Esther,' +
-      'Eugenie,Eulalie,Eveline,Felicie,Florence,Florine,Francis,Genevieve,' +
-      'Georgine,Geraldine,Gertrude,Gladys,Helene,Henriette,Hermine,' +
-      'Hildegarde,Hortense,Isabelle,Jeanette,Jeanne,Jeanette,Jessica,' +
-      'Josephine,Juliette,Justine,Lea,Leana,Leone,Leonie,Lisette,Louise,' +
-      'Lucie,Lucille,Madeline,Marguerite,Marie,Marion,Marthilde,Maud,Muriel,' +
-      'Nadine,Nathalie,Noemie,Odile,Olive,Pauline,Priscilla,Prudence,Rosalie,' +
-      'Rose,Sarah,Sophie,Suzanne,Therese,Valentine,Valerie,Victorine ' +
+      'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Aline,Alphonsine,Amelie,' +
+      'Andrea,Angele,Angeline,Anne,Annette,Antoinette,Augustine,Bernadette,' +
+      'Blanche,Carmen,Caroline,Catherine,Cecile,Celestine,Charlotte,Claire,' +
+      'Claudine,Clementine,Clotilde,Constance,Denise,Eleonore,Eliane,' +
+      'Elisabeth,Elise,Emelie,Emma,Ernestine,Estelle,Esther,Eugenie,Eulalie,' +
+      'Felicie,Genevieve,Georgine,Gertrude,Helene,Henriette,Hermine,' +
+      'Hildegarde,Hortense,Jeanne,Josephine,Juliette,Lea,Leone,Leonie,Louise,' +
+      'Lucie,Marguerite,Marie,Marion,Marthilde,Noemie,Odile,Olive,Pauline,' +
+      'Prudence,Rosalie,Rose,Suzanne,Therese,Valentine,Victorine ' +
     'Male=' +
-      'Aaron,Abel,Adam,Adelard,Adolphe,Adrien,Albin,Alcide,Alexis,Alfred,' +
-      'Alphonse,Anatole,Andre,Antoine,Armand,Arthur,Auguste,Augustin,' +
-      'Benjamin,Bernard,Bertrand,Brice,Charles,Christian,Clair,Claude,Clovis,' +
-      'Cyril,Daniel,David,Denis,Edgar,Edmond,Elie,Emile,Ernest,Ethan,Eugene,' +
-      'Felix,Ferdinand,Fernand,Florian,Francis,Francois,Frederic,Gabriel,' +
-      'Gaston,Gilbert,Gustave,Guy,Hector,Henri,Horace,Jacque,Jason,Jean,' +
-      'Jonathan,Jordan,Joseph,Jules,Julien,Justin,Lionel,Louis,Lucien,Marcel,' +
-      'Martin,Matthias,Maurice,Michel,Nicolas,Noel,Octave,Pascal,Paul,Pierre,' +
-      'Raoul,Raymond,Rene,Richard,Robert,Robin,Roger,Roland,Salomon,Simon,' +
-      'Theophile,Thomas,Victor,Vincent ' +
+      'Abel,Adam,Adolphe,Adrien,Albin,Alcide,Alexis,Alfred,Alphonse,Anatole,' +
+      'Andre,Antoine,Armand,Arthur,Auguste,Augustin,Bernard,Bertrand,Charles,' +
+      'Clair,Clovis,Daniel,Denis,Edgar,Edmond,Elie,Emile,Ernest,Eugene,Felix,' +
+      'Ferdinand,Fernand,Francis,Francois,Gabriel,Gaston,Gilbert,Gustave,Guy,' +
+      'Hector,Henri,Horace,Jacque,Jean,Joseph,Jules,Julien,Justin,Louis,' +
+      'Lucien,Marcel,Martin,Maurice,Michel,Noel,Octave,Paul,Pierre,Raoul,' +
+      'Raymond,Rene,Richard,Robert,Roger,Roland,Salomon,Simon,Theophile,' +
+      'Victor,Vincent ' +
     'Nonbinary=' +
-      'Alix,Ange,Camille,Claude,Hyacinthe,Irenee,Leonce,Modeste ' +
+      'Alix,Ange,Camille,Celeste,Claude,Hyacinthe,Irenee,Leonce,Modeste ' +
     'Family=' +
       'Beauchamp,Blanchard,Boucher,Bouvier,Calvin,Chastain,Colbert,Deschamps,' +
       'Dubois,Dumas,Dupuy,Durant,Duval,Fabre,Fay,Fevre,Forest,Gage,Granger,' +
@@ -645,11 +638,9 @@ WeirdWest.ETHNICITIES = {
       'Winkler,Winter,Wirth,Wolf,Ziegler,Zimmerman',
   'Irish':
     'Female=' +
-      'Aileen,Bridget,Eileen,Elva,Ena,Honora,Kathleen,Mona,Muriel,Myrna,Nora,' +
-      'Una ' +
+      'Aileen,Bridget,Eileen,Honora,Nora,Una ' +
     'Male=' +
-      'Alby,Angus,Barry,Carroll,Coleman,Conley,Desmond,Kelly,Micheal,Oran,' +
-      'Orrin,Oscar,Owen,Patrick,Redmond,Shane ' +
+      'Barry,Desmond,Micheal,Oran,Owen,Patrick,Shane ' +
     'Nonbinary=' +
       'Aran,Christy,Flann,Kelly,Kennedy,Padraigin,Patsy,Rory,Rowan,Shea ' +
     'Family=' +
@@ -689,12 +680,11 @@ WeirdWest.ETHNICITIES = {
   'Mixed/Other':'',
   'Scottish':
     'Female=' +
-      'Aileen,Effie,Iona,Isla,Jean,Jessie,Muriel,Una ' +
+      'Aileen,Anna,Fiona,Iona,Isla,Jean,Katrina,Kirsty,Shona ' +
     'Male=' +
-      'Alan,Angus,Archibald,Blair,Bruce,Colin,Craig,David,Donald,Douglas,' +
-      'Duncan,Gordon,Graham,Grant,Irvine,Jock,Keith,Kenneth,Malcolm,Micheal,' +
-      'Murray,Neil,Roderick,Ronald,Ross,Roy,Scott,Stewart,Stuart,Tomas,' +
-      'Wallace ' +
+      'Alan,Angus,Bruce,Colin,Craig,David,Donald,Douglas,Duncan,Gordon,' +
+      'Graham,Grant,Keith,Kenneth,Malcolm,Murray,Neil,Roderick,Ronald,Ross,' +
+      'Roy,Scott,Stewart,Stuart ' +
     'Nonbinary=' +
       'Ainsley,Athol,Blair,Islay,Jamie,Rory ' +
     'Family=' +
@@ -715,17 +705,15 @@ WeirdWest.ETHNICITIES = {
       'Watson,Wood,Woods',
   'Spanish':
     'Female=' +
-      'Ada,Adela,Adelina,Aida,Alba,Albina,Alicia,Alma,Amanda,Amalia,Amanda,' +
-      'Amelia,Ana,Anabel,Anastacia,Andrea,Angela,Anita,Antonia,Aura,Aurelia,' +
-      'Aurora,Berta,Carlota,Carmela,Carmen,Carolina,Cecilia,Celeste,Celia,' +
-      'Clara,Claudia,Cloe,Clotilde,Coral,Delfina,Delia,Diana,Dolores,Dora,' +
-      'Elba,Elena,Elisa,Eloisa,Elvira,Emma,Emilia,Esther,Eugenia,Eulalia,' +
-      'Eva,Felicia,Fidelia,Filomena,Flavia,Flora,Francisca,Genoveva,Georgina,' +
-      'Gladys,Gloria,Gracia,Gregoria,Guadelupe,Hermina,Ines,Irene,Isabel,' +
-      'Josefina,Juana,Juanita,Justina,Lady,Laura,Leonor,Lilia,Lola,Lorena,' +
-      'Lorenza,Lucia,Luisa,Luna,Luz,Magdalena,Manuela,Marcia,Margarita,Maria,' +
-      'Martina,Maltilde,Mercedes,Octavia,Oliva,Paulina,Ramona,Roberta,Rosa,' +
-      'Rosalia,Roxana,Sabina,Selena,Silvia,Sofia,Susana,Teresa,Valeria,Zaida ' +
+      'Adela,Adelina,Aida,Alba,Albina,Alicia,Amalia,Amanda,Amelia,Ana,Andrea,' +
+      'Angela,Anita,Antonia,Aurelia,Berta,Carlota,Carmela,Carmen,Carolina,' +
+      'Cecilia,Celia,Clara,Claudia,Clotilde,Delfina,Delia,Diana,Dolores,' +
+      'Elena,Eloisa,Elvira,Emma,Emilia,Esther,Eugenia,Eulalia,Eva,Felicia,' +
+      'Filomena,Flora,Francisca,Genoveva,Gloria,Gracia,Gregoria,Guadelupe,' +
+      'Herminia,Ines,Irene,Isabel,Josefina,Juana,Justina,Laura,Leonor,Lorena,' +
+      'Lorenza,Lucia,Luisa,Luna,Luz,Magdalena,Margarita,Maria,Martina,' +
+      'Maltilde,Mercedes,Oliva,Paulina,Ramona,Rosa,Rosalia,Sabina,Silvia,' +
+      'Sofia,Susana,Teresa,Valeria ' +
     'Male=' +
       'Abel,Abraham,Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Amado,Anastacio,' +
       'Andreas,Angel,Antonio,Benito,Benjamin,Bernardo,Bruno,Candido,Casimiro,' +
