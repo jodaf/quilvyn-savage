@@ -589,34 +589,19 @@ WeirdWest.ETHNICITIES = {
       'Sun,Tang,Wang,Wu,Xiao,Xie,Xu,Yang,Yu,Zhang,Zhao,Zheng,Zhou,Zhu',
   'English':
     'Female=' +
-      'Abigail,Adele,Alice,Alicia,Amanda,Amber,Amelia,Amy,Anastasia,Andrea,' +
-      'Angela,Ann,Anna,Annabel,Anne,Antonia,Barbara,Beatrice,Bertha,Bridget,' +
-      'Cara,Carmen,Charlotte,Chloe,Christina,Claire,Clara,Clare,Clarissa,' +
-      'Claudia,Constance,Coral,Crystal,Daisy,Deborah,Doris,Edna,Eileen,' +
-      'Eleanor,Elena,Elinor,Elisabeth,Eliza,Elizabeth,Ella,Ellen,Eloise,' +
-      'Emilia,Emily,Emma,Esther,Ethel,Eva,Evangeline,Eve,Faith,Fay,Fern,' +
-      'Flora,Florence,Frances,Freda ' +
+      'Alice,Amelia,Amy,Ann,Anne,Barbara,Beatrice,Bertha,Charlotte,Clara,' +
+      'Constance,Daisy,Doris,Edna,Eileen,Eleanor,Elizabeth,Ella,Ellen,Emily,' +
+      'Emma,Esther,Ethel,Eva,Freda,Gertrude,Gladys,Hilda,Irene,Iris,Isabella,' +
+      'Ivy,Jane,Jean ' +
     'Male=' +
-      'Aaron,Abraham,Adam,Adolphus,Adrian,Alan,Albert,Alexander,Alfred,Andre,' +
-      'Andrew,Angus,Anthony,Anton,Arnold,Asher,Austin,Benedict,Benjamin,' +
-      'Bernard,Bertram,Bradley,Byron,Caleb,Calvin,Carl,Cecil,Charles,' +
-      'Christian,Christopher,Clayton,Clifford,Cody,Cole,Colin,Conrad,Craig,' +
-      'Curtis,Cyril,Dalton,Damon,Daniel,Darius,David,Dean,Dennis,Dillon,' +
-      'Dominic,Donald,Douglas,Duncan,Edgar,Edmund,Edward,Edwin,Elliott,Eric,' +
-      'Ethan,Evan,Everett,Fabian,Felix,Finley,Frank,Frederick,Gabriel,Gary,' +
-      'George,Gerald,Gilbert,Glenn,Gordon,Graham,Grant,Gregory,Guy,Harris,' +
-      'Harrison,Harvey,Hector,Henry,Herbert,Horace,Hugh,Hugo,Ian,Isaac,Jack,' +
-      'Jackson,Jacob,Jake,James,Jared,Jason,Jasper,Jerome,Jesse,Joel,Jonah,' +
-      'Jonathan,Joseph,Joshua,Josiah,Julian,Justin,Karl,Keith,Kenneth,Kyle,' +
-      'Laurence,Lawrence,Leon,Levi,Lewis,Lionel,Lloyd,Louis,Lucas,Luke,' +
-      'Malachi,Marcus,Martin,Mason,Matthew,Maurice,Maxwell,Michael,Miles,' +
-      'Milo,Mitchell,Nathan,Nathaniel,Neil,Nicholas,Norman,Oliver,Omar,' +
-      'Oscar,Owen,Patrick,Paul,Percival,Perry,Peter,Philip,Pierce,Raphael,' +
-      'Raymond,Reese,Reuben,Richard,Robert,Roland,Ronald,Ross,Russell,Samuel,' +
-      'Scott,Sebastian,Seth,Shane,Sheldon,Simon,Solomon,Spencer,Stanley,' +
-      'Steven,Stuart,Sydney,Terence,Theodore,Thomas,Timothy,Tobias,Todd,' +
-      'Travis,Troy,Tyler,Victor,Vincent,Warren,Wayne,Wesley,Whitney,William,' +
-      'Zachariah,Zachary ' +
+      'Alan,Albert,Alexander,Alfred,Andrew,Anthony,Arnold,Benjamin,Bernard,' +
+      'Bertram,Cecil,Charles,Christopher,Clifford,Colin,Cyril,Daniel,David,' +
+      'Dennis,Donald,Douglas,Edgar,Edmund,Edward,Edwin,Eric,Evan,Frank,' +
+      'Frederick,George,Gerald,Gilbert,Gordon,Henry,Herbert,Horace,Hugo,Jack,' +
+      'James,Joseph,Kenneth,Laurence,Lawrence,Lewis,Lionel,Louis,Lucas,' +
+      'Martin,Matthew,Maurice,Michael,Norman,Owen,Patrick,Percival,Peter,' +
+      'Philip,Raymond,Richard,Robert,Roland,Ronald,Samuel,Stanley,Sydney,' +
+      'Thomas,Victor,Wayne,William ' +
     'Nonbinary=' +
       'Alexis,Angel,Ashley,Bailey,Beau,Cameron,Casey,Courtney,Devon,Ellis,' +
       'Harley,Jamie,Jordan,Leigh,Mackenzie,Morgan,Quinn,Taylor ' +
