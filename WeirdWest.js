@@ -519,14 +519,19 @@ WeirdWest.NICKNAMES = {
   'Badger':'Type=animal',
   'Buffalo':'Type=animal',
   'Bull':'Type=animal',
+  'Cow':'Type=animal',
   'Coyote':'Type=animal',
+  'Crow':'Type=animal Move=Flies,Walks',
   'Deer':'Type=animal',
   'Duck':'Type=animal Move=Flies,Swims,Walks',
-  'Eagle':'Type=animal Move=Flies,Swims,Walks',
+  'Eagle':'Type=animal Move=Flies,Walks',
   'Elk':'Type=animal',
   'Fox':'Type=animal',
   'Horse':'Type=animal',
   'Lizard':'Type=animal Move=Crawls,Swims',
+  'Owl':'Type=animal Move=Flies,Walks',
+  'Rabbit':'Type=animal',
+  'Raven':'Type=animal Move=Flies,Walks',
   'Snake':'Type=animal Move=Crawls,Swims',
   'Wolf':'Type=animal',
   'Arizona':'Type=noun',
@@ -566,6 +571,22 @@ WeirdWest.ETHNICITIES = {
     'Family=' +
       'Brown,Davis,Harris,Jackson,Johnson,Robinson,Smith,Taylor,Thomas,' +
       'Williams',
+  'Chinese':
+    'Female=' +
+      'Ai,Fen,Ju,Liling,Mei,Nuan,Nuo,Shu,Ting,Xiu,Ya,Zhen ' +
+    'Male=' +
+      'Biming,Chang,Chao,Cheng,Cong,Da,Daquan,Dequan,Dong,Fai,Fan,Fang,Feng,' +
+      'Gang,Ho,Hong,Huang,Hung,Ji,Jia,Jian,Jin,Jing,Kang,Keung,Kong,Kun,Kuo,' +
+      'Laquan,Li,Peng,Ping,Qiang,Qing,Shen,Sheng,Si,Song,Wang,Xing,Xun,Yu,' +
+      'Zhao,Zhu,Zhuang ' +
+    'Nonbinary=' +
+      'Ah,An,Bai,Bao,Bo,Chen,Chin,Chun,Fa,Fu,Guang,Guo,Hai,Han,He,Heng,Hua,' +
+      'Huan,Hui,Jiang,Jiao,Jie,Jun,Lan,Lei,Lian,Liang,Lim,Lin,Ling,Liu,Min,' +
+      'Ming,Mu,Ning,Niu,Qi,Qiu,Rong,Ru,Shan,Shi,Shuang,Shui,Shun,Su,Tai,Tu,' +
+      'Wei,Wen,Xiang,Xue,Yan,Yi,Yin,Ying,Yong,Yun,Zan,Zheng,Zhi,Zhong ' +
+    'Family=' +
+      'Chen,Dong,Feng,Gao,Guo,Han,He,Hu,Huang,Li,Liang,Lin,Liu,Lui,Ma,Song,' +
+      'Sun,Tang,Wang,Wu,Xiao,Xie,Xu,Yang,Yu,Zhang,Zhao,Zheng,Zhou,Zhu',
   'English':
     'Female=' +
       'Ada,Adela,Adelaide,Agatha,Agnes,Alberta,Alfreda,Alice,Alpha,Alta,' +
@@ -575,9 +596,29 @@ WeirdWest.ETHNICITIES = {
       'Clementine,Constance,Cynthia,Daisy,Deborah,Delilah,Denise,Edith,' +
       'Eleanor,Elizabeth ' +
     'Male=' +
-      'Aaron,Abner,Abraham,Abram,Adam,Adolphus,Adrian,Alan,Albert,Alden,' +
-      'Alexander,Alfred,Alonzo,Aloysius,Alton,Alvah,Alvin,Alvis,Ambrose,' +
-      'Amos,Andrew,Anthony,Archibald,Arnold,Arthur,Asa,Aubrey,Austin ' +
+      'Aaron,Abraham,Adam,Adolphus,Adrian,Alan,Albert,Alexander,Alfred,Andre,' +
+      'Andrew,Angus,Anthony,Anton,Arnold,Asher,Austin,Benedict,Benjamin,' +
+      'Bernard,Bertram,Bradley,Byron,Caleb,Calvin,Carl,Cecil,Charles,' +
+      'Christian,Christopher,Clayton,Clifford,Cody,Cole,Colin,Conrad,Craig,' +
+      'Curtis,Cyril,Dalton,Damon,Daniel,Darius,David,Dean,Dennis,Dillon,' +
+      'Dominic,Donald,Douglas,Duncan,Edgar,Edmund,Edward,Edwin,Elliott,Eric,' +
+      'Ethan,Evan,Everett,Fabian,Felix,Finley,Frank,Frederick,Gabriel,Gary,' +
+      'George,Gerald,Gilbert,Glenn,Gordon,Graham,Grant,Gregory,Guy,Harris,' +
+      'Harrison,Harvey,Hector,Henry,Herbert,Horace,Hugh,Hugo,Ian,Isaac,Jack,' +
+      'Jackson,Jacob,Jake,James,Jared,Jason,Jasper,Jerome,Jesse,Joel,Jonah,' +
+      'Jonathan,Joseph,Joshua,Josiah,Julian,Justin,Karl,Keith,Kenneth,Kyle,' +
+      'Laurence,Lawrence,Leon,Levi,Lewis,Lionel,Lloyd,Louis,Lucas,Luke,' +
+      'Malachi,Marcus,Martin,Mason,Matthew,Maurice,Maxwell,Michael,Miles,' +
+      'Milo,Mitchell,Nathan,Nathaniel,Neil,Nicholas,Norman,Oliver,Omar,' +
+      'Oscar,Owen,Patrick,Paul,Percival,Perry,Peter,Philip,Pierce,Raphael,' +
+      'Raymond,Reese,Reuben,Richard,Robert,Roland,Ronald,Ross,Russell,Samuel,' +
+      'Scott,Sebastian,Seth,Shane,Sheldon,Simon,Solomon,Spencer,Stanley,' +
+      'Steven,Stuart,Sydney,Terence,Theodore,Thomas,Timothy,Tobias,Todd,' +
+      'Travis,Troy,Tyler,Victor,Vincent,Warren,Wayne,Wesley,Whitney,William,' +
+      'Zachariah,Zachary ' +
+    'Nonbinary=' +
+      'Alexis,Angel,Ashley,Bailey,Beau,Cameron,Casey,Courtney,Devon,Ellis,' +
+      'Harley,Jamie,Jordan,Leigh,Mackenzie,Morgan,Quinn,Taylor ' +
     'Family=' +
       'Adamson,Abbott,Abrahamson,Abrams,Ackerman,Ackerson,Acton,Adair,Adams,' +
       'Adcock,Aiken,Aikens,Ainsworth,Akers,Akey,Albertson,Albright,Alden,' +
@@ -715,13 +756,12 @@ WeirdWest.ETHNICITIES = {
       'Maltilde,Mercedes,Oliva,Paulina,Ramona,Rosa,Rosalia,Sabina,Silvia,' +
       'Sofia,Susana,Teresa,Valeria ' +
     'Male=' +
-      'Abel,Abraham,Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Amado,Anastacio,' +
-      'Andreas,Angel,Antonio,Benito,Benjamin,Bernardo,Bruno,Candido,Casimiro,' +
-      'Clemente,Diego,Domingo,Elias,Emiliano,Emilio,Enrique,Epifanio,Ernesto,' +
-      'Fabian,Federico,Felipe,Felix,Fernando,Florencio,Florian,Francisco,' +
-      'Gabriel,German,Gregorio,Hector,Hugo,Ignacio,Jesus,Joaquin,Joel,Jonas,' +
-      'Jose,Juan,Julio,Leon,Lorenzo,Luis,Manuel,Miguel,Nicolas,Orlando,Pablo,' +
-      'Pedro,Rafael,Ramon,Roman,Ruben,Salomon,Salvador,Santiago,Tomas,' +
+      'Abraham,Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Amado,Angel,Antonio,' +
+      'Benito,Benjamin,Bernardo,Candido,Casimiro,Clemente,Diego,Domingo,' +
+      'Emiliano,Emilio,Enrique,Epifanio,Ernesto,Fabian,Federico,Felipe,Felix,' +
+      'Fernando,Florencio,Florian,Francisco,Gabriel,German,Gregorio,Hector,' +
+      'Hugo,Ignacio,Jesus,Joaquin,Joel,Jose,Juan,Julio,Leon,Lorenzo,Luis,' +
+      'Manuel,Miguel,Nicolas,Pablo,Pedro,Rafael,Roman,Ruben,Santiago,Tomas,' +
       'Vicente ' +
     'Nonbinary=' +
       'Ale,Cande,Chus,Cruz,Guadelupe,Guiomar,Lupe,Maxi,Patrocinio,Reyes,' +
