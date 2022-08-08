@@ -589,12 +589,13 @@ WeirdWest.ETHNICITIES = {
       'Sun,Tang,Wang,Wu,Xiao,Xie,Xu,Yang,Yu,Zhang,Zhao,Zheng,Zhou,Zhu',
   'English':
     'Female=' +
-      'Ada,Adela,Adelaide,Agatha,Agnes,Alberta,Alfreda,Alice,Alpha,Alta,' +
-      'Althea,Alvina,Amanda,Amelia,Amy,Anna,Annabel,Anne,Annis,Aura,Avis,' +
-      'Barbara,Bernadette,Bernice,Beulah,Blanche,Camille,Candace,Caroline,' +
-      'Catherine,Cecilia,Charlotte,Charity,Christina,Claire,Clarice,Claudia,' +
-      'Clementine,Constance,Cynthia,Daisy,Deborah,Delilah,Denise,Edith,' +
-      'Eleanor,Elizabeth ' +
+      'Abigail,Adele,Alice,Alicia,Amanda,Amber,Amelia,Amy,Anastasia,Andrea,' +
+      'Angela,Ann,Anna,Annabel,Anne,Antonia,Barbara,Beatrice,Bertha,Bridget,' +
+      'Cara,Carmen,Charlotte,Chloe,Christina,Claire,Clara,Clare,Clarissa,' +
+      'Claudia,Constance,Coral,Crystal,Daisy,Deborah,Doris,Edna,Eileen,' +
+      'Eleanor,Elena,Elinor,Elisabeth,Eliza,Elizabeth,Ella,Ellen,Eloise,' +
+      'Emilia,Emily,Emma,Esther,Ethel,Eva,Evangeline,Eve,Faith,Fay,Fern,' +
+      'Flora,Florence,Frances,Freda ' +
     'Male=' +
       'Aaron,Abraham,Adam,Adolphus,Adrian,Alan,Albert,Alexander,Alfred,Andre,' +
       'Andrew,Angus,Anthony,Anton,Arnold,Asher,Austin,Benedict,Benjamin,' +
