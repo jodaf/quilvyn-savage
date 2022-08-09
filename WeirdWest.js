@@ -592,7 +592,9 @@ WeirdWest.ETHNICITIES = {
       'Alice,Amelia,Amy,Ann,Anne,Barbara,Beatrice,Bertha,Charlotte,Clara,' +
       'Constance,Daisy,Doris,Edna,Eileen,Eleanor,Elizabeth,Ella,Ellen,Emily,' +
       'Emma,Esther,Ethel,Eva,Freda,Gertrude,Gladys,Hilda,Irene,Iris,Isabella,' +
-      'Ivy,Jane,Jean ' +
+      'Ivy,Jane,Jean,Kate,Laura,Lillian,Lily,Louisa,Lucy,Mabel,Margaret,' +
+      'Margery,Maria,Marie,Martha,Mary,Maud,May,Mildred,Millicent,Muriel,' +
+      'Nora,Olive,Phyllis ' +
     'Male=' +
       'Alan,Albert,Alexander,Alfred,Andrew,Anthony,Arnold,Benjamin,Bernard,' +
       'Bertram,Cecil,Charles,Christopher,Clifford,Colin,Cyril,Daniel,David,' +
