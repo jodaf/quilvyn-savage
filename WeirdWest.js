@@ -68,6 +68,37 @@ function WeirdWest(baseRules) {
 
   Quilvyn.addRuleSet(rules);
 
+ // Debugging dump of all nicknames
+  var firstNames = [];
+  for(var e in WeirdWest.ETHNICITIES) {
+    if(e == 'Chinese')
+      continue;
+    firstNames = firstNames
+      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Female'))
+      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Male'))
+      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Nonbinary'));
+  }
+  firstNames.sort();
+  var w = window.open('', '');
+  w.document.write(
+    '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '<title>Nicknames</title>\n' +
+    '</head>\n' +
+    '<body>\n'
+  );
+  var lastFn = '';
+  firstNames.forEach(fn => {
+    if(fn != lastFn)
+      w.document.write(
+        fn + ' ' + WeirdWest.nicknames(fn) + '<br/>\n'
+      );
+    lastFn = fn;
+  });
+  w.document.write('</body></html>\n');
+  w.document.close();
+
 }
 
 WeirdWest.VERSION = '2.3.2.1';
@@ -475,19 +506,18 @@ delete WeirdWest.EDGES['Arcane Background (Psionics)'];
 delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.NICKNAMES = {
-  'Abe':'Type=short Long=Abraham,Abe',
-  'Al':'Type=short Long=Alan,Albert,Alberto,Alexander,Alfonso,Alfred,Alonzo,Alphonse',
+  'Abe':'Type=short Long=Abraham',
   'Alec':'Type=short Long=Alexander',
   'Alex':'Type=short Long=Alexander',
-  'Alf':'Type=short Long=Alfred',
-  'Alfie':'Type=short Long=Alfred',
-  'Andy':'Type=short Long=Andrew',
+  'Artie':'Type=short Long=Arthur',
   'Becky':'Type=short Long=Rebecca',
   'Bess':'Type=short Long=Elizabeth',
   'Bessie':'Type=short Long=Elizabeth',
   'Beth':'Type=short Long=Elizabeth',
   'Betsy':'Type=short Long=Elizabeth',
   'Betty':'Type=short Long=Elizabeth',
+  'Charlie':'Type=short Long=Charles',
+  'Chuck':'Type=short Long=Charles',
   'Eliza':'Type=short Long=Elizabeth',
   'Fred':'Type=short Long=Alfred',
   'Jules':'Type=short Long=Julia',
@@ -1558,13 +1588,21 @@ WeirdWest.choiceEditorElements = function(rules, type) {
 
 WeirdWest.nicknames = function(name) {
   var result = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match('Long=\\S*\\b' + name + '\\b'));
-  var nicked = name.replace(/^([^aeiou]*[aeiou]*[^aeiouy]*).*$/i, '$1');
-  if(nicked.match(/[^aeoiuy][rh]$/))
+  var nicked = name.replace(/^([^aeiou]*[aeiouy]+[^aeiouy]+).*$/i, '$1');
+  if(nicked.match(/[^aeiouy][lmnrgw]$/i))
     nicked = nicked.replace(/.$/, '');
-  if(nicked.match(/[aeiou][^aeiouy]$/i))
-    result.push(nicked + nicked.charAt(nicked.length - 1) + 'y');
-  else if(!nicked.match(/[aeiouy]$/i))
-    result.push(nicked + 'ie');
+  if(name != nicked && name != nicked + 'e')
+    result.push(nicked);
+  if(nicked.match(/[^aeiouy][^aeiouy]$/i)) {
+    if(!name.match(nicked + '(y|ey|ie|ee|e)$'))
+      result.push(nicked + (QuilvynUtils.random(0, 1) == 0 ? 'ie' : 'y'));
+    nicked = nicked.replace(/([^aeiouy])[^aeiouy]+$/i, '$1');
+  }
+  if(!nicked.match(/[aeiouy]$/i) && !name.match(nicked + '(y|ey|ie|ee|e)$')) {
+    nicked = nicked + nicked.charAt(nicked.length - 1);
+    if(!name.startsWith(nicked))
+      result.push(nicked + (QuilvynUtils.random(0, 1) == 0 ? 'ie' : 'y'));
+  }
   return result;
 };
 
@@ -1625,35 +1663,6 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
         :
           nouns[QuilvynUtils.random(0, nouns.length - 1)];
       personalName += ' "' + nickname + '"';
-      var firstNames = [];
-      for(var e in WeirdWest.ETHNICITIES) {
-        if(e == 'Chinese')
-          continue;
-        firstNames = firstNames
-          .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Female'))
-          .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Male'))
-          .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Nonbinary'));
-      }
-      firstNames.sort();
-      var w = window.open('', '');
-      w.document.write(
-        '<!DOCTYPE html>\n' +
-        '<html lang="en">\n' +
-        '<head>\n' +
-        '<title>Nicknames</title>\n' +
-        '</head>\n' +
-        '<body>\n'
-      );
-      var lastFn = '';
-      firstNames.forEach(fn => {
-        if(fn != lastFn)
-          w.document.write(
-            fn + ' ' + WeirdWest.nicknames(fn) + '<br/>\n'
-          );
-        lastFn = fn;
-      });
-      w.document.write('</body></html>\n');
-      w.document.close();
     }
     choices = QuilvynUtils.getAttrValueArray(names, 'Family');
     var familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
