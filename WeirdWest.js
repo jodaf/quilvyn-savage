@@ -781,7 +781,7 @@ WeirdWest.ETHNICITIES = {
       'Abrahamson,Abrams,Adams,Cline,Cohen,Fisher,Hayes,Kaufmann,Klein,' +
       'Kramer,Lowe,Mandel,Mayer,Meier,Meyer,Neumann,Reis,Rose,Roth,Schneider,' +
       'Schwartz,Sherman,Stein,Stuck,Wirth,Zimmermann',
-  'Mixed/Other':'',
+  'Multiethnic':'',
   'Scottish':
     'Female=' +
       'Aileen,Anna,Fiona,Iona,Isla,Jean,Katrina,Kirsty,Shona ' +
@@ -1657,31 +1657,36 @@ WeirdWest.nicknames = function(name) {
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'name') {
     var adjectives =
-      QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/adjective/));
+      QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
+      .filter(x => WeirdWest.NICKNAMES[x].match(/adjective/));
+    var nouns =
+      QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
+      .filter(x => WeirdWest.NICKNAMES[x].match(/noun/));
     var ethnicity = attributes.ethnicity;
     var fullName;
-    var nouns =
-      QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/noun/));
     if(ethnicity == 'American Indian') {
       var animals =
-        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/animal/));
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
+        .filter(x => WeirdWest.NICKNAMES[x].match(/animal/));
       var prepositions =
-        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/preposition/));
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
+        .filter(x => WeirdWest.NICKNAMES[x].match(/preposition/));
       var verbs =
-        QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match(/verb/));
+        QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
+        .filter(x => WeirdWest.NICKNAMES[x].match(/verb/));
+      var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
       if(QuilvynUtils.random(0, 1) == 0) {
         fullName =
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
-          animals[QuilvynUtils.random(0, animals.length - 1)];
+          animal;
       } else {
-        var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
         var moves =
           QuilvynUtils.getAttrValueArray(WeirdWest.NICKNAMES[animal], 'Move');
         if(moves.length == 0)
           moves = ['Leaps', 'Runs', 'Swims', 'Walks'];
         verbs = verbs.concat(moves);
         fullName =
-          animal + ' Who ' +
+          (QuilvynUtils.random(0, 1) == 0 ? animal + ' Who ' : '') +
           verbs[QuilvynUtils.random(0, verbs.length - 1)] + ' ' +
           prepositions[QuilvynUtils.random(0, prepositions.length - 1)] + ' ' +
           nouns[QuilvynUtils.random(0, nouns.length - 1)];
@@ -1689,14 +1694,15 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
       attributes.name = fullName;
       return;
     }
-    while(!(ethnicity in WeirdWest.ETHNICITIES) ||
-          !(WeirdWest.ETHNICITIES[ethnicity].includes('Family=')))
-      ethnicity = QuilvynUtils.randomKey(WeirdWest.ETHNICITIES);
+    if(!(ethnicity in WeirdWest.ETHNICITIES))
+      ethnicity = 'Multiethnic';
     var names = WeirdWest.ETHNICITIES[ethnicity];
     var gender =
       ['Female', 'Male'].includes(attributes.gender) ? attributes.gender :
       'Nonbinary';
     var choices = QuilvynUtils.getAttrValueArray(names, gender);
+    while(choices.length == 0)
+      choices = QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[QuilvynUtils.randomKey(WeirdWest.ETHNICITIES)], gender);
     var personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
     if(QuilvynUtils.random(0, 1) == 1) {
       var nicknames = WeirdWest.nicknames(personalName);
@@ -1712,6 +1718,8 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
       personalName += ' "' + nickname + '"';
     }
     choices = QuilvynUtils.getAttrValueArray(names, 'Family');
+    while(choices.length == 0)
+      choices = QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[QuilvynUtils.randomKey(WeirdWest.ETHNICITIES)], 'Family');
     var familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
     fullName = personalName + ' ' + familyName;
     if(ethnicity == 'Chinese')
@@ -1737,6 +1745,14 @@ WeirdWest.ruleNotes = function() {
   return '' +
     '<h2>WeirdWest Quilvyn Module Notes</h2>\n' +
     'WeirdWest Quilvyn Module Version ' + WeirdWest.VERSION + '\n' +
+    '</p>\n' +
+    '<h3>Usage Notes</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '  Quilvyn uses character ethnicity and gender only when generating\n' +
+    '  random names; there are no rule effects for either attribute.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
     '\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
@@ -1752,6 +1768,10 @@ WeirdWest.ruleNotes = function() {
     'suitability for purpose of this product.\n' +
     '</p><p>\n' +
     'Deadlands The Weird West © 2020 Pinnacle Entertainment Group.\n' +
+    '</p><p>\n' +
+    'Quilvyn takes most of its randomized names from the ' +
+    '<a href="https://www.mithrilandmages.com/utilities/WesternBrowse.php">Mithril and Mages list of Old West Names</a>.\n' +
+    'Name ethnicities are determined from data taken from the <a href="https://www.behindthename.com/">Behind the Name website</a>.\n' +
     '</p>\n' +
     '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };
