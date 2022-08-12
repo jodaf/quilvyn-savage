@@ -507,32 +507,69 @@ delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.NICKNAMES = {
   'Abe':'Type=short Long=Abraham',
+  'Ains':'Type=short Long=Ainsley',
+  'Ainsl':'Type=short',
   'Alec':'Type=short Long=Alexander',
   'Alex':'Type=short Long=Alexander',
+  'And':'Type=short',
+  'Art':'Type=short Long=Arthur',
   'Artie':'Type=short Long=Arthur',
+  'Ash':'Type=short Long=Asher,Ashley',
+  'Ashl':'Type=short',
   'Becky':'Type=short Long=Rebecca',
   'Bess':'Type=short Long=Elizabeth',
   'Bessie':'Type=short Long=Elizabeth',
-  'Beth':'Type=short Long=Elizabeth',
+  'Beth':'Type=short Long=Bethany,Elizabeth',
   'Betsy':'Type=short Long=Elizabeth',
   'Betty':'Type=short Long=Elizabeth',
-  'Charlie':'Type=short Long=Charles',
+  'Blairrie':'Type=short',
+  'Blairry':'Type=short',
+  'Blanch':'Type=short',
+  'Bruc':'Type=short',
+  'Brucie':'Type=short Long=Bruce',
+  'Charl':'Type=short',
+  'Charlie':'Type=short Long=Charles,Charlotte',
   'Chuck':'Type=short Long=Charles',
+  'Courtn':'Type=short',
+  'Clairrie':'Type=short',
+  'Clairry':'Type=short',
+  'Desm':'Type=short',
+  'Dougl':'Type=short',
+  'Edm':'Type=short',
+  'Edn':'Type=short',
   'Eliza':'Type=short Long=Elizabeth',
-  'Fred':'Type=short Long=Alfred',
+  'Esth':'Type=short',
+  'Fred':'Type=short Long=Alfred,Freda,Frederick',
+  'Gerh':'Type=short',
+  'Grah':'Type=short',
+  'Grahhie':'Type=short',
+  'Grahhy':'Type=short',
+  'Ign':'Type=short',
+  'Jim':'Type=short Long=James',
+  'Jimmy':'Type=short Long=James',
   'Jules':'Type=short Long=Julia',
-  'Julie':'Type=short Long=Julie',
+  'Julie':'Type=short Long=Julia',
   'Libby':'Type=short Long=Elizabeth',
+  'Larry':'Type=short Long=Laurence,Lawrence',
   'Liz':'Type=short Long=Elizabeth',
   'Lizzy':'Type=short Long=Elizabeth',
   'Lou':'Type=short Long=Louisa',
+  'Magd':'Type=short',
   'Mandy':'Type=short Long=Amanda',
+  'Matth':'Type=short',
   'Mo':'Type=short Long=Moses',
   'Nan':'Type=short Long=Nancy',
   'Nate':'Type=short Long=Nathan',
+  'Pabl':'Type=short',
+  'Pete':'Type=short Long=Peter',
+  'Presl':'Type=short',
+  'Ray':'Type=short Long=Raymond',
+  'Stanl':'Type=short',
   'Sue':'Type=short Long=Susan',
-  'Susie':'Type=short Long=Susan',
+  'Sydn':'Type=short',
+  'Tayl':'Type=short',
   'Tony':'Type=short Long=Anthony',
+  'Wilh':'Type=short',
   'Big':'Type=adjective',
   'Bloody':'Type=adjective',
   'Dusty':'Type=adjective',
@@ -1588,20 +1625,30 @@ WeirdWest.choiceEditorElements = function(rules, type) {
 
 WeirdWest.nicknames = function(name) {
   var result = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match('Long=\\S*\\b' + name + '\\b'));
-  var nicked = name.replace(/^([^aeiou]*[aeiouy]+[^aeiouy]+).*$/i, '$1');
-  if(nicked.match(/[^aeiouy][lmnrgw]$/i))
+  var diminutive;
+  var nicked =
+    name.replace(/^(([^aeiouy]|^y(?=[aeiouy]))*[aeiouy]+[^aeiouy]+).*$/i, '$1');
+  if(nicked.match(/[^aeiouy][rgwq]$/i))
     nicked = nicked.replace(/.$/, '');
-  if(name != nicked && name != nicked + 'e')
+  if(name != nicked && !(nicked in WeirdWest.NICKNAMES))
     result.push(nicked);
   if(nicked.match(/[^aeiouy][^aeiouy]$/i)) {
-    if(!name.match(nicked + '(y|ey|ie|ee|e)$'))
-      result.push(nicked + (QuilvynUtils.random(0, 1) == 0 ? 'ie' : 'y'));
+    if(!name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
+      diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
+      if(!(diminutive in WeirdWest.NICKNAMES))
+        result.push(diminutive);
+    }
     nicked = nicked.replace(/([^aeiouy])[^aeiouy]+$/i, '$1');
+    if(!(nicked in WeirdWest.NICKNAMES))
+      result.push(nicked);
   }
-  if(!nicked.match(/[aeiouy]$/i) && !name.match(nicked + '(y|ey|ie|ee|e)$')) {
+  if(!nicked.match(/[aeiouy]$/i) && !name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
     nicked = nicked + nicked.charAt(nicked.length - 1);
-    if(!name.startsWith(nicked))
-      result.push(nicked + (QuilvynUtils.random(0, 1) == 0 ? 'ie' : 'y'));
+    if(!name.startsWith(nicked)) {
+      diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
+      if(!(diminutive in WeirdWest.NICKNAMES))
+        result.push(diminutive);
+    }
   }
   return result;
 };
