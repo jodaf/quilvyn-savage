@@ -676,7 +676,19 @@ WeirdWest.ETHNICITIES = {
       'Breckenridge,Brent,Brewer,Brewster,Bridges,Brigham,Briley,Bristol,' +
       'Brittain,Brock,Bronson,Brook,Brown,Brownlow,Bryant,Bryson,Buckley,' +
       'Bull,Bullard,Bullock,Bunker,Burgess,Burke,Burnham,Burns,Burrell,' +
-      'Burton,Bush,Butler,Butts,Byrd',
+      'Burton,Bush,Butler,Butts,Byrd,Caldwell,Cannon,Cantree,Carlisle,Carman,' +
+      'Carpenter,Carver,Case,Cash,Castle,Caulfield,Chadwick,Chamberlain,' +
+      'Chambers,Chance,Chandler,Chapman,Chase,Church,Clark,Clarkson,Clay,' +
+      'Clayton,Cleveland,Clinton,Close,Cobb,Coburn,Cockburn,Colby,Cole,' +
+      'Collingwood,Collins,Colt,Colton,Combs,Comstock,Conner,Cook,Coombs,' +
+      'Cooper,Corey,Cornell,Corwin,Cowden,Cox,Coy,Crawford,Crisp,Croft,Cross,' +
+      'Crouch,Cummins,Curtis,Dale,Daniels,Darnell,Davidson,Dawson,Day,Dean,' +
+      'Derby,Devine,Dexter,Dickinson,Dixon,Dobbs,Dodge,Donaldson,Dorsey,' +
+      'Drake,Draper,Dudley,Duke,Dunn,Durant,Dyer,Eads,Earl,Easton,Eaton,' +
+      'Edwards,Elder,Eldridge,Elliott,Ellis,Ellsworth,Ely,English,Ericson,' +
+      'Everett,Fairchild,Falconer,Farmer,Farnham,Fay,Fields,Finch,Fisher,' +
+      'Fleming,Fletcher,Ford,Forrest,Foss,Foster,Fowler,Fox,Franklin,Freeman,' +
+      'Frost,Fry,Fuller,Fulton',
   'French':
     'Female=' +
       'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Aline,Alphonsine,Amelie,' +
