@@ -68,7 +68,8 @@ function WeirdWest(baseRules) {
 
   Quilvyn.addRuleSet(rules);
 
- // Debugging dump of all nicknames
+/*
+  // Debugging dump of all nicknames
   var firstNames = [];
   for(var e in WeirdWest.ETHNICITIES) {
     if(e == 'Chinese')
@@ -98,6 +99,7 @@ function WeirdWest(baseRules) {
   });
   w.document.write('</body></html>\n');
   w.document.close();
+*/
 
 }
 
@@ -506,45 +508,36 @@ delete WeirdWest.EDGES['Arcane Background (Psionics)'];
 delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
 WeirdWest.NICKNAMES = {
+  // Unpronouncable nicknames not eliminated by nickname algorithm
+  'Courtn':'Type=short',
+  'Desm':'Type=short',
+  'Edm':'Type=short',
+  'Edn':'Type=short',
+  'Esth':'Type=short',
+  'Gerh':'Type=short',
+  'Ign':'Type=short',
+  'Magd':'Type=short',
+  'Matth':'Type=short',
+  'Sydn':'Type=short',
+  'Wilh':'Type=short',
   'Abe':'Type=short Long=Abraham',
   'Ains':'Type=short Long=Ainsley',
-  'Ainsl':'Type=short',
   'Alec':'Type=short Long=Alexander',
   'Alex':'Type=short Long=Alexander',
-  'And':'Type=short',
   'Art':'Type=short Long=Arthur',
   'Artie':'Type=short Long=Arthur',
   'Ash':'Type=short Long=Asher,Ashley',
-  'Ashl':'Type=short',
   'Becky':'Type=short Long=Rebecca',
   'Bess':'Type=short Long=Elizabeth',
   'Bessie':'Type=short Long=Elizabeth',
   'Beth':'Type=short Long=Bethany,Elizabeth',
   'Betsy':'Type=short Long=Elizabeth',
   'Betty':'Type=short Long=Elizabeth',
-  'Blairrie':'Type=short',
-  'Blairry':'Type=short',
-  'Blanch':'Type=short',
-  'Bruc':'Type=short',
   'Brucie':'Type=short Long=Bruce',
-  'Charl':'Type=short',
   'Charlie':'Type=short Long=Charles,Charlotte',
   'Chuck':'Type=short Long=Charles',
-  'Courtn':'Type=short',
-  'Clairrie':'Type=short',
-  'Clairry':'Type=short',
-  'Desm':'Type=short',
-  'Dougl':'Type=short',
-  'Edm':'Type=short',
-  'Edn':'Type=short',
   'Eliza':'Type=short Long=Elizabeth',
-  'Esth':'Type=short',
   'Fred':'Type=short Long=Alfred,Freda,Frederick',
-  'Gerh':'Type=short',
-  'Grah':'Type=short',
-  'Grahhie':'Type=short',
-  'Grahhy':'Type=short',
-  'Ign':'Type=short',
   'Jim':'Type=short Long=James',
   'Jimmy':'Type=short Long=James',
   'Jules':'Type=short Long=Julia',
@@ -554,22 +547,16 @@ WeirdWest.NICKNAMES = {
   'Liz':'Type=short Long=Elizabeth',
   'Lizzy':'Type=short Long=Elizabeth',
   'Lou':'Type=short Long=Louisa',
-  'Magd':'Type=short',
   'Mandy':'Type=short Long=Amanda',
-  'Matth':'Type=short',
+  'Margie':'Type=short Long=Margaret,Margarete,Margarita,Margery,Marguerite',
+  'Mike':'Type=short Long=Michael,Micheal,Michel',
   'Mo':'Type=short Long=Moses',
   'Nan':'Type=short Long=Nancy',
   'Nate':'Type=short Long=Nathan',
-  'Pabl':'Type=short',
   'Pete':'Type=short Long=Peter',
-  'Presl':'Type=short',
   'Ray':'Type=short Long=Raymond',
-  'Stanl':'Type=short',
   'Sue':'Type=short Long=Susan',
-  'Sydn':'Type=short',
-  'Tayl':'Type=short',
   'Tony':'Type=short Long=Anthony',
-  'Wilh':'Type=short',
   'Big':'Type=adjective',
   'Bloody':'Type=adjective',
   'Dusty':'Type=adjective',
@@ -786,9 +773,10 @@ WeirdWest.ETHNICITIES = {
     'Female=' +
       'Aileen,Anna,Fiona,Iona,Isla,Jean,Katrina,Kirsty,Shona ' +
     'Male=' +
+      // Graham was on this list, but it's a pain to nickname
       'Alan,Angus,Bruce,Colin,Craig,David,Donald,Douglas,Duncan,Gordon,' +
-      'Graham,Grant,Keith,Kenneth,Malcolm,Murray,Neil,Roderick,Ronald,Ross,' +
-      'Roy,Scott,Stewart,Stuart ' +
+      'Grant,Keith,Kenneth,Malcolm,Murray,Neil,Roderick,Ronald,Ross,Roy,' +
+      'Scott,Stewart,Stuart ' +
     'Nonbinary=' +
       'Ainsley,Athol,Blair,Islay,Jamie,Rory ' +
     'Family=' +
@@ -1626,12 +1614,19 @@ WeirdWest.choiceEditorElements = function(rules, type) {
 WeirdWest.nicknames = function(name) {
   var result = QuilvynUtils.getKeys(WeirdWest.NICKNAMES).filter(x => WeirdWest.NICKNAMES[x].match('Long=\\S*\\b' + name + '\\b'));
   var diminutive;
+  // Use the first syllable ([consonants] vowels consonants) for the nickname.
   var nicked =
     name.replace(/^(([^aeiouy]|^y(?=[aeiouy]))*[aeiouy]+[^aeiouy]+).*$/i, '$1');
-  if(nicked.match(/[^aeiouy][rgwq]$/i))
+  // Remove certain ends of consonant runs that tend to create ugly nicknames
+  // (e.g., Andr for Andrew)
+  if(nicked.match(/[^aeiouy][rgwql]$/i))
     nicked = nicked.replace(/.$/, '');
-  if(name != nicked && !(nicked in WeirdWest.NICKNAMES))
+  // Sometimes nicking a final e makes a reasonable nickname (e.g., Kate to
+  // Kat), but most often not (e.g., Wayne to Wayn)
+  if(name != nicked && name != nicked + 'e' && !(nicked in WeirdWest.NICKNAMES))
     result.push(nicked);
+  // If the nickname ends with multiple consonants, make a diminutive using it
+  // and further nick by one more letter
   if(nicked.match(/[^aeiouy][^aeiouy]$/i)) {
     if(!name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
       diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
@@ -1642,6 +1637,7 @@ WeirdWest.nicknames = function(name) {
     if(!(nicked in WeirdWest.NICKNAMES))
       result.push(nicked);
   }
+  // Make a diminutive by doubling the final consonant and adding y or ie
   if(!nicked.match(/[aeiouy]$/i) && !name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
     nicked = nicked + nicked.charAt(nicked.length - 1);
     if(!name.startsWith(nicked)) {
@@ -1675,6 +1671,7 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
         QuilvynUtils.getKeys(WeirdWest.NICKNAMES)
         .filter(x => WeirdWest.NICKNAMES[x].match(/verb/));
       var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
+      // Use "adjective animal" or "[animal who] verb preposition noun"
       if(QuilvynUtils.random(0, 1) == 0) {
         fullName =
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
@@ -1702,20 +1699,23 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
       'Nonbinary';
     var choices = QuilvynUtils.getAttrValueArray(names, gender);
     while(choices.length == 0)
+      // Multiethnic or "other"; get names for a random ethnicity
       choices = QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[QuilvynUtils.randomKey(WeirdWest.ETHNICITIES)], gender);
     var personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
-    if(QuilvynUtils.random(0, 1) == 1) {
+    // 2/3 of names get an epithet
+    if(QuilvynUtils.random(0, 2) != 2) {
       var nicknames = WeirdWest.nicknames(personalName);
-      var nickname =
+      var epithet =
         QuilvynUtils.random(0, 2) == 0 ?
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
           nouns[QuilvynUtils.random(0, nouns.length - 1)]
-        : ethnicity != 'Chinese' && QuilvynUtils.random(0, 1) == 0 ?
+        : ethnicity != 'Chinese' && nicknames.length > 0 &&
+          QuilvynUtils.random(0, 1) == 0 ?
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
           nicknames[QuilvynUtils.random(0, nicknames.length - 1)]
         :
           nouns[QuilvynUtils.random(0, nouns.length - 1)];
-      personalName += ' "' + nickname + '"';
+      personalName += ' "' + epithet + '"';
     }
     choices = QuilvynUtils.getAttrValueArray(names, 'Family');
     while(choices.length == 0)
