@@ -688,7 +688,33 @@ WeirdWest.ETHNICITIES = {
       'Edwards,Elder,Eldridge,Elliott,Ellis,Ellsworth,Ely,English,Ericson,' +
       'Everett,Fairchild,Falconer,Farmer,Farnham,Fay,Fields,Finch,Fisher,' +
       'Fleming,Fletcher,Ford,Forrest,Foss,Foster,Fowler,Fox,Franklin,Freeman,' +
-      'Frost,Fry,Fuller,Fulton',
+      'Frost,Fry,Fuller,Fulton,Gage,Gardner,Garey,Garner,Garrett,Gates,Gibbs,' +
+      'Gibson,Gill,Glass,Glover,Goddard,Goodman,Gore,Granger,Grant,Graves,' +
+      'Green,Greenwood,Grey,Griffin,Grover,Gully,Hackett,Haden,Haggard,' +
+      'Haines,Hale,Haley,Hall,Hamilton,Hammond,Hancock,Hanley,Hanson,Harden,' +
+      'Harding,Hardy,Harlen,Harley,Harlow,Harper,Harrell,Harrison,Hart,' +
+      'Hathaway,Hawkins,Hayes,Haynes,Hayward,Haywood,Head,Headley,Heath,' +
+      'Henderson,Henson,Hewitt,Hicks,Hightower,Hill,Hilton,Hobbs,Hodges,' +
+      'Holland,Holmes,Honeycutt,Hooker,Hooper,Hopkins,Hopper,Horn,Horton,' +
+      'House,Howard,Howe,Howland,Hubbard,Huddleson,Hudson,Huff,Hughes,Hull,' +
+      'Hunter,Hurst,Hutchinson,Hyde,Ingram,Irwin,Jackman,Jackson,Jamison,' +
+      'Jarrett,Jarvis,Jefferson,Jeffries,Jennings,Jepson,Jewell,Johnson,' +
+      'Joiner,Jones,Joyce,Keen,Kellogg,Kelsey,Kemp,Kendall,Kendrick,Kennard,' +
+      'Kerr,Key,Keys,Kidd,imball,King,Kingsley,Kingston,Kinsey,Kipling,Kirby,' +
+      'Kirk,Kitchen,Knight,Lamar,Lamb,Landon,Lane,Langley,Law,Lawson,Layton,' +
+      'Leach,Leavitt,Lee,Leigh,Lewis,Lincoln,Lindon,Linsay,Linton,Little,' +
+      'Lockwood,Long,Lovell,Lowry,Lyle,Lynn,Lyon,Madison,Mallory,Mann,Marley,' +
+      'Marlow,Marsden,Marsh,Marshall,Marston,Mason,Massey,Masterson,Mathers,' +
+      'Mathews,May,Mayer,Maynard,Meadows,Mercer,Merchant,Merrill,Merritt,' +
+      'Miles,Milford,Millard,Miller,Mills,Milton,Mitchell,Monday,Monk,' +
+      'Montague,Montgomery,Moon,Moore,Morrison,Morse,Mortimore,Morton,Moss,' +
+      'Mullins,Mutton,Myers,Nash,Nelson,Newell,Newman,Newton,Nicholson,Nixon' +
+      'Norris,North,Norwood,Oakley,Odell,Ogden,Osbourne,Ott,Overton,Page,' +
+      'Palmer,Parish,Park,Parker,Parsons,Patterson,Patton,Paxton,Payne,' +
+      'Payton,Peacock,Peak,Pearson,Peck,Pemberton,Penn,Perkins,Perry,' +
+      'Peterson,Pettigrew,Phelps,Philips,Pickering,Pickle,Pierce,Pilgrim,' +
+      'Piper,Pitt,Plank,Platt,Poindexter,Pond,Poole,Pope,Porter,Post,,Potter,' +
+      'Powers,Pratt,Prescott,Preston,Priestly,Pryor,Putnam,Quick,Quincy',
   'French':
     'Female=' +
       'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Aline,Alphonsine,Amelie,' +
