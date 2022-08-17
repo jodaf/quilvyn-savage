@@ -33,15 +33,15 @@ function WeirdWest(baseRules) {
   var rules = new QuilvynRules('Deadlands Weird West', WeirdWest.VERSION);
   WeirdWest.rules = rules;
 
-  rules.defineChoice('choices', SWADE.CHOICES);
-  rules.choiceEditorElements = SWADE.choiceEditorElements;
+  rules.defineChoice('choices', WeirdWest.CHOICES);
+  rules.choiceEditorElements = WeirdWest.choiceEditorElements;
   rules.choiceRules = WeirdWest.choiceRules;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
   rules.getPlugins = WeirdWest.getPlugins;
   rules.makeValid = SWADE.makeValid;
   rules.randomizeOneAttribute = WeirdWest.randomizeOneAttribute;
-  rules.defineChoice('random', SWADE.RANDOMIZABLE_ATTRIBUTES);
+  rules.defineChoice('random', WeirdWest.RANDOMIZABLE_ATTRIBUTES);
   rules.ruleNotes = WeirdWest.ruleNotes;
 
   SWADE.createViewers(rules, SWADE.VIEWERS);
@@ -49,7 +49,10 @@ function WeirdWest(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
+    'advances:Advances,text,4',
+    'concept:Concept,select-one,concepts',
+    'gender:Gender,select-one,genders',
+    'ethnicity:Ethnicity,select-one,ethnicitys'
   );
 
   WeirdWest.attributeRules(rules);
@@ -60,13 +63,21 @@ function WeirdWest(baseRules) {
     (rules, WeirdWest.EDGES, WeirdWest.FEATURES, WeirdWest.GOODIES,
      WeirdWest.HINDRANCES, WeirdWest.LANGUAGES, WeirdWest.SKILLS);
   WeirdWest.identityRules
-    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES);
+    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES,
+     WeirdWest.ETHNICITIES, WeirdWest.GENDERS, WeirdWest.NICKNAMES);
 
   Quilvyn.addRuleSet(rules);
 
 }
 
-WeirdWest.VERSION = '2.3.2.1';
+WeirdWest.VERSION = '2.3.3.0';
+
+WeirdWest.CHOICES =
+  SWADE.CHOICES.filter(x => x != 'Race')
+    .concat(['Ethnicity', 'Gender', 'Nickname']);
+WeirdWest.RANDOMIZABLE_ATTRIBUTES =
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['deity','era','race'].includes(x))
+    .concat(['ethnicity']);
 
 WeirdWest.ARCANAS = {
   'Blessed':
@@ -158,6 +169,7 @@ WeirdWest.CONCEPTS = {
     'Attribute=Agility,Vigor ' +
     'Skill=Fighting,Shooting',
   'Drifter': // Estimated related features
+    'Attribute=Agility ' +
     'Skill=Shooting',
   'Escort': // Estimated related features
     'Edge=Attractive ' +
@@ -165,7 +177,7 @@ WeirdWest.CONCEPTS = {
     'Skill=Persuasion',
   'Explorer': // Estimated related features
     'Attribute=Smarts ' +
-    'Skill=Survival',
+    'Skill=Research,Survival',
   'Grifter': // Estimated related features
     'Attribute=Spirit ' +
     'Skill=Persuasion',
@@ -192,6 +204,9 @@ WeirdWest.CONCEPTS = {
   'Outlaw':'',
   'Prospector': // Estimated related features
     'Skill=Survival',
+  'Sheriff': // Estimated related features
+    'Attribute=Agility,Spirit ' +
+    'Skill=Intimidation,Persuasion,Shooting',
   'Soldier': // Estimated related features
     'Edge=Soldier ' +
     'Attribute=Agility,Strength,Vigor ' +
@@ -199,7 +214,10 @@ WeirdWest.CONCEPTS = {
   'Territorial Ranger':
     'Edge="Territorial Ranger" ' +
     'Attribute=Vigor ' +
-    'Skill=Fighting,Intimidation,Riding,Shooting,Survival'
+    'Skill=Fighting,Intimidation,Riding,Shooting,Survival',
+  'Town Marshall': // Estimated related features
+    'Attribute=Agility,Spirit ' +
+    'Skill=Intimidation,Persuasion,Shooting'
 };
 WeirdWest.DEITIES = {
   'None':'',
@@ -458,6 +476,352 @@ delete WeirdWest.EDGES['Arcane Background (Miracles)'];
 delete WeirdWest.EDGES['Arcane Background (Psionics)'];
 delete WeirdWest.EDGES['Arcane Background (Weird Science)'];
 delete WeirdWest.EDGES['Soul Drain'];
+WeirdWest.NICKNAMES = {
+  // Unpronouncable nicknames not eliminated by nickname algorithm
+  'Courtn':'Type=short',
+  'Desm':'Type=short',
+  'Edm':'Type=short',
+  'Edn':'Type=short',
+  'Esth':'Type=short',
+  'Ign':'Type=short',
+  'Magd':'Type=short',
+  'Matth':'Type=short',
+  'Sydn':'Type=short',
+  'Abe':'Type=short Long=Abraham',
+  'Alex':'Type=short Long=Alexander',
+  'Angie':'Type=short Long=Angela,Angele,Angeline',
+  'Art':'Type=short Long=Arthur',
+  'Artie':'Type=short Long=Arthur',
+  'Ash':'Type=short Long=Asher,Ashley',
+  'Becky':'Type=short Long=Rebecca',
+  'Bert':'Type=short Long=Albert,Albertine,Alberto,Berta,Bertram,Bertrand',
+  'Bertie':'Type=short Long=Albert,Albertine,Alberto,Berta,Bertram,Bertrand',
+  'Bess':'Type=short Long=Elisabeth,Elizabeth',
+  'Bessie':'Type=short Long=Elisabeth,Elizabeth',
+  'Beth':'Type=short Long=Bethany,Elisabeth,Elizabeth',
+  'Betsy':'Type=short Long=Elisabeth,Elizabeth',
+  'Betty':'Type=short Long=Elisabeth,Elizabeth',
+  'Bram':'Type=short Long=Abraham',
+  'Brucie':'Type=short Long=Bruce',
+  'Carol':'Type=short Long=Carolina,Caroline',
+  'Charlie':'Type=short Long=Charles,Charlotte',
+  'Chuck':'Type=short Long=Charles',
+  'Della':'Type=short Long=Adela',
+  'Dick':'Type=short Long=Richard',
+  'Eliza':'Type=short Long=Elisabeth,Elizabeth',
+  'Fred':'Type=short Long=Alfred,Freda,Frederick',
+  'Jim':'Type=short Long=James',
+  'Jimmy':'Type=short Long=James',
+  'Jules':'Type=short Long=Julia',
+  'Julie':'Type=short Long=Julia',
+  'Libby':'Type=short Long=Elisabeth,Elizabeth',
+  'Larry':'Type=short Long=Laurence,Lawrence',
+  'Lina':'Type=short Long=Adelina,Adeline,Aileen,Eileen,Magdalena',
+  'Liz':'Type=short Long=Elisabeth,Elizabeth',
+  'Lizzy':'Type=short Long=Elisabeth,Elizabeth',
+  'Lou':'Type=short Long=,Louis,Louisa,Louise',
+  'Mandy':'Type=short Long=Amanda',
+  'Margie':'Type=short Long=Margaret,Margarete,Margarita,Margery,Marguerite',
+  'Mike':'Type=short Long=Michael,Micheal,Michel',
+  'Mo':'Type=short Long=Moses',
+  'Nan':'Type=short Long=Nancy',
+  'Nate':'Type=short Long=Nathan',
+  'Nick':'Type=short Long=Nicolas',
+  'Pete':'Type=short Long=Peter',
+  'Ray':'Type=short Long=Raymond',
+  'Rose':'TYpe=short Long=Rosa,Rosalia,Rosalie',
+  'Stu':'Type=short Long=Stuart',
+  'Sue':'Type=short Long=Susan,Susana,Suzanne',
+  'Tom':'Type=short Long=Thomas,Tomas',
+  'Tony':'Type=short Long=Anthony',
+  'Big':'Type=adjective',
+  'Black':'Type=adjective',
+  'Bloody':'Type=adjective',
+  'Brown':'Type=adjective',
+  'Dirty':'Type=adjective',
+  'Dusty':'Type=adjective',
+  'Fast':'Type=adjective',
+  'Fighting':'Type=adjective',
+  'Iron':'Type=adjective',
+  'Lame':'Type=adjective',
+  'Lazy':'Type=adjective',
+  'Little':'Type=adjective',
+  'Lucky':'Type=adjective',
+  'Mad':'Type=adjective',
+  'Red':'Type=adjective',
+  'Rusty':'Type=adjective',
+  'Slow':'Type=adjective',
+  'Wild':'Type=adjective',
+  'Antelope':'Type=animal,noun',
+  'Badger':'Type=animal,noun',
+  'Buffalo':'Type=animal,noun',
+  'Bull':'Type=animal,noun',
+  'Cow':'Type=animal,noun',
+  'Coyote':'Type=animal,noun',
+  'Crow':'Type=animal,noun Move=Flies,Walks',
+  'Deer':'Type=animal,noun',
+  'Duck':'Type=animal,noun Move=Flies,Swims,Walks',
+  'Eagle':'Type=animal,noun Move=Flies,Walks',
+  'Elk':'Type=animal,noun',
+  'Fox':'Type=animal,noun',
+  'Horse':'Type=animal,noun',
+  'Lizard':'Type=animal,noun Move=Crawls,Swims',
+  'Owl':'Type=animal,noun Move=Flies,Walks',
+  'Rabbit':'Type=animal,noun',
+  'Raven':'Type=animal,noun Move=Flies,Walks',
+  'Snake':'Type=animal,noun Move=Crawls,Swims',
+  'Wolf':'Type=animal,noun',
+  'Cactus':'Type=nature,noun',
+  'Darkness':'Type=nature,noun',
+  'Lightning':'Type=nature,noun',
+  'Mountain':'Type=nature,noun',
+  'River':'Type=nature,noun',
+  'Shadows':'Type=nature,noun',
+  'Tree':'Type=nature,noun',
+  'Water':'Type=nature,noun',
+  'Arizona':'Type=noun',
+  'Arkansas':'Type=noun',
+  'Blackjack':'Type=noun',
+  'Devil':'Type=noun',
+  'Dynamite':'Type=noun',
+  'Doc':'Type=noun',
+  'Eyes':'Type=noun',
+  'Foot':'Type=noun',
+  'Gravedigger':'Type=noun',
+  'Hand':'Type=noun',
+  'Justice':'Type=noun',
+  'Kid':'Type=noun',
+  'Pappy':'Type=noun',
+  'Preacher':'Type=noun',
+  'Texas':'Type=noun',
+  'Drinks':'Type=verb',
+  'Laughs':'Type=verb',
+  'Looks':'Type=verb',
+  'From':'Type=preposition',
+  'at':'Type=preposition',
+  'in':'Type=preposition',
+  'to':'Type=preposition',
+  'Over':'Type=preposition',
+  'Through':'Type=preposition',
+  'Under':'Type=preposition'
+};
+WeirdWest.ETHNICITIES = {
+  'American Indian':'',
+  'African American':
+    'Female=' +
+      'Amanda,Anna,Bethany,Charlotte,Elizabeth,Ellen,Emma,Hannah,Harriet,' +
+      'Julia,Louisa,Lucy,Mary,Mattie,Millie,Nellie,Nancy,Rebecca,Sally,Susan ' +
+    'Male=' +
+      'Abraham,Alonzo,Ambrose,Booker,Elijah,Freeman,Isaac,Isaiah,Israel,King,' +
+      'Master,Moses,Perlie,Percy,Presley,Prince,Titus ' +
+    'Family=' +
+      'Brown,Davis,Harris,Jackson,Johnson,Robinson,Smith,Taylor,Thomas,' +
+      'Williams',
+  'Chinese':
+    'Female=' +
+      'Ai,Fen,Ju,Liling,Mei,Nuan,Nuo,Shu,Ting,Xiu,Ya,Zhen ' +
+    'Male=' +
+      'Biming,Chang,Chao,Cheng,Cong,Da,Daquan,Dequan,Dong,Fai,Fan,Fang,Feng,' +
+      'Gang,Ho,Hong,Huang,Hung,Ji,Jia,Jian,Jin,Jing,Kang,Keung,Kong,Kun,Kuo,' +
+      'Laquan,Li,Peng,Ping,Qiang,Qing,Shen,Sheng,Si,Song,Wang,Xing,Xun,Yu,' +
+      'Zhao,Zhu,Zhuang ' +
+    'Nonbinary=' +
+      'Ah,An,Bai,Bao,Bo,Chen,Chin,Chun,Fa,Fu,Guang,Guo,Hai,Han,He,Heng,Hua,' +
+      'Huan,Hui,Jiang,Jiao,Jie,Jun,Lan,Lei,Lian,Liang,Lim,Lin,Ling,Liu,Min,' +
+      'Ming,Mu,Ning,Niu,Qi,Qiu,Rong,Ru,Shan,Shi,Shuang,Shui,Shun,Su,Tai,Tu,' +
+      'Wei,Wen,Xiang,Xue,Yan,Yi,Yin,Ying,Yong,Yun,Zan,Zheng,Zhi,Zhong ' +
+    'Family=' +
+      'Chen,Dong,Feng,Gao,Guo,Han,He,Hu,Huang,Li,Liang,Lin,Liu,Lui,Ma,Song,' +
+      'Sun,Tang,Wang,Wu,Xiao,Xie,Xu,Yang,Yu,Zhang,Zhao,Zheng,Zhou,Zhu',
+  'English':
+    'Female=' +
+      'Alice,Amelia,Amy,Ann,Anne,Barbara,Beatrice,Bertha,Charlotte,Clara,' +
+      'Constance,Daisy,Doris,Edna,Eileen,Eleanor,Elizabeth,Ella,Ellen,Emily,' +
+      'Emma,Esther,Ethel,Eva,Freda,Gertrude,Gladys,Hilda,Irene,Iris,Isabella,' +
+      'Ivy,Jane,Jean,Kate,Laura,Lillian,Lily,Louisa,Lucy,Mabel,Margaret,' +
+      'Margery,Maria,Marie,Martha,Mary,Maud,May,Mildred,Millicent,Muriel,' +
+      'Nora,Olive,Phyllis,Rose,Ruby,Ruth,Sarah,Vera,Violet,Winifred ' +
+    'Male=' +
+      'Alan,Albert,Alexander,Alfred,Andrew,Anthony,Arnold,Benjamin,Bernard,' +
+      'Bertram,Cecil,Charles,Christopher,Clifford,Colin,Cyril,Daniel,David,' +
+      'Dennis,Donald,Douglas,Edgar,Edmund,Edward,Edwin,Eric,Evan,Frank,' +
+      'Frederick,George,Gerald,Gilbert,Gordon,Henry,Herbert,Horace,Hugo,Jack,' +
+      'James,Joseph,Kenneth,Laurence,Lawrence,Lewis,Lionel,Louis,Lucas,' +
+      'Martin,Matthew,Maurice,Michael,Norman,Owen,Patrick,Percival,Peter,' +
+      'Philip,Raymond,Richard,Robert,Roland,Ronald,Samuel,Stanley,Sydney,' +
+      'Thomas,Victor,Wayne,William ' +
+    'Nonbinary=' +
+      'Alexis,Angel,Ashley,Bailey,Beau,Cameron,Casey,Courtney,Devon,Ellis,' +
+      'Harley,Jamie,Jordan,Leigh,Mackenzie,Morgan,Quinn,Taylor ' +
+    'Family=' +
+      // Random subset of the many 100s of English family names in the sources
+      'Abbott,Abrahamson,Aikens,Atkinson,Atwater,Avery,Babcock,Bailey,Baker,' +
+      'Baldwin,Banks,Barton,Bates,Beckett,Bentley,Best,Boatwright,Booth,' +
+      'Brandon,Branson,Bray,Bristol,Brock,Bronson,Buckley,Bull,Burgess,Burke,' +
+      'Burnham,Byrd,Cantree,Carpenter,Carver,Caulfield,Clarkson,Clayton,' +
+      'Close,Colby,Cole,Collingwood,Combs,Cooper,Dale,Darnell,Donaldson,Eads,' +
+      'Earl,Ellsworth,Falconer,Fay,Forrest,Foss,Frost,Gardner,Gates,Gibbs,' +
+      'Glass,Goddard,Granger,Gully,Hackett,Haden,Haggard,Haley,Hammond,' +
+      'Hancock,Harden,Harding,Harlen,Hathaway,Haywood,Holmes,Honeycutt,' +
+      'Hooker,Horton,Howland,Hubbard,Hurst,Hutchinson,Jackman,Jackson,Jepson,' +
+      'Joiner,Joyce,Kelsey,Kennard,Kerr,Key,King,Kingston,Kipling,Kirby,' +
+      'Landon,Lee,Lincoln,Long,Lynn,Lyon,Marley,Marsh,Mason,Masterson,' +
+      'Mathews,Maynard,Merchant,Merrill,Miller,Mills,Milton,Montgomery,Moon,' +
+      'Morse,Morton,Moss,Mutton,Nicholson,Nixon,Norris,Odell,Palmer,Pearson,' +
+      'Peck,Penn,Pierce,Pilgrim,Pitt,Plank,Poindexter,Priestly,Pryor,Quincy,' +
+      'Ramsey,Rhodes,Ridge,Riley,Robertson,Robinson,Rollins,Ross,Roy,Rye,' +
+      'Sawyer,Selby,Serman,Shepherd,Simons,Skinner,Smedley,Smith,Spooner,' +
+      'Stanton,Steele,Street,Stringer,Sutton,Swanson,Sweet,Taylor,Terry,' +
+      'Tindall,Tinker,Tipton,Triggs,Tyler,Underhill,Vance,Vernon,Wallace,' +
+      'Warrick,Washington,Waterman,Watt,Webb,Whitaker,Whitney,Wood',
+  'French':
+    'Female=' +
+      'Adele,Adeline,Adrienne,Aimee,Albertine,Alice,Aline,Alphonsine,Amelie,' +
+      'Andrea,Angele,Angeline,Anne,Annette,Antoinette,Augustine,Bernadette,' +
+      'Blanche,Carmen,Caroline,Catherine,Cecile,Celestine,Charlotte,Claire,' +
+      'Claudine,Clementine,Clotilde,Constance,Denise,Eleonore,Eliane,' +
+      'Elisabeth,Elise,Emelie,Emma,Ernestine,Estelle,Esther,Eugenie,Eulalie,' +
+      'Felicie,Genevieve,Georgine,Gertrude,Helene,Henriette,Hermine,' +
+      'Hildegarde,Hortense,Jeanne,Josephine,Juliette,Lea,Leone,Leonie,Louise,' +
+      'Lucie,Marguerite,Marie,Marion,Marthilde,Noemie,Odile,Olive,Pauline,' +
+      'Prudence,Rosalie,Rose,Suzanne,Therese,Valentine,Victorine ' +
+    'Male=' +
+      'Abel,Adam,Adolphe,Adrien,Albin,Alcide,Alexis,Alfred,Alphonse,Anatole,' +
+      'Andre,Antoine,Armand,Arthur,Auguste,Augustin,Bernard,Bertrand,Charles,' +
+      'Clair,Clovis,Daniel,Denis,Edgar,Edmond,Elie,Emile,Ernest,Eugene,Felix,' +
+      'Ferdinand,Fernand,Francis,Francois,Gabriel,Gaston,Gilbert,Gustave,Guy,' +
+      'Hector,Henri,Horace,Jacque,Jean,Joseph,Jules,Julien,Justin,Louis,' +
+      'Lucien,Marcel,Martin,Maurice,Michel,Noel,Octave,Paul,Pierre,Raoul,' +
+      'Raymond,Rene,Richard,Robert,Roger,Roland,Salomon,Simon,Theophile,' +
+      'Victor,Vincent ' +
+    'Nonbinary=' +
+      'Alix,Ange,Camille,Celeste,Claude,Hyacinthe,Irenee,Leonce,Modeste ' +
+    'Family=' +
+      'Beauchamp,Blanchard,Boucher,Bouvier,Calvin,Chastain,Colbert,Deschamps,' +
+      'Dubois,Dumas,Dupuy,Durant,Duval,Fabre,Fay,Fevre,Forest,Gage,Granger,' +
+      'Hardy,Lamar,Lambert,Lane,Langley,Larue,Laurent,Lefevre,Legrand,Lyon,' +
+      'Macon,Noel,Page,Petit,Picard,Roche,Rose,Royer,Salmon,Traver,Tremble',
+  'German':
+    'Female=' +
+      'Anna,Charlotte,Clara,Dorothea,Edith,Elfriede,Elisabeth,Erna,Frieda,' +
+      'Hedwig,Helga,Ida,Irma,Johanna,Margarete,Maria,Paula,Wilhelmine ' +
+    'Male=' +
+      'Adolf,Albert,August,Carl,Emil,Ernst,Franz,Friedrich,Gerhard,Gustav,' +
+      'Hans,Herbert,Hermann,Karl,Moritz,Otto,Paul,Richard,Robert,Rudolf,' +
+      'Walter,Werner,Wilhelm ' +
+    'Nonbinary=' +
+      'Alex,Chris,Eike,Engel,Jo,Maxi,Micha,Sigi,Ulli,Willy ' +
+    'Family=' +
+      'Albrecht,Andreas,Armbruster,Bader,Bauer,Baumbach,Baumgartner,Beck,' +
+      'Becker,Beltz,Berg,Bernhardt,Best,Bischoff,Bohn,Brandt,Braun,Breiner,' +
+      'Bruhn,Busch,Dressler,Eberhart,Everhard,Farber,Fischer,Forney,Frank,' +
+      'Fuchs,Geiger,Geissler,Gerber,Gross,Hahn,Hase,Herzog,Hirsch,Hoffmann,' +
+      'Hofmeister,Holtz,Huber,Jaeger,Kaiser,Kastner,Keller,Klein,Koch,' +
+      'Koenig,Kohl,Kohler,Kramer,Kraus,Krebs,Kruger,Kunkel,Lang,Lehr,Linden,' +
+      'Lowe,Mandel,Mann,Marquardt,Meissner,Messer,Messner,Metzger,Meyer,' +
+      'Moser,Muller,Neumann,Plank,Pletcher,Post,Rapp,Reis,Reiter,Rettig,' +
+      'Reuter,Richter,Ritter,Roth,Schindler,Schmidt,Schneider,Schreiber,' +
+      'Schroeder,Schuler,Schultz,Schumacher,Schwartz,Shriver,Spitz,Stark,' +
+      'Stein,Stroman,Stuber,Stuck,Trump,Vogel,Vogt,Voss,Wagner,Weber,West,' +
+      'Winkler,Winter,Wirth,Wolf,Ziegler,Zimmerman',
+  'Irish':
+    'Female=' +
+      'Aileen,Bridget,Eileen,Honora,Nora,Una ' +
+    'Male=' +
+      'Barry,Desmond,Micheal,Oran,Owen,Patrick,Shane ' +
+    'Nonbinary=' +
+      'Aran,Christy,Flann,Kelly,Kennedy,Padraigin,Patsy,Rory,Rowan,Shea ' +
+    'Family=' +
+      'Boyle,Braden,Brady,Brannon,Breen,Brennan,Buckley,Burns,Byrne,Callahan,' +
+      'Carey,Carmody,Carroll,Casey,Cassidy,Cody,Coleman,Collins,Connell,' +
+      'Connolly,Connor,Cooney,Corcoran,Coughlin,Cummins,Cunningham,Curran,' +
+      'Curry,Daly,Delany,Dempsey,Desmond,Doherty,Dolan,Donnelly,Donovan,' +
+      'Doran,Doyle,Driscoll,Duff,Duffy,Dunn,Fallon,Fannon,Farrell,Ferguson,' +
+      'Fitzgerald,Fitzpatrick,Flanagan,Flynn,Foley,Friel,Gallagher,Grady,' +
+      'Hayden,Hayes,Hennessy,Hickey,Higgins,Hines,Hogan,Hughes,Joyce,Kane,' +
+      'Kavanagh,Kean,Keefe,Keegan,Keeley,Kelly,Kennedy,Keys,Lane,Lynch,' +
+      'Madden,Magee,Maguire,Mallon,Malone,Markey,McAdams,McAfee,McAlister,' +
+      'McBride,McCabe,McCarthy,McCauley,McClelland,McConnell,McCormick,' +
+      'McCracken,McCune,McDermott,McFarland,McGee,McGill,McGowan,McGuire,' +
+      'McKee,McMahon,McManus,McNab,McNamara,McReynolds,Milligan,Mohan,Monday,' +
+      'Moon,Mooney,Morris,Mullen,Mulligan,Mullins,Murdock,Murphy,Murray,' +
+      "Nolan,O'Brien,O'ByrneO'Connell,O'Connor,O'Donnell,O'Hara,O'Kane," +
+      "O'Leary,O'Malley,O'Neal,O'Neill,O'Sullivan,Power,Quigley,Quinlan," +
+      'Quinn,Rafferty,Ready,Reilly,Riley,Riordan,Rowan,Ryan,Seward,Shannon,' +
+      'Shea,Sheedy,Shine,Sloan,Sowards,Sullivan,Sweeney,Taggart,Teague,Tighe,' +
+      'Toole,Tracey,Wallace,Walsh,Ward',
+  'Jewish':
+    'Female=' +
+      'Adina,Alma,Dana,Ela,Esther,Golda,Hannah,Judith,Leah,Miriam,Naomi,Neta,' +
+      'Odelia,Ora,Rachel,Sarah,Zelda ' +
+    'Male=' +
+      'Aaron,Abraham,Adam,Adi,Ami,Amos,Asa,Asher,Daniel,David,Eden,Eli,' +
+      'Elijah,Elon,Ephraim,Ezra,Gideon,Guy,Hershel,Hyman,Ira,Irving,Isaac,' +
+      'Isidore,Israel,Jacob,Levi,Malachi,Mordecai,Moses,Nathan,Omer,Orel,' +
+      'Oren,Rafael,Rueben,Samuel,Saul,Solomon,Uriel ' +
+    'Nonbinary=' +
+      'Amit,Ariel,Lior,Maayan,Noam,Ofir,Omer,Or,Shachar,Shai,Uria,Yuval ' +
+    'Family=' +
+      'Abrahamson,Abrams,Adams,Cline,Cohen,Fisher,Hayes,Kaufmann,Klein,' +
+      'Kramer,Lowe,Mandel,Mayer,Meier,Meyer,Neumann,Reis,Rose,Roth,Schneider,' +
+      'Schwartz,Sherman,Stein,Stuck,Wirth,Zimmermann',
+  'Multiethnic':'',
+  'Scottish':
+    'Female=' +
+      'Aileen,Anna,Fiona,Iona,Isla,Jean,Katrina,Kirsty,Shona ' +
+    'Male=' +
+      // Graham was on this list, but it's a pain to nickname
+      'Alan,Angus,Bruce,Colin,Craig,David,Donald,Douglas,Duncan,Gordon,' +
+      'Grant,Keith,Kenneth,Malcolm,Murray,Neil,Roderick,Ronald,Ross,Roy,' +
+      'Scott,Stewart,Stuart ' +
+    'Nonbinary=' +
+      'Ainsley,Athol,Blair,Islay,Jamie,Rory ' +
+    'Family=' +
+      'Allaway,Atchison,Baird,Balfour,Barber,Barclay,Blackwood,Blaine,Boyd,' +
+      'Breckenridge,Bruce,Buchanan,Burns,Calhoun,Cameron,Campbell,Carr,' +
+      'Carson,Coburn,Cockburn,Cummins,Cunningham,Darrow,Davis,Drummond,Duff,' +
+      'Duffy,Dunbar,Dunn,Falconer,Faulkner,Ferguson,Finley,Fraser,Gibson,' +
+      'Grant,Greer,Hamilton,Henderson,Holmes,Houston,Hughes,Hunger,Johnston,' +
+      'Kendrick,Kerr,Knox,Laird,Lenox,Lester,Logan,Lowry,Lusk,Magee,Masson,' +
+      'Matheson,Maxwell,McAdams,McAfee,McAlister,McCabe,McCaig,McCallum,' +
+      'McCauley,McClelland,McConnell,McCormick,McCoy,McCracken,McCreery,' +
+      'McDaniel,McDonald,McDougall,McFarland,McGee,McGill,McGregor,McIntyre,' +
+      'McKay,McKee,McKenzie,McKinley,McKinney,McLain,McLean,McLeod,McNabb,' +
+      'McNeil,McQueen,McRae,McReynolds,McTaggart,Melville,Milne,Mitchell,' +
+      'Moffett,Monroe,Montgomery,Morris,Muir,Munroe,Murray,Norris,Paisley,' +
+      'Patterson,Patton,Pollock,Ralston,Ramsay,Ready,Ross,Rutherford,' +
+      'Saunders,Shaw,Sterling,Stewart,Sutherland,Taggart,Tyree,Wallace,' +
+      'Watson,Wood,Woods',
+  'Spanish':
+    'Female=' +
+      'Adela,Adelina,Aida,Alba,Albina,Alicia,Amalia,Amanda,Amelia,Ana,Andrea,' +
+      'Angela,Anita,Antonia,Aurelia,Berta,Carlota,Carmela,Carmen,Carolina,' +
+      'Cecilia,Celia,Clara,Claudia,Clotilde,Delfina,Delia,Diana,Dolores,' +
+      'Elena,Eloisa,Elvira,Emma,Emilia,Esther,Eugenia,Eulalia,Eva,Felicia,' +
+      'Filomena,Flora,Francisca,Genoveva,Gloria,Gracia,Gregoria,Guadelupe,' +
+      'Herminia,Ines,Irene,Isabel,Josefina,Juana,Justina,Laura,Leonor,Lorena,' +
+      'Lorenza,Lucia,Luisa,Luna,Luz,Magdalena,Margarita,Maria,Martina,' +
+      'Maltilde,Mercedes,Oliva,Paulina,Ramona,Rosa,Rosalia,Sabina,Silvia,' +
+      'Sofia,Susana,Teresa,Valeria ' +
+    'Male=' +
+      'Abraham,Adolfo,Alberto,Alejandro,Alfonso,Alfredo,Amado,Angel,Antonio,' +
+      'Benito,Benjamin,Bernardo,Candido,Casimiro,Clemente,Diego,Domingo,' +
+      'Emiliano,Emilio,Enrique,Epifanio,Ernesto,Fabian,Federico,Felipe,Felix,' +
+      'Fernando,Florencio,Florian,Francisco,Gabriel,German,Gregorio,Hector,' +
+      'Hugo,Ignacio,Jesus,Joaquin,Joel,Jose,Juan,Julio,Leon,Lorenzo,Luis,' +
+      'Manuel,Miguel,Nicolas,Pablo,Pedro,Rafael,Roman,Ruben,Santiago,Tomas,' +
+      'Vicente ' +
+    'Nonbinary=' +
+      'Ale,Cande,Chus,Cruz,Guadelupe,Guiomar,Lupe,Maxi,Patrocinio,Reyes,' +
+      'Trinidad,Yunuen ' +
+    'Family=' +
+      'Aguilar,Alvarez,Castillo,Castro,Chavez,Contreras,Cortez,Cruz,Diaz,' +
+      'Dominguez,Estrada,Fernandez,Flores,Garcia,Garza,Gomez,Gonzalez,Guerro,' +
+      'Gutierrez,Guzman,Hernanez,Herrera,Jimenez,Juarez,Lopez,Luna,Martinez,' +
+      'Medina,Mendez,Menoza,Morales,Moreno,Munoz,Ortega,Ortiz,Perez,Ramirez,' +
+      'Ramos,Reyes,Rivera,Rodriguez,Rojas,Romero,Ruiz,Salazar,Sanchez,Soto,' +
+      'Torres,Vargas,Velasquez,vasquez'
+};
 WeirdWest.FEATURES_ADDED = {
   // Edges
   'Agency Promotion':
@@ -656,6 +1020,11 @@ WeirdWest.FEATURES_ADDED = {
 };
 WeirdWest.FEATURES =
   Object.assign({}, SWADE.FEATURES, WeirdWest.FEATURES_ADDED);
+WeirdWest.GENDERS = {
+  'Female':'',
+  'Male':'',
+  'Nonbinary':''
+};
 WeirdWest.GOODIES = Object.assign({}, SWADE.GOODIES);
 WeirdWest.HINDRANCES_ADDED = {
   "Ailin'":'Require="hindrances.Ailin\'+ == 0" Severity=Minor',
@@ -720,6 +1089,12 @@ WeirdWest.POWERS_ADDED = {
     'Range=touch ' +
     'Description=' +
       '"Supernaturally evil creatures in 15%{in} sq suffer fatigue (Spirit neg (Raise Spirit-2)) until next sunset"',
+  'Shrink':
+    'Advances=4 ' +
+    'PowerPoints=2 ' +
+    'Range=smarts ' +
+    'Description=' +
+      '"Target loses Toughness and Strength step (Spirit neg) for 5 rd"',
   'Trinkets':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -846,8 +1221,28 @@ WeirdWest.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-WeirdWest.identityRules = function(rules, races, concepts, deities) {
+WeirdWest.identityRules = function(
+  rules, races, concepts, deities, ethnicities, genders, nicknames
+) {
+
   SWADE.identityRules(rules, races, {}, concepts, deities);
+
+  QuilvynUtils.checkAttrTable
+    (ethnicities, ['Family', 'Female', 'Male', 'Nonbinary']);
+  QuilvynUtils.checkAttrTable(genders, []);
+  QuilvynUtils.checkAttrTable(nicknames, ['Type', 'Long', 'Move']);
+
+  for(var ethnicity in ethnicities) {
+    rules.choiceRules(rules, 'Ethnicity', ethnicity, ethnicities[ethnicity]);
+  }
+  for(var gender in genders) {
+    rules.choiceRules(rules, 'Gender', gender, genders[gender]);
+  }
+  for(var nickname in nicknames) {
+    rules.choiceRules(rules, 'Nickname', nickname, nicknames[nickname]);
+  }
+  rules.defineEditorElement('ethnicity', 'Ethnicity', 'text', [20], 'race');
+  rules.defineSheetElement('Ethnicity', 'Race', ' <b>%V</b>');
   rules.defineEditorElement('race');
   rules.defineSheetElement('Race');
   rules.defineRule('race', 'advances', '=', '"Human"');
@@ -900,11 +1295,20 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Type')
     );
     WeirdWest.edgeRulesExtra(rules, name);
-  } else if(type == 'Feature')
+  } else if(type == 'Ethnicity')
+    WeirdWest.ethnicityRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Female'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Male'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Nonbinary'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Family')
+    );
+  else if(type == 'Feature')
     WeirdWest.featureRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
     );
+  else if(type == 'Gender')
+    WeirdWest.genderRules(rules, name);
   else if(type == 'Goody')
     WeirdWest.goodyRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Pattern'),
@@ -922,6 +1326,12 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
     WeirdWest.hindranceRulesExtra(rules, name);
   } else if(type == 'Language')
     WeirdWest.languageRules(rules, name);
+  else if(type == 'Nickname')
+    WeirdWest.nicknameRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Type'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Long'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Move')
+    );
   else if(type == 'Power')
     WeirdWest.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
@@ -1066,6 +1476,37 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
 };
 
 /*
+ * Defines in #rules# the rules associated with ethnicity #name#. #femaleNames#,
+ * #maleNames#, #nonbinaryNames#, and #familyNames# each list the various names
+ * associated with the ethnicity.
+ */
+WeirdWest.ethnicityRules = function(
+  rules, name, femaleNames, maleNames, nonbinaryNames, familyNames
+) {
+  if(!name) {
+    console.log('Empty ethnicity name');
+    return;
+  }
+  if(!Array.isArray(femaleNames)) {
+    console.log('Bad female names "' + femaleNames + '" for ethnicity ' + name);
+    return;
+  }
+  if(!Array.isArray(maleNames)) {
+    console.log('Bad male names "' + maleNames + '" for ethnicity ' + name);
+    return;
+  }
+  if(!Array.isArray(nonbinaryNames)) {
+    console.log('Bad nb names "' + nonbinaryNames + '" for ethnicity ' + name);
+    return;
+  }
+  if(!Array.isArray(familyNames)) {
+    console.log('Bad family names "' + familyNames + '" for ethnicity ' + name);
+    return;
+  }
+  // No rules pertain to ethnicity
+};
+
+/*
  * Defines in #rules# the rules associated with feature #name#. #sections# lists
  * the sections of the notes related to the feature and #notes# the note texts;
  * the two must have the same number of elements.
@@ -1073,6 +1514,15 @@ WeirdWest.edgeRulesExtra = function(rules, name) {
 WeirdWest.featureRules = function(rules, name, sections, notes) {
   SWADE.featureRules(rules, name, sections, notes);
   // No changes needed to the rules defined by base method
+};
+
+/* Defines in #rules# the rules associated with gender #name#. */
+WeirdWest.genderRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty gender name');
+    return;
+  }
+  // No rules pertain to gender
 };
 
 /*
@@ -1117,6 +1567,31 @@ WeirdWest.hindranceRulesExtra = function(rules, name) {
 WeirdWest.languageRules = function(rules, name) {
   SWADE.languageRules(rules, name);
   // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with nickname #name#. #types# lists
+ * the function(s) of the nickname, #longs# lists the full names for short
+ * nicknames, and #moves# lists the movement verbs for animal nicknames.
+ */
+WeirdWest.nicknameRules = function(rules, name, types, longs, moves) {
+  if(!name) {
+    console.log('Empty ethnicity name');
+    return;
+  }
+  if(!Array.isArray(types)) {
+    console.log('Bad types "' + types + '" for nickname ' + name);
+    return;
+  }
+  if(!Array.isArray(longs)) {
+    console.log('Bad longs "' + longs + '" for nickname ' + name);
+    return;
+  }
+  if(!Array.isArray(moves)) {
+    console.log('Bad moves "' + moves + '" for nickname ' + name);
+    return;
+  }
+  // No rules pertain to nicknames
 };
 
 /*
@@ -1183,9 +1658,164 @@ WeirdWest.weaponRules = function(
   // No changes needed to the rules defined by base method
 };
 
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+WeirdWest.choiceEditorElements = function(rules, type) {
+  if(type == 'Ethnicity') {
+    return([
+      ['Female', 'Female Names', 'text', [60]],
+      ['Male', 'Male Names', 'text', [60]],
+      ['Nonbinary', 'Nonbinary Names', 'text', [60]],
+      ['Family', 'Family Names', 'text', [60]]
+    ]);
+  } else if(type == 'Gender') {
+    return([]);
+  } else if(type == 'Nickname') {
+    return([
+      ['Type', 'Type', 'text', [25]],
+      ['Long', 'Full Name', 'text', [30]],
+      ['Move', 'Movement Verbs', 'text', [30]]
+    ]);
+  } else {
+    return SWADE.choiceEditorElements(rules, type);
+  }
+};
+
+/*
+ * Returns an array of nicknames for the full given name #name#. #nicknames# is
+ * a dictionary (see WeirdWest.NICKNAMES) that includes specific, non-computed
+ * shortened versions of particular names (i.e., Dick for Richard).
+ */
+WeirdWest.nicknames = function(name, nicknames) {
+  var result =
+    QuilvynUtils.getKeys(nicknames)
+      .filter(x => nicknames[x].match('Long=\\S*\\b' + name + '\\b'));
+  var diminutive;
+  // Use the first syllable ([consonants] vowels consonants) for the nickname.
+  var nicked =
+    name.replace(/^(([^aeiouy]|^y(?=[aeiouy]))*[aeiouy]+[^aeiouy]+).*$/i, '$1');
+  // Remove certain ends of consonant runs that tend to create ugly nicknames
+  // (e.g., Andr for Andrew)
+  if(nicked.match(/([^aeiouy][rwql]|[^aeiouyn]g|[^aeiouycpst]h)$/i))
+    nicked = nicked.replace(/.$/, '');
+  // Sometimes nicking a final e makes a reasonable nickname (e.g., Kate to
+  // Kat), but most often not (e.g., Wayne to Wayn)
+  if(name != nicked && name != nicked + 'e' && !(nicked in nicknames))
+    result.push(nicked);
+  // If the nickname ends with multiple consonants, make a diminutive using it
+  // and compute an even shorter nickname by removing the last letter.
+  if(nicked.match(/[^aeiouy][^aeiouy]$/i)) {
+    if(!name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
+      diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
+      if(!(diminutive in nicknames))
+        result.push(diminutive);
+    }
+    nicked = nicked.replace(/([^aeiouy])[^aeiouy]+$/i, '$1');
+    if(!(nicked in nicknames))
+      result.push(nicked);
+  }
+  // Make a diminutive by doubling the final consonant and adding y or ie
+  if(!nicked.match(/[aeiouy]$/i) && !name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
+    nicked = nicked + nicked.charAt(nicked.length - 1);
+    if(!name.startsWith(nicked)) {
+      diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
+      if(!(diminutive in nicknames))
+        result.push(diminutive);
+    }
+  }
+  return result;
+};
+
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
-  SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
+  if(attribute == 'name') {
+    var allNicknames = this.getChoices('nicknames');
+    var adjectives =
+      QuilvynUtils.getKeys(allNicknames)
+      .filter(x => allNicknames[x].match(/adjective/));
+    var ethnicity = attributes.ethnicity;
+    var fullName;
+    if(ethnicity == 'American Indian') {
+      var animals =
+        QuilvynUtils.getKeys(allNicknames)
+        .filter(x => allNicknames[x].match(/animal/));
+      var natures =
+        QuilvynUtils.getKeys(allNicknames)
+        .filter(x => allNicknames[x].match(/nature/));
+      var prepositions =
+        QuilvynUtils.getKeys(allNicknames)
+        .filter(x => allNicknames[x].match(/preposition/));
+      var verbs =
+        QuilvynUtils.getKeys(allNicknames)
+        .filter(x => allNicknames[x].match(/verb/));
+      var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
+      // Use "adjective animal" or "[animal who] verb preposition noun"
+      if(QuilvynUtils.random(0, 1) == 0) {
+        fullName =
+          adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
+          animal;
+      } else {
+        var moves =
+          QuilvynUtils.getAttrValueArray(allNicknames[animal], 'Move');
+        if(moves.length == 0)
+          moves = ['Leaps', 'Runs', 'Swims', 'Walks'];
+        verbs = verbs.concat(moves);
+        fullName =
+          (QuilvynUtils.random(0, 1) == 0 ? animal + ' Who ' : '') +
+          verbs[QuilvynUtils.random(0, verbs.length - 1)] + ' ' +
+          prepositions[QuilvynUtils.random(0, prepositions.length - 1)] + ' ' +
+          natures[QuilvynUtils.random(0, natures.length - 1)];
+      }
+      attributes.name = fullName;
+      return;
+    }
+    var allEthnicities = this.getChoices('ethnicitys');
+    if(!(ethnicity in allEthnicities))
+      ethnicity = 'Multiethnic';
+    var names = allEthnicities[ethnicity];
+    var gender =
+      ['Female', 'Male'].includes(attributes.gender) ? attributes.gender :
+      'Nonbinary';
+    var choices = QuilvynUtils.getAttrValueArray(names, gender);
+    while(choices.length == 0)
+      // Multiethnic or "other"; get names for a random ethnicity
+      choices = QuilvynUtils.getAttrValueArray(allEthnicities[QuilvynUtils.randomKey(allEthnicities)], gender);
+    var personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
+    // 2/3 of names get an epithet
+    if(QuilvynUtils.random(0, 2) != 2) {
+      var nicknames = WeirdWest.nicknames(personalName, allNicknames);
+      var nouns =
+        QuilvynUtils.getKeys(allNicknames)
+        .filter(x => allNicknames[x].match(/noun/));
+      var epithet =
+        QuilvynUtils.random(0, 2) == 0 ?
+          adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
+          nouns[QuilvynUtils.random(0, nouns.length - 1)]
+        : ethnicity != 'Chinese' && nicknames.length > 0 &&
+          QuilvynUtils.random(0, 1) == 0 ?
+          adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
+          nicknames[QuilvynUtils.random(0, nicknames.length - 1)]
+        :
+          nouns[QuilvynUtils.random(0, nouns.length - 1)];
+      personalName += ' "' + epithet + '"';
+    }
+    choices = QuilvynUtils.getAttrValueArray(names, 'Family');
+    while(choices.length == 0)
+      choices = QuilvynUtils.getAttrValueArray(allEthnicities[QuilvynUtils.randomKey(allEthnicities)], 'Family');
+    var familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
+    fullName = personalName + ' ' + familyName;
+    if(ethnicity == 'Chinese')
+      fullName = familyName + ' ' + personalName;
+    attributes.name = fullName;
+  } else if(attribute == 'gender') {
+    attributes.gender =
+      QuilvynUtils.random(0, 2) == 0 ? 'Female' :
+      QuilvynUtils.random(0, 1) == 0 ? 'Male' : 'Nonbinary';
+  } else {
+    SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
+  }
 };
 
 /* Returns an array of plugins upon which this one depends. */
@@ -1199,6 +1829,14 @@ WeirdWest.ruleNotes = function() {
   return '' +
     '<h2>WeirdWest Quilvyn Module Notes</h2>\n' +
     'WeirdWest Quilvyn Module Version ' + WeirdWest.VERSION + '\n' +
+    '</p>\n' +
+    '<h3>Usage Notes</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '  Quilvyn uses character ethnicity and gender only when generating\n' +
+    '  random names; there are no rule effects for either attribute.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
     '\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
@@ -1214,6 +1852,10 @@ WeirdWest.ruleNotes = function() {
     'suitability for purpose of this product.\n' +
     '</p><p>\n' +
     'Deadlands The Weird West © 2020 Pinnacle Entertainment Group.\n' +
+    '</p><p>\n' +
+    'Quilvyn takes most of its randomized names from the ' +
+    '<a href="https://www.mithrilandmages.com/utilities/WesternBrowse.php">Mithril and Mages list of Old West Names</a>.\n' +
+    'Name ethnicities are determined from data taken from the <a href="https://www.behindthename.com/">Behind the Name website</a>.\n' +
     '</p>\n' +
     '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };
