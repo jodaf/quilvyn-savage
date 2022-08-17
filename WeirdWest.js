@@ -68,47 +68,16 @@ function WeirdWest(baseRules) {
 
   Quilvyn.addRuleSet(rules);
 
-/*
-  // Debugging dump of all nicknames
-  var firstNames = [];
-  for(var e in WeirdWest.ETHNICITIES) {
-    if(e == 'Chinese')
-      continue;
-    firstNames = firstNames
-      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Female'))
-      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Male'))
-      .concat(QuilvynUtils.getAttrValueArray(WeirdWest.ETHNICITIES[e], 'Nonbinary'));
-  }
-  firstNames.sort();
-  var w = window.open('', '');
-  w.document.write(
-    '<!DOCTYPE html>\n' +
-    '<html lang="en">\n' +
-    '<head>\n' +
-    '<title>Nicknames</title>\n' +
-    '</head>\n' +
-    '<body>\n'
-  );
-  var lastFn = '';
-  firstNames.forEach(fn => {
-    if(fn != lastFn)
-      w.document.write(
-        fn + ' ' + WeirdWest.nicknames(fn) + '<br/>\n'
-      );
-    lastFn = fn;
-  });
-  w.document.write('</body></html>\n');
-  w.document.close();
-*/
-
 }
 
-WeirdWest.VERSION = '2.3.2.1';
+WeirdWest.VERSION = '2.3.3.0';
 
 WeirdWest.CHOICES =
-  SWADE.CHOICES.filter(x => x != 'Race').concat(['Ethnicity', 'Gender', 'Nickname']);
+  SWADE.CHOICES.filter(x => x != 'Race')
+    .concat(['Ethnicity', 'Gender', 'Nickname']);
 WeirdWest.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['deity','era','race'].includes(x)).concat(['ethnicity']);
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['deity','era','race'].includes(x))
+    .concat(['ethnicity']);
 
 WeirdWest.ARCANAS = {
   'Blessed':
@@ -514,48 +483,56 @@ WeirdWest.NICKNAMES = {
   'Edm':'Type=short',
   'Edn':'Type=short',
   'Esth':'Type=short',
-  'Gerh':'Type=short',
   'Ign':'Type=short',
   'Magd':'Type=short',
   'Matth':'Type=short',
   'Sydn':'Type=short',
-  'Wilh':'Type=short',
   'Abe':'Type=short Long=Abraham',
-  'Ains':'Type=short Long=Ainsley',
-  'Alec':'Type=short Long=Alexander',
   'Alex':'Type=short Long=Alexander',
+  'Angie':'Type=short Long=Angela,Angele,Angeline',
   'Art':'Type=short Long=Arthur',
   'Artie':'Type=short Long=Arthur',
   'Ash':'Type=short Long=Asher,Ashley',
   'Becky':'Type=short Long=Rebecca',
-  'Bess':'Type=short Long=Elizabeth',
-  'Bessie':'Type=short Long=Elizabeth',
-  'Beth':'Type=short Long=Bethany,Elizabeth',
-  'Betsy':'Type=short Long=Elizabeth',
-  'Betty':'Type=short Long=Elizabeth',
+  'Bert':'Type=short Long=Albert,Albertine,Alberto,Berta,Bertram,Bertrand',
+  'Bertie':'Type=short Long=Albert,Albertine,Alberto,Berta,Bertram,Bertrand',
+  'Bess':'Type=short Long=Elisabeth,Elizabeth',
+  'Bessie':'Type=short Long=Elisabeth,Elizabeth',
+  'Beth':'Type=short Long=Bethany,Elisabeth,Elizabeth',
+  'Betsy':'Type=short Long=Elisabeth,Elizabeth',
+  'Betty':'Type=short Long=Elisabeth,Elizabeth',
+  'Bram':'Type=short Long=Abraham',
   'Brucie':'Type=short Long=Bruce',
+  'Carol':'Type=short Long=Carolina,Caroline',
   'Charlie':'Type=short Long=Charles,Charlotte',
   'Chuck':'Type=short Long=Charles',
-  'Eliza':'Type=short Long=Elizabeth',
+  'Della':'Type=short Long=Adela',
+  'Dick':'Type=short Long=Richard',
+  'Eliza':'Type=short Long=Elisabeth,Elizabeth',
   'Fred':'Type=short Long=Alfred,Freda,Frederick',
   'Jim':'Type=short Long=James',
   'Jimmy':'Type=short Long=James',
   'Jules':'Type=short Long=Julia',
   'Julie':'Type=short Long=Julia',
-  'Libby':'Type=short Long=Elizabeth',
+  'Libby':'Type=short Long=Elisabeth,Elizabeth',
   'Larry':'Type=short Long=Laurence,Lawrence',
-  'Liz':'Type=short Long=Elizabeth',
-  'Lizzy':'Type=short Long=Elizabeth',
-  'Lou':'Type=short Long=Louisa',
+  'Lina':'Type=short Long=Adelina,Adeline,Aileen,Eileen,Magdalena',
+  'Liz':'Type=short Long=Elisabeth,Elizabeth',
+  'Lizzy':'Type=short Long=Elisabeth,Elizabeth',
+  'Lou':'Type=short Long=,Louis,Louisa,Louise',
   'Mandy':'Type=short Long=Amanda',
   'Margie':'Type=short Long=Margaret,Margarete,Margarita,Margery,Marguerite',
   'Mike':'Type=short Long=Michael,Micheal,Michel',
   'Mo':'Type=short Long=Moses',
   'Nan':'Type=short Long=Nancy',
   'Nate':'Type=short Long=Nathan',
+  'Nick':'Type=short Long=Nicolas',
   'Pete':'Type=short Long=Peter',
   'Ray':'Type=short Long=Raymond',
-  'Sue':'Type=short Long=Susan',
+  'Rose':'TYpe=short Long=Rosa,Rosalia,Rosalie',
+  'Stu':'Type=short Long=Stuart',
+  'Sue':'Type=short Long=Susan,Susana,Suzanne',
+  'Tom':'Type=short Long=Thomas,Tomas',
   'Tony':'Type=short Long=Anthony',
   'Big':'Type=adjective',
   'Black':'Type=adjective',
@@ -1706,22 +1683,29 @@ WeirdWest.choiceEditorElements = function(rules, type) {
   }
 };
 
+/*
+ * Returns an array of nicknames for the full given name #name#. #nicknames# is
+ * a dictionary (see WeirdWest.NICKNAMES) that includes specific, non-computed
+ * shortened versions of particular names (i.e., Dick for Richard).
+ */
 WeirdWest.nicknames = function(name, nicknames) {
-  var result = QuilvynUtils.getKeys(nicknames).filter(x => nicknames[x].match('Long=\\S*\\b' + name + '\\b'));
+  var result =
+    QuilvynUtils.getKeys(nicknames)
+      .filter(x => nicknames[x].match('Long=\\S*\\b' + name + '\\b'));
   var diminutive;
   // Use the first syllable ([consonants] vowels consonants) for the nickname.
   var nicked =
     name.replace(/^(([^aeiouy]|^y(?=[aeiouy]))*[aeiouy]+[^aeiouy]+).*$/i, '$1');
   // Remove certain ends of consonant runs that tend to create ugly nicknames
   // (e.g., Andr for Andrew)
-  if(nicked.match(/[^aeiouy][rgwql]$/i))
+  if(nicked.match(/([^aeiouy][rwql]|[^aeiouyn]g|[^aeiouycpst]h)$/i))
     nicked = nicked.replace(/.$/, '');
   // Sometimes nicking a final e makes a reasonable nickname (e.g., Kate to
   // Kat), but most often not (e.g., Wayne to Wayn)
   if(name != nicked && name != nicked + 'e' && !(nicked in nicknames))
     result.push(nicked);
   // If the nickname ends with multiple consonants, make a diminutive using it
-  // and further nick by one more letter
+  // and compute an even shorter nickname by removing the last letter.
   if(nicked.match(/[^aeiouy][^aeiouy]$/i)) {
     if(!name.match(nicked + '(y|ey|ie|ee|e|i)$')) {
       diminutive = nicked + (QuilvynUtils.random(0, 1) == 2 ? 'y' : 'ie');
