@@ -70,7 +70,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.3.0';
+WeirdWest.VERSION = '2.3.3.1';
 
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race')
@@ -1001,7 +1001,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=attribute,skill ' +
     'Note="-4 Vigor (stay awake)","-4 Notice (wake up)"',
   "Lyin' Eyes":
-    'Section=combat ' +
+    'Section=skill ' +
     'Note="-1 Gambling (poker and faro)/-1 Intimidation (lies)/-1 Persuasion (lies)"',
   'Night Terrors+':
     'Section=attribute,feature ' +
@@ -1140,6 +1140,7 @@ WeirdWest.WEAPONS = {
   'Saber':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
   'Spear':'Damage=Str+d6 MinStr=6 Weight=5 Category=2h Parry=1 Range=3',
   'Tomahawk':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3',
+  'Unarmed':SWADE.WEAPONS.Unarmed,
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
 
   'Gatling Pistol':
