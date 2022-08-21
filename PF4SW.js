@@ -393,6 +393,7 @@ for(var e in PF4SW.EDGES) {
 }
 PF4SW.FEATURES_ADDED = {
   // Edges
+  'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
   'Arcane Background (Bard)':
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Cleric)':
@@ -425,20 +426,31 @@ PF4SW.FEATURES_ADDED = {
     'Note="-4 Ability (heavy armor or shield)",' +
          '"-4 Ability-based skills (heavy armor or shield)"',
   'Arrow Trapping':'Section=combat Note="Arrows have environmental trapping"',
-  'Assassin':'Section=feature Note="FILL"',
-  'Assassin II':'Section=feature Note="FILL"',
-  'Assassin III':'Section=feature Note="FILL"',
+  'Assassin':'Section=feature Note="Gains Death Attack feature"',
+  'Assassin II':
+    'Section=feature ' +
+    'Note="Gains Hide In Plain Sight and Resistance To Poison features"',
+  'Assassin III':
+    'Section=feature Note="Gains Angel Of Death and Swift Death features"',
   'Barbarian':
     'Section=feature ' +
     'Note="Has Armor Restriction (Medium), Fast, and Rage features"',
-  'Bard':'Section=feature Note="Use Arcane Background (Bard) feature"',
-  'Born In The Saddle':'Section=feature Note="FILL"',
+  'Bard':
+    'Section=feature ' +
+    'Note="Use Arcane Background (Bard) and Sharp Tongued features"',
+  'Born In The Saddle':
+    'Section=skill Note="Free reroll on Riding; +2 mount pace, +1 mount run"',
   'Breath Weapon':'Section=combat Note="9\\" cone inflicts 3d6 damage"',
   'Cleric':'Section=feature Note="Use Arcane Background (Cleric) feature"',
-  'Countersong':'Section=feature Note="FILL"',
-  'Deadly Blow':'Section=feature Note="FILL"',
+  'Countersong':
+    'Section=save ' +
+    'Note="R5\\" Allies gain reroll to resist and recover from spells"',
+  'Deadly Blow':'Section=feature Note="+1 combat damage"',
   'Death Arrow':
     'Section=combat Note="Successful arrow attack kills (Vigor neg)"',
+  'Death Attack':
+    'Section=combat ' +
+    'Note="Wounding attack with the Drop kills (Vigor neg), incapacitating attack is silent"',
   'Destroy Undead':'Section=feature Note="FILL"',
   'Dirge Of Doom':'Section=feature Note="FILL"',
   'Divine Mastery':'Section=feature Note="FILL"',
@@ -476,21 +488,25 @@ PF4SW.FEATURES_ADDED = {
     'Note="+1 Strength step; every attack must be a wild attack"',
   'Great Ki':'Section=feature Note="FILL"',
   'Hail Of Arrows':'Section=combat Note="Fired arrow effects 3\\" radius"',
+  'Hide In Plain Sight':
+    'Section=power Note="May become invisible at will when immobile"',
   'Imbue Arrow':'Section=arcana Note="Cast spell via arrow"',
   'Impromptu Attack':
-    'Section=combat Note="Use Sneak Attack vs. non-vulnerable foe"',
+    'Section=combat Note="Use Sneak Attack vs. non-Vulnerable foe"',
   'Improved Martial Flexibility':'Section=feature Note="FILL"',
   'Improved Rapid Shot':SWADE.FEATURES['Improved Rapid Fire'],
-  'Inspire Heroics':'Section=feature Note="FILL"',
+  'Inspire Heroics':
+    'Section=feature ' +
+    'Note="R%{smarts}\\" May spend Benny to grant 5 Trait or damage rerolls 1/encounter"',
   'Intimidating Glare':
     'Section=combat ' +
     'Note="May take free Intimidation action when Action card is jack or better"',
   'Invisible Thief':
     'Section=arcana Note="Spend 1 PP to cast <i>Invisibility</i> with a raise"',
+  'Loremaster':'Section=feature Note="FILL"',
   'Loremaster II':'Section=feature Note="FILL"',
   'Loremaster III':'Section=feature Note="FILL"',
-  'Loremaster':'Section=feature Note="FILL"',
-  'Martial Prowess':'Section=feature Note="FILL"',
+  'Martial Prowess':'Section=combat Note="May reroll failed combat attacks"',
   'Master Hunter':'Section=feature Note="FILL"',
   'Mercy':'Section=feature Note="FILL"',
   'Monk':'Section=feature Note="FILL"',
@@ -501,7 +517,9 @@ PF4SW.FEATURES_ADDED = {
   'Mystic Theurge II':'Section=feature Note="FILL"',
   'Mystic Theurge III':'Section=feature Note="FILL"',
   'Mystic Theurge':'Section=feature Note="FILL"',
-  'Opportunist':'Section=feature Note="FILL"',
+  'Opportunist':
+    'Section=combat ' +
+    'Note="Attack foe w/Extraction on Withdraw; foe w/out Extraction is Vulnerable"',
   'Paladin':'Section=feature Note="FILL"',
   'Pathfinder Chronicler II':'Section=feature Note="FILL"',
   'Pathfinder Chronicler III':'Section=feature Note="FILL"',
@@ -519,19 +537,32 @@ PF4SW.FEATURES_ADDED = {
   'Ranged Legerdemain':'Section=skill Note="R5\\" Thievery at -2"',
   'Reckless Abandon':
     'Section=combat Note="Critical failure hits random target or self"',
-  'Rogue':'Section=feature Note="FILL"',
+  'Resistance To Poison':'Section=save Note="+4 vs. poison"',
+  'Rogue':'Section=feature Note="Gains Sneak Attack feature"',
+  'Shadowdancer':'Section=feature Note="FILL"',
   'Shadowdancer II':'Section=feature Note="FILL"',
   'Shadowdancer III':'Section=feature Note="FILL"',
-  'Shadowdancer':'Section=feature Note="FILL"',
+  'Sharp Tongued':'Section=skill Note="May substitute Performance for Taunt"',
+  'Sneak Attack':
+    'Section=combat ' +
+    'Note="Gain additional d6 when attacking with the Drop or Vulnerable foe"',
   'Sorcerer':'Section=feature Note="Use Arcane Background (Sorcerer) feature"',
   'Strength Surge':'Section=combat Note="Rage increases Strength step by 2"',
   'Surprise Spells':
     'Section=arcana Note="Use Sneak Attack feature with attack spells"',
-  'Trap Sense':'Section=feature Note="FILL"',
-  'Troubador':'Section=feature Note="FILL"',
+  'Swift Death':'Section=combat Note="May attack w/the Drop 1/dy"',
+  'Trap Sense':
+    'Section=feature ' +
+    'Note="R5\\" Automatic Notice for traps; ignore 2 points penalty to disarm"',
+  'Troubador':
+    'Section=feature ' +
+    'Note="+2 Common Knowledge/May use Performance in place of Battle"',
   'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
-  'Uncanny Reflexes':'Section=feature Note="FILL"',
-  'Wholeness Of Body':'Section=feature Note="FILL"',
+  'Uncanny Reflexes':
+    'Section=combat ' +
+    'Note="No -2 penalty for normal Evasion; may use Evasion at -2 for any area effect"',
+  'Wholeness Of Body':
+    'Section=power Note="May spend 2 Power Points to make Soak roll"',
   'Wild Shape':'Section=feature Note="FILL"',
   'Wings':'Section=combat Note="Fly speed 8"',
   'Wizard':'Section=feature Note="Use Arcane Background (Wizard) feature"',
@@ -551,7 +582,7 @@ PF4SW.FEATURES_ADDED = {
   'Iron Constitution':'Section=save Note="+1 vs. poison/+1 vs. powers"',
   'Lucky':'Section=feature Note="+1 Benny each session"',
   'Obsessive':'Section=skill Note="d4 in choice of Smarts skill"',
-  'Orc Ferocity':'Section=feature Note="FILL"',
+  'Orc Ferocity':'Section=combat Note="+1 Toughness"',
   'Slender':'Section=ability,combat Note="-1 Vigor","-1 Toughness"',
   'Stonecunning':
     'Section=skill ' +
@@ -888,7 +919,20 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
-  if(name == 'Barbarian') {
+  if(name == 'Assassin') {
+    rules.defineRule
+      ('features.Death Attack', 'featureNotes.assassin', '=', '1');
+  } else if(name == 'Assassin II') {
+    rules.defineRule
+      ('features.Hide In Plain Sight', 'featureNotes.assassinII', '=', '1');
+    rules.defineRule
+      ('features.Resistance To Poison', 'featureNotes.assassinII', '=', '1');
+  } else if(name == 'Assassin III') {
+    rules.defineRule
+      ('features.Angel Of Death', 'featureNotes.assassinIII', '=', '1');
+    rules.defineRule
+      ('features.Swift Death', 'featureNotes.assassinIII', '=', '1');
+  } else if(name == 'Barbarian') {
     rules.defineRule('features.Armor Restriction (Medium)',
       'featureNotes.barbarian', '=', '1'
     );
@@ -923,6 +967,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Bard') {
     rules.defineRule
       ('features.Arcane Background (Bard)', 'featureNotes.bard', '=', '1');
+    rules.defineRule('features.Sharp Tongued', 'featureNotes.bard', '=', '1');
   } else if(name == 'Cleric') {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'featureNotes.cleric', '=', '1');
