@@ -413,7 +413,7 @@ PF4SW.FEATURES_ADDED = {
   'Arcane Archer III':
     'Section=feature ' +
     'Note="May use Imbue Arrow feature 1/tn and Death Arrow feature 1/dy"',
-  'Arcane Armor':'Section=power Note="May cast in armor"',
+  'Arcane Armor':'Section=arcana Note="May cast in armor"',
   'Arcane Mastery':'Section=feature Note="FILL"',
   'Arcane Trickster':
     'Section=feature ' +
@@ -422,7 +422,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="May use Invisible Thief feature 1/dy"',
   'Arcane Trickster III':'Section=feature Note="Has Surprise Spells feature"',
   'Armor Restriction (Medium)':
-    'Section=ability,skill ' +
+    'Section=attribute,skill ' +
     'Note="-4 Ability (heavy armor or shield)",' +
          '"-4 Ability-based skills (heavy armor or shield)"',
   'Arrow Trapping':'Section=combat Note="Arrows have environmental trapping"',
@@ -432,7 +432,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Gains Hide In Plain Sight and Resistance To Poison features"',
   'Assassin III':
     'Section=feature Note="Gains Angel Of Death and Swift Death features"',
-  'Aura Of Courage':'Section=power Note="R10\\" Allies +1 vs. Fear"',
+  'Aura Of Courage':'Section=arcana Note="R10\\" Allies +1 vs. Fear"',
   'Barbarian':
     'Section=feature ' +
     'Note="Has Armor Restriction (Medium), Fast, and Rage features"',
@@ -445,9 +445,9 @@ PF4SW.FEATURES_ADDED = {
   'Call Down The Legends':
     'Section=combat Note="May summon shadowy allies for 1 hr"',
   'Cleric':'Section=feature Note="Has Arcane Background (Cleric)"',
-  'Combined Spells':'Section=power Note="May cast two spells simultaneously"',
+  'Combined Spells':'Section=arcana Note="May cast two spells simultaneously"',
   'Countersong':
-    'Section=save ' +
+    'Section=combat ' +
     'Note="R5\\" Allies gain reroll to resist and recover from spells"',
   'Crippling Strike':
     'Section=combat ' +
@@ -463,9 +463,10 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="R3\\" May spend 2 PP to inflict Wound on all undead (Spirit neg)"',
   'Detect Evil':
-    'Section=power Note="R%{smarts}\\" Detect evil creature or object at will"',
+    'Section=arcana ' +
+    'Note="R%{smarts}\\" Detect evil creature or object at will"',
   'Dirge Of Doom':
-    'Section=power Note="R10\\" May inflict -2 on foe Soak or Trait reroll"',
+    'Section=arcana Note="R10\\" May inflict -2 on foe Soak or Trait reroll"',
   'Divine Mastery':'Section=feature Note="FILL"',
   'Dragon Disciple':
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
@@ -473,7 +474,7 @@ PF4SW.FEATURES_ADDED = {
   'Dragon Disciple III':
     'Section=feature Note="May use Dragon Form feature 2/dy"',
   'Dragon Form':
-    'Section=ability,combat ' +
+    'Section=attribute,combat ' +
     'Note="Size 3, Strength d12, Vigor d10",' +
          '"Bite and Claw attack does d%{strength}+d8, AP 2"',
   'Druid':'Section=feature Note="Has Arcane Background (Druid)"',
@@ -481,15 +482,15 @@ PF4SW.FEATURES_ADDED = {
   'Duelist II':'Section=feature Note="Has Crippling Strike feature"',
   'Duelist III':'Section=feature Note="Has Deflect Arrows feature"',
   'Eldritch Inspiration':
-    'Section=power Note="May spend Benny to cast spell from spellbook"',
+    'Section=arcana Note="May spend Benny to cast spell from spellbook"',
   'Eldritch Knight':'Section=feature Note="Has Eldritch Recharge feature"',
   'Eldritch Knight II':'Section=feature Note="Has Eldritch Strike feature"',
   'Eldritch Knight III':
     'Section=feature Note="Has Eldritch Strike (Improved) feature"',
-  'Eldritch Recharge':'Section=power Note="Raise on attack restores 1 PP"',
-  'Eldritch Strike':'Section=power Note="May spend 2 PP for +2 attack"',
+  'Eldritch Recharge':'Section=arcana Note="Raise on attack restores 1 PP"',
+  'Eldritch Strike':'Section=arcana Note="May spend 2 PP for +2 attack"',
   'Eldritch Strike (Improved)':
-    'Section=power Note="May spend 2 PP for +2 damage"',
+    'Section=arcana Note="May spend 2 PP for +2 damage"',
   'Enhance Arrow':'Section=combat Note="+1 attack and damage with arrows"',
   'Enraged':
     'Section=feature ' +
@@ -498,16 +499,16 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="Allies hearing story gain 1 Benny during rest"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May ignore two points of penalties when casting <i>Healing</i>, <i>Sanctuary</i>, or <i>Smite</i>"',
   'Favored Powers (Druid)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May ignore two points of penalties when casting <i>Entangle</i>, <i>Protection</i>, or <i>Smite</i>"',
   'Favored Powers (Sorcerer)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May ignore two points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i>"',
   'Favored Powers (Wizard)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May ignore two points of penalties when casting <i>Arcane Protection</i>, <i>Deflection</i>, or <i>Dispel</i>"',
   'Favored Enemy':
     'Section=combat,skill ' +
@@ -522,14 +523,14 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="+1 Strength step; every attack must be a wild attack"',
   'Great Ki':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May cast <i>Boost Trait</i>, <i>Protection</i>, <i>Wall Walker</i>, and <i>Warrior\'s Gift</i>"',
   'Greater Darkvision':
     'Section=feature Note="R20\\" Sees clearly in pitch darkness"',
-  'Greater Lore':'Section=power Note="+2 Power Count"',
+  'Greater Lore':'Section=arcana Note="+2 Power Count"',
   'Hail Of Arrows':'Section=combat Note="Fired arrow effects 3\\" radius"',
   'Hide In Plain Sight':
-    'Section=power Note="May become invisible at will when immobile"',
+    'Section=arcana Note="May become invisible at will when immobile"',
   'Imbue Arrow':'Section=arcana Note="Cast spell via arrow"',
   'Impromptu Attack':
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
@@ -560,7 +561,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Inflicts additional d6 damage on attacks vs. favored enemy"',
   'Mercy':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="R%{spirit}\\" Remove Distracted, Shaken, or Vulnerable from target"',
   'Mobility':'Section=combat Note="+1 Run step"',
   'Monk':
@@ -570,16 +571,16 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Bonded mount gains two advances and may be summoned"',
   'Mystic Powers (Monk)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Boost Trait</i>, <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i>"',
   'Mystic Powers (Paladin)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Boost Trait</i>, <i>Healing</i>, <i>Relief</i>, and <i>Smite</i>"',
   'Mystic Powers (Ranger)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Beast Friend</i>, <i>Boost Trait</i>, <i>Entangle</i>, and <i>Warrior\'s Gift</i>"',
   'Mystic Powers (Shadow Force)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and <i>Teleport</i>"',
   'Mystic Theurge':'Section=feature Note="Has Combined Spells feature"',
   'Mystic Theurge II':'Section=feature Note="Has Spell Synergy feature"',
@@ -615,7 +616,7 @@ PF4SW.FEATURES_ADDED = {
   'Ranged Legerdemain':'Section=skill Note="R5\\" Thievery at -2"',
   'Reckless Abandon':
     'Section=combat Note="Critical failure hits random target or self"',
-  'Resistance To Poison':'Section=save Note="+4 vs. poison"',
+  'Resistance To Poison':'Section=combat Note="+4 vs. poison"',
   'Rogue':'Section=feature Note="Gains Sneak Attack feature"',
   'Secret':'Section=feature Note="May use chosen feature from another class"',
   'Shadow Cloak':
@@ -634,10 +635,10 @@ PF4SW.FEATURES_ADDED = {
     'Note="Gain additional d6 when attacking with the Drop or Vulnerable foe"',
   'Sorcerer':'Section=feature Note="Has Arcane Background (Sorcerer)"',
   'Spell Synergy':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Combined Spells reduces power cost of spells to 1 PP (min 1)"',
   'Spell Synthesis':
-    'Section=power Note="May apply class edge abilities to all spells"',
+    'Section=arcana Note="May apply class edge abilities to all spells"',
   'Strength Surge':'Section=combat Note="Rage increases Strength step by 2"',
   'Stunning Fist':
     'Section=combat ' +
@@ -660,38 +661,39 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="No -2 penalty for normal Evasion; may use Evasion at -2 for any area effect"',
   'Wholeness Of Body':
-    'Section=power Note="May spend 2 Power Points to make Soak roll"',
+    'Section=arcana Note="May spend 2 Power Points to make Soak roll"',
   'Wild Shape':
-    'Section=power Note="May cast <i>Shape Change</i> at double duration"',
+    'Section=arcana Note="May cast <i>Shape Change</i> at double duration"',
   'Wilderness Stride':
-    'Section=ability Note="No movement penalties for difficult ground"',
+    'Section=attribute Note="No movement penalties for difficult ground"',
   'Wings':'Section=combat Note="Fly speed 8"',
   'Wizard':'Section=feature Note="Has Arcane Background (Wizard)"',
   // Hindrances
   'Timid+':SWADE.FEATURES['Yellow+'],
   // Races
   'Adaptability':
-    'Section=ability,feature Note="+1 Ability Points","+1 Edge Points"',
+    'Section=attribute,feature Note="+1 Attribute Points","+1 Edge Points"',
   'Darkvision':'Section=skill Note="No illumination penalties up to 10\\""',
-  'Elven Magic':'Section=save Note="May reroll vs. powers"',
-  'Flexibility':'Section=ability Note="+1 Ability Points"',
+  'Elven Magic':'Section=combat Note="May reroll vs. powers"',
+  'Flexibility':'Section=attribute Note="+1 Attribute Points"',
   'Gnome Magic':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telkinesis</i>/1 Power Point"',
-  'Intelligence':'Section=ability Note="+1 Smarts step"',
-  'Intimidating':'Section=feature Note="+1 Intimidation step"',
-  'Iron Constitution':'Section=save Note="+1 vs. poison/+1 vs. powers"',
+  'Intelligence':'Section=attribute Note="+1 Smarts step"',
+  'Intimidating':'Section=skill Note="+1 Intimidation step"',
+  'Iron Constitution':'Section=combat Note="+1 vs. poison/+1 vs. powers"',
   'Lucky':'Section=feature Note="+1 Benny each session"',
-  'Obsessive':'Section=skill Note="d4 in choice of Smarts skill"',
+  'Obsessive':
+    'Section=skill Note="+1 Skill Point (d4 in choice of Smarts skill)"',
   'Orc Ferocity':'Section=combat Note="+1 Toughness"',
-  'Slender':'Section=ability,combat Note="-1 Vigor","-1 Toughness"',
+  'Slender':'Section=attribute,combat Note="-1 Vigor","-1 Toughness"',
   'Stonecunning':
     'Section=skill ' +
     'Note="Automatic Notice+2 to note unusual stonework within 10\'"',
   'Sure-Footed':'Section=skill Note="+1 Athletics step"',
-  'Tough':
-    'Section=attribute ' +
-    'Note="+1 Vigor step/+1 Strength step (encumbrance and equipment use)"',
+  'Stout':
+    'Section=attribute Note="+1 Strength step (encumbrance and equipment use)"',
+  'Tough':'Section=attribute Note="+1 Vigor step"',
 };
 PF4SW.FEATURES =
   Object.assign({}, SWADE.FEATURES, PF4SW.FEATURES_ADDED);
@@ -709,67 +711,67 @@ PF4SW.POWERS_ADDED = {
     'PowerPoints=3+2/size ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"',
+      '"Target becomes chosen animal for 5 rd (Spirit neg, Spirt-2 ends early)"',
   'Conjure Item':
     'Advances=0 ' +
-    'PowerPoints=2/rd ' +
+    'PowerPoints=2/lb ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"',
+      '"Creates mundane item that lasts 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Description=' +
-      '"FILL"',
+      '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
     'Description=' +
-      '"FILL"',
+      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell)"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"',
+      '"Summons and traps extraplanar creature to perform service (Spirit neg)"',
   'Plane Shift':
     'Advances=8 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"',
+      '"Self travels to chosen plane, w/in 10d10 miles of known location"',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
     'Description=' +
-      '"FILL"',
+      '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
     'Description=' +
-      '"FILL"',
+      '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=8 ' +
     'Range=self ' +
     'Description=' +
-      '"FILL"',
+      '"Self gains additional turn"',
   'Wish':
     'Advances=16 ' +
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"'
+      '"Target can alter reality in exchange for self permanently losing 3 PP"'
 };
 PF4SW.POWERS = Object.assign({}, SWADE.POWERS, PF4SW.POWERS_ADDED);
 PF4SW.RACES = {
   'Dwarf':
     'Features=' +
-      'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Tough ' +
+      'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Stout,Tough '+
     'Languages=Common,Dwarven',
   'Elf':
     'Features=' +
@@ -1256,7 +1258,10 @@ PF4SW.raceRules = function(rules, name, requires, features, languages) {
  */
 PF4SW.raceRulesExtra = function(rules, name) {
   if(name == 'Gnome') {
-    rules.defineRule('powerPoints', 'magicRules.gnomeMagic', '+=', '1');
+    rules.defineRule('skillPoints', 'skillNotes.obsessive', '+=', '1');
+  } else if(name == 'Half-Orc') {
+    rules.defineRule
+      ('skillStep.Intimidation', 'skillNotes.intimidating', '+=', '1');
   }
 };
 
