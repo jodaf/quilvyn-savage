@@ -227,11 +227,11 @@ PF4SW.CONCEPTS_ADDED = {
   'Cleric':
     'Edge=Cleric ' +
     'Attribute=Spirit ' +
-    'Skill=Occult',
+    'Skill=Faith',
   'Druid':
     'Edge=Druid ' +
     'Attribute=Spirit ' +
-    'Skill=Survival',
+    'Skill=Faith',
   'Fighter':
     'Edge=Fighter ' +
     'Attribute=Strength ' +
@@ -242,7 +242,8 @@ PF4SW.CONCEPTS_ADDED = {
     'Skill=Fighting',
   'Paladin':
     'Edge="Paladin" ' +
-    'Attribute=Spirit,Strength',
+    'Attribute=Spirit,Strength ' +
+    'Skill=Athletics,Faith,Fighting,Shooting',
   'Ranger':
     'Edge=Ranger ' +
     'Skill=Athletics,Fighting,Shooting,Survival',
@@ -253,11 +254,11 @@ PF4SW.CONCEPTS_ADDED = {
   'Sorcerer':
     'Edge=Sorcerer ' +
     'Attribute=Smarts,Spirit ' +
-    'Skill=Fighting',
+    'Skill=Spellcasting',
   'Wizard':
     'Edge=Wizard ' +
     'Attribute=Smarts ' +
-    'Skill=Occult',
+    'Skill=Spellcasting',
   // Modified
   'Investigator':SWADE.CONCEPTS.Investigator.replaceAll('Research', 'Academics')
 };
@@ -412,6 +413,16 @@ PF4SW.EDGES_ADDED = {
   'Sorcerer':'Type=class Require="smarts >= 6","spirit >= 6"',
   'Favored Powers (Sorcerer)':
     'Type=class,Sorcerer Require="advances >= 4",features.Sorcerer',
+  'Aberrant Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Abyssal Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Arcane Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Celestial Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Destined Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Draconic Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Elemental Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Fey Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Infernal Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Undead Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
   'Arcane Mastery':
     'Type=class,Sorcerer,Wizard ' +
     'Require="advances >= 8","features.Sorcerer || features.Wizard"',
@@ -547,18 +558,10 @@ for(var e in PF4SW.EDGES) {
 }
 PF4SW.FEATURES_ADDED = {
   // Edges
-  'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
-  'Arcane Background (Bard)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
-  'Arcane Background (Cleric)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
-  'Arcane Background (Druid)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
-  'Arcane Background (Sorcerer)':
-    'Section=arcana Note="2 Powers/15 Power Points"',
-  'Arcane Background (Wizard)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Aberrant Bloodline':'Section=feature Note="FILL"',
+  'Abyssal Bloodline':'Section=feature Note="FILL"',
   'Advanced Bloodline':'Section=feature Note="FILL"',
+  'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
   'Arcane Archer':
     'Section=feature Note="Has Enhance Arrow and Arrow Trapping features"',
   'Arcane Archer II':
@@ -568,6 +571,18 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="May use Imbue Arrow feature 1/tn and Death Arrow feature 1/dy"',
   'Arcane Armor':'Section=arcana Note="May cast in armor"',
+  'Arcane Background (Bard)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Cleric)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Druid)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Sorcerer)':
+    'Section=arcana,skill ' +
+    'Note="2 Powers/15 Power Points",' +
+         '"Spellcasting linked to Spirit instead of Smarts"',
+  'Arcane Background (Wizard)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Civilization Domain)':
     'Section=arcana Note="Has access to additional powers"',
   'Arcane Background (Death Domain)':
@@ -598,6 +613,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana Note="Has access to additional powers"',
   'Arcane Background (War Domain)':
     'Section=arcana Note="Has access to additional powers"',
+  'Arcane Bloodline':'Section=feature Note="FILL"',
   'Arcane Mastery':
     'Section=arcana Note="May use epic power modifiers on arcane spells"',
   'Arcane Trickster':
@@ -614,6 +630,10 @@ PF4SW.FEATURES_ADDED = {
     'Section=attribute,skill ' +
     'Note="-4 Agility w/medium or heavy armor or shield",' +
          '"-4 Faith and Agility-based skills w/medium or heavy armor or shield"',
+  'Armor Interference (Sorcerer)':
+    'Section=attribute,skill ' +
+    'Note="-4 Agility w/any armor or shield",' +
+         '"-4 Spellcasting and Agility-based skills w/any armor or shield"',
   'Armor Restriction (Barbarian)':
     'Section=attribute,skill ' +
     'Note="-4 Agility w/heavy armor or shield",' +
@@ -645,11 +665,13 @@ PF4SW.FEATURES_ADDED = {
   'Bard':
     'Section=feature ' +
     'Note="Has Arcane Background (Bard), Armor Interference (Bard), and Sharp Tongued features"',
+  'Bloodline':'Section=feature Note="+1 Edge Points (bloodline)"',
   'Born In The Saddle':
     'Section=skill Note="Free reroll on Riding; +2 mount pace, +1 mount run"',
   'Breath Weapon':'Section=combat Note="9\\" cone inflicts 3d6 damage"',
   'Call Down The Legends':
     'Section=combat Note="May summon shadowy allies for 1 hr"',
+  'Celestial Bloodline':'Section=feature Note="FILL"',
   'Channel Energy':
     'Section=arcana ' +
     'Note="Cast <i>Healing</i> at R%{smarts}, add targets at 1 PP each"',
@@ -670,6 +692,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Wounding attack with the Drop kills (Vigor neg), incapacitating attack is silent"',
   'Deflect Arrows':'Section=combat Note="Foes -2 on ranged attacks"',
+  'Destined Bloodline':'Section=feature Note="FILL"',
   'Destroy Undead':
     'Section=combat ' +
     'Note="R2\\" May spend 2 PP to inflict Wound on all undead (Spirit neg)"',
@@ -680,7 +703,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana Note="R10\\" May inflict -2 on foe Soak or Trait or damage reroll"',
   'Divine Mastery':
     'Section=arcana Note="May use epic power modifiers on divine spells"',
-  'Domain':'Section=feature Note="+1 Edge Count (domain)"',
+  'Domain':'Section=feature Note="+1 Edge Points (domain)"',
+  'Draconic Bloodline':'Section=feature Note="FILL"',
   'Dragon Disciple':
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
   'Dragon Disciple II':'Section=feature Note="May use Wings feature"',
@@ -704,6 +728,7 @@ PF4SW.FEATURES_ADDED = {
   'Eldritch Strike':'Section=arcana Note="May spend 2 PP for +2 attack"',
   'Eldritch Strike (Improved)':
     'Section=arcana Note="May spend 2 PP for +2 damage"',
+  'Elemental Bloodline':'Section=feature Note="FILL"',
   'Enhance Arrow':'Section=combat Note="+1 attack and damage with arrows"',
   'Enraged':
     'Section=feature ' +
@@ -729,6 +754,7 @@ PF4SW.FEATURES_ADDED = {
          '"May reroll failed Survival to track chosen creature type"',
   'Favored Terrain':
     'Section=combat Note="Gains additional Action Card in chosen terrain"',
+  'Fey Bloodline':'Section=feature Note="FILL"',
   'Fighter':'Section=feature Note="Has Martial Flexibility feature"',
   'Fix It':SWADE.FEATURES['Mister Fix It'],
   'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
@@ -748,6 +774,7 @@ PF4SW.FEATURES_ADDED = {
   'Impromptu Attack':
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
   'Improved Rapid Shot':SWADE.FEATURES['Improved Rapid Fire'],
+  'Infernal Bloodline':'Section=feature Note="FILL"',
   'Inspire Heroics':
     'Section=feature ' +
     'Note="R%{smarts}\\" May spend Benny 1/encounter to grant 5 Trait or damage rerolls"',
@@ -799,7 +826,7 @@ PF4SW.FEATURES_ADDED = {
   'Mystic Theurge II':'Section=feature Note="Has Spell Synergy feature"',
   'Mystic Theurge III':'Section=feature Note="Has Spell Synthesis feature"',
   'Nature Bond':
-    'Section=feature Note="+1 Edge Count (Attuned or Beast Master)"',
+    'Section=feature Note="+1 Edge Points (Attuned or Beast Master)"',
   'Nature Sense':
     'Section=skill Note="Survival linked to Spirit instead of Smarts"',
   'Opportunist':
@@ -855,7 +882,9 @@ PF4SW.FEATURES_ADDED = {
   'Sneak Attack':
     'Section=combat ' +
     'Note="Inflicts additional d6 when attacking with the Drop or on Vulnerable foe"',
-  'Sorcerer':'Section=feature Note="Has Arcane Background (Sorcerer)"',
+  'Sorcerer':
+    'Section=feature ' +
+    'Note="Has Arcane Background (Sorcerer), Armor Interference (Sorcerer), and Bloodline features"',
   'Spell Synergy':
     'Section=arcana ' +
     'Note="Combined Spells reduces power cost of spells to 1 PP (min 1)"',
@@ -883,6 +912,7 @@ PF4SW.FEATURES_ADDED = {
   'Uncanny Reflexes':
     'Section=combat ' +
     'Note="No penalty for normal Evasion; may use Evasion at -2 for any area effect"',
+  'Undead Bloodline':'Section=feature Note="FILL"',
   'Wholeness Of Body':'Section=arcana Note="May spend 2 PP to make Soak roll"',
   'Wild Shape':
     'Section=arcana Note="May cast <i>Shape Change</i> at double duration"',
@@ -1334,7 +1364,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Armor Interference (Bard)', 'featureNotes.bard', '=', '1');
     rules.defineRule('features.Sharp Tongued', 'featureNotes.bard', '=', '1');
   } else if(name == 'Cleric') {
-    rules.defineRule('edgeCount', 'featureNotes.domain', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'featureNotes.cleric', '=', '1');
     rules.defineRule
@@ -1351,7 +1381,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Dragon Form', 'featureNotes.dragonDiscipleIII', '=', '1');
   } else if(name == 'Druid') {
-    rules.defineRule('edgeCount', 'featureNotes.natureBond', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.natureBond', '+=', '1');
     rules.defineRule
       ('features.Arcane Background (Druid)', 'featureNotes.druid', '=', '1');
     rules.defineRule
@@ -1463,8 +1493,21 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.shadowdancerIII', '=', '1'
     );
   } else if(name == 'Sorcerer') {
+    rules.defineRule('edgePoints', 'featureNotes.bloodline', '+=', '1');
     rules.defineRule('features.Arcane Background (Sorcerer)',
       'featureNotes.sorcerer', '=', '1'
+    );
+    rules.defineRule('features.Armor Interference (Sorcerer)',
+      'featureNotes.sorcerer', '=', '1'
+    );
+    rules.defineRule('features.Bloodline', 'featureNotes.sorcerer', '=', '1');
+    rules.defineRule('spellcastingStepAdjustment',
+      'skillNotes.arcaneBackground(Sorcerer)', '?', null,
+      'spiritStep', '=', null,
+      'smartsStep', '+', '-source'
+    );
+    rules.defineRule('skillStepPastAttribute.Spellcasting',
+      'spellcastingStepAdjustment', '+', 'source>0 ? -source : null'
     );
   } else if(name == 'Wizard') {
     rules.defineRule
@@ -1609,19 +1652,30 @@ PF4SW.weaponRules = function(
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   var choices;
   if(attribute == 'edges') {
-    if(attributes.concept == 'Cleric' &&
+    if((attributes.concept == 'Cleric' ||
+        attributes['edges.Arcane Background (Cleric)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Domain/) == 0) {
       var deityAttrs = this.getChoices('deitys')[attributes.deity];
       if(!deityAttrs || !deityAttrs.includes('Domain')) {
-        choices = QuilvynUtils.getKeys(PF4SW.ARCANAS, /Domain/).map(x => x.replace(' Domain', ''));
+        choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Arcane Background.*Domain/);
       } else {
-        choices = QuilvynUtils.getAttrValueArray(deityAttrs, 'Domain');
+        choices = QuilvynUtils.getAttrValueArray(deityAttrs, 'Domain').map(x => 'Arcane Background (' + x + ' Domain)');
       }
-      attributes['edges.Arcane Background (' + choices[QuilvynUtils.random(0, choices.length - 1)] + ' Domain)'] = 1;
+      attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
-    if(attributes.concept == 'Druid' &&
-       (!attributes['edges.Attuned'] && !attributes['edges.Beast Master']))
-      attributes['edges.' + (QuilvynUtils.random(0, 1)==0 ? 'Attuned' : 'Beast Master')] = 1;
+    if((attributes.concept == 'Druid' ||
+        attributes['edges.Arcane Background (Druid)']) &&
+       (!attributes['edges.Attuned'] && !attributes['edges.Beast Master'])) {
+      choices = ['Attuned', 'Beast Master'];
+      attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
+    }
+    if((attributes.concept == 'Sorcerer' ||
+        attributes['edges.Arcane Background (Sorcerer)']) &&
+       QuilvynUtils.sumMatching(attributes, /edges.*Bloodline/) -
+       QuilvynUtils.sumMatching(attributes, /edges.Advanced Bloodline/) == 0) {
+      choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline/);
+      attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
+    }
     // TODO Class edges
   }
   if(attribute == 'powers' && attributes.concept == 'Cleric')
