@@ -213,7 +213,18 @@ PF4SW.ARCANAS = {
 };
 // TODO
 PF4SW.ARMORS = {
-  'None':'Area=Body Armor=0 MinStr=4 Weight=0'
+  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'Leather Jacket':'Area=Torso Armor=2 MinStr=6 Weight=11',
+  'Leather Leggings':'Area=Legs Armor=2 MinStr=6 Weight=8',
+  'Leather Cap':'Area=Head Armor=2 MinStr=6 Weight=1',
+  'Chain Shirt':'Area=Torso Armor=3 MinStr=8 Weight=22',
+  'Chain Leggings':'Area=Legs Armor=3 MinStr=8 Weight=10',
+  'Chain Hood':'Area=Head Armor=3 MinStr=8 Weight=3',
+  'Plate Breastplate':'Area=Torso Armor=4 MinStr=10 Weight=30',
+  'Plate Vambraces':'Area=Arms Armor=4 MinStr=10 Weight=10',
+  'Plate Greaves':'Area=Legs Armor=4 MinStr=10 Weight=10',
+  'Plate Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=4',
+  'Plate Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8'
 };
 PF4SW.CONCEPTS_ADDED = {
   'Barbarian':
@@ -429,6 +440,8 @@ PF4SW.EDGES_ADDED = {
   'Advanced Bloodline':
     'Type=class,Sorcerer Require="advances >= 12",features.Sorcerer',
   'Wizard':'Type=class Require="smarts >= 6","skills.Occult >= 6"',
+  'Bonded Object':'Type=class,Wizard Require=features.Wizard',
+  'Familiar':'Type=class,Wizard Require=features.Wizard',
   'Favored Powers (Wizard)':
     'Type=class,Wizard Require="advances >= 4",features.Wizard',
   'Eldritch Inspiration':
@@ -614,6 +627,8 @@ PF4SW.FEATURES_ADDED = {
   'Arcane Background (War Domain)':
     'Section=arcana Note="Has access to additional powers"',
   'Arcane Bloodline':'Section=feature Note="FILL"',
+  'Arcane Bond':
+    'Section=feature Note="+1 Edge Points (Bonded Object or Familiar)"',
   'Arcane Mastery':
     'Section=arcana Note="May use epic power modifiers on arcane spells"',
   'Arcane Trickster':
@@ -631,6 +646,10 @@ PF4SW.FEATURES_ADDED = {
     'Note="-4 Agility w/medium or heavy armor or shield",' +
          '"-4 Faith and Agility-based skills w/medium or heavy armor or shield"',
   'Armor Interference (Sorcerer)':
+    'Section=attribute,skill ' +
+    'Note="-4 Agility w/any armor or shield",' +
+         '"-4 Spellcasting and Agility-based skills w/any armor or shield"',
+  'Armor Interference (Wizard)':
     'Section=attribute,skill ' +
     'Note="-4 Agility w/any armor or shield",' +
          '"-4 Spellcasting and Agility-based skills w/any armor or shield"',
@@ -666,6 +685,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Has Arcane Background (Bard), Armor Interference (Bard), and Sharp Tongued features"',
   'Bloodline':'Section=feature Note="+1 Edge Points (bloodline)"',
+  'Bonded Object':
+    'Section=skill Note="+1 Spellcasting when object held or worn"',
   'Born In The Saddle':
     'Section=skill Note="Free reroll on Riding; +2 mount pace, +1 mount run"',
   'Breath Weapon':'Section=combat Note="9\\" cone inflicts 3d6 damage"',
@@ -735,6 +756,9 @@ PF4SW.FEATURES_ADDED = {
     'Note="Ignores 2 points of wound penalties and all fatigue"',
   'Epic Tales':
     'Section=feature Note="Allies hearing story gain 1 Benny during rest"',
+  'Familiar':
+    'Section=feature ' +
+    'Note="Can communicate w/magical, Wild Card pet that stores 5 PP"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
     'Section=arcana ' +
@@ -865,6 +889,9 @@ PF4SW.FEATURES_ADDED = {
   'Rogue':
     'Section=feature ' +
     'Note="Has Armor Restriction (Rogue) and Sneak Attack features"',
+  'School':
+    'Section=feature ' +
+    'Note="May select specialist school (free casting reroll) and two opposition schools (-2 casting rolls)"',
   'Secret':'Section=feature Note="May use chosen feature from another class"',
   'Secret Language (Druidic)':
     'Section=feature Note="Can converse secretly w/other druids"',
@@ -890,6 +917,8 @@ PF4SW.FEATURES_ADDED = {
     'Note="Combined Spells reduces power cost of spells to 1 PP (min 1)"',
   'Spell Synthesis':
     'Section=arcana Note="May apply class edge abilities to all spells"',
+  'Spellbook':
+    'Section=arcana Note="Must study bonded arcane book daily to cast spells"',
   'Strength Surge':'Section=combat Note="Fury increases Strength step by 2"',
   'Stunning Fist':
     'Section=combat ' +
@@ -919,7 +948,9 @@ PF4SW.FEATURES_ADDED = {
   'Wilderness Stride':
     'Section=attribute Note="No movement penalties for difficult ground"',
   'Wings':'Section=combat Note="Fly speed 8"',
-  'Wizard':'Section=feature Note="Has Arcane Background (Wizard)"',
+  'Wizard':
+    'Section=feature ' +
+    'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference (Wizard), School, and Spellbook features"',
   // Hindrances
   'Timid+':SWADE.FEATURES['Yellow+'],
   // Races
@@ -1076,8 +1107,12 @@ PF4SW.LANGUAGES = {
   'Terran':'',
   'Undercommon':''
 };
-// TODO
-PF4SW.SHIELDS = Object.assign({}, SWADE.SHIELDS);
+PF4SW.SHIELDS = {
+  'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
+  'Light':'Parry=1 Cover=0 MinStr=6 Weight=4',
+  'Medium':'Parry=2 Cover=-2 MinStr=8 Weight=8',
+  'Heavy':'Parry=2 Cover=-4 MinStr=10 Weight=12'
+};
 PF4SW.SKILLS = Object.assign({}, SWADE.SKILLS);
 delete PF4SW.SKILLS['Electronics'];
 delete PF4SW.SKILLS['Focus'];
@@ -1086,8 +1121,67 @@ delete PF4SW.SKILLS['Language (%language)'];
 delete PF4SW.SKILLS['Psionics'];
 delete PF4SW.SKILLS['Research'];
 delete PF4SW.SKILLS['Weird Science'];
-// TODO weapon choices
-PF4SW.WEAPONS = Object.assign({}, SWADE.WEAPONS);
+PF4SW.WEAPONS = {
+  'Unarmed':
+    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
+    'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
+  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
+  'Battle Axe':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
+  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
+  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Dagger':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
+  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
+  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h AP=1',
+  'Halberd':'Damage=Str+d8 MinStr=8 Weight=12 Category=2h AP=1',
+  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
+  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
+  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
+  'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=2h AP=2',
+  'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
+  'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
+  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
+  'Spear':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h Range=3',
+  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
+  'Staff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
+  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
+  'Starknife':'Damage=Str+d4 MinStr=4 Weight=3 Category=1h Range=3 Parry=1',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
+  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
+  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
+  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
+  'Trident':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3 AP=1',
+  'Warhammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h AP=1',
+  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
+
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
+  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
+  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
+  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
+  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
+  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
+  'Light Repeating Crossbow':
+    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
+  'Heavy Repeating Crossbow':
+    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
+  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
+  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
+  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4'
+};
 
 /* Defines the rules related to character attributes and description. */
 PF4SW.attributeRules = function(rules) {
@@ -1510,8 +1604,14 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'spellcastingStepAdjustment', '+', 'source>0 ? -source : null'
     );
   } else if(name == 'Wizard') {
+    rules.defineRule('edgePoints', 'featureNotes.arcaneBond', '+=', '1');
     rules.defineRule
       ('features.Arcane Background (Wizard)', 'featureNotes.wizard', '=', '1');
+    rules.defineRule('features.Arcane Bond', 'featureNotes.wizard', '=', '1');
+    rules.defineRule
+      ('features.Armor Interference (Wizard)', 'featureNotes.wizard', '=', '1');
+    rules.defineRule('features.School', 'featureNotes.wizard', '=', '1');
+    rules.defineRule('features.Spellbook', 'featureNotes.wizard', '=', '1');
   } else {
     SWADE.edgeRulesExtra(rules, name);
   }
@@ -1674,6 +1774,12 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
        QuilvynUtils.sumMatching(attributes, /edges.*Bloodline/) -
        QuilvynUtils.sumMatching(attributes, /edges.Advanced Bloodline/) == 0) {
       choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline/);
+      attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
+    }
+    if((attributes.concept == 'Wizard' ||
+        attributes['edges.Arcane Background (Wizard)']) &&
+       (!attributes['edges.Bonded Object'] && !attributes['edges.Familiar'])) {
+      choices = ['Bonded Object', 'Familiar'];
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
     // TODO Class edges
