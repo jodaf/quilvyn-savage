@@ -137,12 +137,31 @@ PF4SW.ARCANAS = {
     'Powers=' +
       'Blind,Confusion,Curse,Deflection,Disguise,"Drain Power Points",' +
       'Illusion,"Mind Reading","Object Reading",Puppet',
+  'Magic':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection","Baleful Polymorph",Banish,Barrier,"Beast Friend",' +
+      'Blast,Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,' +
+      '"Conjure Item",Curse,"Damage Field",Darksight,Deflection,' +
+      '"Detect/Conceal Arcana",Disguise,Dispel,Divination,' +
+      '"Drain Power Points","Elemental Manipulation",Empathy,Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,Havoc,' +
+      'Illusion,Intangibility,Invisibility,Light/Darkness,Locate,"Mind Link",' +
+      '"Mind Reading","Mind Wipe","Object Reading","Plane Shift",Protection,' +
+      'Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,' +
+      'Sound/Silence,"Speak Language",Stun,"Summon Ally",Telekinesis,' +
+      'Teleport,"Time Stop","Wall Walker","Warrior\'s Gift",Wish,Zombie',
   'Magic Domain':
     'Skill=Faith ' +
     'Powers=' +
       'Blast,"Detect/Conceal Arcana","Elemental Manipulation",' +
       '"Environmental Protection",Havoc,"Planar Binding","Plane Shift",' +
       'Protection,Scrying,"Summon Ally"',
+  'Miracles':
+    'Skill=Faith ' +
+    'Powers=' +
+      'Blind,Bolt,Curse,"Damage Field","Drain Power Points",Fear,"Mind Wipe",' +
+      '"Planar Binding",Protection,Zombie',
   'Nature Domain':
     'Skill=Faith ' +
     'Powers=' +
@@ -583,13 +602,17 @@ PF4SW.FEATURES_ADDED = {
   'Arcane Archer III':
     'Section=feature ' +
     'Note="May use Imbue Arrow feature 1/tn and Death Arrow feature 1/dy"',
-  'Arcane Armor':'Section=arcana Note="May cast in armor"',
+  'Arcane Armor':
+    'Section=arcana Note="May cast spells in %V armor w/out penalty"',
   'Arcane Background (Bard)':
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Cleric)':
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Druid)':
     'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Miracles)':
+    'Section=arcana,feature ' +
+    'Note="3 Powers/10 Power Points","Has Domain and Vow+ features"',
   'Arcane Background (Sorcerer)':
     'Section=arcana,skill ' +
     'Note="2 Powers/15 Power Points",' +
@@ -637,38 +660,14 @@ PF4SW.FEATURES_ADDED = {
   'Arcane Trickster II':
     'Section=feature Note="May use Invisible Thief feature 1/dy"',
   'Arcane Trickster III':'Section=feature Note="Has Surprise Spells feature"',
-  'Armor Interference (Bard)':
+  'Armor Interference':
     'Section=attribute,skill ' +
-    'Note="-4 Agility w/medium or heavy armor or shield",' +
-         '"-4 Performance and Agility-based skills w/medium or heavy armor or shield"',
-  'Armor Interference (Druid)':
+    'Note="-4 Agility w/%1 armor or shield",' +
+         '"-4 %2Agility-based skills w/%1 armor or shield"',
+  'Armor Restriction':
     'Section=attribute,skill ' +
-    'Note="-4 Agility w/medium or heavy armor or shield",' +
-         '"-4 Faith and Agility-based skills w/medium or heavy armor or shield"',
-  'Armor Interference (Sorcerer)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/any armor or shield",' +
-         '"-4 Spellcasting and Agility-based skills w/any armor or shield"',
-  'Armor Interference (Wizard)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/any armor or shield",' +
-         '"-4 Spellcasting and Agility-based skills w/any armor or shield"',
-  'Armor Restriction (Barbarian)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/heavy armor or shield",' +
-         '"-4 Agility-based skills w/heavy armor or shield"',
-  'Armor Restriction (Monk)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/any armor or shield",' +
-         '"-4 Agility-based skills w/any armor or shield"',
-  'Armor Restriction (Ranger)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/heavy armor or shield",' +
-         '"-4 Agility-based skills w/heavy armor or shield"',
-  'Armor Restriction (Rogue)':
-    'Section=attribute,skill ' +
-    'Note="-4 Agility w/medium or heavy armor or shield",' +
-         '"-4 Agility-based skills w/medium or heavy armor or shield"',
+    'Note="-4 Agility w/%V armor or shield",' +
+         '"-4 Agility-based skills w/%V armor or shield"',
   'Arrow Trapping':'Section=combat Note="Arrows have environmental trapping"',
   'Assassin':'Section=feature Note="Gains Death Attack feature"',
   'Assassin II':
@@ -679,16 +678,16 @@ PF4SW.FEATURES_ADDED = {
   'Attuned':'Section=arcana Note="May reroll failed Faith to cast spell"',
   'Aura Of Courage':'Section=arcana Note="R10\\" Allies +1 vs. Fear"',
   'Barbarian':
-    'Section=feature ' +
-    'Note="Has Armor Restriction (Barbarian), Fast, and Rage features"',
+    'Section=feature Note="Has Armor Restriction, Fast, and Rage features"',
   'Bard':
     'Section=feature ' +
-    'Note="Has Arcane Background (Bard), Armor Interference (Bard), and Sharp Tongued features"',
+    'Note="Has Arcane Background (Bard), Armor Interference, and Sharp Tongued features"',
   'Bloodline':'Section=feature Note="+1 Edge Points (bloodline)"',
   'Bonded Object':
     'Section=skill Note="+1 Spellcasting when object held or worn"',
   'Born In The Saddle':
-    'Section=skill Note="Free reroll on Riding; +2 mount pace, +1 mount run"',
+    'Section=skill ' +
+    'Note="Free reroll on Riding; +2 mount Pace, +1 mount Run step"',
   'Breath Weapon':'Section=combat Note="9\\" cone inflicts 3d6 damage"',
   'Call Down The Legends':
     'Section=combat Note="May summon shadowy allies for 1 hr"',
@@ -735,7 +734,9 @@ PF4SW.FEATURES_ADDED = {
     'Section=attribute,combat ' +
     'Note="Size 3, Strength d12, Vigor d10",' +
          '"Bite and Claw attack does d%{strength}+d8, AP 2"',
-  'Druid':'Section=feature Note="Has Arcane Background (Druid), Armor Interference (Druid), Nature Bond, Nature Sense, Secret Language (Druidic), Vow+, and Wilderness Stride features"',
+  'Druid':
+    'Section=feature ' +
+    'Note="Has Arcane Background (Druid), Armor Interference, Nature Bond, Nature Sense, Secret Language (Druidic), Vow+, and Wilderness Stride features"',
   'Duelist':'Section=feature Note="Has Surgical Strike and Parry features"',
   'Duelist II':'Section=feature Note="Has Crippling Strike feature"',
   'Duelist III':'Section=feature Note="Has Deflect Arrows feature"',
@@ -780,7 +781,6 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="Gains additional Action Card in chosen terrain"',
   'Fey Bloodline':'Section=feature Note="FILL"',
   'Fighter':'Section=feature Note="Has Martial Flexibility feature"',
-  'Fix It':SWADE.FEATURES['Mister Fix It'],
   'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
   'Fury':
     'Section=combat ' +
@@ -797,7 +797,6 @@ PF4SW.FEATURES_ADDED = {
   'Imbue Arrow':'Section=arcana Note="Cast spell via arrow"',
   'Impromptu Attack':
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
-  'Improved Rapid Shot':SWADE.FEATURES['Improved Rapid Fire'],
   'Infernal Bloodline':'Section=feature Note="FILL"',
   'Inspire Heroics':
     'Section=feature ' +
@@ -830,7 +829,7 @@ PF4SW.FEATURES_ADDED = {
   'Mobility':'Section=combat Note="+1 Run step"',
   'Monk':
     'Section=feature ' +
-    'Note="Has Armor Restriction (Monk), Martial Discipline, Mobility, Stunning Fist, and Unarmed Strike features"',
+    'Note="Has Armor Restriction, Martial Discipline, Mobility, Stunning Fist, and Unarmed Strike features"',
   'Mount':
     'Section=feature ' +
     'Note="Bonded mount gains two advances and may be summoned"',
@@ -877,18 +876,16 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or Wounded (Smarts neg); takes 1 level of Fatigue afterward until 1 hr rest"',
   'Ranger':
     'Section=feature ' +
-    'Note="Has Armor Restriction (Ranger), Favored Enemy, Favored Terrain, and Wilderness Stride features"',
+    'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
   'Rapid Reload':
     'Section=combat Note="Reduces reload value of chosen ranged weapon by 1"',
-  'Rapid Shot':SWADE.FEATURES['Rapid Fire'],
   'Ranged Legerdemain':'Section=skill Note="R5\\" Thievery at -2"',
   'Reckless Abandon':
     'Section=combat ' +
     'Note="Critical failure on attack hits random target or self"',
   'Resistance To Poison':'Section=combat Note="+4 vs. poison"',
   'Rogue':
-    'Section=feature ' +
-    'Note="Has Armor Restriction (Rogue) and Sneak Attack features"',
+    'Section=feature Note="Has Armor Restriction and Sneak Attack features"',
   'School':
     'Section=feature ' +
     'Note="May select specialist school (free casting reroll) and two opposition schools (-2 casting rolls)"',
@@ -911,7 +908,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Inflicts additional d6 when attacking with the Drop or on Vulnerable foe"',
   'Sorcerer':
     'Section=feature ' +
-    'Note="Has Arcane Background (Sorcerer), Armor Interference (Sorcerer), and Bloodline features"',
+    'Note="Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features"',
   'Spell Synergy':
     'Section=arcana ' +
     'Note="Combined Spells reduces power cost of spells to 1 PP (min 1)"',
@@ -932,9 +929,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="R5\\" Automatic Notice for traps; ignore 2 points penalty to evade and disarm"',
   'Troubadour':
-    'Section=feature ' +
+    'Section=skill ' +
     'Note="+2 Common Knowledge/May use Performance in place of Battle"',
-  'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
   'Unarmed Strike':
     'Section=combat ' +
     'Note="+1 Unarmed attacks, AP +2, damage d%{strength}+d4, always considered armed"',
@@ -950,7 +946,12 @@ PF4SW.FEATURES_ADDED = {
   'Wings':'Section=combat Note="Fly speed 8"',
   'Wizard':
     'Section=feature ' +
-    'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference (Wizard), School, and Spellbook features"',
+    'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference, School, and Spellbook features"',
+  'Rapid Shot':SWADE.FEATURES['Rapid Fire'],
+  'Improved Rapid Shot':
+    SWADE.FEATURES['Improved Rapid Fire'].replaceAll('Fire', 'Shot'),
+  'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
+  'Fix It':SWADE.FEATURES['Mister Fix It'],
   // Hindrances
   'Timid+':SWADE.FEATURES['Yellow+'],
   // Races
@@ -1200,6 +1201,11 @@ PF4SW.identityRules = function(rules, races, concepts, deitys) {
   // Deitys has attributes that are unsupported by SWADE
   QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   SWADE.identityRules(rules, races, {}, concepts, {});
+  // Relable 'Race' as 'Ancestry' in editor, leaving 'race' as the attribute
+  // so that SWADE-defined rules will still work
+  rules.defineEditorElement('race');
+  rules.defineEditorElement
+    ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
   for(var deity in deitys) {
     rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
   }
@@ -1399,7 +1405,19 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
-  if(name == 'Assassin') {
+  if(name == 'Arcane Armor') {
+    // TODO Can be taken more than once
+    rules.defineRule('arcanaNotes.arcaneArmor',
+      'attributeNotes.armorInterference.1', '=',
+        'source == "any" ? "light" : source.replace(/\\s.*/, "")'
+    );
+  } else if(name == 'Arcane Background (Miracles)') {
+    rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
+    rules.defineRule
+      ('features.Domain', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
+    rules.defineRule
+      ('features.Vow+', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
+  } else if(name == 'Assassin') {
     rules.defineRule
       ('features.Death Attack', 'featureNotes.assassin', '=', '1');
   } else if(name == 'Assassin II') {
@@ -1412,19 +1430,6 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Angel Of Death', 'featureNotes.assassinIII', '=', '1');
     rules.defineRule
       ('features.Swift Death', 'featureNotes.assassinIII', '=', '1');
-  } else if(name == 'Barbarian') {
-    rules.defineRule('combatNotes.fury',
-      '', '=', '1',
-      'combatNotes.strengthSurge', '+', '1'
-    );
-    rules.defineRule('features.Armor Restriction (Barbarian)',
-      'featureNotes.barbarian', '=', '1'
-    );
-    rules.defineRule('features.Enraged', 'features.Rage', '=', '1');
-    rules.defineRule('features.Fury', 'features.Rage', '=', '1');
-    rules.defineRule('features.Fast', 'featureNotes.barbarian', '=', '1');
-    rules.defineRule('features.Rage', 'featureNotes.barbarian', '=', '1');
-    rules.defineRule('features.Reckless Abandon', 'features.Rage', '=', '1');
   } else if(name == 'Arcane Archer') {
     rules.defineRule
       ('features.Enhance Arrows', 'featureNotes.arcaneArcher', '=', '1');
@@ -1451,12 +1456,39 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Arcane Trickster III') {
     rules.defineRule
       ('features.Surprise Spells', 'featureNotes.arcaneTricksterIII', '=', '1');
+  } else if(name == 'Barbarian') {
+    rules.defineRule('attributeNotes.armorRestriction',
+      'featureNotes.barbarian', '=', '"heavy"'
+    );
+    rules.defineRule('combatNotes.fury',
+      '', '=', '1',
+      'combatNotes.strengthSurge', '+', '1'
+    );
+    rules.defineRule
+      ('features.Armor Restriction', 'featureNotes.barbarian', '=', '1');
+    rules.defineRule('features.Enraged', 'features.Rage', '=', '1');
+    rules.defineRule('features.Fury', 'features.Rage', '=', '1');
+    rules.defineRule('features.Fast', 'featureNotes.barbarian', '=', '1');
+    rules.defineRule('features.Rage', 'featureNotes.barbarian', '=', '1');
+    rules.defineRule('features.Reckless Abandon', 'features.Rage', '=', '1');
+    rules.defineRule('skillNotes.armorRestriction',
+      'featureNotes.barbarian', '=', '"heavy"'
+    );
   } else if(name == 'Bard') {
+    rules.defineRule('attributeNotes.armorInterference.1',
+      'featureNotes.bard', '=', '"medium or heavy"'
+    );
     rules.defineRule
       ('features.Arcane Background (Bard)', 'featureNotes.bard', '=', '1');
     rules.defineRule
-      ('features.Armor Interference (Bard)', 'featureNotes.bard', '=', '1');
+      ('features.Armor Interference', 'featureNotes.bard', '=', '1');
     rules.defineRule('features.Sharp Tongued', 'featureNotes.bard', '=', '1');
+    rules.defineRule('skillNotes.armorInterference.1',
+      'featureNotes.bard', '=', '"medium or heavy"'
+    );
+    rules.defineRule('skillNotes.armorInterference.2',
+      'featureNotes.bard', '=', '"Performance and "'
+    );
   } else if(name == 'Cleric') {
     rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
     rules.defineRule
@@ -1475,11 +1507,14 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Dragon Form', 'featureNotes.dragonDiscipleIII', '=', '1');
   } else if(name == 'Druid') {
+    rules.defineRule('attributeNotes.armorInterference.1',
+      'featureNotes.druid', '=', '"medium or heavy"'
+    );
     rules.defineRule('edgePoints', 'featureNotes.natureBond', '+=', '1');
     rules.defineRule
       ('features.Arcane Background (Druid)', 'featureNotes.druid', '=', '1');
     rules.defineRule
-      ('features.Armor Interference (Druid)', 'featureNotes.druid', '=', '1');
+      ('features.Armor Interference', 'featureNotes.druid', '=', '1');
     rules.defineRule('features.Nature Bond', 'featureNotes.druid', '=', '1');
     rules.defineRule('features.Nature Sense', 'featureNotes.druid', '=', '1');
     rules.defineRule
@@ -1494,6 +1529,12 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     );
     rules.defineRule('skillStepPastAttribute.Survival',
       'survivalStepAdjustment', '+', 'source>0 ? -source : null'
+    );
+    rules.defineRule('skillNotes.armorInterference.1',
+      'featureNotes.druid', '=', '"medium or heavy"'
+    );
+    rules.defineRule('skillNotes.armorInterference.2',
+      'featureNotes.druid', '=', '"Faith and "'
     );
   } else if(name == 'Duelist') {
     rules.defineRule
@@ -1526,18 +1567,22 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Greater Lore', 'featureNotes.loremasterIII', '=', '1');
   } else if(name == 'Monk') {
+    rules.defineRule
+      ('attributeNotes.armorRestriction', 'featureNotes.monk', '=', '"any"');
     rules.defineRule('combatNotes.martialDiscipline.1',
       'combatNotes.martialDiscipline', '?', null,
       'armor.None', '=', '1'
     );
     rules.defineRule
-      ('features.Armor Restriction (Monk)', 'featureNotes.monk', '=', '1');
+      ('features.Armor Restriction', 'featureNotes.monk', '=', '1');
     rules.defineRule
       ('features.Martial Discipline', 'featureNotes.monk', '=', '1');
     rules.defineRule('features.Mobility', 'featureNotes.monk', '=', '1');
     rules.defineRule('features.Stunning Fist', 'featureNotes.monk', '=', '1');
     rules.defineRule('features.Unarmed Strike', 'featureNotes.monk', '=', '1');
     rules.defineRule('toughness', 'combatNotes.martialDiscipline.1', '+', null);
+    rules.defineRule
+      ('skillNotes.armorRestriction', 'featureNotes.monk', '=', '"any"');
   } else if(name == 'Mystic Theurge') {
     rules.defineRule
       ('features.Combined Spells', 'featureNotes.mysticTheurge', '=', '1');
@@ -1565,17 +1610,33 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.pathfinderChroniclerIII', '=', '1'
     );
   } else if(name == 'Ranger') {
+    rules.defineRule('attributeNotes.armorRestriction',
+      'featureNotes.ranger', '=', '"heavy"'
+    );
     rules.defineRule
-      ('features.Armor Restriction (Ranger)', 'featureNotes.ranger', '=', '1');
+      ('features.Armor Restriction', 'featureNotes.ranger', '=', '1');
     rules.defineRule('features.Favored Enemy', 'featureNotes.ranger', '=', '1');
     rules.defineRule
       ('features.Favored Terrain', 'featureNotes.ranger', '=', '1');
     rules.defineRule
       ('features.Wilderness Stride', 'featureNotes.ranger', '=', '1');
-  } else if(name == 'Rogue') {
     rules.defineRule
-      ('features.Armor Restriction (Rogue)', 'featureNotes.rogue', '=', '1');
+      ('skillNotes.armorRestriction', 'featureNotes.ranger', '=', '"heavy"');
+  } else if(name == 'Rapid Shot') {
+    rules.defineRule('combatNotes.rapidShot',
+      '', '=', '1',
+      'combatNotes.improvedRapidShot', '+', '1'
+    );
+  } else if(name == 'Rogue') {
+    rules.defineRule('attributeNotes.armorRestriction',
+      'featureNotes.rogue', '=', '"medium or heavy"'
+    );
+    rules.defineRule
+      ('features.Armor Restriction', 'featureNotes.rogue', '=', '1');
     rules.defineRule('features.Sneak Attack', 'featureNotes.rogue', '=', '1');
+    rules.defineRule('skillNotes.armorRestriction',
+      'featureNotes.rogue', '=', '"medium or heavy"'
+    );
   } else if(name == 'Shadowdancer') {
     rules.defineRule
       ('features.Greater Darkvision', 'featureNotes.shadowdancer', '=', '1');
@@ -1587,13 +1648,15 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.shadowdancerIII', '=', '1'
     );
   } else if(name == 'Sorcerer') {
+    rules.defineRule('attributeNotes.armorInterference.1',
+      'featureNotes.sorcerer', '=', '"any"'
+    );
     rules.defineRule('edgePoints', 'featureNotes.bloodline', '+=', '1');
     rules.defineRule('features.Arcane Background (Sorcerer)',
       'featureNotes.sorcerer', '=', '1'
     );
-    rules.defineRule('features.Armor Interference (Sorcerer)',
-      'featureNotes.sorcerer', '=', '1'
-    );
+    rules.defineRule
+      ('features.Armor Interference', 'featureNotes.sorcerer', '=', '1');
     rules.defineRule('features.Bloodline', 'featureNotes.sorcerer', '=', '1');
     rules.defineRule('spellcastingStepAdjustment',
       'skillNotes.arcaneBackground(Sorcerer)', '?', null,
@@ -1603,15 +1666,30 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('skillStepPastAttribute.Spellcasting',
       'spellcastingStepAdjustment', '+', 'source>0 ? -source : null'
     );
+    rules.defineRule('skillNotes.armorInterference.1',
+      'featureNotes.sorcerer', '=', '"any"'
+    );
+    rules.defineRule('skillNotes.armorInterference.2',
+      'featureNotes.sorcerer', '=', '"Spellcasting and "'
+    );
   } else if(name == 'Wizard') {
+    rules.defineRule('attributeNotes.armorInterference.1',
+      'featureNotes.wizard', '=', '"any"'
+    );
     rules.defineRule('edgePoints', 'featureNotes.arcaneBond', '+=', '1');
     rules.defineRule
       ('features.Arcane Background (Wizard)', 'featureNotes.wizard', '=', '1');
     rules.defineRule('features.Arcane Bond', 'featureNotes.wizard', '=', '1');
     rules.defineRule
-      ('features.Armor Interference (Wizard)', 'featureNotes.wizard', '=', '1');
+      ('features.Armor Interference', 'featureNotes.wizard', '=', '1');
     rules.defineRule('features.School', 'featureNotes.wizard', '=', '1');
     rules.defineRule('features.Spellbook', 'featureNotes.wizard', '=', '1');
+    rules.defineRule('skillNotes.armorInterference.1',
+      'featureNotes.wizard', '=', '"any"'
+    );
+    rules.defineRule('skillNotes.armorInterference.2',
+      'featureNotes.wizard', '=', '"Spellcasting and "'
+    );
   } else {
     SWADE.edgeRulesExtra(rules, name);
   }
@@ -1753,7 +1831,8 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   var choices;
   if(attribute == 'edges') {
     if((attributes.concept == 'Cleric' ||
-        attributes['edges.Arcane Background (Cleric)']) &&
+        attributes['edges.Arcane Background (Cleric)'] ||
+        attributes['edges.Arcane Background (Miracles)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Domain/) == 0) {
       var deityAttrs = this.getChoices('deitys')[attributes.deity];
       if(!deityAttrs || !deityAttrs.includes('Domain')) {
