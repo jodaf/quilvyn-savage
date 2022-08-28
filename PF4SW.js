@@ -88,7 +88,7 @@ PF4SW.ARCANAS = {
       '"Mind Link","Mind Reading","Object Reading",Puppet,Sloth/Speed,' +
       'Slumber,Sound/Silence,"Speak Language",Stun,"Summon Ally",Teleport,' +
       '"Warrior\'s Gift"',
-  'Civiliation Domain':
+  'Civilization Domain':
     'Skill=Faith ' +
     'Powers=' +
       'Barrier,Disguise,"Environmental Protection",Locate,"Mind Link",' +
@@ -364,7 +364,7 @@ PF4SW.EDGES_ADDED = {
   'Countersong':'Type=class,Bard Require="advances >= 8",features.Bard',
   'Dirge Of Doom':'Type=class,Bard Require="advances >= 12",features.Bard',
   'Cleric':'Type=class Require="spirit >= 6","skills.Occult >= 6"',
-  'Arcane Background (Civiliation Domain)':
+  'Arcane Background (Civilization Domain)':
     'Type=class,Cleric ' +
     'Require=features.Cleric,' +
             '"deity == \'None\' || deityDomains =~ \'Civilization\'"',
@@ -995,7 +995,7 @@ PF4SW.FEATURES_ADDED = {
   'Flexibility':'Section=attribute Note="+1 Attribute Points"',
   'Gnome Magic':
     'Section=arcana ' +
-    'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telkinesis</i>/1 Power Point"',
+    'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telekinesis</i>/1 Power Point"',
   'Intelligence':'Section=attribute Note="+1 Smarts step"',
   'Intimidating':'Section=skill Note="+1 Intimidation step"',
   'Iron Constitution':'Section=combat Note="+1 vs. poison/+1 vs. powers"',
@@ -1234,7 +1234,7 @@ PF4SW.identityRules = function(rules, races, concepts, deitys) {
   // Deitys has attributes that are unsupported by SWADE
   QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   SWADE.identityRules(rules, races, {}, concepts, {});
-  // Relable 'Race' as 'Ancestry' in editor, leaving 'race' as the attribute
+  // Relabel 'Race' as 'Ancestry' in editor, leaving 'race' as the attribute
   // so that SWADE-defined rules will still work
   rules.defineEditorElement('race');
   rules.defineEditorElement
