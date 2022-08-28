@@ -230,7 +230,6 @@ PF4SW.ARCANAS = {
       'Telekinesis,Teleport,"Time Stop","Wall Walker","Warrior\'s Gift",Wish,' +
       'Zombie'
 };
-// TODO
 PF4SW.ARMORS = {
   'None':'Area=Body Armor=0 MinStr=4 Weight=0',
   'Leather Jacket':'Area=Torso Armor=2 MinStr=6 Weight=11',
@@ -246,6 +245,14 @@ PF4SW.ARMORS = {
   'Plate Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8'
 };
 PF4SW.CONCEPTS_ADDED = {
+  'Arcane Archer':
+    'Edge=Bard,"Arcane Archer" ' +
+    'Skill=Shooting',
+  'Arcane Trickster':
+    'Edge=Bard,Rogue,"Arcane Trickster" ' +
+    'Skill=Thievery',
+  'Assassin':
+    'Edge=Rogue,Assassin',
   'Barbarian':
     'Edge=Barbarian ' +
     'Attribute=Strength,Vigor ' +
@@ -257,15 +264,31 @@ PF4SW.CONCEPTS_ADDED = {
   'Cleric':
     'Edge=Cleric ' +
     'Attribute=Spirit ' +
-    'Skill=Faith',
+    'Skill=Faith,Occult',
+  'Dragon Disciple':
+    'Edge=Cleric,"Dragon Disciple" ' +
+    'Skill=Occult',
   'Druid':
     'Edge=Druid ' +
     'Attribute=Spirit ' +
-    'Skill=Faith',
+    'Skill=Faith,Survival',
+  'Duelist':
+    'Edge=Fighter,Duelist ' +
+    'Attribute=Agility ' +
+    'Skill=Fighting',
+  'Eldritch Knight':
+    'Edge=Cleric,"Eldritch Knight" ' +
+    'Skill=Fighting',
   'Fighter':
     'Edge=Fighter ' +
     'Attribute=Strength ' +
-    'Skill=Fighting',
+    'Skill=Athletics,Fighting,Shooting',
+  'Loremaster':
+    'Edge=Wizard,Loremaster ' +
+    'Attribute=Smarts ' +
+    'Skill=Occult',
+  'Mystic Theurge':
+    'Edge=Cleric,Wizard,"Mystic Theurge"',
   'Monk':
     'Edge=Monk ' +
     'Attribute=Agility,Spirit ' +
@@ -273,7 +296,10 @@ PF4SW.CONCEPTS_ADDED = {
   'Paladin':
     'Edge="Paladin" ' +
     'Attribute=Spirit,Strength ' +
-    'Skill=Athletics,Faith,Fighting,Shooting',
+    'Skill=Athletics,Fighting,Shooting',
+  'Pathfinder Chronicler':
+    'Edge="Pathfinder Chronicler" ' +
+    'Skill=Survival,"Common Knowledge",Occult',
   'Ranger':
     'Edge=Ranger ' +
     'Skill=Athletics,Fighting,Shooting,Survival',
@@ -281,6 +307,9 @@ PF4SW.CONCEPTS_ADDED = {
     'Edge=Rogue ' +
     'Attribute=Agility ' +
     'Skill=Notice,Stealth,Thievery',
+  'Shadowdancer':
+    'Edge=Shadowdancer ' +
+    'Skill=Performance,Stealth,Thievery',
   'Sorcerer':
     'Edge=Sorcerer ' +
     'Attribute=Smarts,Spirit ' +
@@ -288,7 +317,7 @@ PF4SW.CONCEPTS_ADDED = {
   'Wizard':
     'Edge=Wizard ' +
     'Attribute=Smarts ' +
-    'Skill=Spellcasting',
+    'Skill=Occult,Spellcasting',
   // Modified
   'Investigator':SWADE.CONCEPTS.Investigator.replaceAll('Research', 'Academics')
 };
@@ -527,10 +556,9 @@ PF4SW.EDGES_ADDED = {
   'Loremaster II':'Type=prestige Require="advances >= 8","features.Loremaster"',
   'Loremaster III':
     'Type=prestige Require="advances >= 12","features.Loremaster II"',
-  // TODO Two different arcane backgrounds
   'Mystic Theurge':
     'Type=prestige ' +
-    'Require="advances >= 4","powerPoints >= 1"',
+    'Require="advances >= 4","arcaneEdgeCount >= 2","powerPoints >= 1"',
   'Mystic Theurge II':
     'Type=prestige Require="advances >= 8","features.Mystic Theurge"',
   'Mystic Theurge III':
@@ -656,7 +684,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana Note="May use epic power modifiers on arcane spells"',
   'Arcane Trickster':
     'Section=feature ' +
-    'Note="Has Ranged Legerdemain and Impromptu Attack features"',
+    'Note="May use Impromptu Attack feature 1/encounter and Ranged Legerdemain feature"',
   'Arcane Trickster II':
     'Section=feature Note="May use Invisible Thief feature 1/dy"',
   'Arcane Trickster III':'Section=feature Note="Has Surprise Spells feature"',
@@ -688,9 +716,10 @@ PF4SW.FEATURES_ADDED = {
   'Born In The Saddle':
     'Section=skill ' +
     'Note="Free reroll on Riding; +2 mount Pace, +1 mount Run step"',
-  'Breath Weapon':'Section=combat Note="9\\" cone inflicts 3d6 damage"',
+  'Breath Weapon':
+    'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
   'Call Down The Legends':
-    'Section=combat Note="May summon shadowy allies for 1 hr"',
+    'Section=combat Note="May summon 5 shadowy allies for 1 hr"',
   'Celestial Bloodline':'Section=feature Note="FILL"',
   'Channel Energy':
     'Section=arcana ' +
@@ -711,7 +740,7 @@ PF4SW.FEATURES_ADDED = {
   'Death Attack':
     'Section=combat ' +
     'Note="Wounding attack with the Drop kills (Vigor neg), incapacitating attack is silent"',
-  'Deflect Arrows':'Section=combat Note="Foes -2 on ranged attacks"',
+  'Deflect Arrows':'Section=combat Note="Foes suffer -2 ranged attacks"',
   'Destined Bloodline':'Section=feature Note="FILL"',
   'Destroy Undead':
     'Section=combat ' +
@@ -729,11 +758,11 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
   'Dragon Disciple II':'Section=feature Note="May use Wings feature"',
   'Dragon Disciple III':
-    'Section=feature Note="May use Dragon Form feature 2/dy"',
+    'Section=feature ' +
+    'Note="May use Dragon Form feature for 5 min (10 min inflicts 1 level of Fatigue) 2/dy"',
   'Dragon Form':
-    'Section=attribute,combat ' +
-    'Note="Size 3, Strength d12, Vigor d10",' +
-         '"Bite and Claw attack does d%{strength}+d8, AP 2"',
+    'Section=combat ' +
+    'Note="Size 3, Strength d12, Vigor d10, Armor 4, bite and claw attack does d%{strength}+d8, AP 2"',
   'Druid':
     'Section=feature ' +
     'Note="Has Arcane Background (Druid), Armor Interference, Nature Bond, Nature Sense, Secret Language (Druidic), Vow+, and Wilderness Stride features"',
@@ -756,7 +785,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Ignores 2 points of wound penalties and all fatigue"',
   'Epic Tales':
-    'Section=feature Note="Allies hearing story gain 1 Benny during rest"',
+    'Section=feature Note="Allies hearing story during rest gain 1 Benny"',
   'Familiar':
     'Section=feature ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 PP"',
@@ -791,10 +820,11 @@ PF4SW.FEATURES_ADDED = {
   'Greater Darkvision':
     'Section=feature Note="R20\\" Sees clearly in pitch darkness"',
   'Greater Lore':'Section=arcana Note="+2 Power Count"',
-  'Hail Of Arrows':'Section=combat Note="Fired arrow effects 3\\" radius"',
+  'Hail Of Arrows':
+    'Section=combat Note="May have arrow effect all in 3\\" radius"',
   'Hide In Plain Sight':
     'Section=arcana Note="May become invisible at will when immobile"',
-  'Imbue Arrow':'Section=arcana Note="Cast spell via arrow"',
+  'Imbue Arrow':'Section=arcana Note="May center area spell where arrow lands"',
   'Impromptu Attack':
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
   'Infernal Bloodline':'Section=feature Note="FILL"',
@@ -805,12 +835,13 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="May take free Intimidation action when Action card is jack or better"',
   'Invisible Thief':
-    'Section=arcana Note="Spend 1 PP to cast <i>Invisibility</i> with a raise"',
+    'Section=arcana ' +
+    'Note="May spend 1 PP to cast <i>Invisibility</i> w/automatic raise"',
   'Lore':
     'Section=skill ' +
     'Note="May reroll Academics, Common Knowledge, Occult, and Science"',
   'Loremaster':'Section=feature Note="Has Lore feature"',
-  'Loremaster II':'Section=feature Note="Has Secret feature"',
+  'Loremaster II':'Section=feature Note="Has Secret (Loremaster) feature"',
   'Loremaster III':'Section=feature Note="Has Greater Lore feature"',
   'Martial Discipline':'Section=combat Note="+1 Toughness in no armor"',
   'Martial Flexibility':
@@ -835,16 +866,16 @@ PF4SW.FEATURES_ADDED = {
     'Note="Bonded mount gains two advances and may be summoned"',
   'Mystic Powers (Monk)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost Trait</i> (Agility, Athletics, Fighting, or Stealth), <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i> w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast <i>Boost Trait</i> (Agility, Athletics, Fighting, or Stealth), <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i> on self w/automatic success (+2 PP for raise)"',
   'Mystic Powers (Paladin)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost Trait</i> (Fighting, Strength, or Vigo), <i>Healing</i>, <i>Relief</i>, and <i>Smite</i>"',
+    'Note="10 Power Points/May cast self <i>Boost Trait</i> (Fighting, Strength, or Vigor), self <i>Smite</i>, <i>Healing</i>, and <i>Relief</i> w/automatic success (+2 PP for raise)"',
   'Mystic Powers (Ranger)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Beast Friend</i>, <i>Boost Trait</i> (Athletics, Fighting, or Shooting), <i>Entangle</i>, and <i>Warrior\'s Gift</i>"',
+    'Note="10 Power Points/May cast self <i>Boost Trait</i> (Athletics, Fighting, or Shooting), self <i>Warrior\'s Gift</i>, <i>Beast Friend</i>, and <i>Entangle</i> w/automatic success (+2 PP for raise)"',
   'Mystic Powers (Shadow Force)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and <i>Teleport</i>"',
+    'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and self <i>Teleport</i> w/automatic success (+2 PP for raise)"',
   'Mystic Theurge':'Section=feature Note="Has Combined Spells feature"',
   'Mystic Theurge II':'Section=feature Note="Has Spell Synergy feature"',
   'Mystic Theurge III':'Section=feature Note="Has Spell Synthesis feature"',
@@ -858,7 +889,7 @@ PF4SW.FEATURES_ADDED = {
   'Paladin':
     'Section=feature ' +
     'Note="Has Aura Of Courage, Code Of Honor+, Detect Evil, and Smite Evil features"',
-  'Parry':'Section=combat Note="May use Defend at +6 Parry"',
+  'Parry':'Section=combat Note="May use Defend maneuver for +6 Parry"',
   'Pathfinder Chronicler':'Section=feature Note="Has Pathfinding feature"',
   'Pathfinder Chronicler II':
     'Section=feature Note="May use Epic Tales feature 1/session"',
@@ -866,8 +897,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="May use Call Down The Legends feature 1/wk"',
   'Pathfinding':
     'Section=feature ' +
-    'Note="Increased travel speed through known locations by 10%; may make Smarts-2 to discard Enemies card"',
-  'Phase Arrow':'Section=combat Note="Fire arrow through obstacles"',
+    'Note="Increases travel speed through known locations by 10%; successful Smarts-2 discards Enemies card"',
+  'Phase Arrow':'Section=combat Note="May fire arrow through obstacles"',
   'Powerful Blow':'Section=combat Note="+2 damage from Wild Attack"',
   'Quarry':
     'Section=feature Note="Gains additional Favored Enemy and Favored Terrain"',
@@ -879,7 +910,8 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
   'Rapid Reload':
     'Section=combat Note="Reduces reload value of chosen ranged weapon by 1"',
-  'Ranged Legerdemain':'Section=skill Note="R5\\" Thievery at -2"',
+  'Ranged Legerdemain':
+    'Section=skill Note="May use R5\\" Thievery at -2 penalty"',
   'Reckless Abandon':
     'Section=combat ' +
     'Note="Critical failure on attack hits random target or self"',
@@ -889,7 +921,8 @@ PF4SW.FEATURES_ADDED = {
   'School':
     'Section=feature ' +
     'Note="May select specialist school (free casting reroll) and two opposition schools (-2 casting rolls)"',
-  'Secret':'Section=feature Note="May use chosen feature from another class"',
+  'Secret (Loremaster)':
+    'Section=feature Note="May use chosen feature from core class"',
   'Secret Language (Druidic)':
     'Section=feature Note="Can converse secretly w/other druids"',
   'Shadow Cloak':
@@ -911,7 +944,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features"',
   'Spell Synergy':
     'Section=arcana ' +
-    'Note="Combined Spells reduces power cost of spells to 1 PP (min 1)"',
+    'Note="Using Combined Spells feature reduces power cost of spells by 1 PP (min 1)"',
   'Spell Synthesis':
     'Section=arcana Note="May apply class edge abilities to all spells"',
   'Spellbook':
@@ -1432,7 +1465,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Swift Death', 'featureNotes.assassinIII', '=', '1');
   } else if(name == 'Arcane Archer') {
     rules.defineRule
-      ('features.Enhance Arrows', 'featureNotes.arcaneArcher', '=', '1');
+      ('features.Enhance Arrow', 'featureNotes.arcaneArcher', '=', '1');
     rules.defineRule
       ('features.Arrow Trapping', 'featureNotes.arcaneArcher', '=', '1');
   } else if(name == 'Arcane Archer II') {
@@ -1545,7 +1578,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Crippling Strike', 'featureNotes.duelistII', '=', '1');
   } else if(name == 'Duelist III') {
     rules.defineRule
-      ('features.Deflect Arrows', 'featureNotes.duelistII', '=', '1');
+      ('features.Deflect Arrows', 'featureNotes.duelistIII', '=', '1');
   } else if(name == 'Eldritch Knight') {
     rules.defineRule
       ('features.Eldritch Recharge', 'featureNotes.eldritchKnight', '=', '1');
@@ -1562,7 +1595,8 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Loremaster') {
     rules.defineRule('features.Lore', 'featureNotes.loremaster', '=', '1');
   } else if(name == 'Loremaster II') {
-    rules.defineRule('features.Secret', 'featureNotes.loremasterII', '=', '1');
+    rules.defineRule
+      ('features.Secret (Loremaster)', 'featureNotes.loremasterII', '=', '1');
   } else if(name == 'Loremaster III') {
     rules.defineRule
       ('features.Greater Lore', 'featureNotes.loremasterIII', '=', '1');
@@ -1589,7 +1623,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Mystic Theurge II') {
     rules.defineRule
       ('features.Spell Synergy', 'featureNotes.mysticTheurgeII', '=', '1');
-  } else if(name == 'Mystic Theurge II') {
+  } else if(name == 'Mystic Theurge III') {
     rules.defineRule
       ('features.Spell Synthesis', 'featureNotes.mysticTheurgeIII', '=', '1');
   } else if(name == 'Paladin') {
@@ -1605,7 +1639,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Pathfinder Chronicler II') {
     rules.defineRule
       ('features.Epic Tales', 'featureNotes.pathfinderChroniclerII', '=', '1');
-  } else if(name == 'Pathfinder Chronicler II') {
+  } else if(name == 'Pathfinder Chronicler III') {
     rules.defineRule('features.Call Down The Legends',
       'featureNotes.pathfinderChroniclerIII', '=', '1'
     );
@@ -1702,7 +1736,8 @@ PF4SW.edgeRulesExtra = function(rules, name) {
  */
 PF4SW.featureRules = function(rules, name, sections, notes) {
   SWADE.featureRules(rules, name, sections, notes);
-  // No changes needed to the rules defined by base method
+  if(name.startsWith('Arcane Background') && !name.includes('Domain'))
+    rules.defineRule('arcaneEdgeCount', 'features.' + name, '+=', '1');
 };
 
 /*
@@ -1863,7 +1898,13 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     }
     // TODO Class edges
   }
-  if(attribute == 'powers' && attributes.concept == 'Cleric')
+  if(attribute == 'hindrances' &&
+     (attributes.concept == 'Paladin' || attributes['edges.Paladin']) &&
+     !attributes['hindrances.Vow'] &&
+     !attributes['hindrances.Vow+'])
+    attributes['hindrances.Vow'] = 1;
+  if(attribute == 'powers' &&
+     (attributes.concept == 'Cleric' || attributes['edges.Cleric']))
     attributes['powers.Healing'] = 1;
   SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
 };
