@@ -38,8 +38,8 @@ function PF4SW(baseRules) {
   var rules = new QuilvynRules('Pathfinder for SWADE', PF4SW.VERSION);
   PF4SW.rules = rules;
 
-  rules.defineChoice('choices', SWADE.CHOICES);
-  rules.choiceEditorElements = SWADE.choiceEditorElements;
+  rules.defineChoice('choices', PF4SW.CHOICES);
+  rules.choiceEditorElements = PF4SW.choiceEditorElements;
   rules.choiceRules = PF4SW.choiceRules;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
@@ -54,7 +54,7 @@ function PF4SW(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Race,select-one,races', 'advances:Advances,text,4',
+    'race:Ancestry,select-one,races', 'advances:Advances,text,4',
     'concept:Concept,select-one,concepts'
   );
 
@@ -72,9 +72,13 @@ function PF4SW(baseRules) {
 
 }
 
+// Throughout the plugin we take steps to show 'Ancestry' to the user to match
+// the rule book, but under the hood we use 'race' for the character attribute
+// so that we can easily reuse SWADE rules.
+PF4SW.CHOICES = SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
 // Put deity before edges so that we can randomize domain edge properly
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
-  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity'));
+  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages');
 
 PF4SW.VERSION = '2.3.2.0';
 
@@ -1111,13 +1115,12 @@ PF4SW.RACES = {
   'Halfling':
     'Features=' +
       'Agile,"Keen Senses",Lucky,"Reduced Pace","Size -1",Sure-Footed ' +
-    'Languages=Halfling',
+    'Languages=Common,Halfling',
   'Human':
     'Features=' +
       'Adaptability ' +
     'Languages=Common'
 };
-// TODO How is language proficiency handled?
 PF4SW.LANGUAGES = {
   'Abyssal':'',
   'Aklo':'',
@@ -1234,8 +1237,6 @@ PF4SW.identityRules = function(rules, races, concepts, deitys) {
   // Deitys has attributes that are unsupported by SWADE
   QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   SWADE.identityRules(rules, races, {}, concepts, {});
-  // Relabel 'Race' as 'Ancestry' in editor, leaving 'race' as the attribute
-  // so that SWADE-defined rules will still work
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
@@ -1257,7 +1258,14 @@ PF4SW.talentRules = function(
 ) {
   SWADE.talentRules
     (rules, edges, features, goodies, hindrances, languages, skills);
-  // No changes needed to the rules defined by base method
+  rules.defineRule('edgePoints', '', '=', '1');
+  rules.defineRule
+    ('languageCount', 'smarts', '=', '1 + Math.floor(source / 2)');
+  rules.defineEditorElement
+    ('languages', 'Languages', 'set', 'languages', 'deity');
+  rules.defineSheetElement('Languages', 'Skills+', null, '; ');
+  QuilvynRules.validAllocationRules
+    (rules, 'language', 'languageCount', 'Sum "^languages\\."');
 };
 
 /*
@@ -1324,7 +1332,7 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
-  else if(type == 'Race') {
+  else if(type == 'Race' || type == 'Ancestry') {
     PF4SW.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
@@ -1805,7 +1813,12 @@ PF4SW.powerRules = function(
  */
 PF4SW.raceRules = function(rules, name, requires, features, languages) {
   SWADE.raceRules(rules, name, requires, features, languages);
-  // No changes needed to the rules defined by base method
+  var prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+  var raceAdvances = prefix + 'Advances';
+  languages.forEach(x => {
+    rules.defineRule('languages.' + x, raceAdvances, '=', '1');
+  });
 };
 
 /*
@@ -1861,9 +1874,25 @@ PF4SW.weaponRules = function(
   // No changes needed to the rules defined by base method
 };
 
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+PF4SW.choiceEditorElements = function(rules, type) {
+  return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
+};
+
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {
+
+  var attr;
+  var attrs = this.applyRules(attributes);
   var choices;
+  var howMany;
+
+  if(attribute == 'ancestry')
+    attribute = 'race';
+
   if(attribute == 'edges') {
     if((attributes.concept == 'Cleric' ||
         attributes['edges.Arcane Background (Cleric)'] ||
@@ -1897,16 +1926,34 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
     // TODO Class edges
+  } else if(attribute == 'hindrances') {
+    if((attributes.concept == 'Paladin' || attributes['edges.Paladin']) &&
+       !attributes['hindrances.Vow'] &&
+       !attributes['hindrances.Vow+'])
+      attributes['hindrances.Vow'] = 1;
+  } else if(attribute == 'languages') {
+    howMany = attrs.languageCount || 1;
+    choices = QuilvynUtils.getKeys(this.getChoices('languages'));
+    for(attr in attrs) {
+      if(attr.startsWith('languages.')) {
+        attr = attr.replace('languages.', '');
+        choices = choices.filter(x => x != attr);
+        howMany--;
+      }
+    }
+    while(howMany > 0 && choices.length > 0) {
+      attr = choices[QuilvynUtils.random(0, choices.length - 1)];
+      attributes['languages.' + attr] = 1;
+      choices = choices.filter(x => x != attr);
+      howMany--;
+    }
+  } else if(attribute == 'powers') {
+    if(attributes.concept == 'Cleric' || attributes['edges.Cleric'])
+      attributes['powers.Healing'] = 1;
   }
-  if(attribute == 'hindrances' &&
-     (attributes.concept == 'Paladin' || attributes['edges.Paladin']) &&
-     !attributes['hindrances.Vow'] &&
-     !attributes['hindrances.Vow+'])
-    attributes['hindrances.Vow'] = 1;
-  if(attribute == 'powers' &&
-     (attributes.concept == 'Cleric' || attributes['edges.Cleric']))
-    attributes['powers.Healing'] = 1;
+
   SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
+
 };
 
 /* Returns an array of plugins upon which this one depends. */
