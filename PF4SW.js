@@ -482,7 +482,10 @@ PF4SW.EDGES_ADDED = {
   'Celestial Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
   'Destined Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
   'Draconic Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Elemental Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Elemental Bloodline (Air)':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Elemental Bloodline (Earth)':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Elemental Bloodline (Fire)':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Elemental Bloodline (Water)':'Type=class,Sorcerer Require=features.Sorcerer',
   'Fey Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
   'Infernal Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
   'Undead Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
@@ -622,8 +625,13 @@ for(var e in PF4SW.EDGES) {
 }
 PF4SW.FEATURES_ADDED = {
   // Edges
-  'Aberrant Bloodline':'Section=feature Note="FILL"',
-  'Abyssal Bloodline':'Section=feature Note="FILL"',
+  'Aberrant Bloodline':
+    'Section=arcana,combat ' +
+    'Note="May cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> only with Lingering Damage for +1 PP",' +
+         '"+1 Toughness"',
+  'Abyssal Bloodline':
+    'Section=combat ' +
+    'Note="+1 Toughness/Claws cause d%{strength}+d4 damage/Has resistance to electricity"',
   'Advanced Bloodline':'Section=feature Note="FILL"',
   'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
   'Arcane Archer':
@@ -681,7 +689,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana Note="Has access to additional powers"',
   'Arcane Background (War Domain)':
     'Section=arcana Note="Has access to additional powers"',
-  'Arcane Bloodline':'Section=feature Note="FILL"',
+  'Arcane Bloodline':
+    'Section=feature Note="+1 Edge Points (Bonded Object or Familiar)"',
   'Arcane Bond':
     'Section=feature Note="+1 Edge Points (Bonded Object or Familiar)"',
   'Arcane Mastery':
@@ -724,7 +733,10 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
   'Call Down The Legends':
     'Section=combat Note="May summon 5 shadowy allies for 1 hr"',
-  'Celestial Bloodline':'Section=feature Note="FILL"',
+  'Celestial Bloodline':
+    'Section=arcana,combat ' +
+    'Note="+2 damage from <i>Bolt</i>, <i>Bolt</i>, and <i>Burst</i>",' +
+         '"Has resistance to cold and acid"',
   'Channel Energy':
     'Section=arcana ' +
     'Note="Cast <i>Healing</i> at R%{smarts}, add targets at 1 PP each"',
@@ -745,7 +757,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Wounding attack with the Drop kills (Vigor neg), incapacitating attack is silent"',
   'Deflect Arrows':'Section=combat Note="Foes suffer -2 ranged attacks"',
-  'Destined Bloodline':'Section=feature Note="FILL"',
+  'Destined Bloodline':'Section=feature Note="+1 Benny each session"',
   'Destroy Undead':
     'Section=combat ' +
     'Note="R2\\" May spend 2 PP to inflict Wound on all undead (Spirit neg)"',
@@ -757,7 +769,10 @@ PF4SW.FEATURES_ADDED = {
   'Divine Mastery':
     'Section=arcana Note="May use epic power modifiers on divine spells"',
   'Domain':'Section=feature Note="+1 Edge Points (domain)"',
-  'Draconic Bloodline':'Section=feature Note="FILL"',
+  'Draconic Bloodline':
+    'Section=arcana,combat ' +
+    'Note="+1 damage from powers w/draconic trappings",' +
+         '"+2 Armor/Claws do d%{strength}+d4"',
   'Dragon Disciple':
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
   'Dragon Disciple II':'Section=feature Note="May use Wings feature"',
@@ -783,7 +798,12 @@ PF4SW.FEATURES_ADDED = {
   'Eldritch Strike':'Section=arcana Note="May spend 2 PP for +2 attack"',
   'Eldritch Strike (Improved)':
     'Section=arcana Note="May spend 2 PP for +2 damage"',
-  'Elemental Bloodline':'Section=feature Note="FILL"',
+  'Elemental Bloodline (Air)':'Section=combat Note="May fly at Pace 6"',
+  'Elemental Bloodline (Earth)':'Section=combat Note="May burrow at Pace 6"',
+  'Elemental Bloodline (Fire)':
+    'Section=arcana Note="Powers with fire trapping do +2 damage"',
+  'Elemental Bloodline (Water)':
+    'Section=arcana Note="Powers hinder targets"',
   'Enhance Arrow':'Section=combat Note="+1 attack and damage with arrows"',
   'Enraged':
     'Section=feature ' +
@@ -812,7 +832,9 @@ PF4SW.FEATURES_ADDED = {
          '"May reroll failed Survival to track chosen creature type"',
   'Favored Terrain':
     'Section=combat Note="Gains additional Action Card in chosen terrain"',
-  'Fey Bloodline':'Section=feature Note="FILL"',
+  'Fey Bloodline':
+    'Section=combat ' +
+    'Note="No movement penalties for difficult ground/Touch inflicts Distracted"',
   'Fighter':'Section=feature Note="Has Martial Flexibility feature"',
   'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
   'Fury':
@@ -831,7 +853,10 @@ PF4SW.FEATURES_ADDED = {
   'Imbue Arrow':'Section=arcana Note="May center area spell where arrow lands"',
   'Impromptu Attack':
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
-  'Infernal Bloodline':'Section=feature Note="FILL"',
+  'Infernal Bloodline':
+    'Section=arcana,combat ' +
+    'Note="Powers with fire trapping do +1 damage",' +
+         '"Has resistance to fire and immunity to poison"',
   'Inspire Heroics':
     'Section=feature ' +
     'Note="R%{smarts}\\" May spend Benny 1/encounter to grant 5 Trait or damage rerolls"',
@@ -974,12 +999,13 @@ PF4SW.FEATURES_ADDED = {
   'Uncanny Reflexes':
     'Section=combat ' +
     'Note="No penalty for normal Evasion; may use Evasion at -2 for any area effect"',
-  'Undead Bloodline':'Section=feature Note="FILL"',
+  'Undead Bloodline':
+    'Section=combat Note="Has resistance to cold/+1 Soak"',
   'Wholeness Of Body':'Section=arcana Note="May spend 2 PP to make Soak roll"',
   'Wild Shape':
     'Section=arcana Note="May cast <i>Shape Change</i> at double duration"',
   'Wilderness Stride':
-    'Section=attribute Note="No movement penalties for difficult ground"',
+    'Section=combat Note="No movement penalties for difficult ground"',
   'Wings':'Section=combat Note="Fly speed 8"',
   'Wizard':
     'Section=feature ' +
@@ -1458,6 +1484,8 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Domain', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
     rules.defineRule
       ('features.Vow+', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
+  } else if(name == 'Arcane Bloodline') {
+    rules.defineRule('edgePoints', 'featureNotes.arcaneBloodline', '+=', '1');
   } else if(name == 'Assassin') {
     rules.defineRule
       ('features.Death Attack', 'featureNotes.assassin', '=', '1');
@@ -1916,11 +1944,12 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         attributes['edges.Arcane Background (Sorcerer)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Bloodline/) -
        QuilvynUtils.sumMatching(attributes, /edges.Advanced Bloodline/) == 0) {
-      choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline/);
+      choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline/).filter(x => x != 'Advanced Bloodline');
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
     if((attributes.concept == 'Wizard' ||
-        attributes['edges.Arcane Background (Wizard)']) &&
+        attributes['edges.Arcane Background (Wizard)'] ||
+        attributes['edges.Arcane Bloodline']) &&
        (!attributes['edges.Bonded Object'] && !attributes['edges.Familiar'])) {
       choices = ['Bonded Object', 'Familiar'];
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
