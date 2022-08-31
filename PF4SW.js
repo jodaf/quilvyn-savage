@@ -476,19 +476,45 @@ PF4SW.EDGES_ADDED = {
   'Sorcerer':'Type=class Require="smarts >= 6","spirit >= 6"',
   'Favored Powers (Sorcerer)':
     'Type=class,Sorcerer Require="advances >= 4",features.Sorcerer',
-  'Aberrant Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Abyssal Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Arcane Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Celestial Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Destined Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Draconic Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Elemental Bloodline (Air)':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Elemental Bloodline (Earth)':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Elemental Bloodline (Fire)':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Elemental Bloodline (Water)':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Fey Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Infernal Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
-  'Undead Bloodline':'Type=class,Sorcerer Require=features.Sorcerer',
+  'Aberrant Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Abyssal Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Arcane Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Celestial Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Destined Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Draconic Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Elemental Bloodline (Air)':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Elemental Bloodline (Earth)':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Elemental Bloodline (Fire)':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Elemental Bloodline (Water)':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Fey Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Infernal Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+  'Undead Bloodline':
+    'Type=class,Sorcerer,bloodline ' +
+    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Arcane Mastery':
     'Type=class,Sorcerer,Wizard ' +
     'Require="advances >= 8","features.Sorcerer || features.Wizard"',
@@ -632,7 +658,36 @@ PF4SW.FEATURES_ADDED = {
   'Abyssal Bloodline':
     'Section=combat ' +
     'Note="+1 Toughness/Claws cause d%{strength}+d4 damage/Has resistance to electricity"',
-  'Advanced Bloodline':'Section=feature Note="FILL"',
+  'Advanced Aberrant Bloodline':
+    'Section=combat Note="+1 Toughness/Immune to surprise and The Drop"',
+  'Advanced Abyssal Bloodline':
+    'Section=arcana,combat ' +
+    'Note="<i>Summon Ally</i> costs -2 PP; summoned entities inflict Fear",' +
+         '"Has resistance to cold and fire"',
+  'Advanced Arcane Bloodline':
+    'Section=skill Note="May reroll failed Spellcasting"',
+  'Advanced Bloodline':
+    'Section=feature Note="Has Advanced %V Bloodline features"',
+  'Advanced Celestial Bloodline':
+    'Section=combat Note="Angel wings grant Flight 12"',
+  'Advanced Destined Bloodline':
+    'Section=feature Note="+1 Benny each session"',
+  'Advanced Draconic Bloodline':
+    'Section=combat Note="Claws gain AP +2; has resistance to draconic energy"',
+  'Advanced Elemental Bloodline (Air)':
+    'Section=combat Note="R9\\" cone inflicts 3d6 damage 1/encounter"',
+  'Advanced Elemental Bloodline (Earth)':
+    'Section=combat Note="R9\\" cone inflicts 3d6 damage 1/encounter"',
+  'Advanced Elemental Bloodline (Fire)':
+    'Section=combat Note="R9\\" cone inflicts 3d6 damage 1/encounter"',
+  'Advanced Elemental Bloodline (Water)':
+    'Section=combat Note="R9\\" cone inflicts 3d6 damage 1/encounter"',
+  'Advanced Fey Bloodline':
+    'Section=arcana Note="Power targets suffer -2 to recover"',
+  'Advanced Infernal Bloodline':
+    'Section=combat Note="Bat wings grant Flight 12"',
+  'Advanced Undead Bloodline':
+    'Section=feature Note="Has Undead, Outsider+, and Ugly+ features"',
   'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
   'Arcane Archer':
     'Section=feature Note="Has Enhance Arrow and Arrow Trapping features"',
@@ -999,6 +1054,9 @@ PF4SW.FEATURES_ADDED = {
   'Uncanny Reflexes':
     'Section=combat ' +
     'Note="No penalty for normal Evasion; may use Evasion at -2 for any area effect"',
+  'Undead':
+    'Section=combat ' +
+    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
   'Undead Bloodline':
     'Section=combat Note="Has resistance to cold/+1 Soak"',
   'Wholeness Of Body':'Section=arcana Note="May spend 2 PP to make Soak roll"',
@@ -1058,7 +1116,7 @@ PF4SW.POWERS_ADDED = {
     'PowerPoints=3+2/size ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target becomes chosen animal for 5 rd (Spirit neg, Spirt-2 ends early)"',
+      '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends early)"',
   'Conjure Item':
     'Advances=0 ' +
     'PowerPoints=2/lb ' +
@@ -1472,7 +1530,24 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
-  if(name == 'Arcane Armor') {
+  if(name.match(/Bloodline$/) && !name.startsWith('Advanced')) {
+    var bloodline = name.replace(/\s+Bloodline/, '');
+    rules.defineRule('featureNotes.advancedBloodline',
+      'features.' + name, '=', '"' + bloodline + '"'
+    );
+    rules.defineRule('features.Advanced ' + bloodline + ' Bloodline',
+      'featureNotes.advancedBloodline', '?', null,
+      'features.' + name, '=', '1'
+    );
+  }
+  if(name == 'Advanced Bloodline') {
+    rules.defineRule
+      ('features.Undead', 'featureNotes.advancedUndeadBloodline', '=', '1');
+    rules.defineRule
+      ('features.Outsider+', 'featureNotes.advancedUndeadBloodline', '=', '1');
+    rules.defineRule
+      ('features.Ugly+', 'featureNotes.advancedUndeadBloodline', '=', '1');
+  } else if(name == 'Arcane Armor') {
     // TODO Can be taken more than once
     rules.defineRule('arcanaNotes.arcaneArmor',
       'attributeNotes.armorInterference.1', '=',
@@ -1742,6 +1817,8 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.armorInterference.2',
       'featureNotes.sorcerer', '=', '"Spellcasting and "'
     );
+    QuilvynRules.validAllocationRules
+      (rules, 'bloodline', 'features.Sorcerer', 'bloodlineEdgeCount');
   } else if(name == 'Wizard') {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.wizard', '=', '"any"'
@@ -1942,9 +2019,9 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     }
     if((attributes.concept == 'Sorcerer' ||
         attributes['edges.Arcane Background (Sorcerer)']) &&
-       QuilvynUtils.sumMatching(attributes, /edges.*Bloodline/) -
-       QuilvynUtils.sumMatching(attributes, /edges.Advanced Bloodline/) == 0) {
-      choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline/).filter(x => x != 'Advanced Bloodline');
+       QuilvynUtils.sumMatching(attributes, /edges.*Bloodline$/) -
+       QuilvynUtils.sumMatching(attributes, /edges.Advanced.*Bloodline$/) <= 0){
+      choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline$/).filter(x => !x.startsWith('Advanced'));
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
     if((attributes.concept == 'Wizard' ||
