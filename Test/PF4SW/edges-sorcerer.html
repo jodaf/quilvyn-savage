@@ -79,7 +79,7 @@ var attributes = {
       <td>Stealth: (agi) d4</td>
     </tr><tr style="text-align:left">
       <td>Common Knowledge: (sma) d6</td>
-      <td>Persuasion: (spi) d4</td>
+      <td>Persuasion: (spi) d4-2</td>
       <td>Taunt: (sma) d4</td>
     </tr></table>
 </td>
@@ -90,9 +90,15 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Arcane Background (Sorcerer): Spellcasting linked to Spirit instead of Smarts</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Ugly+: -2 Persuasion</i></td>
+    </tr><tr style="text-align:center">
+      <td>Advanced Arcane Bloodline: May reroll failed Spellcasting</td>
+    </tr><tr style="text-align:center">
       <td>Armor Interference: -4 Spellcasting and Agility-based skills w/any armor or shield</td>
     </tr><tr style="text-align:center">
       <td>Bad Eyes: -1 on visual trait rolls</td>
+    </tr><tr style="text-align:center">
+      <td>Outsider+: -2 Persuasion (other races)</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -127,15 +133,21 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptability: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Advanced Bloodline: Has Advanced Undead Bloodline features</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Advanced Undead Bloodline: Has Undead, Outsider+, and Ugly+ features</i></td>
+    </tr><tr style="text-align:center">
       <td><i>Arcane Bloodline: +1 Edge Points (Bonded Object or Familiar)</i></td>
     </tr><tr style="text-align:center">
       <td><i>Bloodline: +1 Edge Points (bloodline)</i></td>
     </tr><tr style="text-align:center">
       <td><i>Sorcerer: Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features</i></td>
     </tr><tr style="text-align:center">
-      <td>Advanced Bloodline: FILL</td>
+      <td>Advanced Destined Bloodline: +1 Benny each session</td>
     </tr><tr style="text-align:center">
       <td>Destined Bloodline: +1 Benny each session</td>
+    </tr><tr style="text-align:center">
+      <td>Outsider+: Has no legal rights</td>
     </tr><tr style="text-align:center">
       <td>Quirk: Has minor compulsion that occasionally causes trouble</td>
     </tr><tr style="text-align:center">
@@ -153,7 +165,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Parry</b>: 2 (0)</td>
         <td><b>Cover</b>: 0</td>
-        <td><b>Toughness</b>: 10 (0)</td>
+        <td><b>Toughness</b>: 13 (0)</td>
         <td><b>Pace/Run</b>: 6/+d6</td>
       </tr></table>
 </td>
@@ -172,11 +184,23 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Abyssal Bloodline: +1 Toughness/Claws cause d6+d4 damage/Has resistance to electricity</i></td>
       </tr><tr style="text-align:center">
+        <td><i>Advanced Aberrant Bloodline: +1 Toughness/Immune to surprise and The Drop</i></td>
+      </tr><tr style="text-align:center">
         <td><i>Draconic Bloodline: +2 Armor/Claws do d6+d4</i></td>
       </tr><tr style="text-align:center">
         <td><i>Undead Bloodline: Has resistance to cold/+1 Soak</i></td>
       </tr><tr style="text-align:center">
+        <td><i>Undead: +2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn't breathe or eat/Immune to disease and poison/Doesn't Bleed Out or heal naturally/R10" Ignores illumination penalties</i></td>
+      </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +6</i></td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Abyssal Bloodline: Has resistance to cold and fire</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Celestial Bloodline: Angel wings grant Flight 12</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Draconic Bloodline: Claws gain AP +2; has resistance to draconic energy</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Infernal Bloodline: Bat wings grant Flight 12</td>
       </tr><tr style="text-align:center">
         <td>Celestial Bloodline: Has resistance to cold and acid</td>
       </tr><tr style="text-align:center">
@@ -223,6 +247,10 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Aberrant Bloodline: May cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> only with Lingering Damage for +1 PP</td>
     </tr><tr style="text-align:center">
+      <td>Advanced Abyssal Bloodline: <i>Summon Ally</i> costs -2 PP; summoned entities inflict Fear</td>
+    </tr><tr style="text-align:center">
+      <td>Advanced Fey Bloodline: Power targets suffer -2 to recover</td>
+    </tr><tr style="text-align:center">
       <td>Arcane Mastery: May use epic power modifiers on arcane spells</td>
     </tr><tr style="text-align:center">
       <td>Celestial Bloodline: +2 damage from <i>Bolt</i>, <i>Bolt</i>, and <i>Burst</i></td>
@@ -241,7 +269,31 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="ValidationPart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Validation Errors</b>: Edge Allocation: 9 available vs. 16 allocated</td>
+      <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
+      <tr style="text-align:center">
+        <td>Aberrant Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Abyssal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Arcane Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Bloodline Allocation: 1 available vs. 9 allocated</td>
+      </tr><tr style="text-align:center">
+        <td>Celestial Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Destined Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Draconic Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Edge Allocation: 9 available vs. 16 allocated</td>
+      </tr><tr style="text-align:center">
+        <td>Fey Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Infernal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Undead Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+      </tr></table>
+</td>
     </tr></table>
 </td>
   </tr></table>
