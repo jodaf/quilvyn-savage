@@ -78,7 +78,7 @@ function PF4SW(baseRules) {
 PF4SW.CHOICES = SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
 // Put deity before edges so that we can randomize domain edge properly
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
-  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages');
+  ['convertFromPathfinder', 'deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages');
 
 PF4SW.VERSION = '2.3.2.0';
 
@@ -428,7 +428,6 @@ PF4SW.EDGES_ADDED = {
     'Type=class,Cleric ' +
     'Require=features.Cleric,' +
             '"deity == \'None\' || deityDomains =~ \'War\'"',
-  'Attuned':'Type=class,Druid Require=features.Druid',
   'Destroy Undead':'Type=class,Cleric Require="advances >= 4",features.Cleric',
   'Favored Powers (Cleric)':
     'Type=class,Cleric Require="advances >= 8",features.Cleric',
@@ -436,6 +435,7 @@ PF4SW.EDGES_ADDED = {
     'Type=class,Cleric,Druid ' +
     'Require="advances >= 12","features.Cleric || features.Druid"',
   'Druid':'Type=class Require="spirit >= 6","skills.Survival >= 6"',
+  'Attuned':'Type=class,Druid Require=features.Druid',
   'Wild Shape':'Type=class,Druid Require="advances >= 4",features.Druid',
   'Favored Powers (Druid)':
     'Type=class,Druid Require="advances >= 8",features.Druid',
@@ -1987,6 +1987,100 @@ PF4SW.choiceEditorElements = function(rules, type) {
   return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
 
+PF4SW.CONVERSION_MAP = {
+  '_path':'Action=drop',
+  '_timestamp':'Action=drop',
+  'alignment':'Action=copy', // TODO Drop Chaotic/Lawful
+  'armor':'Action=copy Target=armor.%V',
+  'charisma':'Action=charisma',
+  'constitution':'Action=attribute Target=vigorAllocation',
+  'deity':'Action=copy',
+  'dexterity':'Action=attribute Target=agilityAllocation',
+  'experience':'Action=drop',
+  'experienceTrack':'Action=drop',
+  'faction':'Action=copy',
+  'favoredClassHitPoints':'Action=drop',
+  'favoredClassSkillPoints':'Action=drop',
+  'feats.Combat Reflexes':'Action=copy Target="edges.Combat Reflexes"',
+  'gender':'Action=copy',
+  'goodies.*':'Action=copy',
+  'hitPoints':'Action=drop',
+  'intelligence':'Action=attribute Target=smartsAllocation',
+  'languages.*':'Action=copy',
+  'levels.(.*)':'Action=copy Target=edges.$1',
+  'levels.*':'Action=sum target=advances',
+  'name':'Action=copy',
+  'notes':'Action=copy',
+  'origin':'Action=copy',
+  'player':'Action=copy',
+  'potions.([^(]+)':'Action=copy Target=potions.$1',
+  'prestige.(.*)':'Action=copy Target=edges.$1',
+  'prestige.*':'Action=sum target=advances',
+  'race':'Action=copy',
+  'scrolls.([^(]+)':'Action=copy Target=scrolls.$1',
+  'selectableFeatures.*(Powerful Blow|Intimidating Glare|Strength Surge)':
+    'Action=copy Target=edges.$1',
+  'selectableFeatures.*(Countersong|Dirge Of Doom|Inspire Heroics)':
+    'Action=copy Target=edges.$1',
+  'selectableFeatures.*(Divine Mount)':'Action=copy Target=edges.Mount',
+  'selectableFeatures.* - (.* Domain)':'Action=copy Target=edges.$1',
+  'selectableFeatures.*Mercy':'Action=copy Target=edges.Mercy',
+  'selectableFeatures.*Opportunist':'Action=copy Target=edges.Opportunist',
+  'selectableFeatures.*Bloodline (.*)':
+    'Action=copy Target="edges.$1 Bloodline"',
+  'selectableFeatures.*Familiar':'Action=copy Target=edges.Familiar',
+  'skills.Acrobatics':'Action=skill Target=skillAllocation.Athletics',
+  'skills.Appraise':'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.Bluff':'Action=skill Target=skillAllocation.Persuasion',
+  'skills.Climb':'Action=skill Target=skillAllocation.Athletics',
+  'skills.Craft .Alchemy.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Craft .*':'Action=skill Target=skillAllocation.Repair',
+  'skills.Diplomacy':'Action=skill Target=skillAllocation.Persuasion',
+  'skills.Disable Device':'Action=skill Target=skillAllocation.Repair',
+  'skills.Disguise':'Action=skill Target=skillAllocation.Thievery',
+  'skills.Escape Artist':'Action=skill Target=skillAllocation.Thievery',
+  'skills.Fly':'Action=skill Target=skillAllocation.Piloting',
+  'skills.Handle Animal':'Action=skill Target=skillAllocation.Riding',
+  'skills.Heal':'Action=skill Target=skillAllocation.Healing',
+  'skills.Intimidate':'Action=skill Target=skillAllocation.Intimidation',
+  'skills.Knowledge .Arcana.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Knowledge .Dungeoneering.':
+    'Action=skill Target=skillAllocation.Science',
+  'skills.Knowledge .Engineering.':
+    'Action=skill Target=skillAllocation.Science',
+  'skills.Knowledge .Geography.':
+    'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.Knowledge .History.':'Action=skill Target=skillAllocation.Academics',
+  'skills.Knowledge .Local.':
+    'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.Knowledge .Nature.':
+    'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.Knowledge .Nobility.':
+    'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.Knowledge .Planes.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Knowledge .Religion.':'Action=skill Target=skillAllocation.Academics',
+  'skills.Linguistics':'Action=skill Target=skillAllocation.Academics',
+  'skills.Perception':'Action=skill Target=skillAllocation.Notice',
+  'skills.Perform .*':'Action=skill Target=skillAllocation.Performance',
+  'skills.Profession .*':'Action=drop', // TODO
+  'skills.Ride':'Action=skill Target=skillAllocation.Riding',
+  'skills.Sense Motive':'Action=skill Target=skillAllocation.Notice',
+  'skills.Sleight Of Hand':'Action=skill Target=skillAllocation.Thievery',
+  'skills.Spellcraft':'Action=skill Target=skillAllocation.Occult',
+  'skills.Stealth':'Action=skill Target=skillAllocation.Stealth',
+  'skills.Survival':'Action=skill Target=skillAllocation.Survival',
+  'skills.Swim':'Action=skill Target=skillAllocation.Athletics',
+  'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
+  'shield':'Action=copy',
+  'spells.([^(]+)':'Action=copy Target=powers.$1',
+  'traits.*':'Action=drop',
+  'strength':'Action=attribute Target=strengthAllocation',
+  'weapons.Longbow':'Action=copy Target="weapons.Long Bow"',
+  'weapons.Longsword':'Action=copy Target="weapons.Long Sword"',
+  'weapons.[^L].*':'Action=copy',
+  'wisdom':'Action=attribute Target=spiritAllocation'
+};
+
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {
 
@@ -1998,6 +2092,97 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'ancestry')
     attribute = 'race';
 
+  if(attribute == 'convertFromPathfinder') {
+    QuilvynUtils.checkAttrTable(PF4SW.CONVERSION_MAP, ['Action', 'Target']);
+    var newAttributes = {};
+    var notes = '';
+    for(attr in attributes) {
+      var action = null;
+      var target = null;
+      var newValue = null;
+      for(var pat in PF4SW.CONVERSION_MAP) {
+        var matchInfo = attr.match(pat);
+        if(!matchInfo)
+          continue;
+        action =
+          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Action');
+        target =
+          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Target') || attr;
+        for(var i = 1; i < matchInfo.length; i++)
+          target = target.replaceAll('$' + i, matchInfo[i]);
+        if(action == 'attribute') {
+          // PEGINC ZADMAR SWADE
+          //  3-6    3-8    d4
+          //  7-11   9-13   d6
+          //  12-14  14-15  d8
+          //  15-16  16-17  d10
+          //  17-18  18     d12
+          newValue = attributes[attr];
+          newValue = newValue<=8 ? 0 : newValue<=13 ? 1 : newValue<=15 ? 2 :
+                     newValue<=17 ? 3 : 4;
+        } else if(action == 'charisma') {
+          if(attribute[attr] <= 4) {
+            target = 'hindrances.Ugly+';
+            newValue = 1;
+          } else if(attribute[target] <= 7) {
+            target = 'hindrances.Ugly';
+            newValue = 1;
+          } else if(attribute[target] >= 16) {
+            target = 'edges.Attractive';
+            newValue = 1;
+          } else {
+            action = 'drop';
+          }
+        } else if(action == 'copy') {
+          if(target.includes('%V')) {
+            target = target.replaceAll('%V', attributes[attr]);
+            newValue = 1;
+          } else {
+            newValue = attributes[attr];
+          }
+        } else if(action == 'skill') {
+          // PEGINC SWADE
+          //  1-3    d4
+          //  4-6    d6
+          //  7-9    d8
+          //  10-13  d10
+          //  14-16  d12
+          //  17-20  d12+1
+          newValue = attributes[attr];
+          newValue = newValue <= 3 ? 1 : newValue <= 6 ? 2 : newValue <= 9 ? 3 :
+                     newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
+          if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Sealth/))
+            newValue -= 1;
+        } else if(action == 'sum') {
+          newValue = (newAttributes[target] || 0) + attributes[attr] - 0;
+        }
+      }
+      if(action == null) {
+        notes += 'No conversion action available for ' + attr + '= "' + attributes[attr] + '"\n';
+      } else if(action != 'drop') {
+        newAttributes[target] = newValue;
+        notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
+      }
+      delete attributes[attr];
+    }
+    newAttributes.advances = (newAttributes.advances || 1) - 1;
+    newAttributes['improvementPointsAllocation.Attribute'] =
+      Math.max(QuilvynUtils.sumMatching(newAttributes, /(agility|smarts|spirit|strength|vigor)Allocation/) - 5, 0) * 2;
+    if(newAttributes.race == 'Human' &&
+       newAttributes['improvementPointsAllocation.Attribute'] > 0)
+      newAttributes['improvementPointsAllocation.Attribute']--;
+    newAttributes['improvementPointsAllocation.Edge'] =
+      Math.max(QuilvynUtils.sumMatching(newAttributes, /edges./) - 1, 0) * 2;
+    if(newAttributes.race == 'Human' &&
+       newAttributes['improvementPointsAllocation.Edge'] > 0)
+      newAttributes['improvementPointsAllocation.Edge']--;
+    newAttributes['improvementPointsAllocation.Skill'] =
+      Math.max(QuilvynUtils.sumMatching(newAttributes, /skillAllocation/) - 12, 0);
+    newAttributes.notes =
+      (newAttributes.notes ? newAttributes.notes + '\n' : '') + notes;
+    Object.assign(attributes, newAttributes);
+    return;
+  }
   if(attribute == 'edges') {
     if((attributes.concept == 'Cleric' ||
         attributes['edges.Arcane Background (Cleric)'] ||
