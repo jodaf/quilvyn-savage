@@ -2007,7 +2007,7 @@ PF4SW.CONVERSION_MAP = {
   'hitPoints':'Action=drop',
   'intelligence':'Action=attribute Target=smartsAllocation',
   'languages.*':'Action=copy',
-  'levels.(.*)':'Action=copy Target=edges.$1',
+  'levels.(.*)':'Action=set Target=edges.$1',
   'levels.*':'Action=sum target=advances',
   'name':'Action=copy',
   'notes':'Action=copy',
@@ -2023,7 +2023,8 @@ PF4SW.CONVERSION_MAP = {
   'selectableFeatures.*(Countersong|Dirge Of Doom|Inspire Heroics)':
     'Action=copy Target=edges.$1',
   'selectableFeatures.*(Divine Mount)':'Action=copy Target=edges.Mount',
-  'selectableFeatures.* - (.* Domain)':'Action=copy Target=edges.$1',
+  'selectableFeatures.* - (.* Domain)':
+    'Action=copy Target="edges.Arcane Background ($1)"',
   'selectableFeatures.*Mercy':'Action=copy Target=edges.Mercy',
   'selectableFeatures.*Opportunist':'Action=copy Target=edges.Opportunist',
   'selectableFeatures.*Bloodline (.*)':
@@ -2072,7 +2073,17 @@ PF4SW.CONVERSION_MAP = {
   'skills.Swim':'Action=skill Target=skillAllocation.Athletics',
   'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
   'shield':'Action=copy',
-  'spells.([^(]+)':'Action=copy Target=powers.$1',
+  "spells.Bear's Endurance":'Action=set Target="powers.Boost/Lower Trait"',
+  "spells.Bull's Strength":'Action=set Target="powers.Boost/Lower Trait"',
+  'spells.Comprehend Languages':'Action=set Target="powers.Speak Language"',
+  'spells.Cure.*Wounds':'Action=set Target=powers.Healing',
+  'spells.Detect Magic':'Action=set Target="powers.Detect/Conceal Arcana"',
+  'spells.Dispel Magic':'Action=set Target=powers.Dispel',
+  "spells.Cat's Grace":'Action=set Target="powers.Boost/Lower Trait"',
+  "spells.Eagle's Splendor":'Action=set Target="powers.Boost/Lower Trait"',
+  "spells.Fox's Cunning":'Action=set Target="powers.Boost/Lower Trait"',
+  'spells.Light':'Action=set Target=powers.Light/Darkness',
+  "spells.Owl's Wisdom":'Action=set Target="powers.Boost/Lower Trait"',
   'traits.*':'Action=drop',
   'strength':'Action=attribute Target=strengthAllocation',
   'weapons.Longbow':'Action=copy Target="weapons.Long Bow"',
@@ -2153,16 +2164,18 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
                      newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
           if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Sealth/))
             newValue -= 1;
+        } else if(action == 'set') {
+          newValue = 1;
         } else if(action == 'sum') {
-          newValue = (newAttributes[target] || 0) + attributes[attr] - 0;
+          newValue = (newAttributes[target] || 0) + (attributes[attr] - 0);
+        }
+        if(action != 'drop') {
+          newAttributes[target] = newValue;
+          notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
         }
       }
-      if(action == null) {
+      if(action == null)
         notes += 'No conversion action available for ' + attr + '= "' + attributes[attr] + '"\n';
-      } else if(action != 'drop') {
-        newAttributes[target] = newValue;
-        notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
-      }
       delete attributes[attr];
     }
     newAttributes.advances = (newAttributes.advances || 1) - 1;
