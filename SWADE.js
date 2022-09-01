@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.4';
+SWADE.VERSION = '2.3.2.5';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -2281,6 +2281,10 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.bruiser', '+', '1'
     );
     rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler.1', '+=', null);
+  } else if(name == 'Brawny') {
+    rules.defineRule('armorStrengthStepShortfall',
+      'attributeNotes.brawny', '+', '-1'
+    );
   } else if(name == 'Brute') {
     rules.defineRule('bruteAthleticsStepModifier',
       'skillNotes.brute', '?', null,

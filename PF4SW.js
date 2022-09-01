@@ -1078,15 +1078,18 @@ PF4SW.FEATURES_ADDED = {
   // Races
   'Adaptability':
     'Section=attribute,feature Note="+1 Attribute Points","+1 Edge Points"',
-  'Darkvision':'Section=skill Note="No illumination penalties up to 10\\""',
-  'Elven Magic':'Section=combat Note="May reroll vs. powers"',
+  'Darkvision':
+    'Section=skill Note="Ignores illumination penalties up to 10\\""',
+  'Elven Magic':'Section=combat Note="May reroll to resist powers"',
   'Flexibility':'Section=attribute Note="+1 Attribute Points"',
   'Gnome Magic':
     'Section=arcana ' +
-    'Note="Know <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telekinesis</i>/1 Power Point"',
+    'Note="Knows <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telekinesis</i>/1 Power Point"',
   'Intelligence':'Section=attribute Note="+1 Smarts step"',
   'Intimidating':'Section=skill Note="+1 Intimidation step"',
-  'Iron Constitution':'Section=combat Note="+1 vs. poison/+1 vs. powers"',
+  'Iron Constitution':
+    'Section=combat ' +
+    'Note="+1 to resist poison/+1 to resist and recover from powers"',
   'Lucky':'Section=feature Note="+1 Benny each session"',
   'Obsessive':
     'Section=skill Note="+1 Skill Point (d4 in choice of Smarts skill)"',
@@ -1097,7 +1100,8 @@ PF4SW.FEATURES_ADDED = {
     'Note="Automatic Notice+2 to note unusual stonework within 10\'"',
   'Sure-Footed':'Section=skill Note="+1 Athletics step"',
   'Stout':
-    'Section=attribute Note="+1 Strength step (encumbrance and equipment use)"',
+    'Section=attribute ' +
+    'Note="+1 Strength step (encumbrance and minimum strength requirements)"',
   'Tough':'Section=attribute Note="+1 Vigor step"',
 };
 PF4SW.FEATURES =
@@ -1931,7 +1935,10 @@ PF4SW.raceRules = function(rules, name, requires, features, languages) {
  * derived directly from the attributes passed to raceRules.
  */
 PF4SW.raceRulesExtra = function(rules, name) {
-  if(name == 'Gnome') {
+  if(name == 'Dwarf') {
+    rules.defineRule
+      ('armorStrengthStepShortfall', 'attributeNotes.stout', '+', '-1');
+  } else if(name == 'Gnome') {
     rules.defineRule('skillPoints', 'skillNotes.obsessive', '+=', '1');
   } else if(name == 'Half-Orc') {
     rules.defineRule
@@ -2081,9 +2088,12 @@ PF4SW.CONVERSION_MAP = {
   'spells.Dispel Magic':'Action=set Target=powers.Dispel',
   "spells.Cat's Grace":'Action=set Target="powers.Boost/Lower Trait"',
   "spells.Eagle's Splendor":'Action=set Target="powers.Boost/Lower Trait"',
+  'spells.Endure Elements':
+    'Action=set Target="powers.Environmental Protection"',
   "spells.Fox's Cunning":'Action=set Target="powers.Boost/Lower Trait"',
   'spells.Light':'Action=set Target=powers.Light/Darkness',
   "spells.Owl's Wisdom":'Action=set Target="powers.Boost/Lower Trait"',
+  'spells_filter':'Action=copy Target=powers_filter',
   'traits.*':'Action=drop',
   'strength':'Action=attribute Target=strengthAllocation',
   'weapons.Longbow':'Action=copy Target="weapons.Long Bow"',
