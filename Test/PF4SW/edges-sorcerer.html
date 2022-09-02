@@ -10,21 +10,22 @@ var attributes = {
   "advances":12, "agilityAllocation":0, "armor.None":1, "concept":"Sorcerer", 
   "deity":"Sarenrae", "edges.Aberrant Bloodline":1, "edges.Abyssal Bloodline":1, 
   "edges.Advanced Bloodline":1, "edges.Arcane Bloodline":1, "edges.Arcane Mastery":1, 
-  "edges.Celestial Bloodline":1, "edges.Destined Bloodline":1, "edges.Draconic Bloodline":1, 
-  "edges.Elemental Bloodline":1, "edges.Favored Powers (Sorcerer)":1, "edges.Fey Bloodline":1, 
-  "edges.Infernal Bloodline":1, "edges.New Powers":1, "edges.Power Points":1, "edges.Sorcerer":1, 
-  "edges.Undead Bloodline":1, "gender":"Female", "hindrances.Bad Eyes":1, "hindrances.Pacifist":1, 
-  "hindrances.Quirk":1, "hindrances.Secret":1, "improvementPointsAllocation.Attribute":14, 
-  "improvementPointsAllocation.Edge":12, "improvementPointsAllocation.Skill":2, "languages.Abyssal":1, 
-  "languages.Aklo":1, "languages.Aquan":1, "languages.Auran":1, "languages.Celestial":1, 
-  "languages.Draconic":1, "name":"Edges-Sorcerer", "powers.Burst":1, "powers.Damage Field":1, 
-  "powers.Entangle":1, "powers.Object Reading":1, "race":"Human", "shield":"None", 
-  "skillAllocation.Athletics":1, "skillAllocation.Battle":1, "skillAllocation.Boating":1, 
-  "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":1, "skillAllocation.Notice":1, 
-  "skillAllocation.Performance":1, "skillAllocation.Repair":1, "skillAllocation.Spellcasting":5, 
-  "skillAllocation.Taunt":1, "smartsAllocation":4, "spiritAllocation":4, "strengthAllocation":1, 
-  "vigorAllocation":4, "weapons.Dagger":1, "weapons.Light Repeating Crossbow":1, 
-  "weapons.Short Sword":1
+  "edges.Bonded Object":1, "edges.Celestial Bloodline":1, "edges.Destined Bloodline":1, 
+  "edges.Draconic Bloodline":1, "edges.Elemental Bloodline (Air)":1, "edges.Elemental Bloodline (Earth)":1, 
+  "edges.Elemental Bloodline (Fire)":1, "edges.Elemental Bloodline (Water)":1, "edges.Familiar":1, 
+  "edges.Favored Powers (Sorcerer)":1, "edges.Fey Bloodline":1, "edges.Infernal Bloodline":1, "edges.New Powers":1, 
+  "edges.Power Points":1, "edges.Sorcerer":1, "edges.Undead Bloodline":1, "gender":"Female", 
+  "hindrances.Bad Eyes":1, "hindrances.Pacifist":1, "hindrances.Quirk":1, "hindrances.Secret":1, 
+  "improvementPointsAllocation.Attribute":14, "improvementPointsAllocation.Edge":12, 
+  "improvementPointsAllocation.Skill":2, "languages.Abyssal":1, "languages.Aklo":1, "languages.Aquan":1, 
+  "languages.Auran":1, "languages.Celestial":1, "languages.Draconic":1, "name":"Edges-Sorcerer", 
+  "powers.Burst":1, "powers.Damage Field":1, "powers.Entangle":1, "powers.Object Reading":1, 
+  "race":"Human", "shield":"None", "skillAllocation.Athletics":1, "skillAllocation.Battle":1, 
+  "skillAllocation.Boating":1, "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":1, 
+  "skillAllocation.Notice":1, "skillAllocation.Performance":1, "skillAllocation.Repair":1, 
+  "skillAllocation.Spellcasting":5, "skillAllocation.Taunt":1, "smartsAllocation":4, "spiritAllocation":4, 
+  "strengthAllocation":1, "vigorAllocation":4, "weapons.Dagger":1, 
+  "weapons.Light Repeating Crossbow":1, "weapons.Short Sword":1
 };
   </script>
 </head>
@@ -98,6 +99,8 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Bad Eyes: -1 on visual trait rolls</td>
     </tr><tr style="text-align:center">
+      <td>Bonded Object: +1 Spellcasting when object held or worn</td>
+    </tr><tr style="text-align:center">
       <td>Outsider+: -2 Persuasion (other races)</td>
     </tr></table>
 </td>
@@ -123,7 +126,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (9 points): Aberrant Bloodline; Abyssal Bloodline; Advanced Bloodline; Arcane Bloodline; Arcane Mastery; Celestial Bloodline; Destined Bloodline; Draconic Bloodline; Elemental Bloodline; Favored Powers (Sorcerer); Fey Bloodline; Infernal Bloodline; New Powers; Power Points; Sorcerer; Undead Bloodline</td>
+      <td><b>Edges</b> (9 points): Aberrant Bloodline; Abyssal Bloodline; Advanced Bloodline; Arcane Bloodline; Arcane Mastery; Bonded Object; Celestial Bloodline; Destined Bloodline; Draconic Bloodline; Elemental Bloodline (Air); Elemental Bloodline (Earth); Elemental Bloodline (Fire); Elemental Bloodline (Water); Familiar; Favored Powers (Sorcerer); Fey Bloodline; Infernal Bloodline; New Powers; Power Points; Sorcerer; Undead Bloodline</td>
       <td><b>Hindrances</b>: Bad Eyes; Pacifist; Quirk; Secret</td>
       <td><b>Human Features</b>: Adaptability</td>
     </tr></table>
@@ -147,6 +150,8 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Destined Bloodline: +1 Benny each session</td>
     </tr><tr style="text-align:center">
+      <td>Familiar: Can communicate w/magical, Wild Card pet that stores 5 PP</td>
+    </tr><tr style="text-align:center">
       <td>Outsider+: Strangers are unfriendly or hostile</td>
     </tr><tr style="text-align:center">
       <td>Quirk: Has minor compulsion that occasionally causes trouble</td>
@@ -165,7 +170,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Parry</b>: 2 (0)</td>
         <td><b>Cover</b>: 0</td>
-        <td><b>Toughness</b>: 13 (0)</td>
+        <td><b>Toughness</b>: 15 (2)</td>
         <td><b>Pace/Run</b>: 6/+d6</td>
       </tr></table>
 </td>
@@ -182,11 +187,11 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Aberrant Bloodline: +1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Abyssal Bloodline: +1 Toughness/Claws cause d6+d4 damage/Has resistance to electricity</i></td>
+        <td><i>Abyssal Bloodline: +1 Toughness/Claws inflict d6+d4 damage/Has resistance to electricity</i></td>
       </tr><tr style="text-align:center">
         <td><i>Advanced Aberrant Bloodline: +1 Toughness/Immune to surprise and The Drop</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Draconic Bloodline: +2 Armor/Claws do d6+d4</i></td>
+        <td><i>Draconic Bloodline: +2 Armor/Claws inflict d6+d4</i></td>
       </tr><tr style="text-align:center">
         <td><i>Undead Bloodline: Has resistance to cold/+1 Soak</i></td>
       </tr><tr style="text-align:center">
@@ -200,11 +205,23 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Advanced Draconic Bloodline: Claws gain AP +2; has resistance to draconic energy</td>
       </tr><tr style="text-align:center">
+        <td>Advanced Elemental Bloodline (Air): R9" cone inflicts 3d6 damage 1/encounter</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Elemental Bloodline (Earth): R9" cone inflicts 3d6 damage 1/encounter</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Elemental Bloodline (Fire): R9" cone inflicts 3d6 damage 1/encounter</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Elemental Bloodline (Water): R9" cone inflicts 3d6 damage 1/encounter</td>
+      </tr><tr style="text-align:center">
         <td>Advanced Infernal Bloodline: Bat wings grant Flight 12</td>
       </tr><tr style="text-align:center">
         <td>Celestial Bloodline: Has resistance to cold and acid</td>
       </tr><tr style="text-align:center">
-        <td>Fey Bloodline: No movement penalties for difficult ground/Touch inflicts Distracted</td>
+        <td>Elemental Bloodline (Air): May fly at Pace 6</td>
+      </tr><tr style="text-align:center">
+        <td>Elemental Bloodline (Earth): May burrow at Pace 6</td>
+      </tr><tr style="text-align:center">
+        <td>Fey Bloodline: Ignores movement penalties for difficult ground/Touch inflicts Distracted</td>
       </tr><tr style="text-align:center">
         <td>Infernal Bloodline: Has resistance to fire and immunity to poison</td>
       </tr><tr style="text-align:center">
@@ -253,13 +270,17 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Arcane Mastery: May use epic power modifiers on arcane spells</td>
     </tr><tr style="text-align:center">
-      <td>Celestial Bloodline: +2 damage from <i>Bolt</i>, <i>Bolt</i>, and <i>Burst</i></td>
+      <td>Celestial Bloodline: <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage on evil creatures</td>
     </tr><tr style="text-align:center">
       <td>Draconic Bloodline: +1 damage from powers w/draconic trappings</td>
     </tr><tr style="text-align:center">
+      <td>Elemental Bloodline (Fire): Powers with fire trapping inflict +2 damage</td>
+    </tr><tr style="text-align:center">
+      <td>Elemental Bloodline (Water): Powers hinder targets</td>
+    </tr><tr style="text-align:center">
       <td>Favored Powers (Sorcerer): May ignore two points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i></td>
     </tr><tr style="text-align:center">
-      <td>Infernal Bloodline: Powers with fire trapping do +1 damage</td>
+      <td>Infernal Bloodline: Powers with fire trapping inflict +1 damage</td>
     </tr></table>
 </td>
   </tr></table>
@@ -271,27 +292,35 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Validation Errors</b>:       <table id="ValidationNotes" style="width:100%">
       <tr style="text-align:center">
-        <td>Aberrant Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Aberrant Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Abyssal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Abyssal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Arcane Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Arcane Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Bloodline Allocation: 1 available vs. 9 allocated</td>
+        <td>Bloodline Allocation: 1 available vs. 13 allocated</td>
       </tr><tr style="text-align:center">
-        <td>Celestial Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Celestial Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Destined Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Destined Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Draconic Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Draconic Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Edge Allocation: 9 available vs. 16 allocated</td>
+        <td>Edge Allocation: 9 available vs. 21 allocated</td>
       </tr><tr style="text-align:center">
-        <td>Fey Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Elemental Bloodline (Air) Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Infernal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Elemental Bloodline (Earth) Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr><tr style="text-align:center">
-        <td>Undead Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 9) == 1</td>
+        <td>Elemental Bloodline (Fire) Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Elemental Bloodline (Water) Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Fey Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Infernal Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
+      </tr><tr style="text-align:center">
+        <td>Undead Bloodline Edge: Requires sorcerer feature (currently 1) and bloodline edge count (currently 13) == 1</td>
       </tr></table>
 </td>
     </tr></table>

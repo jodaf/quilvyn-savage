@@ -521,8 +521,12 @@ PF4SW.EDGES_ADDED = {
   'Advanced Bloodline':
     'Type=class,Sorcerer Require="advances >= 12",features.Sorcerer',
   'Wizard':'Type=class Require="smarts >= 6","skills.Occult >= 6"',
-  'Bonded Object':'Type=class,Wizard Require=features.Wizard',
-  'Familiar':'Type=class,Wizard Require=features.Wizard',
+  'Bonded Object':
+    'Type=class,Wizard ' +
+    'Require="features.Arcane Bond || features.Arcane Bloodline"',
+  'Familiar':
+    'Type=class,Wizard ' +
+    'Require="features.Arcane Bond || features.Arcane Bloodline"',
   'Favored Powers (Wizard)':
     'Type=class,Wizard Require="advances >= 4",features.Wizard',
   'Eldritch Inspiration':
@@ -657,7 +661,7 @@ PF4SW.FEATURES_ADDED = {
          '"+1 Toughness"',
   'Abyssal Bloodline':
     'Section=combat ' +
-    'Note="+1 Toughness/Claws cause d%{strength}+d4 damage/Has resistance to electricity"',
+    'Note="+1 Toughness/Claws inflict d%{strength}+d4 damage/Has resistance to electricity"',
   'Advanced Aberrant Bloodline':
     'Section=combat Note="+1 Toughness/Immune to surprise and The Drop"',
   'Advanced Abyssal Bloodline':
@@ -776,7 +780,7 @@ PF4SW.FEATURES_ADDED = {
   'Assassin III':
     'Section=feature Note="Gains Angel Of Death and Swift Death features"',
   'Attuned':'Section=arcana Note="May reroll failed Faith to cast spell"',
-  'Aura Of Courage':'Section=arcana Note="R10\\" Allies +1 vs. Fear"',
+  'Aura Of Courage':'Section=combat Note="R10\\" Allies +1 vs. Fear"',
   'Barbarian':
     'Section=feature Note="Has Armor Restriction, Fast, and Rage features"',
   'Bard':
@@ -794,11 +798,11 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="May summon 5 shadowy allies for 1 hr"',
   'Celestial Bloodline':
     'Section=arcana,combat ' +
-    'Note="+2 damage from <i>Bolt</i>, <i>Bolt</i>, and <i>Burst</i>",' +
+    'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage on evil creatures",' +
          '"Has resistance to cold and acid"',
   'Channel Energy':
     'Section=arcana ' +
-    'Note="Cast <i>Healing</i> at R%{smarts}, add targets at 1 PP each"',
+    'Note="May cast <i>Healing</i> at R%{smarts}\\", additional targets cost 1 PP each"',
   'Cleric':
     'Section=feature ' +
     'Note="Has Arcane Background (Cleric), Domain, Channel Energy, and Vow+ features"',
@@ -824,14 +828,15 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="R%{smarts}\\" Detect evil creature or object at will"',
   'Dirge Of Doom':
-    'Section=arcana Note="R10\\" May inflict -2 on foe Soak or Trait or damage reroll"',
+    'Section=arcana ' +
+    'Note="R10\\" May inflict -2 on foe Soak roll, Trait reroll, or damage reroll"',
   'Divine Mastery':
     'Section=arcana Note="May use epic power modifiers on divine spells"',
   'Domain':'Section=feature Note="+1 Edge Points (domain)"',
   'Draconic Bloodline':
     'Section=arcana,combat ' +
     'Note="+1 damage from powers w/draconic trappings",' +
-         '"+2 Armor/Claws do d%{strength}+d4"',
+         '"+2 Armor/Claws inflict d%{strength}+d4"',
   'Dragon Disciple':
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
   'Dragon Disciple II':'Section=feature Note="May use Wings feature"',
@@ -860,13 +865,13 @@ PF4SW.FEATURES_ADDED = {
   'Elemental Bloodline (Air)':'Section=combat Note="May fly at Pace 6"',
   'Elemental Bloodline (Earth)':'Section=combat Note="May burrow at Pace 6"',
   'Elemental Bloodline (Fire)':
-    'Section=arcana Note="Powers with fire trapping do +2 damage"',
+    'Section=arcana Note="Powers with fire trapping inflict +2 damage"',
   'Elemental Bloodline (Water)':
     'Section=arcana Note="Powers hinder targets"',
   'Enhance Arrow':'Section=combat Note="+1 attack and damage with arrows"',
   'Enraged':
     'Section=feature ' +
-    'Note="Ignores 2 points of wound penalties and all fatigue"',
+    'Note="Ignores 2 points of wound penalties and all fatigue penalties"',
   'Epic Tales':
     'Section=feature Note="Allies hearing story during rest gain 1 Benny"',
   'Familiar':
@@ -887,13 +892,13 @@ PF4SW.FEATURES_ADDED = {
     'Note="May ignore two points of penalties when casting <i>Arcane Protection</i>, <i>Deflection</i>, or <i>Dispel</i>"',
   'Favored Enemy':
     'Section=combat,skill ' +
-    'Note="May reroll failed attacks against chosen creature type",' +
-         '"May reroll failed Survival to track chosen creature type"',
+    'Note="May reroll failed attacks against %V chosen creature type",' +
+         '"May reroll failed Survival to track %V chosen creature type"',
   'Favored Terrain':
-    'Section=combat Note="Gains additional Action Card in chosen terrain"',
+    'Section=combat Note="Gains additional Action Card in %V chosen terrain"',
   'Fey Bloodline':
     'Section=combat ' +
-    'Note="No movement penalties for difficult ground/Touch inflicts Distracted"',
+    'Note="Ignores movement penalties for difficult ground/Touch inflicts Distracted"',
   'Fighter':'Section=feature Note="Has Martial Flexibility feature"',
   'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
   'Fury':
@@ -901,7 +906,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="+%V Strength step; every attack must be a Wild Attack"',
   'Great Ki':
     'Section=arcana ' +
-    'Note="May cast <i>Boost Trait</i> (Strength), <i>Protection</i>, <i>Wall Walker</i>, and <i>Warrior\'s Gift</i>"',
+    'Note="May use Mystic Powers (Monk) to cast <i>Boost Trait</i> (Strength), <i>Protection</i>, <i>Wall Walker</i>, and <i>Warrior\'s Gift</i>"',
   'Greater Darkvision':
     'Section=feature Note="R20\\" Sees clearly in pitch darkness"',
   'Greater Lore':'Section=arcana Note="+2 Power Count"',
@@ -914,7 +919,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
   'Infernal Bloodline':
     'Section=arcana,combat ' +
-    'Note="Powers with fire trapping do +1 damage",' +
+    'Note="Powers with fire trapping inflict +1 damage",' +
          '"Has resistance to fire and immunity to poison"',
   'Inspire Heroics':
     'Section=feature ' +
@@ -936,14 +941,13 @@ PF4SW.FEATURES_ADDED = {
   'Martial Discipline':'Section=combat Note="+1 Toughness in no armor"',
   'Martial Flexibility':
     'Section=combat ' +
-    'Note="May gain benefits of 1 combat edge for 5 rd 1/encounter"',
+    'Note="May gain benefits of combat edge for 5 rd %V/encounter"',
   'Martial Flexibility (Improved)':
-    'Section=combat ' +
-    'Note="May gain benefits of 2 combat edges for 5 rd 1/encounter"',
+    'Section=combat Note="Increased Martial Flexibility effects"',
   'Martial Prowess':'Section=combat Note="May reroll failed combat attacks"',
   'Master Hunter':
     'Section=feature ' +
-    'Note="Inflicts additional d6 damage on attacks vs. favored enemy"',
+    'Note="Successful attacks on favored enemy inflict +d6 damage"',
   'Mercy':
     'Section=arcana ' +
     'Note="R%{spirit}\\" Remove Distracted, Shaken, or Vulnerable from target"',
@@ -953,7 +957,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Armor Restriction, Martial Discipline, Mobility, Stunning Fist, and Unarmed Strike features"',
   'Mount':
     'Section=feature ' +
-    'Note="Bonded mount gains two advances and may be summoned"',
+    'Note="Bonded mount gains Resilience and two advances, may be summoned"',
   'Mystic Powers (Monk)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Boost Trait</i> (Agility, Athletics, Fighting, or Stealth), <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i> on self w/automatic success (+2 PP for raise)"',
@@ -962,7 +966,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="10 Power Points/May cast self <i>Boost Trait</i> (Fighting, Strength, or Vigor), self <i>Smite</i>, <i>Healing</i>, and <i>Relief</i> w/automatic success (+2 PP for raise)"',
   'Mystic Powers (Ranger)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i> (Athletics, Fighting, or Shooting), self <i>Warrior\'s Gift</i>, <i>Beast Friend</i>, and <i>Entangle</i> w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i> (Athletics, Fighting, or Shooting), <i>Entangle</i>, and self <i>Warrior\'s Gift</i> w/automatic success (+2 PP for raise)"',
   'Mystic Powers (Shadow Force)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and self <i>Teleport</i> w/automatic success (+2 PP for raise)"',
@@ -975,7 +979,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=skill Note="Survival linked to Spirit instead of Smarts"',
   'Opportunist':
     'Section=combat ' +
-    'Note="Attack foe w/Extraction on Withdraw; foe w/out Extraction is Vulnerable"',
+    'Note="May attack foe who is using Extraction on Withdraw; foe w/out Extraction is Vulnerable"',
   'Paladin':
     'Section=feature ' +
     'Note="Has Aura Of Courage, Code Of Honor+, Detect Evil, and Smite Evil features"',
@@ -989,12 +993,12 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Increases travel speed through known locations by 10%; successful Smarts-2 discards Enemies card"',
   'Phase Arrow':'Section=combat Note="May fire arrow through obstacles"',
-  'Powerful Blow':'Section=combat Note="+2 damage from Wild Attack"',
+  'Powerful Blow':'Section=combat Note="Wild Attack does +4 damage"',
   'Quarry':
     'Section=feature Note="Gains additional Favored Enemy and Favored Terrain"',
   'Rage':
     'Section=combat ' +
-    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or Wounded (Smarts neg); takes 1 level of Fatigue afterward until 1 hr rest"',
+    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or Wounded (Smarts neg); suffers 1 level of Fatigue afterward until 1 hr rest"',
   'Ranger':
     'Section=feature ' +
     'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
@@ -1028,7 +1032,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="May reroll failed attacks vs. %{advances//4+1} chosen evil foes/encounter"',
   'Sneak Attack':
     'Section=combat ' +
-    'Note="Inflicts additional d6 when attacking with the Drop or on Vulnerable foe"',
+    'Note="Successful attack with the Drop or on Vulnerable foe inflicts +d6 damage"',
   'Sorcerer':
     'Section=feature ' +
     'Note="Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features"',
@@ -1037,9 +1041,9 @@ PF4SW.FEATURES_ADDED = {
     'Note="Using Combined Spells feature reduces power cost of spells by 1 PP (min 1)"',
   'Spell Synthesis':
     'Section=arcana Note="May apply class edge abilities to all spells"',
-  'Spellbook':
+  'Spellbooks':
     'Section=arcana Note="Must study bonded arcane book daily to cast spells"',
-  'Strength Surge':'Section=combat Note="Fury increases Strength step by 2"',
+  'Strength Surge':'Section=combat Note="Increased Fury effects"',
   'Stunning Fist':
     'Section=combat ' +
     'Note="Raise on Unarmed Strike makes foe choice of Distracted or Vulnerable"',
@@ -1065,15 +1069,16 @@ PF4SW.FEATURES_ADDED = {
     'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
   'Undead Bloodline':
     'Section=combat Note="Has resistance to cold/+1 Soak"',
-  'Wholeness Of Body':'Section=arcana Note="May spend 2 PP to make Soak roll"',
+  'Wholeness Of Body':
+    'Section=arcana Note="May spend 2 PP to attempt Soak roll"',
   'Wild Shape':
     'Section=arcana Note="May cast <i>Shape Change</i> at double duration"',
   'Wilderness Stride':
-    'Section=combat Note="No movement penalties for difficult ground"',
+    'Section=combat Note="Ignores movement penalties for difficult ground"',
   'Wings':'Section=combat Note="Fly speed 8"',
   'Wizard':
     'Section=feature ' +
-    'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference, School, and Spellbook features"',
+    'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference, School, and Spellbooks features"',
   'Rapid Shot':SWADE.FEATURES['Rapid Fire'],
   'Improved Rapid Shot':
     SWADE.FEATURES['Improved Rapid Fire'].replaceAll('Fire', 'Shot'),
@@ -1543,12 +1548,12 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
-  if(name.match(/Bloodline$/) && !name.startsWith('Advanced')) {
+  if(name.match(/Bloodline/) && !name.startsWith('Advanced')) {
     var bloodline = name.replace(/\s+Bloodline/, '');
     rules.defineRule('featureNotes.advancedBloodline',
       'features.' + name, '=', '"' + bloodline + '"'
     );
-    rules.defineRule('features.Advanced ' + bloodline + ' Bloodline',
+    rules.defineRule('features.Advanced ' + name,
       'featureNotes.advancedBloodline', '?', null,
       'features.' + name, '=', '1'
     );
@@ -1667,6 +1672,9 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Channel Energy', 'featureNotes.cleric', '=', '1');
     rules.defineRule('features.Domain', 'featureNotes.cleric', '=', '1');
     rules.defineRule('features.Vow+', 'featureNotes.cleric', '=', '1');
+  } else if(name == 'Draconic Bloodline') {
+    rules.defineRule
+      ('armorToughness', 'combatNotes.draconicBloodline', '+=', '2');
   } else if(name == 'Dragon Disciple') {
     rules.defineRule
       ('features.Breath Weapon', 'featureNotes.dragonDisciple', '=', '1');
@@ -1727,6 +1735,10 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.eldritchKnightIII', '=', '1'
     );
   } else if(name == 'Fighter') {
+    rules.defineRule('combatNotes.martialFlexibility',
+      '', '=', '1',
+      'combatNotes.martialFlexibility(Improved)', '+', '1'
+    );
     rules.defineRule
       ('features.Martial Flexibility', 'featureNotes.fighter', '=', '1');
   } else if(name == 'Linguist') {
@@ -1743,11 +1755,15 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Greater Lore', 'featureNotes.loremasterIII', '=', '1');
   } else if(name == 'Monk') {
     rules.defineRule
+      ('attackAdjustment.Unarmed', 'combatNotes.unarmedStrike', '+=', '1');
+    rules.defineRule
       ('attributeNotes.armorRestriction', 'featureNotes.monk', '=', '"any"');
     rules.defineRule('combatNotes.martialDiscipline.1',
       'combatNotes.martialDiscipline', '?', null,
       'armor.None', '=', '1'
     );
+    rules.defineRule
+      ('damageStep.Unarmed', 'combatNotes.unarmedStrike', '+=', '1');
     rules.defineRule
       ('features.Armor Restriction', 'featureNotes.monk', '=', '1');
     rules.defineRule
@@ -1787,6 +1803,18 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Ranger') {
     rules.defineRule('attributeNotes.armorRestriction',
       'featureNotes.ranger', '=', '"heavy"'
+    );
+    rules.defineRule('combatNotes.favoredEnemy',
+      '', '=', '1',
+      'featureNotes.quarry', '+', null
+    );
+    rules.defineRule('combatNotes.favoredTerrain',
+      '', '=', '1',
+      'featureNotes.quarry', '+', null
+    );
+    rules.defineRule('skillNotes.favoredEnemy',
+      '', '=', '1',
+      'featureNotes.quarry', '+', null
     );
     rules.defineRule
       ('features.Armor Restriction', 'featureNotes.ranger', '=', '1');
@@ -1860,7 +1888,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Armor Interference', 'featureNotes.wizard', '=', '1');
     rules.defineRule('features.School', 'featureNotes.wizard', '=', '1');
-    rules.defineRule('features.Spellbook', 'featureNotes.wizard', '=', '1');
+    rules.defineRule('features.Spellbooks', 'featureNotes.wizard', '=', '1');
     rules.defineRule('skillNotes.armorInterference.1',
       'featureNotes.wizard', '=', '"any"'
     );
