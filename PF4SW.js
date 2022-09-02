@@ -1074,6 +1074,9 @@ PF4SW.FEATURES_ADDED = {
   'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
   'Fix It':SWADE.FEATURES['Mister Fix It'],
   // Hindrances
+  'Outsider+':
+    'Section=feature,skill ' +
+    'Note="Strangers are unfriendly or hostile","-2 Persuasion (other races)"',
   'Timid+':SWADE.FEATURES['Yellow+'],
   // Races
   'Adaptability':

@@ -742,14 +742,16 @@ SWADE.FEATURES = {
   'All Thumbs':
     'Section=skill ' +
     'Note="-2 using mechanical and electrical devices, critical failure breaks device"',
-  'Anemic':'Section=attribute Note="-2 Vigor (resist disease)"',
+  'Anemic':
+    'Section=attribute ' +
+    'Note="-2 Vigor (resist disease, sickness, fatigue, and environment)"',
   'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
   'Bad Eyes':'Section=skill Note="-1 on visual trait rolls"',
   'Bad Eyes+':'Section=skill Note="-2 on visual trait rolls"',
   'Bad Luck+':'Section=feature Note="-1 Benny each session"',
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
   'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
-  'Bloodthirsty+':'Section=combat Note="Cruel to foes"',
+  'Bloodthirsty+':'Section=combat Note="Cruel to foes; never takes prisoners"',
   "Can't Swim":
     'Section=combat,skill ' +
     'Note="Move 1/3 speed through water","-2 Athletics (swimming)"',
@@ -769,7 +771,9 @@ SWADE.FEATURES = {
     'Section=feature Note="Has overwhelming need to fulfill personal goal"',
   'Elderly+':
     'Section=attribute,combat,skill ' +
-    'Note="-1 Agility/-1 Strength/-1 Vigor","-1 Pace/-1 Run","+5 Skill Points"',
+    'Note="-1 Agility/-1 Strength/-1 Vigor",' +
+         '"-1 Pace/-1 Run",' +
+         '"+5 Skill Points (smarts skills)"',
   'Enemy':
     'Section=feature ' +
     'Note="Individual or remote group wants character eliminated"',
@@ -872,7 +876,7 @@ SWADE.FEATURES = {
   'Young+':
     'Section=attribute,feature,skill ' +
     'Note="-2 Attribute Points",' +
-          '"Small/+2 Benny each session",' +
+          '"Has Small features/+2 Benny each session",' +
           '"-2 Skill Points"',
 
   // Races
@@ -2282,9 +2286,8 @@ SWADE.edgeRulesExtra = function(rules, name) {
     );
     rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler.1', '+=', null);
   } else if(name == 'Brawny') {
-    rules.defineRule('armorStrengthStepShortfall',
-      'attributeNotes.brawny', '+', '-1'
-    );
+    rules.defineRule
+      ('armorStrengthStepShortfall', 'attributeNotes.brawny', '+', '-1');
   } else if(name == 'Brute') {
     rules.defineRule('bruteAthleticsStepModifier',
       'skillNotes.brute', '?', null,
@@ -2582,10 +2585,15 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
  * derived directly from the attributes passed to hindranceRules.
  */
 SWADE.hindranceRulesExtra = function(rules, name) {
-  if(name == 'Small') {
+  if(name == 'Elderly+') {
+    rules.defineRule('skillPoints', 'skillNotes.elderly+', '+', '5');
+  } else if(name == 'Obese') {
+    rules.defineRule
+      ('armorStrengthStepShortfall', 'attributeNotes.obese', '+', '1');
+  } else if(name == 'Small') {
     rules.defineRule('descriptionNotes.small', 'features.Size -1', 'v', '0');
   } else if(name == 'Young+') {
-    rules.defineRule('features.Small', 'features.Young+', '=', '1');
+    rules.defineRule('features.Small', 'featureNotes.young+', '=', '1');
   }
 };
 
