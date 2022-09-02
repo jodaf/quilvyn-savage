@@ -370,63 +370,63 @@ PF4SW.EDGES_ADDED = {
   'Cleric':'Type=class Require="spirit >= 6","skills.Occult >= 6"',
   'Arcane Background (Civilization Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Civilization\'"',
   'Arcane Background (Death Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Death\'"',
   'Arcane Background (Destruction Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Destruction\'"',
   'Arcane Background (Elemental Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Elemental\'"',
   'Arcane Background (Glory Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Glory\'"',
   'Arcane Background (Knowledge Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Knowledge\'"',
   'Arcane Background (Luck Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Luck\'"',
   'Arcane Background (Magic Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Magic\'"',
   'Arcane Background (Nature Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Nature\'"',
   'Arcane Background (Protection Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Protection\'"',
   'Arcane Background (Strength Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Strength\'"',
   'Arcane Background (Sun Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Sun\'"',
   'Arcane Background (Travel Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Travel\'"',
   'Arcane Background (Trickery Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Trickery\'"',
   'Arcane Background (War Domain)':
     'Type=class,Cleric ' +
-    'Require=features.Cleric,' +
+    'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'War\'"',
   'Destroy Undead':'Type=class,Cleric Require="advances >= 4",features.Cleric',
   'Favored Powers (Cleric)':
@@ -705,6 +705,10 @@ PF4SW.FEATURES_ADDED = {
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Druid)':
     'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Magic)': // Modified from SWADE
+    'Section=arcana,feature ' +
+    'Note="3 Powers/10 Power Points",' +
+         '"Has Armor Interference feature"',
   'Arcane Background (Miracles)':
     'Section=arcana,feature ' +
     'Note="3 Powers/10 Power Points","Has Domain and Vow+ features"',
@@ -921,6 +925,8 @@ PF4SW.FEATURES_ADDED = {
   'Invisible Thief':
     'Section=arcana ' +
     'Note="May spend 1 PP to cast <i>Invisibility</i> w/automatic raise"',
+  'Linguist': // Modified from SWADE
+    'Section=skill Note="+%V Language Count"',
   'Lore':
     'Section=skill ' +
     'Note="May reroll Academics, Common Knowledge, Occult, and Science"',
@@ -1560,6 +1566,19 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'attributeNotes.armorInterference.1', '=',
         'source == "any" ? "light" : source.replace(/\\s.*/, "")'
     );
+  } else if(name == 'Arcane Background (Magic)') {
+    rules.defineRule('attributeNotes.armorInterference.1',
+      'featureNotes.arcaneBackground(Magic)', '=', '"medium or heavy"'
+    );
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Magic)', '=', '1'
+    );
+    rules.defineRule('skillNotes.armorInterference.1',
+      'featureNotes.arcaneBackground(Magic)', '=', '"medium or heavy"'
+    );
+    rules.defineRule('skillNotes.armorInterference.2',
+      'featureNotes.arcaneBackground(Magic)', '=', '"Spellcasting and "'
+    );
   } else if(name == 'Arcane Background (Miracles)') {
     rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
     rules.defineRule
@@ -1710,6 +1729,10 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Fighter') {
     rules.defineRule
       ('features.Martial Flexibility', 'featureNotes.fighter', '=', '1');
+  } else if(name == 'Linguist') {
+    rules.defineRule('languageCount', 'skillNotes.linguist', '+', null);
+    rules.defineRule
+      ('skillNotes.linguist', 'smarts', '=', 'Math.floor(source / 2)');
   } else if(name == 'Loremaster') {
     rules.defineRule('features.Lore', 'featureNotes.loremaster', '=', '1');
   } else if(name == 'Loremaster II') {

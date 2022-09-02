@@ -477,7 +477,7 @@ SWADE.FEATURES = {
     'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=combat ' +
-    'Note="Others\' targeted arcane skill suffers %V attack; takes %V damage from magic"',
+    'Note="Takes %V damage from magic/Foes\' targeted arcane skill suffers %V attack"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
