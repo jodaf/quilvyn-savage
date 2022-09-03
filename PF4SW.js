@@ -796,8 +796,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Free reroll on Riding; +2 mount Pace, +1 mount Run step"',
   'Breath Weapon':
     'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
-  'Call Down The Legends':
-    'Section=combat Note="May summon 5 shadowy allies for 1 hr"',
+  'Call Down The Legends':'Section=combat Note="May summon 5 shades for 1 hr"',
   'Celestial Bloodline':
     'Section=arcana,combat ' +
     'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage on evil creatures",' +
@@ -841,13 +840,13 @@ PF4SW.FEATURES_ADDED = {
          '"+2 Armor/Claws inflict d%{strength}+d4"',
   'Dragon Disciple':
     'Section=feature Note="May use Breath Weapon feature 1/encounter"',
-  'Dragon Disciple II':'Section=feature Note="May use Wings feature"',
+  'Dragon Disciple II':'Section=feature Note="Has Wings feature"',
   'Dragon Disciple III':
     'Section=feature ' +
     'Note="May use Dragon Form feature for 5 min (10 min inflicts 1 level of Fatigue) 2/dy"',
   'Dragon Form':
     'Section=combat ' +
-    'Note="Size 3, Strength d12, Vigor d10, Armor 4, bite and claw attack does d%{strength}+d8, AP 2"',
+    'Note="Gains Size 3, Strength d12, Vigor d10, Armor 4, Bite and Claw inflict d%{strength}+d8, AP 2, Resistance to heritage energy"',
   'Druid':
     'Section=feature ' +
     'Note="Has Arcane Background (Druid), Armor Interference, Nature Bond, Nature Sense, Secret Language (Druidic), Vow+, and Wilderness Stride features"',
@@ -878,7 +877,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Ignores 2 points of wound penalties and all fatigue penalties"',
   'Epic Tales':
-    'Section=feature Note="Allies hearing story during rest gain 1 Benny"',
+    'Section=feature Note="Allies hearing story during rest each gain 1 Benny"',
   'Familiar':
     'Section=feature ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
@@ -987,7 +986,7 @@ PF4SW.FEATURES_ADDED = {
   'Paladin':
     'Section=feature ' +
     'Note="Has Aura Of Courage, Code Of Honor+, Detect Evil, and Smite Evil features"',
-  'Parry':'Section=combat Note="May use Defend maneuver for +6 Parry"',
+  'Parry':'Section=combat Note="Defend maneuver gives +6 Parry"',
   'Pathfinder Chronicler':'Section=feature Note="Has Pathfinding feature"',
   'Pathfinder Chronicler II':
     'Section=feature Note="May use Epic Tales feature 1/session"',
@@ -995,7 +994,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="May use Call Down The Legends feature 1/wk"',
   'Pathfinding':
     'Section=feature ' +
-    'Note="Increases travel speed through known locations by 10%; successful Smarts-2 discards Enemies card"',
+    'Note="Increases travel speed to known locations by 10%; successful Smarts-2 discards Enemies card"',
   'Phase Arrow':'Section=combat Note="Arrow passes through obstacles"',
   'Powerful Blow':'Section=combat Note="Wild Attack does +4 damage"',
   'Quarry':
@@ -1008,8 +1007,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
   'Rapid Reload':
     'Section=combat Note="Reduces reload value of chosen ranged weapon by 1"',
-  'Ranged Legerdemain':
-    'Section=skill Note="May use R5\\" Thievery at -2 penalty"',
+  'Ranged Legerdemain':'Section=skill Note="May use R5\\" Thievery-2"',
   'Reckless Abandon':
     'Section=combat ' +
     'Note="Critical failure on attack hits random target or self"',
@@ -1020,12 +1018,12 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="May select specialist school (free casting reroll) and two opposition schools (-2 casting rolls)"',
   'Secret (Loremaster)':
-    'Section=feature Note="May use chosen feature from core class"',
+    'Section=feature Note="May use chosen feature from any core class"',
   'Secret Language (Druidic)':
     'Section=feature Note="Can converse secretly w/other druids"',
   'Shadow Cloak':
     'Section=combat ' +
-    'Note="Gains free Soak when wounded in dim or dark illumination"',
+    'Note="May attempt free Soak when wounded in dim or dark illumination"',
   'Shadowdancer':'Section=feature Note="Has Greater Darkvision feature"',
   'Shadowdancer II':'Section=feature Note="Has Shadow Cloak feature"',
   'Shadowdancer III':
@@ -1042,7 +1040,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features"',
   'Spell Synergy':
     'Section=arcana ' +
-    'Note="Using Combined Spells feature reduces power cost of spells by 1 Power Point (min 1)"',
+    'Note="Using Combined Spells feature reduces spell cost by 1 Power Point (min 1) each"',
   'Spell Synthesis':
     'Section=arcana Note="May apply class edge abilities to all spells"',
   'Spellbooks':
