@@ -657,7 +657,7 @@ PF4SW.FEATURES_ADDED = {
   // Edges
   'Aberrant Bloodline':
     'Section=arcana,combat ' +
-    'Note="May cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> only with Lingering Damage for +1 PP",' +
+    'Note="May cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> only with Lingering Damage for +1 Power Point",' +
          '"+1 Toughness"',
   'Abyssal Bloodline':
     'Section=combat ' +
@@ -666,7 +666,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="+1 Toughness/Immune to surprise and The Drop"',
   'Advanced Abyssal Bloodline':
     'Section=arcana,combat ' +
-    'Note="<i>Summon Ally</i> costs -2 PP; summoned entities inflict Fear",' +
+    'Note="<i>Summon Ally</i> costs -2 Power Points; summoned entities inflict Fear",' +
          '"Has resistance to cold and fire"',
   'Advanced Arcane Bloodline':
     'Section=skill Note="May reroll failed Spellcasting"',
@@ -692,15 +692,16 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="Bat wings grant Flight 12"',
   'Advanced Undead Bloodline':
     'Section=feature Note="Has Undead, Outsider+, and Ugly+ features"',
-  'Angel Of Death':'Section=combat Note="May disintegrate slain victim 1/dy"',
+  'Angel Of Death':'Section=combat Note="May disintegrate slain victim"',
   'Arcane Archer':
-    'Section=feature Note="Has Enhance Arrow and Arrow Trapping features"',
+    'Section=feature ' +
+    'Note="May apply Enhance Arrow feature or Arrow Trapping feature to each shot"',
   'Arcane Archer II':
     'Section=feature ' +
-    'Note="May use Phase Arrow and Hail Of Arrows features 1/encounter"',
+    'Note="May apply Phase Arrow and Hail Of Arrows features 1/encounter"',
   'Arcane Archer III':
     'Section=feature ' +
-    'Note="May use Imbue Arrow feature 1/tn and Death Arrow feature 1/dy"',
+    'Note="May apply Imbue Arrow feature 1/tn and Death Arrow feature 1/dy"',
   'Arcane Armor':
     'Section=arcana Note="May cast spells in %V armor w/out penalty"',
   'Arcane Background (Bard)':
@@ -772,15 +773,16 @@ PF4SW.FEATURES_ADDED = {
     'Section=attribute,skill ' +
     'Note="-4 Agility w/%V armor or shield",' +
          '"-4 Agility-based skills w/%V armor or shield"',
-  'Arrow Trapping':'Section=combat Note="Arrows have environmental trapping"',
-  'Assassin':'Section=feature Note="Gains Death Attack feature"',
+  'Arrow Trapping':'Section=combat Note="Arrow has environmental trapping"',
+  'Assassin':'Section=feature Note="Has Death Attack feature"',
   'Assassin II':
     'Section=feature ' +
-    'Note="Gains Hide In Plain Sight and Resistance To Poison features"',
+    'Note="Has Hide In Plain Sight and Resistance To Poison features"',
   'Assassin III':
-    'Section=feature Note="Gains Angel Of Death and Swift Death features"',
+    'Section=feature ' +
+    'Note="May use Angel Of Death and Swift Death features 1/dy"',
   'Attuned':'Section=arcana Note="May reroll failed Faith to cast spell"',
-  'Aura Of Courage':'Section=combat Note="R10\\" Allies +1 vs. Fear"',
+  'Aura Of Courage':'Section=combat Note="R10\\" Allies +1 to resist Fear"',
   'Barbarian':
     'Section=feature Note="Has Armor Restriction, Fast, and Rage features"',
   'Bard':
@@ -802,7 +804,7 @@ PF4SW.FEATURES_ADDED = {
          '"Has resistance to cold and acid"',
   'Channel Energy':
     'Section=arcana ' +
-    'Note="May cast <i>Healing</i> at R%{smarts}\\", additional targets cost 1 PP each"',
+    'Note="May cast <i>Healing</i> at R%{smarts}\\", additional targets cost 1 Power Point each"',
   'Cleric':
     'Section=feature ' +
     'Note="Has Arcane Background (Cleric), Domain, Channel Energy, and Vow+ features"',
@@ -818,12 +820,12 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="Successful arrow attack kills (Vigor neg)"',
   'Death Attack':
     'Section=combat ' +
-    'Note="Wounding attack with the Drop kills (Vigor neg), incapacitating attack is silent"',
+    'Note="Wounding attack with The Drop kills (Vigor neg); incapacitating attack is silent"',
   'Deflect Arrows':'Section=combat Note="Foes suffer -2 ranged attacks"',
   'Destined Bloodline':'Section=feature Note="+1 Benny each session"',
   'Destroy Undead':
     'Section=combat ' +
-    'Note="R2\\" May spend 2 PP to inflict Wound on all undead (Spirit neg)"',
+    'Note="R2\\" May spend 2 Power Points to inflict Wound on all undead (Spirit neg)"',
   'Detect Evil':
     'Section=arcana ' +
     'Note="R%{smarts}\\" Detect evil creature or object at will"',
@@ -858,17 +860,20 @@ PF4SW.FEATURES_ADDED = {
   'Eldritch Knight II':'Section=feature Note="Has Eldritch Strike feature"',
   'Eldritch Knight III':
     'Section=feature Note="Has Eldritch Strike (Improved) feature"',
-  'Eldritch Recharge':'Section=arcana Note="Raise on attack restores 1 PP"',
-  'Eldritch Strike':'Section=arcana Note="May spend 2 PP for +2 attack"',
+  'Eldritch Recharge':
+    'Section=arcana Note="Raise on attack restores 1 Power Point"',
+  'Eldritch Strike':
+    'Section=arcana Note="May spend 2 Power Points for +2 attack"',
   'Eldritch Strike (Improved)':
-    'Section=arcana Note="May spend 2 PP for +2 damage"',
+    'Section=arcana Note="May spend 2 Power Points for +2 damage"',
   'Elemental Bloodline (Air)':'Section=combat Note="May fly at Pace 6"',
   'Elemental Bloodline (Earth)':'Section=combat Note="May burrow at Pace 6"',
   'Elemental Bloodline (Fire)':
     'Section=arcana Note="Powers with fire trapping inflict +2 damage"',
   'Elemental Bloodline (Water)':
     'Section=arcana Note="Powers hinder targets"',
-  'Enhance Arrow':'Section=combat Note="+1 attack and damage with arrows"',
+  'Enhance Arrow':
+    'Section=combat Note="Arrow gains +1 attack and inflicts +1 damage"',
   'Enraged':
     'Section=feature ' +
     'Note="Ignores 2 points of wound penalties and all fatigue penalties"',
@@ -876,7 +881,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="Allies hearing story during rest gain 1 Benny"',
   'Familiar':
     'Section=feature ' +
-    'Note="Can communicate w/magical, Wild Card pet that stores 5 PP"',
+    'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
     'Section=arcana ' +
@@ -910,13 +915,12 @@ PF4SW.FEATURES_ADDED = {
   'Greater Darkvision':
     'Section=feature Note="R20\\" Sees clearly in pitch darkness"',
   'Greater Lore':'Section=arcana Note="+2 Power Count"',
-  'Hail Of Arrows':
-    'Section=combat Note="May have arrow effect all in 3\\" radius"',
+  'Hail Of Arrows':'Section=combat Note="Arrow effects all in 3\\" radius"',
   'Hide In Plain Sight':
     'Section=arcana Note="May become invisible at will when immobile"',
-  'Imbue Arrow':'Section=arcana Note="May center area spell where arrow lands"',
+  'Imbue Arrow':'Section=arcana Note="Centers area spell where arrow lands"',
   'Impromptu Attack':
-    'Section=combat Note="May use Sneak Attack vs. non-Vulnerable foe"',
+    'Section=combat Note="May use Sneak Attack on non-Vulnerable foe"',
   'Infernal Bloodline':
     'Section=arcana,combat ' +
     'Note="Powers with fire trapping inflict +1 damage",' +
@@ -929,7 +933,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="May take free Intimidation action when Action card is jack or better"',
   'Invisible Thief':
     'Section=arcana ' +
-    'Note="May spend 1 PP to cast <i>Invisibility</i> w/automatic raise"',
+    'Note="May spend 1 Power Point to cast <i>Invisibility</i> w/automatic raise"',
   'Linguist': // Modified from SWADE
     'Section=skill Note="+%V Language Count"',
   'Lore':
@@ -960,16 +964,16 @@ PF4SW.FEATURES_ADDED = {
     'Note="Bonded mount gains Resilience and two advances, may be summoned"',
   'Mystic Powers (Monk)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost Trait</i> (Agility, Athletics, Fighting, or Stealth), <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i> on self w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast <i>Boost Trait</i> (Agility, Athletics, Fighting, or Stealth), <i>Deflection</i>, <i>Smite</i>, and <i>Speed</i> on self w/automatic success (+2 Power Points for raise)"',
   'Mystic Powers (Paladin)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i> (Fighting, Strength, or Vigor), self <i>Smite</i>, <i>Healing</i>, and <i>Relief</i> w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast self <i>Boost Trait</i> (Fighting, Strength, or Vigor), self <i>Smite</i>, <i>Healing</i>, and <i>Relief</i> w/automatic success (+2 Power Points for raise)"',
   'Mystic Powers (Ranger)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i> (Athletics, Fighting, or Shooting), <i>Entangle</i>, and self <i>Warrior\'s Gift</i> w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i> (Athletics, Fighting, or Shooting), <i>Entangle</i>, and self <i>Warrior\'s Gift</i> w/automatic success (+2 Power Points for raise)"',
   'Mystic Powers (Shadow Force)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and self <i>Teleport</i> w/automatic success (+2 PP for raise)"',
+    'Note="10 Power Points/May cast <i>Blast</i>, <i>Illusion</i>, <i>Summon Ally</i>, and self <i>Teleport</i> w/automatic success (+2 Power Points for raise)"',
   'Mystic Theurge':'Section=feature Note="Has Combined Spells feature"',
   'Mystic Theurge II':'Section=feature Note="Has Spell Synergy feature"',
   'Mystic Theurge III':'Section=feature Note="Has Spell Synthesis feature"',
@@ -992,7 +996,7 @@ PF4SW.FEATURES_ADDED = {
   'Pathfinding':
     'Section=feature ' +
     'Note="Increases travel speed through known locations by 10%; successful Smarts-2 discards Enemies card"',
-  'Phase Arrow':'Section=combat Note="May fire arrow through obstacles"',
+  'Phase Arrow':'Section=combat Note="Arrow passes through obstacles"',
   'Powerful Blow':'Section=combat Note="Wild Attack does +4 damage"',
   'Quarry':
     'Section=feature Note="Gains additional Favored Enemy and Favored Terrain"',
@@ -1009,7 +1013,7 @@ PF4SW.FEATURES_ADDED = {
   'Reckless Abandon':
     'Section=combat ' +
     'Note="Critical failure on attack hits random target or self"',
-  'Resistance To Poison':'Section=combat Note="+4 vs. poison"',
+  'Resistance To Poison':'Section=combat Note="+4 to resist poison"',
   'Rogue':
     'Section=feature Note="Has Armor Restriction and Sneak Attack features"',
   'School':
@@ -1029,16 +1033,16 @@ PF4SW.FEATURES_ADDED = {
   'Sharp Tongued':'Section=skill Note="May substitute Performance for Taunt"',
   'Smite Evil':
     'Section=combat ' +
-    'Note="May reroll failed attacks vs. %{advances//4+1} chosen evil foes/encounter"',
+    'Note="May reroll failed attacks on %{advances//4+1} chosen evil foes/encounter"',
   'Sneak Attack':
     'Section=combat ' +
-    'Note="Successful attack with the Drop or on Vulnerable foe inflicts +d6 damage"',
+    'Note="Successful attack with The Drop or on Vulnerable foe inflicts +d6 damage"',
   'Sorcerer':
     'Section=feature ' +
     'Note="Has Arcane Background (Sorcerer), Armor Interference, and Bloodline features"',
   'Spell Synergy':
     'Section=arcana ' +
-    'Note="Using Combined Spells feature reduces power cost of spells by 1 PP (min 1)"',
+    'Note="Using Combined Spells feature reduces power cost of spells by 1 Power Point (min 1)"',
   'Spell Synthesis':
     'Section=arcana Note="May apply class edge abilities to all spells"',
   'Spellbooks':
@@ -1051,7 +1055,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="+2 damage with light weapons (MinStr <= d6)"',
   'Surprise Spells':
     'Section=arcana Note="May use Sneak Attack feature with attack spells"',
-  'Swift Death':'Section=combat Note="May attack w/the Drop 1/dy"',
+  'Swift Death':'Section=combat Note="May attack aware foe w/The Drop"',
   'Trap Sense':
     'Section=feature ' +
     'Note="R5\\" Automatic Notice for traps; ignore 2 points penalty to evade and disarm"',
@@ -1070,7 +1074,7 @@ PF4SW.FEATURES_ADDED = {
   'Undead Bloodline':
     'Section=combat Note="Has resistance to cold/+1 Soak"',
   'Wholeness Of Body':
-    'Section=arcana Note="May spend 2 PP to attempt Soak roll"',
+    'Section=arcana Note="May spend 2 Power Points to attempt Soak roll"',
   'Wild Shape':
     'Section=arcana Note="May cast <i>Shape Change</i> at double duration"',
   'Wilderness Stride':
@@ -1188,7 +1192,7 @@ PF4SW.POWERS_ADDED = {
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target can alter reality in exchange for self permanently losing 3 PP"'
+      '"Target can alter reality in exchange for self permanently losing 3 Power Points"'
 };
 PF4SW.POWERS = Object.assign({}, SWADE.POWERS, PF4SW.POWERS_ADDED);
 PF4SW.RACES = {
@@ -1566,10 +1570,13 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Ugly+', 'featureNotes.advancedUndeadBloodline', '=', '1');
   } else if(name == 'Arcane Armor') {
-    // TODO Can be taken more than once
     rules.defineRule('arcanaNotes.arcaneArmor',
+      'arcanaNotes.arcaneArmor.1', '=', 'source==1 ? "light" : source==2 ? "medium" : "any"'
+    );
+    rules.defineRule('arcanaNotes.arcaneArmor.1',
       'attributeNotes.armorInterference.1', '=',
-        'source == "any" ? "light" : source.replace(/\\s.*/, "")'
+        'source.match(/^medium/i) ? 1 : source.match(/^heavy/i) ? 2 : 0',
+      'features.Arcane Armor', '+', null
     );
   } else if(name == 'Arcane Background (Magic)') {
     rules.defineRule('attributeNotes.armorInterference.1',
@@ -2168,6 +2175,8 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     attribute = 'race';
 
   if(attribute == 'convertFromPathfinder') {
+    if(!attributes.wisdom)
+      return;
     QuilvynUtils.checkAttrTable(PF4SW.CONVERSION_MAP, ['Action', 'Target']);
     var newAttributes = {};
     var notes = '';

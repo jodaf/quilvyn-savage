@@ -6,18 +6,20 @@
   <title>Edges-Power</title>
   <script>
 var attributes = {
-  "_path":"ztest/pf4sw/edges/power", "advances":1, 
+  "_path":"ztest/pf4sw/edges/power", "advances":8, 
   "agilityAllocation":0, "armor.None":1, "concept":"Wizard", "deity":"Erastil", 
-  "edges.Arcane Armor":1, "edges.Bonded Object":1, "edges.Wizard":1, "gender":"Male", 
-  "hindrances.Bad Eyes+":1, "hindrances.Driven":1, "hindrances.Enemy":1, 
-  "improvementPointsAllocation.Attribute":2, "improvementPointsAllocation.Edge":2, "improvementPointsAllocation.Skill":2, 
-  "languages.Abyssal":1, "languages.Aklo":1, "languages.Aquan":1, "languages.Auran":1, 
-  "languages.Celestial":1, "name":"Edges-Power", "powers.Blind":1, "powers.Shape Change":1, 
-  "powers.Speak Language":1, "race":"Human", "shield":"None", "skillAllocation.Fighting":1, 
-  "skillAllocation.Notice":1, "skillAllocation.Occult":2, "skillAllocation.Performance":1, 
-  "skillAllocation.Riding":2, "skillAllocation.Science":1, "skillAllocation.Shooting":1, 
-  "skillAllocation.Spellcasting":5, "smartsAllocation":3, "spiritAllocation":0, "strengthAllocation":0, 
-  "vigorAllocation":4, "weapons.Dagger":1, "weapons.Hand Crossbow":1, "weapons.Starknife":1
+  "edges.Arcane Armor":2, "edges.Artificer":1, "edges.Bonded Object":1, "edges.Channeling":1, 
+  "edges.Concentration":1, "edges.Holy/Unholy Warrior":1, "edges.New Powers":1, "edges.Power Points":1, 
+  "edges.Power Surge":1, "edges.Soul Drain":1, "edges.Wizard":1, "gender":"Male", 
+  "hindrances.Driven":1, "hindrances.Enemy":1, "hindrances.Vow+":1, 
+  "improvementPointsAllocation.Edge":20, "languages.Abyssal":1, "languages.Aklo":1, "languages.Aquan":1, 
+  "languages.Auran":1, "languages.Celestial":1, "name":"Edges-Power", "powers.Blind":1, 
+  "powers.Shape Change":1, "powers.Speak Language":1, "race":"Human", "shield":"None", 
+  "skillAllocation.Fighting":1, "skillAllocation.Notice":1, "skillAllocation.Occult":2, 
+  "skillAllocation.Performance":1, "skillAllocation.Riding":2, "skillAllocation.Science":1, 
+  "skillAllocation.Shooting":1, "skillAllocation.Spellcasting":3, "smartsAllocation":3, 
+  "spiritAllocation":2, "strengthAllocation":0, "vigorAllocation":1, "weapons.Dagger":1, 
+  "weapons.Hand Crossbow":1, "weapons.Starknife":1
 };
   </script>
 </head>
@@ -26,21 +28,21 @@ var attributes = {
 <tr style="text-align:center">
   <td style="border:1px solid black">  <table id="Header" style="width:100%">
   <tr style="text-align:center">
-    <td><b>Edges-Power</b> -- <b>Male</b> <b>Human</b> <b>Novice</b> <b>Wizard</b></td>
+    <td><b>Edges-Power</b> -- <b>Male</b> <b>Human</b> <b>Veteran</b> <b>Wizard</b></td>
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
   <td style="border:1px solid black">  <table id="Characteristics" style="width:100%">
   <tr style="text-align:center">
-    <td><b>Attributes</b> (7 Points):</td>
+    <td><b>Attributes</b> (6 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Attributes" style="width:100%">
     <tr style="text-align:center">
       <td><b>Agility</b>: d4</td>
       <td><b>Smarts</b>: d10</td>
-      <td><b>Spirit</b>: d4</td>
+      <td><b>Spirit</b>: d8</td>
       <td><b>Strength</b>: d4</td>
-      <td><b>Vigor</b>: d12</td>
+      <td><b>Vigor</b>: d6</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -52,7 +54,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (14 Points):</td>
+    <td><b>Skills</b> (12 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -69,7 +71,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Fighting: (agi) d4</td>
       <td>Persuasion: (spi) d4</td>
-      <td>Spellcasting: (sma) d10</td>
+      <td>Spellcasting: (sma) d8</td>
     </tr><tr style="text-align:left">
       <td>Notice: (sma) d6</td>
       <td>Riding: (agi) d4</td>
@@ -82,8 +84,6 @@ var attributes = {
     <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
     <tr style="text-align:center">
       <td>Armor Interference: -4 Spellcasting and Agility-based skills w/any armor or shield</td>
-    </tr><tr style="text-align:center">
-      <td>Bad Eyes+: -2 on visual trait rolls</td>
     </tr><tr style="text-align:center">
       <td>Bonded Object: +1 Spellcasting when object held or worn</td>
     </tr></table>
@@ -98,9 +98,9 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td>    <table id="AdvanceStats" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Advances</b>: 1</td>
-      <td><b>Improvement Points</b>: 6</td>
-      <td><b>Improvement Points Allocation</b>: Attribute: 2; Edge: 2; Skill: 2</td>
+      <td><b>Advances</b>: 8</td>
+      <td><b>Improvement Points</b>: 20</td>
+      <td><b>Improvement Points Allocation</b>: Edge: 20</td>
     </tr></table>
 </td>
   </tr></table>
@@ -110,8 +110,8 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (3 points): Arcane Armor; Bonded Object; Wizard</td>
-      <td><b>Hindrances</b>: Bad Eyes+; Driven; Enemy</td>
+      <td><b>Edges</b> (12 points): Arcane Armor: 2; Artificer: 1; Bonded Object: 1; Channeling: 1; Concentration: 1; Holy/Unholy Warrior: 1; New Powers: 1; Power Points: 1; Power Surge: 1; Soul Drain: 1; Wizard: 1</td>
+      <td><b>Hindrances</b>: Driven; Enemy; Vow+</td>
       <td><b>Human Features</b>: Adaptability</td>
     </tr></table>
 </td>
@@ -129,6 +129,8 @@ var attributes = {
       <td>Enemy: Individual or remote group wants character eliminated</td>
     </tr><tr style="text-align:center">
       <td>School: May select specialist school (free casting reroll) and two opposition schools (-2 casting rolls)</td>
+    </tr><tr style="text-align:center">
+      <td>Vow+: Has tight restrictions on behavior and decisions</td>
     </tr></table>
 </td>
   </tr></table>
@@ -142,7 +144,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><b>Parry</b>: 4 (0)</td>
         <td><b>Cover</b>: 0</td>
-        <td><b>Toughness</b>: 8 (0)</td>
+        <td><b>Toughness</b>: 5 (0)</td>
         <td><b>Pace/Run</b>: 6/+d6</td>
       </tr></table>
 </td>
@@ -159,7 +161,7 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Fighting Parry Modifier: +2 Parry</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Vigor Toughness Modifier: +6</i></td>
+        <td><i>Vigor Toughness Modifier: +3</i></td>
       </tr><tr style="text-align:center">
         <td>Starknife Parry Modifier: +1 Parry when wielded</td>
       </tr></table>
@@ -173,8 +175,8 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="PowerStats" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Power Count</b>: 3</td>
-      <td><b>Power Points</b>: 10</td>
+      <td><b>Power Count</b>: 5</td>
+      <td><b>Power Points</b>: 15</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -192,7 +194,23 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Arcane Background (Wizard): 3 Powers/10 Power Points</i></td>
     </tr><tr style="text-align:center">
-      <td>Arcane Armor: May cast spells in light armor w/out penalty</td>
+      <td><i>New Powers: +2 Power Count</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Power Points: +5 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Arcane Armor: May cast spells in medium armor w/out penalty</td>
+    </tr><tr style="text-align:center">
+      <td>Artificer: May give items arcane powers</td>
+    </tr><tr style="text-align:center">
+      <td>Channeling: Raise on arcane skill roll reduces Power Point cost by 1</td>
+    </tr><tr style="text-align:center">
+      <td>Concentration: Dbl Power duration</td>
+    </tr><tr style="text-align:center">
+      <td>Holy/Unholy Warrior: May spend 1-4 Power Points to add equal amount to Soak roll</td>
+    </tr><tr style="text-align:center">
+      <td>Power Surge: Joker Action Card restores 10 Power Points</td>
+    </tr><tr style="text-align:center">
+      <td>Soul Drain: May suffer Fatigue to recover 5 Power Points</td>
     </tr><tr style="text-align:center">
       <td>Spellbooks: Must study bonded arcane book daily to cast spells</td>
     </tr></table>

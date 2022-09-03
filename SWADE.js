@@ -1281,7 +1281,7 @@ SWADE.POWERS = {
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Drains 1d6 PP (Raise adds drained PP to self) (Spirit neg, +2 if types differ)"',
+    'Description="Drains 1d6 Power Points (Raise adds drained Power Points to self) (Spirit neg, +2 if types differ)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
