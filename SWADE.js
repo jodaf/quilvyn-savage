@@ -515,7 +515,8 @@ SWADE.FEATURES = {
   'Calculating':
     'Section=combat ' +
     'Note="Ignores 2 points of penalties on 1 action when Action Card is 5 or less"',
-  'Champion':'Section=combat Note="+2 damage vs. opposed alignment"',
+  'Champion':
+   'Section=combat Note="+2 damage on supernaturally opposed alignment"',
   'Channeling':
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
@@ -685,7 +686,7 @@ SWADE.FEATURES = {
   'Reliable':'Section=skill Note="May reroll Support"',
   'Retort':
     'Section=skill ' +
-    'Note="Raise on Intimidation or Taunt Test causes foe to be Distracted"',
+    'Note="Raise on resisting Intimidation or Taunt Test causes foe to be Distracted"',
   'Rich':'Section=feature Note="%Vx starting funds"',
   'Rock And Roll':'Section=combat Note="May trade move for ignoring recoil"',
   'Scavenger':
@@ -1856,6 +1857,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
     'armorToughness', '+', null,
     'combatNotes.vigorToughnessModifier', '+', null
   );
+  rules.defineRule('weaponStrength', 'strength', '=', null);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   SWADE.weaponRules(
@@ -2393,6 +2395,10 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '3',
       'featureNotes.filthyRich', '^', '5'
     );
+  } else if(name == 'Soldier') {
+    rules.defineRule
+      ('armorStrengthStepShortfall', 'attributeNotes.soldier', '+', '-1');
+    rules.defineRule('weaponStrength', 'attributeNotes.soldier', '+', '2');
   } else if(name == 'Sweep') {
     rules.defineRule('combatNotes.sweep.1',
       'features.Sweep', '=', '"-2 "',
@@ -2891,7 +2897,7 @@ SWADE.weaponRules = function(
     );
   rules.defineRule('combatNotes.' + prefix + 'StrengthPenalty',
     weaponName, '?', null,
-    'strength', '=', 'source >= ' + minStr + ' ? null : ' +
+    'weaponStrength', '=', 'source >= ' + minStr + ' ? null : ' +
       (isRanged ? '(' + minStr / 2 + ' - source / 2)' : 'source')
   );
   rules.defineRule('damageAdjustment.' + name, weaponName, '=', '0');

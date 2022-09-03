@@ -537,6 +537,10 @@ PF4SW.EDGES_ADDED = {
   'Rapid Shot':SWADE.EDGES['Rapid Fire'],
   'Improved Rapid Shot':
     SWADE.EDGES['Improved Rapid Fire'].replaceAll('Fire', 'Shot'),
+  'Improved Trademark Weapon (%weapon)': // Changed requirements
+    'Type=combat ' +
+    'Imply="weapons.%weapon" ' +
+    'Require="advances >= 8","features.Trademark Weapon (%weapon)"',
   'Two-Weapon Fighting':SWADE.EDGES['Two-Fisted'],
   // Power
   'Arcane Armor':'Type=power Require="features.Armor Interference"',
@@ -620,6 +624,11 @@ PF4SW.EDGES_ADDED = {
   'Fix It':SWADE.EDGES['Mister Fix It'],
   'Investigator': // Changed requirements
     'Type=professional Require="smarts >= 8","skills.Academics >= 8"',
+  'Scholar (Academics)': // Changed requirements
+    'Type=professional Require="smarts >= 8"',
+  'Scholar (Battle)':'Type=professional Require="smarts >= 8"',
+  'Scholar (Occult)':'Type=professional Require="smarts >= 8"',
+  'Scholar (Science)':'Type=professional Require="smarts >= 8"',
   'Troubadour':
     'Type=professional ' +
     'Require="skills.Common Knowledge >= 6","skills.Performance >- 8"',
@@ -915,6 +924,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="R20\\" Sees clearly in pitch darkness"',
   'Greater Lore':'Section=arcana Note="+2 Power Count"',
   'Hail Of Arrows':'Section=combat Note="Arrow effects all in 3\\" radius"',
+  'Healer':'Section=skill Note="May reroll Healing"', // Modified from SWADE
   'Hide In Plain Sight':
     'Section=arcana Note="May become invisible at will when immobile"',
   'Imbue Arrow':'Section=arcana Note="Centers area spell where arrow lands"',
