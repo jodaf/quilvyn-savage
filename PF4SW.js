@@ -1296,6 +1296,7 @@ PF4SW.WEAPONS = {
   'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
   'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=2h AP=2',
   'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
+  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h',
   'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
   'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
