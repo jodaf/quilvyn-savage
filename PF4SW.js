@@ -2244,7 +2244,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
           newValue = attributes[attr];
           newValue = newValue <= 3 ? 1 : newValue <= 6 ? 2 : newValue <= 9 ? 3 :
                      newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
-          if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Sealth/))
+          if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Stealth/))
             newValue -= 1;
         } else if(action == 'set') {
           newValue = 1;
