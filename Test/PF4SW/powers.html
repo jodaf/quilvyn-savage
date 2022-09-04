@@ -13,14 +13,28 @@ var attributes = {
   "hindrances.Young":1, "improvementPointsAllocation.Attribute":10, 
   "improvementPointsAllocation.Edge":12, "improvementPointsAllocation.Skill":6, "languages.Abyssal":1, 
   "languages.Aklo":1, "languages.Aquan":1, "languages.Auran":1, "languages.Celestial":1, 
-  "languages.Draconic":1, "name":"Powers", "powers.Baleful Polymorph":1, "powers.Conjure Item":1, 
-  "powers.Curse":1, "powers.Locate":1, "powers.Planar Binding":1, "powers.Plane Shift":1, 
-  "powers.Sanctuary":1, "powers.Scrying":1, "powers.Time Stop":1, "powers.Wish":1, "race":"Human", 
-  "shield":"Light", "skillAllocation.Athletics":3, "skillAllocation.Battle":1, 
-  "skillAllocation.Faith":1, "skillAllocation.Healing":1, "skillAllocation.Occult":2, 
-  "skillAllocation.Persuasion":1, "skillAllocation.Shooting":2, "skillAllocation.Spellcasting":4, 
-  "skillAllocation.Stealth":1, "smartsAllocation":4, "spiritAllocation":1, "strengthAllocation":2, 
-  "vigorAllocation":3, "weapons.Lance":1, "weapons.Light Mace":1, "weapons.Short Spear":1
+  "languages.Draconic":1, "name":"Powers", "powers.Arcane Protection":1, "powers.Baleful Polymorph":1, 
+  "powers.Banish":1, "powers.Barrier":1, "powers.Beast Friend":1, "powers.Blast":1, 
+  "powers.Blind":1, "powers.Bolt":1, "powers.Boost/Lower Trait":1, "powers.Burrow":1, 
+  "powers.Burst":1, "powers.Confusion":1, "powers.Conjure Item":1, "powers.Curse":1, 
+  "powers.Damage Field":1, "powers.Darksight":1, "powers.Deflection":1, 
+  "powers.Detect/Conceal Arcana":1, "powers.Disguise":1, "powers.Dispel":1, "powers.Divination":1, 
+  "powers.Drain Power Points":1, "powers.Elemental Manipulation":1, "powers.Empathy":1, "powers.Entangle":1, 
+  "powers.Environmental Protection":1, "powers.Farsight":1, "powers.Fear":1, "powers.Fly":1, 
+  "powers.Growth/Shrink":1, "powers.Havoc":1, "powers.Healing":1, "powers.Illusion":1, 
+  "powers.Intangibility":1, "powers.Invisibility":1, "powers.Light/Darkness":1, "powers.Locate":1, 
+  "powers.Mind Link":1, "powers.Mind Reading":1, "powers.Mind Wipe":1, "powers.Object Reading":1, 
+  "powers.Planar Binding":1, "powers.Plane Shift":1, "powers.Protection":1, "powers.Puppet":1, 
+  "powers.Relief":1, "powers.Resurrection":1, "powers.Sanctuary":1, "powers.Scrying":1, 
+  "powers.Shape Change":1, "powers.Sloth/Speed":1, "powers.Slumber":1, "powers.Smite":1, 
+  "powers.Sound/Silence":1, "powers.Speak Language":1, "powers.Stun":1, "powers.Summon Ally":1, 
+  "powers.Telekinesis":1, "powers.Teleport":1, "powers.Time Stop":1, "powers.Wall Walker":1, 
+  "powers.Warrior's Gift":1, "powers.Wish":1, "powers.Zombie":1, "race":"Human", "shield":"Light", 
+  "skillAllocation.Athletics":3, "skillAllocation.Battle":1, "skillAllocation.Faith":1, 
+  "skillAllocation.Healing":1, "skillAllocation.Occult":2, "skillAllocation.Persuasion":1, 
+  "skillAllocation.Shooting":2, "skillAllocation.Spellcasting":4, "skillAllocation.Stealth":1, 
+  "smartsAllocation":4, "spiritAllocation":1, "strengthAllocation":2, "vigorAllocation":3, 
+  "weapons.Lance":1, "weapons.Light Mace":1, "weapons.Short Spear":1
 };
   </script>
 </head>
@@ -185,25 +199,133 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td><b>Powers</b>:     <table id="Powers" style="width:100%">
     <tr style="text-align:left">
-      <td>Baleful Polymorph: (3+2/size PP) R12" Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends early)</td>
+      <td>Arcane Protection: (1 PP) R12" Foes suffer -2 (Raise -4) on arcane attacks and damage against target for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Baleful Polymorph: (3+2/size change PP) R12" Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)</td>
+    </tr><tr style="text-align:left">
+      <td>Banish: (3 PP) R12" Target suffers Shaken (Raise 1 Wound), returns to native plane if incapacitated (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Barrier: (2 PP) R12" Creates a 5" long (Raise 10") by 1" high wall for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Beast Friend: (1/Size PP) R12" Target can speak with and control beast actions for 10 min</td>
+    </tr><tr style="text-align:left">
+      <td>Blast: (3 PP) R24" 2" radius inflicts 2d6 damage (Raise 3d6)</td>
+    </tr><tr style="text-align:left">
+      <td>Blind: (2 PP) R12" Target suffers -2 on vision tasks (Raise -4) (Vigor neg 2 points (Raise 4) each rd)</td>
+    </tr><tr style="text-align:left">
+      <td>Bolt: (1 PP) R24" Inflicts 2d6 damage (Raise 3d6)</td>
+    </tr><tr style="text-align:left">
+      <td>Boost/Lower Trait: (2 PP) R12" Target gains +1 trait step (Raise +2) for 5 rd or suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)</td>
+    </tr><tr style="text-align:left">
+      <td>Burrow: (2 PP) R12" Allows target to merge into earth for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Burst: (2 PP) R9" Cone inflicts 2d6 damage (Raise 3d6)</td>
+    </tr><tr style="text-align:left">
+      <td>Confusion: (2 PP) R12" 2" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd</td>
     </tr><tr style="text-align:left">
       <td>Conjure Item: (2/lb PP) R12" Creates mundane item that lasts 1 hr</td>
     </tr><tr style="text-align:left">
       <td>Curse: (5 PP) RTouch Target suffers 1 level fatigue and additional level each sunset (Spirit neg)</td>
     </tr><tr style="text-align:left">
-      <td>Locate: (3 PP) RSelf Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell)</td>
+      <td>Damage Field: (4 PP) R12" Creatures adjacent to target suffer 2d4 damage for 5 rd</td>
     </tr><tr style="text-align:left">
-      <td>Planar Binding: (8 PP) R12" Summons and traps extraplanar creature to perform service (Spirit neg)</td>
+      <td>Darksight: (1 PP) R12" Target ignores 4 points (Raise 6 points) of illumination penalties for 1 hr</td>
+    </tr><tr style="text-align:left">
+      <td>Deflection: (2 PP) R12" Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Detect/Conceal Arcana: (2 PP) R12" Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr</td>
+    </tr><tr style="text-align:left">
+      <td>Disguise: (2 PP) R12" Target assumes another's appearance for 10 min</td>
+    </tr><tr style="text-align:left">
+      <td>Dispel: (1 PP) R12" End targeted power (Arcane skill neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Divination: (5 PP) RSelf 5 min contact with otherworld force grants arcane skill roll to gain information</td>
+    </tr><tr style="text-align:left">
+      <td>Drain Power Points: (2 PP) R12" Drains 1d6 Power Points (Raise adds drained Power Points to self) (Spirit neg, +2 if types differ)</td>
+    </tr><tr style="text-align:left">
+      <td>Elemental Manipulation: (1 PP) R12" Performs minor elemental manipulation for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Empathy: (1 PP) R12" Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Entangle: (2 PP) R12" Restrains target (Raise binds)</td>
+    </tr><tr style="text-align:left">
+      <td>Environmental Protection: (2 PP) R12" Target gains protection from hazards for 1 hr (Raise 8 hr)</td>
+    </tr><tr style="text-align:left">
+      <td>Farsight: (2 PP) R12" Target sees up to 1 mile for 5 rd (Raise halves range penalties)</td>
+    </tr><tr style="text-align:left">
+      <td>Fear: (2 PP) R12" Target Extra flees, Wild Card rolls on fear table (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Fly: (3 PP) R12" Target can fly for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Growth/Shrink: (2/Size PP) R12" Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Havoc: (2 PP) R12" Distracts and throws creatures in 2" radius or 9" cone 2d6" (Strength neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (3 PP) RTouch Restores 1 Wound (Raise 2) suffered in past hr</td>
+    </tr><tr style="text-align:left">
+      <td>Illusion: (3 PP) R12" Creates 2" radius visual illusion for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Intangibility: (5 PP) R12" Target becomes unaffected by physical world for 5 rd (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Invisibility: (5 PP) R12" Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Light/Darkness: (2 PP) R12" Creates 3" radius bright light or darkness for 10 min</td>
+    </tr><tr style="text-align:left">
+      <td>Locate: (3 PP) RSelf Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min</td>
+    </tr><tr style="text-align:left">
+      <td>Mind Link: (1 PP) R12" Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min</td>
+    </tr><tr style="text-align:left">
+      <td>Mind Reading: (2 PP) R12" Self gains 1 truthful answer from target (Smarts neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Mind Wipe: (3 PP) R12" Target forgets up to 30 min event (Smarts neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Object Reading: (2 PP) RTouch Self sees visions of history of target</td>
+    </tr><tr style="text-align:left">
+      <td>Planar Binding: (8 PP) R12" Summons extraplanar creature to perform service (Spirit neg)</td>
     </tr><tr style="text-align:left">
       <td>Plane Shift: (4 PP) R12" Self travels to chosen plane, w/in 10d10 miles of known location</td>
+    </tr><tr style="text-align:left">
+      <td>Protection: (2 PP) R12" Target gains +2 Armor (Raise +2 Toughness) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Puppet: (3 PP) R12" Target obeys self (Raise complete control) for 5 rd (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Relief: (1 PP) R12" Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Would or Fatigue penalty (Raise 2) for 1 hr</td>
+    </tr><tr style="text-align:left">
+      <td>Resurrection: (20 PP) RTouch Successful -4 casting roll returns 1 yr corpse to life with 3 Wounds and Exhausted (Raise 0 Wounds)</td>
     </tr><tr style="text-align:left">
       <td>Sanctuary: (2 PP) RTouch Evil creatures cannot attack target (Spirit neg) for 5 rd</td>
     </tr><tr style="text-align:left">
       <td>Scrying: (3 PP) RSelf Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd</td>
     </tr><tr style="text-align:left">
+      <td>Shape Change: (3+ PP) RSelf Transforms into animal form for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Sloth/Speed: (2 PP) R12" Target gains dbl Pace for 5 rd or suffers half Pace (Spirit ends)</td>
+    </tr><tr style="text-align:left">
+      <td>Slumber: (2 PP) R12" Target sleeps for 1 hr (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Smite: (2 PP) R12" Target weapon inflicts +2 damage (Raise +4) for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Sound/Silence: (1 PP) R60" Creates sound up to shout or R12" mutes 3" radius for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Speak Language: (1 PP) R12" Target speaks unknown language for 10 min</td>
+    </tr><tr style="text-align:left">
+      <td>Stun: (2 PP) R12" Target stunned (Vigor neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Summon Ally: (2+ PP) R12" Creates obedient servant for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Telekinesis: (5 PP) R24" Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)</td>
+    </tr><tr style="text-align:left">
+      <td>Teleport: (2 PP) R12" Target teleports 12" (Raise 24")</td>
+    </tr><tr style="text-align:left">
       <td>Time Stop: (8 PP) RSelf Self gains additional turn</td>
     </tr><tr style="text-align:left">
-      <td>Wish: (20 PP) R12" Target can alter reality in exchange for self permanently losing 3 Power Points</td>
+      <td>Wall Walker: (2 PP) R12" Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Warrior's Gift: (4 PP) R12" Target gains combat edge effects for 5 rd</td>
+    </tr><tr style="text-align:left">
+      <td>Wish: (20 PP) R12" Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)</td>
+    </tr><tr style="text-align:left">
+      <td>Zombie: (3 PP) R12" Animates and controls corpse for 1 hr</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">

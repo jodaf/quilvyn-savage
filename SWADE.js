@@ -1221,14 +1221,14 @@ SWADE.POWERS = {
   'Boost/Lower Trait':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts*2 ' +
+    'Range=smarts ' +
     'Description=' +
       '"Target gains +1 trait step (Raise +2) for 5 rd or suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Allows merging into earth for 5 rd"',
+    'Description="Allows target to merge into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1250,7 +1250,7 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target ignores 4 points illumination penalties (Raise 6 pts) for 1 hr"',
+      '"Target ignores 4 points (Raise 6 points) of illumination penalties for 1 hr"',
   'Deflection':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1277,7 +1277,7 @@ SWADE.POWERS = {
     'PowerPoints=5 ' +
     'Range=self ' +
     'Description=' +
-      '"1 min contact with otherworld force grants arcane skill roll to gain information"',
+      '"5 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1292,7 +1292,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
-    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2) for 5 rd (Spirit neg)"',
+    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1323,7 +1323,7 @@ SWADE.POWERS = {
     'Description="Target can fly for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
-    'PowerPoints=2 ' +
+    'PowerPoints=2/Size ' +
     'Range=smarts ' +
     'Description=' +
       '"Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd"',
@@ -1379,9 +1379,9 @@ SWADE.POWERS = {
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=self ' +
+    'Range=touch ' +
     'Description=' +
-      '"Shows five yr of events that occurred w/in 10 yd of touched object (Raise 100 yr and 20 yd)"',
+      '"Self sees five yr of events that occurred w/in 10 yd of target (Raise 100 yr and 20 yd)"',
   'Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1415,7 +1415,7 @@ SWADE.POWERS = {
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target gains dbl Pace for 5 rd or suffers half pace (Spirit ends)"',
+      '"Target gains dbl Pace for 5 rd or suffers half Pace (Spirit ends)"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1449,7 +1449,7 @@ SWADE.POWERS = {
     'Description="Creates obedient servant for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
-    'PowerPoints=3 ' +
+    'PowerPoints=5 ' +
     'Range=smarts*2 ' +
     'Description=' +
       '"Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',

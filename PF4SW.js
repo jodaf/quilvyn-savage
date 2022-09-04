@@ -1143,10 +1143,19 @@ delete PF4SW.HINDRANCES['Yellow+'];
 PF4SW.POWERS_ADDED = {
   'Baleful Polymorph':
     'Advances=8 ' +
-    'PowerPoints=3+2/size ' +
+    'PowerPoints="3+2/size change" ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends early)"',
+      '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)"',
+  'Barrier':
+    SWADE.POWERS.Barrier + ' ' +
+    'Description=' +
+      '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
+  'Confusion':
+    SWADE.POWERS.Confusion + ' ' +
+    'PowerPoints=2 ' +
+    'Description=' +
+      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
   'Conjure Item':
     'Advances=0 ' +
     'PowerPoints=2/lb ' +
@@ -1159,24 +1168,52 @@ PF4SW.POWERS_ADDED = {
     'Range=touch ' +
     'Description=' +
       '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
+  'Deflection':
+    SWADE.POWERS.Deflection + ' ' +
+    'PowerPoints=2 ' +
+    'Description=' +
+      '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
+  'Dispel':
+    SWADE.POWERS.Dispel + ' ' +
+    'Description=' +
+      '"End targeted power (Arcane skill neg)"',
+  'Environmental Protection':
+    SWADE.POWERS['Environmental Protection'] + ' ' +
+    'Description=' +
+      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
     'Description=' +
-      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell)"',
+      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
+  'Object Reading':
+    SWADE.POWERS['Object Reading'] + ' ' +
+    'Description=' +
+      '"Self sees visions of history of target"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Summons and traps extraplanar creature to perform service (Spirit neg)"',
+      '"Summons extraplanar creature to perform service (Spirit neg)"',
   'Plane Shift':
     'Advances=8 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles of known location"',
+  'Protection':
+    SWADE.POWERS.Protection + ' ' +
+    'PowerPoints=2 ' +
+    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
+  'Relief':
+    SWADE.POWERS.Relief + ' ' +
+    'Description=' +
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Would or Fatigue penalty (Raise 2) for 1 hr"',
+  'Resurrection':
+    SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
+    'PowerPoints=20',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1200,7 +1237,7 @@ PF4SW.POWERS_ADDED = {
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target can alter reality in exchange for self permanently losing 3 Power Points"'
+      '"Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)"'
 };
 PF4SW.POWERS = Object.assign({}, SWADE.POWERS, PF4SW.POWERS_ADDED);
 PF4SW.RACES = {
