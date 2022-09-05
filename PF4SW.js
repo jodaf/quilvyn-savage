@@ -1153,7 +1153,7 @@ PF4SW.POWERS_ADDED = {
       '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
   'Confusion':
     SWADE.POWERS.Confusion + ' ' +
-    'PowerPoints=2 ' +
+    'PowerPoints=1 ' +
     'Description=' +
       '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
   'Conjure Item':
@@ -1175,12 +1175,19 @@ PF4SW.POWERS_ADDED = {
       '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
   'Dispel':
     SWADE.POWERS.Dispel + ' ' +
+    'Advances=0 ' +
     'Description=' +
       '"End targeted power (Arcane skill neg)"',
+  'Divination':
+    SWADE.POWERS.Divination + ' ' +
+    'Advances=4',
   'Environmental Protection':
     SWADE.POWERS['Environmental Protection'] + ' ' +
     'Description=' +
       '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
+  'Intagibility':
+    SWADE.POWERS.Intangibility + ' ' +
+    'Advances=8',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +

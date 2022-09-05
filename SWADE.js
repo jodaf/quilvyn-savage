@@ -877,7 +877,7 @@ SWADE.FEATURES = {
   'Young+':
     'Section=attribute,feature,skill ' +
     'Note="-2 Attribute Points",' +
-          '"Has Small features/+2 Benny each session",' +
+          '"Has Small feature/+2 Benny each session",' +
           '"-2 Skill Points"',
 
   // Races
@@ -1279,7 +1279,7 @@ SWADE.POWERS = {
     'Description=' +
       '"5 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
-    'Advances=4 ' +
+    'Advances=8 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Description="Drains 1d6 Power Points (Raise adds drained Power Points to self) (Spirit neg, +2 if types differ)"',
