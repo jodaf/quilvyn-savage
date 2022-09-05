@@ -66,7 +66,7 @@ function PF4SW(baseRules) {
     (rules, PF4SW.EDGES, PF4SW.FEATURES, PF4SW.GOODIES,
      PF4SW.HINDRANCES, PF4SW.LANGUAGES, PF4SW.SKILLS);
   PF4SW.identityRules
-    (rules, PF4SW.RACES, PF4SW.CONCEPTS, PF4SW.DEITIES);
+    (rules, PF4SW.RACES, PF4SW.CONCEPTS, PF4SW.DEITIES, PF4SW.ALIGNMENTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -75,12 +75,19 @@ function PF4SW(baseRules) {
 // Throughout the plugin we take steps to show 'Ancestry' to the user to match
 // the rule book, but under the hood we use 'race' for the character attribute
 // so that we can easily reuse SWADE rules.
-PF4SW.CHOICES = SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
+PF4SW.CHOICES =
+  SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x).concat('Alignment');
 // Put deity before edges so that we can randomize domain edge properly
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
-  ['convertFromPathfinder', 'deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages');
+  ['convertFromPathfinder', 'deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
 PF4SW.VERSION = '2.3.2.0';
+
+PF4SW.ALIGNMENTS = {
+  'Good':'',
+  'Neutral':'',
+  'Evil':''
+};
 
 PF4SW.ARCANAS = {
   'Bard':
@@ -1392,15 +1399,26 @@ PF4SW.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-PF4SW.identityRules = function(rules, races, concepts, deitys) {
+PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
   // Deitys has attributes that are unsupported by SWADE
   QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
+  QuilvynUtils.checkAttrTable(alignments, []);
   SWADE.identityRules(rules, races, {}, concepts, {});
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
+  rules.defineEditorElement
+    ('alignment', 'Alignment', 'select-one', 'alignments', 'deity');
+  rules.defineSheetElement('Alignment', 'Deity');
+  rules.defineSheetElement('Deity');
+  rules.defineSheetElement('DeityInfo', 'Alignment+', '<b>Deity</b>: %V', ' ');
+  rules.defineSheetElement('Deity', 'DeityInfo/', '%V');
+  rules.defineSheetElement('Deity Alignment', 'DeityInfo/', '(%V)');
   for(var deity in deitys) {
     rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
+  }
+  for(var alignment in alignments) {
+    rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
   }
   // No changes needed to the rules defined by base method
 };
@@ -1432,7 +1450,9 @@ PF4SW.talentRules = function(
  * related to selecting that choice.
  */
 PF4SW.choiceRules = function(rules, type, name, attrs) {
-  if(type == 'Arcana')
+  if(type == 'Alignment')
+    PF4SW.alignmentRules(rules, name);
+  else if(type == 'Arcana')
     PF4SW.arcanaRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Skill'),
       QuilvynUtils.getAttrValueArray(attrs, 'Powers')
@@ -1530,6 +1550,15 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
     rules.addChoice(type, name, attrs);
   }
+};
+
+/* Defines in #rules# the rules associated with alignment #name#. */
+PF4SW.alignmentRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty alignment name');
+    return;
+  }
+  // No rules pertain to alignment
 };
 
 /*
@@ -2111,7 +2140,7 @@ PF4SW.choiceEditorElements = function(rules, type) {
 PF4SW.CONVERSION_MAP = {
   '_path':'Action=drop',
   '_timestamp':'Action=drop',
-  'alignment':'Action=copy', // TODO Drop Chaotic/Lawful
+  'alignment':'Action=alignment',
   'armor':'Action=copy Target=armor.%V',
   'charisma':'Action=charisma',
   'constitution':'Action=attribute Target=vigorAllocation',
@@ -2247,7 +2276,9 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
           QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Target') || attr;
         for(var i = 1; i < matchInfo.length; i++)
           target = target.replaceAll('$' + i, matchInfo[i]);
-        if(action == 'attribute') {
+        if(action == 'alignment') {
+          newValue = attributes[attr].replace(/Lawful | Chaotic/i, '');
+        } else if(action == 'attribute') {
           // PEGINC ZADMAR SWADE
           //  3-6    3-8    d4
           //  7-11   9-13   d6
@@ -2322,7 +2353,10 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     Object.assign(attributes, newAttributes);
     return;
   }
-  if(attribute == 'edges') {
+  if(attribute == 'alignment') {
+    choices = QuilvynUtils.getKeys(this.getChoices('alignments'));
+    attributes.alignment = choices[QuilvynUtils.random(0, choices.length - 1)];
+  } else if(attribute == 'edges') {
     if((attributes.concept == 'Cleric' ||
         attributes['edges.Arcane Background (Cleric)'] ||
         attributes['edges.Arcane Background (Miracles)']) &&
