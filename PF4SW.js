@@ -677,13 +677,13 @@ PF4SW.FEATURES_ADDED = {
          '"+1 Toughness"',
   'Abyssal Bloodline':
     'Section=combat ' +
-    'Note="+1 Toughness/Claws inflict d%{strength}+d4 damage/Has resistance to electricity"',
+    'Note="+1 Toughness/Claws inflict d%{strength}+d4 damage/Has Resistance to electricity"',
   'Advanced Aberrant Bloodline':
     'Section=combat Note="+1 Toughness/Immune to surprise and The Drop"',
   'Advanced Abyssal Bloodline':
     'Section=arcana,combat ' +
     'Note="<i>Summon Ally</i> costs -2 Power Points; summoned entities inflict Fear",' +
-         '"Has resistance to cold and fire"',
+         '"Has Resistance to cold and fire"',
   'Advanced Arcane Bloodline':
     'Section=skill Note="May reroll failed Spellcasting"',
   'Advanced Bloodline':
@@ -693,7 +693,7 @@ PF4SW.FEATURES_ADDED = {
   'Advanced Destined Bloodline':
     'Section=feature Note="+1 Benny each session"',
   'Advanced Draconic Bloodline':
-    'Section=combat Note="Claws gain AP +2; has resistance to draconic energy"',
+    'Section=combat Note="Claws gain AP +2/Has Resistance to draconic energy"',
   'Advanced Elemental Bloodline (Air)':
     'Section=combat Note="R9\\" cone inflicts 3d6 damage 1/encounter"',
   'Advanced Elemental Bloodline (Earth)':
@@ -798,7 +798,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="May use Angel Of Death and Swift Death features 1/dy"',
   'Attuned':'Section=arcana Note="May reroll failed Faith to cast spell"',
-  'Aura Of Courage':'Section=combat Note="R10\\" Allies +1 to resist Fear"',
+  'Aura Of Courage':
+    'Section=combat Note="R10\\" Allies gain +1 to resist Fear"',
   'Barbarian':
     'Section=feature Note="Has Armor Restriction, Fast, and Rage features"',
   'Bard':
@@ -806,20 +807,20 @@ PF4SW.FEATURES_ADDED = {
     'Note="Has Arcane Background (Bard), Armor Interference, and Sharp Tongued features"',
   'Bloodline':'Section=feature Note="+1 Edge Points (bloodline)"',
   'Bonded Object':
-    'Section=skill Note="+1 Spellcasting when object held or worn"',
+    'Section=skill Note="Gains +1 Spellcasting when object held or worn"',
   'Born In The Saddle':
     'Section=skill ' +
-    'Note="Free reroll on Riding; +2 mount Pace, +1 mount Run step"',
+    'Note="May make free reroll on Riding; +2 mount Pace, +1 mount Run step"',
   'Breath Weapon':
     'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
   'Call Down The Legends':'Section=combat Note="May summon 5 shades for 1 hr"',
   'Celestial Bloodline':
     'Section=arcana,combat ' +
     'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage on evil creatures",' +
-         '"Has resistance to cold and acid"',
+         '"Has Resistance to cold and acid"',
   'Channel Energy':
     'Section=arcana ' +
-    'Note="May cast <i>Healing</i> at R%{smarts}\\", additional targets cost 1 Power Point each"',
+    'Note="May cast <i>Healing</i> at R%{smarts}\\"; additional targets cost 1 Power Point each"',
   'Cleric':
     'Section=feature ' +
     'Note="Has Arcane Background (Cleric), Domain, Channel Energy, and Vow+ features"',
@@ -840,10 +841,10 @@ PF4SW.FEATURES_ADDED = {
   'Destined Bloodline':'Section=feature Note="+1 Benny each session"',
   'Destroy Undead':
     'Section=combat ' +
-    'Note="R2\\" May spend 2 Power Points to inflict Wound on all undead (Spirit neg)"',
+    'Note="R2\\" May spend 2 Power Points to inflict wound on all undead (Spirit neg)"',
   'Detect Evil':
     'Section=arcana ' +
-    'Note="R%{smarts}\\" Detect evil creature or object at will"',
+    'Note="R%{smarts}\\" May detect evil creature or object at will"',
   'Dirge Of Doom':
     'Section=arcana ' +
     'Note="R10\\" May inflict -2 on foe Soak roll, Trait reroll, or damage reroll"',
@@ -859,7 +860,7 @@ PF4SW.FEATURES_ADDED = {
   'Dragon Disciple II':'Section=feature Note="Has Wings feature"',
   'Dragon Disciple III':
     'Section=feature ' +
-    'Note="May use Dragon Form feature for 5 min (10 min inflicts 1 level of Fatigue) 2/dy"',
+    'Note="May use Dragon Form feature for 5 min (10 min inflicts 1 level of fatigue) 2/dy"',
   'Dragon Form':
     'Section=combat ' +
     'Note="Gains Size 3, Strength d12, Vigor d10, Armor 4, Bite and Claw inflict d%{strength}+d8, AP 2, Resistance to heritage energy"',
@@ -940,7 +941,7 @@ PF4SW.FEATURES_ADDED = {
   'Infernal Bloodline':
     'Section=arcana,combat ' +
     'Note="Powers with fire trapping inflict +1 damage",' +
-         '"Has resistance to fire and immunity to poison"',
+         '"Has Resistance to fire and immunity to poison"',
   'Inspire Heroics':
     'Section=feature ' +
     'Note="R%{smarts}\\" May spend Benny 1/encounter to grant 5 Trait or damage rerolls"',
@@ -970,7 +971,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Successful attacks on favored enemy inflict +d6 damage"',
   'Mercy':
     'Section=arcana ' +
-    'Note="R%{spirit}\\" Remove Distracted, Shaken, or Vulnerable from target"',
+    'Note="R%{spirit}\\" Removes Distracted, Shaken, or Vulnerable from target"',
   'Mobility':'Section=combat Note="+1 Run step"',
   'Monk':
     'Section=feature ' +
@@ -1018,7 +1019,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature Note="Gains additional Favored Enemy and Favored Terrain"',
   'Rage':
     'Section=combat ' +
-    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or Wounded (Smarts neg); suffers 1 level of Fatigue afterward until 1 hr rest"',
+    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or wounded (Smarts neg); suffers 1 level of fatigue afterward until 1 hr rest"',
   'Ranger':
     'Section=feature ' +
     'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
@@ -1073,7 +1074,7 @@ PF4SW.FEATURES_ADDED = {
   'Swift Death':'Section=combat Note="May attack aware foe w/The Drop"',
   'Trap Sense':
     'Section=feature ' +
-    'Note="R5\\" Automatic Notice for traps; ignore 2 points penalty to evade and disarm"',
+    'Note="R5\\" Attempts Notice for traps automatically; ignores 2 points penalty to evade and disarm"',
   'Troubadour':
     'Section=skill ' +
     'Note="+2 Common Knowledge/May use Performance in place of Battle"',
@@ -1082,12 +1083,12 @@ PF4SW.FEATURES_ADDED = {
     'Note="+1 Unarmed attacks, AP +2, damage d%{strength}+d4, always considered armed"',
   'Uncanny Reflexes':
     'Section=combat ' +
-    'Note="No penalty for normal Evasion; may use Evasion at -2 for any area effect"',
+    'Note="Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect"',
   'Undead':
     'Section=combat ' +
-    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
+    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
   'Undead Bloodline':
-    'Section=combat Note="Has resistance to cold/+1 Soak"',
+    'Section=combat Note="Has Resistance to cold/+1 Soak"',
   'Wholeness Of Body':
     'Section=arcana Note="May spend 2 Power Points to attempt Soak roll"',
   'Wild Shape':
@@ -1224,7 +1225,7 @@ PF4SW.POWERS_ADDED = {
   'Relief':
     SWADE.POWERS.Relief + ' ' +
     'Description=' +
-      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Would or Fatigue penalty (Raise 2) for 1 hr"',
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
   'Resurrection':
     SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
     'PowerPoints=20',
@@ -2432,6 +2433,16 @@ PF4SW.ruleNotes = function() {
     '<h2>PF4SW Quilvyn Module Notes</h2>\n' +
     'PF4SW Quilvyn Module Version ' + PF4SW.VERSION + '\n' +
     '\n' +
+    '<h3>Usage Notes</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '    Skills continue to show their normally linked attribute when a\n' +
+    "    feature changes the linked attribute (e.g., the Druid's Nature\n" +
+    '    feature changes the linked attribute for the Survival skill from\n' +
+    '    Smarts to Spirit). Quilvyn uses the new attribute when calculating\n' +
+    '    the skill rank.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
