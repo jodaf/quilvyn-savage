@@ -2142,86 +2142,117 @@ PF4SW.CONVERSION_MAP = {
   '_path':'Action=drop',
   '_timestamp':'Action=drop',
   'alignment':'Action=alignment',
-  'armor':'Action=copy Target=armor.%V',
+  'armor':'Action=armor',
   'charisma':'Action=charisma',
   'constitution':'Action=attribute Target=vigorAllocation',
-  'deity':'Action=copy',
+  'deity':'',
   'dexterity':'Action=attribute Target=agilityAllocation',
   'experience':'Action=drop',
   'experienceTrack':'Action=drop',
-  'faction':'Action=copy',
+  'faction':'',
   'favoredClassHitPoints':'Action=drop',
   'favoredClassSkillPoints':'Action=drop',
-  'feats.Combat Reflexes':'Action=copy Target="edges.Combat Reflexes"',
-  'gender':'Action=copy',
-  'goodies.*':'Action=copy',
+  'feats.(Alertness|Combat Reflexes|Jack-Of-All-Trades)':'Target=edges.$1',
+  'feats.Acrobatic Steps':'Target="edges.Free Runner"',
+  'feats.Animal Affinity':'Target="edges.Beast Bond"',
+  'feats.Deft Hands':'Target=edges.Thief',
+  'feats.Dodge':'Target="edges.Combat Acrobat"',
+  'feats.Extend Spell':'Target=edges.Concentration',
+  'feats.Improved Feint':'Target=edges.Feint',
+  'feats.Improved Initiative':'Target=edges.Quick',
+  'feats.(Improvised Weapon Mastery|Throw Anything)':'Target="edges.Improvisational Fighter"',
+  'feats.Intimidating Prowess':'Target=edges.Menacing',
+  'feats.Iron Will':'Target="edges.Strong Willed"',
+  'feats.(Deadly Aim|Point-Blank Shot)':'Target="edges.Dead Shot"',
+  'feats.Rapid Shot':'Target="edges.Rapid Fire"',
+  'feats.Run':'Target=edges.Fleet-Footed',
+  'feats.Self-Sufficient':'Target=edges.Woodsman',
+  'feats.Skill Focus .(.*).':'Target="edges.Professional ($1)"',
+  'feats.Two-Weapon Fighting':'Target=edges.Ambidextrous',
+  'feats.(Improved Critical|Weapon Focus|Weapon Specialization) .(.*).':
+    'Target="edges.Trademark Weapon ($2)"',
+  'feats.Whirlwind Attack':'Target=edges.Sweep',
+  'gender':'',
+  'goodies.*':'',
   'hitPoints':'Action=drop',
   'intelligence':'Action=attribute Target=smartsAllocation',
-  'languages.*':'Action=copy',
-  '(levels|prestige)\\.(.*)':'Action=copy Target=edges.$2 Value=1',
-  '(levels|prestige)\\.(..*)':'Action=copy Target=concept Value=$2',
+  'languages.*':'',
+  '(levels|prestige)\\.(.*)':'Target=edges.$2 Value=1',
+  '(levels|prestige)\\.(..*)':'Target=concept Value=$2',
   '(levels|prestige)\\..*':'Action=sum target=advances',
-  'name':'Action=copy',
-  'notes':'Action=copy',
-  'origin':'Action=copy',
-  'player':'Action=copy',
-  'potions\\..*':'Action=copy',
-  'race':'Action=copy',
-  'scrolls\\..*':'Action=copy',
-  'selectableFeatures\\.*(Powerful Blow|Intimidating Glare|Strength Surge|Countersong|Dirge Of Doom|Inspire Heroics|Opportunist|Familiar)':
-    'Action=copy Target=edges.$1',
-  'selectableFeatures\\.Divine Mount':'Action=copy Target=edges.Mount',
-  'selectableFeatures.* - (.* Domain)':
-    'Action=copy Target="edges.Arcane Background ($1)"',
-  'selectableFeatures\\..*Mercy':'Action=copy Target=edges.Mercy',
-  'selectableFeatures.*Bloodline (.*)':
-    'Action=copy Target="edges.$1 Bloodline"',
-  'skills\\.(Acrobatics|Climb|Swim)':
+  'name':'',
+  'notes':'',
+  'origin':'',
+  'player':'',
+  'potions\\..*':'',
+  'race':'',
+  'scrolls\\..*':'',
+  'selectableFeatures.(Powerful Blow|Intimidating Glare|Strength Surge|Countersong|Dirge Of Doom|Inspire Heroics|Opportunist|Familiar)':
+    'Target=edges.$1',
+  'selectableFeatures.*Animal Companion':'Target="edges.Beast Master"',
+  'selectableFeatures.*Bloodline (.*)':'Target="edges.$1 Bloodline"',
+  'selectableFeatures.*(Combat Reflexes)':'Target=edges.$1',
+  'selectableFeatures.*Dodge':'Target="edges.Combat Acrobat"',
+  'selectableFeatures.*Divine Mount':'Target=edges.Mount',
+  'selectableFeatures.*Familiar':'Target=edges.Familiar',
+  'selectableFeatures.*Improved Feint':'Target=edges.Feint',
+  'selectableFeatures.*Intimidating Glare':'Target=edges.Menacing',
+  'selectableFeatures.*([\\w\\s]+ Domain)':
+    'Target="edges.Arcane Background ($1)"',
+  'selectableFeatures.*Mercy':'Target=edges.Mercy',
+  'selectableFeatures.*Point-Blank Shot':'Target="edges.Dead Shot"',
+  'selectableFeatures.*Rapid Shot':'Target="edges.Rapid Fire"',
+  'selectableFeatures.*Throw Anything':'Target="edges.Improvisational Fighter"',
+  'selectableFeatures.*Two-Weapon Fighting':'Target=edges.Ambidextrous',
+  'skills.(Acrobatics|Climb|Swim)':
     'Action=skill Target=skillAllocation.Athletics',
-  'skills\\.Appraise':'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills\\.(Bluff|Diplomacy)':'Action=skill Target=skillAllocation.Persuasion',
-  'skills\\.Craft .Alchemy.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Appraise':'Action=skill Target="skillAllocation.Common Knowledge"',
+  'skills.(Bluff|Diplomacy)':'Action=skill Target=skillAllocation.Persuasion',
+  'skills.Craft .Alchemy.':'Action=skill Target=skillAllocation.Occult',
   'skills\\.Craft .*':'Action=skill Target=skillAllocation.Repair',
-  'skills\\.Disable Device':'Action=skill Target=skillAllocation.Repair',
-  'skills\\.(Disguise|Escape Artist|Sleight Of Hand)':
+  'skills.Disable Device':'Action=skill Target=skillAllocation.Repair',
+  'skills.(Disguise|Escape Artist|Sleight Of Hand)':
     'Action=skill Target=skillAllocation.Thievery',
-  'skills\\.Fly':'Action=skill Target=skillAllocation.Piloting',
-  'skills\\.(Handle Animal|Ride)':'Action=skill Target=skillAllocation.Riding',
-  'skills\\.Heal':'Action=skill Target=skillAllocation.Healing',
-  'skills\\.Intimidate':'Action=skill Target=skillAllocation.Intimidation',
-  'skills\\.Knowledge .Arcana.':'Action=skill Target=skillAllocation.Occult',
-  'skills\\.Knowledge .(Dungeoneering|Engineering).':
+  'skills.Fly':'Action=skill Target=skillAllocation.Piloting',
+  'skills.(Handle Animal|Ride)':'Action=skill Target=skillAllocation.Riding',
+  'skills.Heal':'Action=skill Target=skillAllocation.Healing',
+  'skills.Intimidate':'Action=skill Target=skillAllocation.Intimidation',
+  'skills.Knowledge .Arcana.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Knowledge .(Dungeoneering|Engineering).':
     'Action=skill Target=skillAllocation.Science',
-  'skills\\.Knowledge .(Geography|Local|Nature|Nobility).':
+  'skills.Knowledge .(Geography|Local|Nature|Nobility).':
     'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills\\.Knowledge .(History|Religion).':
+  'skills.Knowledge .(History|Religion).':
     'Action=skill Target=skillAllocation.Academics',
-  'skills\\.Knowledge .Planes.':'Action=skill Target=skillAllocation.Occult',
-  'skills\\.Linguistics':'Action=skill Target=skillAllocation.Academics',
-  'skills\\.(Perception|Sense Motive)':
+  'skills.Knowledge .Planes.':'Action=skill Target=skillAllocation.Occult',
+  'skills.Linguistics':'Action=skill Target=skillAllocation.Academics',
+  'skills.(Perception|Sense Motive)':
     'Action=skill Target=skillAllocation.Notice',
-  'skills\\.Perform .*':'Action=skill Target=skillAllocation.Performance',
-  'skills\\.Profession .*':'Action=drop', // TODO
-  'skills\\.Spellcraft':'Action=skill Target=skillAllocation.Occult',
-  'skills\\.Stealth':'Action=skill Target=skillAllocation.Stealth',
-  'skills\\.Survival':'Action=skill Target=skillAllocation.Survival',
-  'skills\\.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
+  'skills.Perform .*':'Action=skill Target=skillAllocation.Performance',
+  'skills.Profession .*':'Action=drop', // TODO
+  'skills.Spellcraft':'Action=skill Target=skillAllocation.Occult',
+  'skills.Stealth':'Action=skill Target=skillAllocation.Stealth',
+  'skills.Survival':'Action=skill Target=skillAllocation.Survival',
+  'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
   'shield':'Action=copy',
-  "spells\\.(Bear's Endurance|Bull's Strength|Cat's Grace|Eagle's Splendor|Fox's Cunning|Owl's Wisdom)":
-    'Action=copy Target="powers.Boost/Lower Trait"',
-  'spells\\.Comprehend Languages':'Action=copy Target="powers.Speak Language"',
-  'spells\\.Cure.*Wounds':'Action=copy Target=powers.Healing',
-  'spells\\.Detect Magic':'Action=copy Target="powers.Detect/Conceal Arcana"',
-  'spells\\.Dispel Magic':'Action=copy Target=powers.Dispel',
-  'spells\\.Endure Elements':
-    'Action=copy Target="powers.Environmental Protection"',
-  'spells\\.Light':'Action=copy Target=powers.Light/Darkness',
-  'spells_filter':'Action=copy Target=powers_filter',
+  "spells.(Bear's Endurance|Bull's Strength|Cat's Grace|Eagle's Splendor|Fox's Cunning|Owl's Wisdom)":'Target="powers.Boost/Lower Trait"',
+  'spells.Comprehend Languages':'Target="powers.Speak Language"',
+  'spells.Cure.*Wounds':'Target=powers.Healing',
+  'spells.Detect Magic':'Target="powers.Detect/Conceal Arcana"',
+  'spells.Dispel Magic':'Target=powers.Dispel',
+  'spells.Endure Elements':'Target="powers.Environmental Protection"',
+  'spells.Entangle':'Target=powers.Entangle',
+  'spells.Light':'Target=powers.Light/Darkness',
+  'spells.Speak With Animals':'Target="powers.Beast Friend"',
+  'spells_filter':'Target=powers_filter',
+  'traits.(Bad Reputation|Brute|Bully)':'Target=edges.Menacing',
+  'traits.Charming':'Target=edges.Attractive',
+  'traits.Courageous':'Target=edges.Brave',
   'traits.*':'Action=drop',
   'strength':'Action=attribute Target=strengthAllocation',
-  'weapons\\.Longbow':'Action=copy Target="weapons.Long Bow"',
-  'weapons\\.Longsword':'Action=copy Target="weapons.Long Sword"',
-  'weapons\\.[^L].*':'Action=copy',
+  'weapons.Longbow':'Target="weapons.Long Bow"',
+  'weapons.Longsword':'Target="weapons.Long Sword"',
+  'weapons\\.[^L].*':'',
   'wisdom':'Action=attribute Target=spiritAllocation'
 };
 
@@ -2252,7 +2283,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         if(!matchInfo)
           continue;
         action =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Action');
+          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Action')||'copy';
         target =
           QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Target') || attr;
         newValue =
@@ -2265,6 +2296,14 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         }
         if(action == 'alignment') {
           newValue = newValue.replace(/Lawful |Chaotic |Neutral /i, '');
+        } else if(action == 'armor') {
+          target =
+            newValue == 'Padded' ? 'armor.None' :
+            newValue.match(/Leather|Hide/) ? 'armor.Leather Jacket' :
+            newValue.match(/Chain/) ? 'armor.Chain Shirt' :
+            newValue.match(/Splint|Banded|Plate/i) ? 'armor.Plate Breastplate' :
+            ('armor.' + newValue);
+          newValue = 1;
         } else if(action == 'attribute') {
           // PEGINC ZADMAR SWADE
           //  3-6    3-8    d4
@@ -2285,10 +2324,8 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
           else
             action = 'drop';
         } else if(action == 'copy') {
-          if(target.includes('%V')) {
-            target = target.replaceAll('%V', attributes[attr]);
-            newValue = 1;
-          }
+          if(attr == 'shield' && newValue == 'Buckler')
+            newValue = 'Small';
         } else if(action == 'skill') {
           // PEGINC SWADE
           //  1-3    d4
@@ -2297,10 +2334,12 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
           //  10-13  d10
           //  14-16  d12
           //  17-20  d12+1
-          newValue = newValue <= 3 ? 1 : newValue <= 6 ? 2 : newValue <= 9 ? 3 :
-                     newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
+          newValue =
+            newValue <= 0 ? 0 : newValue <= 3 ? 1 : newValue <= 6 ? 2 :
+            newValue <= 9 ? 3 : newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
           if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Stealth/))
             newValue -= 1;
+          newValue = Math.max(newValue, newAttributes[target] || 0);
         } else if(action == 'sum') {
           newValue = (newValue - 0) + (newAttributes[target] || 0) - 0;
         }
