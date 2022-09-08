@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.5';
+SWADE.VERSION = '2.3.2.6';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -1732,7 +1732,7 @@ SWADE.WEAPONS = {
 SWADE.arcaneRules = function(rules, arcanas, powers) {
   QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
   QuilvynUtils.checkAttrTable
-    (powers, ['Advances', 'PowerPoints', 'Range', 'Description']);
+    (powers, ['Advances', 'PowerPoints', 'Range', 'Description', 'School']);
   for(var arcana in arcanas) {
     rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
   }
@@ -1892,7 +1892,7 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 SWADE.identityRules = function(rules, races, eras, concepts, deitys) {
 
   QuilvynUtils.checkAttrTable(concepts, ['Attribute', 'Edge', 'Skill']);
-  QuilvynUtils.checkAttrTable(deitys, []);
+  QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(eras, []);
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
@@ -2023,7 +2023,10 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
   else if(type == 'Deity')
-    SWADE.deityRules(rules, name);
+    SWADE.deityRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Alignment'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Domain')
+    );
   else if(type == 'Edge') {
     SWADE.edgeRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -2060,7 +2063,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'School')
     );
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
@@ -2211,8 +2215,12 @@ SWADE.conceptRules = function(rules, name, attributes, edges, skills) {
   // No rules pertain to concept
 };
 
-/* Defines in #rules# the rules associated with deity #name#. */
-SWADE.deityRules = function(rules, name) {
+/*
+ * Defines in #rules# the rules associated with deity #name#. The optional
+ * #alignment# gives the deity's alignment, and #domains# lists any domains
+ * connected to the deity.
+ */
+SWADE.deityRules = function(rules, name, alignment, domains) {
   if(!name) {
     console.log('Empty deity name');
     return;
@@ -2621,10 +2629,11 @@ SWADE.languageRules = function(rules, name) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects.
+ * description of the power's effects and #school#, if defined, is the magic
+ * school that defines the power.
  */
 SWADE.powerRules = function(
-  rules, name, advances, powerPoints, range, description)
+  rules, name, advances, powerPoints, range, description, school)
 {
   if(!name) {
     console.log('Empty power name');
@@ -2648,8 +2657,11 @@ SWADE.powerRules = function(
   else
     range = 'R%{' + range + '}"';
   // Not presently including advances in power description
+  var powerAttrs = powerPoints + ' PP';
+  if(school)
+    powerAttrs += ' ' + school.substring(0, 4);
   rules.defineChoice
-    ('notes', 'powers.' + name + ':(' + powerPoints + ' PP) ' + range + ' ' + description);
+    ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + ' ' + description);
 };
 
 /*
