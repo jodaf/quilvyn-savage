@@ -1380,66 +1380,63 @@ delete PF4SW.SKILLS['Psionics'];
 delete PF4SW.SKILLS['Research'];
 delete PF4SW.SKILLS['Weird Science'];
 PF4SW.WEAPONS = {
-  'Unarmed':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
-    'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
   'Battle Axe':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
-  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
-  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
+  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
   'Dagger':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
-  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
   'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
   'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
+  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
+  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
   'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h AP=1',
   'Halberd':'Damage=Str+d8 MinStr=8 Weight=12 Category=2h AP=1',
-  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
-  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
-  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
+  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
+  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
+  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
   'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
-  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
+  'Heavy Repeating Crossbow':
+    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
+  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
+  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
+  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
+  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
+  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Light Repeating Crossbow':
+    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
+  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
+  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
   'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=2h AP=2',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
+  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
   'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
+  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h',
   'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
   'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
   'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
-  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
   'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
+  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
   'Spear':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h Range=3',
   'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
   'Staff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
-  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Starknife':'Damage=Str+d4 MinStr=4 Weight=3 Category=1h Range=3 Parry=1',
-  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
-  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
-  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
-  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
   'Trident':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3 AP=1',
+  'Unarmed':'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
   'Warhammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h AP=1',
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
-
-  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
-  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
-  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
-  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
-  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
-  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
-  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
-  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
-  'Light Repeating Crossbow':
-    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
-  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
-  'Heavy Repeating Crossbow':
-    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
-  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
-  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
-  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4'
 };
 
 /* Defines the rules related to character attributes and description. */
@@ -2198,440 +2195,188 @@ PF4SW.choiceEditorElements = function(rules, type) {
 };
 
 /*
-  'Acid Fog':
-  'Aid':
-  'Air Walk':
-  'Alarm':
-  'Align Weapon':
-  'Analyze Dweomer':
-  'Animal Messenger':
-  'Animal Shapes':
-  'Animal Trance':
-  'Animate Plants':
-  'Antilife Shell':
-  'Antimagic Field':
-  'Antipathy':
-  'Antiplant Shell':
-  'Arcane Lock':
-  'Arcane Sight':
-  'Astral Projection':
-  'Atonement':
-  'Augury':
-  'Awaken':
-  'Bane':
-  'Barkskin':
-  'Binding':
-  'Black Tentacles':
-  'Blasphemy':
-  'Bleed':
-  'Bless Water':
-  'Bless Weapon':
-  'Bless':
-  'Blight':
-  'Blink':
-  'Blur':
-  'Break Enchantment':
-  'Breath Of Life':
-  'Calm Animals':
-  'Calm Emotions':
-  'Changestaff':
-  'Chaos Hammer':
-  'Charm Animal':
-  'Charm Monster':
-  'Charm Person':
-  'Chill Metal':
-  'Chill Touch':
-  'Circle Of Death':
-  'Clenched Fist':
-  'Cloak Of Chaos':
-  'Clone':
-  'Color Spray':
-  'Command Plants':
-  'Command Undead':
-  'Command':
-  'Commune With Nature':
-  'Commune':
-  'Consecrate':
-  'Contact Other Plane':
-  'Contagion':
-  'Contingency':
-  'Continual Flame':
-  'Control Plants':
-  'Control Undead':
-  'Control Water':
-  'Control Weather':
-  'Control Winds':
-  'Create Food And Water':
-  'Create Greater Undead':
-  'Create Undead':
-  'Creeping Doom':
-  'Crushing Despair':
-  'Crushing Hand':
-  'Curse Water':
-  'Daylight':
-  'Daze Monster':
-  'Death Knell':
-  'Death Ward':
-  'Deathwatch':
-  'Deep Slumber':
-  'Delay Poison':
-  'Demand':
-  'Desecrate':
-  'Destruction':
-  'Detect Animals Or Plants':
-  'Detect Chaos':
-  'Detect Evil':
-  'Detect Good':
-  'Detect Law':
-  'Detect Scrying':
-  'Detect Secret Doors':
-  'Detect Snares And Pits':
-  'Detect Undead':
-  'Dictum':
-  'Dimension Door':
-  'Dimensional Anchor':
-  'Dimensional Lock':
-  'Discern Lies':
-  'Discern Location':
-  'Dispel Chaos':
-  'Dispel Evil':
-  'Dispel Good':
-  'Dispel Law':
-  'Displacement':
-  'Disrupting Weapon':
-  'Divine Favor':
-  'Divine Power':
-  'Dominate Animal':
-  'Dominate Monster':
-  'Dominate Person':
-  'Doom':
-  'Dream':
-  'Elemental Swarm':
-  'Energy Drain':
-  'Enervation':
-  'Enthrall':
-  'Entropic Shield':
-  'Erase':
-  'Ethereal Jaunt':
-  'Expeditious Retreat':
-  'Explosive Runes':
-  'Eyebite':
-  'Fabricate':
-  'Faerie Fire':
-  'False Life':
-  'False Vision':
-  'Feather Fall':
-  'Feeblemind':
-  'Find The Path':
-  'Find Traps':
-  'Fire Seeds':
-  'Fire Shield':
-  'Fire Trap':
-  'Flame Arrow':
-  'Flame Blade':
-  'Flesh To Stone':
-  'Floating Disk':
-  'Fog Cloud':
-  'Forbiddance':
-  'Forcecage':
-  'Forceful Hand':
-  'Foresight':
-  'Freedom Of Movement':
-  'Freedom':
-  'Gaseous Form':
-  'Gate':
-  'Geas/Quest':
-  'Gentle Repose':
-  'Ghoul Touch':
-  'Giant Form I':
-  'Giant Form II':
-  'Glibness':
-  'Glitterdust':
-  'Globe Of Invulnerability':
-  'Good Hope':
-  'Goodberry':
-  'Grasping Hand':
-  'Grease':
-  'Greater Arcane Sight':
-  'Greater Command':
-  'Greater Heroism':
-  'Greater Magic Fang':
-  'Greater Magic Weapon':
-  'Greater Planar Ally':
-  'Greater Prying Eyes':
-  'Greater Restoration':
-  'Greater Shadow Conjuration':
-  'Greater Shadow Evocation':
-  'Greater Spell Immunity':
-  'Guards And Wards':
-  'Gust Of Wind':
-  'Hallow':
-  'Hallucinatory Terrain':
-  'Halt Undead':
-  'Harm':
-  'Haste':
-  'Heal Mount':
-  'Heal':
-  'Helping Hand':
-  'Heroes\' Feast':
-  'Heroism':
-  'Hide From Animals':
-  'Hide From Undead':
-  'Hideous Laughter':
-  'Hold Animal':
-  'Hold Monster':
-  'Hold Person':
-  'Hold Portal':
-  'Holy Aura':
-  'Holy Smite':
-  'Holy Sword':
-  'Holy Word':
-  'Horrid Wilting':
-  'Hypnotic Pattern':
-  'Hypnotism':
-  'Identify':
-  'Illusory Script':
-  'Illusory Wall':
-  'Imbue With Spell Ability':
-  'Implosion':
-  'Imprisonment':
-  'Inflict Critical Wounds':
-  'Inflict Light Wounds':
-  'Inflict Moderate Wounds':
-  'Inflict Serious Wounds':
-  'Insanity':
-  'Insect Plague':
-  'Instant Summons':
-  'Interposing Hand':
-  'Invisibility Purge':
-  'Iron Body':
-  'Ironwood':
-  'Irresistible Dance':
-  'Jump':
-  'Keen Edge':
-  'Knock':
-  'Legend Lore':
-  'Lesser Geas':
-  'Lesser Globe Of Invulnerability':
-  'Lesser Restoration':
-  'Levitate':
-  'Liveoak':
-  'Locate Creature':
-  'Longstrider':
-  'Mage Armor':
-  'Mage\'s Disjunction':
-  'Mage\'s Faithful Hound':
-  'Mage\'s Lucubration':
-  'Mage\'s Magnificent Mansion':
-  'Mage\'s Private Sanctum':
-  'Mage\'s Sword':
-  'Magic Aura':
-  'Magic Circle Against Chaos':
-  'Magic Circle Against Evil':
-  'Magic Circle Against Good':
-  'Magic Circle Against Law':
-  'Magic Fang':
-  'Magic Jar':
-  'Magic Mouth':
-  'Magic Stone':
-  'Magic Vestment':
-  'Magic Weapon':
-  'Major Creation':
-  'Major Image':
-  'Make Whole':
-  'Mark Of Justice':
-  'Mass Charm Monster':
-  'Mass Heal':
-  'Mass Hold Monster':
-  'Mass Hold Person':
-  'Mass Inflict Critical Wounds':
-  'Mass Inflict Light Wounds':
-  'Mass Inflict Moderate Wounds':
-  'Mass Inflict Serious Wounds':
-  'Mass Suggestion':
-  'Maze':
-  'Meld Into Stone':
-  'Mind Blank':
-  'Mind Fog':
-  'Minor Creation':
-  'Minor Image':
-  'Miracle':
-  'Mirage Arcana':
-  'Mirror Image':
-  'Misdirection':
-  'Mislead':
-  'Mnemonic Enhancer':
-  'Modify Memory':
-  'Moment Of Prescience':
-  'Mount':
-  'Move Earth':
-  'Neutralize Poison':
-  'Nightmare':
-  'Nondetection':
-  'Obscure Object':
-  'Obscuring Mist':
-  'Order\'s Wrath':
-  'Overland Flight':
-  'Pass Without Trace':
-  'Passwall':
-  'Permanency':
-  'Permanent Image':
-  'Persistent Image':
-  'Phantasmal Killer':
-  'Phantom Steed':
-  'Phantom Trap':
-  'Phase Door':
-  'Planar Ally':
-  'Poison':
-  'Polymorph Any Object':
-  'Power Word Blind':
-  'Power Word Kill':
-  'Power Word Stun':
-  'Prayer':
-  'Prismatic Sphere':
-  'Prismatic Spray':
-  'Prismatic Wall':
-  'Produce Flame':
-  'Programmed Image':
-  'Project Image':
-  'Protection From Arrows':
-  'Protection From Chaos':
-  'Protection From Energy':
-  'Protection From Evil':
-  'Protection From Good':
-  'Protection From Law':
-  'Protection From Spells':
-  'Prying Eyes':
-  'Pyrotechnics':
-  'Quench':
-  'Rage':
-  'Rainbow Pattern':
-  'Raise Dead':
-  'Ray Of Enfeeblement':
-  'Ray Of Exhaustion':
-  'Refuge':
-  'Regenerate':
-  'Reincarnate':
-  'Remove Blindness/Deafness':
-  'Remove Curse':
-  'Remove Disease':
-  'Remove Fear':
-  'Remove Paralysis':
-  'Repel Metal Or Stone':
-  'Repel Vermin':
-  'Repel Wood':
-  'Repulsion':
-  'Resilient Sphere':
-  'Resist Energy':
-  'Restoration':
-  'Reverse Gravity':
-  'Righteous Might':
-  'Rope Trick':
-  'Rusting Grasp':
-  'Scare':
-  'Scintillating Pattern':
-  'Screen':
-  'Sculpt Sound':
-  'Secret Chest':
-  'Secret Page':
-  'Secure Shelter':
-  'See Invisibility':
-  'Seeming':
-  'Sending':
-  'Sepia Snake Sigil':
-  'Sequester':
-  'Shades':
-  'Shadow Conjuration':
-  'Shadow Evocation':
-  'Shadow Walk':
-  'Shambler':
-  'Shield Of Faith':
-  'Shield Of Law':
-  'Shield Other':
-  'Shield':
-  'Shillelagh':
-  'Shocking Grasp':
-  'Shrink Item':
-  'Silent Image':
-  'Simulacrum':
-  'Slay Living':
-  'Sleep':
-  'Sleet Storm':
-  'Slow':
-  'Snare':
-  'Soften Earth And Stone':
-  'Solid Fog':
-  'Song Of Discord':
-  'Soul Bind':
-  'Speak With Dead':
-  'Speak With Plants':
-  'Spectral Hand':
-  'Spell Immunity':
-  'Spell Resistance':
-  'Spell Turning':
-  'Spellstaff':
-  'Spike Growth':
-  'Spike Stones':
-  'Spiritual Weapon':
-  'Stabilize':
-  'Statue':
-  'Status':
-  'Stinking Cloud':
-  'Stone Shape':
-  'Stone Tell':
-  'Stone To Flesh':
-  'Stoneskin':
-  'Suggestion':
-  'Summon Swarm':
-  'Symbol Of Death':
-  'Symbol Of Fear':
-  'Symbol Of Insanity':
-  'Symbol Of Pain':
-  'Symbol Of Persuasion':
-  'Symbol Of Sleep':
-  'Symbol Of Stunning':
-  'Symbol Of Weakness':
-  'Sympathetic Vibration':
-  'Sympathy':
-  'Telekinetic Sphere':
-  'Telepathic Bond':
-  'Temporal Stasis':
-  'Tiny Hut':
-  'Touch Of Idiocy':
-  'Transformation':
-  'Transmute Metal To Wood':
-  'Transmute Mud To Rock':
-  'Transmute Rock To Mud':
-  'Transport Via Plants':
-  'Trap The Soul':
-  'Tree Shape':
-  'Tree Stride':
-  'True Seeing':
-  'True Strike':
-  'Undeath To Death':
-  'Undetectable Alignment':
-  'Unhallow':
-  'Unholy Aura':
-  'Unholy Blight':
-  'Unseen Servant':
-  'Vampiric Touch':
-  'Veil':
-  'Ventriloquism':
-  'Vision':
-  'Wail Of The Banshee':
-  'Warp Wood':
-  'Water Breathing':
-  'Water Walk':
-  'Waves Of Exhaustion':
-  'Waves Of Fatigue':
-  'Weird':
-  'Whirlwind':
-  'Whispering Wind':
-  'Wind Walk':
-  'Wind Wall':
-  'Wood Shape':
-  'Word Of Chaos':
-  'Word Of Recall':
+
+  SELECTABLE FEATURES:
+  QuilvynUtils.getKeys(SRD35.SCHOOLS).map(x => School Specialization ( + x + ):Specialization).join(,) + ,
+  QuilvynUtils.getKeys(SRD35.SCHOOLS).map(x => School Opposition ( + x + ):Opposition).join(,) +
+  Animal Fury, Clear Mind, Fearless Rage, Guarded Stance,
+  Increased Damage Reduction, Internal Fortitude,
+  Knockback, Low-Light Rage, Mighty Swing, Moment Of Clarity, Night Vision,
+  No Escape, Quick Reflexes, Raging Climber, Raging Leaper,
+  Raging Swimmer, Renewed Vigor, Roused Anger, Scent Rage,
+  Superstition, Surprise Accuracy, Swift Foot, Terrifying Howl,
+  Unexpected Strike, Catch Off-Guard,
+  Deflect Arrows, Improved Grapple, Scorpion Style,
+  Gorgon's Fist, Improved Bull Rush, Improved Disarm,
+  Improved Trip, Medusa's Wrath, Snatch Arrows, Spring Attack,
+  Divine Weapon,
+  Far Shot,
+  Manyshot, Pinpoint Targeting,
+  Shot On The Run, Double Slice, Improved Shield Bash, Quick Draw,
+  Two-Weapon Defense,
+  Two-Weapon Rend, Bleeding Attack, Combat Trick,
+  Fast Stealth, Finesse Rogue, Ledge Walker, Minor Magic, Quick Disable,
+  Resiliency, Rogue Crawl, Slow Reactions, Stand Up, Surprise Attack,
+  Trap Spotter, Rogue Weapon Training, Crippling Strike, Defensive Roll,
+  Feat Bonus, Improved Evasion, Skill Mastery, Slippery Mind,
+  Major Magic, Dispelling Attack,
+  Bonded Object,
+  Bonded Object,
+  Applicable Knowledge, Instant Mastery, More Newfound Arcana,
+  Newfound Arcana, Secret Health, Secret Knowledge Of Avoidance,
+  Secrets Of Inner Strength, The Lore Of True Stamina, Weapon Trick,
+  Bleeding Attack, Combat Trick, Fast Stealth, Finesse Rogue, Ledge Walker,
+  Major Magic, Minor Magic, Quick Disable, Resiliency, Rogue Crawl,
+  Slow Reactions, Stand Up, Surprise Attack, Trap Spotter,
+  Rogue Weapon Training, Crippling Strike, Defensive Roll, Dispelling Attack,
+  Feat Bonus, Improved Evasion, Skill Mastery, Slippery Mind
+
+  FEATS:
+  Alignment Channel (Chaos), Alignment Channel (Evil),
+  Alignment Channel (Good), Alignment Channel (Law),
+  Elemental Channel (Air), Elemental Channel (Earth),
+  Elemental Channel (Fire), Elemental Channel (Water),
+
+  Bleeding Critical, Blinding Critical, Deafening Critical, Exhausting Critical,
+  Sickening Critical, Staggering Critical, Tiring Critical,
+
+  Empower Spell, Enlarge Spell, Eschew Materials, Heighten Spell,
+  Maximize Spell, Silent Spell, Widen Spell,
+
+  Exotic Weapon Proficiency (%exoticWeapon), Heavy Armor Proficiency,
+  Light Armor Proficiency, Martial Weapon Proficiency (%martialWeapon),
+  Medium Armor Proficiency, Shield Proficiency, Simple Weapon Proficiency,
+  Tower Shield Proficiency,
+
+  Great Fortitude, Improved Great Fortitude, Improved Iron Will,
+  Improved Lightning Reflexes, Iron Will, Lightning Reflexes,
+
+  Acrobatic, Agile Maneuvers, Arcane Strike, Athletic, Augment Summoning,
+  Blind-Fight, Catch Off-Guard, Channel Smite, Cleave, Combat Casting,
+  Combat Expertise, Command Undead, Critical Focus, Critical Mastery,
+  Dazzling Display, Deadly Stroke, Deceitful, Defensive Combat Training,
+  Deflect Arrows, Diehard, Disruptive, Double Slice, Endurance, Extra Channel,
+  Extra Ki, Extra Lay On Hands, Extra Mercy, Extra Performance, Extra Rage,
+  Far Shot, Fleet, Gorgon's Fist, Great Cleave, Greater Bull Rush,
+  Greater Disarm, Greater Feint, Greater Grapple, Greater Overrun,
+  Greater Penetrating Strike, Greater Shield Focus,
+  Greater Spell Focus (%school), Greater Spell Penetration, Greater Sunder,
+  Greater Trip, Greater Vital Strike, Improved Bull Rush, Improved Channel,
+  Improved Counterspell, Improved Disarm, Improved Familiar, Improved Grapple,
+  Improved Overrun, Improved Shield Bash, Improved Sunder, Improved Trip,
+  Improved Unarmed Strike, Improved Vital Strike, Lightning Stance, Lunge,
+  Magical Aptitude, Manyshot, Medusa's Wrath, Mounted Archery, Mounted Combat,
+  Natural Spell, Nimble Moves, Penetrating Strike, Persuasive,
+  Pinpoint Targeting, Power Attack, Quick Draw, Quicken Spell,
+  Rapid Reload (Hand), Rapid Reload (Heavy), Rapid Reload (Light),
+  Ride-By Attack, Scorpion Style, Selective Channeling, Shatter Defenses,
+  Shield Focus, Shield Master, Shield Slam, Shot On The Run,
+  Snatch Arrows, Spell Focus (%school), Spell Mastery, Spell Penetration,
+  Spellbreaker, Spirited Charge, Spring Attack, Stand Still, Stealthy,
+  Step Up, Still Spell, Strike Back, Stunning Critical, Stunning Fist,
+  Toughness, Trample, Two-Weapon Defense, Two-Weapon Rend, Unseat,
+  Vital Strike, Weapon Finesse, Wind Stance
+
+  SPELLS:
+  Acid Fog, Aid, Air Walk, Alarm, Align Weapon, Analyze Dweomer,
+  Animal Messenger, Animal Shapes, Animal Trance, Animate Plants,
+  Antilife Shell, Antimagic Field, Antipathy, Antiplant Shell, Arcane Lock,
+  Arcane Sight, Astral Projection, Atonement, Augury, Awaken, Bane, Barkskin,
+  Binding, Black Tentacles, Blasphemy, Bleed, Bless Water, Bless Weapon,
+  Bless, Blight, Blink, Blur, Break Enchantment, Breath Of Life, Calm Animals,
+  Calm Emotions, Changestaff, Chaos Hammer, Charm Animal, Charm Monster,
+  Charm Person, Chill Metal, Chill Touch, Circle Of Death, Clenched Fist,
+  Cloak Of Chaos, Clone, Color Spray, Command Plants, Command Undead, Command,
+  Commune With Nature, Commune, Consecrate, Contact Other Plane, Contagion,
+  Contingency, Continual Flame, Control Plants, Control Undead, Control Water,
+  Control Weather, Control Winds, Create Food And Water, Create Greater Undead,
+  Create Undead, Creeping Doom, Crushing Despair, Crushing Hand, Curse Water,
+  Daylight, Daze Monster, Death Knell, Death Ward, Deathwatch, Deep Slumber,
+  Delay Poison, Demand, Desecrate, Destruction, Detect Animals Or Plants,
+  Detect Chaos, Detect Evil, Detect Good, Detect Law, Detect Scrying,
+  Detect Secret Doors, Detect Snares And Pits, Detect Undead, Dictum,
+  Dimension Door, Dimensional Anchor, Dimensional Lock, Discern Lies,
+  Discern Location, Dispel Chaos, Dispel Evil, Dispel Good, Dispel Law,
+  Displacement, Disrupting Weapon, Divine Favor, Divine Power, Dominate Animal,
+  Dominate Monster, Dominate Person, Doom, Dream, Elemental Swarm,
+  Energy Drain, Enervation, Enthrall, Entropic Shield, Erase, Ethereal Jaunt,
+  Expeditious Retreat, Explosive Runes, Eyebite, Fabricate, Faerie Fire,
+  False Life, False Vision, Feather Fall, Feeblemind, Find The Path,
+  Find Traps, Fire Seeds, Fire Shield, Fire Trap, Flame Arrow, Flame Blade,
+  Flesh To Stone, Floating Disk, Fog Cloud, Forbiddance, Forcecage,
+  Forceful Hand, Foresight, Freedom Of Movement, Freedom, Gaseous Form, Gate,
+  Geas/Quest, Gentle Repose, Ghoul Touch, Giant Form I, Giant Form II,
+  Glibness, Glitterdust, Globe Of Invulnerability, Good Hope, Goodberry,
+  Grasping Hand, Grease, Greater Arcane Sight, Greater Command,
+  Greater Heroism, Greater Magic Fang, Greater Magic Weapon,
+  Greater Planar Ally, Greater Prying Eyes, Greater Restoration,
+  Greater Shadow Conjuration, Greater Shadow Evocation, Greater Spell Immunity,
+  Guards And Wards, Gust Of Wind, Hallow, Hallucinatory Terrain, Halt Undead,
+  Harm, Haste, Heal Mount, Heal, Helping Hand, Heroes' Feast, Heroism,
+  Hide From Animals, Hide From Undead, Hideous Laughter, Hold Animal,
+  Hold Monster, Hold Person, Hold Portal, Holy Aura, Holy Smite, Holy Sword,
+  Holy Word, Horrid Wilting, Hypnotic Pattern, Hypnotism, Identify,
+  Illusory Script, Illusory Wall, Imbue With Spell Ability, Implosion,
+  Imprisonment, Inflict Critical Wounds, Inflict Light Wounds,
+  Inflict Moderate Wounds, Inflict Serious Wounds, Insanity, Insect Plague,
+  Instant Summons, Interposing Hand, Invisibility Purge, Iron Body, Ironwood,
+  Irresistible Dance, Jump, Keen Edge, Knock, Legend Lore, Lesser Geas,
+  Lesser Globe Of Invulnerability, Lesser Restoration, Levitate, Liveoak,
+  Locate Creature, Longstrider, Mage Armor, Mage's Disjunction,
+  Mage's Faithful Hound, Mage's Lucubration, Mage's Magnificent Mansion, 
+  Mage's Private Sanctum, Mage's Sword, Magic Aura, Magic Circle Against Chaos,
+  Magic Circle Against Evil, Magic Circle Against Good,
+  Magic Circle Against Law, Magic Fang, Magic Jar, Magic Mouth, Magic Stone,
+  Magic Vestment, Magic Weapon, Major Creation, Major Image, Make Whole,
+  Mark Of Justice, Mass Charm Monster, Mass Heal, Mass Hold Monster,
+  Mass Hold Person, Mass Inflict Critical Wounds, Mass Inflict Light Wounds, 
+  Mass Inflict Moderate Wounds, Mass Inflict Serious Wounds, Mass Suggestion,
+  Maze, Meld Into Stone, Mind Blank, Mind Fog, Minor Creation, Minor Image,
+  Miracle, Mirage Arcana, Mirror Image, Misdirection, Mislead,
+  Mnemonic Enhancer, Modify Memory, Moment Of Prescience, Mount, Move Earth,
+  Neutralize Poison, Nightmare, Nondetection, Obscure Object, Obscuring Mist,
+  Order's Wrath, Overland Flight, Pass Without Trace, Passwall, Permanency,
+  Permanent Image, Persistent Image, Phantasmal Killer, Phantom Steed,
+  Phantom Trap, Phase Door, Planar Ally, Poison, Polymorph Any Object,
+  Power Word Blind, Power Word Kill, Power Word Stun, Prayer, Prismatic Sphere,
+  Prismatic Spray, Prismatic Wall, Produce Flame, Programmed Image,
+  Project Image, Protection From Arrows, Protection From Chaos,
+  Protection From Energy, Protection From Evil, Protection From Good,
+  Protection From Law, Protection From Spells, Prying Eyes, Pyrotechnics,
+  Quench, Rage, Rainbow Pattern, Raise Dead, Ray Of Enfeeblement,
+  Ray Of Exhaustion, Refuge, Regenerate, Reincarnate,
+  Remove Blindness/Deafness, Remove Curse, Remove Disease, Remove Fear,
+  Remove Paralysis, Repel Metal Or Stone, Repel Vermin, Repel Wood, Repulsion,
+  Resilient Sphere, Resist Energy, Restoration, Reverse Gravity,
+  Righteous Might, Rope Trick, Rusting Grasp, Scare, Scintillating Pattern,
+  Screen, Sculpt Sound, Secret Chest, Secret Page, Secure Shelter,
+  See Invisibility, Seeming, Sending, Sepia Snake Sigil, Sequester, Shades,
+  Shadow Conjuration, Shadow Evocation, Shadow Walk, Shambler, Shield Of Faith,
+  Shield Of Law, Shield Other, Shield, Shillelagh, Shocking Grasp, Shrink Item,
+  Silent Image, Simulacrum, Slay Living, Sleep, Sleet Storm, Slow, Snare,
+  Soften Earth And Stone, Solid Fog, Song Of Discord, Soul Bind,
+  Speak With Dead, Speak With Plants, Spectral Hand, Spell Immunity,
+  Spell Resistance, Spell Turning, Spellstaff, Spike Growth, Spike Stones,
+  Spiritual Weapon, Stabilize, Statue, Status, Stinking Cloud, Stone Shape,
+  Stone Tell, Stone To Flesh, Stoneskin, Suggestion, Summon Swarm,
+  Symbol Of Death, Symbol Of Fear, Symbol Of Insanity, Symbol Of Pain,
+  Symbol Of Persuasion, Symbol Of Sleep, Symbol Of Stunning,
+  Symbol Of Weakness, Sympathetic Vibration, Sympathy, Telekinetic Sphere,
+  Telepathic Bond, Temporal Stasis, Tiny Hut, Touch Of Idiocy, Transformation,
+  Transmute Metal To Wood, Transmute Mud To Rock, Transmute Rock To Mud,
+  Transport Via Plants, Trap The Soul, Tree Shape, Tree Stride, True Seeing,
+  True Strike, Undeath To Death, Undetectable Alignment, Unhallow, Unholy Aura,
+  Unholy Blight, Unseen Servant, Vampiric Touch, Veil, Ventriloquism, Vision,
+  Wail Of The Banshee, Warp Wood, Water Breathing, Water Walk,
+  Waves Of Exhaustion, Waves Of Fatigue, Weird, Whirlwind, Whispering Wind,
+  Wind Walk, Wind Wall, Wood Shape, Word Of Chaos, Word Of Recall
+
+  WEAPONS
+  Dire Flail, Dwarven Urgosh, Dwarven Waraxe, Elven Curve Blade,
+  Gnome Hooked Hammer, Halfling Sling Staff, Heavy Pick, Improvised, Kama,
+  Kukri, Light Hammer, Light Pick, Longspear, Nunchaku, Orc Double Axe,
+  Sai, Siangham, Two-Bladed Sword
+
 */
 
 PF4SW.CONVERSION_MAP = {
@@ -2643,29 +2388,36 @@ PF4SW.CONVERSION_MAP = {
   'constitution':'Action=attribute Target=vigorAllocation',
   'deity':'',
   'dexterity':'Action=attribute Target=agilityAllocation',
-  'experience':'Action=drop',
-  'experienceTrack':'Action=drop',
+  'experience(Track)?':'Action=drop',
   'faction':'',
-  'favoredClassHitPoints':'Action=drop',
-  'favoredClassSkillPoints':'Action=drop',
-  'feats.(Alertness|Combat Reflexes|Jack-Of-All-Trades)':'Target=edges.$1',
+  'favoredClass(Hit|Skill)Points':'Action=drop',
+  'feats.(Alertness|Combat Reflexes)':'Target=edges.$1',
   'feats.Acrobatic Steps':'Target="edges.Free Runner"',
   'feats.Animal Affinity':'Target="edges.Beast Bond"',
+  'feats.Arcane Armor (Mastery|Training)':'Target="edges.Arcane Armor"',
+  'feats.(Brew Potion|Craft .*|Forge Ring|Scribe Scroll)':
+    'Target=edges.Artificer',
+  'feats.(Deadly Aim|Point-Blank Shot)':'Target="edges.Dead Shot"',
   'feats.Deft Hands':'Target=edges.Thief',
+  'feats.Turn Undead':'Target="edges.Destroy Undead"',
   'feats.Dodge':'Target="edges.Combat Acrobat"',
   'feats.Extend Spell':'Target=edges.Concentration',
+  'feats.Greater Weapon (Focus|Specialization) .(.*).':
+    'Target="edges.Improved Trademark Weapon ($2)"',
   'feats.Improved Feint':'Target=edges.Feint',
   'feats.Improved Initiative':'Target=edges.Quick',
-  'feats.(Improvised Weapon Mastery|Throw Anything)':'Target="edges.Improvisational Fighter"',
+  'feats.(Improvised Weapon Mastery|Throw Anything)':
+    'Target="edges.Improvisational Fighter"',
   'feats.Intimidating Prowess':'Target=edges.Menacing',
-  'feats.Iron Will':'Target="edges.Strong Willed"',
-  'feats.(Deadly Aim|Point-Blank Shot)':'Target="edges.Dead Shot"',
-  'feats.Precise Shot':'Target=edges.Marksman',
+  'feats.Leadership':'Target=edges.Command',
+  'feats.Mobility':'Target=edges.Exraction',
+  'feats.(Improved ?)Precise Shot':'Target=edges.Marksman',
   'feats.Rapid Shot':'Target="edges.Rapid Fire"',
   'feats.Run':'Target=edges.Fleet-Footed',
   'feats.Self-Sufficient':'Target=edges.Woodsman',
-  'feats.Skill Focus .(.*).':'Target="edges.Professional ($1)"',
-  'feats.Two-Weapon Fighting':'Target=edges.Ambidextrous',
+  'feats.(Master Craftsman|Skill Focus) .(.*).':
+    'Target="edges.Professional ($2)"',
+  'feats.(Greater |Improved )?Two-Weapon Fighting':'Target=edges.Ambidextrous',
   'feats.(Improved Critical|Weapon Focus|Weapon Specialization) .(.*).':
     'Target="edges.Trademark Weapon ($2)"',
   'feats.Whirlwind Attack':'Target=edges.Sweep',
@@ -2674,9 +2426,8 @@ PF4SW.CONVERSION_MAP = {
   'hitPoints':'Action=drop',
   'intelligence':'Action=attribute Target=smartsAllocation',
   'languages.*':'',
-  '(levels|prestige)\\.(.*)':'Target=edges.$2 Value=1',
-  '(levels|prestige)\\.(..*)':'Target=concept Value=$2',
-  '(levels|prestige)\\..*':'Action=sum target=advances',
+  '(levels|prestige)\\.(.*)':
+    'Action=copy,copy,sum Target=edges.$2,concept,advances Value=1,$2,',
   'name':'',
   'notes':'',
   'origin':'',
@@ -2684,11 +2435,10 @@ PF4SW.CONVERSION_MAP = {
   'potions\\..*':'',
   'race':'',
   'scrolls\\..*':'',
-  'selectableFeatures.(Powerful Blow|Intimidating Glare|Strength Surge|Countersong|Dirge Of Doom|Inspire Heroics|Opportunist|Familiar)':
+  'selectableFeatures.(Combat Reflexes|Familiar|Intimidating Glare|Mercy|Opportunist|Powerful Blow|Strength Surge)':
     'Target=edges.$1',
   'selectableFeatures.*Animal Companion':'Target="edges.Beast Master"',
-  'selectableFeatures.*Bloodline (.*)':'Target="edges.$1 Bloodline"',
-  'selectableFeatures.*(Combat Reflexes|Familiar|Mercy)':'Target=edges.$1',
+  'selectableFeatures.*Bloodline (\w+)':'Target="edges.$1 Bloodline"',
   'selectableFeatures.*Combat Style .Archery.':'Target="edges.Dead Shot"',
   'selectableFeatures.*Combat Style .Two-Weapon Combat.':
     'Target=edges.Ambidextrous',
@@ -2696,14 +2446,23 @@ PF4SW.CONVERSION_MAP = {
   'selectableFeatures.*Dodge':'Target="edges.Combat Acrobat"',
   'selectableFeatures.*Divine Mount':'Target=edges.Mount',
   'selectableFeatures.*Improved Feint':'Target=edges.Feint',
-  'selectableFeatures.*Intimidating Glare':'Target=edges.Menacing',
-  'selectableFeatures.*([\\w\\s]+ Domain)':
+  'selectableFeatures.*(Air|Earth|Fire|Water) Domain':
+    'Target="edges.Arcane Background (Elemental Domain)"',
+  'selectableFeatures.*(Animal|Plant|Weather) Domain':
+    'Target="edges.Arcane Background (Nature Domain)"',
+  'selectableFeatures.*Community Domain':
+    'Target="edges.Arcane Background (Civilization Domain)"',
+  'selectableFeatures.*((Death|Destruction|Glory|Knowledge|Luck|Magic|Protection|Strength|Sun|Travel|Trickery|War) Domain)':
     'Target="edges.Arcane Background ($1)"',
+  'selectableFeatures.*(Artifice|Chaos|Charm|Darkness|Evil|Good|Healing|Law|Liberation|Madness|Nobility|Repose|Rune) Domain':
+    'Action=drop',
+  'selectableFeatures.*Mobility':'Target=edges.Exraction',
   'selectableFeatures.*Point-Blank Shot':'Target="edges.Dead Shot"',
-  'selectableFeatures.*Precise Shot':'Target=edges.Marksman',
+  'selectableFeatures.*(Improved )?Precise Shot':'Target=edges.Marksman',
   'selectableFeatures.*Rapid Shot':'Target="edges.Rapid Fire"',
   'selectableFeatures.*Throw Anything':'Target="edges.Improvisational Fighter"',
-  'selectableFeatures.*Two-Weapon Fighting':'Target=edges.Ambidextrous',
+  'selectableFeatures.*(Greater |Improved )?Two-Weapon Fighting':
+    'Target=edges.Ambidextrous',
   'skills.(Acrobatics|Climb|Swim)':
     'Action=skill Target=skillAllocation.Athletics',
   'skills.Appraise':'Action=skill Target="skillAllocation.Common Knowledge"',
@@ -2788,9 +2547,18 @@ PF4SW.CONVERSION_MAP = {
   'traits.Courageous':'Target=edges.Brave',
   'traits.*':'Action=drop',
   'strength':'Action=attribute Target=strengthAllocation',
-  'weapons.Longbow':'Target="weapons.Long Bow"',
-  'weapons.Longsword':'Target="weapons.Long Sword"',
-  'weapons\\.[^L].*':'',
+  'weapons.(Dart|.*Gauntlet|.* Shield|Spiked Armor)':'Action=drop',
+  'weapons.(Battle|Great|Hand)axe':'Target="weapons.$1 Axe"',
+  'weapons.Club':'Target="weapons.Light Club"',
+  'weapons.Composite (Long|Short)bow':'Target="weapons.Composite Bow"',
+  'weapons.Greatclub':'Target="weapons.Heavy Club"',
+  'weapons.(Great|Long)sword':'Target="weapons.$1 Sword"',
+  'weapons.(Long|Short)bow':'Target="weapons.$1 Bow"',
+  'weapons.Punching Dagger':'Target=weapons.Dagger',
+  'weapons.Repeating (Heavy|Light) Crossbow':'Target="$1 Repeating Crossbow"',
+  'weapons.Shortspear':'Target="weapons.Short Spear"',
+  'weapons.Throwing Axe':'Target="weapons.Hand Axe"',
+  'weapons.*':'',
   'wisdom':'Action=attribute Target=spiritAllocation'
 };
 
@@ -2820,72 +2588,81 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         var matchInfo = attr.match(pat);
         if(!matchInfo)
           continue;
-        action =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Action')||'copy';
-        target =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Target') || attr;
-        newValue =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Value') ||
-          attributes[attr];
-        for(var i = 1; i < matchInfo.length; i++) {
-          target = target.replaceAll('$' + i, matchInfo[i]);
-          if(typeof(newValue) === 'string')
-            newValue = newValue.replaceAll('$' + i, matchInfo[i]);
-        }
-        if(action == 'alignment') {
-          newValue = newValue.replace(/Lawful |Chaotic |Neutral /i, '');
-        } else if(action == 'armor') {
-          target =
-            newValue == 'Padded' ? 'armor.None' :
-            newValue.match(/Leather|Hide/) ? 'armor.Leather Jacket' :
-            newValue.match(/Chain/) ? 'armor.Chain Shirt' :
-            newValue.match(/Splint|Banded|Plate/i) ? 'armor.Plate Breastplate' :
-            ('armor.' + newValue);
-          newValue = 1;
-        } else if(action == 'attribute') {
-          // PEGINC ZADMAR SWADE
-          //  3-6    3-8    d4
-          //  7-11   9-13   d6
-          //  12-14  14-15  d8
-          //  15-16  16-17  d10
-          //  17-18  18     d12
-          newValue = newValue<=8 ? 0 : newValue<=13 ? 1 : newValue<=15 ? 2 :
-                     newValue<=17 ? 3 : 4;
-        } else if(action == 'charisma') {
-          newValue = 1;
-          if(attribute[attr] <= 4)
-            target = 'hindrances.Ugly+';
-          else if(attribute[target] <= 7)
-            target = 'hindrances.Ugly';
-          else if(attribute[target] >= 16)
+        var actions =
+          QuilvynUtils.getAttrValueArray(PF4SW.CONVERSION_MAP[pat], 'Action');
+        var targets =
+          QuilvynUtils.getAttrValueArray(PF4SW.CONVERSION_MAP[pat], 'Target');
+        var values =
+          QuilvynUtils.getAttrValueArray(PF4SW.CONVERSION_MAP[pat], 'Value');
+        if(actions.length == 0)
+          actions.push('copy');
+        for(var i = 0; i < actions.length; i++) {
+          action = actions[i];
+          target = targets[i] || attr;
+          newValue = values[i] || attributes[attr];
+          for(var j = 1; j < matchInfo.length; j++) {
+            target = target.replaceAll('$' + j, matchInfo[j]);
+            if(typeof(newValue) === 'string')
+              newValue = newValue.replaceAll('$' + j, matchInfo[j]);
+          }
+          if(action == 'alignment') {
+            newValue = newValue.replace(/Lawful |Chaotic |Neutral /i, '');
+          } else if(action == 'armor') {
+            target =
+              newValue == 'Padded' ? 'armor.None' :
+              newValue.match(/Leather|Hide/) ? 'armor.Leather Jacket' :
+              newValue.match(/Chain/) ? 'armor.Chain Shirt' :
+              newValue.match(/Splint|Banded|Plate/i)?'armor.Plate Breastplate' :
+              ('armor.' + newValue);
             newValue = 1;
-          else
-            action = 'drop';
-        } else if(action == 'copy') {
-          if(attr == 'shield' && newValue == 'Buckler')
-            newValue = 'Small';
-        } else if(action == 'skill') {
-          // PEGINC SWADE
-          //  1-3    d4
-          //  4-6    d6
-          //  7-9    d8
-          //  10-13  d10
-          //  14-16  d12
-          //  17-20  d12+1
-          newValue =
-            newValue <= 0 ? 0 : newValue <= 3 ? 1 : newValue <= 6 ? 2 :
-            newValue <= 9 ? 3 : newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
-          if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Stealth/))
-            newValue -= 1;
-          newValue = Math.max(newValue, newAttributes[target] || 0);
-        } else if(action == 'sum') {
-          newValue = (newValue - 0) + (newAttributes[target] || 0) - 0;
+          } else if(action == 'attribute') {
+            // PEGINC ZADMAR SWADE
+            //  3-6    3-8    d4
+            //  7-11   9-13   d6
+            //  12-14  14-15  d8
+            //  15-16  16-17  d10
+            //  17-18  18     d12
+            newValue = newValue<=8 ? 0 : newValue<=13 ? 1 : newValue<=15 ? 2 :
+                       newValue<=17 ? 3 : 4;
+          } else if(action == 'charisma') {
+            newValue = 1;
+            if(attribute[attr] <= 4)
+              target = 'hindrances.Ugly+';
+            else if(attribute[target] <= 7)
+              target = 'hindrances.Ugly';
+            else if(attribute[target] >= 16)
+              newValue = 1;
+            else
+              action = 'drop';
+          } else if(action == 'copy') {
+            if(attr == 'shield' && newValue == 'Buckler')
+              newValue = 'Small';
+          } else if(action == 'skill') {
+            // PEGINC SWADE
+            //  1-3    d4
+            //  4-6    d6
+            //  7-9    d8
+            //  10-13  d10
+            //  14-16  d12
+            //  17-20  d12+1
+            newValue =
+              newValue <= 0 ? 0 : newValue <= 3 ? 1 : newValue <= 6 ? 2 :
+              newValue <= 9 ? 3 : newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
+            if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Stealth/))
+              newValue -= 1;
+            newValue = Math.max(newValue, newAttributes[target] || 0);
+          } else if(action == 'sum') {
+            newValue = (newValue - 0) + (newAttributes[target] || 0) - 0;
+          }
+          if(action == 'drop') {
+            notes += 'Dropped ' + attr + ' value "' + attributes[attr] + '"\n';
+          } else {
+            newAttributes[target] = newValue;
+            if(target != 'notes')
+              notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
+          }
         }
-        if(action != 'drop') {
-          newAttributes[target] = newValue;
-          if(target != 'notes')
-            notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
-        }
+        break;
       }
       if(action == null)
         notes += 'No conversion action available for ' + attr + '= "' + attributes[attr] + '"\n';
