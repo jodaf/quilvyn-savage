@@ -1148,113 +1148,168 @@ PF4SW.HINDRANCES =
   Object.assign({}, SWADE.HINDRANCES, PF4SW.HINDRANCES_ADDED);
 delete PF4SW.HINDRANCES['Doubting Thomas'];
 delete PF4SW.HINDRANCES['Yellow+'];
-PF4SW.POWERS_ADDED = {
+PF4SW.POWERS_CHANGES = {
+  'Arcane Protection':'School=Abjuration',
+  'Banish':'School=Abjuration',
+  'Barrier':
+    'School=Conjuration ' +
+    'Description=' +
+      '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
+  'Beast Friend':'School=Enchantment',
+  'Blast':'School=Evocation',
+  'Blind':'School=Necromancy',
+  'Bolt':'School=Evocation',
+  'Boost/Lower Trait':'School=Transmutation',
+  'Burrow':'School=Conjuration',
+  'Burst':'School=Evocation',
+  'Confusion':
+    'School=Enchantment ' +
+    'PowerPoints=1 ' +
+    'Description=' +
+      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
+  'Damage Field':'School=Abjuration',
+  'Darksight':'School=Transmutation',
+  'Deflection':
+    'School=Abjuration ' +
+    'PowerPoints=2 ' +
+    'Description=' +
+      '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
+  'Detect/Conceal Arcana':'School=Divination',
+  'Disguise':'School=Illusion',
+  'Dispel':
+    'School=Abjuration ' +
+    'Advances=0 ' +
+    'Description=' +
+      '"End targeted power (Arcane skill neg)"',
+  'Divination':
+    'School=Divination ' +
+    'Advances=4',
+  'Drain Power Points':'School=Necromancy',
+  'Elemental Manipulation':'School=Transmutation',
+  'Entangle':'School=Transmutation',
+  'Environmental Protection':
+    'School=Abjuration ' +
+    'Description=' +
+      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
+  'Farsight':'School=Transmutation',
+  'Fear':'School=Necromancy',
+  'Fly':'School=Transmutation',
+  'Growth/Shrink':'School=Transmutation',
+  'Havoc':'School=Evocation',
+  'Healing':'School=Conjuration',
+  'Illusion':'School=Illusion',
+  'Intangibility':
+    'School=Transmutation ' +
+    'Advances=8',
+  'Invisibility':'School=Illusion',
+  'Light/Darkness':'School=Evocation',
+  'Mind Link':'School=Divination',
+  'Mind Reading':'School=Divination',
+  'Mind Wipe':'School=Enchantment',
+  'Object Reading':
+    'School=Divination ' +
+    'Description=' +
+      '"Self sees visions of history of target"',
+  'Protection':
+    'School=Abjuration ' +
+    'PowerPoints=2 ' +
+    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
+  'Puppet':'School=Enchantment',
+  'Relief':
+    'School=Conjuration ' +
+    'Description=' +
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
+  'Resurrection':
+    'School=Conjuration ' +
+    'PowerPoints=20',
+  'Shape Change':'School=Transmutation',
+  'Sloth/Speed':'School=Transmutation',
+  'Slumber':'School=Enchantment',
+  'Smite':'School=Transmutation',
+  'Sound/Silence':'School=Illusion',
+  'Speak Language':'School=Divination',
+  'Stun':'School=Evocation',
+  'Summon Ally':'School=Conjuration',
+  'Telekinesis':'School=Transmutation',
+  'Teleport':'School=Conjuration',
+  'Wall Walker':'School=Transmutation',
+  "Warrior's Gift":'School=Conjuration',
+
   'Baleful Polymorph':
     'Advances=8 ' +
     'PowerPoints="3+2/size change" ' +
     'Range=smarts ' +
+    'School=Transmutation ' +
     'Description=' +
       '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)"',
-  'Barrier':
-    SWADE.POWERS.Barrier + ' ' +
-    'Description=' +
-      '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
-  'Confusion':
-    SWADE.POWERS.Confusion + ' ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
   'Conjure Item':
     'Advances=0 ' +
     'PowerPoints=2/lb ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Creates mundane item that lasts 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=touch ' +
+    'School=Necromancy ' +
     'Description=' +
       '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
-  'Deflection':
-    SWADE.POWERS.Deflection + ' ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
-  'Dispel':
-    SWADE.POWERS.Dispel + ' ' +
-    'Advances=0 ' +
-    'Description=' +
-      '"End targeted power (Arcane skill neg)"',
-  'Divination':
-    SWADE.POWERS.Divination + ' ' +
-    'Advances=4',
-  'Environmental Protection':
-    SWADE.POWERS['Environmental Protection'] + ' ' +
-    'Description=' +
-      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
-  'Intagibility':
-    SWADE.POWERS.Intangibility + ' ' +
-    'Advances=8',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
+    'School=Divination ' +
     'Description=' +
       '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
-  'Object Reading':
-    SWADE.POWERS['Object Reading'] + ' ' +
-    'Description=' +
-      '"Self sees visions of history of target"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Summons extraplanar creature to perform service (Spirit neg)"',
   'Plane Shift':
     'Advances=8 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles of known location"',
-  'Protection':
-    SWADE.POWERS.Protection + ' ' +
-    'PowerPoints=2 ' +
-    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
-  'Relief':
-    SWADE.POWERS.Relief + ' ' +
-    'Description=' +
-      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
-  'Resurrection':
-    SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
-    'PowerPoints=20',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
+    'School=Enchantment ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
+    'School=Divination ' +
     'Description=' +
       '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=8 ' +
     'Range=self ' +
+    'School=Transmutation ' +
     'Description=' +
       '"Self gains additional turn"',
   'Wish':
     'Advances=16 ' +
     'PowerPoints=20 ' +
     'Range=smarts ' +
+    'School=Universal ' +
     'Description=' +
       '"Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)"'
 };
-PF4SW.POWERS = Object.assign({}, SWADE.POWERS, PF4SW.POWERS_ADDED);
+PF4SW.POWERS = {};
+for(var p in PF4SW.POWERS_CHANGES) {
+  PF4SW.POWERS[p] = (SWADE.POWERS[p] || '') + ' ' + PF4SW.POWERS_CHANGES[p];
+}
 PF4SW.RACES = {
   'Dwarf':
     'Features=' +
@@ -1401,10 +1456,8 @@ PF4SW.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines rules related to basic character identity. */
 PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
-  // Deitys has attributes that are unsupported by SWADE
-  QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(alignments, []);
-  SWADE.identityRules(rules, races, {}, concepts, {});
+  SWADE.identityRules(rules, races, {}, concepts, deitys);
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
@@ -1510,7 +1563,8 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'School')
     );
   else if(type == 'Race' || type == 'Ancestry') {
     PF4SW.raceRules(rules, name,
@@ -1599,7 +1653,7 @@ PF4SW.conceptRules = function(rules, name, attributes, edges, skills) {
  */
 PF4SW.deityRules = function(rules, name, alignment, domains) {
 
-  SWADE.deityRules(rules, name);
+  SWADE.deityRules(rules, name, alignment, domains);
 
   if(rules.deityStats == null) {
     rules.deityStats = {
@@ -2049,13 +2103,18 @@ PF4SW.languageRules = function(rules, name) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects.
+ * description of the power's effects and #school#, if defined, is the magic
+ * school that defines the power.
  */
 PF4SW.powerRules = function(
-  rules, name, advances, powerPoints, range, description
+  rules, name, advances, powerPoints, range, description, school
 ) {
+  if(!(school + '').match(/^(Abjuration|Conjuration|Divination|Enchantment|Evocation|Illusion|Necromancy|Transmutation|Universal)$/)) {
+    console.log('Bad school "' + school + '" for spell ' + name);
+    return;
+  }
   SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description);
+    (rules, name, advances, powerPoints, range, description, school);
   // No changes needed to the rules defined by base method
 };
 
@@ -2138,6 +2197,443 @@ PF4SW.choiceEditorElements = function(rules, type) {
   return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
 
+/*
+  'Acid Fog':
+  'Aid':
+  'Air Walk':
+  'Alarm':
+  'Align Weapon':
+  'Analyze Dweomer':
+  'Animal Messenger':
+  'Animal Shapes':
+  'Animal Trance':
+  'Animate Plants':
+  'Antilife Shell':
+  'Antimagic Field':
+  'Antipathy':
+  'Antiplant Shell':
+  'Arcane Lock':
+  'Arcane Sight':
+  'Astral Projection':
+  'Atonement':
+  'Augury':
+  'Awaken':
+  'Bane':
+  'Barkskin':
+  'Binding':
+  'Black Tentacles':
+  'Blasphemy':
+  'Bleed':
+  'Bless Water':
+  'Bless Weapon':
+  'Bless':
+  'Blight':
+  'Blink':
+  'Blur':
+  'Break Enchantment':
+  'Breath Of Life':
+  'Calm Animals':
+  'Calm Emotions':
+  'Changestaff':
+  'Chaos Hammer':
+  'Charm Animal':
+  'Charm Monster':
+  'Charm Person':
+  'Chill Metal':
+  'Chill Touch':
+  'Circle Of Death':
+  'Clenched Fist':
+  'Cloak Of Chaos':
+  'Clone':
+  'Color Spray':
+  'Command Plants':
+  'Command Undead':
+  'Command':
+  'Commune With Nature':
+  'Commune':
+  'Consecrate':
+  'Contact Other Plane':
+  'Contagion':
+  'Contingency':
+  'Continual Flame':
+  'Control Plants':
+  'Control Undead':
+  'Control Water':
+  'Control Weather':
+  'Control Winds':
+  'Create Food And Water':
+  'Create Greater Undead':
+  'Create Undead':
+  'Creeping Doom':
+  'Crushing Despair':
+  'Crushing Hand':
+  'Curse Water':
+  'Daylight':
+  'Daze Monster':
+  'Death Knell':
+  'Death Ward':
+  'Deathwatch':
+  'Deep Slumber':
+  'Delay Poison':
+  'Demand':
+  'Desecrate':
+  'Destruction':
+  'Detect Animals Or Plants':
+  'Detect Chaos':
+  'Detect Evil':
+  'Detect Good':
+  'Detect Law':
+  'Detect Scrying':
+  'Detect Secret Doors':
+  'Detect Snares And Pits':
+  'Detect Undead':
+  'Dictum':
+  'Dimension Door':
+  'Dimensional Anchor':
+  'Dimensional Lock':
+  'Discern Lies':
+  'Discern Location':
+  'Dispel Chaos':
+  'Dispel Evil':
+  'Dispel Good':
+  'Dispel Law':
+  'Displacement':
+  'Disrupting Weapon':
+  'Divine Favor':
+  'Divine Power':
+  'Dominate Animal':
+  'Dominate Monster':
+  'Dominate Person':
+  'Doom':
+  'Dream':
+  'Elemental Swarm':
+  'Energy Drain':
+  'Enervation':
+  'Enthrall':
+  'Entropic Shield':
+  'Erase':
+  'Ethereal Jaunt':
+  'Expeditious Retreat':
+  'Explosive Runes':
+  'Eyebite':
+  'Fabricate':
+  'Faerie Fire':
+  'False Life':
+  'False Vision':
+  'Feather Fall':
+  'Feeblemind':
+  'Find The Path':
+  'Find Traps':
+  'Fire Seeds':
+  'Fire Shield':
+  'Fire Trap':
+  'Flame Arrow':
+  'Flame Blade':
+  'Flesh To Stone':
+  'Floating Disk':
+  'Fog Cloud':
+  'Forbiddance':
+  'Forcecage':
+  'Forceful Hand':
+  'Foresight':
+  'Freedom Of Movement':
+  'Freedom':
+  'Gaseous Form':
+  'Gate':
+  'Geas/Quest':
+  'Gentle Repose':
+  'Ghoul Touch':
+  'Giant Form I':
+  'Giant Form II':
+  'Glibness':
+  'Glitterdust':
+  'Globe Of Invulnerability':
+  'Good Hope':
+  'Goodberry':
+  'Grasping Hand':
+  'Grease':
+  'Greater Arcane Sight':
+  'Greater Command':
+  'Greater Heroism':
+  'Greater Magic Fang':
+  'Greater Magic Weapon':
+  'Greater Planar Ally':
+  'Greater Prying Eyes':
+  'Greater Restoration':
+  'Greater Shadow Conjuration':
+  'Greater Shadow Evocation':
+  'Greater Spell Immunity':
+  'Guards And Wards':
+  'Gust Of Wind':
+  'Hallow':
+  'Hallucinatory Terrain':
+  'Halt Undead':
+  'Harm':
+  'Haste':
+  'Heal Mount':
+  'Heal':
+  'Helping Hand':
+  'Heroes\' Feast':
+  'Heroism':
+  'Hide From Animals':
+  'Hide From Undead':
+  'Hideous Laughter':
+  'Hold Animal':
+  'Hold Monster':
+  'Hold Person':
+  'Hold Portal':
+  'Holy Aura':
+  'Holy Smite':
+  'Holy Sword':
+  'Holy Word':
+  'Horrid Wilting':
+  'Hypnotic Pattern':
+  'Hypnotism':
+  'Identify':
+  'Illusory Script':
+  'Illusory Wall':
+  'Imbue With Spell Ability':
+  'Implosion':
+  'Imprisonment':
+  'Inflict Critical Wounds':
+  'Inflict Light Wounds':
+  'Inflict Moderate Wounds':
+  'Inflict Serious Wounds':
+  'Insanity':
+  'Insect Plague':
+  'Instant Summons':
+  'Interposing Hand':
+  'Invisibility Purge':
+  'Iron Body':
+  'Ironwood':
+  'Irresistible Dance':
+  'Jump':
+  'Keen Edge':
+  'Knock':
+  'Legend Lore':
+  'Lesser Geas':
+  'Lesser Globe Of Invulnerability':
+  'Lesser Restoration':
+  'Levitate':
+  'Liveoak':
+  'Locate Creature':
+  'Longstrider':
+  'Mage Armor':
+  'Mage\'s Disjunction':
+  'Mage\'s Faithful Hound':
+  'Mage\'s Lucubration':
+  'Mage\'s Magnificent Mansion':
+  'Mage\'s Private Sanctum':
+  'Mage\'s Sword':
+  'Magic Aura':
+  'Magic Circle Against Chaos':
+  'Magic Circle Against Evil':
+  'Magic Circle Against Good':
+  'Magic Circle Against Law':
+  'Magic Fang':
+  'Magic Jar':
+  'Magic Mouth':
+  'Magic Stone':
+  'Magic Vestment':
+  'Magic Weapon':
+  'Major Creation':
+  'Major Image':
+  'Make Whole':
+  'Mark Of Justice':
+  'Mass Charm Monster':
+  'Mass Heal':
+  'Mass Hold Monster':
+  'Mass Hold Person':
+  'Mass Inflict Critical Wounds':
+  'Mass Inflict Light Wounds':
+  'Mass Inflict Moderate Wounds':
+  'Mass Inflict Serious Wounds':
+  'Mass Suggestion':
+  'Maze':
+  'Meld Into Stone':
+  'Mind Blank':
+  'Mind Fog':
+  'Minor Creation':
+  'Minor Image':
+  'Miracle':
+  'Mirage Arcana':
+  'Mirror Image':
+  'Misdirection':
+  'Mislead':
+  'Mnemonic Enhancer':
+  'Modify Memory':
+  'Moment Of Prescience':
+  'Mount':
+  'Move Earth':
+  'Neutralize Poison':
+  'Nightmare':
+  'Nondetection':
+  'Obscure Object':
+  'Obscuring Mist':
+  'Order\'s Wrath':
+  'Overland Flight':
+  'Pass Without Trace':
+  'Passwall':
+  'Permanency':
+  'Permanent Image':
+  'Persistent Image':
+  'Phantasmal Killer':
+  'Phantom Steed':
+  'Phantom Trap':
+  'Phase Door':
+  'Planar Ally':
+  'Poison':
+  'Polymorph Any Object':
+  'Power Word Blind':
+  'Power Word Kill':
+  'Power Word Stun':
+  'Prayer':
+  'Prismatic Sphere':
+  'Prismatic Spray':
+  'Prismatic Wall':
+  'Produce Flame':
+  'Programmed Image':
+  'Project Image':
+  'Protection From Arrows':
+  'Protection From Chaos':
+  'Protection From Energy':
+  'Protection From Evil':
+  'Protection From Good':
+  'Protection From Law':
+  'Protection From Spells':
+  'Prying Eyes':
+  'Pyrotechnics':
+  'Quench':
+  'Rage':
+  'Rainbow Pattern':
+  'Raise Dead':
+  'Ray Of Enfeeblement':
+  'Ray Of Exhaustion':
+  'Refuge':
+  'Regenerate':
+  'Reincarnate':
+  'Remove Blindness/Deafness':
+  'Remove Curse':
+  'Remove Disease':
+  'Remove Fear':
+  'Remove Paralysis':
+  'Repel Metal Or Stone':
+  'Repel Vermin':
+  'Repel Wood':
+  'Repulsion':
+  'Resilient Sphere':
+  'Resist Energy':
+  'Restoration':
+  'Reverse Gravity':
+  'Righteous Might':
+  'Rope Trick':
+  'Rusting Grasp':
+  'Scare':
+  'Scintillating Pattern':
+  'Screen':
+  'Sculpt Sound':
+  'Secret Chest':
+  'Secret Page':
+  'Secure Shelter':
+  'See Invisibility':
+  'Seeming':
+  'Sending':
+  'Sepia Snake Sigil':
+  'Sequester':
+  'Shades':
+  'Shadow Conjuration':
+  'Shadow Evocation':
+  'Shadow Walk':
+  'Shambler':
+  'Shield Of Faith':
+  'Shield Of Law':
+  'Shield Other':
+  'Shield':
+  'Shillelagh':
+  'Shocking Grasp':
+  'Shrink Item':
+  'Silent Image':
+  'Simulacrum':
+  'Slay Living':
+  'Sleep':
+  'Sleet Storm':
+  'Slow':
+  'Snare':
+  'Soften Earth And Stone':
+  'Solid Fog':
+  'Song Of Discord':
+  'Soul Bind':
+  'Speak With Dead':
+  'Speak With Plants':
+  'Spectral Hand':
+  'Spell Immunity':
+  'Spell Resistance':
+  'Spell Turning':
+  'Spellstaff':
+  'Spike Growth':
+  'Spike Stones':
+  'Spiritual Weapon':
+  'Stabilize':
+  'Statue':
+  'Status':
+  'Stinking Cloud':
+  'Stone Shape':
+  'Stone Tell':
+  'Stone To Flesh':
+  'Stoneskin':
+  'Suggestion':
+  'Summon Swarm':
+  'Symbol Of Death':
+  'Symbol Of Fear':
+  'Symbol Of Insanity':
+  'Symbol Of Pain':
+  'Symbol Of Persuasion':
+  'Symbol Of Sleep':
+  'Symbol Of Stunning':
+  'Symbol Of Weakness':
+  'Sympathetic Vibration':
+  'Sympathy':
+  'Telekinetic Sphere':
+  'Telepathic Bond':
+  'Temporal Stasis':
+  'Tiny Hut':
+  'Touch Of Idiocy':
+  'Transformation':
+  'Transmute Metal To Wood':
+  'Transmute Mud To Rock':
+  'Transmute Rock To Mud':
+  'Transport Via Plants':
+  'Trap The Soul':
+  'Tree Shape':
+  'Tree Stride':
+  'True Seeing':
+  'True Strike':
+  'Undeath To Death':
+  'Undetectable Alignment':
+  'Unhallow':
+  'Unholy Aura':
+  'Unholy Blight':
+  'Unseen Servant':
+  'Vampiric Touch':
+  'Veil':
+  'Ventriloquism':
+  'Vision':
+  'Wail Of The Banshee':
+  'Warp Wood':
+  'Water Breathing':
+  'Water Walk':
+  'Waves Of Exhaustion':
+  'Waves Of Fatigue':
+  'Weird':
+  'Whirlwind':
+  'Whispering Wind':
+  'Wind Walk':
+  'Wind Wall':
+  'Wood Shape':
+  'Word Of Chaos':
+  'Word Of Recall':
+*/
+
 PF4SW.CONVERSION_MAP = {
   '_path':'Action=drop',
   '_timestamp':'Action=drop',
@@ -2164,6 +2660,7 @@ PF4SW.CONVERSION_MAP = {
   'feats.Intimidating Prowess':'Target=edges.Menacing',
   'feats.Iron Will':'Target="edges.Strong Willed"',
   'feats.(Deadly Aim|Point-Blank Shot)':'Target="edges.Dead Shot"',
+  'feats.Precise Shot':'Target=edges.Marksman',
   'feats.Rapid Shot':'Target="edges.Rapid Fire"',
   'feats.Run':'Target=edges.Fleet-Footed',
   'feats.Self-Sufficient':'Target=edges.Woodsman',
@@ -2191,16 +2688,19 @@ PF4SW.CONVERSION_MAP = {
     'Target=edges.$1',
   'selectableFeatures.*Animal Companion':'Target="edges.Beast Master"',
   'selectableFeatures.*Bloodline (.*)':'Target="edges.$1 Bloodline"',
-  'selectableFeatures.*(Combat Reflexes)':'Target=edges.$1',
+  'selectableFeatures.*(Combat Reflexes|Familiar|Mercy)':'Target=edges.$1',
+  'selectableFeatures.*Combat Style .Archery.':'Target="edges.Dead Shot"',
+  'selectableFeatures.*Combat Style .Two-Weapon Combat.':
+    'Target=edges.Ambidextrous',
+  'selectableFeatures.*Companion Bond':'Target="edges.Common Bond"',
   'selectableFeatures.*Dodge':'Target="edges.Combat Acrobat"',
   'selectableFeatures.*Divine Mount':'Target=edges.Mount',
-  'selectableFeatures.*Familiar':'Target=edges.Familiar',
   'selectableFeatures.*Improved Feint':'Target=edges.Feint',
   'selectableFeatures.*Intimidating Glare':'Target=edges.Menacing',
   'selectableFeatures.*([\\w\\s]+ Domain)':
     'Target="edges.Arcane Background ($1)"',
-  'selectableFeatures.*Mercy':'Target=edges.Mercy',
   'selectableFeatures.*Point-Blank Shot':'Target="edges.Dead Shot"',
+  'selectableFeatures.*Precise Shot':'Target=edges.Marksman',
   'selectableFeatures.*Rapid Shot':'Target="edges.Rapid Fire"',
   'selectableFeatures.*Throw Anything':'Target="edges.Improvisational Fighter"',
   'selectableFeatures.*Two-Weapon Fighting':'Target=edges.Ambidextrous',
@@ -2235,15 +2735,53 @@ PF4SW.CONVERSION_MAP = {
   'skills.Survival':'Action=skill Target=skillAllocation.Survival',
   'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
   'shield':'Action=copy',
-  "spells.(Bear's Endurance|Bull's Strength|Cat's Grace|Eagle's Splendor|Fox's Cunning|Owl's Wisdom)":'Target="powers.Boost/Lower Trait"',
-  'spells.Comprehend Languages':'Target="powers.Speak Language"',
+  'spells.*0':'Action=drop',
+  'spells.(Acid Arrow|Call Lightning|Disintegrate|Finger Of Death|Lightning Bolt|Magic Missile|Polar Ray|Scorching Ray|Searing Light|Sunbeam)':
+    'Target=powers.Bolt',
+  'spells.(Alter Self|Beast Shape|Disguise Self|Elemental Body|Form Of The Dragon|(Greater )?Polymorph|Plant Shape|Shapechange)':
+    'Target="powers.Shape Change"',
+  'spells.(Animal Growth|Diminish Plants|Giant Vermin|(Mass )?Enlarge Person|(Mass )?Reduce Person|Plant Growth|Reduce Animal)':
+    'Target=powers.Growth/Shrink',
+  'spells.Animate Dead':'Target=powers.Zombie',
+  'spells.(Animate Objects|Animate Rope|Telekinesis)':
+    'Target=spells.Telekinesis',
+  'spells.(Arcane Eye|Clairaudience/Clairvoyance|(Greater )?Scrying)':
+    'Target=powers.Scrying',
+  'spells.(Baleful Polymorph|Divination|Entangle|Fly|Plane Shift|Sanctuary|Time Stop)':
+    'Target=powers.$1',
+  'spells.(Banishment|Dismissal)':'Target=powers.Banish',
+  "spells.*(Bear's Endurance|Bull's Strength|Cat's Grace|Eagle's Splendor|Fox's Cunning|Owl's Wisdom)":'Target="powers.Boost/Lower Trait"',
+  'spells.Bestow Curse':'Target=powers.Curse',
+  'spells.(Blade Barrier|Wall Of (Fire|Force|Ice|Iron|Stone|Thorns)|Web)':
+    'Target=powers.Barrier',
+  'spells.Blindness/Deafness':'Target=powers.Blind',
+  'spells.(Burning Hands|Chain Lightning|Cone Of Cold|Delayed Blast Fireball|Fire Storm|Fireball|Flame Strike|Freezing Sphere|(Greater )?Glyph Of Warding|Meteor Swarm|Shatter|(Greater )?Shout|Sound Burst|Sunburst)':
+    'Target=powers.Blast',
+  'spells.(Cause )?Fear':'Target=powers.Fear',
+  'spells.(Cloudkill|Flaming Sphere|Ice Storm|Incendiary Cloud|Storm Of Vengeance)':
+    'Target="powers.Damage Field"',
+  'spells.(Comprehend Languages|Tongues)':'Target="powers.Speak Language"',
+  'spells.(Confusion|Lesser Confusion)':'Target=powers.Confusion',
   'spells.Cure.*Wounds':'Target=powers.Healing',
+  'spells.(Darkness|Deeper Darkness|Light)':'Target=powers.Light/Darkness',
+  'spells.Darkvision':'Target=powers.Darksight',
   'spells.Detect Magic':'Target="powers.Detect/Conceal Arcana"',
-  'spells.Dispel Magic':'Target=powers.Dispel',
+  'spells.Detect Thoughts':'Target="powers.Mind Reading"',
+  'spells.(Earthquake|Heat Metal)':'Target="powers.Elemental Manipulation"',
   'spells.Endure Elements':'Target="powers.Environmental Protection"',
-  'spells.Entangle':'Target=powers.Entangle',
-  'spells.Light':'Target=powers.Light/Darkness',
+  'spells.Etherealness':'Target=powers.Intangibility',
+  'spells.(Greater )?Dispel Magic':'Target=powers.Dispel',
+  'spells.((Greater )?Teleport|Teleport Object|Teleportation Circle)':
+    'Target=powers.Teleport',
+  'spells.(Mass )?Invisibility( Sphere)?':'Target=powers.Invisibility',
+  'spells.(Limited )?Wish':'Target=powers.Wish',
+  'spells.Locate Object':'Target=powers.Locate',
+  'spells.(Lesser |Greater )?Planar Binding':'Target="powers.Planar Binding"',
   'spells.Speak With Animals':'Target="powers.Beast Friend"',
+  'spells.Spider Climb':'Target="powers.Wall Walker"',
+  "spells.Summon (Monster|Nature's Ally)":'Target="powers.Summon Ally"',
+  'spells.(True )?Resurrection':'Target=powers.Resurrection',
+  'spells.(Zone Of )?Silence':'Target="powers.Sound/Silence"',
   'spells_filter':'Target=powers_filter',
   'traits.(Bad Reputation|Brute|Bully)':'Target=edges.Menacing',
   'traits.Charming':'Target=edges.Attractive',
