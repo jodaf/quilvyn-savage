@@ -79,9 +79,9 @@ PF4SW.CHOICES =
   SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x).concat('Alignment');
 // Put deity before edges so that we can randomize domain edge properly
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
-  ['convertFromPathfinder', 'deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
+  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.2.0';
+PF4SW.VERSION = '2.3.1.1';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -297,7 +297,7 @@ PF4SW.CONCEPTS_ADDED = {
   'Loremaster':
     'Edge=Wizard,Loremaster ' +
     'Attribute=Smarts ' +
-    'Skill=Occult',
+    'Skill=Academics',
   'Mystic Theurge':
     'Edge=Cleric,Wizard,"Mystic Theurge"',
   'Monk':
@@ -1148,113 +1148,170 @@ PF4SW.HINDRANCES =
   Object.assign({}, SWADE.HINDRANCES, PF4SW.HINDRANCES_ADDED);
 delete PF4SW.HINDRANCES['Doubting Thomas'];
 delete PF4SW.HINDRANCES['Yellow+'];
-PF4SW.POWERS_ADDED = {
+PF4SW.POWERS_CHANGES = {
+  'Arcane Protection':'School=Abjuration',
+  'Banish':'School=Abjuration',
+  'Barrier':
+    'School=Conjuration ' +
+    'Description=' +
+      '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
+  'Beast Friend':'School=Enchantment',
+  'Blast':'School=Evocation',
+  'Blind':'School=Necromancy',
+  'Bolt':'School=Evocation',
+  'Boost/Lower Trait':'School=Transmutation',
+  'Burrow':'School=Conjuration',
+  'Burst':'School=Evocation',
+  'Confusion':
+    'School=Enchantment ' +
+    'PowerPoints=1 ' +
+    'Description=' +
+      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
+  'Damage Field':'School=Abjuration',
+  'Darksight':'School=Transmutation',
+  'Deflection':
+    'School=Abjuration ' +
+    'PowerPoints=2 ' +
+    'Description=' +
+      '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
+  'Detect/Conceal Arcana':'School=Divination',
+  'Disguise':'School=Illusion',
+  'Dispel':
+    'School=Abjuration ' +
+    'Advances=0 ' +
+    'Description=' +
+      '"End targeted power (Arcane skill neg)"',
+  'Divination':
+    'School=Divination ' +
+    'Advances=4',
+  'Drain Power Points':'School=Necromancy',
+  'Elemental Manipulation':'School=Transmutation',
+  'Empathy':'School=Enchantment',
+  'Entangle':'School=Transmutation',
+  'Environmental Protection':
+    'School=Abjuration ' +
+    'Description=' +
+      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
+  'Farsight':'School=Transmutation',
+  'Fear':'School=Necromancy',
+  'Fly':'School=Transmutation',
+  'Growth/Shrink':'School=Transmutation',
+  'Havoc':'School=Evocation',
+  'Healing':'School=Conjuration',
+  'Illusion':'School=Illusion',
+  'Intangibility':
+    'School=Transmutation ' +
+    'Advances=8',
+  'Invisibility':'School=Illusion',
+  'Light/Darkness':'School=Evocation',
+  'Mind Link':'School=Divination',
+  'Mind Reading':'School=Divination',
+  'Mind Wipe':'School=Enchantment',
+  'Object Reading':
+    'School=Divination ' +
+    'Description=' +
+      '"Self sees visions of history of target"',
+  'Protection':
+    'School=Abjuration ' +
+    'PowerPoints=2 ' +
+    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
+  'Puppet':'School=Enchantment',
+  'Relief':
+    'School=Conjuration ' +
+    'Description=' +
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
+  'Resurrection':
+    'School=Conjuration ' +
+    'PowerPoints=20',
+  'Shape Change':'School=Transmutation',
+  'Sloth/Speed':'School=Transmutation',
+  'Slumber':'School=Enchantment',
+  'Smite':'School=Transmutation',
+  'Sound/Silence':'School=Illusion',
+  'Speak Language':'School=Divination',
+  'Stun':'School=Evocation',
+  'Summon Ally':'School=Conjuration',
+  'Telekinesis':'School=Transmutation',
+  'Teleport':'School=Conjuration',
+  'Wall Walker':'School=Transmutation',
+  "Warrior's Gift":'School=Conjuration',
+  'Zombie':'School=Necromancy',
+
   'Baleful Polymorph':
     'Advances=8 ' +
     'PowerPoints="3+2/size change" ' +
     'Range=smarts ' +
+    'School=Transmutation ' +
     'Description=' +
       '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)"',
-  'Barrier':
-    SWADE.POWERS.Barrier + ' ' +
-    'Description=' +
-      '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
-  'Confusion':
-    SWADE.POWERS.Confusion + ' ' +
-    'PowerPoints=1 ' +
-    'Description=' +
-      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
   'Conjure Item':
     'Advances=0 ' +
     'PowerPoints=2/lb ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Creates mundane item that lasts 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=touch ' +
+    'School=Necromancy ' +
     'Description=' +
       '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
-  'Deflection':
-    SWADE.POWERS.Deflection + ' ' +
-    'PowerPoints=2 ' +
-    'Description=' +
-      '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
-  'Dispel':
-    SWADE.POWERS.Dispel + ' ' +
-    'Advances=0 ' +
-    'Description=' +
-      '"End targeted power (Arcane skill neg)"',
-  'Divination':
-    SWADE.POWERS.Divination + ' ' +
-    'Advances=4',
-  'Environmental Protection':
-    SWADE.POWERS['Environmental Protection'] + ' ' +
-    'Description=' +
-      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
-  'Intagibility':
-    SWADE.POWERS.Intangibility + ' ' +
-    'Advances=8',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
+    'School=Divination ' +
     'Description=' +
       '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
-  'Object Reading':
-    SWADE.POWERS['Object Reading'] + ' ' +
-    'Description=' +
-      '"Self sees visions of history of target"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Summons extraplanar creature to perform service (Spirit neg)"',
   'Plane Shift':
     'Advances=8 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
+    'School=Conjuration ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles of known location"',
-  'Protection':
-    SWADE.POWERS.Protection + ' ' +
-    'PowerPoints=2 ' +
-    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
-  'Relief':
-    SWADE.POWERS.Relief + ' ' +
-    'Description=' +
-      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
-  'Resurrection':
-    SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
-    'PowerPoints=20',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
+    'School=Enchantment ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
+    'School=Divination ' +
     'Description=' +
       '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=8 ' +
     'Range=self ' +
+    'School=Transmutation ' +
     'Description=' +
       '"Self gains additional turn"',
   'Wish':
     'Advances=16 ' +
     'PowerPoints=20 ' +
     'Range=smarts ' +
+    'School=Universal ' +
     'Description=' +
       '"Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)"'
 };
-PF4SW.POWERS = Object.assign({}, SWADE.POWERS, PF4SW.POWERS_ADDED);
+PF4SW.POWERS = {};
+for(var p in PF4SW.POWERS_CHANGES) {
+  PF4SW.POWERS[p] = (SWADE.POWERS[p] || '') + ' ' + PF4SW.POWERS_CHANGES[p];
+}
 PF4SW.RACES = {
   'Dwarf':
     'Features=' +
@@ -1325,66 +1382,63 @@ delete PF4SW.SKILLS['Psionics'];
 delete PF4SW.SKILLS['Research'];
 delete PF4SW.SKILLS['Weird Science'];
 PF4SW.WEAPONS = {
-  'Unarmed':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
-    'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
   'Battle Axe':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
-  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
-  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
+  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
   'Dagger':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
-  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
   'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
   'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
+  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
+  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
   'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h AP=1',
   'Halberd':'Damage=Str+d8 MinStr=8 Weight=12 Category=2h AP=1',
-  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
-  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
-  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
+  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
+  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
+  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
   'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
-  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
+  'Heavy Repeating Crossbow':
+    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
+  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
+  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
+  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
+  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
+  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Light Repeating Crossbow':
+    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
+  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
+  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
   'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=2h AP=2',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
+  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
   'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
+  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h',
   'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
   'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
   'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
   'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
-  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
   'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
+  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
   'Spear':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h Range=3',
   'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
   'Staff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
-  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
   'Starknife':'Damage=Str+d4 MinStr=4 Weight=3 Category=1h Range=3 Parry=1',
-  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
-  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
-  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
-  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
   'Trident':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3 AP=1',
+  'Unarmed':'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
   'Warhammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h AP=1',
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
-
-  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
-  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
-  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
-  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
-  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
-  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
-  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
-  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
-  'Light Repeating Crossbow':
-    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
-  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
-  'Heavy Repeating Crossbow':
-    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
-  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
-  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
-  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4'
 };
 
 /* Defines the rules related to character attributes and description. */
@@ -1401,10 +1455,8 @@ PF4SW.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines rules related to basic character identity. */
 PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
-  // Deitys has attributes that are unsupported by SWADE
-  QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(alignments, []);
-  SWADE.identityRules(rules, races, {}, concepts, {});
+  SWADE.identityRules(rules, races, {}, concepts, deitys);
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
@@ -1510,7 +1562,8 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'School')
     );
   else if(type == 'Race' || type == 'Ancestry') {
     PF4SW.raceRules(rules, name,
@@ -1599,7 +1652,7 @@ PF4SW.conceptRules = function(rules, name, attributes, edges, skills) {
  */
 PF4SW.deityRules = function(rules, name, alignment, domains) {
 
-  SWADE.deityRules(rules, name);
+  SWADE.deityRules(rules, name, alignment, domains);
 
   if(rules.deityStats == null) {
     rules.deityStats = {
@@ -2049,13 +2102,18 @@ PF4SW.languageRules = function(rules, name) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects.
+ * description of the power's effects and #school#, if defined, is the magic
+ * school that defines the power.
  */
 PF4SW.powerRules = function(
-  rules, name, advances, powerPoints, range, description
+  rules, name, advances, powerPoints, range, description, school
 ) {
+  if(!(school + '').match(/^(Abjuration|Conjuration|Divination|Enchantment|Evocation|Illusion|Necromancy|Transmutation|Universal)$/)) {
+    console.log('Bad school "' + school + '" for spell ' + name);
+    return;
+  }
   SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description);
+    (rules, name, advances, powerPoints, range, description, school);
   // No changes needed to the rules defined by base method
 };
 
@@ -2138,113 +2196,6 @@ PF4SW.choiceEditorElements = function(rules, type) {
   return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
 
-PF4SW.CONVERSION_MAP = {
-  '_path':'Action=drop',
-  '_timestamp':'Action=drop',
-  'alignment':'Action=alignment',
-  'armor':'Action=copy Target=armor.%V',
-  'charisma':'Action=charisma',
-  'constitution':'Action=attribute Target=vigorAllocation',
-  'deity':'Action=copy',
-  'dexterity':'Action=attribute Target=agilityAllocation',
-  'experience':'Action=drop',
-  'experienceTrack':'Action=drop',
-  'faction':'Action=copy',
-  'favoredClassHitPoints':'Action=drop',
-  'favoredClassSkillPoints':'Action=drop',
-  'feats.Combat Reflexes':'Action=copy Target="edges.Combat Reflexes"',
-  'gender':'Action=copy',
-  'goodies.*':'Action=copy',
-  'hitPoints':'Action=drop',
-  'intelligence':'Action=attribute Target=smartsAllocation',
-  'languages.*':'Action=copy',
-  'levels.(.*)':'Action=set Target=edges.$1',
-  'levels.*':'Action=sum target=advances',
-  'name':'Action=copy',
-  'notes':'Action=copy',
-  'origin':'Action=copy',
-  'player':'Action=copy',
-  'potions.([^(]+)':'Action=copy Target=potions.$1',
-  'prestige.(.*)':'Action=copy Target=edges.$1',
-  'prestige.*':'Action=sum target=advances',
-  'race':'Action=copy',
-  'scrolls.([^(]+)':'Action=copy Target=scrolls.$1',
-  'selectableFeatures.*(Powerful Blow|Intimidating Glare|Strength Surge)':
-    'Action=copy Target=edges.$1',
-  'selectableFeatures.*(Countersong|Dirge Of Doom|Inspire Heroics)':
-    'Action=copy Target=edges.$1',
-  'selectableFeatures.*(Divine Mount)':'Action=copy Target=edges.Mount',
-  'selectableFeatures.* - (.* Domain)':
-    'Action=copy Target="edges.Arcane Background ($1)"',
-  'selectableFeatures.*Mercy':'Action=copy Target=edges.Mercy',
-  'selectableFeatures.*Opportunist':'Action=copy Target=edges.Opportunist',
-  'selectableFeatures.*Bloodline (.*)':
-    'Action=copy Target="edges.$1 Bloodline"',
-  'selectableFeatures.*Familiar':'Action=copy Target=edges.Familiar',
-  'skills.Acrobatics':'Action=skill Target=skillAllocation.Athletics',
-  'skills.Appraise':'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills.Bluff':'Action=skill Target=skillAllocation.Persuasion',
-  'skills.Climb':'Action=skill Target=skillAllocation.Athletics',
-  'skills.Craft .Alchemy.':'Action=skill Target=skillAllocation.Occult',
-  'skills.Craft .*':'Action=skill Target=skillAllocation.Repair',
-  'skills.Diplomacy':'Action=skill Target=skillAllocation.Persuasion',
-  'skills.Disable Device':'Action=skill Target=skillAllocation.Repair',
-  'skills.Disguise':'Action=skill Target=skillAllocation.Thievery',
-  'skills.Escape Artist':'Action=skill Target=skillAllocation.Thievery',
-  'skills.Fly':'Action=skill Target=skillAllocation.Piloting',
-  'skills.Handle Animal':'Action=skill Target=skillAllocation.Riding',
-  'skills.Heal':'Action=skill Target=skillAllocation.Healing',
-  'skills.Intimidate':'Action=skill Target=skillAllocation.Intimidation',
-  'skills.Knowledge .Arcana.':'Action=skill Target=skillAllocation.Occult',
-  'skills.Knowledge .Dungeoneering.':
-    'Action=skill Target=skillAllocation.Science',
-  'skills.Knowledge .Engineering.':
-    'Action=skill Target=skillAllocation.Science',
-  'skills.Knowledge .Geography.':
-    'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills.Knowledge .History.':'Action=skill Target=skillAllocation.Academics',
-  'skills.Knowledge .Local.':
-    'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills.Knowledge .Nature.':
-    'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills.Knowledge .Nobility.':
-    'Action=skill Target="skillAllocation.Common Knowledge"',
-  'skills.Knowledge .Planes.':'Action=skill Target=skillAllocation.Occult',
-  'skills.Knowledge .Religion.':'Action=skill Target=skillAllocation.Academics',
-  'skills.Linguistics':'Action=skill Target=skillAllocation.Academics',
-  'skills.Perception':'Action=skill Target=skillAllocation.Notice',
-  'skills.Perform .*':'Action=skill Target=skillAllocation.Performance',
-  'skills.Profession .*':'Action=drop', // TODO
-  'skills.Ride':'Action=skill Target=skillAllocation.Riding',
-  'skills.Sense Motive':'Action=skill Target=skillAllocation.Notice',
-  'skills.Sleight Of Hand':'Action=skill Target=skillAllocation.Thievery',
-  'skills.Spellcraft':'Action=skill Target=skillAllocation.Occult',
-  'skills.Stealth':'Action=skill Target=skillAllocation.Stealth',
-  'skills.Survival':'Action=skill Target=skillAllocation.Survival',
-  'skills.Swim':'Action=skill Target=skillAllocation.Athletics',
-  'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
-  'shield':'Action=copy',
-  "spells.Bear's Endurance":'Action=set Target="powers.Boost/Lower Trait"',
-  "spells.Bull's Strength":'Action=set Target="powers.Boost/Lower Trait"',
-  'spells.Comprehend Languages':'Action=set Target="powers.Speak Language"',
-  'spells.Cure.*Wounds':'Action=set Target=powers.Healing',
-  'spells.Detect Magic':'Action=set Target="powers.Detect/Conceal Arcana"',
-  'spells.Dispel Magic':'Action=set Target=powers.Dispel',
-  "spells.Cat's Grace":'Action=set Target="powers.Boost/Lower Trait"',
-  "spells.Eagle's Splendor":'Action=set Target="powers.Boost/Lower Trait"',
-  'spells.Endure Elements':
-    'Action=set Target="powers.Environmental Protection"',
-  "spells.Fox's Cunning":'Action=set Target="powers.Boost/Lower Trait"',
-  'spells.Light':'Action=set Target=powers.Light/Darkness',
-  "spells.Owl's Wisdom":'Action=set Target="powers.Boost/Lower Trait"',
-  'spells_filter':'Action=copy Target=powers_filter',
-  'traits.*':'Action=drop',
-  'strength':'Action=attribute Target=strengthAllocation',
-  'weapons.Longbow':'Action=copy Target="weapons.Long Bow"',
-  'weapons.Longsword':'Action=copy Target="weapons.Long Sword"',
-  'weapons.[^L].*':'Action=copy',
-  'wisdom':'Action=attribute Target=spiritAllocation'
-};
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {
@@ -2257,103 +2208,6 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'ancestry')
     attribute = 'race';
 
-  if(attribute == 'convertFromPathfinder') {
-    if(!attributes.wisdom)
-      return;
-    QuilvynUtils.checkAttrTable(PF4SW.CONVERSION_MAP, ['Action', 'Target']);
-    var newAttributes = {};
-    var notes = '';
-    for(attr in attributes) {
-      var action = null;
-      var target = null;
-      var newValue = null;
-      for(var pat in PF4SW.CONVERSION_MAP) {
-        var matchInfo = attr.match(pat);
-        if(!matchInfo)
-          continue;
-        action =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Action');
-        target =
-          QuilvynUtils.getAttrValue(PF4SW.CONVERSION_MAP[pat],'Target') || attr;
-        for(var i = 1; i < matchInfo.length; i++)
-          target = target.replaceAll('$' + i, matchInfo[i]);
-        if(action == 'alignment') {
-          newValue = attributes[attr].replace(/Lawful | Chaotic/i, '');
-        } else if(action == 'attribute') {
-          // PEGINC ZADMAR SWADE
-          //  3-6    3-8    d4
-          //  7-11   9-13   d6
-          //  12-14  14-15  d8
-          //  15-16  16-17  d10
-          //  17-18  18     d12
-          newValue = attributes[attr];
-          newValue = newValue<=8 ? 0 : newValue<=13 ? 1 : newValue<=15 ? 2 :
-                     newValue<=17 ? 3 : 4;
-        } else if(action == 'charisma') {
-          if(attribute[attr] <= 4) {
-            target = 'hindrances.Ugly+';
-            newValue = 1;
-          } else if(attribute[target] <= 7) {
-            target = 'hindrances.Ugly';
-            newValue = 1;
-          } else if(attribute[target] >= 16) {
-            target = 'edges.Attractive';
-            newValue = 1;
-          } else {
-            action = 'drop';
-          }
-        } else if(action == 'copy') {
-          if(target.includes('%V')) {
-            target = target.replaceAll('%V', attributes[attr]);
-            newValue = 1;
-          } else {
-            newValue = attributes[attr];
-          }
-        } else if(action == 'skill') {
-          // PEGINC SWADE
-          //  1-3    d4
-          //  4-6    d6
-          //  7-9    d8
-          //  10-13  d10
-          //  14-16  d12
-          //  17-20  d12+1
-          newValue = attributes[attr];
-          newValue = newValue <= 3 ? 1 : newValue <= 6 ? 2 : newValue <= 9 ? 3 :
-                     newValue <= 13 ? 4 : newValue <= 16 ? 5 : 6;
-          if(target.match(/Athletics|Common Knowledge|Notice|Persuasion|Stealth/))
-            newValue -= 1;
-        } else if(action == 'set') {
-          newValue = 1;
-        } else if(action == 'sum') {
-          newValue = (newAttributes[target] || 0) + (attributes[attr] - 0);
-        }
-        if(action != 'drop') {
-          newAttributes[target] = newValue;
-          notes += 'Converted ' + attr + ' value "' + attributes[attr] + '" to ' + target + ' value "' + newValue + '"\n';
-        }
-      }
-      if(action == null)
-        notes += 'No conversion action available for ' + attr + '= "' + attributes[attr] + '"\n';
-      delete attributes[attr];
-    }
-    newAttributes.advances = (newAttributes.advances || 1) - 1;
-    newAttributes['improvementPointsAllocation.Attribute'] =
-      Math.max(QuilvynUtils.sumMatching(newAttributes, /(agility|smarts|spirit|strength|vigor)Allocation/) - 5, 0) * 2;
-    if(newAttributes.race == 'Human' &&
-       newAttributes['improvementPointsAllocation.Attribute'] > 0)
-      newAttributes['improvementPointsAllocation.Attribute']--;
-    newAttributes['improvementPointsAllocation.Edge'] =
-      Math.max(QuilvynUtils.sumMatching(newAttributes, /edges./) - 1, 0) * 2;
-    if(newAttributes.race == 'Human' &&
-       newAttributes['improvementPointsAllocation.Edge'] > 0)
-      newAttributes['improvementPointsAllocation.Edge']--;
-    newAttributes['improvementPointsAllocation.Skill'] =
-      Math.max(QuilvynUtils.sumMatching(newAttributes, /skillAllocation/) - 12, 0);
-    newAttributes.notes =
-      (newAttributes.notes ? newAttributes.notes + '\n' : '') + notes;
-    Object.assign(attributes, newAttributes);
-    return;
-  }
   if(attribute == 'alignment') {
     choices = QuilvynUtils.getKeys(this.getChoices('alignments'));
     attributes.alignment = choices[QuilvynUtils.random(0, choices.length - 1)];
