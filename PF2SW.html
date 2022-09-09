@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 
+<!--
+The Quilvyn Character Editor is Copyright 2021, James J. Hayes
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 59
+Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+-->
+
 <html lang="en">
 
 <head>
@@ -14,6 +32,8 @@
 /* jshint esversion: 6 */
 /* jshint forin: false */
 "use strict";
+
+VERSION = '2.3.1.0';
 
 /*
 
@@ -467,7 +487,7 @@ function convertPFtoSW(attributes) {
 
   checkAttrTable(CONVERSION_MAP, ['Action', 'Target', 'Value']);
   var newAttributes = {};
-  var notes = '';
+  var notes = 'PF2SW.html v' + VERSION + '\n\n';
   for(var attr in attributes) {
     var action = null;
     var target = null;
@@ -664,20 +684,20 @@ function doConvert() {
 </style>
 
 </head>
-<body>
+<body bgcolor="wheat" background="Images/parchment.jpg">
 <h2>Pathfinder to Pathfinder for Savage Worlds Character Converter</h2>
 <form>
 <table>
 <tr>
-  <td><textarea name="input"></textarea></td>
+  <td><textarea name="input" autocomplete="off"></textarea></td>
   <td><input name="convert" type="button" value="Convert =>" onclick="doConvert()"/></td>
-  <td><textarea name="output"></textarea></td>
+  <td><textarea name="output" autocomplete="off"></textarea></td>
 </tr><tr>
   <th>Pathfinder charcter data</th>
   <td>&nbsp;</td>
   <th>Pathfinder for Savage Worlds character data</th>
 </tr><tr>
-  <td colspan="3"><textarea name="notes"></textarea></td>
+  <td colspan="3"><textarea name="notes" autocomplete="off"></textarea></td>
 </tr><tr>
   <th colspan="3">Conversion Notes</th>
 </tr>
