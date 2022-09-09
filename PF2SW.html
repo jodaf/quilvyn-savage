@@ -539,7 +539,7 @@ function convertPFtoSW(attributes) {
           else if(attributes[attr] <= 7)
             target = 'hindrances.Ugly';
           else if(attributes[attr] >= 16)
-            newValue = 1;
+            target = 'edges.Attractive';
           else
             action = 'drop';
         } else if(action == 'class') {
