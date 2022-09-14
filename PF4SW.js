@@ -376,63 +376,63 @@ PF4SW.EDGES_ADDED = {
   'Dirge Of Doom':'Type=class,Bard Require="advances >= 12",features.Bard',
   'Cleric':'Type=class Require="spirit >= 6","skills.Occult >= 6"',
   'Arcane Background (Civilization Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Civilization\'"',
   'Arcane Background (Death Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Death\'"',
   'Arcane Background (Destruction Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Destruction\'"',
   'Arcane Background (Elemental Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Elemental\'"',
   'Arcane Background (Glory Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Glory\'"',
   'Arcane Background (Knowledge Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Knowledge\'"',
   'Arcane Background (Luck Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Luck\'"',
   'Arcane Background (Magic Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Magic\'"',
   'Arcane Background (Nature Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Nature\'"',
   'Arcane Background (Protection Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Protection\'"',
   'Arcane Background (Strength Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Strength\'"',
   'Arcane Background (Sun Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Sun\'"',
   'Arcane Background (Travel Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Travel\'"',
   'Arcane Background (Trickery Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Trickery\'"',
   'Arcane Background (War Domain)':
-    'Type=class,Cleric ' +
+    'Type=class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'War\'"',
   'Destroy Undead':'Type=class,Cleric Require="advances >= 4",features.Cleric',
@@ -1728,13 +1728,13 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.arcaneBackground(Magic)', '=', '"Spellcasting and "'
     );
   } else if(name == 'Arcane Background (Miracles)') {
-    rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.domain', '+', '1');
     rules.defineRule
       ('features.Domain', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
     rules.defineRule
       ('features.Vow+', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
   } else if(name == 'Arcane Bloodline') {
-    rules.defineRule('edgePoints', 'featureNotes.arcaneBloodline', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.arcaneBloodline', '+', '1');
   } else if(name == 'Assassin') {
     rules.defineRule
       ('features.Death Attack', 'featureNotes.assassin', '=', '1');
@@ -1808,7 +1808,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.bard', '=', '"Performance and "'
     );
   } else if(name == 'Cleric') {
-    rules.defineRule('edgePoints', 'featureNotes.domain', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.domain', '+', '1');
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'featureNotes.cleric', '=', '1');
     rules.defineRule
@@ -1831,7 +1831,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.druid', '=', '"medium or heavy"'
     );
-    rules.defineRule('edgePoints', 'featureNotes.natureBond', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.natureBond', '+', '1');
     rules.defineRule
       ('features.Arcane Background (Druid)', 'featureNotes.druid', '=', '1');
     rules.defineRule
@@ -1997,7 +1997,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.sorcerer', '=', '"any"'
     );
-    rules.defineRule('edgePoints', 'featureNotes.bloodline', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.bloodline', '+', '1');
     rules.defineRule('features.Arcane Background (Sorcerer)',
       'featureNotes.sorcerer', '=', '1'
     );
@@ -2024,7 +2024,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.wizard', '=', '"any"'
     );
-    rules.defineRule('edgePoints', 'featureNotes.arcaneBond', '+=', '1');
+    rules.defineRule('edgePoints', 'featureNotes.arcaneBond', '+', '1');
     rules.defineRule
       ('features.Arcane Background (Wizard)', 'featureNotes.wizard', '=', '1');
     rules.defineRule('features.Arcane Bond', 'featureNotes.wizard', '=', '1');
@@ -2212,6 +2212,13 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     choices = QuilvynUtils.getKeys(this.getChoices('alignments'));
     attributes.alignment = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'edges') {
+    // First, make sure class edge is assigned; otherwise, prerequisite tests
+    // for other edges may fail
+    var allEdges = this.getChoices('edges');
+    if(attributes.concept in allEdges) {
+      attributes['edges.' + attributes.concept] = 1;
+      attrs = this.applyRules(attributes);
+    }
     if((attributes.concept == 'Cleric' ||
         attributes['edges.Arcane Background (Cleric)'] ||
         attributes['edges.Arcane Background (Miracles)']) &&
@@ -2244,7 +2251,32 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       choices = ['Bonded Object', 'Familiar'];
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
-    // TODO Class edges
+    // Prioritize edges particular to the character's concept, if any
+    if(attributes.concept) {
+      choices = [];
+      for(attr in allEdges) {
+        if(allEdges[attr].match('Type=\\S*' + attributes.concept) &&
+           !attributes['edges.' + attr])
+          choices.push(attr);
+      }
+      // Try to assign a random number of unassigned edges to concept edges
+      howMany = (attrs.edgePoints || 0) -
+                QuilvynUtils.sumMatching(attributes, '^edges');
+      howMany = QuilvynUtils.random(0, howMany);
+      while(howMany > 0 && choices.length > 0) {
+        attr = choices[QuilvynUtils.random(0, choices.length - 1)];
+        choices = choices.filter(x => x != attr);
+        attributes['edges.' + attr] = 1;
+        attrs = this.applyRules(attributes);
+        var name = attr.charAt(0).toLowerCase() +
+                   attr.substring(1).replaceAll(' ', '');
+        if(attrs['validationNotes.' + name + 'Edge'] ||
+           attrs['sanityNotes.' + name + 'Edge'])
+          delete attributes['edges.' + attr];
+        else
+          howMany--;
+      }
+    }
   } else if(attribute == 'hindrances') {
     if((attributes.concept == 'Paladin' || attributes['edges.Paladin']) &&
        !attributes['hindrances.Vow'] &&
