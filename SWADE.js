@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.6';
+SWADE.VERSION = '2.3.2.7';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -83,7 +83,7 @@ SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'concept', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
   'deity', 'powers'
 ];
-SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
+SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard', 'Stat Block'];
 
 SWADE.ARCANAS = {
   'Gifted':'Skill=Focus',
@@ -1885,6 +1885,17 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
   rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
   rules.defineRule('weapons.Tail', 'combatNotes.tail', '=', null);
+  // Add defense for Stat Block character sheet format
+  for(var a in armors) {
+    if(a != 'None')
+      rules.defineRule('defense.' + a, 'armor.' + a, '=', null);
+  }
+  for(var s in shields) {
+    if(s != 'None')
+      rules.defineRule('defense.' + s + ' Shield',
+        'shield', '=', 'source == "' + s + '" ? 1 : null'
+      );
+  }
 
 };
 
@@ -2993,6 +3004,14 @@ SWADE.getFormats = function(rules, viewer) {
       if(!format.startsWith('powers.'))
         result[format] = formats[format];
     }
+  } else if(viewer == 'Stat Block') {
+    result = Object.assign({}, formats);
+    for(format in rules.getChoices('powers')) {
+      result['powers.' + format] = '%V';
+    }
+    for(format in rules.getChoices('skills')) {
+      result['skills.' + format] = 'd%V%1';
+    }
   } else {
     result = formats;
   }
@@ -3171,6 +3190,41 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Sanity Notes', within: 'ValidationPart', separator:noteSep},
             {name: 'Validation Notes', within: 'ValidationPart',
              separator: noteSep}
+      );
+    } else if(name == 'Stat Block') {
+      viewer.addElements(
+        {name: '_top', separator: '\n', columns: '1L'},
+          {name: 'Name', within: '_top', format: '<div style="font-size:2em"><b>%V</b></div>'},
+          {name: 'GenderRaceAndRankk', within: '_top', separator: ' '},
+            {name: 'Gender', within: 'GenderRaceAndRankk', format: '%V'},
+            {name: 'Race', within: 'GenderRaceAndRankk', format: '%V'},
+            {name: 'Rank', within: 'GenderRaceAndRankk', format: '%V'},
+            {name: 'Concept', within: 'GenderRaceAndRankk', format: '%V'},
+          {name: 'Attributes', within: '_top', format: '<b>%N</b>: %V',
+           separator: ', '},
+            {name: 'Agility', within: 'Attributes', format: '%N %V'},
+            {name: 'Smarts', within: 'Attributes', format: '%N %V'},
+            {name: 'Spirit', within: 'Attributes', format: '%N %V'},
+            {name: 'Strength', within: 'Attributes', format: '%N %V'},
+            {name: 'Vigor', within: 'Attributes', format: '%N %V'},
+          {name: 'Skills', within: '_top', separator: ', '},
+          {name: 'Combat', within: '_top', separator: '; '},
+            {name: 'Pace', within: 'Combat'},
+            {name: 'ParryInfo', within: 'Combat', separator: ''},
+              {name: 'Parry', within: 'ParryInfo'},
+              {name: 'Shield Parry', within: 'ParryInfo', format: ' (%V)'},
+            {name: 'Cover', within: 'Combat'},
+            {name: 'ToughnessInfo', within: 'Combat', separator: ''},
+              {name: 'Toughness', within: 'ToughnessInfo'},
+              {name: 'Armor Toughness', within: 'ToughnessInfo', format: ' (%V)'},
+          {name: 'Hindrances', within: '_top', separator: ', '},
+          {name: 'Edges', within: '_top', separator: ', '},
+          {name: 'Gear', within: '_top', separator: ', ',
+           format: '<b>%N</b>: %V'},
+            {name: 'Defense', within: 'Gear', separator: ', ', format: '%V'},
+            {name: 'Weapons', within: 'Gear', separator: ', ', format: '%V'},
+          {name: 'Powers', within: '_top', separator: ', ',
+           format: '<b>%N</b>: %V'}
       );
     } else
       continue;
