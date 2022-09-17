@@ -297,7 +297,7 @@ PF4SW.CONCEPTS_ADDED = {
   'Loremaster':
     'Edge=Wizard,Loremaster ' +
     'Attribute=Smarts ' +
-    'Skill=Academics',
+    'Skill=Academics,"Common Knowledge",Occult',
   'Mystic Theurge':
     'Edge=Cleric,Wizard,"Mystic Theurge"',
   'Monk':
@@ -462,7 +462,7 @@ PF4SW.EDGES_ADDED = {
     'Type=class,Monk Require="advances >= 12","features.Mystic Powers (Monk)"',
   'Paladin':
     'Type=class ' +
-    'Require="spirit >= 6","strength >= 6","features.Vow || features.Vow+"',
+    'Require="spirit >= 6","strength >= 6","hindrances.Vow || hindrances.Vow+"',
   'Mystic Powers (Paladin)':
     'Type=class,Paladin Require="advances >= 4",features.Paladin',
   'Mercy':'Type=class,Paladin Require="advances >= 8",features.Paladin',
