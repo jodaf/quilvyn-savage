@@ -113,24 +113,20 @@ const VERSION = '2.3.1.0';
   Vital Strike, Weapon Finesse, Wind Stance
 
   SPELLS:
-  Acid Fog, Aid, Air Walk, Alarm, Align Weapon, Animal Messenger,
-  Animal Shapes, Animal Trance, Animate Plants, Antilife Shell,
-  Antimagic Field, Antipathy, Antiplant Shell, Arcane Lock, Astral Projection,
-  Atonement, Augury, Awaken, Bane, Barkskin, Binding, Black Tentacles,
-  Blasphemy, Bleed, Bless Water, Bless Weapon, Bless, Blight, Blink, Blur,
-  Break Enchantment, Breath Of Life, Calm Animals, Calm Emotions, Changestaff,
-  Chaos Hammer, Charm Animal, Charm Monster, Charm Person, Chill Metal,
+  Aid, Alarm, Align Weapon, Animal Messenger, Animal Trance, Animate Plants,
+  Antilife Shell, Antimagic Field, Antipathy, Antiplant Shell, Arcane Lock,
+  Atonement, Augury, Awaken, Bane, Binding, Black Tentacles, Blasphemy, Bleed,
+  Bless Water, Bless, Blight, Blur, Breath Of Life, Calm Animals,
+  Calm Emotions, Changestaff, Chaos Hammer, Charm Monster, Charm Person,
   Chill Touch, Circle Of Death, Clenched Fist, Cloak Of Chaos, Clone,
-  Color Spray, Command Plants, Command Undead, Command, Commune With Nature,
-  Commune, Consecrate, Contact Other Plane, Contagion, Contingency,
-  Continual Flame, Control Plants, Control Undead, Control Water,
-  Control Weather, Control Winds, Create Food And Water, Create Greater Undead,
-  Create Undead, Creeping Doom, Crushing Despair, Crushing Hand, Curse Water,
-  Daylight, Daze Monster, Death Knell, Death Ward, Deathwatch, Deep Slumber,
-  Delay Poison, Demand, Desecrate, Destruction, Detect Animals Or Plants,
-  Detect Chaos, Detect Evil, Detect Good, Detect Law, Detect Scrying,
-  Detect Secret Doors, Detect Snares And Pits, Detect Undead, Dictum,
-  Dimensional Anchor, Dimensional Lock, Discern Lies, Discern Location,
+  Color Spray, Command Plants, Consecrate, Contagion, Contingency,
+  Continual Flame, Control Plants, Control Water, Control Weather,
+  Control Winds, Create Food And Water, Creeping Doom, Crushing Despair,
+  Crushing Hand, Curse Water, Daylight, Daze Monster, Death Knell, Death Ward,
+  Deathwatch, Delay Poison, Demand, Desecrate, Destruction,
+  Detect Animals Or Plants, Detect Chaos, Detect Evil, Detect Good, Detect Law,
+  Detect Scrying, Detect Secret Doors, Detect Snares And Pits, Detect Undead,
+  Dictum, Dimensional Anchor, Dimensional Lock, Discern Lies, Discern Location,
   Disguise Self, Dispel Chaos, Dispel Evil, Dispel Good, Dispel Law,
   Disrupting Weapon, Divine Favor, Divine Power, Doom, Dream, Elemental Swarm,
   Energy Drain, Enervation, Enthrall, Erase, Eyebite, Fabricate, Faerie Fire,
@@ -152,7 +148,7 @@ const VERSION = '2.3.1.0';
   Instant Summons, Interposing Hand, Iron Body, Ironwood, Irresistible Dance,
   Keen Edge, Knock, Legend Lore, Lesser Geas,
   Lesser Globe Of Invulnerability, Lesser Restoration, Liveoak,
-  Locate Creature, Mage's Disjunction, Mage's Faithful Hound,
+  Mage's Disjunction, Mage's Faithful Hound,
   Mage's Lucubration, Mage's Magnificent Mansion, Mage's Private Sanctum,
   Mage's Sword, Magic Aura, Magic Circle Against Chaos,
   Magic Circle Against Evil, Magic Circle Against Good,
@@ -315,33 +311,40 @@ const CONVERSION_MAP = {
   'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
   'shield':'Action=copy',
   'spells.*0':'Action=drop',
-  'spells.(False Vision|Hallucinatory Terrain|Illusory Wall|Magic Mouth|Major Image|Minor Image|Mirage Arcana|Mirror Image|Misdirection|Permanent Image|Persistent Image|Phantom Trap|Programmed Image|Screen|Silent Image|Veil|Ventriloquism)':'Target=powers.Illusion',
   'spells.(Acid Arrow|Call Lightning|Disintegrate|Finger Of Death|Lightning Bolt|Magic Missile|Polar Ray|Scorching Ray|Searing Light|Sunbeam)':
     'Target=powers.Bolt',
+  'spells.(Acid Fog|Cloudkill|Flaming Sphere|Ice Storm|Incendiary Cloud|Storm Of Vengeance)':
+    'Target="powers.Damage Field"',
+  'spells.(Air Walk|Fly)':'Target=powers.Fly',
   'spells.(Analyze Dweomer|(Greater )?Arcane Sight|Identify)':
     'Target="powers.Detect/Conceal Arcana"',
-  'spells.(Alter Self|Beast Shape|Elemental Body|Form Of The Dragon|(Greater )?Polymorph|Giant Form|Plant Shape|Shapechange)':
+  'spells.(Alter Self|Animal Shapes|Beast Shape|Elemental Body|Form Of The Dragon|(Greater )?Polymorph|Giant Form|Plant Shape|Shapechange)':
     'Target="powers.Shape Change"',
   'spells.(Animal Growth|Diminish Plants|Giant Vermin|(Mass )?Enlarge Person|(Mass )?Reduce Person|Plant Growth|Reduce Animal)':
     'Target=powers.Growth/Shrink',
-  'spells.Animate Dead':'Target=powers.Zombie',
+  'spells.(Animate Dead|Command Undead|Control Undead|Create (Greater )?Undead)':
+    'Target=powers.Zombie',
   'spells.(Animate Objects|Animate Rope|Floating Disk|Levitate|Telekinesis)':
     'Target=spells.Telekinesis',
   'spells.(Arcane Eye|Clairaudience/Clairvoyance|(Greater )?Scrying)':
     'Target=powers.Scrying',
-  'spells.(Baleful Polymorph|Divination|Entangle|Fly|Plane Shift|Sanctuary|Time Stop)':
-    'Target=powers.$1',
+  'spells.(Astral Projection|Plane Shift)':'Target="powers.Plane Shift"',
+  'spells.(Baleful Polymorph|Entangle|Sanctuary|Time Stop)':'Target=powers.$1',
   'spells.(Banishment|Dismissal)':'Target=powers.Banish',
+  'spells.(Barkskin|Blink)':'Target=powers.Protection',
   "spells.*(Bear's Endurance|Bull's Strength|Cat's Grace|Eagle's Splendor|Fox's Cunning|Glibness|Jump|Owl's Wisdom)":'Target="powers.Boost/Lower Trait"',
   'spells.Bestow Curse':'Target=powers.Curse',
   'spells.(Blade Barrier|Wall Of (Fire|Force|Ice|Iron|Stone|Thorns)|Web)':
     'Target=powers.Barrier',
   'spells.Blindness/Deafness':'Target=powers.Blind',
+  'spells.(Break Enchantment|(Greater )?Dispel Magic|Invisilbity Purge)':
+    'Target=powers.Dispel',
   'spells.(Burning Hands|Chain Lightning|Cone Of Cold|Delayed Blast Fireball|Explosive Runes|Fire Storm|Fireball|Flame Strike|Freezing Sphere|(Greater )?Glyph Of Warding|Meteor Swarm|Shatter|(Greater )?Shout|Sound Burst|Sunburst)':
     'Target=powers.Blast',
   'spells.(Cause ?Fear|Scare)':'Target=powers.Fear',
-  'spells.(Cloudkill|Flaming Sphere|Ice Storm|Incendiary Cloud|Storm Of Vengeance)':
-    'Target="powers.Damage Field"',
+  'spells.(Charm Animal|Speak With Animals)':'Target="powers.Beast Friend"',
+  'spells.(Commune With Nature|Commune|Contact Other Plane|Divination)':
+    'Target=powers.Divination',
   'spells.(Comprehend Languages|Tongues)':'Target="powers.Speak Language"',
   'spells.(Confusion|Lesser Confusion)':'Target=powers.Confusion',
   'spells.Cure.*Wounds':'Target=powers.Healing',
@@ -353,23 +356,24 @@ const CONVERSION_MAP = {
     'Target=powers.Teleport',
   'spells.(Displacement|Entropic Shield|Mage Armor|Magic Vestment|Protection From Arrows|Shield[^ ]|Shield Of Faith)':
     'Target=powers.Deflection',
-  'spells.Dominate (Animal|Monster|Person)':'Target=powers.Puppet',
-  'spells.(Earthquake|Heat Metal)':'Target="powers.Elemental Manipulation"',
+  'spells.(Command|Dominate (Animal|Monster|Person))':'Target=powers.Puppet',
+  'spells.(Chill Metal|Earthquake|Heat Metal)':
+    'Target="powers.Elemental Manipulation"',
+  'spells.(Deep Slumber|Sleep)':'Target=powers.Slumber',
   'spells.Endure Elements':'Target="powers.Environmental Protection"',
   'spells.(Etherealness|Ethereal Jaunt)':'Target=powers.Intangibility',
   'spells.(Expeditious Retreat|Haste|Longstrider|Slow)':
     'Target=powers.Sloth/Speed',
-  'spells.((Greater )?Dispel Magic|Invisilbity Purge)':'Target=powers.Dispel',
-  'spells.(Greater )?Magic Weapon':'Target=powers.Smite',
+  'spells.(False Vision|Hallucinatory Terrain|Illusory Wall|Magic Mouth|Major Image|Minor Image|Mirage Arcana|Mirror Image|Misdirection|Permanent Image|Persistent Image|Phantom Trap|Programmed Image|Screen|Silent Image|Veil|Ventriloquism)':
+    'Target=powers.Illusion',
+  'spells.(Bless Weapon|(Greater )?Magic Weapon)':'Target=powers.Smite',
   'spells.(Mass )?Invisibility( Sphere)?':'Target=powers.Invisibility',
   'spells.(Limited )?Wish':'Target=powers.Wish',
-  'spells.Locate Object':'Target=powers.Locate',
+  'spells.(Locate Creature|Locate Object)':'Target=powers.Locate',
   'spells.(Lesser |Greater )?Planar Binding':'Target="powers.Planar Binding"',
   'spells.Meld Into Stone':'Target=powers.Burrow',
   'spells.Modify Memory':'Target="powers.Mind Wipe"',
   'spells.(Raise Dead|(True )?Resurrection)':'Target=powers.Resurrection',
-  'spells.Sleep':'Target=powers.Slumber',
-  'spells.Speak With Animals':'Target="powers.Beast Friend"',
   'spells.Spider Climb':'Target="powers.Wall Walker"',
   "spells.Summon (Monster|Nature's Ally)":'Target="powers.Summon Ally"',
   'spells.(Zone Of )?Silence':'Target="powers.Sound/Silence"',
