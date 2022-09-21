@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--
-The Quilvyn Character Editor is Copyright 2021, James J. Hayes
+The Quilvyn Character Editor is Copyright 2022, James J. Hayes
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -30,10 +30,27 @@ Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 <!--
 
 /* jshint esversion: 6 */
-/* jshint forin: false */
 "use strict";
 
 const VERSION = '2.3.1.0';
+const ABOUT_TEXT =
+  "PF2SW.html v" + VERSION + "\n" +
+  "PF2SW is a utility program for converting Quilvyn Pathfinder v1 character " +
+  "data to Pathfinder for Savage Worlds. To use, in Quilvyn first select the " +
+  "character you want to convert, then choose HTML from Quilvyn's Character " +
+  'menu. Copy the character attributes ("var attributes = { ... }") from the ' +
+  "HTML window, paste them into PS2SW's Pathfinder character data text " +
+  "box, and press PF2SW's Convert => button. PS2SW will show the converted " +
+  "attributes in its Pathfinder for Savage Worlds character data text box; " +
+  "you can copy these, select Import... in Quilvyn's Character menu, and " +
+  "paste the copied attributes into the Import text box.\n" +
+  "Because very little official guidance exists on how to make these " +
+  "conversions, most of the conversions PF2SW makes are best-guess estimates, "+
+  "and quite a number of Pathfinder attributes are simply dropped. "+
+  "A handful of spell conversions are taken from <a href='https://paizo.com/community/blog/v5748dyo6shkj?From-Pathfinder-Spells-to-Savage-Powers'>a " +
+  "discussion by one of the authors of Pathfinder for Savage Worlds</a>, and " +
+  "conversion of ability and skill values mimics <a href='http://www.godwars2.org/SavageWorlds/convert2.html'>Zadmar's conversion tool</a>. PF2SW displays " +
+  "notes about the conversions it makes in its Conversion Notes text box";
 
 /*
 
@@ -143,55 +160,51 @@ const VERSION = '2.3.1.0';
   Hideous Laughter, Hold Animal, Hold Monster, Hold Person, Hold Portal,
   Holy Aura, Holy Smite, Holy Sword, Holy Word, Horrid Wilting,
   Hypnotic Pattern, Hypnotism, Illusory Script, Imbue With Spell Ability,
-  Implosion, Imprisonment, Inflict Critical Wounds, Inflict Light Wounds,
-  Inflict Moderate Wounds, Inflict Serious Wounds, Insanity, Insect Plague,
-  Instant Summons, Interposing Hand, Iron Body, Ironwood, Irresistible Dance,
-  Keen Edge, Knock, Legend Lore, Lesser Geas,
-  Lesser Globe Of Invulnerability, Lesser Restoration, Liveoak,
-  Mage's Disjunction, Mage's Faithful Hound,
+  Implosion, Imprisonment, Insanity, Insect Plague, Instant Summons,
+  Interposing Hand, Iron Body, Ironwood, Irresistible Dance, Keen Edge, Knock,
+  Legend Lore, Lesser Geas, Lesser Globe Of Invulnerability,
+  Lesser Restoration, Liveoak, Mage's Disjunction, Mage's Faithful Hound,
   Mage's Lucubration, Mage's Magnificent Mansion, Mage's Private Sanctum,
   Mage's Sword, Magic Aura, Magic Circle Against Chaos,
   Magic Circle Against Evil, Magic Circle Against Good,
   Magic Circle Against Law, Magic Fang, Magic Jar, Magic Stone,
   Major Creation, Make Whole, Mark Of Justice, Mass Charm Monster, Mass Heal,
-  Mass Hold Monster, Mass Hold Person, Mass Inflict Critical Wounds,
-  Mass Inflict Light Wounds, Mass Inflict Moderate Wounds,
-  Mass Inflict Serious Wounds, Mass Suggestion, Maze, Mind Blank, Mind Fog,
-  Minor Creation, Miracle, Mislead, Mnemonic Enhancer, Moment Of Prescience,
-  Mount, Move Earth, Neutralize Poison, Nightmare, Nondetection,
-  Obscure Object, Obscuring Mist, Order's Wrath, Overland Flight,
-  Pass Without Trace, Passwall, Permanency, Phantasmal Killer, Phantom Steed,
-  Phase Door, Planar Ally, Poison, Polymorph Any Object, Power Word Blind,
-  Power Word Kill, Power Word Stun, Prayer, Prismatic Sphere, Prismatic Spray,
-  Prismatic Wall, Produce Flame, Project Image, Protection From Chaos,
-  Protection From Energy, Protection From Evil, Protection From Good,
-  Protection From Law, Protection From Spells, Prying Eyes, Pyrotechnics,
-  Quench, Rage, Rainbow Pattern, Ray Of Enfeeblement, Ray Of Exhaustion,
-  Refuge, Regenerate, Reincarnate, Remove Blindness/Deafness, Remove Curse,
-  Remove Disease, Remove Fear, Remove Paralysis, Repel Metal Or Stone,
-  Repel Vermin, Repel Wood, Repulsion, Resilient Sphere, Resist Energy,
-  Restoration, Reverse Gravity, Righteous Might, Rope Trick, Rusting Grasp,
+  Mass Hold Monster, Mass Hold Person, Mass Suggestion, Maze, Mind Blank,
+  Mind Fog, Minor Creation, Miracle, Mislead, Mnemonic Enhancer,
+  Moment Of Prescience, Mount, Move Earth, Neutralize Poison, Nightmare,
+  Nondetection, Obscure Object, Obscuring Mist, Order's Wrath, Overland Flight,
+  Pass Without Trace, Passwall, Permanency, Phantom Steed, Phase Door,
+  Planar Ally, Poison, Polymorph Any Object, Power Word Blind, Power Word Kill,
+  Power Word Stun, Prayer, Prismatic Sphere, Prismatic Spray, Prismatic Wall,
+  Produce Flame, Project Image, Protection From Chaos, Protection From Energy,
+  Protection From Evil, Protection From Good, Protection From Law,
+  Protection From Spells, Prying Eyes, Pyrotechnics, Quench, Rage,
+  Rainbow Pattern, Ray Of Enfeeblement, Ray Of Exhaustion, Refuge, Regenerate,
+  Reincarnate, Remove Blindness/Deafness, Remove Curse, Remove Disease,
+  Remove Fear, Remove Paralysis, Repel Metal Or Stone, Repel Vermin,
+  Repel Wood, Repulsion, Resilient Sphere, Resist Energy, Restoration,
+  Reverse Gravity, Righteous Might, Rope Trick, Rusting Grasp,
   Scintillating Pattern, Sculpt Sound, Secret Chest, Secret Page,
   Secure Shelter, See Invisibility, Seeming, Sending, Sepia Snake Sigil,
   Sequester, Shades, Shadow Conjuration, Shadow Evocation, Shadow Walk,
-  Shambler, Shield Of Law, Shield Other, Shillelagh, Shocking Grasp,
-  Shrink Item, Simulacrum, Slay Living, Sleet Storm, Snare,
-  Soften Earth And Stone, Solid Fog, Song Of Discord, Soul Bind,
-  Speak With Dead, Speak With Plants, Spectral Hand, Spell Immunity,
-  Spell Resistance, Spell Turning, Spellstaff, Spike Growth, Spike Stones,
-  Spiritual Weapon, Stabilize, Statue, Status, Stinking Cloud, Stone Shape,
-  Stone Tell, Stone To Flesh, Stoneskin, Suggestion, Summon Swarm,
-  Symbol Of Death, Symbol Of Fear, Symbol Of Insanity, Symbol Of Pain,
-  Symbol Of Persuasion, Symbol Of Sleep, Symbol Of Stunning,
-  Symbol Of Weakness, Sympathetic Vibration, Sympathy, Telekinetic Sphere,
-  Temporal Stasis, Tiny Hut, Touch Of Idiocy, Transformation,
-  Transmute Metal To Wood, Transmute Mud To Rock, Transmute Rock To Mud,
-  Transport Via Plants, Trap The Soul, Tree Shape, Tree Stride, True Seeing,
-  True Strike, Undeath To Death, Undetectable Alignment, Unhallow, Unholy Aura,
-  Unholy Blight, Unseen Servant, Vampiric Touch, Vision, Wail Of The Banshee,
-  Warp Wood, Water Breathing, Water Walk, Waves Of Exhaustion,
-  Waves Of Fatigue, Weird, Whirlwind, Whispering Wind, Wind Walk, Wind Wall,
-  Wood Shape, Word Of Chaos, Word Of Recall
+  Shambler, Shield Of Law, Shield Other, Shillelagh, Shrink Item, Simulacrum,
+  Slay Living, Sleet Storm, Snare, Soften Earth And Stone, Solid Fog,
+  Song Of Discord, Soul Bind, Speak With Dead, Speak With Plants,
+  Spectral Hand, Spell Immunity, Spell Resistance, Spell Turning, Spellstaff,
+  Spike Growth, Spike Stones, Spiritual Weapon, Stabilize, Statue, Status,
+  Stinking Cloud, Stone Shape, Stone Tell, Stone To Flesh, Stoneskin,
+  Suggestion, Summon Swarm, Symbol Of Death, Symbol Of Fear,
+  Symbol Of Insanity, Symbol Of Pain, Symbol Of Persuasion, Symbol Of Sleep,
+  Symbol Of Stunning, Symbol Of Weakness, Sympathetic Vibration, Sympathy,
+  Telekinetic Sphere, Temporal Stasis, Tiny Hut, Touch Of Idiocy,
+  Transformation, Transmute Metal To Wood, Transmute Mud To Rock,
+  Transmute Rock To Mud, Transport Via Plants, Trap The Soul, Tree Shape,
+  Tree Stride, True Seeing, True Strike, Undeath To Death,
+  Undetectable Alignment, Unhallow, Unholy Aura, Unholy Blight, Unseen Servant,
+  Vampiric Touch, Vision, Wail Of The Banshee, Warp Wood, Water Breathing,
+  Water Walk, Waves Of Exhaustion, Waves Of Fatigue, Weird, Whirlwind,
+  Whispering Wind, Wind Walk, Wind Wall, Wood Shape, Word Of Chaos,
+  Word Of Recall
 
 */
 
@@ -199,13 +212,17 @@ const CONVERSION_MAP = {
   '_path':'Action=drop',
   '_timestamp':'Action=drop',
   'alignment':'Action=alignment',
+  'animalCompanionName':'Action=append Target=notes Value="$V\n"',
+  'animalCompanion.(.*)':'Action=append Target=notes Value=" Animal Companion $1 "',
   'armor':'Action=armor',
   'charisma':'Action=charisma',
   'constitution':'Action=attribute Target=vigorAllocation',
   'deity':'',
   'dexterity':'Action=attribute Target=agilityAllocation',
   'experience(Track)?':'Action=drop',
-  'faction':'',
+  'faction':'Action=drop',
+  'familiarName':'Action=append Target=notes Value="$V\n"',
+  'familiar.(.*)':'Action=append Target=notes Value=" Familiar $1 "',
   'favoredClass(Hit|Skill)Points':'Action=drop',
   'feats.(Alertness|Combat Reflexes)':'Target=edges.$1',
   'feats.Acrobatic Steps':'Target="edges.Free Runner"',
@@ -226,7 +243,7 @@ const CONVERSION_MAP = {
     'Target="edges.Improvisational Fighter"',
   'feats.Intimidating Prowess':'Target=edges.Menacing',
   'feats.Leadership':'Target=edges.Command',
-  'feats.Mobility':'Target=edges.Exraction',
+  'feats.Mobility':'Target=edges.Extraction',
   'feats.(Improved ?)Precise Shot':'Target=edges.Marksman',
   'feats.Rapid Shot':'Target="edges.Rapid Fire"',
   'feats.Run':'Target=edges.Fleet-Footed',
@@ -245,7 +262,7 @@ const CONVERSION_MAP = {
   '(levels|prestige)\\.(.*)':
     'Action=copy,copy,sum,class Target=edges.$2,concept,advances,skillAllocation.Fighting Value=1,$2,"",',
   'name':'',
-  'notes':'',
+  'notes':'Action=append',
   'origin':'',
   'player':'',
   'potions\\..*':'',
@@ -272,7 +289,7 @@ const CONVERSION_MAP = {
     'Target="edges.Arcane Background ($1)"',
   'selectableFeatures.*(Artifice|Chaos|Charm|Darkness|Evil|Good|Healing|Law|Liberation|Madness|Nobility|Repose|Rune) Domain':
     'Action=drop',
-  'selectableFeatures.*Mobility':'Target=edges.Exraction',
+  'selectableFeatures.*Mobility':'Target=edges.Extraction',
   'selectableFeatures.*Point-Blank Shot':'Target="edges.Dead Shot"',
   'selectableFeatures.*(Improved )?Precise Shot':'Target=edges.Marksman',
   'selectableFeatures.*Rapid Shot':'Target="edges.Rapid Fire"',
@@ -311,9 +328,9 @@ const CONVERSION_MAP = {
   'skills.Use Magic Device':'Action=skill Target=skillAllocation.Occult',
   'shield':'Action=copy',
   'spells.*0':'Action=drop',
-  'spells.(Acid Arrow|Call Lightning|Disintegrate|Finger Of Death|Lightning Bolt|Magic Missile|Polar Ray|Scorching Ray|Searing Light|Sunbeam)':
+  'spells.(Acid Arrow|Call Lightning( Storm)?|Disintegrate|Finger Of Death|Lightning Bolt|Magic Missile|Polar Ray|Scorching Ray|Searing Light|Shocking Grasp|Sunbeam)':
     'Target=powers.Bolt',
-  'spells.(Acid Fog|Cloudkill|Flaming Sphere|Ice Storm|Incendiary Cloud|Storm Of Vengeance)':
+  'spells.(Acid Fog|Cloudkill|Flaming Sphere|Ice Storm|Incendiary Cloud|Inflict.*Wounds|Storm Of Vengeance)':
     'Target="powers.Damage Field"',
   'spells.(Air Walk|Fly)':'Target=powers.Fly',
   'spells.(Analyze Dweomer|(Greater )?Arcane Sight|Identify)':
@@ -336,12 +353,14 @@ const CONVERSION_MAP = {
   'spells.Bestow Curse':'Target=powers.Curse',
   'spells.(Blade Barrier|Wall Of (Fire|Force|Ice|Iron|Stone|Thorns)|Web)':
     'Target=powers.Barrier',
+  'spells.(Bless Weapon|(Greater )?Magic Weapon)':'Target=powers.Smite',
   'spells.Blindness/Deafness':'Target=powers.Blind',
-  'spells.(Break Enchantment|(Greater )?Dispel Magic|Invisilbity Purge)':
+  'spells.(Break Enchantment|(Greater )?Dispel Magic|Invisibility Purge)':
     'Target=powers.Dispel',
-  'spells.(Burning Hands|Chain Lightning|Cone Of Cold|Delayed Blast Fireball|Explosive Runes|Fire Storm|Fireball|Flame Strike|Freezing Sphere|(Greater )?Glyph Of Warding|Meteor Swarm|Shatter|(Greater )?Shout|Sound Burst|Sunburst)':
-    'Target=powers.Blast',
+  'spells.(Burning Hands|Cone Of Cold)':'Target="powers.Burst"',
   'spells.(Cause ?Fear|Scare)':'Target=powers.Fear',
+  'spells.(Chain Lightning|(Delayed Blast )?Fireball|Explosive Runes|Fire Storm|Flame Strike|Freezing Sphere|(Greater )?Glyph Of Warding|Meteor Swarm|Shatter|(Greater )?Shout|Sound Burst|Sunburst)':
+    'Target=powers.Blast',
   'spells.(Charm Animal|Speak With Animals)':'Target="powers.Beast Friend"',
   'spells.(Commune With Nature|Commune|Contact Other Plane|Divination)':
     'Target=powers.Divination',
@@ -364,9 +383,8 @@ const CONVERSION_MAP = {
   'spells.(Etherealness|Ethereal Jaunt)':'Target=powers.Intangibility',
   'spells.(Expeditious Retreat|Haste|Longstrider|Slow)':
     'Target=powers.Sloth/Speed',
-  'spells.(False Vision|Hallucinatory Terrain|Illusory Wall|Magic Mouth|Major Image|Minor Image|Mirage Arcana|Mirror Image|Misdirection|Permanent Image|Persistent Image|Phantom Trap|Programmed Image|Screen|Silent Image|Veil|Ventriloquism)':
+  'spells.(False Vision|Hallucinatory Terrain|Illusory Wall|Magic Mouth|Major Image|Minor Image|Mirage Arcana|Mirror Image|Misdirection|Permanent Image|Persistent Image|Phantasmal Killer|Phantom Trap|Programmed Image|Screen|Silent Image|Veil|Ventriloquism)':
     'Target=powers.Illusion',
-  'spells.(Bless Weapon|(Greater )?Magic Weapon)':'Target=powers.Smite',
   'spells.(Mass )?Invisibility( Sphere)?':'Target=powers.Invisibility',
   'spells.(Limited )?Wish':'Target=powers.Wish',
   'spells.(Locate Creature|Locate Object)':'Target=powers.Locate',
@@ -518,6 +536,8 @@ function convertPFtoSW(attributes) {
         action = actions[i];
         target = targets[i] || attr;
         newValue = values[i] || attributes[attr];
+        if(typeof(newValue) === 'string')
+          newValue = newValue.replaceAll('$V', attributes[attr]);
         for(var j = 1; j < matchInfo.length; j++) {
           target = target.replaceAll('$' + j, matchInfo[j]);
           if(typeof(newValue) === 'string')
@@ -525,6 +545,8 @@ function convertPFtoSW(attributes) {
         }
         if(action == 'alignment') {
           newValue = newValue.replace(/Lawful |Chaotic |Neutral /i, '');
+        } else if(action == 'append') {
+          newValue = (newAttributes[target] || '') + newValue;
         } else if(action == 'armor') {
           target =
             newValue == 'Padded' ? 'armor.None' :
@@ -657,12 +679,32 @@ function doConvert() {
   });
   var newAttrs = convertPFtoSW(attrs);
   var output = window.document.forms[0]['output'];
-  output.value = "{";
+  output.value = "{\n";
   for(var attr in newAttrs) {
-    output.value += "\n" + '"' + attr + '":' +
+    if(output.value != "{\n")
+      output.value += ",\n"
+    output.value += '"' + attr + '":' +
       (typeof(newAttrs[attr]) != 'number' ? '"' + newAttrs[attr] + '"' : newAttrs[attr]);
   }
   output.value += "\n}";
+}
+
+function showAbout() {
+  var aboutWindow =
+    window.open('', '', 'height=400,width=600,resizable,scrollbars,toolbar');
+  var htmlBits = [
+    '<!DOCTYPE html>',
+    '<html lang="en">',
+    '<head>',
+    '<title>About PF2SW</title>',
+    '</head>',
+    '<body bgcolor="wheat" background="Images/parchment.jpg">',
+    ABOUT_TEXT.replace(/\n/g, '<br/>\n<br/>\n'),
+    '</body>',
+    '</html>'
+  ];
+  aboutWindow.document.write(htmlBits.join('\n') + '\n');
+  aboutWindow.document.close();
 }
 
 -->
@@ -699,11 +741,13 @@ function doConvert() {
 <form>
 <table>
 <tr>
+<td style="text-align:left"><input name="about" type="button" value="About" onclick="showAbout();"/></td>
+</tr><tr>
   <td><textarea name="input" autocomplete="off"></textarea></td>
   <td><input name="convert" type="button" value="Convert =>" onclick="doConvert()"/></td>
   <td><textarea name="output" autocomplete="off"></textarea></td>
 </tr><tr>
-  <th>Pathfinder charcter data</th>
+  <th>Pathfinder character data</th>
   <td>&nbsp;</td>
   <th>Pathfinder for Savage Worlds character data</th>
 </tr><tr>
