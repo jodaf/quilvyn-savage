@@ -70,7 +70,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.3.1';
+WeirdWest.VERSION = '2.3.3.2';
 
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race')
@@ -158,7 +158,7 @@ WeirdWest.CONCEPTS = {
     'Skill=Faith',
   'Bounty Hunter': // Estimated related features
     'Attribute=Agility ' +
-    'Skill=Shooting,Survival',
+    'Skill=Fighting,Intimidation,Shooting',
   'Chi Master':
     'Edge="Arcane Background (Chi Master)","Martial Artist" ' +
     'Attribute=Agility,Spirit ' +
@@ -166,21 +166,21 @@ WeirdWest.CONCEPTS = {
   'Common Folk':'',
   'Deserter': // Estimated related features
     'Edge=Soldier ' +
-    'Attribute=Agility,Vigor ' +
-    'Skill=Fighting,Shooting',
+    'Attribute=Agility,Strength,Vigor ' +
+    'Skill=Athletics,Fighting,Shooting',
   'Drifter': // Estimated related features
     'Attribute=Agility ' +
-    'Skill=Shooting',
+    'Skill="Common Knowledge",Shooting',
   'Escort': // Estimated related features
     'Edge=Attractive ' +
     'Attribute=Spirit,Vigor ' +
-    'Skill=Persuasion',
+    'Skill=Notice,Performance',
   'Explorer': // Estimated related features
     'Attribute=Smarts ' +
-    'Skill=Research,Survival',
+    'Skill=Notice,Research,Survival',
   'Grifter': // Estimated related features
     'Attribute=Spirit ' +
-    'Skill=Persuasion',
+    'Skill=Notice,Performance,Persuasion',
   'Huckster':
     'Edge="Arcane Background (Huckster)" ' +
     'Attribute=Smarts ' +
@@ -200,24 +200,26 @@ WeirdWest.CONCEPTS = {
   'Muckraker': // Estimated related features
     'Edge=Investigator ' +
     'Attribute=Smarts ' +
-    'Skill=Research',
-  'Outlaw':'',
+    'Skill="Common Knowledge",Notice,Research',
+  'Outlaw': // Estimated related features
+    'Attribute=Agility ' +
+    'Skill=Notice,Shooting,Stealth',
   'Prospector': // Estimated related features
     'Skill=Survival',
   'Sheriff': // Estimated related features
-    'Attribute=Agility,Spirit ' +
-    'Skill=Intimidation,Persuasion,Shooting',
+    'Attribute=Agility,Smarts,Spirit ' +
+    'Skill="Common Knowledge",Intimidation,Notice,Riding,Shooting',
   'Soldier': // Estimated related features
     'Edge=Soldier ' +
     'Attribute=Agility,Strength,Vigor ' +
-    'Skill=Fighting,Shooting',
+    'Skill=Athletics,Fighting,Shooting',
   'Territorial Ranger':
     'Edge="Territorial Ranger" ' +
     'Attribute=Vigor ' +
     'Skill=Fighting,Intimidation,Riding,Shooting,Survival',
   'Town Marshall': // Estimated related features
-    'Attribute=Agility,Spirit ' +
-    'Skill=Intimidation,Persuasion,Shooting'
+    'Attribute=Agility,Smarts,Spirit ' +
+    'Skill="Common Knowledge",Intimidation,Notice,Shooting'
 };
 WeirdWest.DEITIES = {
   'None':'',
@@ -863,7 +865,7 @@ WeirdWest.FEATURES_ADDED = {
   "Chill O' The Grave":
     'Section=combat ' +
     'Note="May spend a benny for a 3%{in} radius cold blast that makes unprepared creatures vulnerable"',
-  'Claws':SWADE.FEATURES['Claws'],
+  'Claws':SWADE.FEATURES.Claws,
   'Damned':'Section=feature Note="Will return as Harrowed if killed"',
   "Don't Get 'im Riled!":
     'Section=combat Note="Adds wound level to damage rolls"',
@@ -1125,8 +1127,8 @@ WeirdWest.SKILLS_ADDED = {
   'Trade':'Attribute=smarts'
 };
 WeirdWest.SKILLS = Object.assign({}, SWADE.SKILLS, WeirdWest.SKILLS_ADDED);
-delete WeirdWest.SKILLS['Knowledge (Electronics)'];
-delete WeirdWest.SKILLS['Knowledge (Hacking)'];
+delete WeirdWest.SKILLS.Electronics;
+delete WeirdWest.SKILLS.Hacking;
 WeirdWest.WEAPONS = {
 
   'Brass Knuckles':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
