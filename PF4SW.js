@@ -1185,7 +1185,7 @@ PF4SW.POWERS_CHANGES = {
     'Modifier=' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
       '"+2 PP Incapacitating damage disintegrates (Vigor neg)",' +
-      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"," +
+      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon",' +
       '"+2 PP ROF 2"',
   'Boost/Lower Trait':
     'School=Transmutation ' +
