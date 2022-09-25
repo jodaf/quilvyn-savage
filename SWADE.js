@@ -1534,7 +1534,7 @@ SWADE.POWERS = {
       '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
       '"1 PP/target (Spirit neg)" ' +
     'Description=' +
-      '"Creates sound up to shout or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
+      '"Creates sound up to shout (Smarts neg) or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
