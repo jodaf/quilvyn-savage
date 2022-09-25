@@ -1346,8 +1346,8 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+2 PP Athletics-2" ' +
-    'Description="Restrains target (Raise binds; Athletics frees)"',
+      '"+2 PP Athletics-2, Hardness 7" ' +
+    'Description="Restrains target (Raise binds; Athletics or breaking Hardness 5 frees)"',
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1399,9 +1399,9 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+1 PP Neutralizes poison or disease",' +
       '"+10 PP Restores older wound",' +
-      '"+20 PP Heals crippling injury" ' +
+      '"+20 PP Heals crippling injury",' +
+      '"+1 PP Neutralizes poison or disease" ' +
     'Description="Restores 1 wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
@@ -1409,8 +1409,8 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Illusion includes sound",' +
-      '"+2 PP Spirit-2" ' +
-    'Description="Creates 2\\" radius visual illusion for 5 rd"',
+      '"+2 PP Smarts-2" ' +
+    'Description="Creates 2\\" radius visual illusion (Smarts neg) for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
@@ -1430,7 +1430,7 @@ SWADE.POWERS = {
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP Self can move effect %{arcaneSkill}\\"/rd" ' +
+      '"+1 PP Attaches to object or moves effect %{arcaneSkill}\\"/rd" ' +
     'Description="Creates 3\\" radius bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
@@ -1452,7 +1452,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Edits memory",' +
       '"+2 PP Activate power as an action" ' +
-    'Description="Target forgets up to 30 min event (Smarts neg)"',
+    'Description="Target forgets up to 30 min event (Smarts neg) after 1 min activation"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1468,7 +1468,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP +4 Armor (Raise +6)",' +
-      '"+1 PP Target gains Toughness instead of armor" ' +
+      '"+1 PP Target gains Toughness instead of Armor" ' +
     'Description="Target gains +2 Armor (Raise +4) for 5 rd"',
   'Puppet':
     'Advances=8 ' +
@@ -1499,7 +1499,7 @@ SWADE.POWERS = {
     'PowerPoints=3+ ' +
     'Range=self ' +
     'Modifier=' +
-      '"+1 PP Can speak while changed" ' +
+      '"+1 PP Allows speech while changed" ' +
     'Description="transforms into animal form for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
@@ -1531,7 +1531,7 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts*5 ' +
     'Modifier=' +
-      '"+1 PP Self can move effect %{arcaneSkill}\\"/rd",' +
+      '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
       '"1 PP/target (Spirit neg)" ' +
     'Description=' +
       '"Creates sound up to shout or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
@@ -1554,7 +1554,7 @@ SWADE.POWERS = {
     'PowerPoints=2+ ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP Servant can claw for Str+d6",' +
+      '"+1 PP Servant can bite/claw for Str+d6 damage",' +
       '"+2 PP Servant has fly Pace 12",' +
       '"+1 PP Self can use servant\'s senses" ' +
     'Description="Creates obedient servant for 5 rd"',
@@ -1593,11 +1593,11 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Targets are armed",' +
-      '"+1 PP Targets have 2 Armor points",' +
+      '"+1 PP Target is armed",' +
+      '"+1 PP Target has 2 Armor points",' +
       '"+1 PP Self can use target senses" ' +
     'Description=' +
-      '"Animates and controls corpse for 1 hr; store PP for permanent"'
+      '"Animates and controls corpse for 1 hr or store PP for permanent"'
 };
 SWADE.RACES = {
   'Android':
@@ -2781,6 +2781,12 @@ SWADE.powerRules = function(
   }
   if(!description) {
     console.log('Empty description for power ' + name);
+  }
+  // TODO Default value for modifiers for backward-compatibility
+  if(modifiers == null)
+    modifiers = [];
+  if(!Array.isArray(modifiers)) {
+    console.log('Bad modifiers "' + modifiers + '" for power ' + name);
   }
   if((range+'').match(/^(self|sight|touch)$/i))
     range =
