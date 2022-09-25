@@ -864,7 +864,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="+1 Edge Points (Superior Kung Fu style); use 2 styles at once"',
   "Chill O' The Grave":
     'Section=combat ' +
-    'Note="May spend a benny for a 3%{in} radius cold blast that makes unprepared creatures vulnerable"',
+    'Note="May spend a benny for a 3\\" radius cold blast that makes unprepared creatures vulnerable"',
   'Claws':SWADE.FEATURES.Claws,
   'Damned':'Section=feature Note="Will return as Harrowed if killed"',
   "Don't Get 'im Riled!":
@@ -885,7 +885,7 @@ WeirdWest.FEATURES_ADDED = {
   'Harrowed':
     'Section=attribute,combat,feature,skill ' +
     'Note="+2 Spirit (Shaken recovery)/Immune to disease and poison","+2 Toughness/Ignore non-head Called Shot damage/Doesn\'t bleed out/Killed only if brain destroyed","+1 Edge Points (Harrowed edge)/Ignores 1 point of wound penalty/Doesn\'t breathe or drink/Smells of decay/May let the devil out for +6 trait and damage for 5 rd","-2 Persuasion/-2 Riding/-2 with animals"',
-  'Hellfire':'Section=arcana Note="9%{in} cone inflicts 3d6 damage 1/rd"',
+  'Hellfire':'Section=arcana Note="9\\" cone inflicts 3d6 damage 1/rd"',
   'Hexslinging':
     'Section=arcana ' +
     'Note="Cast <i>Ammo Whammy</i>, <i>Deflection</i>, <i>Boost Trait</i> (Shooting), and <i>Protection</i> via weapon"',
@@ -904,7 +904,7 @@ WeirdWest.FEATURES_ADDED = {
   'Iron Bound':'Section=feature Note="Connections with industrial science"',
   'Like An Oak':
     'Section=combat ' +
-    'Note="R12%{in} allies ignore 2 points of fear penalties on fear checks"',
+    'Note="R12\\" allies ignore 2 points of fear penalties on fear checks"',
   'Knack (Bastard)':
     'Section=feature ' +
     'Note="May spend a benny to see invisible and hidden creatures for 5 rd"',
@@ -949,7 +949,7 @@ WeirdWest.FEATURES_ADDED = {
   "Spirit's Favor":'Section=arcana Note="Cast chosen power as free action"',
   'Spook':
     'Section=arcana ' +
-    'Note="Targeted -2 fear check, suffer fatigue for 12%{in} radius effect"',
+    'Note="Targeted -2 fear check, suffer fatigue for 12\\" radius effect"',
   "Stitchin'":'Section=combat Note="Make natural healing roll 1/%V"',
   'Superior Kung Fu (Drunken Style)':
     'Section=combat Note="Trades -2 Pace for foes -2 attack"',
@@ -966,7 +966,7 @@ WeirdWest.FEATURES_ADDED = {
   'Superior Kung Fu (Tan Tui)':
     'Section=attribute,combat ' +
     'Note="Rise from prone costs no movement",' +
-         '"Gives +1 unarmed damage step 1/rd, success knocks back 1d4%{in} (Raise 1d4+2%{in})"',
+         '"Gives +1 unarmed damage step 1/rd, success knocks back 1d4\\" (Raise 1d4+2\\")"',
   'Superior Kung Fu (Wing Chun)':
     'Section=combat Note="Gives +1 Parry and foes -2 melee damage"',
   'Supernatural Attribute':'Section=attribute Note="+%V Attribute Points"',
@@ -1081,13 +1081,13 @@ WeirdWest.POWERS_ADDED = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Creates 3%{in} radius bright light for 10 min"',
+    'Description="Creates 3\\" radius bright light for 10 min"',
   'Numb':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=self ' +
     'Description=' +
-      '"Allies in %{spirit}%{in} radius ignore 1 point of wound or fatigue penalties (Raise 2) for 5 rd"',
+      '"Allies in %{spirit}\\" radius ignore 1 point of wound or fatigue penalties (Raise 2) for 5 rd"',
   'Puppet':SWADE.POWERS.Puppet
     .replace('Modifier=', 'Modifier="+1 PP Self can use target senses",'),
   'Sanctify':
@@ -1095,7 +1095,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=10 ' +
     'Range=touch ' +
     'Description=' +
-      '"Supernaturally evil creatures in 15%{in} sq suffer fatigue (Spirit neg (Raise Spirit-2)) until next sunset"',
+      '"Supernaturally evil creatures in 15\\" sq suffer fatigue (Spirit neg (Raise Spirit-2)) until next sunset"',
   'Shrink':
     'Advances=4 ' +
     'PowerPoints=2 ' +
