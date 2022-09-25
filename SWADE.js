@@ -1221,7 +1221,8 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=smarts*2 ' +
     'Modifier=' +
-      '"+1 PP 3\\" radius" ' +
+      '"+1 PP 3\\" radius",' +
+      '"+2 PP Inflicts 3d6 damage (Raise 4d6)" ' +
     'Description="2\\" radius inflicts 2d6 damage (Raise 3d6)"',
   'Blind':
     'Advances=0 ' +
@@ -1377,7 +1378,7 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+2 PP/additional target" ' +
-    'Description="Target can fly for 5 rd"',
+    'Description="Target gains fly Pace 12 (Raise Pace 24) for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
     'PowerPoints=2/Size ' +
@@ -4006,6 +4007,9 @@ SWADE.ruleNotes = function() {
     '  </li><li>\n' +
     '    Quilvyn assumes that every race has its own language and that\n' +
     '    half-elf characters know both Elf and Human.\n' +
+    '  </li><li>\n' +
+    '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
+    '    included in power descriptions\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
