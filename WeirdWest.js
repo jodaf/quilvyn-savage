@@ -70,7 +70,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.3.2';
+WeirdWest.VERSION = '2.3.3.3';
 
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race')
@@ -1072,6 +1072,9 @@ WeirdWest.POWERS_ADDED = {
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
+    'Modifier=' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+1 PP Spirit-2" ' +
     'Description=' +
       '"Supernaturally evil creatures cannot attack self physically (Spirit neg (Raise Spirit-2)) for 5 rd"',
   'Light':
@@ -1085,6 +1088,8 @@ WeirdWest.POWERS_ADDED = {
     'Range=self ' +
     'Description=' +
       '"Allies in %{spirit}%{in} radius ignore 1 point of wound or fatigue penalties (Raise 2) for 5 rd"',
+  'Puppet':SWADE.POWERS.Puppet
+    .replace('Modifier=', 'Modifier="+1 PP Self can use target senses",'),
   'Sanctify':
     'Advances=8 ' +
     'PowerPoints=10 ' +
@@ -1101,11 +1106,16 @@ WeirdWest.POWERS_ADDED = {
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=smarts ' +
+    'Modifier=' +
+      '"+1 PP Creates complete set",' +
+      '"+2 PP Creates 2 lb item" ' +
     'Description="Creates 1 lb item for 5 rd (Raise 5 min)"',
   'Wilderness Walk':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=self ' +
+    'Modifier=' +
+      '"+1 PP/additional target" ' +
     'Description="Gives triple speed and untraceable in wilderness for 1 hr"'
 };
 WeirdWest.POWERS = Object.assign({}, SWADE.POWERS, WeirdWest.POWERS_ADDED);
