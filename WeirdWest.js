@@ -1107,7 +1107,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=3 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP Creates complete set",' +
+      '"+1 PP Creates a set of items",' +
       '"+2 PP Creates 2 lb item" ' +
     'Description="Creates 1 lb item for 5 rd (Raise 5 min)"',
   'Wilderness Walk':
@@ -1350,7 +1350,9 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'School'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
     );
   else if(type == 'Race')
     WeirdWest.raceRules(rules, name,
@@ -1614,10 +1616,10 @@ WeirdWest.nicknameRules = function(rules, name, types, longs, moves) {
  * description of the power's effects.
  */
 WeirdWest.powerRules = function(
-  rules, name, advances, powerPoints, range, description
+  rules, name, advances, powerPoints, range, description, school, modifiers
 ) {
   SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description);
+    (rules, name, advances, powerPoints, range, description, school, modifiers);
   // No changes needed to the rules defined by base method
 };
 
