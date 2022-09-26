@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.3';
+SWD.VERSION = '2.3.2.4';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -753,7 +753,9 @@ SWD.POWERS_CHANGES = {
     'Description=' +
       '"Target halves range penalties (Raise dbl range increments) for 3 rd"',
   'Fear':'Range=smarts*2',
-  'Fly':'Range=touch',
+  'Fly':
+    'Range=touch ' +
+    'Description="Target gains ability to fly at normal walking Pace for 5 rd"',
   'Havoc':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1412,7 +1414,8 @@ SWD.languageRules = function(rules, name) {
 SWD.powerRules = function(
   rules, name, advances, powerPoints, range, description
 ) {
-  SWADE.powerRules(rules, name, advances, powerPoints, range, description);
+  SWADE.powerRules
+    (rules, name, advances, powerPoints, range, description, null, []);
   // No changes needed to the rules defined by base method
 };
 

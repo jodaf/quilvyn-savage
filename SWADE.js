@@ -2761,7 +2761,8 @@ SWADE.languageRules = function(rules, name) {
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
  * description of the power's effects and #school#, if defined, is the magic
- * school that defines the power.
+ * school that defines the power, and #modifiers# lists the power point cost
+ * and effects of any power-specific modifiers.
  */
 SWADE.powerRules = function(
   rules, name, advances, powerPoints, range, description, school, modifiers
