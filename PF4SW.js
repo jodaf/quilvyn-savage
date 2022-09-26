@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.1';
+PF4SW.VERSION = '2.3.1.2';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -1149,99 +1149,312 @@ PF4SW.HINDRANCES =
 delete PF4SW.HINDRANCES['Doubting Thomas'];
 delete PF4SW.HINDRANCES['Yellow+'];
 PF4SW.POWERS_CHANGES = {
-  'Arcane Protection':'School=Abjuration',
-  'Banish':'School=Abjuration',
+  'Arcane Protection':
+    'School=Abjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP -4 (Raise -6) on arcane attacks and damage"',
+  'Banish':
+    'School=Abjuration ' +
+    'Modifier=' +
+      '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius"',
   'Barrier':
     'School=Conjuration ' +
+    'Modifier=' +
+      '"+1/+2 PP Barrier inflicts 2d4/2d6 damage",' +
+      '"+1 PP Barrier has +2 hardness",' +
+      '"+1 PP Shapes barrier",' +
+      '"+1 PP Creates 10\\"x2\\" barrier" ' +
     'Description=' +
       '"Creates a 5\\" long (Raise 10\\") by 1\\" high wall for 5 rd"',
-  'Beast Friend':'School=Enchantment',
-  'Blast':'School=Evocation',
+  'Beast Friend':
+    'School=Enchantment ' +
+    'Modifier=' +
+      '"+2 PP Affects magical beasts",' +
+      '"+1 PP Effects last for 30 min",' +
+      '"+1 PP Target can use beast\'s senses"',
+  'Blast':
+    'School=Evocation ' +
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
+      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
   'Blind':'School=Necromancy',
-  'Bolt':'School=Evocation',
-  'Boost/Lower Trait':'School=Transmutation',
+  'Bolt':
+    'School=Evocation ' +
+    'Modifier=' +
+      '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
+      '"+2 PP Incapacitating damage disintegrates (Vigor neg)",' +
+      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon",' +
+      '"+2 PP ROF 2"',
+  'Boost/Lower Trait':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Target gains free reroll 1/rd (Raise 1/action) or suffers -2 penalty",' +
+      '"+1 PP Spirit-2"',
   'Burrow':'School=Conjuration',
-  'Burst':'School=Evocation',
+  'Burst':
+    'School=Evocation ' +
+    'Modifier=' +
+      '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
+      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
   'Confusion':
     'School=Enchantment ' +
-    'PowerPoints=1 ' +
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"+2 PP Radius also inflicts Shaken" ' +
     'Description=' +
       '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
-  'Damage Field':'School=Abjuration',
-  'Darksight':'School=Transmutation',
+  'Damage Field':
+    'School=Abjuration ' +
+    'Modifier=' +
+      '"+2 PP 2\\" radius",' +
+      '"+2 PP 2d6 damage",' +
+      '"+4 PP Inflicts 3d6 damage as heavy weapon",' +
+      '"+2 PP Moves effect %{smarts}\\"/rd"',
+  'Darksight':
+   'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Target ignores all illumination penalties and 4 points from invisibility"',
   'Deflection':
     'School=Abjuration ' +
     'PowerPoints=2 ' +
     'Description=' +
       '"Foes suffer -2 ranged or melee attacks (Raise both) on target for 5 rd"',
-  'Detect/Conceal Arcana':'School=Divination',
+  'Detect/Conceal Arcana':
+    'School=Divination ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Senses supernatural evil/good",' +
+      '"+1/+2 PP 2\\"/3\\" radius",' +
+      '"+1 PP Identifies magic item powers",' +
+      '"+1 PP <i>Detect</i>-2"',
   'Disguise':'School=Illusion',
   'Dispel':
     'School=Abjuration ' +
     'Advances=0 ' +
+    'Modifier=' +
+      '"+8 PP 2\\" radius suppresses powers and effects for 5 rd",' +
+      '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius",' +
+      '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)",' +
+      '"+3 PP Ends all of target\'s activated powers" ' +
     'Description=' +
       '"End targeted power (Arcane skill neg)"',
   'Divination':
     'School=Divination ' +
-    'Advances=4',
-  'Drain Power Points':'School=Necromancy',
-  'Elemental Manipulation':'School=Transmutation',
-  'Empathy':'School=Enchantment',
-  'Entangle':'School=Transmutation',
+    'Advances=4 ' +
+    'Modifier=' +
+      '"+3 PP Contact gives advice"',
+  'Drain Power Points':
+    'School=Necromancy ' +
+    'Modifier=' +
+      '"+2 PP Drains 2d6 Power Points"',
+  'Elemental Manipulation':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+3 PP Triples effect volume",' +
+      '"+5 PP Summons weather"',
+  'Empathy':
+    'School=Enchantment ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Makes uncooperative or neutral target cooperative (Raise friendly)",' +
+      '"+1 PP Effect lasts 5 min",' +
+      '"+2 PP Self can detect target\'s lies"',
+  'Entangle':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+2/+4 PP Inflicts 2d4/2d6 damage",' +
+      '"+1 PP Entangling material has Hardness 10"',
   'Environmental Protection':
     'School=Abjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Target gains resistance" ' +
     'Description=' +
       '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
-  'Farsight':'School=Transmutation',
-  'Fear':'School=Necromancy',
-  'Fly':'School=Transmutation',
-  'Growth/Shrink':'School=Transmutation',
-  'Havoc':'School=Evocation',
-  'Healing':'School=Conjuration',
-  'Illusion':'School=Illusion',
+  'Farsight':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Target ignores range penalties"',
+  'Fear':
+    'School=Necromancy ' +
+    'Modifier=' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+2 PP Inflicts Spirit-2 on Fear (Raise -4)"',
+  'Fly':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+2 PP/additional target",' +
+      '"+5 PP Target gains fly Pace 24 (Raise Pace 48)"',
+  'Growth/Shrink':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+2 PP Effect lasts 5 min",' +
+      '"+2 PP Target retains Strength and Toughness"',
+  'Havoc':
+    'School=Evocation ' +
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"+2 PP Throws 3d6\\""',
+  'Healing':
+    'School=Conjuration ' +
+    'Modifier=' +
+      '"+10 PP Restores older wound",' +
+      '"+15 PP Heals crippling injury",' +
+      '"+2/+3 PP 2\\"/3\\" radius heals allies",' +
+      '"+1 PP Neutralizes poison or disease"',
+  'Illusion':
+    'School=Illusion ' +
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"+3 PP Inflicts Shaken (Raise wounds) (Smarts neg)",' +
+      '"+2 PP Effect lasts 5 min",' +
+      '"+1/+2 PP Moves effect 12\\"/24\\"/rd",' +
+      '"+1 PP Illusion includes sound",' +
+      '"+2 PP Smarts-2"',
   'Intangibility':
     'School=Transmutation ' +
-    'Advances=8',
-  'Invisibility':'School=Illusion',
-  'Light/Darkness':'School=Evocation',
-  'Mind Link':'School=Divination',
-  'Mind Reading':'School=Divination',
-  'Mind Wipe':'School=Enchantment',
+    'Advances=8 ' +
+    'Modifier=' +
+      '"+3 PP/additional target",' +
+      '"+3 PP Effect lasts 5 min"',
+  'Invisibility':
+    'School=Illusion ' +
+    'Modifier=' +
+      '"+3 PP/additional target",' +
+      '"+3 PP Effect lasts 5 min"',
+  'Light/Darkness':
+    'School=Evocation ' +
+    'Modifier=' +
+      '"+2 PP Light occupies %{smarts}\\" radius",' +
+      '"+2 PP Darkness blocks Infravision, Low-Light Vision, and Darkvision",' +
+      '"+1 PP Moves effect %{arcaneSkill}\\"/rd"',
+  'Mind Link':
+    'School=Divination ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Broadcasts short thought in %{smarts*4}\\" radius",' +
+      '"+3 PP Self can connect with any familiar mind"',
+  'Mind Reading':
+    'School=Divination ' +
+    'Modifier=' +
+      '"+2 PP Self views entire scene or related memories"',
+  'Mind Wipe':
+    'School=Enchantment ' +
+    'Modifier=' +
+      '"+1 PP Edits memory",' +
+      '"+2 PP Activate power as an action",' +
+      '"+2 PP Completely removes all memory of a person, place, or thing"',
   'Object Reading':
     'School=Divination ' +
     'Description=' +
-      '"Self sees visions of history of target"',
+      '"Self sees visions of history of target" ' +
+    'Modifier=' +
+      '"+2 PP Shares vision with others nearby"',
   'Protection':
     'School=Abjuration ' +
     'PowerPoints=2 ' +
+    'Modifier=' +
+      '"+1 PP/additional target" ' +
     'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd"',
-  'Puppet':'School=Enchantment',
+  'Puppet':
+    'School=Enchantment ' +
+    'Modifier=' +
+      '"+2 PP/additional target",' +
+      '"+2 PP Spirit-2"',
   'Relief':
     'School=Conjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+3 PP Restores 1 energy-draining effect (Raise 2)",' +
+      '"+1 PP Removes Stunned condition" ' +
     'Description=' +
       '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
   'Resurrection':
     'School=Conjuration ' +
-    'PowerPoints=20',
-  'Shape Change':'School=Transmutation',
-  'Sloth/Speed':'School=Transmutation',
+    'PowerPoints=20 ' +
+    'Modifier=' +
+      '"+20 PP Raises any dead",' +
+      '"+5 PP Raises 10 yr corpse"',
+  'Shape Change':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP Effects last 5 min",' +
+      '"+2/+3 PP Effect willing target at range touch/%{smarts}\\""',
+  'Sloth/Speed':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+2 PP Gives maximum speed result",' +
+      '"+2 PP Reduces target multi-action penalty by 2",' +
+      '"+1 PP Spirit-2"',
   'Slumber':'School=Enchantment',
-  'Smite':'School=Transmutation',
-  'Sound/Silence':'School=Illusion',
-  'Speak Language':'School=Divination',
+  'Smite':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Inflicts +4 damage (Raise +6) as heavy weapon"',
+  'Sound/Silence':
+    'School=Illusion ' +
+    'Modifier=' +
+      '"+1 PP Smarts-2",' +
+      '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
+      '"1 PP/target (Spirit neg)"',
+  'Speak Language':
+    'School=Divination ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Target understands all languages",' +
+      '"+5 PP All within %{smarts}\\" radius can understand each other"',
   'Stun':'School=Evocation',
-  'Summon Ally':'School=Conjuration',
-  'Telekinesis':'School=Transmutation',
-  'Teleport':'School=Conjuration',
+  'Summon Ally':
+    'School=Conjuration ' +
+    'Modifier=' +
+      '"+1+ PP/additional servant",' +
+      '"+1 PP Servant can bite/claw for Str+d6",' +
+      '"+1 PP Servant has combat edge",' +
+      '"+2 PP Servant has fly Pace 12",' +
+      '"+1 PP/trait boost",' +
+      '"+1 PP Self can use servant\'s senses"',
+  'Telekinesis':
+    'School=Transmutation ' +
+    'Modifier=' +
+      '"+3 PP Moves items as Strength d12 (Raise d12+2)"',
+  'Teleport':
+    'School=Conjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+5 PP Opens gate to destination for 5 rd",' +
+      '"+5 PP Teleport great distance",' +
+      '"+2 PP Touch teleports foe (Spirit neg)"',
   'Wall Walker':'School=Transmutation',
-  "Warrior's Gift":'School=Conjuration',
-  'Zombie':'School=Necromancy',
+  "Warrior's Gift":
+    'School=Conjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+4 PP Target gains 2 combat edges"',
+  'Zombie':
+    'School=Necromancy ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Target is armed",' +
+      '"+1 PP Target has 2 Armor points",' +
+      '"+1 PP Self can use target senses",' +
+      '"+1 PP Corpse becomes animated skeleton"',
 
   'Baleful Polymorph':
     'Advances=8 ' +
     'PowerPoints="3+2/size change" ' +
     'Range=smarts ' +
     'School=Transmutation ' +
+    'Modifier=' +
+      '"+2 PP Transformation lasts for 5 min" ' +
     'Description=' +
       '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)"',
   'Conjure Item':
@@ -1249,6 +1462,10 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=2/lb ' +
     'Range=smarts ' +
     'School=Conjuration ' +
+    'Modifier=' +
+      '"+1 PP Creates a set of items",' +
+      '"+1 PP/dy Creates food and water",' +
+      '"+1 PP/lb Item lasts until dispelled" ' +
     'Description=' +
       '"Creates mundane item that lasts 1 hr"',
   'Curse':
@@ -1256,6 +1473,8 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=5 ' +
     'Range=touch ' +
     'School=Necromancy ' +
+    'Modifier=' +
+      '"+5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
       '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
   'Locate':
@@ -1263,6 +1482,8 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=3 ' +
     'Range=self ' +
     'School=Divination ' +
+    'Modifier=' +
+      '"+1 PP Self learns best path to target" ' +
     'Description=' +
       '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
   'Planar Binding':
@@ -1277,6 +1498,10 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=4 ' +
     'Range=smarts ' +
     'School=Conjuration ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Creates extra-dimensional shelter",' +
+      '"+2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles of known location"',
   'Sanctuary':
@@ -1284,6 +1509,9 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=2 ' +
     'Range=touch ' +
     'School=Enchantment ' +
+    'Modifier=' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+1 PP Spirit-2" ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
@@ -1291,6 +1519,8 @@ PF4SW.POWERS_CHANGES = {
     'PowerPoints=3 ' +
     'Range=self ' +
     'School=Divination ' +
+    'Modifier=' +
+      '"+1 PP Shares vision with allies in %{smarts}\\" radius" ' +
     'Description=' +
       '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
   'Time Stop':
@@ -1563,7 +1793,8 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValue(attrs, 'School')
+      QuilvynUtils.getAttrValue(attrs, 'School'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
     );
   else if(type == 'Race' || type == 'Ancestry') {
     PF4SW.raceRules(rules, name,
@@ -2106,14 +2337,14 @@ PF4SW.languageRules = function(rules, name) {
  * school that defines the power.
  */
 PF4SW.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school
+  rules, name, advances, powerPoints, range, description, school, modifiers
 ) {
   if(!(school + '').match(/^(Abjuration|Conjuration|Divination|Enchantment|Evocation|Illusion|Necromancy|Transmutation|Universal)$/)) {
     console.log('Bad school "' + school + '" for spell ' + name);
     return;
   }
   SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, school);
+    (rules, name, advances, powerPoints, range, description, school, modifiers);
   // No changes needed to the rules defined by base method
 };
 
