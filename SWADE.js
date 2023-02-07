@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.8';
+SWADE.VERSION = '2.3.2.9';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -1649,14 +1649,14 @@ for(var r in SWADE.RACES) {
 }
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
-  'Small':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
-  'Medium':'Era=Ancient,Medieval Parry=2 Cover=-2 MinStr=6 Weight=8',
-  'Large':'Era=Ancient,Medieval Parry=3 Cover=-4 MinStr=8 Weight=12',
-  'Riot Shield':'Era=Modern Parry=3 Cover=-4 MinStr=4 Weight=5',
-  'Ballistic Shield':'Era=Modern Parry=3 Cover=-4 MinStr=6 Weight=9',
-  'Small Polymer':'Era=Future Parry=1 Cover=0 MinStr=4 Weight=2',
-  'Medium Polymer':'Era=Future Parry=2 Cover=-2 MinStr=4 Weight=4',
-  'Large Polymer':'Era=Future Parry=3 Cover=-4 MinStr=6 Weight=6'
+  'Small Shield':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
+  'Medium Shield':'Era=Ancient,Medieval Parry=2 Cover=2 MinStr=6 Weight=8',
+  'Large Shield':'Era=Ancient,Medieval Parry=3 Cover=4 MinStr=8 Weight=12',
+  'Riot Shield':'Era=Modern Parry=3 Cover=4 MinStr=4 Weight=5',
+  'Ballistic Shield':'Era=Modern Parry=3 Cover=4 MinStr=6 Weight=9',
+  'Small Polymer Shield':'Era=Future Parry=1 Cover=0 MinStr=4 Weight=2',
+  'Medium Polymer Shield':'Era=Future Parry=2 Cover=2 MinStr=4 Weight=4',
+  'Large Polymer Shield':'Era=Future Parry=3 Cover=4 MinStr=6 Weight=6'
 };
 SWADE.SKILLS = {
   'Academics':'Attribute=smarts',

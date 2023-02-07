@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.2';
+PF4SW.VERSION = '2.3.1.3';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -1599,9 +1599,9 @@ PF4SW.LANGUAGES = {
 };
 PF4SW.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
-  'Light':'Parry=1 Cover=0 MinStr=6 Weight=4',
-  'Medium':'Parry=2 Cover=-2 MinStr=8 Weight=8',
-  'Heavy':'Parry=2 Cover=-4 MinStr=10 Weight=12'
+  'Light Shield':'Parry=1 Cover=0 MinStr=6 Weight=4',
+  'Medium Shield':'Parry=2 Cover=2 MinStr=8 Weight=8',
+  'Heavy Shield':'Parry=2 Cover=4 MinStr=10 Weight=12'
 };
 PF4SW.SKILLS = Object.assign({}, SWADE.SKILLS);
 delete PF4SW.SKILLS['Electronics'];

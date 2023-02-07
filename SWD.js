@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.4';
+SWD.VERSION = '2.3.2.5';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -902,9 +902,9 @@ for(var r in SWD.RACES) {
 }
 SWD.SHIELDS = {
   'None':'Parry=0 Cover=0 Weight=0',
-  'Small':'Era=Medieval Parry=1 Cover=0 Weight=8',
-  'Medium':'Era=Medieval Parry=1 Cover=-2 Weight=12',
-  'Large':'Era=Medieval Parry=2 Cover=-2 Weight=20'
+  'Small Shield':'Era=Medieval Parry=1 Cover=0 Weight=8',
+  'Medium Shield':'Era=Medieval Parry=1 Cover=2 Weight=12',
+  'Large Shield':'Era=Medieval Parry=2 Cover=2 Weight=20'
 };
 SWD.SKILLS = {
   'Boating':'Attribute=agility',
