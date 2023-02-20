@@ -5,7 +5,7 @@ the Savage Worlds RPG, applying the rules of the
 <a href="https://www.peginc.com/store/savage-worlds-adventure-edition-core-rules-pdf-swade/">Savage Worlds Adventure Edition</a>,
 <a href="https://peginc.com/store/savage-worlds-deluxe-explorers-edition/">Savage Worlds Deluxe Edition</a>,
 <a href="https://www.drivethrurpg.com/product/319036/Deadlands-The-Weird-West"> Deadlands: THe Weird West</a>, and
-<a href="https://www.drivethrurpg.com/product/361286/PathfinderR-for-Savage-Worlds-Core-Rules"</a>Pathfinder for Savage Worlds Core Rules</a>.
+<a href="https://www.drivethrurpg.com/product/361286/PathfinderR-for-Savage-Worlds-Core-Rules">Pathfinder for Savage Worlds Core Rules</a>.
 
 ### Requirements
 
