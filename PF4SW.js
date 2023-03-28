@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.3';
+PF4SW.VERSION = '2.3.1.4';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -1709,7 +1709,10 @@ PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
 /* Defines rules related to powers. */
 PF4SW.arcaneRules = function(rules, arcanas, powers) {
   SWADE.arcaneRules(rules, arcanas, powers);
-  // No changes needed to the rules defined by base method
+  let allNotes = rules.getChoices('notes');
+  if('commonPowerModifiers' in allNotes)
+    allNotes['commonPowerModifiers'] =
+      allNotes['commonPowerModifiers'].replace(/^/, '<b>+1 PP</b> Adaptable Caster; ');
 };
 
 /* Defines rules related to character aptitudes. */

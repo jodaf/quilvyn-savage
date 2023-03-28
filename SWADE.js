@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.9';
+SWADE.VERSION = '2.3.2.10';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -1858,6 +1858,8 @@ SWADE.arcaneRules = function(rules, arcanas, powers) {
   for(var power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
   }
+  rules.defineChoice('notes', 'commonPowerModifiers:<b>+1/+2/+3 PP</b> Armor Piercing; <b>+2 PP</b> Fatigue; <b>+1 PP</b> Glow/Shroud; <b>+2 PP</b> Heavy Weapon; <b>+1 PP</b> Hinder/Hurry; <b>+2 PP</b> Lingering Damage; <b>+1/+2 PP</b> Dbl/Tpl Range; <b>+1 PP</b> Selective');
+  rules.defineRule('commonPowerModifiers', 'powerPoints', '=', '1');
 };
 
 /* Defines the rules related to character attributes and description. */
@@ -3302,7 +3304,8 @@ SWADE.createViewers = function(rules, viewers) {
           {name: 'PowerStats', within: 'Arcana', separator: innerSep},
             {name: 'Power Count', within: 'PowerStats'},
             {name: 'Power Points', within: 'PowerStats'},
-          {name: 'Powers', within: 'Arcana', columns: '1L', separator: null}
+          {name: 'Powers', within: 'Arcana', columns: '1L', separator: null},
+          {name: 'Common Power Modifiers', within: 'Arcana'}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(

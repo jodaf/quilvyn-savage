@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.5';
+SWD.VERSION = '2.3.2.6';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -1086,7 +1086,8 @@ SWD.identityRules = function(rules, races, eras, concepts, deitys) {
 /* Defines rules related to powers. */
 SWD.arcaneRules = function(rules, arcanas, powers) {
   SWADE.arcaneRules(rules, arcanas, powers);
-  // No changes needed to the rules defined by base method
+  // Power Modifiers aren't part of the SWD rules
+  rules.defineRule('commonPowerModifiers', 'powerPoints', '=', 'null');
 };
 
 /* Defines rules related to character aptitudes. */
