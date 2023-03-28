@@ -822,7 +822,7 @@ WeirdWest.ETHNICITIES = {
       'Gutierrez,Guzman,Hernanez,Herrera,Jimenez,Juarez,Lopez,Luna,Martinez,' +
       'Medina,Mendez,Menoza,Morales,Moreno,Munoz,Ortega,Ortiz,Perez,Ramirez,' +
       'Ramos,Reyes,Rivera,Rodriguez,Rojas,Romero,Ruiz,Salazar,Sanchez,Soto,' +
-      'Torres,Vargas,Velasquez,vasquez'
+      'Torres,Vargas,Velasquez,Vasquez'
 };
 WeirdWest.FEATURES_ADDED = {
   // Edges
