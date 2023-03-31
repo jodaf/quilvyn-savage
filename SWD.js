@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.6';
+SWD.VERSION = '2.3.2.7';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -595,7 +595,9 @@ SWD.FEATURES = {
   'Bite':'SWADE',
   'Burrowing':
     'Section=feature Note="Can burrow into loose earth and surprise foes"',
-  'Claws':'SWADE',
+  'Claws':
+    'Section=combat,skill ' +
+    'Note="Claws are a natural weapon","+2 Climbing"',
   'Construct':
     'Section=attribute,combat ' +
     'Note=' +
