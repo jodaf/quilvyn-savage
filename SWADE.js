@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.10';
+SWADE.VERSION = '2.3.2.11';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -3434,7 +3434,8 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Advances', 'Advances', 'select-one', zeroToSixteen],
       ['PowerPoints', 'Power Points', 'select-one', zeroToTen],
       ['Range', 'Range', 'text', [15]],
-      ['Description', 'Description', 'text', [60]]
+      ['Description', 'Description', 'text', [60]],
+      ['Modifier', 'Modifier', 'text', [60]]
     );
   } else if(type == 'Race')
     result.push(
