@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.11';
+SWADE.VERSION = '2.3.2.12';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -3200,6 +3200,7 @@ SWADE.createViewers = function(rules, viewers) {
       viewer.addElements(
         {name: '_top', borders: 1, separator: '\n'},
         {name: 'Header', within: '_top'},
+          {name: 'Image Url', within: 'Header', format: '<img src="%V" alt="No Image" style="height:75px; vertical-align:middle"/>&nbsp;&nbsp;'},
           {name: 'Identity', within: 'Header', separator: ''},
             {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
             {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
@@ -3207,7 +3208,6 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Concept', within: 'Identity', format: ' <b>%V</b>'},
-          {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
           {name: 'Attributes', within: 'Characteristics', separator: innerSep},
