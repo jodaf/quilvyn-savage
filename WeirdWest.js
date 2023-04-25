@@ -50,7 +50,7 @@ function WeirdWest(baseRules) {
   );
   rules.defineChoice('preset',
     'advances:Advances,text,4',
-    'concept:Concept,select-one,concepts',
+    'concepts:Concepts,set,concepts',
     'gender:Gender,select-one,genders',
     'ethnicity:Ethnicity,select-one,ethnicitys'
   );
@@ -70,7 +70,7 @@ function WeirdWest(baseRules) {
 
 }
 
-WeirdWest.VERSION = '2.3.3.3';
+WeirdWest.VERSION = '2.3.3.4';
 
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race')

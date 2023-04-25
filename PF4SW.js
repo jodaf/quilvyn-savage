@@ -55,7 +55,7 @@ function PF4SW(baseRules) {
   );
   rules.defineChoice('preset',
     'race:Ancestry,select-one,races', 'advances:Advances,text,4',
-    'concept:Concept,select-one,concepts'
+    'concepts:Concepts,set,concepts'
   );
 
   PF4SW.attributeRules(rules);
@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.4';
+PF4SW.VERSION = '2.3.1.5';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',

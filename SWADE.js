@@ -30,7 +30,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  */
 function SWADE() {
 
-  var rules =
+  let rules =
     new QuilvynRules('Savage Worlds Adventure Edition', SWADE.VERSION);
   SWADE.rules = rules;
 
@@ -51,7 +51,7 @@ function SWADE() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
+    'advances:Advances,text,4', 'concepts:Concepts,set,concepts'
   );
 
   SWADE.attributeRules(rules);
@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.12';
+SWADE.VERSION = '2.3.2.13';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -80,7 +80,7 @@ SWADE.CHOICES = [
  */
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
-  'concept', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
+  'concepts', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
   'deity', 'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard', 'Stat Block'];
@@ -1644,7 +1644,7 @@ SWADE.RACES = {
     'Languages=Saurian'
 };
 SWADE.LANGUAGES = {};
-for(var r in SWADE.RACES) {
+for(let r in SWADE.RACES) {
   SWADE.LANGUAGES[r] = '';
 }
 SWADE.SHIELDS = {
@@ -1852,10 +1852,10 @@ SWADE.arcaneRules = function(rules, arcanas, powers) {
   QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
   QuilvynUtils.checkAttrTable
     (powers, ['Advances', 'PowerPoints', 'Range', 'Description', 'School', 'Modifier']);
-  for(var arcana in arcanas) {
+  for(let arcana in arcanas) {
     rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
   }
-  for(var power in powers) {
+  for(let power in powers) {
     rules.choiceRules(rules, 'Power', power, powers[power]);
   }
   rules.defineChoice('notes', 'commonPowerModifiers:<b>+1/+2/+3 PP</b> Armor Piercing; <b>+2 PP</b> Fatigue; <b>+1 PP</b> Glow/Shroud; <b>+2 PP</b> Heavy Weapon; <b>+1 PP</b> Hinder/Hurry; <b>+2 PP</b> Lingering Damage; <b>+1/+2 PP</b> Dbl/Tpl Range; <b>+1 PP</b> Selective');
@@ -1865,7 +1865,7 @@ SWADE.arcaneRules = function(rules, arcanas, powers) {
 /* Defines the rules related to character attributes and description. */
 SWADE.attributeRules = function(rules) {
 
-  for(var a in SWADE.ATTRIBUTES) {
+  for(let a in SWADE.ATTRIBUTES) {
     rules.defineRule(a + 'Step',
       '', '=', '1',
       a + 'Allocation', '+', null
@@ -1923,14 +1923,14 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   QuilvynUtils.checkAttrTable
     (weapons, ['Era', 'Damage', 'MinStr', 'Weight', 'Category', 'Range', 'AP', 'ROF', 'Parry']);
 
-  for(var armor in armors) {
+  for(let armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
   }
-  for(var shield in shields) {
+  for(let shield in shields) {
     rules.choiceRules(rules, 'Shield', shield, shields[shield]);
   }
-  for(var weapon in weapons) {
-    var pattern = weapon.replace(/  */g, '\\s+');
+  for(let weapon in weapons) {
+    let pattern = weapon.replace(/  */g, '\\s+');
     rules.choiceRules(rules, 'Goody', weapon,
       // To avoid triggering additional weapons with a common suffix (e.g.,
       // "* compound bow +2" also makes regular bow +2), require that weapon
@@ -2007,11 +2007,11 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('weapons.Horns', 'combatNotes.horns', '=', null);
   rules.defineRule('weapons.Tail', 'combatNotes.tail', '=', null);
   // Add defense for Stat Block character sheet format
-  for(var a in armors) {
+  for(let a in armors) {
     if(a != 'None')
       rules.defineRule('defense.' + a, 'armor.' + a, '=', null);
   }
-  for(var s in shields) {
+  for(let s in shields) {
     if(s != 'None')
       rules.defineRule('defense.' + s + ' Shield',
         'shield', '=', 'source == "' + s + '" ? 1 : null'
@@ -2028,16 +2028,16 @@ SWADE.identityRules = function(rules, races, eras, concepts, deitys) {
   QuilvynUtils.checkAttrTable(eras, []);
   QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
 
-  for(var concept in concepts) {
+  for(let concept in concepts) {
     rules.choiceRules(rules, 'Concept', concept, concepts[concept]);
   }
-  for(var deity in deitys) {
+  for(let deity in deitys) {
     rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
   }
-  for(var era in eras) {
+  for(let era in eras) {
     rules.choiceRules(rules, 'Era', era, eras[era]);
   }
-  for(var race in races) {
+  for(let race in races) {
     rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
@@ -2048,8 +2048,8 @@ SWADE.talentRules = function(
   rules, edges, features, goodies, hindrances, languages, skills
 ) {
 
-  var c;
-  var matchInfo;
+  let c;
+  let matchInfo;
 
   QuilvynUtils.checkAttrTable(edges, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
@@ -2059,16 +2059,16 @@ SWADE.talentRules = function(
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Era', 'Attribute', 'Core']);
 
-  for(var goody in goodies) {
+  for(let goody in goodies) {
     rules.choiceRules(rules, 'Goody', goody, goodies[goody]);
   }
-  for(var hindrance in hindrances) {
+  for(let hindrance in hindrances) {
     rules.choiceRules(rules, 'Hindrance', hindrance, hindrances[hindrance]);
   }
-  for(var language in languages) {
+  for(let language in languages) {
     rules.choiceRules(rules, 'Language', language, languages[language]);
   }
-  for(var skill in skills) {
+  for(let skill in skills) {
     if((matchInfo = skill.match(/(%(\w+))/)) != null) {
       for(c in rules.getChoices(matchInfo[2] + 's')) {
         rules.choiceRules
@@ -2086,7 +2086,7 @@ SWADE.talentRules = function(
       rules.defineChoice('traits', skill);
     }
   }
-  for(var edge in edges) {
+  for(let edge in edges) {
     if((matchInfo = edge.match(/(%(\w+))/)) != null) {
       for(c in rules.getChoices(matchInfo[2] + 's')) {
         rules.choiceRules
@@ -2096,7 +2096,7 @@ SWADE.talentRules = function(
       rules.choiceRules(rules, 'Edge', edge, edges[edge]);
     }
   }
-  for(var feature in features) {
+  for(let feature in features) {
     if((matchInfo = feature.match(/(%(\w+))/)) != null) {
       for(c in rules.getChoices(matchInfo[2] + 's')) {
         rules.choiceRules
@@ -2249,7 +2249,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
  * powers #powers#.
  */
 SWADE.arcanaRules = function(rules, name, skill, powers) {
-  var compactName = name.replaceAll(' ', '');
+  let compactName = name.replaceAll(' ', '');
   // Define arcaneSkill for use in power effects
   rules.defineRule('arcaneSkill', 'arcaneSkill' + compactName, '^=', null);
   rules.defineRule('arcaneSkill' + compactName,
@@ -2322,7 +2322,7 @@ SWADE.conceptRules = function(rules, name, attributes, edges, skills) {
     console.log('Bad skills "' + edges + '" for concept ' + name);
     return;
   }
-  var i, ith;
+  let i, ith;
   for(i = 0; i < attributes.length; i++) {
     ith = attributes[i];
     if(!rules.getChoices('attributes') ||
@@ -2385,7 +2385,7 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
     return;
   }
 
-  var prefix =
+  let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
   if(requires.length > 0)
@@ -2395,7 +2395,7 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
     QuilvynRules.prerequisiteRules
       (rules, 'sanity', prefix + 'Edge', 'edges.' + name, implies);
   rules.defineRule('features.' + name, 'edges.' + name, '=', null);
-  for(var i = 0; i < types.length; i++) {
+  for(let i = 0; i < types.length; i++) {
     rules.defineRule(types[i] + 'EdgeCount', 'features.' + name, '+=', '1');
   }
 
@@ -2406,8 +2406,8 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADE.edgeRulesExtra = function(rules, name) {
-  var matchInfo;
-  var note;
+  let matchInfo;
+  let note;
   if(name == 'Arcane Resistance') {
     rules.defineRule('combatNotes.arcaneResistance',
       '', '=', '-2',
@@ -2519,7 +2519,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('arcanaNotes.powerPoints', 'edges.Power Points', '=', 'source * 5');
   } else if((matchInfo = name.match(/^Professional \(([\w\s]*)\)$/)) != null) {
-    var focus = matchInfo[1];
+    let focus = matchInfo[1];
     note = (focus.toLowerCase() in SWADE.ATTRIBUTES ? 'attribute' : 'skill') +
            'Notes.professional(' + matchInfo[1].replaceAll(' ', '') + ')';
     rules.defineRule(note,
@@ -2561,7 +2561,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'combatNotes.tougherThanNails', '+', '1'
     );
   } else if((matchInfo = name.match(/^Trademark Weapon \((.*)\)$/)) != null) {
-    var weapon = matchInfo[1];
+    let weapon = matchInfo[1];
     note = 'combatNotes.trademarkWeapon(' + weapon.replaceAll(' ', '') + ')';
     rules.defineRule(note,
       '', '=', '1',
@@ -2618,23 +2618,23 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     return;
   }
 
-  var prefix =
+  let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
-  for(var i = 0; i < sections.length; i++) {
+  for(let i = 0; i < sections.length; i++) {
 
-    var section = sections[i];
-    var effects = notes[i];
-    var matchInfo;
-    var note = section + 'Notes.' + prefix;
+    let section = sections[i];
+    let effects = notes[i];
+    let matchInfo;
+    let note = section + 'Notes.' + prefix;
 
     rules.defineChoice('notes', note + ':' + effects);
     rules.defineRule
       (note, 'features.' + name, effects.indexOf('%V') >= 0 ? '?' : '=', null);
 
-    var pieces = effects.split('/');
+    let pieces = effects.split('/');
 
-    for(var j = 0; j < pieces.length; j++) {
+    for(let j = 0; j < pieces.length; j++) {
 
       matchInfo = pieces[j].match(/^(\d+)\s+powers?$/i);
       if(matchInfo)
@@ -2647,11 +2647,11 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       if(!matchInfo)
         continue;
 
-      var adjust = matchInfo[1];
-      var adjusted = matchInfo[4];
-      var adjuster =
+      let adjust = matchInfo[1];
+      let adjusted = matchInfo[4];
+      let adjuster =
         adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
-      var op = adjust.startsWith('x') ? '*' : '+';
+      let op = adjust.startsWith('x') ? '*' : '+';
       if(op == '*')
         adjust = adjust.substring(1);
 
@@ -2721,7 +2721,7 @@ SWADE.hindranceRules = function(rules, name, requires, severity) {
     console.log('Bad severity "' + severity + '" for hindrance ' + name);
     return;
   }
-  var prefix =
+  let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   if(requires.length > 0)
     QuilvynRules.prerequisiteRules
@@ -2797,7 +2797,7 @@ SWADE.powerRules = function(
   else
     range = 'R%{' + range + '}"';
   // Not presently including advances in power description
-  var powerAttrs = powerPoints + ' PP';
+  let powerAttrs = powerPoints + ' PP';
   if(school)
     powerAttrs += ' ' + school.substring(0, 4);
   if(modifiers.length > 0)
@@ -2830,9 +2830,9 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
     return;
   }
 
-  var prefix =
+  let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-  var raceAdvances = prefix + 'Advances';
+  let raceAdvances = prefix + 'Advances';
 
   rules.defineRule(raceAdvances,
     'race', '?', 'source == "' + name + '"',
@@ -2848,7 +2848,7 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
   rules.defineChoice('extras', prefix + 'Features');
 
   if(languages.length > 0) {
-    for(var i = 0; i < languages.length; i++) {
+    for(let i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
         rules.defineRule
           ('skillStep.Language ('+languages[i]+')', raceAdvances, '+=', '3');
@@ -3004,7 +3004,7 @@ SWADE.weaponRules = function(
     console.log('Bad eras "' + eras + '" for weapon ' + name);
     return;
   }
-  var matchInfo = (damage + '').match(/^((Str\+)?((\d*)d\d+)([\-+]\d+)?)$/i);
+  let matchInfo = (damage + '').match(/^((Str\+)?((\d*)d\d+)([\-+]\d+)?)$/i);
   if(!matchInfo) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
@@ -3032,14 +3032,14 @@ SWADE.weaponRules = function(
     console.log('Bad parry "' + parry + '" for weapon ' + name);
   }
 
-  var isRanged = category.match(/^(r|ranged)$/i);
+  let isRanged = category.match(/^(r|ranged)$/i);
 
   damage = matchInfo[1];
-  var prefix =
+  let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-  var weaponName = 'weapons.' + name;
-  var format = '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') + ')';
-  var strDamage = damage.startsWith('Str+');
+  let weaponName = 'weapons.' + name;
+  let format = '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') + ')';
+  let strDamage = damage.startsWith('Str+');
   if(strDamage)
     damage = damage.substring(4);
 
@@ -3099,7 +3099,7 @@ SWADE.weaponRules = function(
     rules.defineRule(weaponName + '.6', 'range.' + name, '=', null);
   }
   if(parry) {
-    var note = 'combatNotes.' + prefix + 'ParryModifier';
+    let note = 'combatNotes.' + prefix + 'ParryModifier';
     rules.defineChoice
       ('notes', note+':' + QuilvynUtils.signed(parry) + ' Parry when wielded');
     rules.defineRule(note, 'weapons.' + name, '=', '1');
@@ -3127,9 +3127,9 @@ SWADE.featureListRules = function(
  * format #viewer# in #rules#.
  */
 SWADE.getFormats = function(rules, viewer) {
-  var format;
-  var formats = rules.getChoices('notes');
-  var result = {};
+  let format;
+  let formats = rules.getChoices('notes');
+  let result = {};
   if(viewer == 'Compact') {
     for(format in formats) {
       if(!format.startsWith('powers.'))
@@ -3151,9 +3151,9 @@ SWADE.getFormats = function(rules, viewer) {
 
 /* Returns an ObjectViewer loaded with the default character sheet format. */
 SWADE.createViewers = function(rules, viewers) {
-  for(var i = 0; i < viewers.length; i++) {
-    var name = viewers[i];
-    var viewer = new ObjectViewer();
+  for(let i = 0; i < viewers.length; i++) {
+    let name = viewers[i];
+    let viewer = new ObjectViewer();
     if(name == 'Compact') {
       viewer.addElements(
         {name: '_top', separator: '\n'},
@@ -3165,7 +3165,8 @@ SWADE.createViewers = function(rules, viewers) {
               {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
               {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
               {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
-              {name: 'Concept', within: 'Identity', format: ' <b>%V</b>'},
+              {name: 'Concepts', within: 'Identity', format: ' <b>%V</b>',
+               separator: '/'},
             {name: 'Speed', within: 'Section 1', separator:''},
               {name: 'Pace', within: 'Speed', format: '<b>Pace/Run</b> %V'},
               {name: 'Run', within: 'Speed', format: '/+d%V'},
@@ -3192,11 +3193,11 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Hidden Notes', within: 'Section 2', format: '%V'}
       );
     } else if(name == 'Collected Notes' || name == 'Standard') {
-      var innerSep = null;
-      var listSep = '; ';
-      var noteSep = listSep;
+      let innerSep = null;
+      let listSep = '; ';
+      let noteSep = listSep;
       noteSep = '\n';
-      var outerSep = name == '\n';
+      let outerSep = name == '\n';
       viewer.addElements(
         {name: '_top', borders: 1, separator: '\n'},
         {name: 'Header', within: '_top'},
@@ -3207,7 +3208,8 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Concept', within: 'Identity', format: ' <b>%V</b>'},
+            {name: 'Concepts', within: 'Identity', format: ' <b>%V</b>',
+             separator: '/'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
           {name: 'Attributes', within: 'Characteristics', separator: innerSep},
@@ -3331,7 +3333,8 @@ SWADE.createViewers = function(rules, viewers) {
             {name: 'Gender', within: 'GenderRaceAndRank', format: '%V'},
             {name: 'Race', within: 'GenderRaceAndRank', format: '%V'},
             {name: 'Rank', within: 'GenderRaceAndRank', format: '%V'},
-            {name: 'Concept', within: 'GenderRaceAndRank', format: '%V'},
+            {name: 'Concepts', within: 'GenderRaceAndRank', format: '%V',
+             separator: '/'},
           {name: 'Attributes', within: '_top', format: '<b>%N</b>: %V',
            separator: ', '},
             {name: 'Agility', within: 'Attributes', format: '%N %V'},
@@ -3369,18 +3372,18 @@ SWADE.createViewers = function(rules, viewers) {
  * item to #rules#.
  */
 SWADE.choiceEditorElements = function(rules, type) {
-  var result = [];
-  var dieTypes = ['4', '6', '8', '10', '12'];
-  var sections =
+  let result = [];
+  let dieTypes = ['4', '6', '8', '10', '12'];
+  let sections =
     ['arcana', 'attribute', 'combat', 'description', 'feature', 'skill'];
-  var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Arcana')
     result.push(
       ['Skill', 'Skill', 'select-one', QuilvynUtils.getKeys(rules.getChoices('skills'))],
       ['Powers', 'Powers', 'text', [60]]
     );
   else if(type == 'Armor') {
-    var areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
+    let areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
     result.push(
       ['Era', 'Era', 'text', [30]],
       ['Area', 'Area Covered', 'select-one', areas],
@@ -3410,7 +3413,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Note', 'Note', 'text', [60]]
     );
   } else if(type == 'Goody') {
-    var effects = ['add', 'lower', 'raise', 'set'];
+    let effects = ['add', 'lower', 'raise', 'set'];
     result.push(
       ['Pattern', 'Pattern', 'text', [40]],
       ['Effect', 'Effect', 'select-one', effects],
@@ -3428,7 +3431,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       // empty
     );
   else if(type == 'Power') {
-    var zeroToSixteen =
+    let zeroToSixteen =
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
       ['Advances', 'Advances', 'select-one', zeroToSixteen],
@@ -3458,7 +3461,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Core', 'Core', 'select-one', ['N', 'Y']]
     );
   else if(type == 'Weapon') {
-    var zeroToOneFifty =
+    let zeroToOneFifty =
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
       ['Era', 'Era', 'text', [30]],
@@ -3477,15 +3480,15 @@ SWADE.choiceEditorElements = function(rules, type) {
 
 /* Returns the elements in a basic 5E character editor. */
 SWADE.initialEditorElements = function() {
-  var allocations = [0, 1, 2, 3, 4, 5, 6];
-  var improvementTypes = ['Attribute', 'Edge', 'Hindrance', 'Skill'];
-  var editorElements = [
+  let allocations = [0, 1, 2, 3, 4, 5, 6];
+  let improvementTypes = ['Attribute', 'Edge', 'Hindrance', 'Skill'];
+  let editorElements = [
     ['name', 'Name', 'text', [20]],
     ['era', 'Era', 'select-one', 'eras'],
     ['race', 'Race', 'select-one', 'races'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['gender', 'Gender', 'text', [10]],
-    ['concept', 'Concept', 'text', [20]],
+    ['concepts', 'Concepts', 'set', 'concepts'],
     ['agilityAllocation', 'Agility', 'select-one', allocations],
     ['smartsAllocation', 'Smarts', 'select-one', allocations],
     ['spiritAllocation', 'Spirit', 'select-one', allocations],
@@ -3530,32 +3533,32 @@ SWADE.randomName = function(race) {
   else
     race = 'Human';
 
-  var clusters = {
+  let clusters = {
     B:'lr', C:'hlr', D:'r', F:'lr', G:'lnr', K:'lnr', P:'lr', S:'chklt', T:'hr',
     W:'h',
     c:'hkt', l:'cfkmnptv', m: 'p', n:'cgkt', r: 'fv', s: 'kpt', t: 'h'
   };
-  var consonants = {
+  let consonants = {
     'Dwarf':'dgkmnprst', 'Elf':'fhlmnpqswy',
     'Half-Folk':'bdfghlmnprst',
     'Human': 'bcdfghjklmnprstvwz'
   }[race];
-  var endConsonant = '';
-  var leading = 'ghjqvwy';
-  var vowels = {
+  let endConsonant = '';
+  let leading = 'ghjqvwy';
+  let vowels = {
     'Dwarf':'aeiou', 'Elf':'aeioy', 'Half-Folk':'aeiou', 'Human':'aeiou'
   }[race];
-  var diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
-  var syllables = QuilvynUtils.random(0, 99);
+  let diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
+  let syllables = QuilvynUtils.random(0, 99);
   syllables = syllables < 50 ? 2 :
               syllables < 75 ? 3 :
               syllables < 90 ? 4 :
               syllables < 95 ? 5 :
               syllables < 99 ? 6 : 7;
-  var result = '';
-  var vowel;
+  let result = '';
+  let vowel;
 
-  for(var i = 0; i < syllables; i++) {
+  for(let i = 0; i < syllables; i++) {
     if(QuilvynUtils.random(0, 99) <= 80) {
       endConsonant = randomChar(consonants).toUpperCase();
       if(clusters[endConsonant] != null && QuilvynUtils.random(0, 99) < 15)
@@ -3590,26 +3593,37 @@ SWADE.randomName = function(race) {
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SWADE.randomizeOneAttribute = function(attributes, attribute) {
 
+  function collectConceptAttrs(allConcepts, attributes, name) {
+    let result = [];
+    QuilvynUtils.getKeys(attributes, /^concepts\./).forEach(c => {
+      c = c.replace(/^concepts./, '');
+      if(c in allConcepts)
+        result =
+          result.concat(QuilvynUtils.getAttrValueArray(allConcepts[c], name));
+    });
+    return result;
+  }
+
   /*
    * Randomly selects #howMany# elements of the array #choices#, prepends
    * #prefix# to each, and sets those attributes in #attributes# to #value#.
    */
   function pickAttrs(attributes, prefix, choices, howMany, value) {
-    var remaining = [].concat(choices);
-    for(var i = 0; i < howMany && remaining.length > 0; i++) {
-      var which = QuilvynUtils.random(0, remaining.length - 1);
+    let remaining = [].concat(choices);
+    for(let i = 0; i < howMany && remaining.length > 0; i++) {
+      let which = QuilvynUtils.random(0, remaining.length - 1);
       attributes[prefix + remaining[which]] = value;
       remaining = remaining.slice(0, which).concat(remaining.slice(which + 1));
     }
   }
 
-  var attr;
-  var attrs;
-  var choices;
-  var era;
-  var howMany;
-  var matchInfo;
-  var minStr;
+  let attr;
+  let attrs;
+  let choices;
+  let era;
+  let howMany;
+  let matchInfo;
+  let minStr;
 
   if(attribute == 'advances') {
     if(attributes.advances === null) {
@@ -3620,12 +3634,12 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'armor') {
     attrs = this.applyRules(attributes);
-    var allArmors = this.getChoices('armors');
+    let allArmors = this.getChoices('armors');
     era = attributes.era || 'Modern';
     choices = [];
     howMany = 1;
     for(attr in allArmors) {
-      var torsoArmor = allArmors[attr].match(/Body|Torso/);
+      let torsoArmor = allArmors[attr].match(/Body|Torso/);
       if(attributes[attr]) {
         if(torsoArmor)
           howMany = 0;
@@ -3640,10 +3654,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'armor.', choices, howMany, 1);
   } else if(attribute == 'attributes') {
     attrs = this.applyRules(attributes);
-    var conceptAttributes =
-      attrs.concept && attrs.concept in this.getChoices('concepts') ?
-        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Attribute') : [];
-    conceptAttributes = conceptAttributes.map(x => x.toLowerCase());
+    let conceptAttributes =
+      collectConceptAttrs(this.getChoices('concepts'), attributes, 'Attribute').map(x => x.toLowerCase());
     for(attr in SWADE.ATTRIBUTES) {
       attributes[attr + 'Allocation'] = 0;
     }
@@ -3660,19 +3672,18 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         howMany--;
       }
     }
-  } else if(attribute == 'concept') {
-    if(attributes.concept == null) {
+  } else if(attribute == 'concepts') {
+    if(QuilvynUtils.getKeys(attributes, /^concepts./).length == 0) {
       choices = QuilvynUtils.getKeys(this.getChoices('concepts'));
-      attributes.concept = choices[QuilvynUtils.random(0, choices.length - 1)];
+      attributes['concepts.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
   } else if(attribute == 'edges' || attribute == 'hindrances') {
     attrs = this.applyRules(attributes);
-    if(attribute == 'edges' && attrs.concept &&
-       attrs.concept in this.getChoices('concepts')) {
-      var requiredEdges =
-        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Edge');
-      for(var i = 0; i < requiredEdges.length; i++) {
-        attr = requiredEdges[i];
+    if(attribute == 'edges') {
+      let conceptEdges =
+        collectConceptAttrs(this.getChoices('concepts'), attributes, 'Edge');
+      for(let i = 0; i < conceptEdges.length; i++) {
+        attr = conceptEdges[i];
         if(!attrs['features.' + attr]) {
           attributes['edges.' + attr] = 1;
           attrs = this.applyRules(attributes);
@@ -3680,7 +3691,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     howMany = attribute == 'edges' ? attrs.edgePoints || 0 : 4;
-    var allChoices = this.getChoices(attribute);
+    let allChoices = this.getChoices(attribute);
     choices = [];
     for(attr in allChoices) {
       if(attrs[attribute + '.' + attr] != null) {
@@ -3690,9 +3701,9 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       choices.push(attr);
     }
     while(howMany > 0) {
-      var pick;
+      let pick;
       if(attribute == 'hindrances') {
-        var subChoices;
+        let subChoices;
         if(howMany > 1 && QuilvynUtils.random(0, 9) > 7)
           subChoices = choices.filter(x => x.endsWith('+'));
         else
@@ -3704,8 +3715,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       attributes[attribute + '.' + pick] =
         (attributes[attribute + '.' + pick] || 0) + 1;
       choices = choices.filter(x => x != pick);
-      var validate = this.applyRules(attributes);
-      var name = pick.charAt(0).toLowerCase() +
+      let validate = this.applyRules(attributes);
+      let name = pick.charAt(0).toLowerCase() +
                  pick.substring(1).replaceAll(' ', '').
                  replace(/\(/g, '\\(').replace(/\)/g, '\\)');
       if(QuilvynUtils.sumMatching
@@ -3739,7 +3750,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     while(howMany > 0) {
       attr = howMany == 1 || QuilvynUtils.random(0, 2) == 0 ? 'Skill' :
              QuilvynUtils.random(0, 1) == 0 ? 'Edge' : 'Attribute';
-      var allocation = attr == 'Skill' ? 1 : 2;
+      let allocation = attr == 'Skill' ? 1 : 2;
       if(attributes['improvementPointsAllocation.' + attr] == null)
         attributes['improvementPointsAllocation.' + attr] = allocation;
       else
@@ -3753,10 +3764,10 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     howMany = attrs.powerCount || 0;
     choices = [];
-    var advances = attributes.advances || 0;
-    var allPowers = this.getChoices('powers');
-    var allArcanas = this.getChoices('arcanas');
-    var allowedPowers = null;
+    let advances = attributes.advances || 0;
+    let allPowers = this.getChoices('powers');
+    let allArcanas = this.getChoices('arcanas');
+    let allowedPowers = null;
     for(attr in allArcanas) {
       if(attrs['features.Arcane Background (' + attr + ')'] != null &&
          allArcanas[attr].includes('Powers=')) {
@@ -3780,7 +3791,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
     era = attributes.era || 'Modern';
-    var allShields = this.getChoices('shields');
+    let allShields = this.getChoices('shields');
     choices = [];
     for(attr in allShields) {
       minStr = QuilvynUtils.getAttrValue(allShields[attr], 'MinStr');
@@ -3791,18 +3802,17 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
-    var allSkills = this.getChoices('skills');
-    var conceptSkills =
-      attrs.concept && attrs.concept in this.getChoices('concepts') ?
-        QuilvynUtils.getAttrValueArray(this.getChoices('concepts')[attrs.concept], 'Skill') : [];
+    let allSkills = this.getChoices('skills');
+    let conceptSkills =
+      collectConceptAttrs(this.getChoices('concepts'), attributes, 'Skill');
     era = attributes.era;
     howMany = attrs.skillPoints;
     for(attr in attrs) {
       if(attr.match(/^skillAllocation\./))
         howMany -= attributes[attr];
     }
-    var knowledgePicked = null;
-    var languagePicked = null;
+    let knowledgePicked = null;
+    let languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
@@ -3829,7 +3839,7 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'weapons') {
     attrs = this.applyRules(attributes);
     era = attributes.era || 'Modern';
-    var allWeapons = this.getChoices('weapons');
+    let allWeapons = this.getChoices('weapons');
     choices = [];
     howMany = 3;
     for(attr in attributes)
@@ -3852,46 +3862,46 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
 /* Fixes as many validation errors in #attributes# as possible. */
 SWADE.makeValid = function(attributes) {
 
-  var attributesChanged = {};
-  var debug = [];
-  var notes = this.getChoices('notes');
+  let attributesChanged = {};
+  let debug = [];
+  let notes = this.getChoices('notes');
 
   // If 8 passes don't get rid of all repairable problems, give up
-  for(var pass = 0; pass < 8; pass++) {
+  for(let pass = 0; pass < 8; pass++) {
 
-    var applied = this.applyRules(attributes);
-    var fixedThisPass = 0;
+    let applied = this.applyRules(attributes);
+    let fixedThisPass = 0;
 
     // Try to fix each sanity/validation note w/a non-zero value
-    for(var attr in applied) {
+    for(let attr in applied) {
 
-      var attrValue = applied[attr];
+      let attrValue = applied[attr];
 
       if(!attr.match(/^(sanity|validation)Notes\./) ||
          !attrValue || notes[attr] == null)
         continue;
 
-      var requirements =
+      let requirements =
         notes[attr].replace(/^(Implies|Requires)\s/, '').split(/\s*\/\s*/);
 
-      for(var i = 0; i < requirements.length; i++) {
+      for(let i = 0; i < requirements.length; i++) {
 
         // Find a random requirement choice w/the format "name [op value]"
-        var choices = requirements[i].split(/\s*\|\|\s*/);
-        var matchInfo = null;
+        let choices = requirements[i].split(/\s*\|\|\s*/);
+        let matchInfo = null;
         while(matchInfo == null && choices.length > 0) {
-          var index = QuilvynUtils.random(0, choices.length - 1);
+          let index = QuilvynUtils.random(0, choices.length - 1);
           matchInfo = choices[index].match(/^([^<>!=]+)(([<>!=~]+)(.*))?/);
           choices.splice(index, 1);
         }
         if(matchInfo == null)
           continue; // No workable alternatives
 
-        var toFixAttr =
+        let toFixAttr =
           matchInfo[1].replace(/\s*$/, '').replace('features', 'edges');
-        var toFixCombiner = null;
-        var toFixOp = matchInfo[3] == null ? '>=' : matchInfo[3];
-        var toFixValue =
+        let toFixCombiner = null;
+        let toFixOp = matchInfo[3] == null ? '>=' : matchInfo[3];
+        let toFixValue =
           matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');
         if(toFixAttr.match(/^(Max|Sum)/)) {
           toFixCombiner = toFixAttr.substring(0, 3);
@@ -3902,8 +3912,8 @@ SWADE.makeValid = function(attributes) {
         choices = this.getChoices(toFixAttr + 's');
         if(choices != null) {
           // Find the set of choices that satisfy the requirement
-          var possibilities = [];
-          for(var choice in choices) {
+          let possibilities = [];
+          for(let choice in choices) {
             if((toFixOp.match(/[^!]=/) && choice == toFixAttr) ||
                (toFixOp == '!=' && choice != toFixAttr) ||
                (toFixCombiner != null && choice.indexOf(toFixAttr) == 0) ||
@@ -3943,24 +3953,24 @@ SWADE.makeValid = function(attributes) {
           attributesChanged[toFixAttr] = toFixValue;
           fixedThisPass++;
         } else if(attr.endsWith('Allocation')) {
-          var problemSource = attr.replace(/.*\.(.*)Allocation/, '$1s');
+          let problemSource = attr.replace(/.*\.(.*)Allocation/, '$1s');
           if(problemSource == 'skills')
             problemSource = 'skillAllocation';
-          var available = applied[attr + '.1'];
-          var allocated = applied[attr + '.2'];
+          let available = applied[attr + '.1'];
+          let allocated = applied[attr + '.2'];
           if(allocated > available) {
             choices = [];
-            for(var k in attributes) {
+            for(let k in attributes) {
               if(k.match('^' + problemSource + '\\.') &&
                  attributesChanged[k] == null) {
                  choices.push(k);
               }
             }
             while(choices.length > 0 && attrValue > 0) {
-              var index = QuilvynUtils.random(0, choices.length - 1);
+              let index = QuilvynUtils.random(0, choices.length - 1);
               toFixAttr = choices[index];
               choices = choices.slice(0, index).concat(choices.slice(index+1));
-              var current = attributes[toFixAttr];
+              let current = attributes[toFixAttr];
               toFixValue = current > attrValue ? current - attrValue : 0;
               debug.push(
                 attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +

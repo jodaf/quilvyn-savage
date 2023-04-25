@@ -56,7 +56,7 @@ function SWD() {
   );
   rules.defineChoice('preset',
     'race:Race,select-one,races', 'era:Era,select-one,eras',
-    'advances:Advances,text,4', 'concept:Concept,select-one,concepts'
+    'advances:Advances,text,4', 'concepts:Concepts,set,concepts'
   );
 
   SWD.attributeRules(rules);
@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.7';
+SWD.VERSION = '2.3.2.8';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
