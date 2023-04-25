@@ -3672,8 +3672,8 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         howMany--;
       }
     }
-  } else if(attribute == 'concept') {
-    if(Quilvyn.getKeys(attributes, /^concepts./).length == 0) {
+  } else if(attribute == 'concepts') {
+    if(QuilvynUtils.getKeys(attributes, /^concepts./).length == 0) {
       choices = QuilvynUtils.getKeys(this.getChoices('concepts'));
       attributes['concepts.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
