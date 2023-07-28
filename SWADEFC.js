@@ -30,30 +30,209 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * the choices.
  */
 function SWADEFC(edition, rules) {
+function SWADEFC(baseRules) {
 
   if(window.SWADE == null) {
     alert('The SWADEFC module requires use of the SWADE module');
     return;
   }
 
-  if(rules == null)
-    rules = SWADE.rules;
+  var rules = new QuilvynRules('SWADE Fantasy', SWADEFC.VERSION);
+  SWADEFC.rules = rules;
 
-  SWADEFC.combatRules(rules, SWADEFC.ARMORS, SWADEFC.SHIELDS, SWADEFC.WEAPONS);
+  rules.defineChoice('choices', SWADEFC.CHOICES);
+  rules.choiceEditorElements = SWADEFC.choiceEditorElements;
+  rules.choiceRules = SWADEFC.choiceRules;
+  rules.editorElements = SWADE.initialEditorElements();
+  rules.getFormats = SWADE.getFormats;
+  rules.getPlugins = SWADEFC.getPlugins;
+  rules.makeValid = SWADE.makeValid;
+  rules.randomizeOneAttribute = SWADEFC.randomizeOneAttribute;
+  rules.defineChoice('random', SWADEFC.RANDOMIZABLE_ATTRIBUTES);
+  rules.ruleNotes = SWADEFC.ruleNotes;
+
+  SWADE.createViewers(rules, SWADE.VIEWERS);
+  rules.defineChoice('extras',
+    'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
+  );
+  rules.defineChoice('preset',
+    'race:Ancestry,select-one,races', 'advances:Advances,text,4',
+    'concepts:Concepts,set,concepts'
+  );
+
+  SWADEFC.attributeRules(rules);
+  SWADEFC.combatRules
+    (rules, SWADEFC.ARMORS, SWADEFC.SHIELDS, SWADEFC.WEAPONS);
   SWADEFC.arcaneRules(rules, SWADEFC.ARCANAS, SWADEFC.POWERS);
   SWADEFC.talentRules
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
-     SWADEFC.HINDRANCES, SWADEFC.SKILLS);
+     SWADEFC.HINDRANCES, SWADEFC.LANGUAGES, SWADEFC.SKILLS);
   SWADEFC.identityRules
-    (rules, SWADEFC.RACES, SWADEFC.CONCEPTS, SWADEFC.DEITIES);
+    (rules, SWADEFC.RACES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
+     SWADEFC.ALIGNMENTS);
+
+  Quilvyn.addRuleSet(rules);
 
 }
 
-SWADEFC.VERSION = '2.4.1.0';
+SWADEFC.VERSION = '2.3.1.0';
+
+// Throughout the plugin we take steps to show 'Ancestry' to the user to match
+// the rule book, but under the hood we use 'race' for the character attribute
+// so that we can easily reuse SWADE rules.
+SWADEFC.CHOICES =
+  SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
+PF4SW.RANDOMIZABLE_ATTRIBUTES =
+  SWADE.RANDOMIZABLE_ATTRIBUTES.map(x => x == 'race' ? 'ancestry' : x);
 
 SWADEFC.ARCANAS = {
+  'Civilization Domain':
+    'Skill=Alchemy ' +
+    'Powers=' +
+      'Banish,"Beast Friend",Blast,Blind,"Boost/Lower Trait",Burst,Confusion,' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Empathy,Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,Healing,' +
+      'Intangibility,Invisibility,Light/Darkness,Protection,Puppet,Relief,' +
+      'Resurrection,"Shape Change",Sloth/Speed,Slumber,Smite,' +
+      '"Speak Language","Wall Walker","Warrior\'s Gift"',
+  'Bard':
+    'Skill=Performance ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,"Beast Friend","Boost/Lower Trait",' +
+      'Confusion,"Detect/Conceal Arcana",Dispel,Divination,' +
+      '"Drain Power Points",Empathy,Fear,Healing,"Mind Link","Mind Reading",' +
+      'Puppet,Relief,Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Warrior\'s Gift"',
+  'Diabolist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,Blast,Blind,Bolt,"Lower Trait",' +
+      'Burst,Confusion,Curse,"Damage Field",Darksight,Deflection,' +
+      '"Detect/Conceal Arcana",Disguise,Dispel,Divination,' +
+      '"Drain Power Points","Elemental Manipulation",Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Havoc,Illusion,' +
+      '"Light/Darkness","Lock/Unlock",Locate,"Plane Shift",Protection,Puppet,' +
+      'Scrying,Sloth/Speed,Smite,Sound/Silence,"Speak Language",' +
+      '"Summon Ally",Telekinesis,Teleport,"Wall Walker","Warrior\'s Gift",' +
+      'Zombie',
+  'Druid':
+    'Skill=Faith ' +
+    'Powers=' +
+      '"Beast Friend","Environmental Protetion","Shape Change",
+  'Elementalist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      'Barrier,Blast,Bolt,Burrow,Burst,Confusion,"Damage Field",Deflection,' +
+      'Divination,"Environmental Manipulation",Entangle,' +
+      '"Environmental Protection",Fly,Havoc,Healing,"Plane Shift",Protection,' +
+      'Relief,"Summon Monster",Telekinesis',
+  'Illusionist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      'Confusion,Deflection,"Detect/Conceal Arcana",Disguise,Fear,Illusion,' +
+      'Invisibility,Light/Darkness,Sound/Silence',
+  'Necromancer':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,Blind,Bolt,"Boost/Lower Trait",' +
+      'Confusion,Darksight,Deflection,"Detect/Conceal Arcana",Dispel,' +
+      'Divination,"Drain Power Points",Empathy,Entangle,Farsight,Fear,Fly,' +
+      'Havoc,Healing,Intangibility,Invisibility,Light/Darkness,' +
+      'Lock/Unlock,"Mind Link","Mind Reading","Mind Wipe","Object Reading",' +
+      'Protection,Relief,Resurrection,Sloth/Speed,Slumber,Smite,' +
+      'Sound/Silence,Stun,"Summon Undead",Telekinesis,Teleport,"Wall Walker",' +
+      '"Warrior\'s Gift",Zombie',
+  'Shaman':
+    'Skill=Faith ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Environmental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
+      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
+      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Summon Animal","Summon Monster","Wall Walker",' +
+      '"Warrior\'s Gift"',
+  'Sorcerer':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
+      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
+      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Summon Ally","Summon Animal","Summon Monster",' +
+      '"Wall Walker","Warrior\'s Gift"',
+  'Summoner':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection","Boost/Lower Trait",Burrow,Darksight,' +
+      '"Detect/Conceal Arcana",Farsight,Fly,Growth/Shrink,Healing,Locate,' +
+      '"Shape Change",Sloth/Speed,"Summon Ally","Summon Animal",' +
+      '"Summon Monster","Wall Walker"',
+  'Tinkerer':
+    'Skill=Repair ' +
+    'Powers=' +
+      'Blind,Bolt,Blast,Burst,Confusion,"Damage Field",Darksight,' +
+      '"Detect/Conceal Arcana",Entangle,"Environmental Protection",Farsight,' +
+      'Fly,Light/Darkness,Lock/Unlock,Slumber,Stun,"Wall Walker"',
+  'Warlock/Witch':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",' +
+      'Curse,Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,' +
+      'Havoc,Healing,Illusion,Invisibility,Light/Darkness,Lock/Unlock,Locate,' +
+      '"Mystic Intervention","Object Reading","Mind Reading","Mind Wipe",' +
+      'Protection,Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,' +
+      'Smite,Sound/Silence,"Speak Language",Stun,"Summon Ally",' +
+      '"Summon Animal",Telekinesis,"Wall Walker,"Warrior\’s Gift",Wish',
+  'WizardWitch':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane protection",Barrier,"Beast Friend",Blast,Blind,Bolt,' +
+      '"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",Curse,' +
+      '"Damage Field",Darksight,Deflection,"Detect/Conceal Arcana",Disguise,' +
+      'Dispel,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      '"Environmental Protection",Entangle,Farsight,Fear,Fly,Growth/Shrink,' +
+      'Havoc,Illusion,Intangibility,Invisibility,Light/Darkness,Locate,' +
+      'Lock/Unlock,"Mind Reading","Mind Wipe","Mystic Intervention",' +
+      '"Object Reading","Planar Binding","Plane Shift",Protection,Puppet,' +
+      'Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
+      'Stun,"Summon Ally",Telekinesis,Teleport,"Time Stop","Wall Walker",' +
+      '"Warrior\’s Gift",Wish,Zombie'
 };
 SWADEFC.ARMORS = {
+  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'Cloak With Hood':'Area=Torso,Head Armor=1 MinStr=d4 Weight=5',
+  'Leggings':'Area=Legs Armor=1 MinStr=d4 Weight=5',
+  'Tunic':'Area=Torso,Arms Armor=1 MinStr=d4 Weight=5',
+  'Robe With Hooded Cloak':'Area=Torso,Arms,Head Armor=1 MinStr=d4 Weight=8',
+  'Leather Tunic':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=11',
+  'Leather Jacket':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=11',
+  'Leather Leggings':'Area=Legs Armor=2 MinStr=d6 Weight=8',
+  'Leather Cap':'Area=Head Armor=2 MinStr=d6 Weight=1',
+  'Natural Shirt':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=10',
+  'Natural Leggings':'Area=Legs Armor=2 MinStr=d6 Weight=7',
+  'Chain Shirt':'Area=Torso,Arms Armor=3 MinStr=d8 Weight=22',
+  'Chain Leggings':'Area=Legs Armor=3 MinStr=d8 Weight=10',
+  'Chain Hood':'Area=Legs Armor=3 MinStr=d8 Weight=3',
+  'Pot Helm':'Area=Legs Armor=3 MinStr=d8 Weight=3',
+  'Bronze Corselet':'Area=Torso Armor=3 MinStr=d8 Weight=13',
+  'Bronze Greaves':'Area=Legs Armor=3 MinStr=d8 Weight=6',
+  'Bronze Vambraces':'Area=Arms Armor=3 MinStr=d8 Weight=5',
+  'Bronze Helmet':'Area=Arms Armor=3 MinStr=d8 Weight=6',
+  'Breastplate':'Area=Torso Armor=4 MinStr=d10 Weight=30',
+  'Greaves':'Area=Legs Armor=4 MinStr=d10 Weight=10',
+  'Vambraces':'Area=Legs Armor=4 MinStr=d10 Weight=10',
+  'Gauntlets':'Area=Arms Armor=4 MinStr=d10 Weight=10',
+  'Heavy Helm':'Area=Head Armor=4 MinStr=d10 Weight=4',
+  'Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=d10 Weight=8'
 };
 SWADEFC.CONCEPTS = {
 };
@@ -194,6 +373,10 @@ SWADEFC.RACES = {
       'Charismatic,"Change Shape",Secret'
 };
 SWADEFC.SHIELDS = {
+  'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
+  'Small Shield':'Parry=1 Cover=0 MinStr=6 Weight=4',
+  'Medium Shield':'Parry=2 Cover=2 MinStr=8 Weight=8',
+  'Large Shield':'Parry=2 Cover=4 MinStr=10 Weight=12'
 };
 SWADEFC.SKILLS = {
 };
