@@ -43,7 +43,7 @@ function SWADEFC(edition, rules) {
   SWADEFC.arcaneRules(rules, SWADEFC.ARCANAS, SWADEFC.POWERS);
   SWADEFC.talentRules
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
-     SWADEFC.HINDRANCES, SWADEFC.LANGUAGES, SWADEFC.SKILLS);
+     SWADEFC.HINDRANCES, SWADEFC.SKILLS);
   SWADEFC.identityRules
     (rules, SWADEFC.RACES, SWADEFC.CONCEPTS, SWADEFC.DEITIES);
 
@@ -115,18 +115,15 @@ SWADEFC.POWERS = {
 SWADEFC.RACES = {
   'Celestial':
     'Features=' +
-      'Flight,Attractive,"Code Of Honor+",Vow+ ' +
-      'Languages=Celestial',
+      'Flight,Attractive,"Code Of Honor+",Vow+',
   'Centaur':
     'Features=' +
-      'Dependency,Hooves,"Size +1","Pace +4","Unusual Form" ' +
-    'Languages=Centaur',
+      'Dependency,Hooves,"Size +1","Pace +4","Unusual Form"',
   'Dragonfolk':
     'Features=' +
       '"Armor +2",Bite,Claws,"Breath Weapon",Cold-Blooded,' +
       '"Environmental Resistance (Heat)","Environmental Weakness (Cold)",' +
-      'Ill-Tempered ' +
-    'Languages=Dragonfolk',
+      'Ill-Tempered',
   'Elemental Scion':
     'Features=' +
       '"features.Air Scion ? Environmental Resistance (Air)",' +
@@ -137,86 +134,65 @@ SWADEFC.RACES = {
       '"features.Air Scion ? Inner Air",' +
       'Outsider,' +
       '"features.Fire Scion ? Quick",' +
-      '"features.Earth Scion ? Rock Solid" ' +
-    'Languages=Elemental',
+      '"features.Earth Scion ? Rock Solid"',
   'Fairies':
     'Features=' +
-      '"All Thumbs","Big Mouth",Curious+,Flight,Impulsive+,Diminutive ' +
-    'Languages=Fairy',
+      '"All Thumbs","Big Mouth",Curious+,Flight,Impulsive+,Diminutive',
   'Gnome':
     'Features=' +
-      'Cunning,"Low Light Vision","Keen Senses","Size -1","Reduced Pace" ' +
-    'Languages=Gnome',
+      'Cunning,"Low Light Vision","Keen Senses","Size -1","Reduced Pace"',
   'Goblin':
     'Features=' +
-      'Infravision,Mean,Short,Sneaky,Survivors ' +
-    'Languages=Goblin',
+      'Infravision,Mean,Short,Sneaky,Survivors',
   'Golem':
     'Features=' +
       '"Armor +2",Big,Clueless+,Clumsy+,Construct,"No Vital Organs",' +
-      '"Reduced Core Skills","Reduced Pace","Size +2" ' +
-    'Languages=Golem',
+      '"Reduced Core Skills","Reduced Pace","Size +2"',
   'Graveborn':
     'Features=' +
       '"Animal Aversion",Bite,"Blood Drinker","Low Light Vision",Outsider+,' +
-      '"Sunlight Sensitivity","Unnatural Strength","Cold Resistance" ' +
-    'Languages=Graveborn',
+      '"Sunlight Sensitivity","Unnatural Strength","Cold Resistance"',
   'Half-Giant':
     'Features=' +
       'Big,Boneheaded,Clueless+,Illiterate,Outsider+,"Size +3","Very Strong",' +
-      '"Very Tough" ' +
-    'Languages=Giant',
+      '"Very Tough"',
   'Half-Orc':
     'Features=' +
-      'Infravision,Outsider,Hardened ' +
-    'Languages=Orc',
+      'Infravision,Outsider,Hardened',
   'Infernal':
     'Features=' +
       'Darkvision,"Devilish Nature","Environmental Resistance (Heat)",' +
-      '"Environmental Weakness (Cold)",Horns,Outsider ' +
-    'Languages=Infernal',
+      '"Environmental Weakness (Cold)",Horns,Outsider',
   'Insectoid':
     'Features=' +
       '"Additional Actions","Armor +2","Hive Minded","Bite Or Claw",Outsider,' +
-      '"Unusual Body Shape","Wall Walker" ' +
-    'Languages=Insectoid',
+      '"Unusual Body Shape","Wall Walker"',
   'Minotaur':
     'Features=' +
-      '"Thin Skinned","Size +1","Very Strong",Horns,Uneducated,Tough,Big,Mean '+
-    'Languages=Minotaur',
+      '"Thin Skinned","Size +1","Very Strong",Horns,Uneducated,Tough,Big,Mean',
   'Mouseling':
     'Features=' +
       'Diminutive,"Low Light Vision",Outsider+,"Phobia (Cats)",' +
-      '"Reduced Pace",Unimposing ' +
-    'Languages=Mouseling',
+      '"Reduced Pace",Unimposing',
   'Ogre':
     'Features=' +
       'Arrogant+,Big,Clueless+,Clumsy+,Outsider,Hardy,"Size +1",' +
-      '"Very Strong","Very Tough" ' +
-    'Languages=Ogre',
+      '"Very Strong","Very Tough"',
   'Orc':
     'Features=' +
-      'Brutish,Infravision,Outsider+,"Size +1",Strong,Tough ' +
-    'Languages=Orc',
+      'Brutish,Infravision,Outsider+,"Size +1",Strong,Tough',
   'Ratling':
     'Features=' +
       'Bite,Claws,"Natural Resistance","Low Light Vision",Scavenger,' +
-      '"Size -1",Outsider+,Craven,Greedy ' +
-    'Languages=Ratling',
+      '"Size -1",Outsider+,Craven,Greedy',
   'Serpentfolk':
     'Features=' +
       'Bite,Cold-Blooded,"Environmental Weakness (Cold)",Infravision,Pace,' +
-      '"Venomous Bite",Outsider ' +
-    'Languages=Serpentfolk',
+      '"Venomous Bite",Outsider',
   'Shapeshifter':
     'Features=' +
-      'Charismatic,"Change Shape",Secret ' +
-    'Languages=Shapeshifter'
+      'Charismatic,"Change Shape",Secret'
 };
-SWADEFC.LANGUAGES = {};
-for(let r in SWADEFC.RACES) {
-  SWADEFC.LANGUAGES[r] = '';
-}
 SWADEFC.SHIELDS = {
 };
 SWADEFC.SKILLS = {
@@ -241,10 +217,9 @@ SWADEFC.identityRules = function(rules, races, concepts, deitys) {
 
 /* Defines rules related to character aptitudes. */
 SWADEFC.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills
 ) {
-  SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, languages, skills);
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, {}, skills);
 };
 
 /*
@@ -279,9 +254,6 @@ SWADEFC.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn assumes that every race has its own language and that\n' +
-    '    half-elf characters know both Elf and Human.\n' +
     '  </li><li>\n' +
     '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
     '    included in power descriptions\n' +
