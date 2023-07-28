@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.8';
+SWD.VERSION = '2.3.2.9';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -855,53 +855,39 @@ for(var power in SWADE.POWERS) {
 SWD.RACES = {
   'Android':
     'Features=' +
-      '"Asimov Circuits",Construct,Outsider,Programming,Recharge,Unnatural ' +
-    'Languages=Android',
+      '"Asimov Circuits",Construct,Outsider,Programming,Recharge,Unnatural',
   'Atlantean':
     'Features=' +
-      '"Advanced Civilization",Aquatic,"Atlantean Tough",Dehydration ' +
-    'Languages=Atlantean',
+      '"Advanced Civilization",Aquatic,"Atlantean Tough",Dehydration',
   'Avion':
     'Features=' +
-      'Flight,"Hollow-Boned","Mostly Human" ' +
-    'Languages=Avion',
+      'Flight,"Hollow-Boned","Mostly Human"',
   'Dwarf':
     'Features=' +
-      '"Low Light Vision",Slow,Tough ' +
-    'Languages=Dwarf',
+      '"Low Light Vision",Slow,Tough',
   'Elf':
     'Features=' +
-      'Agile,"All Thumbs","Low Light Vision" ' +
-    'Languages=Elf',
+      'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision",Outsider ' +
-    'Languages=Elf,Human',
+      'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
     'Features=' +
-      'Fortunate,Short,Spirited ' +
-    'Languages=Half-Folk',
+      'Fortunate,Short,Spirited',
   'Half-Orc':
     'Features=' +
-      'Infravision,Outsider,Strong ' +
-    'Languages=Half-Orc',
+      'Infravision,Outsider,Strong',
   'Human':
     'Features=' +
-      'Adaptable ' +
-    'Languages=Human',
+      'Adaptable',
   'Rakashan':
     'Features=' +
-      'Agile,Bloodthirsty+,Claws,"Low Light Vision","Racial Enemy" ' +
-    'Languages=Rakashan',
+      'Agile,Bloodthirsty+,Claws,"Low Light Vision","Racial Enemy"',
   'Saurian':
     'Features=' +
-      '"Natural Weapons",Outsider,"Saurian Senses","Warm Natured" ' +
-    'Languages=Saurian'
+      '"Natural Weapons",Outsider,"Saurian Senses","Warm Natured"',
 };
 SWD.LANGUAGES = {};
-for(var r in SWD.RACES) {
-  SWD.LANGUAGES[r] = '';
-}
 SWD.SHIELDS = {
   'None':'Parry=0 Cover=0 Weight=0',
   'Small Shield':'Era=Medieval Parry=1 Cover=0 Weight=8',
@@ -1347,7 +1333,7 @@ SWD.edgeRulesExtra = function(rules, name) {
   }
 };
 
-/* Defines in #rules# the rules associated with language #name#. */
+/* Defines in #rules# the rules associated with era #name#. */
 SWD.eraRules = function(rules, name) {
   SWADE.eraRules(rules, name);
   // No changes needed to the rules defined by base method
@@ -1404,8 +1390,12 @@ SWD.hindranceRulesExtra = function(rules, name) {
 
 /* Defines in #rules# the rules associated with language #name#. */
 SWD.languageRules = function(rules, name) {
-  SWADE.languageRules(rules, name);
-  // No changes needed to the rules defined by base method
+  if(!name) {
+    console.log('Empty language name');
+    return;
+  }
+  SWD.skillRules
+    (rules, 'Knowledge (Language (' + name + '))', 'smarts', false, []);
 };
 
 /*

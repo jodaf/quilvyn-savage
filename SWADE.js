@@ -67,12 +67,12 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.13';
+SWADE.VERSION = '2.3.2.14';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
   'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
-  'Hindrance', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
+  'Hindrance', 'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -1602,51 +1602,38 @@ SWADE.POWERS = {
 SWADE.RACES = {
   'Android':
     'Features=' +
-      'Construct,"Outsider+","Pacifist+","Vow+" ' +
-    'Languages=Android',
+      'Construct,"Outsider+","Pacifist+","Vow+"',
   'Aquarian':
     'Features=' +
-      'Aquatic,Dependency,"Low Light Vision",Toughness ' +
-    'Languages=Aquarian',
+      'Aquatic,Dependency,"Low Light Vision",Toughness',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
-    'Languages=Avion',
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace"',
   'Dwarf':
     'Features=' +
-      '"Low Light Vision","Reduced Pace",Tough ' +
-    'Languages=Dwarf',
+      '"Low Light Vision","Reduced Pace",Tough',
   'Elf':
     'Features=' +
-      'Agile,"All Thumbs","Low Light Vision" ' +
-    'Languages=Elf',
+      'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision",Outsider ' +
-    'Languages=Elf,Human',
+      'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
     'Features=' +
-      '"Half-Folk Luck","Reduced Pace","Size -1",Spirited ' +
-    'Languages=Half-Folk',
+      '"Half-Folk Luck","Reduced Pace","Size -1",Spirited',
   'Human':
     'Features=' +
-      'Adaptable ' +
-    'Languages=Human',
+      'Adaptable',
   'Rakashan':
     'Features=' +
       'Agile,Bite,Claws,Bloodthirsty+,"Can\'t Swim","Low Light Vision",' +
-      '"Racial Enemy" ' +
-    'Languages=Rakashan',
+      '"Racial Enemy"',
   'Saurian':
     'Features=' +
       '"Armor +2",Bite,"Environmental Weakness (Cold)",' +
-      '"Keen Senses (Saurian)",Outsider ' +
-    'Languages=Saurian'
+      '"Keen Senses (Saurian)",Outsider'
 };
 SWADE.LANGUAGES = {};
-for(let r in SWADE.RACES) {
-  SWADE.LANGUAGES[r] = '';
-}
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
@@ -2585,7 +2572,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
   }
 };
 
-/* Defines in #rules# the rules associated with language #name#. */
+/* Defines in #rules# the rules associated with era #name#. */
 SWADE.eraRules = function(rules, name) {
   if(!name) {
     console.log('Empty era name');
@@ -2755,7 +2742,7 @@ SWADE.languageRules = function(rules, name) {
     console.log('Empty language name');
     return;
   }
-  // No rules pertain to language
+  SWADE.skillRules(rules, 'Language (' + name + ')', 'smarts', false, []);
 };
 
 /*
@@ -4025,9 +4012,6 @@ SWADE.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn assumes that every race has its own language and that\n' +
-    '    half-elf characters know both Elf and Human.\n' +
     '  </li><li>\n' +
     '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
     '    included in power descriptions\n' +
