@@ -29,7 +29,6 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * constant fields of SWADE (SKILLS, EDGES, etc.) can be manipulated to modify
  * the choices.
  */
-function SWADEFC(edition, rules) {
 function SWADEFC(baseRules) {
 
   if(window.SWADE == null) {
@@ -68,7 +67,7 @@ function SWADEFC(baseRules) {
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
      SWADEFC.HINDRANCES, SWADEFC.LANGUAGES, SWADEFC.SKILLS);
   SWADEFC.identityRules
-    (rules, SWADEFC.RACES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
+    (rules, SWADEFC.ANCESTRIES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
      SWADEFC.ALIGNMENTS);
 
   Quilvyn.addRuleSet(rules);
@@ -82,216 +81,10 @@ SWADEFC.VERSION = '2.3.1.0';
 // so that we can easily reuse SWADE rules.
 SWADEFC.CHOICES =
   SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
-PF4SW.RANDOMIZABLE_ATTRIBUTES =
+SWADEFC.RANDOMIZABLE_ATTRIBUTES =
   SWADE.RANDOMIZABLE_ATTRIBUTES.map(x => x == 'race' ? 'ancestry' : x);
 
-SWADEFC.ARCANAS = {
-  'Civilization Domain':
-    'Skill=Alchemy ' +
-    'Powers=' +
-      'Banish,"Beast Friend",Blast,Blind,"Boost/Lower Trait",Burst,Confusion,' +
-      'Darksight,Deflection,"Detect/Conceal Arcana",Empathy,Entangle,' +
-      '"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,Healing,' +
-      'Intangibility,Invisibility,Light/Darkness,Protection,Puppet,Relief,' +
-      'Resurrection,"Shape Change",Sloth/Speed,Slumber,Smite,' +
-      '"Speak Language","Wall Walker","Warrior\'s Gift"',
-  'Bard':
-    'Skill=Performance ' +
-    'Powers=' +
-      '"Arcane Protection",Banish,"Beast Friend","Boost/Lower Trait",' +
-      'Confusion,"Detect/Conceal Arcana",Dispel,Divination,' +
-      '"Drain Power Points",Empathy,Fear,Healing,"Mind Link","Mind Reading",' +
-      'Puppet,Relief,Sloth/Speed,Slumber,Smite,Sound/Silence,' +
-      '"Speak Language",Stun,"Warrior\'s Gift"',
-  'Diabolist':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane Protection",Banish,Barrier,Blast,Blind,Bolt,"Lower Trait",' +
-      'Burst,Confusion,Curse,"Damage Field",Darksight,Deflection,' +
-      '"Detect/Conceal Arcana",Disguise,Dispel,Divination,' +
-      '"Drain Power Points","Elemental Manipulation",Entangle,' +
-      '"Environmental Protection",Farsight,Fear,Fly,Havoc,Illusion,' +
-      '"Light/Darkness","Lock/Unlock",Locate,"Plane Shift",Protection,Puppet,' +
-      'Scrying,Sloth/Speed,Smite,Sound/Silence,"Speak Language",' +
-      '"Summon Ally",Telekinesis,Teleport,"Wall Walker","Warrior\'s Gift",' +
-      'Zombie',
-  'Druid':
-    'Skill=Faith ' +
-    'Powers=' +
-      '"Beast Friend","Environmental Protetion","Shape Change",
-  'Elementalist':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      'Barrier,Blast,Bolt,Burrow,Burst,Confusion,"Damage Field",Deflection,' +
-      'Divination,"Environmental Manipulation",Entangle,' +
-      '"Environmental Protection",Fly,Havoc,Healing,"Plane Shift",Protection,' +
-      'Relief,"Summon Monster",Telekinesis',
-  'Illusionist':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      'Confusion,Deflection,"Detect/Conceal Arcana",Disguise,Fear,Illusion,' +
-      'Invisibility,Light/Darkness,Sound/Silence',
-  'Necromancer':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane Protection",Banish,Barrier,Blind,Bolt,"Boost/Lower Trait",' +
-      'Confusion,Darksight,Deflection,"Detect/Conceal Arcana",Dispel,' +
-      'Divination,"Drain Power Points",Empathy,Entangle,Farsight,Fear,Fly,' +
-      'Havoc,Healing,Intangibility,Invisibility,Light/Darkness,' +
-      'Lock/Unlock,"Mind Link","Mind Reading","Mind Wipe","Object Reading",' +
-      'Protection,Relief,Resurrection,Sloth/Speed,Slumber,Smite,' +
-      'Sound/Silence,Stun,"Summon Undead",Telekinesis,Teleport,"Wall Walker",' +
-      '"Warrior\'s Gift",Zombie',
-  'Shaman':
-    'Skill=Faith ' +
-    'Powers=' +
-      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
-      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
-      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
-      'Divination,"Drain Power Points","Environmental Manipulation",Empathy,' +
-      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
-      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
-      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
-      '"Speak Language",Stun,"Summon Animal","Summon Monster","Wall Walker",' +
-      '"Warrior\'s Gift"',
-  'Sorcerer':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
-      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
-      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
-      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
-      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
-      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
-      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
-      '"Speak Language",Stun,"Summon Ally","Summon Animal","Summon Monster",' +
-      '"Wall Walker","Warrior\'s Gift"',
-  'Summoner':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane Protection","Boost/Lower Trait",Burrow,Darksight,' +
-      '"Detect/Conceal Arcana",Farsight,Fly,Growth/Shrink,Healing,Locate,' +
-      '"Shape Change",Sloth/Speed,"Summon Ally","Summon Animal",' +
-      '"Summon Monster","Wall Walker"',
-  'Tinkerer':
-    'Skill=Repair ' +
-    'Powers=' +
-      'Blind,Bolt,Blast,Burst,Confusion,"Damage Field",Darksight,' +
-      '"Detect/Conceal Arcana",Entangle,"Environmental Protection",Farsight,' +
-      'Fly,Light/Darkness,Lock/Unlock,Slumber,Stun,"Wall Walker"',
-  'Warlock/Witch':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
-      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",' +
-      'Curse,Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
-      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
-      'Entangle,"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,' +
-      'Havoc,Healing,Illusion,Invisibility,Light/Darkness,Lock/Unlock,Locate,' +
-      '"Mystic Intervention","Object Reading","Mind Reading","Mind Wipe",' +
-      'Protection,Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,' +
-      'Smite,Sound/Silence,"Speak Language",Stun,"Summon Ally",' +
-      '"Summon Animal",Telekinesis,"Wall Walker,"Warrior\’s Gift",Wish',
-  'WizardWitch':
-    'Skill=Spellcasting ' +
-    'Powers=' +
-      '"Arcane protection",Barrier,"Beast Friend",Blast,Blind,Bolt,' +
-      '"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",Curse,' +
-      '"Damage Field",Darksight,Deflection,"Detect/Conceal Arcana",Disguise,' +
-      'Dispel,"Drain Power Points","Elemental Manipulation",Empathy,' +
-      '"Environmental Protection",Entangle,Farsight,Fear,Fly,Growth/Shrink,' +
-      'Havoc,Illusion,Intangibility,Invisibility,Light/Darkness,Locate,' +
-      'Lock/Unlock,"Mind Reading","Mind Wipe","Mystic Intervention",' +
-      '"Object Reading","Planar Binding","Plane Shift",Protection,Puppet,' +
-      'Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
-      'Stun,"Summon Ally",Telekinesis,Teleport,"Time Stop","Wall Walker",' +
-      '"Warrior\’s Gift",Wish,Zombie'
-};
-SWADEFC.ARMORS = {
-  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
-  'Cloak With Hood':'Area=Torso,Head Armor=1 MinStr=d4 Weight=5',
-  'Leggings':'Area=Legs Armor=1 MinStr=d4 Weight=5',
-  'Tunic':'Area=Torso,Arms Armor=1 MinStr=d4 Weight=5',
-  'Robe With Hooded Cloak':'Area=Torso,Arms,Head Armor=1 MinStr=d4 Weight=8',
-  'Leather Tunic':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=11',
-  'Leather Jacket':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=11',
-  'Leather Leggings':'Area=Legs Armor=2 MinStr=d6 Weight=8',
-  'Leather Cap':'Area=Head Armor=2 MinStr=d6 Weight=1',
-  'Natural Shirt':'Area=Torso,Arms Armor=2 MinStr=d6 Weight=10',
-  'Natural Leggings':'Area=Legs Armor=2 MinStr=d6 Weight=7',
-  'Chain Shirt':'Area=Torso,Arms Armor=3 MinStr=d8 Weight=22',
-  'Chain Leggings':'Area=Legs Armor=3 MinStr=d8 Weight=10',
-  'Chain Hood':'Area=Legs Armor=3 MinStr=d8 Weight=3',
-  'Pot Helm':'Area=Legs Armor=3 MinStr=d8 Weight=3',
-  'Bronze Corselet':'Area=Torso Armor=3 MinStr=d8 Weight=13',
-  'Bronze Greaves':'Area=Legs Armor=3 MinStr=d8 Weight=6',
-  'Bronze Vambraces':'Area=Arms Armor=3 MinStr=d8 Weight=5',
-  'Bronze Helmet':'Area=Arms Armor=3 MinStr=d8 Weight=6',
-  'Breastplate':'Area=Torso Armor=4 MinStr=d10 Weight=30',
-  'Greaves':'Area=Legs Armor=4 MinStr=d10 Weight=10',
-  'Vambraces':'Area=Legs Armor=4 MinStr=d10 Weight=10',
-  'Gauntlets':'Area=Arms Armor=4 MinStr=d10 Weight=10',
-  'Heavy Helm':'Area=Head Armor=4 MinStr=d10 Weight=4',
-  'Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=d10 Weight=8'
-};
-SWADEFC.CONCEPTS = {
-};
-SWADEFC.DEITIES = {
-};
-SWADEFC.EDGES = {
-};
-SWADEFC.FEATURES = {
-  // Ancestry
-  'Additional Actions':'Section=feature Note="FILL"',
-  'Animal Aversion':'Section=feature Note="FILL"',
-  'Bite Or Claw':'Section=feature Note="FILL"',
-  'Blood Drinker':'Section=feature Note="FILL"',
-  'Boneheaded':'Section=feature Note="FILL"',
-  'Breath Weapon':'Section=feature Note="FILL"',
-  'Brutish':'Section=feature Note="FILL"',
-  'Change Shape':'Section=feature Note="FILL"',
-  'Cold Resistance':'Section=feature Note="FILL"',
-  'Cold-Blooded':'Section=feature Note="FILL"',
-  'Craven':'Section=feature Note="FILL"',
-  'Cunning':'Section=feature Note="FILL"',
-  'Darkvision':'Section=feature Note="FILL"',
-  'Devilish Nature':'Section=feature Note="FILL"',
-  'Diminutive':'Section=feature Note="FILL"',
-  'Environmental Resistance (Air)':'Section=feature Note="FILL"',
-  'Environmental Resistance (Earth)':'Section=feature Note="FILL"',
-  'Environmental Resistance (Fire)':'Section=feature Note="FILL"',
-  'Environmental Resistance (Heat)':'Section=feature Note="FILL"',
-  'Environmental Resistance (Water)':'Section=feature Note="FILL"',
-  'Hardened':'Section=feature Note="FILL"',
-  'Hive Minded':'Section=feature Note="FILL"',
-  'Hooves':'Section=feature Note="FILL"',
-  'Ill-Tempered':'Section=feature Note="FILL"',
-  'Inner Air':'Section=feature Note="FILL"',
-  'Natural Resistance':'Section=feature Note="FILL"',
-  'Pace +4':'Section=feature Note="FILL"',
-  'Phobia (Cats)':'Section=feature Note="FILL"',
-  'Reduced Core Skills':'Section=feature Note="FILL"',
-  'Rock Solid':'Section=feature Note="FILL"',
-  'Short':'Section=feature Note="FILL"',
-  'Size +2':'Section=feature Note="FILL"',
-  'Size +3':'Section=feature Note="FILL"',
-  'Sneaky':'Section=feature Note="FILL"',
-  'Sunlight Sensitivity':'Section=feature Note="FILL"',
-  'Survivors':'Section=feature Note="FILL"',
-  'Uneducated':'Section=feature Note="FILL"',
-  'Unimposing':'Section=feature Note="FILL"',
-  'Unnatural Strength':'Section=feature Note="FILL"',
-  'Unusual Body Shape':'Section=feature Note="FILL"',
-  'Unusual Form':'Section=feature Note="FILL"',
-  'Venomous Bite':'Section=feature Note="FILL"',
-  'Very Strong':'Section=feature Note="FILL"',
-  'Very Tough':'Section=feature Note="FILL"'
-};
-SWADEFC.HINDRANCES = {
-};
-SWADEFC.POWERS = {
-};
-SWADEFC.RACES = {
+SWADEFC.ANCESTRIES_ADDED = {
   'Celestial':
     'Features=' +
       'Flight,Attractive,"Code Of Honor+",Vow+',
@@ -372,37 +165,743 @@ SWADEFC.RACES = {
     'Features=' +
       'Charismatic,"Change Shape",Secret'
 };
+SWADEFC.ANCESTRIES = Object.assign({}, SWADE.RACES, SWADEFC.ANCESTRIES_ADDED);
+SWADEFC.ARCANAS = {
+  'Civilization Domain':
+    'Skill=Alchemy ' +
+    'Powers=' +
+      'Banish,"Beast Friend",Blast,Blind,"Boost/Lower Trait",Burst,Confusion,' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Empathy,Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,Healing,' +
+      'Intangibility,Invisibility,Light/Darkness,Protection,Puppet,Relief,' +
+      'Resurrection,"Shape Change",Sloth/Speed,Slumber,Smite,' +
+      '"Speak Language","Wall Walker","Warrior\'s Gift"',
+  'Bard':
+    'Skill=Performance ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,"Beast Friend","Boost/Lower Trait",' +
+      'Confusion,"Detect/Conceal Arcana",Dispel,Divination,' +
+      '"Drain Power Points",Empathy,Fear,Healing,"Mind Link","Mind Reading",' +
+      'Puppet,Relief,Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Warrior\'s Gift"',
+  'Diabolist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,Blast,Blind,Bolt,"Lower Trait",' +
+      'Burst,Confusion,Curse,"Damage Field",Darksight,Deflection,' +
+      '"Detect/Conceal Arcana",Disguise,Dispel,Divination,' +
+      '"Drain Power Points","Elemental Manipulation",Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Havoc,Illusion,' +
+      '"Light/Darkness","Lock/Unlock",Locate,"Plane Shift",Protection,Puppet,' +
+      'Scrying,Sloth/Speed,Smite,Sound/Silence,"Speak Language",' +
+      '"Summon Ally",Telekinesis,Teleport,"Wall Walker","Warrior\'s Gift",' +
+      'Zombie',
+  'Druid':
+    'Skill=Faith ' +
+    'Powers=' +
+      '"Beast Friend","Environmental Protetion","Shape Change"',
+  'Elementalist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      'Barrier,Blast,Bolt,Burrow,Burst,Confusion,"Damage Field",Deflection,' +
+      'Divination,"Environmental Manipulation",Entangle,' +
+      '"Environmental Protection",Fly,Havoc,Healing,"Plane Shift",Protection,' +
+      'Relief,"Summon Monster",Telekinesis',
+  'Illusionist':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      'Confusion,Deflection,"Detect/Conceal Arcana",Disguise,Fear,Illusion,' +
+      'Invisibility,Light/Darkness,Sound/Silence',
+  'Necromancer':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,Blind,Bolt,"Boost/Lower Trait",' +
+      'Confusion,Darksight,Deflection,"Detect/Conceal Arcana",Dispel,' +
+      'Divination,"Drain Power Points",Empathy,Entangle,Farsight,Fear,Fly,' +
+      'Havoc,Healing,Intangibility,Invisibility,Light/Darkness,' +
+      'Lock/Unlock,"Mind Link","Mind Reading","Mind Wipe","Object Reading",' +
+      'Protection,Relief,Resurrection,Sloth/Speed,Slumber,Smite,' +
+      'Sound/Silence,Stun,"Summon Undead",Telekinesis,Teleport,"Wall Walker",' +
+      '"Warrior\'s Gift",Zombie',
+  'Shaman':
+    'Skill=Faith ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Environmental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
+      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
+      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Summon Animal","Summon Monster","Wall Walker",' +
+      '"Warrior\'s Gift"',
+  'Sorcerer':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
+      '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
+      '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
+      '"Speak Language",Stun,"Summon Ally","Summon Animal","Summon Monster",' +
+      '"Wall Walker","Warrior\'s Gift"',
+  'Summoner':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane Protection","Boost/Lower Trait",Burrow,Darksight,' +
+      '"Detect/Conceal Arcana",Farsight,Fly,Growth/Shrink,Healing,Locate,' +
+      '"Shape Change",Sloth/Speed,"Summon Ally","Summon Animal",' +
+      '"Summon Monster","Wall Walker"',
+  'Tinkerer':
+    'Skill=Repair ' +
+    'Powers=' +
+      'Blind,Bolt,Blast,Burst,Confusion,"Damage Field",Darksight,' +
+      '"Detect/Conceal Arcana",Entangle,"Environmental Protection",Farsight,' +
+      'Fly,Light/Darkness,Lock/Unlock,Slumber,Stun,"Wall Walker"',
+  'Warlock/Witch':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",' +
+      'Curse,Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
+      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      'Entangle,"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,' +
+      'Havoc,Healing,Illusion,Invisibility,Light/Darkness,Lock/Unlock,Locate,' +
+      '"Mystic Intervention","Object Reading","Mind Reading","Mind Wipe",' +
+      'Protection,Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,' +
+      'Smite,Sound/Silence,"Speak Language",Stun,"Summon Ally",' +
+      '"Summon Animal",Telekinesis,"Wall Walker","Warrior\’s Gift",Wish',
+  'WizardWitch':
+    'Skill=Spellcasting ' +
+    'Powers=' +
+      '"Arcane protection",Barrier,"Beast Friend",Blast,Blind,Bolt,' +
+      '"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",Curse,' +
+      '"Damage Field",Darksight,Deflection,"Detect/Conceal Arcana",Disguise,' +
+      'Dispel,"Drain Power Points","Elemental Manipulation",Empathy,' +
+      '"Environmental Protection",Entangle,Farsight,Fear,Fly,Growth/Shrink,' +
+      'Havoc,Illusion,Intangibility,Invisibility,Light/Darkness,Locate,' +
+      'Lock/Unlock,"Mind Reading","Mind Wipe","Mystic Intervention",' +
+      '"Object Reading","Planar Binding","Plane Shift",Protection,Puppet,' +
+      'Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
+      'Stun,"Summon Ally",Telekinesis,Teleport,"Time Stop","Wall Walker",' +
+      '"Warrior\’s Gift",Wish,Zombie'
+};
+SWADEFC.ARMORS = {
+  'None':'Area=Body Armor=0 MinStr=4 Weight=0',
+  'Cloak With Hood':'Area=Torso,Head Armor=1 MinStr=4 Weight=5',
+  'Leggings':'Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Tunic':'Area=Torso,Arms Armor=1 MinStr=4 Weight=5',
+  'Robe With Hooded Cloak':'Area=Torso,Arms,Head Armor=1 MinStr=4 Weight=8',
+  'Leather Tunic':'Area=Torso,Arms Armor=2 MinStr=6 Weight=11',
+  'Leather Jacket':'Area=Torso,Arms Armor=2 MinStr=6 Weight=11',
+  'Leather Leggings':'Area=Legs Armor=2 MinStr=6 Weight=8',
+  'Leather Cap':'Area=Head Armor=2 MinStr=6 Weight=1',
+  'Natural Shirt':'Area=Torso,Arms Armor=2 MinStr=6 Weight=10',
+  'Natural Leggings':'Area=Legs Armor=2 MinStr=6 Weight=7',
+  'Chain Shirt':'Area=Torso,Arms Armor=3 MinStr=8 Weight=22',
+  'Chain Leggings':'Area=Legs Armor=3 MinStr=8 Weight=10',
+  'Chain Hood':'Area=Legs Armor=3 MinStr=8 Weight=3',
+  'Pot Helm':'Area=Legs Armor=3 MinStr=8 Weight=3',
+  'Bronze Corselet':'Area=Torso Armor=3 MinStr=8 Weight=13',
+  'Bronze Greaves':'Area=Legs Armor=3 MinStr=8 Weight=6',
+  'Bronze Vambraces':'Area=Arms Armor=3 MinStr=8 Weight=5',
+  'Bronze Helmet':'Area=Arms Armor=3 MinStr=8 Weight=6',
+  'Breastplate':'Area=Torso Armor=4 MinStr=10 Weight=30',
+  'Greaves':'Area=Legs Armor=4 MinStr=10 Weight=10',
+  'Vambraces':'Area=Legs Armor=4 MinStr=10 Weight=10',
+  'Gauntlets':'Area=Arms Armor=4 MinStr=10 Weight=10',
+  'Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=4',
+  'Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8'
+};
+SWADEFC.CONCEPTS_ADDED = {
+};
+SWADEFC.CONCEPTS = Object.assign(Object.fromEntries(Object.entries(SWADE.CONCEPTS).filter(([k, v]) => !v.includes('Arcane Background'))), SWADEFC.CONCEPTS_ADDED);
+SWADEFC.DEITIES = {
+};
+SWADEFC.EDGES_ADDED = {
+  'Arcane Resistance':'Type=background Require="spirit>=8"',
+  'Improved Arcane Resistance':
+    'Type=background Require="features.Arcane Resistance"',
+  'Chosen':'Type=background',
+  'Fey Blood':'Type=background',
+  'Favored Enemy':
+    'Type=background ' +
+    'Require="skills.Athletics>=6 || skills.Fighting>=6 || skills.Shooting>=6"',
+  'Favored Terrain':'Type=background Require="skills.Survival>=6"',
+  'Heirloom':'Type=background',
+  'Charge':'Type=combat Require="advances>=4","skills.Fighting>=8"',
+  'Close Fighting':'Type=combat Require="agility>=8","skills.Fighting>=8"',
+  'Improved Close Fighting':
+    'Type=combat Require="advances>=8","features.Close Fighting"',
+  'Defender':'Type=combat Require="advances>=4","skills.Fighting>=6"',
+  'Dirty Fighter':'Type=combat Require="advances>=4"',
+  'Really Dirty Fighter':
+    'Type=combat Require="advances>=4","feature.Dirty Fighter"',
+  'Double Shot':
+    'Type=combat ' +
+    'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
+  'Improved Double Shot':
+    'Type=combat ' +
+    'Require=' +
+      '"advances>=12",' +
+      '"features.Double Shot",' +
+      '"skills.Athletics>=10 || skills.Shooting>=10"',
+  'Formation Fighter':'Type=combat Require="skills.Fighting>=8"',
+  'Shield Wall':
+    'Type=combat Require="features.Formation Fighter","skills.Fighting>=8"',
+  'Martial Flexibility':
+    'Type=combat Require="advances>=4","skills.Fighting>=8"',
+  'Missile Deflection':
+    'Type=combat Require="advances>=12","skills.Fighting>=10"',
+  'Opportunistic':'Type=combat Require="advances>=8"',
+  'Roar':'Type=combat Require="advances>=4","spirit>=8"',
+  'Savagery':'Type=combat Require="skills.Fighting>=6"',
+  'Scorch':
+    'Type=combat Require="advances>=4","vigor>=8","features.Breath Weapon"',
+  'Sneak Attack':'Type=combat Require="advances>=4","features.Assassin"',
+  'Improved Sneak Attack':
+    'Type=combat Require="advances>=8","features.Sneak Attack"',
+  'Stunning Blow':'Type=combat Require="advances>=4","strength>=8"',
+  'Sunder':'Type=combat Require="strength>=8"',
+  'Take The Hit':
+    'Type=combat Require="advances>=4","features.Iron Jaw","vigor>=10"',
+  'Trick Shot':
+    'Type=combat ' +
+    'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
+  'Uncanny Reflexes':
+    'Type=combat Require="advances>=8","agility>=8","skills.Athletics>=8"',
+  'Wing Gust':'Type=combat Require="advances>=4","features.Wings"',
+  'Artificer':'Type=power Require="advances>=4","powerPoints>0"',
+  'Master Artificer':
+    'Type=power ' +
+    'Require="advances>=12","features.Artificer","skills.Occult>=10"',
+  'Battle Magic':
+    'Type=power Require="advances>=8","powerPoints>0","arcaneSkill>=10"',
+  // NOTE: Also requires "evil disposition"
+  'Blood Magic':'Type=power Require="powerPoints>0"',
+  'Epic Mastery':
+    'Type=power Require="advances>=8","powerPoints>0","arcaneSkill>=6"',
+  'Familiar':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Diabolist) || ' +
+       'features.Arcane Background (Druid) || ' +
+       'features.Arcane Background (Elementalist) || ' +
+       'features.Arcane Background (Necromancer) || ' +
+       'features.Arcane Background (Shaman) || ' +
+       'features.Arcane Background (Sorcerer) || ' +
+       'features.Arcane Background (Warlock/Witch) || ' +
+       'features.Arcane Background (Wizard)"',
+  'Favored Power':
+    'Type=power Require="advances>=4","powerPoints>0","arcaneSkill>=8"',
+  'Mystic Powers (Barbarian)':
+    'Type=power Require="advances>=4","strength>=8"',
+  'Mystic Powers (Fighter)':
+    'Type=power Require="advances>=4","skills.Fighting>=8"',
+  'Mystic Powers (Monk)':
+    'Type=power Require="advances>=4","skills.Athletics>=8"',
+  'Mystic Powers (Paladin)':
+    'Type=power Require="advances>=4","spirit>=8"',
+  'Mystic Powers (Ranger)':
+    'Type=power Require="advances>=4","skills.Survival>=8"',
+  'Mystic Powers (Rogue)':
+    'Type=power Require="advances>=4","skills.Thievery>=8"',
+  'Silent Caster':
+    'Type=power Require="powerPoints>=0","features.Bard==0","skills.Occult>=8"',
+  'Transfer':'Type=power Require="powerPoints>=0"',
+  'Born In The Saddle':
+    'Type=professional Require="agility>=8","skills.Riding>=6"',
+  'Explorer':'Type=professional Require="vigor>=6","skills.Survival>=8"',
+  'Knight':
+    'Type=professional ' +
+    'Require=' +
+      '"spirit>=6",' +
+      '"strength>=8",' +
+      '"vigor>=8",' +
+      '"skills.Fighting>=8",' +
+      '"skills.Riding>=6",' +
+      '"features.Obligation+"',
+  'Mount':'Type=professional Require="skills.Riding>=6"',
+  'Poisoner':
+    'Type=professional ' +
+    'Require="skills.Alchemy>=6 || skills.Healing>=6 || skills.Survival>=6"',
+  'Scout':'Type=professional Require="skills.Survival>=6"',
+  'Stonecunning':'Type=professional Require="skills.Repair>=6"',
+  'Trap Sense':'Type=professional Require="advances>=4","skills.Repair>=6"',
+  'Treasure Hunter':
+    'Type=professional Require="skills.Notice>=8","skills.Occult>=8"',
+  'Troubador':
+    'Type=professional ' +
+    'Require="skills.Common Knowledge>=6","skills.Perfromance>=8"',
+  'Deceptive':'Type=social Require="advances>=4","smarts>=8"',
+  'Aura Of Courage':'Type=weird Require="spirit>=8"',
+  'Beast Talker':'Type=weird',
+  'Rapid Change':'Type=weird Require="features.Lycanthropy"',
+  'Home Ground':
+    'Type=legendary Require="advances>=16","spirit>=8","powerPoints>=0"',
+  'Relic':'Type=legendary',
+  'Unstoppable':
+    'Type=legendary ' +
+    'Require="vigor>=10","features.Iron Jaw","features.Nerves Of Steel"',
+  'Warband':
+    'Type=legendary ' +
+    'Require="features.Command","sumLeadershipEdges>=3","features.Followers"',
+  // Arcane Backgrounds
+  'Arcane Background (Alchemist)':'Type=background',
+  'Arcane Background (Bard)':'Type=background',
+  'Arcane Background (Cleric)':'Type=background',
+  'Arcane Background (Diabolist)':'Type=background',
+  'Arcane Background (Druid)':'Type=background',
+  'Arcane Background (Elementalist)':'Type=background',
+  'Arcane Background (Illusionist)':'Type=background',
+  'Arcane Background (Necromancer)':'Type=background',
+  'Arcane Background (Shaman)':'Type=background',
+  'Arcane Background (Sorcerer)':'Type=background',
+  'Arcane Background (Summoner)':'Type=background',
+  'Arcane Background (Tinkerer)':'Type=background',
+  'Arcane Background (Warlock/Witch)':'Type=background',
+  'Arcane Background (Wizard)':'Type=background'
+};
+SWADEFC.EDGES = Object.assign(Object.fromEntries(Object.entries(SWADE.EDGES).filter(([k, v]) => !k.includes('Arcane Background'))), SWADEFC.EDGES_ADDED);
+SWADEFC.FEATURES_ADDED = {
+  // Ancestry
+  'Additional Actions':'Section=feature Note="FILL"',
+  'Animal Aversion':'Section=feature Note="FILL"',
+  'Bite Or Claw':'Section=feature Note="FILL"',
+  'Blood Drinker':'Section=feature Note="FILL"',
+  'Boneheaded':'Section=feature Note="FILL"',
+  'Breath Weapon':'Section=feature Note="FILL"',
+  'Brutish':'Section=feature Note="FILL"',
+  'Change Shape':'Section=feature Note="FILL"',
+  'Cold Resistance':'Section=feature Note="FILL"',
+  'Cold-Blooded':'Section=feature Note="FILL"',
+  'Craven':'Section=feature Note="FILL"',
+  'Cunning':'Section=feature Note="FILL"',
+  'Darkvision':'Section=feature Note="FILL"',
+  'Devilish Nature':'Section=feature Note="FILL"',
+  'Diminutive':'Section=feature Note="FILL"',
+  'Environmental Resistance (Air)':'Section=feature Note="FILL"',
+  'Environmental Resistance (Earth)':'Section=feature Note="FILL"',
+  'Environmental Resistance (Fire)':'Section=feature Note="FILL"',
+  'Environmental Resistance (Heat)':'Section=feature Note="FILL"',
+  'Environmental Resistance (Water)':'Section=feature Note="FILL"',
+  'Hardened':'Section=feature Note="FILL"',
+  'Hive Minded':'Section=feature Note="FILL"',
+  'Hooves':'Section=feature Note="FILL"',
+  'Ill-Tempered':'Section=feature Note="FILL"',
+  'Inner Air':'Section=feature Note="FILL"',
+  'Natural Resistance':'Section=feature Note="FILL"',
+  'Pace +4':'Section=feature Note="FILL"',
+  'Phobia (Cats)':'Section=feature Note="FILL"',
+  'Reduced Core Skills':'Section=feature Note="FILL"',
+  'Rock Solid':'Section=feature Note="FILL"',
+  'Short':'Section=feature Note="FILL"',
+  'Size +2':'Section=feature Note="FILL"',
+  'Size +3':'Section=feature Note="FILL"',
+  'Sneaky':'Section=feature Note="FILL"',
+  'Sunlight Sensitivity':'Section=feature Note="FILL"',
+  'Survivors':'Section=feature Note="FILL"',
+  'Uneducated':'Section=feature Note="FILL"',
+  'Unimposing':'Section=feature Note="FILL"',
+  'Unnatural Strength':'Section=feature Note="FILL"',
+  'Unusual Body Shape':'Section=feature Note="FILL"',
+  'Unusual Form':'Section=feature Note="FILL"',
+  'Venomous Bite':'Section=feature Note="FILL"',
+  'Very Strong':'Section=feature Note="FILL"',
+  'Very Tough':'Section=feature Note="FILL"',
+  // Edges
+  'Arcane Resistance':'Section=feature Note="FILL"',
+  'Artificer':'Section=feature Note="FILL"',
+  'Aura Of Courage':'Section=feature Note="FILL"',
+  'Battle Magic':'Section=feature Note="FILL"',
+  'Beast Talker':'Section=feature Note="FILL"',
+  'Blood Magic':'Section=feature Note="FILL"',
+  'Born In The Saddle':'Section=feature Note="FILL"',
+  'Charge':'Section=feature Note="FILL"',
+  'Chosen':'Section=feature Note="FILL"',
+  'Close Fighting':'Section=feature Note="FILL"',
+  'Deceptive':'Section=feature Note="FILL"',
+  'Defender':'Section=feature Note="FILL"',
+  'Dirty Fighter':'Section=feature Note="FILL"',
+  'Double Shot':'Section=feature Note="FILL"',
+  'Epic Mastery':'Section=feature Note="FILL"',
+  'Explorer':'Section=feature Note="FILL"',
+  'Familiar':'Section=feature Note="FILL"',
+  'Favored Enemy':'Section=feature Note="FILL"',
+  'Favored Power':'Section=feature Note="FILL"',
+  'Favored Terrain':'Section=feature Note="FILL"',
+  'Fey Blood':'Section=feature Note="FILL"',
+  'Formation Fighter':'Section=feature Note="FILL"',
+  'Heirloom':'Section=feature Note="FILL"',
+  'Home Ground':'Section=feature Note="FILL"',
+  'Improved Arcane Resistance':'Section=feature Note="FILL"',
+  'Improved Close Fighting':'Section=feature Note="FILL"',
+  'Improved Double Shot':'Section=feature Note="FILL"',
+  'Improved Sneak Attack':'Section=feature Note="FILL"',
+  'Knight':'Section=feature Note="FILL"',
+  'Martial Flexibility':'Section=feature Note="FILL"',
+  'Master Artificer':'Section=feature Note="FILL"',
+  'Missile Deflection':'Section=feature Note="FILL"',
+  'Mount':'Section=feature Note="FILL"',
+  'Mystic Powers (Barbarian)':'Section=feature Note="FILL"',
+  'Mystic Powers (Fighter)':'Section=feature Note="FILL"',
+  'Mystic Powers (Monk)':'Section=feature Note="FILL"',
+  'Mystic Powers (Paladin)':'Section=feature Note="FILL"',
+  'Mystic Powers (Ranger)':'Section=feature Note="FILL"',
+  'Mystic Powers (Rogue)':'Section=feature Note="FILL"',
+  'Opportunistic':'Section=feature Note="FILL"',
+  'Poisoner':'Section=feature Note="FILL"',
+  'Rapid Change':'Section=feature Note="FILL"',
+  'Really Dirty Fighter':'Section=feature Note="FILL"',
+  'Relic':'Section=feature Note="FILL"',
+  'Roar':'Section=feature Note="FILL"',
+  'Savagery':'Section=feature Note="FILL"',
+  'Scorch':'Section=feature Note="FILL"',
+  'Scout':'Section=feature Note="FILL"',
+  'Shield Wall':'Section=feature Note="FILL"',
+  'Silent Caster':'Section=feature Note="FILL"',
+  'Sneak Attack':'Section=feature Note="FILL"',
+  'Stonecunning':'Section=feature Note="FILL"',
+  'Stunning Blow':'Section=feature Note="FILL"',
+  'Sunder':'Section=feature Note="FILL"',
+  'Take The Hit':'Section=feature Note="FILL"',
+  'Transfer':'Section=feature Note="FILL"',
+  'Trap Sense':'Section=feature Note="FILL"',
+  'Treasure Hunter':'Section=feature Note="FILL"',
+  'Trick Shot':'Section=feature Note="FILL"',
+  'Troubador':'Section=feature Note="FILL"',
+  'Uncanny Reflexes':'Section=feature Note="FILL"',
+  'Unstoppable':'Section=feature Note="FILL"',
+  'Warband':'Section=feature Note="FILL"',
+  'Wing Gust':'Section=feature Note="FILL"',
+  // Hindrances
+  'Amorous':'Section=feature Note="FILL"',
+  'Arcane Sensitivity':'Section=feature Note="FILL"',
+  'Arcane Sensitivity+':'Section=feature Note="FILL"',
+  'Armor Interference':'Section=feature Note="FILL"',
+  'Armor Interference+':'Section=feature Note="FILL"',
+  'Blunderer+':'Section=feature Note="FILL"',
+  'Corruption+':'Section=feature Note="FILL"',
+  'Cursed+':'Section=feature Note="FILL"',
+  'Doomed+':'Section=feature Note="FILL"',
+  'Grim':'Section=feature Note="FILL"',
+  'Idealistic':'Section=feature Note="FILL"',
+  'Jingoistic':'Section=feature Note="FILL"',
+  'Jingoistic+':'Section=feature Note="FILL"',
+  'Material Components+':'Section=feature Note="FILL"',
+  'Selfless':'Section=feature Note="FILL"',
+  'Selfless+':'Section=feature Note="FILL"',
+  'Talisman':'Section=feature Note="FILL"',
+  'Talisman+':'Section=feature Note="FILL"'
+};
+SWADEFC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEFC.FEATURES_ADDED);
+SWADEFC.HINDRANCES_ADDED = {
+  'Amorous':'Severity=Minor',
+  'Arcane Sensitivity':
+    'Require="features.Arcane Sensitivity+ == 0" Severity=Minor',
+  'Arcane Sensitivity+':
+    'Require="features.Arcane Sensitivity == 0" Severity=Major',
+  'Armor Interference':
+    'Require="features.Armor Interference+ == 0" Severity=Minor',
+  'Armor Interference+':
+    'Require="features.Armor Interference == 0" Severity=Major',
+  'Blunderer+':'Severity=Major',
+  'Corruption+':'Severity=Major',
+  'Cursed+':'Severity=Major',
+  'Doomed+':'Severity=Major',
+  'Grim':'Severity=Minor',
+  'Idealistic':'Severity=Minor',
+  'Jingoistic':'Require="features.Jingoistic+ == 0" Severity=Minor',
+  'Jingoistic+':'Require="features.Jingoistic == 0" Severity=Major',
+  'Material Components+':'Severity=Major',
+  'Selfless':'Require="features.Selfless+ == 0" Severity=Minor',
+  'Selfless+':'Require="features.Selfless == 0" Severity=Major',
+  'Talisman':'Require="features.Talisman+ == 0" Severity=Minor',
+  'Talisman+':'Require="features.Talisman == 0" Severity=Major',
+};
+SWADEFC.HINDRANCES =
+  Object.assign({}, SWADE.HINDRANCES, SWADEFC.HINDRANCES_ADDED);
+SWADEFC.POWERS_ADDED = {
+};
+SWADEFC.POWERS = Object.assign({}, SWADE.POWERS, SWADEFC.POWERS_ADDED);
 SWADEFC.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Parry=1 Cover=0 MinStr=6 Weight=4',
   'Medium Shield':'Parry=2 Cover=2 MinStr=8 Weight=8',
   'Large Shield':'Parry=2 Cover=4 MinStr=10 Weight=12'
 };
-SWADEFC.SKILLS = {
+SWADEFC.SKILLS_ADDED = {
+  'Alchemy':'Attribute=smarts'
 };
-SWADEFC.WEAPONS = {
+SWADEFC.SKILLS = Object.assign(Object.fromEntries(Object.entries(SWADE.SKILLS).filter(([k, v]) => !v.includes('Era') || v.match(/Era=[\w,]*Medieval/))), SWADEFC.SKILLS_ADDED);
+SWADEFC.WEAPONS_ADDED = {
+  'Chakram':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=4',
+  'Cutlass':'Damage=Str+d6 MinStr=4 Weight=4 Category=1h',
+  'Heavy Flail':'Damage=Str+d6 MinStr=8 Weight=10 Category=2h',
+  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h AP=1',
+  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h',
+  'Light Mace':SWADE.WEAPONS.Mace,
+  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Mancatcher':'Damage=Str+d4 MinStr=6 Weight=10 Category=2h',
+  'Meteor Hammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=2h',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h',
+  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h AP=1',
+  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
+  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
+  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
+  'Hook Sword':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h AP=1',
+  'Trident':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h Range=3',
+  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
+  'Short Bow':SWADE.WEAPONS.Bow,
+  'Composite Bow':SWADE.WEAPONS['Compound Bow'],
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
+  'Repeating Hand Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
+  'Light Crossbow':SWADE.WEAPONS.Crossbow,
+  'Repeating Light Crossbow':SWADE.WEAPONS.Crossbow + ' Weight=8',
+  'Heavy Crossbow':'Damage=2d8 MinStr=8 Weight=8 Category=R Range=15 AP=2',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3'
 };
+SWADEFC.WEAPONS = Object.assign(Object.fromEntries(Object.entries(SWADE.WEAPONS).filter(([k, v]) => !v.includes('Era') || v.match(/Era=[\w,]*Medieval/))), SWADEFC.WEAPONS_ADDED);
 
-/* Defines rules related to powers. */
-SWADEFC.arcaneRules = function(rules, arcanas, powers) {
-  SWADE.arcaneRules(rules, arcanas, powers);
+/* Defines the rules related to character attributes and description. */
+SWADEFC.attributeRules = function(rules) {
+  SWADE.attributeRules(rules);
+  // No changes needed to the rules defined by base method
 };
 
 /* Defines the rules related to combat. */
 SWADEFC.combatRules = function(rules, armors, shields, weapons) {
   SWADE.combatRules(rules, armors, shields, weapons);
+  // No changes needed to the rules defined by base method
+};
+
+/* Defines rules related to powers. */
+SWADEFC.arcaneRules = function(rules, arcanas, powers) {
+  SWADE.arcaneRules(rules, arcanas, powers);
+  // No changes needed to the rules defined by base method
+};
+
+/* Defines the rules related to combat. */
+SWADEFC.combatRules = function(rules, armors, shields, weapons) {
+  SWADE.combatRules(rules, armors, shields, weapons);
+  // No changes needed to the rules defined by base method
 };
 
 /* Defines rules related to basic character identity. */
 SWADEFC.identityRules = function(rules, races, concepts, deitys) {
-  SWADE.identityRules(rules, races, concepts, deitys);
+  SWADE.identityRules(rules, races, {}, concepts, deitys);
+  // No changes needed to the rules defined by base method
 };
 
 /* Defines rules related to character aptitudes. */
 SWADEFC.talentRules = function(
-  rules, edges, features, goodies, hindrances, skills
+  rules, edges, features, goodies, hindrances, languages, skills
 ) {
-  SWADE.talentRules(rules, edges, features, goodies, hindrances, {}, skills);
+  SWADE.talentRules
+    (rules, edges, features, goodies, hindrances, languages, skills);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Adds #name# as a possible user #type# choice and parses #attrs# to add rules
+ * related to selecting that choice.
+ */
+SWADEFC.choiceRules = function(rules, type, name, attrs) {
+  if(type == 'Ancestry' || type == 'Race') {
+    SWADEFC.ancestryRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+    );
+    SWADEFC.ancestryRulesExtra(rules, name);
+  } else if(type == 'Arcana')
+    SWADEFC.arcanaRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Skill'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Powers')
+    );
+  else if(type == 'Armor')
+    SWADEFC.armorRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Area'),
+      QuilvynUtils.getAttrValue(attrs, 'Armor'),
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
+    );
+  else if(type == 'Concept')
+    SWADEFC.conceptRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
+    );
+  else if(type == 'Deity')
+    SWADEFC.deityRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Alignment'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Domain')
+    );
+  else if(type == 'Edge') {
+    SWADEFC.edgeRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Type')
+    );
+    SWADEFC.edgeRulesExtra(rules, name);
+  } else if(type == 'Feature')
+    SWADEFC.featureRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Note')
+    );
+  else if(type == 'Goody')
+    SWADEFC.goodyRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Pattern'),
+      QuilvynUtils.getAttrValue(attrs, 'Effect'),
+      QuilvynUtils.getAttrValue(attrs, 'Value'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Note')
+    );
+  else if(type == 'Hindrance') {
+    SWADEFC.hindranceRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValue(attrs, 'Severity')
+    );
+    SWADEFC.hindranceRulesExtra(rules, name);
+  } else if(type == 'Language')
+    SWADEFC.languageRules(rules, name);
+  else if(type == 'Power')
+    SWADEFC.powerRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Advances'),
+      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'School'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
+    );
+  else if(type == 'Shield')
+    SWADEFC.shieldRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Parry'),
+      QuilvynUtils.getAttrValue(attrs, 'Cover'),
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
+    );
+  else if(type == 'Skill')
+    SWADEFC.skillRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValue(attrs, 'Core')
+    );
+  else if(type == 'Weapon')
+    SWADEFC.weaponRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Damage'),
+      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
+      QuilvynUtils.getAttrValue(attrs, 'AP'),
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
+      QuilvynUtils.getAttrValue(attrs, 'ROF'),
+      QuilvynUtils.getAttrValue(attrs, 'Parry')
+    );
+  else {
+    console.log('Unknown choice type "' + type + '"');
+    return;
+  }
+  if(type != 'Feature') {
+    type =
+      type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+    rules.addChoice(type, name, attrs);
+  }
+};
+
+/*
+ * Defines in #rules# the rules associated with ancestry #name#, which has the
+ * list of hard prerequisites #requires#. #features# list associated features
+ * and #languages# any automatic languages.
+ */
+SWADEFC.ancestryRules = function(rules, name, requires, features, languages) {
+  SWADE.raceRules(rules, name, requires, features, languages);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with ancestry #name# that cannot be
+ * derived directly from the attributes passed to ancestryRules.
+ */
+SWADEFC.ancestryRulesExtra = function(rules, name) {
+};
+
+/*
+ * Defines in #rules# the rules associated with arcane power source #name#,
+ * which draws on skill #skill# when casting and allows access to the list of
+ * powers #powers#.
+ */
+SWADEFC.arcanaRules = function(rules, name, skill, powers) {
+  SWADE.arcanaRules(rules, name, skill);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with armor #name#, which covers the
+ * body areas listed in #areas#, adds #armor# to the character's Toughness,
+ * requires a strength of #minStr# to use effectively, and weighs #weight#.
+ */
+SWADEFC.armorRules = function(rules, name, areas, armor, minStr, weight) {
+  SWADE.armorRules
+    (rules, name, ['Medieval'], areas, armor, minStr, weight);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with concept #name#. #attributes#,
+ * #edges#, and #skills# list the names of attributes, edges, and skills
+ * associated with the concept.
+ */
+SWADEFC.conceptRules = function(rules, name, attributes, edges, skills) {
+  SWADE.conceptRules(rules, name, attributes, edges, skills); 
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with deity #name#, who has alignment
+ * #alignment# and is associated the the list of domains #domains#.
+ */
+SWADEFC.deityRules = function(rules, name, alignment, domains) {
+
+  SWADE.deityRules(rules, name, alignment, domains);
+
+  if(rules.deityStats == null) {
+    rules.deityStats = {
+      alignment:{},
+      domains:{}
+    };
+  }
+
+  rules.deityStats.alignment[name] = alignment;
+  rules.deityStats.domains[name] = domains.join('/');
+
+  rules.defineRule('deityAlignment',
+    'deity', '=', QuilvynUtils.dictLit(rules.deityStats.alignment) + '[source]'
+  );
+  rules.defineRule('deityDomains',
+    'deity', '=', QuilvynUtils.dictLit(rules.deityStats.domains) + '[source]'
+  );
+
+};
+
+/*
+ * Defines in #rules# the rules associated with edge #name#. #require# and
+ * #implies# list any hard and soft prerequisites for the edge, and #types#
+ * lists the categories of the edge.
+ */
+SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
+  SWADE.edgeRules(rules, name, requires, implies, types);
+  // No changes needed to the rules defined by base method
 };
 
 /*
@@ -413,17 +912,130 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
 };
 
 /*
+ * Defines in #rules# the rules associated with feature #name#. #sections# lists
+ * the sections of the notes related to the feature and #notes# the note texts;
+ * the two must have the same number of elements.
+ */
+SWADEFC.featureRules = function(rules, name, sections, notes) {
+  SWADE.featureRules(rules, name, sections, notes);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with goody #name#, triggered by
+ * a starred line in the character notes that matches #pattern#. #effect#
+ * specifies the effect of the goody on each attribute in list #attributes#.
+ * This is one of "increment" (adds #value# to the attribute), "set" (replaces
+ * the value of the attribute by #value#), "lower" (decreases the value to
+ * #value#), or "raise" (increases the value to #value#). #value#, if null,
+ * defaults to 1; occurrences of $1, $2, ... in #value# reference capture
+ * groups in #pattern#. #sections# and #notes# list the note sections
+ * ("attribute", "combat", "companion", "feature", "power", or "skill")
+ * and formats that show the effects of the goody on the character sheet.
+ */
+SWADEFC.goodyRules = function(
+  rules, name, pattern, effect, value, attributes, sections, notes
+) {
+  SWADE.goodyRules
+    (rules, name, pattern, effect, value, attributes, sections, notes);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with hindrance #name#, which has
+ * the list of hard prerequisites #requires# and level #severity# (Major or
+ * Minor).
+ */
+SWADEFC.hindranceRules = function(rules, name, requires, severity) {
+  SWADE.hindranceRules(rules, name, requires, severity);
+  // No changes needed to the rules defined by base method
+};
+
+/*
  * Defines in #rules# the rules associated with hindrance #name# that cannot be
  * derived directly from the attributes passed to hindranceRules.
  */
 SWADEFC.hindranceRulesExtra = function(rules, name) {
 };
 
+/* Defines in #rules# the rules associated with language #name#. */
+SWADEFC.languageRules = function(rules, name) {
+  SWADE.languageRules(rules, name);
+  // No changes needed to the rules defined by base method
+};
+
 /*
- * Defines in #rules# the rules associated with race #name# that cannot be
- * derived directly from the attributes passed to raceRules.
+ * Defines in #rules# the rules associated with power #name#, which may be
+ * acquired only after #advances# advances, requires #powerPoints# Power Points
+ * to use, and can be cast at range #range#. #description# is a concise
+ * description of the power's effects and #school#, if defined, is the magic
+ * school that defines the power.
  */
-SWADEFC.raceRulesExtra = function(rules, name) {
+SWADEFC.powerRules = function(
+  rules, name, advances, powerPoints, range, description, school, modifiers
+) {
+  SWADE.powerRules
+    (rules, name, advances, powerPoints, range, description, school, modifiers);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with shield #name#, which adds
+ * #parry# to the character's Parry, provides #cover# cover, requires #minStr#
+ * to handle, and weighs #weight#.
+ */
+SWADEFC.shieldRules = function(rules, name, parry, cover, minStr, weight) {
+  SWADE.shieldRules
+    (rules, name, ['Medieval'], parry, cover, minStr, weight);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with skill #name#, associated with
+ * #attribute# (one of 'agility', 'spirit', etc.).
+ */
+SWADEFC.skillRules = function(rules, name, attribute, core) {
+  SWADE.skillRules(rules, name, attribute, core, ['Medieval']);
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Defines in #rules# the rules associated with weapon #name#, which belongs
+ * to category #category#, requires #minStr# to use effectively, and weighs
+ * #weight#. The weapon does #damage# HP on a successful attack. If specified,
+ * the weapon bypasses #armorPiercing# points of armor. Also if specified, the
+ * weapon can be used as a ranged weapon with a range increment of #range#
+ * feet, firing #rateOfFire# per round. Parry, if specified, indicates the
+ * parry bonus from wielding the weapon.
+ */
+SWADEFC.weaponRules = function(
+  rules, name, damage, minStr, weight, category, armorPiercing, range,
+  rateOfFire, parry
+) {
+  SWADE.weaponRules(
+    rules, name, ['Medieval'], damage, minStr, weight, category, armorPiercing,
+    range, rateOfFire, parry
+  );
+  // No changes needed to the rules defined by base method
+};
+
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+SWADEFC.choiceEditorElements = function(rules, type) {
+  return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
+};
+
+/* Sets #attributes#'s #attribute# attribute to a random value. */
+SWADEFC.randomizeOneAttribute = function(attributes, attribute) {
+  return SWADE.randomizeOneAttribute(attributes, attribute=='ancestry' ? 'race' : attribute);
+};
+
+/* Returns an array of plugins upon which this one depends. */
+SWADEFC.getPlugins = function() {
+  var result = [SWADE].concat(SWADE.getPlugins());
+  return result;
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
