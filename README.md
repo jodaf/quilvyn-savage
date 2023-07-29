@@ -29,7 +29,7 @@ following lines to the file plugins/plugins.js:
     RULESETS["Savage Worlds Adventurer's Edition Fantasy Companion"] = {
       url:'plugins/SWADEFC.js',
       group:'Savage Worlds',
-      supplement:"Savage Worlds Adventurer's Edition"
+      require:'SWADE.js'
     };
     RULESETS["Deadlands - The Weird West"] = {
       url:'plugins/WeirdWest.js',
