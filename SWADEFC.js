@@ -407,6 +407,50 @@ SWADEFC.CONCEPTS_ADDED = {
     'Edge="Arcane Background (Bard)" ' +
     'Attribute=Spirit ' +
     'Skill=Performance',
+  'Cleric (Cold Domain)':
+    'Edge="Arcane Background (Cleric (Cold Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Death Domain)':
+    'Edge="Arcane Background (Cleric (Death Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Life Domain)':
+    'Edge="Arcane Background (Cleric (Life Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Justice Domain)':
+    'Edge="Arcane Background (Cleric (Justice Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Knowledge Domain)':
+    'Edge="Arcane Background (Cleric (Knowledge Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Moon Domain)':
+    'Edge="Arcane Background (Cleric (Moon Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Nature Domain)':
+    'Edge="Arcane Background (Cleric (Nature Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Sea Domain)':
+    'Edge="Arcane Background (Cleric (Sea Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Sun Domain)':
+    'Edge="Arcane Background (Cleric (Sun Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (Thievery Domain)':
+    'Edge="Arcane Background (Cleric (Thievery Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
+  'Cleric (War Domain)':
+    'Edge="Arcane Background (Cleric (War Domain))" ' +
+    'Attribute=Spirit ' +
+    'Skill=Faith',
   'Diabolist':
     'Edge="Arcane Background (Diabolist)" ' +
     'Attribute=Smarts ' +
@@ -450,55 +494,7 @@ SWADEFC.CONCEPTS_ADDED = {
   'Wizard':
     'Edge="Arcane Background (Wizard)" ' +
     'Attribute=Smarts ' +
-    'Skill=Spellcasting',
-  'Cleric (Cold Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Death Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Life Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Justice Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Cold Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Knowledge Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Moon Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Nature Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Sea Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Sun Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (Thievery Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith',
-  'Cleric (War Domain)':
-    'Edge="Arcane Background (Cleric)" ' +
-    'Attribute=Spirit ' +
-    'Skill=Faith'
+    'Skill=Spellcasting'
 };
 SWADEFC.CONCEPTS = Object.assign(Object.fromEntries(Object.entries(SWADE.CONCEPTS).filter(([k, v]) => !v.includes('Arcane Background'))), SWADEFC.CONCEPTS_ADDED);
 SWADEFC.DEITIES = {
@@ -638,7 +634,17 @@ SWADEFC.EDGES_ADDED = {
   // Arcane Backgrounds
   'Arcane Background (Alchemist)':'Type=background',
   'Arcane Background (Bard)':'Type=background',
-  'Arcane Background (Cleric)':'Type=background',
+  'Arcane Background (Cleric (Cold Domain))':'Type=background',
+  'Arcane Background (Cleric (Death Domain))':'Type=background',
+  'Arcane Background (Cleric (Life Domain))':'Type=background',
+  'Arcane Background (Cleric (Justice Domain))':'Type=background',
+  'Arcane Background (Cleric (Knowledge Domain))':'Type=background',
+  'Arcane Background (Cleric (Moon Domain))':'Type=background',
+  'Arcane Background (Cleric (Nature Domain))':'Type=background',
+  'Arcane Background (Cleric (Sea Domain))':'Type=background',
+  'Arcane Background (Cleric (Sun Domain))':'Type=background',
+  'Arcane Background (Cleric (Thievery Domain))':'Type=background',
+  'Arcane Background (Cleric (War Domain))':'Type=background',
   'Arcane Background (Diabolist)':'Type=background',
   'Arcane Background (Druid)':'Type=background',
   'Arcane Background (Elementalist)':'Type=background',
@@ -750,6 +756,54 @@ SWADEFC.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Has Environment Resistance (Water) and Aquatic features"',
   // Edges
+  'Arcane Background (Alchemist)':
+    'Section=arcana Note="3 Powers/15 Power Points"',
+  'Arcane Background (Bard)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Cold Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Death Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Life Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Justice Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Knowledge Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Moon Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Nature Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Sea Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Sun Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (Thievery Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Cleric (War Domain))':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Diabolist)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Druid)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Elementalist)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Illusionist)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Necromancer)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Shaman)':
+    'Section=arcana Note="5 Powers/10 Power Points"',
+  'Arcane Background (Sorcerer)':
+    'Section=arcana Note="3 Powers/15 Power Points"',
+  'Arcane Background (Summoner)':
+    'Section=arcana Note="5 Powers/15 Power Points"',
+  'Arcane Background (Tinkerer)':
+    'Section=arcana Note="2 Powers/15 Power Points"',
+  'Arcane Background (Warlock/Witch)':
+    'Section=arcana Note="3 Powers/10 Power Points"',
+  'Arcane Background (Wizard)':
+    'Section=arcana Note="6 Powers/15 Power Points"',
   'Arcane Resistance':'Section=feature Note="FILL"',
   'Artificer':'Section=feature Note="FILL"',
   'Aura Of Courage':'Section=feature Note="FILL"',
