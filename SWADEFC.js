@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Quilvyn, QuilvynRules, QuilvynUtils, SWADE */
 "use strict";
 
 /*
@@ -182,7 +182,7 @@ SWADEFC.ARCANAS = {
   'Druid':
     'Skill=Faith ' +
     'Powers=' +
-      '"Beast Friend","Environmental Protetion","Shape Change"',
+      '"Beast Friend","Environmental Protection","Shape Change"',
   'Elementalist':
     'Skill=Spellcasting ' +
     'Powers=' +
@@ -615,9 +615,9 @@ SWADEFC.EDGES_ADDED = {
   'Trap Sense':'Type=professional Require="advances>=4","skills.Repair>=6"',
   'Treasure Hunter':
     'Type=professional Require="skills.Notice>=8","skills.Occult>=8"',
-  'Troubador':
+  'Troubadour':
     'Type=professional ' +
-    'Require="skills.Common Knowledge>=6","skills.Perfromance>=8"',
+    'Require="skills.Common Knowledge>=6","skills.Performance>=8"',
   'Deceptive':'Type=social Require="advances>=4","smarts>=8"',
   'Aura Of Courage':'Type=weird Require="spirit>=8"',
   'Beast Talker':'Type=weird',
@@ -655,7 +655,162 @@ SWADEFC.EDGES_ADDED = {
   'Arcane Background (Summoner)':'Type=background',
   'Arcane Background (Tinkerer)':'Type=background',
   'Arcane Background (Warlock/Witch)':'Type=background',
-  'Arcane Background (Wizard)':'Type=background'
+  'Arcane Background (Wizard)':'Type=background',
+  // AB-dependent edges
+  'Chemist':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Alchemist)",' +
+      '"skills.Alchemy>=8"',
+  'Master Alchemist':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Alchemist)",' +
+      '"skills.Alchemy>=10"',
+  'Dirge':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=12",' +
+      '"features.Arcane Background (Bard)"',
+  'Inspire Heroics':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Bard)",' +
+      '"skills.Performance>=8"',
+  'Instrument':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Bard)"',
+  'Destroy Undead':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Cleric)"',
+  'Mercy':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Cleric)",' +
+      '"skills.Faith>=8"',
+  "Hell's Wrath":
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Diabolist)"',
+  'Infernal Armor':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Diabolist)"',
+  'Heartwood Staff':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Druid)"',
+  'True Form':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Druid)"',
+  'Elemental Absorbtion':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Elementalist)"',
+  'Elemental Master':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Elementalist)"',
+  'Deadly Illusion':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Illusionist)",' +
+      '"skills.Spellcasting>=10"',
+  'Master Of Illusion':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Illusionist)",' +
+      '"skills.Spellcasting>=8"',
+  'Soul Jar':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=16",' +
+      '"features.Arcane Background (Necromancer)",' +
+      '"skills.Occult>=10"',
+  'Undead Familiar':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Necromancer)"',
+  'Primal Magic':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Shaman)"',
+  'Sacred Fetish':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Shaman)",' +
+      '"skills.Faith>=8"',
+  'Great Power':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=8",' +
+      '"features.Arcane Background (Sorcerer)"',
+  'Phenomenal Power':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=12",' +
+      '"features.Arcane Background (Sorcerer)",' +
+      '"features.Great Power"',
+  'Arcane Barding':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Summoner)",' +
+      '"powers.Summon Animal"',
+  'Ferocious Summoning':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Summoner)",' +
+      '"powers.Summon Monster"',
+  'Great Summoning':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=12",' +
+      '"features.Arcane Background (Summoner)",' +
+      '"powers.Summon Animal",' +
+      '"powers.Summon Monster"',
+  'Construct Familiar':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Tinkerer)"',
+  "Tinkerer's Armor":
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Tinkerer)"',
+  'The Evil Eye':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Warlock/Witch)"',
+  'The Witching Hour':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=4",' +
+      '"features.Arcane Background (Warlock/Witch)"',
+  'Eldritch Inspiration':
+    'Type=power ' +
+    'Require=' +
+      '"advances>=8",' +
+      '"features.Arcane Background (Wizard)"',
+  'Spellbooks':
+    'Type=power ' +
+    'Require=' +
+      '"features.Arcane Background (Wizard)"'
 };
 SWADEFC.EDGES = Object.assign(Object.fromEntries(Object.entries(SWADE.EDGES).filter(([k, v]) => !k.includes('Arcane Background'))), SWADEFC.EDGES_ADDED);
 SWADEFC.FEATURES_ADDED = {
@@ -863,11 +1018,42 @@ SWADEFC.FEATURES_ADDED = {
   'Trap Sense':'Section=feature Note="FILL"',
   'Treasure Hunter':'Section=feature Note="FILL"',
   'Trick Shot':'Section=feature Note="FILL"',
-  'Troubador':'Section=feature Note="FILL"',
+  'Troubadour':'Section=feature Note="FILL"',
   'Uncanny Reflexes':'Section=feature Note="FILL"',
   'Unstoppable':'Section=feature Note="FILL"',
   'Warband':'Section=feature Note="FILL"',
   'Wing Gust':'Section=feature Note="FILL"',
+  // AB-dependent edges
+  'Arcane Barding':'Section=feature Note="FILL"',
+  'Chemist':'Section=feature Note="FILL"',
+  'Construct Familiar':'Section=feature Note="FILL"',
+  'Deadly Illusion':'Section=feature Note="FILL"',
+  'Destroy Undead':'Section=feature Note="FILL"',
+  'Dirge':'Section=feature Note="FILL"',
+  'Eldritch Inspiration':'Section=feature Note="FILL"',
+  'Elemental Absorbtion':'Section=feature Note="FILL"',
+  'Elemental Master':'Section=feature Note="FILL"',
+  'Ferocious Summoning':'Section=feature Note="FILL"',
+  'Great Power':'Section=feature Note="FILL"',
+  'Great Summoning':'Section=feature Note="FILL"',
+  'Heartwood Staff':'Section=feature Note="FILL"',
+  "Hell's Wrath":'Section=feature Note="FILL"',
+  'Infernal Armor':'Section=feature Note="FILL"',
+  'Inspire Heroics':'Section=feature Note="FILL"',
+  'Instrument':'Section=feature Note="FILL"',
+  'Master Alchemist':'Section=feature Note="FILL"',
+  'Master Of Illusion':'Section=feature Note="FILL"',
+  'Mercy':'Section=feature Note="FILL"',
+  'Phenomenal Power':'Section=feature Note="FILL"',
+  'Primal Magic':'Section=feature Note="FILL"',
+  'Sacred Fetish':'Section=feature Note="FILL"',
+  'Soul Jar':'Section=feature Note="FILL"',
+  'Spellbooks':'Section=feature Note="FILL"',
+  'The Evil Eye':'Section=feature Note="FILL"',
+  'The Witching Hour':'Section=feature Note="FILL"',
+  "Tinkerer's Armor":'Section=feature Note="FILL"',
+  'True Form':'Section=feature Note="FILL"',
+  'Undead Familiar':'Section=feature Note="FILL"',
   // Hindrances
   'Amorous':'Section=skill Note="-2 on Tests vs. Attractive character"',
   'Arcane Sensitivity':'Section=attribute Note="-2 to resist powers"',
@@ -877,11 +1063,6 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"Cannot use arcane edge features in medium or heavy armor",' +
       '"-4 arcane skill rolls in medium or heavy armor"',
-  'Armor Interference':
-    'Section=feature,power ' +
-    'Note=' +
-      '"Cannot use arcane edge features in any armor",' +
-      '"-4 arcane skill rolls in any armor"',
   'Blunderer+':
     'Section=skill ' +
     'Note="Skill die of 1 inflicts critical failure on chosen central skill"',
@@ -1274,16 +1455,16 @@ SWADEFC.raceRulesExtra = function(rules, name) {
     rules.defineRule('features.Elemental Scion',
       'race', '=', 'source=="Elemental Scion" ? 1 : null'
     );
-    rules.defineRule('features.Environental Resistance (Air)',
+    rules.defineRule('features.Environmental Resistance (Air)',
       'features.Air Scion', '=', null
     );
-    rules.defineRule('features.Environental Resistance (Earth)',
+    rules.defineRule('features.Environmental Resistance (Earth)',
       'features.Earth Scion', '=', null
     );
-    rules.defineRule('features.Environental Resistance (Fire)',
+    rules.defineRule('features.Environmental Resistance (Fire)',
       'features.Fire Scion', '=', null
     );
-    rules.defineRule('features.Environental Resistance (Water)',
+    rules.defineRule('features.Environmental Resistance (Water)',
       'features.Water Scion', '=', null
     );
     rules.defineRule('features.Inner Air', 'features.Air Scion', '=', null);
@@ -1389,6 +1570,11 @@ SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEFC.edgeRulesExtra = function(rules, name) {
+  if(name.match(/Arcane Background .Cleric/))
+    rules.defineRule
+      ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
+  if(SWADE.edgeRulesExtra)
+    SWADE.edgeRulesExtra(rules, name);
 };
 
 /*
