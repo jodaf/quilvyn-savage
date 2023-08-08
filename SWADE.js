@@ -2605,6 +2605,10 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     return;
   }
 
+  // Test for QR.wVCS (v2.4 feature) for backward compatibility
+  if(QuilvynRules.wrapVarsContainingSpace)
+    notes = notes.map(x => QuilvynRules.wrapVarsContainingSpace(x));
+
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
@@ -2613,7 +2617,12 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     let section = sections[i];
     let effects = notes[i];
     let matchInfo;
+    let maxSubnote =
+      effects.includes('%1') ? effects.match(/%\d/g).sort().pop().replace('%') - 0 : 0;
     let note = section + 'Notes.' + prefix;
+    let priorInSection = sections.slice(0, i).filter(x => x == section).length;
+    if(priorInSection > 0)
+      note += '-' + priorInSection;
 
     rules.defineChoice('notes', note + ':' + effects);
     rules.defineRule
@@ -2636,6 +2645,23 @@ SWADE.featureRules = function(rules, name, sections, notes) {
 
       let adjust = matchInfo[1];
       let adjusted = matchInfo[4];
+
+      // Support +%{expr} by evaling expr for each id it contains
+      if(adjust.match(/%{/)) {
+        let expression = adjust.substring(3, adjust.length - 1);
+        let sn = ++maxSubnote;
+        rules.defineRule(note + '.' + sn, 'features.' + name, '?', null);
+        new Expr(expression).identifiers().forEach(id => {
+          if(expression.trim() == id)
+            rules.defineRule(note + '.' + sn, id, '=', null);
+          else
+            rules.defineRule(note + '.' + sn, id,
+              '=', 'new Expr("' + expression + '").eval(dict)'
+            );
+        });
+        adjust = '%' + sn;
+      }
+
       let adjuster =
         adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
       let op = adjust.startsWith('x') ? '*' : '+';
@@ -2784,6 +2810,9 @@ SWADE.powerRules = function(
   else
     range = 'R%{' + range + '}"';
   // Not presently including advances in power description
+  // Test for QR.wVCS (v2.4 feature) for backward compatibility
+  if(QuilvynRules.wrapVarsContainingSpace)
+    description = QuilvynRules.wrapVarsContainingSpace(description);
   let powerAttrs = powerPoints + ' PP';
   if(school)
     powerAttrs += ' ' + school.substring(0, 4);
