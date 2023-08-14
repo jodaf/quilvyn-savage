@@ -504,9 +504,6 @@ SWADEFC.EDGES_ADDED = {
   'Earth Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
   'Fire Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
   'Water Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
-  'Arcane Resistance':'Type=background Require="spirit>=8"',
-  'Improved Arcane Resistance':
-    'Type=background Require="features.Arcane Resistance"',
   'Chosen':'Type=background',
   'Fey Blood':'Type=background',
   'Favored Enemy':
@@ -959,70 +956,129 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Wizard)':
     'Section=arcana Note="6 Powers/15 Power Points"',
-  'Arcane Resistance':'Section=feature Note="FILL"',
-  'Artificer':'Section=feature Note="FILL"',
   'Aura Of Courage':'Section=feature Note="FILL"',
-  'Battle Magic':'Section=feature Note="FILL"',
+  'Battle Magic':'Section=power Note="May cast spells on units of Extras"',
   'Beast Talker':'Section=feature Note="FILL"',
-  'Blood Magic':'Section=feature Note="FILL"',
-  'Born In The Saddle':'Section=feature Note="FILL"',
-  'Charge':'Section=feature Note="FILL"',
-  'Chosen':'Section=feature Note="FILL"',
-  'Close Fighting':'Section=feature Note="FILL"',
+  'Blood Magic':
+    'Section=power ' +
+    'Note="Causing Wound to conscious, sapient being restores d6 Power Points to self"',
+  'Born In The Saddle':
+    'Section=skill ' +
+    'Note="May take free reroll on Riding/Mount gains +2 Pace and +1 Run step"',
+  'Charge':
+    'Section=combat Note="Fighting attack inflicts +2 damage after 5\\" run"',
+  'Chosen':
+    'Section=combat,feature ' +
+    'Note=' +
+      '"Conviction effects last until end of encounter",' +
+      '"Has Enemy+ feature/Permanent mark shows Chosen status"',
+  'Close Fighting':
+    'Section=combat ' +
+    'Note="+%V attack and Parry with knife against more heavily-armed foe"',
   'Deceptive':'Section=feature Note="FILL"',
-  'Defender':'Section=feature Note="FILL"',
-  'Dirty Fighter':'Section=feature Note="FILL"',
-  'Double Shot':'Section=feature Note="FILL"',
-  'Epic Mastery':'Section=feature Note="FILL"',
+  'Defender':
+    'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
+  'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
+  'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
+  'Epic Mastery':'Section=power Note="All powers have Epic Mastery Modifiers"',
   'Explorer':'Section=feature Note="FILL"',
-  'Familiar':'Section=feature Note="FILL"',
-  'Favored Enemy':'Section=feature Note="FILL"',
-  'Favored Power':'Section=feature Note="FILL"',
-  'Favored Terrain':'Section=feature Note="FILL"',
-  'Fey Blood':'Section=feature Note="FILL"',
-  'Formation Fighter':'Section=feature Note="FILL"',
-  'Heirloom':'Section=feature Note="FILL"',
+  'Familiar':
+    'Section=power ' +
+    'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
+  'Favored Enemy':
+    'Section=combat,skill ' +
+    'Note="May reroll failed attacks against %V chosen creature type",' +
+         '"May reroll failed Survival to track %V chosen creature type"',
+  'Favored Power':
+    'Section=power ' +
+    'Note="May ignore two points of penalties when casting chosen power"',
+  'Favored Terrain':
+    'Section=combat,skill ' +
+    'Note="Gains additional Action Card in %V chosen terrain",' +
+         '"May make free Notice and Survival reroll in %V chosen terrain"',
+  'Fey Blood':
+    'Section=combat ' +
+    'Note="May make free reroll to resist enemy powers and spell-like effects"',
+  'Formation Fighter':
+    'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
+  'Heirloom':'Section=feature Note="Posesses powerful magic item"',
   'Home Ground':'Section=feature Note="FILL"',
-  'Improved Arcane Resistance':'Section=feature Note="FILL"',
-  'Improved Close Fighting':'Section=feature Note="FILL"',
-  'Improved Double Shot':'Section=feature Note="FILL"',
-  'Improved Sneak Attack':'Section=feature Note="FILL"',
+  'Improved Close Fighting':
+    'Section=combat Note="Increased Close Fighting effects"',
+  'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
+  'Improved Sneak Attack':
+   'Section=combat Note="May use Sneak Attack on distracted foe"',
   'Knight':'Section=feature Note="FILL"',
-  'Martial Flexibility':'Section=feature Note="FILL"',
-  'Master Artificer':'Section=feature Note="FILL"',
-  'Missile Deflection':'Section=feature Note="FILL"',
+  'Martial Flexibility':
+    'Section=combat ' +
+    'Note="May gain effects of chosen combat edge for 5 rd 1/encounter"',
+  'Master Artificer':
+    'Section=power ' +
+    'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
+  'Missile Deflection':
+    'Section=combat ' +
+    'Note="When armed, physical ranged attacks on self must match Parry"',
   'Mount':'Section=feature Note="FILL"',
-  'Mystic Powers (Barbarian)':'Section=feature Note="FILL"',
-  'Mystic Powers (Fighter)':'Section=feature Note="FILL"',
-  'Mystic Powers (Monk)':'Section=feature Note="FILL"',
-  'Mystic Powers (Paladin)':'Section=feature Note="FILL"',
-  'Mystic Powers (Ranger)':'Section=feature Note="FILL"',
-  'Mystic Powers (Rogue)':'Section=feature Note="FILL"',
-  'Opportunistic':'Section=feature Note="FILL"',
+  'Mystic Powers (Barbarian)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Fighter)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Monk)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Paladin)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Healing</i>, self <i>Protection</i>, self <i>Sanctuary</i> or self <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Ranger)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i>, <i>Entangle</i>, or self <i>Farsight</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Rogue)':
+    'Section=power ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
+  'Opportunistic':
+    'Section=feature ' +
+    'Note="Joker gives additional +2 to trait and damage rolls"',
   'Poisoner':'Section=feature Note="FILL"',
   'Rapid Change':'Section=feature Note="FILL"',
-  'Really Dirty Fighter':'Section=feature Note="FILL"',
+  'Really Dirty Fighter':
+    'Section=skill Note="Raise on Test gives self The Drop on Test target"',
   'Relic':'Section=feature Note="FILL"',
-  'Roar':'Section=feature Note="FILL"',
-  'Savagery':'Section=feature Note="FILL"',
-  'Scorch':'Section=feature Note="FILL"',
+  'Roar':
+    'Section=skill ' +
+    'Note="RCone May make Intimidation Test against multiple targets"',
+  'Savagery':'Section=combat Note="Wild Attack inflicts additional +2 damage"',
+  'Scorch':
+    'Section=combat ' +
+    'Note="Breath weapon inflicts 1 die type higher damage and may be inflicted in a cone or stream"',
   'Scout':'Section=feature Note="FILL"',
-  'Shield Wall':'Section=feature Note="FILL"',
-  'Silent Caster':'Section=feature Note="FILL"',
-  'Sneak Attack':'Section=feature Note="FILL"',
+  'Shield Wall':
+    'Section=combat ' +
+    'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
+  'Silent Caster':'Section=power Note="May cast w/out speaking"',
+  'Sneak Attack':'Section=combat Note="Assassin Edge inflicts +d6 damage"',
   'Stonecunning':'Section=feature Note="FILL"',
   'Stunning Blow':'Section=feature Note="FILL"',
-  'Sunder':'Section=feature Note="FILL"',
-  'Take The Hit':'Section=feature Note="FILL"',
-  'Transfer':'Section=feature Note="FILL"',
+  'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
+  'Take The Hit':
+    'Section=combat ' +
+    'Note="May take free reroll on rolls to Soak or resist Knockout"',
+  'Transfer':'Section=power Note="May transfer up to 5 PP to another in sight"',
   'Trap Sense':'Section=feature Note="FILL"',
   'Treasure Hunter':'Section=feature Note="FILL"',
-  'Trick Shot':'Section=feature Note="FILL"',
+  'Trick Shot':
+    'Section=skill ' +
+    'Note="May force foe to resist Althetics and Shooting Tests with Smarts instead of Agility"',
   'Troubadour':'Section=feature Note="FILL"',
-  'Uncanny Reflexes':'Section=feature Note="FILL"',
+  'Uncanny Reflexes':
+    'Section=combat ' +
+    'Note="Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect"',
   'Unstoppable':'Section=feature Note="FILL"',
   'Warband':'Section=feature Note="FILL"',
-  'Wing Gust':'Section=feature Note="FILL"',
+  'Wing Gust':
+    'Section=combat ' +
+    'Note="RCone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
   // AB-dependent edges
   'Arcane Barding':'Section=feature Note="FILL"',
   'Chemist':'Section=feature Note="FILL"',
@@ -1570,9 +1626,30 @@ SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEFC.edgeRulesExtra = function(rules, name) {
-  if(name.match(/Arcane Background .Cleric/))
+  if(name.match(/Arcane Background .Cleric/)) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
+  } else if(name == 'Close Fighting') {
+    rules.defineRule('combatNotes.closeFighting',
+      '', '=', '1',
+      'featureNotes.improvedCloseFighting', '+', '1'
+    );
+  } else if(name == 'Double Shot') {
+    rules.defineRule('combatNotes.doubleShot',
+      '', '=', '1',
+      'featureNotes.improvedDoubleShot', '+', '1'
+    );
+  } else if(name == 'Favored Enemy') {
+    rules.defineRule
+      ('combatNotes.favoredEnemy', 'features.Favored Enemy', '=', null);
+    rules.defineRule
+      ('skillNotes.favoredEnemy', 'features.Favored Enemy', '=', null);
+  } else if(name == 'Favored Terrain') {
+    rules.defineRule
+      ('combatNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+    rules.defineRule
+      ('skillNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+  }
   if(SWADE.edgeRulesExtra)
     SWADE.edgeRulesExtra(rules, name);
 };
