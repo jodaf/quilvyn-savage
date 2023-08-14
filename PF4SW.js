@@ -896,7 +896,7 @@ PF4SW.FEATURES_ADDED = {
   'Epic Tales':
     'Section=feature Note="Allies hearing story during rest each gain 1 Benny"',
   'Familiar':
-    'Section=feature ' +
+    'Section=power ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
