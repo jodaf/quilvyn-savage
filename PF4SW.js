@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.5';
+PF4SW.VERSION = '2.3.1.6';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -896,7 +896,7 @@ PF4SW.FEATURES_ADDED = {
   'Epic Tales':
     'Section=feature Note="Allies hearing story during rest each gain 1 Benny"',
   'Familiar':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
