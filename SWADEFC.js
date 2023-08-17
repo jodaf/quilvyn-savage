@@ -956,9 +956,11 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="3 Powers/10 Power Points"',
   'Arcane Background (Wizard)':
     'Section=arcana Note="6 Powers/15 Power Points"',
-  'Aura Of Courage':'Section=feature Note="FILL"',
+  'Aura Of Courage':
+    'Section=combat ' +
+    'Note="R10\\" Allies gain +1 on Fear checks and -1 on Fear Table results"',
   'Battle Magic':'Section=power Note="May cast spells on units of Extras"',
-  'Beast Talker':'Section=feature Note="FILL"',
+  'Beast Talker':'Section=skill Note="May speak with chosen class of animals"',
   'Blood Magic':
     'Section=power ' +
     'Note="Causing Wound to conscious, sapient being restores d6 Power Points to self"',
@@ -975,13 +977,17 @@ SWADEFC.FEATURES_ADDED = {
   'Close Fighting':
     'Section=combat ' +
     'Note="+%V attack and Parry with knife against more heavily-armed foe"',
-  'Deceptive':'Section=feature Note="FILL"',
+  'Deceptive':
+    'Section=skill ' +
+    'Note="May choose whether target resists Smarts- or Spirit-linked Tests with Smarts or Spirit"',
   'Defender':
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
   'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
   'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
   'Epic Mastery':'Section=power Note="All powers have Epic Mastery Modifiers"',
-  'Explorer':'Section=feature Note="FILL"',
+  'Explorer':
+    'Section=feature ' +
+    'Note="Reduce travel time by 10%/May take best of 2 Action Cards when traveling"',
   'Familiar':
     'Section=power ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
@@ -1002,13 +1008,19 @@ SWADEFC.FEATURES_ADDED = {
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
   'Heirloom':'Section=feature Note="Posesses powerful magic item"',
-  'Home Ground':'Section=feature Note="FILL"',
+  'Home Ground':
+    'Section=feature ' +
+    'Note="Within home area, may spend a Benny to recover all Power Points/10 min concentration answers 3 questions about state of home area"',
   'Improved Close Fighting':
     'Section=combat Note="Increased Close Fighting effects"',
   'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
   'Improved Sneak Attack':
    'Section=combat Note="May use Sneak Attack on distracted foe"',
-  'Knight':'Section=feature Note="FILL"',
+  'Knight':
+    'Section=feature,skill ' +
+    'Note=' +
+      '"Has authority over common folk in liege\'s realm",' +
+      '"+1 Intimidation and Persuasion in areas of liege authority"',
   'Martial Flexibility':
     'Section=combat ' +
     'Note="May gain effects of chosen combat edge for 5 rd 1/encounter"',
@@ -1018,7 +1030,9 @@ SWADEFC.FEATURES_ADDED = {
   'Missile Deflection':
     'Section=combat ' +
     'Note="When armed, physical ranged attacks on self must match Parry"',
-  'Mount':'Section=feature Note="FILL"',
+  'Mount':
+    'Section=feature ' +
+    'Note="Mount gains %{advances//4+1} Trait die increase, Edge, or Mounstrous ability"',
   'Mystic Powers (Barbarian)':
     'Section=power ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
@@ -1040,11 +1054,13 @@ SWADEFC.FEATURES_ADDED = {
   'Opportunistic':
     'Section=feature ' +
     'Note="Joker gives additional +2 to trait and damage rolls"',
-  'Poisoner':'Section=feature Note="FILL"',
-  'Rapid Change':'Section=feature Note="FILL"',
+  'Poisoner':
+    'Section=skill ' +
+    'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
+  'Rapid Change':'Section=feature Note="May change form as a limited action"',
   'Really Dirty Fighter':
     'Section=skill Note="Raise on Test gives self The Drop on Test target"',
-  'Relic':'Section=feature Note="FILL"',
+  'Relic':'Section=arcana Note="Possesses powerful magic item"',
   'Roar':
     'Section=skill ' +
     'Note="RCone May make Intimidation Test against multiple targets"',
@@ -1052,46 +1068,67 @@ SWADEFC.FEATURES_ADDED = {
   'Scorch':
     'Section=combat ' +
     'Note="Breath weapon inflicts 1 die type higher damage and may be inflicted in a cone or stream"',
-  'Scout':'Section=feature Note="FILL"',
+  'Scout':
+    'Section=skill ' +
+    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (Recall info about familiar route)"',
   'Shield Wall':
     'Section=combat ' +
     'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
   'Silent Caster':'Section=power Note="May cast w/out speaking"',
   'Sneak Attack':'Section=combat Note="Assassin Edge inflicts +d6 damage"',
-  'Stonecunning':'Section=feature Note="FILL"',
-  'Stunning Blow':'Section=feature Note="FILL"',
+  'Stonecunning':
+    'Section=skill ' + 
+    'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
+  'Stunning Blow':
+    'Section=feature ' +
+    'Note="Successful attack with blunt weapon causes Stunned (Vigor neg)"',
   'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
   'Take The Hit':
     'Section=combat ' +
     'Note="May take free reroll on rolls to Soak or resist Knockout"',
   'Transfer':'Section=power Note="May transfer up to 5 PP to another in sight"',
-  'Trap Sense':'Section=feature Note="FILL"',
-  'Treasure Hunter':'Section=feature Note="FILL"',
+  'Trap Sense':
+    'Section=skill ' +
+    'Note="R5\\" Successful automatic Notice detects mechanical and magical traps"',
+  'Treasure Hunter':
+    'Section=attribute,feature ' +
+    'Note=' +
+      '"Successful Smarts gives approximate value of goods and magic item abilities",' +
+      '"May spend Benny to have GM reroll magic item treasure"',
   'Trick Shot':
     'Section=skill ' +
     'Note="May force foe to resist Althetics and Shooting Tests with Smarts instead of Agility"',
-  'Troubadour':'Section=feature Note="FILL"',
+  'Troubadour':
+    'Section=skill ' +
+    'Note="+2 most Common Knowledge/May use Performance instead of Battle"',
   'Uncanny Reflexes':
     'Section=combat ' +
     'Note="Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect"',
-  'Unstoppable':'Section=feature Note="FILL"',
-  'Warband':'Section=feature Note="FILL"',
+  'Unstoppable':'Section=combat Note="Takes at most 1 Wound per attack"',
+  'Warband':
+    'Section=feature ' +
+    'Note="%V followers may take 1 addition Wound before becoming incapacitated"',
   'Wing Gust':
     'Section=combat ' +
     'Note="RCone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
   // AB-dependent edges
-  'Arcane Barding':'Section=feature Note="FILL"',
+  'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
   'Chemist':'Section=feature Note="FILL"',
-  'Construct Familiar':'Section=feature Note="FILL"',
+  'Construct Familiar':
+    'Section=power ' +
+    'Note="Can communicate w/magical, Wild Card construct that stores 5 Power Points"',
   'Deadly Illusion':'Section=feature Note="FILL"',
   'Destroy Undead':'Section=feature Note="FILL"',
   'Dirge':'Section=feature Note="FILL"',
   'Eldritch Inspiration':'Section=feature Note="FILL"',
   'Elemental Absorbtion':'Section=feature Note="FILL"',
   'Elemental Master':'Section=feature Note="FILL"',
-  'Ferocious Summoning':'Section=feature Note="FILL"',
+  'Ferocious Summoning':
+    'Section=arcana Note="Summoned monsters gain 1 combat Edge"',
   'Great Power':'Section=feature Note="FILL"',
-  'Great Summoning':'Section=feature Note="FILL"',
+  'Great Summoning':
+    'Section=arcana ' +
+    'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/t-rex/young dragon"',
   'Heartwood Staff':'Section=feature Note="FILL"',
   "Hell's Wrath":'Section=feature Note="FILL"',
   'Infernal Armor':'Section=feature Note="FILL"',
@@ -1105,9 +1142,15 @@ SWADEFC.FEATURES_ADDED = {
   'Sacred Fetish':'Section=feature Note="FILL"',
   'Soul Jar':'Section=feature Note="FILL"',
   'Spellbooks':'Section=feature Note="FILL"',
-  'The Evil Eye':'Section=feature Note="FILL"',
-  'The Witching Hour':'Section=feature Note="FILL"',
-  "Tinkerer's Armor":'Section=feature Note="FILL"',
+  'The Evil Eye':
+    'Section=power ' +
+    'Note="R6\\" Target Bennies have no effect (Spirit-2 neg) for remainder of encounter 1/encounter"',
+  'The Witching Hour':
+    'Section=feature ' +
+    'Note="Gains free Soak and cannot critically fail between midnight and 1 a.m."',
+  "Tinkerer's Armor":
+    'Section=combat '+
+    'Note="May reduce armor Strength requirement by 1 die type and gain one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
   'True Form':'Section=feature Note="FILL"',
   'Undead Familiar':'Section=feature Note="FILL"',
   // Hindrances
@@ -1649,6 +1692,9 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       ('combatNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
     rules.defineRule
       ('skillNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+  } else if(name == 'Warband') {
+    rules.defineRule
+      ('combatNotes.warband', 'features.Warband', '=', 'source * 5');
   }
   if(SWADE.edgeRulesExtra)
     SWADE.edgeRulesExtra(rules, name);
