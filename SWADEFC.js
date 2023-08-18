@@ -959,11 +959,11 @@ SWADEFC.FEATURES_ADDED = {
   'Aura Of Courage':
     'Section=combat ' +
     'Note="R10\\" Allies gain +1 on Fear checks and -1 on Fear Table results"',
-  'Battle Magic':'Section=power Note="May cast spells on units of Extras"',
+  'Battle Magic':'Section=arcana Note="May cast spells on units of Extras"',
   'Beast Talker':'Section=skill Note="May speak with chosen class of animals"',
   'Blood Magic':
-    'Section=power ' +
-    'Note="Causing Wound to conscious, sapient being restores d6 Power Points to self"',
+    'Section=arcana ' +
+    'Note="Inflicting Wound on conscious, sapient being restores d6 Power Points to self"',
   'Born In The Saddle':
     'Section=skill ' +
     'Note="May take free reroll on Riding/Mount gains +2 Pace and +1 Run step"',
@@ -984,19 +984,19 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
   'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
   'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
-  'Epic Mastery':'Section=power Note="All powers have Epic Mastery Modifiers"',
+  'Epic Mastery':'Section=arcana Note="All powers have Epic Mastery Modifiers"',
   'Explorer':
     'Section=feature ' +
     'Note="Reduce travel time by 10%/May take best of 2 Action Cards when traveling"',
   'Familiar':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Favored Enemy':
     'Section=combat,skill ' +
     'Note="May reroll failed attacks against %V chosen creature type",' +
          '"May reroll failed Survival to track %V chosen creature type"',
   'Favored Power':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="May ignore two points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
@@ -1025,7 +1025,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="May gain effects of chosen combat edge for 5 rd 1/encounter"',
   'Master Artificer':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
   'Missile Deflection':
     'Section=combat ' +
@@ -1034,22 +1034,22 @@ SWADEFC.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Mount gains %{advances//4+1} Trait die increase, Edge, or Mounstrous ability"',
   'Mystic Powers (Barbarian)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Fighter)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Monk)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Paladin)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Healing</i>, self <i>Protection</i>, self <i>Sanctuary</i> or self <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Ranger)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i>, <i>Entangle</i>, or self <i>Farsight</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Rogue)':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
   'Opportunistic':
     'Section=feature ' +
@@ -1074,7 +1074,7 @@ SWADEFC.FEATURES_ADDED = {
   'Shield Wall':
     'Section=combat ' +
     'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
-  'Silent Caster':'Section=power Note="May cast w/out speaking"',
+  'Silent Caster':'Section=arcana Note="May cast w/out speaking"',
   'Sneak Attack':'Section=combat Note="Assassin Edge inflicts +d6 damage"',
   'Stonecunning':
     'Section=skill ' + 
@@ -1086,7 +1086,8 @@ SWADEFC.FEATURES_ADDED = {
   'Take The Hit':
     'Section=combat ' +
     'Note="May take free reroll on rolls to Soak or resist Knockout"',
-  'Transfer':'Section=power Note="May transfer up to 5 PP to another in sight"',
+  'Transfer':
+    'Section=arcana Note="May transfer up to 5 PP to another in sight"',
   'Trap Sense':
     'Section=skill ' +
     'Note="R5\\" Successful automatic Notice detects mechanical and magical traps"',
@@ -1113,37 +1114,62 @@ SWADEFC.FEATURES_ADDED = {
     'Note="RCone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
-  'Chemist':'Section=feature Note="FILL"',
+  'Chemist':'Section=arcana Note="Concoctions last 1 wk"',
   'Construct Familiar':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card construct that stores 5 Power Points"',
-  'Deadly Illusion':'Section=feature Note="FILL"',
-  'Destroy Undead':'Section=feature Note="FILL"',
-  'Dirge':'Section=feature Note="FILL"',
-  'Eldritch Inspiration':'Section=feature Note="FILL"',
-  'Elemental Absorbtion':'Section=feature Note="FILL"',
-  'Elemental Master':'Section=feature Note="FILL"',
+  'Deadly Illusion':'Section=arcana Note="No cost to use Dead Power Modifier"',
+  'Destroy Undead':
+    'Section=arcana ' +
+    'Note="R6\\" May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead"',
+  'Dirge':'Section=feature Note="R10\\" Target foe suffers -2 on Benny rolls"',
+  'Eldritch Inspiration':
+    'Section=arcana Note="May spend Benny to cast spell from spellbook"',
+  'Elemental Absorbtion':
+    'Section=combat Note="+2 Toughness during elemental synergy"',
+  'Elemental Master':
+    'Section=arcana Note="Has domain over %V elemental forces"',
   'Ferocious Summoning':
     'Section=arcana Note="Summoned monsters gain 1 combat Edge"',
-  'Great Power':'Section=feature Note="FILL"',
+  'Great Power':
+    'Section=arcana ' +
+    'Note="May spend a Benny to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Great Summoning':
     'Section=arcana ' +
     'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/t-rex/young dragon"',
-  'Heartwood Staff':'Section=feature Note="FILL"',
-  "Hell's Wrath":'Section=feature Note="FILL"',
-  'Infernal Armor':'Section=feature Note="FILL"',
-  'Inspire Heroics':'Section=feature Note="FILL"',
-  'Instrument':'Section=feature Note="FILL"',
-  'Master Alchemist':'Section=feature Note="FILL"',
-  'Master Of Illusion':'Section=feature Note="FILL"',
-  'Mercy':'Section=feature Note="FILL"',
-  'Phenomenal Power':'Section=feature Note="FILL"',
-  'Primal Magic':'Section=feature Note="FILL"',
-  'Sacred Fetish':'Section=feature Note="FILL"',
-  'Soul Jar':'Section=feature Note="FILL"',
-  'Spellbooks':'Section=feature Note="FILL"',
+  'Heartwood Staff':
+    'Section=combat ' +
+    'Note="Has heartwood staff; may spend 1 PP after hit to inflict +d6 damage"',
+  "Hell's Wrath":
+    'Section=arcana ' +
+    'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage"',
+  'Infernal Armor':
+    'Section=combat Note="May invoke glowing field that gives self +2 armor"',
+  'Inspire Heroics':
+    'Section=feature ' +
+    'Note="R%{smarts}\\" May spend Benny 1/encounter to grant 5 Trait or damage rerolls"',
+  'Instrument':'Section=skill Note="+1 Performance (arcane skill)"',
+  'Master Alchemist':'Section=arcana Note="May create potions for half cost"',
+  'Master Of Illusion':
+    'Section=arcana Note="No cost to use Mobility and Sound Power Modifiers"',
+  'Mercy':
+    'Section=arcana ' +
+    'Note="R%{spirit}\\" May spend 1 PP to remove Distracted, Vulnerable, or Shaken from target"',
+  'Phenomenal Power':
+    'Section=arcana ' +
+    'Note="May spend Conviction to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
+  'Primal Magic':
+    'Section=arcana ' +
+    'Note="Powers inflict +2 damage/Critical failure inflicts Stunned on all in 6\\" radius"',
+  'Sacred Fetish':
+    'Section=skill ' +
+    'Note="May make free Faith reroll when fetish is held or prominently worn"',
+  'Soul Jar':
+    'Section=feature ' +
+    'Note="Is Undead/2d6 days after being slain, hidden soul inhabits new corpse"',
+  'Spellbooks':'Section=arcana Note="+V Power Count"',
   'The Evil Eye':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="R6\\" Target Bennies have no effect (Spirit-2 neg) for remainder of encounter 1/encounter"',
   'The Witching Hour':
     'Section=feature ' +
@@ -1151,8 +1177,11 @@ SWADEFC.FEATURES_ADDED = {
   "Tinkerer's Armor":
     'Section=combat '+
     'Note="May reduce armor Strength requirement by 1 die type and gain one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
-  'True Form':'Section=feature Note="FILL"',
-  'Undead Familiar':'Section=feature Note="FILL"',
+  'True Form':
+    'Section=arcana Note="May cast powers at -2 penalty while shape changed"',
+  'Undead Familiar':
+    'Section=arcana ' +
+    'Note="Can communicate w/magical, Wild Card undead that stores 5 Power Points"',
   // Hindrances
   'Amorous':'Section=skill Note="-2 on Tests vs. Attractive character"',
   'Arcane Sensitivity':'Section=attribute Note="-2 to resist powers"',
@@ -1170,10 +1199,12 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"Critical failure on arcane skill inflicts additional or increased hindrance until next advance"',
   'Cursed+':
-    'Section=power ' +
+    'Section=skill ' +
     'Note="Ally and self suffer -2 arcane skill to to aid self; critical failure stuns"',
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
-  'Grim':'Section=feature Note="FILL"',
+  'Grim':
+    'Section=combat ' +
+    'Note="Provoked by any successful Taunt (-2 to affect other opponents) until Joker is drawn"',
   'Idealistic':
     'Section=feature Note="Approaches moral dilemmas with absolute thinking"',
   'Jingoistic':
@@ -1187,15 +1218,15 @@ SWADEFC.FEATURES_ADDED = {
       '"Command edges do not effect allies from other cultures",' +
       '"-4 Persuasion (other cultures)"',
   'Material Components+':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="-4 arcane skill rolls when materials are not available/Critical failure exhausts materials"',
   'Selfless':'Section=feature Note="Puts others first"',
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="-1 arcane skill rolls when talisman not available/Critical failure inflicts Stunned"',
   'Talisman+':
-    'Section=power ' +
+    'Section=arcana ' +
     'Note="-2 arcane skill rolls when talisman not available/Critical failure inflicts Stunned"'
 };
 SWADEFC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEFC.FEATURES_ADDED);
@@ -1231,104 +1262,116 @@ SWADEFC.POWERS_ADDED = {
     'PowerPoints=10 ' +
     'Range=community ' +
     'Description=' +
-      '"FILL"',
+      '"1 hr ritual gives increases crops, health, and prosperity in area"',
   'Conjure Item':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+5 PP Turn To Stone" ' +
+      '"+1 PP Complete set",' +
+      '"+1 PP/lb Daily food",' +
+      '"+1 PP/lb Lasts until dispelled" ' +
     'Description=' +
-      '"FILL"',
+      '"1 hr process creates 2 lb (+1 PP/additional lb) mundane item for 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+1 PP complete set","Create Food And Water","+1 PP Enduring" ' +
+      '"+5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
-      '"FILL"',
+      '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
     'Modifier=' +
-      '"+1 PP Find The Path" ' +
+      '"+1 PP Self learns best path to target" ' +
     'Description=' +
-      '"FILL"',
+      '"Gives direction of chosen item (-2 if self has never seen item, running water blocks spell) for 10 min"',
   'Lock/Unlock':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Modifier=' +
+      '"+1 PP Alerts self if unlocked" ' +
     'Description=' +
-      '"FILL"',
+      '"Inflicts -4 to open (Raise seals shut) on target item or opens target item, ignoring 4 points of penalties (Raise disarms alarms and traps)"',
   'Mystic Intervention':
     'Advances=16 ' +
     'PowerPoints=20 ' +
     'Range=special ' +
     'Description=' +
-      '"FILL"',
+      '"Ritual causes great event"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
     'Description=' +
-      '"FILL"',
-  'Plane Shit':
+      '"Summons extraplanar creature to perform service (Spirit neg)"',
+  'Plane Shift':
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP/additional target","+1 PP Extradimensional space","+2 PP Transport foe" ' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Creates extra-dimensional shelter",' +
+      '"+2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
-      '"FILL"',
+      '"Self travels to chosen plane, w/in 10d10 miles of known location"',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+2/+3 PP medium/large template","+1 PP -2 Target Spirit" ' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+1 PP Spirit-2" ' +
     'Description=' +
-      '"FILL"',
+      '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=self ' +
     'Modifier=' +
-      '"+1 PP Group Sight" ' +
+      '"+1 PP Shares vision with allies in %{smarts}\\" radius" ' +
     'Description=' +
-      '"FILL"',
+      '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
   'Summon Animal':
     'Advances=0 ' +
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional animals","+1 PP Increased trait","+1 PP Mind Rider" ' +
+      '"+Half PP Additional animals",' +
+      '"+1 PP Increased trait",' +
+      '"+1 PP Mind Rider" ' +
     'Description=' +
-      '"FILL"',
+      '"Brings chosen animal type to perform task for 5 rd"',
   'Summon Monster':
     'Advances=0 ' +
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional monsters","+1 PP Increased trait","+1 PP Mind Rider" ' +
+      '"+Half PP Additional monsters",' +
+      '"+1 PP Increased trait",' +
+      '"+1 PP Mind Rider" ' +
     'Description=' +
-      '"FILL"',
+      '"Brings chosen monster type to perform task for 5 rd"',
   'Summon Undead':
     'Advances=0 ' +
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional undead","+1 PP Increased trait","+1 PP Mind Rider" ' +
+      '"+Half PP Additional undead",' +
+      '"+1 PP Increased trait",' +
+      '"+1 PP Mind Rider" ' +
     'Description=' +
-      '"FILL"',
+      '"Brings chosen undead type to perform task for 5 rd"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=10 ' +
     'Range=self ' +
     'Description=' +
-      '"FILL"'
+      '"Self gains additional turn"'
 };
 SWADEFC.POWERS = Object.assign({}, SWADE.POWERS, SWADEFC.POWERS_ADDED);
 SWADEFC.SHIELDS = {
@@ -1682,6 +1725,10 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       'featureNotes.improvedDoubleShot', '+', '1'
     );
+  } else if(name == 'Elemental Master') {
+    rules.defineRule('arcanaNotes.elementalMaster',
+      'features.Elemental Master', '=', 'source + 1'
+    );
   } else if(name == 'Favored Enemy') {
     rules.defineRule
       ('combatNotes.favoredEnemy', 'features.Favored Enemy', '=', null);
@@ -1692,6 +1739,17 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       ('combatNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
     rules.defineRule
       ('skillNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+  } else if(name == 'Heartwood Staff') {
+    SWADEFC.weaponRules(
+      rules, 'Heartwood Staff', 'Str+d8', 6, 6, '2h', null, null, null, 1
+    );
+    rules.defineRule
+      ('weapons.Heartwood Staff', 'features.Heartwood Staff', '=', '1');
+  } else if(name == 'Spellbooks') {
+    rules.defineRule('arcanaNotes.spellbooks',
+      '', '=', null,
+      'features.New Powers', '+', null
+    );
   } else if(name == 'Warband') {
     rules.defineRule
       ('combatNotes.warband', 'features.Warband', '=', 'source * 5');
