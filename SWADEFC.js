@@ -23,7 +23,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*
  * This module loads the rules from the Savage Worlds Adventure Edition Fantasy
  * Companion. The SWADEFC function contains methods that load rules for
- * particular parts of the rules: raceRules for character races,
+ * particular parts of the rules: ancestryRules for character races,
  * arcaneRules for powers, etc. These member methods can be called
  * independently in order to use a subset of the SWADEFC rules. Similarly, the
  * constant fields of SWADE (SKILLS, EDGES, etc.) can be manipulated to modify
@@ -67,7 +67,7 @@ function SWADEFC(baseRules) {
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
      SWADEFC.HINDRANCES, SWADEFC.LANGUAGES, SWADEFC.SKILLS);
   SWADEFC.identityRules
-    (rules, SWADEFC.RACES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
+    (rules, SWADEFC.ANCESTRIES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
      SWADEFC.ALIGNMENTS);
 
   Quilvyn.addRuleSet(rules);
@@ -84,7 +84,9 @@ SWADEFC.CHOICES =
 SWADEFC.RANDOMIZABLE_ATTRIBUTES =
   SWADE.RANDOMIZABLE_ATTRIBUTES.map(x => x == 'race' ? 'ancestry' : x);
 
-SWADEFC.RACES_ADDED = {
+SWADEFC.ANCESTRIES = {
+  'Aquarian':SWADE.RACES.Aquarian,
+  'Avion':SWADE.RACES.Avion,
   'Celestial':
     'Features=' +
       'Flight,Attractive,"Code Of Honor+",Vow+',
@@ -96,9 +98,11 @@ SWADEFC.RACES_ADDED = {
       '"Armor +2",Bite,Claws,"Breath Weapon",Cold-Blooded,' +
       '"Environmental Resistance (Heat)","Environmental Weakness (Cold)",' +
       'Ill-Tempered',
+  'Dwarf':SWADE.RACES.Dwarf,
   'Elemental Scion':
     'Features=' +
-      'Element,Outsider',
+      '"Elemental Connection",Outsider',
+  'Elf':SWADE.RACES.Elf,
   'Fairy':
     'Features=' +
       '"All Thumbs","Big Mouth",Curious+,Flight,Impulsive+,"Diminutive (Tiny)"',
@@ -107,7 +111,7 @@ SWADEFC.RACES_ADDED = {
       'Cunning,"Low Light Vision","Keen Senses","Size -1","Reduced Pace"',
   'Goblin':
     'Features=' +
-      'Infravision,Mean,Short,Sneaky,Survivors',
+      '"Infravision (Goblin)",Mean,Short,Sneaky,Survivors',
   'Golem':
     'Features=' +
       '"Armor +2",Big,Clueless+,Clumsy+,Construct,"No Vital Organs",' +
@@ -116,6 +120,8 @@ SWADEFC.RACES_ADDED = {
     'Features=' +
       '"Animal Aversion",Bite,"Blood Drinker","Low Light Vision",Outsider+,' +
       '"Sunlight Sensitivity","Unnatural Strength","Cold Resistance"',
+  'Half-Elf':SWADE.RACES['Half-Elf'],
+  'Half-Folk':SWADE.RACES['Half-Folk'],
   'Half-Giant':
     'Features=' +
       'Big,Boneheaded,Clueless+,Illiterate,Outsider+,"Size +3","Very Strong",' +
@@ -123,6 +129,7 @@ SWADEFC.RACES_ADDED = {
   'Half-Orc':
     'Features=' +
       'Infravision,Outsider,Hardened',
+  'Human':SWADE.RACES.Human,
   'Infernal':
     'Features=' +
       'Darkvision,"Devilish Nature","Environmental Resistance (Heat)",' +
@@ -133,7 +140,7 @@ SWADEFC.RACES_ADDED = {
       '"Unusual Body Shape","Wall Walker"',
   'Minotaur':
     'Features=' +
-      '"Thin Skinned","Size +1","Very Strong",Horns,Uneducated,Tough,Big,Mean',
+      '"Thin Skinned+","Size +1","Very Strong",Horns,Uneducated,Tough,Big,Mean',
   'Mouseling':
     'Features=' +
       '"Diminutive (Tiny)","Low Light Vision",Outsider+,"Phobia (Cats)",' +
@@ -145,19 +152,22 @@ SWADEFC.RACES_ADDED = {
   'Orc':
     'Features=' +
       'Brutish,Infravision,Outsider+,"Size +1",Strong,Tough',
+  'Rakashan':
+    SWADE.RACES.Rakashan.replace('Racial', 'Ancestral')
+                        .replace('Features=', 'Features="Claws (Climbing)",'),
   'Ratling':
     'Features=' +
-      'Bite,Claws,"Natural Resistance","Low Light Vision",Scavenger,' +
-      '"Size -1",Outsider+,Craven,Greedy',
+      'Bite,Claws,"Claws (Climbing)","Natural Resistance","Low Light Vision",' +
+      'Scavenger,"Size -1",Outsider+,Craven,Greedy',
+  'Saurian':SWADE.RACES.Saurian,
   'Serpentfolk':
     'Features=' +
-      'Bite,Cold-Blooded,"Environmental Weakness (Cold)",Infravision,Pace,' +
-      '"Venomous Bite",Outsider',
+      'Bite,Cold-Blooded,"Environmental Weakness (Cold)",Infravision,' +
+      '"Pace (Serpentfolk)","Venomous Bite",Outsider',
   'Shapeshifter':
     'Features=' +
-      'Charismatic,"Change Shape",Secret'
+      'Charismatic,"Change Shape",Secret+'
 };
-SWADEFC.RACES = Object.assign({}, SWADE.RACES, SWADEFC.RACES_ADDED);
 SWADEFC.ARCANAS = {
   'Bard':
     'Skill=Performance ' +
@@ -709,7 +719,7 @@ SWADEFC.EDGES_ADDED = {
     'Require=' +
       '"advances>=4",' +
       '"features.Arcane Background (Druid)"',
-  'Elemental Absorbtion':
+  'Elemental Absorption':
     'Type=power ' +
     'Require=' +
       '"features.Arcane Background (Elementalist)"',
@@ -817,96 +827,126 @@ SWADEFC.FEATURES_ADDED = {
   'Air Scion':
     'Section=feature ' +
     'Note="Has Environmental Resistance (Air) and Inner Air features"',
+  'Ancestral Enemy':'Section=skill Note="-2 Persuasion (ancestral enemy)"',
   'Animal Aversion':
     'Section=skill ' +
     'Note="Animals keep 5\\" distance/-2 to control or ride animals"',
   'Bite Or Claw':
-    'Section=combat Note="Mandibles or pincers inflict Bite or Claw damage"',
+    'Section=combat Note="Mandibles or pincers inflict Bite or Claws damage"',
   'Blood Drinker':
     'Section=feature ' +
     'Note="May drink humanoid blood to gain a natural healing roll 1/session"',
   'Boneheaded':'Section=attribute Note="-1 Smarts"',
   'Breath Weapon':
-    'Section=combat Note="Cone or R12\' line inflicts 2d6 fire damage"',
+    'Section=combat ' +
+    'Note="Successful Athletics inflicts 2d6 fire damage in 9\\" cone or 12\\" line; critical failure inflicts fatigue"',
   'Brutish':'Section=attribute Note="-1 Smarts"',
   'Change Shape':
-    'Section=feature,power ' +
+    'Section=arcana,feature ' +
     'Note=' +
-      '"Has Arcane Background (Gifted) feature",' +
-      '"May use <i>Disguise</i> as a free action to change own appearance"',
+      '"May use <i>Disguise</i> as a limited free action to change own appearance",' +
+      '"Has Arcane Background (Gifted) feature"',
+  'Claws (Climbing)':'Section=skill Note="+2 Athletics (climbing)"',
   'Cold Resistance':
     'Section=feature Note="Has Environmental Resistance (Cold) feature"',
   'Cold-Blooded':
     'Section=attribute ' +
     'Note="10 min in 60F/18C environment inflicts -1 Agility, Strength, and Vigor"',
-  'Craven':'Section=feature Note="Has Yellow feature"',
+  'Craven':'Section=feature Note="Has Yellow+ feature"',
   'Cunning':'Section=attribute Note="+1 Smarts step"',
-  'Darkvision':'Section=feature Note="R10\' Ignore illumination penalties"',
+  'Darkvision':'Section=feature Note="R10\\" Ignore illumination penalties"',
   'Devilish Nature':'Section=skill Note="+1 Intimidation"',
   'Diminutive (Tiny)':
-    'Section=attribute,combat,combat,combat,feature,power ' +
+    'Section=arcana,attribute,combat,combat,feature ' +
     'Note=' +
+      '"Powers inflict -4 damage",' +
       '"Strength may not exceed d4",' +
-      '"-2 Toughness",' +
-      '"-2 all damage",' +
-      '"Armor minimum strength is d4",' +
-      '"Armor cost and weight is 1/4 normal",' +
-      '"Powers inflict -2 damage"',
+      '"-4 Toughness",' +
+      '"-4 all damage/Armor minimum strength is d4",' +
+      '"Armor cost and weight is 1/4 normal"',
   'Earth Scion':
     'Section=feature ' +
-    'Note="Has Environment Resistance (Earth) and Rock Solid features"',
-  'Elemental Scion':
+    'Note="Has Environmental Resistance (Earth) and Rock Solid features"',
+  'Elemental Connection':
     'Section=feature ' +
     'Note="+1 Edge Points (Choice of Air, Earth, Fire, or Water Scion)"',
   'Environmental Resistance (Air)':
-    'Section=combat Note="-4 damage from air effects/+4 vs. air effects"',
+    'Section=combat Note="+4 vs. air effects/-4 damage from air effects"',
   'Environmental Resistance (Earth)':
-    'Section=combat Note="-4 damage from earth effects/+4 vs. earth effects"',
+    'Section=combat Note="+4 vs. earth effects/-4 damage from earth effects"',
   'Environmental Resistance (Fire)':
-    'Section=combat Note="-4 damage from fire effects/+4 vs. fire effects"',
+    'Section=combat Note="+4 vs. fire effects/-4 damage from fire effects"',
   'Environmental Resistance (Heat)':
     'Section=combat ' +
-    'Note="-4 damage from heat and fire/+4 vs. heat and fire effects"',
+    'Note="+4 vs. heat and fire effects/-4 damage from heat and fire"',
   'Environmental Resistance (Water)':
-    'Section=combat Note="-4 damage from cold effects/+4 vs. cold effects"',
+    'Section=combat Note="+4 vs. water effects/-4 damage from water effects"',
   'Fire Scion':
     'Section=feature ' +
-    'Note="Has Environment Resistance (Fire) and Quick features"',
-  'Hardened':'Section=feature Note="+2 Attribute Points (Strength or Vigor)"',
+    'Note="Has Environmental Resistance (Fire) and Quick features"',
+  'Hardened':'Section=attribute Note="+1 Attribute Points (Strength or Vigor)"',
   'Hive Minded':
     'Section=feature Note="Has Driven+ and Loyal features wrt colony"',
   'Hooves':'Section=combat Note="Hooves are a natural weapon"',
   'Ill-Tempered':'Section=feature Note="Has Arrogant+ hindrance"',
+  // Additional from New Ancestry Abilities table
+  'Camouflage':
+    'Section=skill Note="+2 Stealth (+4 if motionless) in chosen terrain"',
+  'Echolocation':
+    'Section=feature ' +
+    'Note="R10\\" Hearing negates 4 points of vision penalties"',
+  'Phosphorescence':
+    'Section=combat,feature,skill ' +
+    'Note=' +
+      '"-4 Stealth (sight-based) when glowing",' +
+      '"Glow negates 2 points of illumination penalties",' +
+      '"Strobing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
+  // Changed from SWADE
+  'Infravision':
+    'Section=combat ' +
+    'Note="Illumination penalties reduced by half when attacking targets that radiate heat"',
+  'Infravision (Goblin)':
+    'Section=combat ' +
+    'Note="Illumination penalties reduced by half when attacking targets that radiate heat or cold"',
   'Inner Air':'Section=feature Note="Does not need to breathe"',
   'Natural Resistance':'Section=combat Note="Immune to poison and disease"',
-  'Pace':'Section=combat Note="+2 Pace step/+2 Run step"',
-  'Pace +4':'Section=combat Note="+2 Pace step"',
+  'Pace (Serpentfolk)':'Section=combat Note="+4 Pace/+2 Run step"',
+  'Pace +4':'Section=combat Note="+4 Pace/+2 Run step"',
   'Phobia (Cats)':
-    'Section=feature Note="Suffers -1 on trait rolls in the presence of cats"',
+    'Section=feature Note="Suffers -1 on Trait rolls in the presence of cats"',
   'Reduced Core Skills':
     'Section=skill ' +
-    'Note="-1 Common Knowledge step/-1 Persuasion step/-1 Stealth step"',
+    'Note="Has no starting Common Knowledge, Persuasion, or Stealth ability"',
   'Rock Solid':'Section=attribute Note="+1 Vigor step"',
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
-  'Size +2':'Section=combat,feature Note="+2 Toughness","Weighs 900 lb"',
-  'Size +3':'Section=combat,feature Note="+3 Toughness","10\' tall"',
+  'Size +2':
+    'Section=combat,description ' +
+    'Note=' +
+      '"+2 Toughness",' +
+      '"+2 Size"',
+  'Size +3':
+    'Section=combat,description ' +
+    'Note=' +
+      '"+3 Toughness",' +
+      '"+3 Size"',
   'Sneaky':'Section=skill Note="+1 Stealth step"',
   'Sunlight Sensitivity':
     'Section=combat Note="Suffers Distraction in sunlight or equivalent"',
   'Survivors':'Section=feature Note="+1 Edge Points"',
   'Uneducated':'Section=attribute Note="-1 Smarts"',
-  'Unimposing':'Section=feature Note="Has Mild Mannered features"',
+  'Unimposing':'Section=feature Note="Has Mild Mannered feature"',
   'Unnatural Strength':'Section=attribute Note="+1 Strength step"',
   'Unusual Body Shape':
     'Section=feature Note="Cannot use standard armor or furnishings"',
   'Unusual Form':
-    'Section=feature Note="Cannot ride mounts or use normal armor"',
-  'Venomous Bite':'Section=combat Note="Bite inflicts Mild Poison (Vigor neg)"',
-  'Very Strong':'Section=feature Note="+2 Strength step"',
-  'Very Tough':'Section=feature Note="+2 Vigor step"',
+    'Section=feature Note="Cannot ride mounts or use some normal equipment"',
+  'Venomous Bite':
+    'Section=combat Note="Successful bite inflicts Mild Poison (Vigor neg)"',
+  'Very Strong':'Section=attribute Note="+2 Strength step"',
+  'Very Tough':'Section=attribute Note="+2 Vigor step"',
   'Water Scion':
     'Section=feature ' +
-    'Note="Has Environment Resistance (Water) and Aquatic features"',
+    'Note="Has Environmental Resistance (Water) and Aquatic features"',
   // Edges
   'Arcane Background (Alchemist)':
     'Section=arcana Note="3 Powers/15 Power Points"',
@@ -1007,7 +1047,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May make free reroll to resist enemy powers and spell-like effects"',
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
-  'Heirloom':'Section=feature Note="Posesses powerful magic item"',
+  'Heirloom':'Section=feature Note="Possesses powerful magic item"',
   'Home Ground':
     'Section=feature ' +
     'Note="Within home area, may spend a Benny to recover all Power Points/10 min concentration answers 3 questions about state of home area"',
@@ -1032,7 +1072,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="When armed, physical ranged attacks on self must match Parry"',
   'Mount':
     'Section=feature ' +
-    'Note="Mount gains %{advances//4+1} Trait die increase, Edge, or Mounstrous ability"',
+    'Note="Mount gains %{advances//4+1} Trait die increase, Edge, or Monstrous ability"',
   'Mystic Powers (Barbarian)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
@@ -1053,7 +1093,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
   'Opportunistic':
     'Section=feature ' +
-    'Note="Joker gives additional +2 to trait and damage rolls"',
+    'Note="Joker gives additional +2 to Trait and damage rolls"',
   'Poisoner':
     'Section=skill ' +
     'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
@@ -1063,7 +1103,7 @@ SWADEFC.FEATURES_ADDED = {
   'Relic':'Section=arcana Note="Possesses powerful magic item"',
   'Roar':
     'Section=skill ' +
-    'Note="RCone May make Intimidation Test against multiple targets"',
+    'Note="R9\\" cone May make Intimidation Test against multiple targets"',
   'Savagery':'Section=combat Note="Wild Attack inflicts additional +2 damage"',
   'Scorch':
     'Section=combat ' +
@@ -1098,7 +1138,7 @@ SWADEFC.FEATURES_ADDED = {
       '"May spend Benny to have GM reroll magic item treasure"',
   'Trick Shot':
     'Section=skill ' +
-    'Note="May force foe to resist Althetics and Shooting Tests with Smarts instead of Agility"',
+    'Note="May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility"',
   'Troubadour':
     'Section=skill ' +
     'Note="+2 most Common Knowledge/May use Performance instead of Battle"',
@@ -1111,7 +1151,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="%V followers may take 1 addition Wound before becoming incapacitated"',
   'Wing Gust':
     'Section=combat ' +
-    'Note="RCone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
+    'Note="R9\\" cone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
   'Chemist':'Section=arcana Note="Concoctions last 1 wk"',
@@ -1125,7 +1165,7 @@ SWADEFC.FEATURES_ADDED = {
   'Dirge':'Section=feature Note="R10\\" Target foe suffers -2 on Benny rolls"',
   'Eldritch Inspiration':
     'Section=arcana Note="May spend Benny to cast spell from spellbook"',
-  'Elemental Absorbtion':
+  'Elemental Absorption':
     'Section=combat Note="+2 Toughness during elemental synergy"',
   'Elemental Master':
     'Section=arcana Note="Has domain over %V elemental forces"',
@@ -1342,7 +1382,7 @@ SWADEFC.POWERS_ADDED = {
     'Range=smarts ' +
     'Modifier=' +
       '"+Half PP Additional animals",' +
-      '"+1 PP Increased trait",' +
+      '"+1 PP Increased Trait",' +
       '"+1 PP Mind Rider" ' +
     'Description=' +
       '"Brings chosen animal type to perform task for 5 rd"',
@@ -1352,7 +1392,7 @@ SWADEFC.POWERS_ADDED = {
     'Range=smarts ' +
     'Modifier=' +
       '"+Half PP Additional monsters",' +
-      '"+1 PP Increased trait",' +
+      '"+1 PP Increased Trait",' +
       '"+1 PP Mind Rider" ' +
     'Description=' +
       '"Brings chosen monster type to perform task for 5 rd"',
@@ -1362,7 +1402,7 @@ SWADEFC.POWERS_ADDED = {
     'Range=smarts ' +
     'Modifier=' +
       '"+Half PP Additional undead",' +
-      '"+1 PP Increased trait",' +
+      '"+1 PP Increased Trait",' +
       '"+1 PP Mind Rider" ' +
     'Description=' +
       '"Brings chosen undead type to perform task for 5 rd"',
@@ -1468,12 +1508,12 @@ SWADEFC.talentRules = function(
  */
 SWADEFC.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Ancestry' || type == 'Race') {
-    SWADEFC.raceRules(rules, name,
+    SWADEFC.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
-    SWADEFC.raceRulesExtra(rules, name);
+    SWADEFC.ancestryRulesExtra(rules, name);
   } else if(type == 'Arcana')
     SWADEFC.arcanaRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Skill'),
@@ -1570,26 +1610,29 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
 };
 
 /*
- * Defines in #rules# the rules associated with race #name#, which has the
+ * Defines in #rules# the rules associated with ancestry #name#, which has the
  * list of hard prerequisites #requires#. #features# list associated features
  * and #languages# any automatic languages.
  */
-SWADEFC.raceRules = function(rules, name, requires, features, languages) {
+SWADEFC.ancestryRules = function(rules, name, requires, features, languages) {
   SWADE.raceRules(rules, name, requires, features, languages);
   rules.defineRule('ancestry', 'race', '=', null);
   rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
 };
 
 /*
- * Defines in #rules# the rules associated with race #name# that cannot be
- * derived directly from the attributes passed to raceRules.
+ * Defines in #rules# the rules associated with ancestry #name# that cannot be
+ * derived directly from the attributes passed to ancestryRules.
  */
-SWADEFC.raceRulesExtra = function(rules, name) {
-  if(name == 'Dragonfolk') {
+SWADEFC.ancestryRulesExtra = function(rules, name) {
+  if(name == 'Celestial') {
+    rules.defineRule('combatNotes.flight', 'celestialAdvances', '=', '12');
+  } else if(name == 'Dragonfolk') {
     rules.defineRule
       ('features.Arrogant+', 'featureNotes.ill-Tempered', '=', '1');
   } else if(name == 'Elemental Scion') {
-    rules.defineRule('edgePoints', 'featureNotes.elementalScion', '+=', '1');
+    rules.defineRule
+      ('edgePoints', 'featureNotes.elementalConnection', '+=', '1');
     QuilvynRules.prerequisiteRules
       (rules, 'validation', 'Elemental Scion', 'features.Elemental Scion',
        ['features.Air Scion || features.Earth Scion || features.Fire Scion || features.Water Scion']);
@@ -1612,15 +1655,44 @@ SWADEFC.raceRulesExtra = function(rules, name) {
     rules.defineRule('features.Inner Air', 'features.Air Scion', '=', null);
     rules.defineRule('features.Quick', 'features.Fire Scion', '=', null);
     rules.defineRule('features.Rock Solid', 'features.Earth Scion', '=', null);
+  } else if(name == 'Fairy') {
+    rules.defineRule('combatNotes.flight', 'fairyAdvances', '=', '6');
+  } else if(name == 'Golem') {
+    rules.defineRule('lacksCommonKnowledge',
+      'skillNotes.reducedCoreSkills', '=', '1',
+      'skillAllocation.Common Knowledge', '=', '0'
+    );
+    rules.defineRule('lacksPersuasion',
+      'skillNotes.reducedCoreSkills', '=', '1',
+      'skillAllocation.Persuasion', '=', '0'
+    );
+    rules.defineRule('lacksStealth',
+      'skillNotes.reducedCoreSkills', '=', '1',
+      'skillAllocation.Stealth', '=', '0'
+    );
+    rules.defineRule('skillStep.Common Knowledge',
+      'lacksCommonKnowledge', '?', 'source != 1',
+      'skillNotes.reducedCoreSkills', '+', '-1' // Reverse automatic d4
+    );
+    rules.defineRule('skillStep.Persuasion',
+      'lacksPersuasion', '?', 'source != 1',
+      'skillNotes.reducedCoreSkills', '+', '-1' // Reverse automatic d4
+    );
+    rules.defineRule('skillStep.Stealth',
+      'lacksStealth', '?', 'source != 1',
+      'skillNotes.reducedCoreSkills', '+', '-1' // Reverse automatic d4
+    );
   } else if(name == 'Graveborn') {
     rules.defineRule('features.Environmental Resistance (Cold)',
       'featureNotes.coldResistance', '=', '1'
     );
+  } else if(name == 'Half-Orc') {
+    rules.defineRule('attributePoints', 'attributeNotes.hardened', '+=', '1');
   } else if(name == 'Insectoid') {
     rules.defineRule('features.Driven+', 'featureNotes.hiveMinded', '=', '1');
     rules.defineRule('features.Loyal', 'featureNotes.hiveMinded', '=', '1');
     rules.defineRule('weapons.Bite', 'combatNotes.biteOrClaw', '=', '1');
-    rules.defineRule('weapons.Claw', 'combatNotes.biteOrClaw', '=', '1');
+    rules.defineRule('weapons.Claws', 'combatNotes.biteOrClaw', '=', '1');
   } else if(name == 'Minotaur') {
     SWADE.weaponRules(
       rules, 'Hooves', ['Ancient', 'Medieval'], 'Str+d4', 0, 0,
@@ -1631,12 +1703,15 @@ SWADEFC.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Mild Mannered', 'featureNotes.unimposing', '=', '1');
   } else if(name == 'Ratling') {
-    rules.defineRule('features.Yellow', 'featureNotes.craven', '=', '1');
+    rules.defineRule('features.Yellow+', 'featureNotes.craven', '=', '1');
   } else if(name == 'Shapeshifter') {
     rules.defineRule('features.Arcane Background (Gifted)',
       'featureNotes.changeShape', '=', '1'
     );
+    rules.defineRule('powers.Disguise', 'features.Change Shape', '=', '1');
   }
+  if(SWADE.raceRulesExtra)
+    SWADE.raceRulesExtra(rules, name);
 };
 
 /*
