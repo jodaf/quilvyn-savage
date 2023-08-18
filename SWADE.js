@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.14';
+SWADE.VERSION = '2.3.2.15';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -757,7 +757,7 @@ SWADE.FEATURES = {
     'Section=combat Note="Treats foes cruelly; never takes prisoners"',
   "Can't Swim":
     'Section=combat,skill ' +
-    'Note="Moves 1/3 speed through water","-2 Athletics (swimming)"',
+    'Note="Moves 1/3 Pace through water","-2 Athletics (swimming)"',
   'Cautious':'Section=feature Note="Requires detailed plan before acting"',
   'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
   'Clumsy+':'Section=skill Note="-2 Athletics/-2 Stealth"',
@@ -891,53 +891,54 @@ SWADE.FEATURES = {
     'Section=combat Note="Ignores 2 points of Multi-Action penalties"',
   'Agile':'Section=attribute Note="+1 Agility step"',
   'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
-  'Armor +2':'Section=combat Note="+2 Parry"',
+  'Armor +2':'Section=combat Note="+2 Armor"',
   'Big':
-    'Section=feature,skill ' +
+    'Section=feature ' +
     'Note=' +
-      '"Difficulty finding armor and clothing that fits",' +
-      '"-2 using standard equipment"',
+      '"Has difficulty finding armor and clothing that fits; suffers -2 on all Trait rolls when using standard equipment"',
   'Bite':'Section=combat Note="Fangs are a natural weapon"',
   'Burrowing':
     'Section=feature Note="Can burrow into loose earth and surprise foes"',
   'Cannot Speak':'Section=feature Note="Cannot talk to other species"',
   'Claws':'Section=combat Note="Claws are a natural weapon"',
   'Construct':
-    'Section=attribute,combat ' +
+    'Section=attribute,combat,feature ' +
     'Note=' +
-      '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores one level of wound modifiers, requires Repair to heal"',
+      '"+2 Shaken recovery",' +
+      '"Immune to poison and disease/Ignores one level of Wound modifiers/Requires Repair to heal",' +
+      '"Does not need to breathe"',
   'Dependency':
     'Section=feature ' +
-    'Note="Must spend 1 hr/dy in native environment or becomes fatigued"',
+    'Note="Must spend 1 hr/dy in native environment or become fatigued"',
   "Doesn't Breathe":
     'Section=combat Note="Has immunity to inhaled toxins and suffocation"',
   'Environmental Resistance (Cold)':
-    'Section=combat Note="-4 damage from cold/+4 vs. cold effects"',
+    'Section=combat Note="+4 vs. cold effects/-4 damage from cold"',
   'Environmental Weakness (Cold)':
-    'Section=combat Note="+4 damage from cold/-4 vs. cold effects"',
+    'Section=combat Note="-4 vs. cold effects/+4 damage from cold"',
   'Flight':
     'Section=combat,skill ' +
-    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
+    'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
   'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
-  'Hardy':'Section=combat Note="Does not incur wound from 2nd Shaken result"',
+  'Hardy':'Section=combat Note="Does not suffer Wound from 2nd Shaken result"',
   'Heritage':
-    'Section=description Note="+2 Improvement Points (attribute or edge)"',
+    'Section=description Note="+2 Improvement Points (Agility or edge)"',
   'Horns':'Section=combat Note="Horns are a natural weapon"',
-  'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
+  'Immune To Disease':'Section=combat Note="Has immunity to disease"',
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
-    'Note="Half penalties when attacking warm invisible targets"',
+    'Note="Half illumination penalties when attacking warm targets"',
   'Keen Senses':'Section=skill Note="+1 Notice step"',
-  'Keen Senses (Saurian)':'Section=feature Note="Alertness edge"',
+  'Keen Senses (Saurian)':'Section=feature Note="Has Alertness feature"',
   'Leaper':
     'Section=combat,skill ' +
     'Note="+4 damage when leaping during Wild Attack","x2 Jump distance"',
   'Low Light Vision':
     'Section=feature Note="Ignores penalties for dim and dark illumination"',
-  'No Vital Organs':'Section=combat Note="No extra damage from Called Shot"',
+  'No Vital Organs':
+    'Section=combat Note="Takes no extra damage from Called Shot"',
   'Pace':'Section=combat Note="+1 Pace/+1 Run step"',
   'Parry':'Section=combat Note="+1 Parry"',
   'Poisonous Touch':
@@ -959,7 +960,7 @@ SWADE.FEATURES = {
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
     'Section=combat ' +
-    'Note="Normal Pace on vertical surfaces, %{pace//2} on inverted"'
+    'Note="May move full Pace on vertical surfaces, half Pace on inverted"'
 
 };
 SWADE.GOODIES = {
@@ -2644,7 +2645,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         continue;
 
       let adjust = matchInfo[1];
-      let adjusted = matchInfo[4];
+      let adjusted = matchInfo[4]=='Armor' ? 'Armor Toughness' : matchInfo[4];
 
       // Support +%{expr} by evaling expr for each id it contains
       if(adjust.match(/%{/)) {
@@ -2878,7 +2879,9 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-  if(name == 'Half-Elf') {
+  if(name == 'Avion') {
+    rules.defineRule('combatNotes.flight', 'avionAdvances', '=', '12');
+  } if(name == 'Half-Elf') {
     rules.defineRule
       ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
   } else if(name == 'Saurian') {
