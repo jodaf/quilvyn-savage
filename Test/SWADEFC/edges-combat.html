@@ -78,19 +78,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
-    <tr style="text-align:center">
-      <td><i>Mean: -1 Persuasion</i></td>
-    </tr><tr style="text-align:center">
-      <td>Dirty Fighter: +2 Fighting (performing Test)</td>
-    </tr><tr style="text-align:center">
-      <td>Really Dirty Fighter: Raise on Test gives self The Drop on Test target</td>
-    </tr><tr style="text-align:center">
-      <td>Roar: R9" cone May make Intimidation Test against multiple targets</td>
-    </tr><tr style="text-align:center">
-      <td>Trick Shot: May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility</td>
-    </tr></table>
-</td>
+    <td><b>Skill Notes</b>: <i>Mean: -1 Persuasion</i></td>
   </tr><tr style="text-align:center">
     <td>    <table id="Description" style="width:100%">
     <tr style="text-align:center">
@@ -131,8 +119,6 @@ var attributes = {
       <td>Opportunistic: Joker gives additional +2 to Trait and damage rolls</td>
     </tr><tr style="text-align:center">
       <td>Shamed: Past event causes self-doubt</td>
-    </tr><tr style="text-align:center">
-      <td>Stunning Blow: Successful attack with blunt weapon causes Stunned (Vigor neg)</td>
     </tr></table>
 </td>
   </tr></table>
@@ -169,7 +155,13 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Fighting Parry Modifier: +5 Parry</i></td>
       </tr><tr style="text-align:center">
+        <td><i>Improved Close Fighting: Increased Close Fighting effects</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Improved Double Shot: Increased Double Shot effects</i></td>
+      </tr><tr style="text-align:center">
         <td><i>Obese: -1 Pace/-1 Run step/+1 Toughness</i></td>
+      </tr><tr style="text-align:center">
+        <td><i>Sneak Attack: Increased Assassin effects</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +5</i></td>
       </tr><tr style="text-align:center">
@@ -179,13 +171,15 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Breath Weapon: Successful Athletics inflicts 2d6 fire damage in 9" cone or 12" line; critical failure inflicts fatigue</td>
       </tr><tr style="text-align:center">
-        <td>Charge: Fighting attack inflicts +2 damage after 5" run</td>
+        <td>Charge: Fighting attack after 5" run inflicts +2 damage</td>
       </tr><tr style="text-align:center">
-        <td>Close Fighting: +1 attack and Parry with knife against more heavily-armed foe</td>
+        <td>Close Fighting: +2 attack and Parry with knife against more heavily-armed foe</td>
       </tr><tr style="text-align:center">
         <td>Defender: May share shield Parry w/chosen adjacent ally</td>
       </tr><tr style="text-align:center">
-        <td>Double Shot: May fire or throw 2 projectiles 1/tn</td>
+        <td>Dirty Fighter: +2 Fighting (performing Test)</td>
+      </tr><tr style="text-align:center">
+        <td>Double Shot: May fire or throw 2 projectiles 2/tn</td>
       </tr><tr style="text-align:center">
         <td>Environmental Resistance (Heat): +4 vs. heat and fire effects/-4 damage from heat and fire</td>
       </tr><tr style="text-align:center">
@@ -193,33 +187,35 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Formation Fighter: Self and allies gain +1 Gang Up bonus (+4 max)</td>
       </tr><tr style="text-align:center">
-        <td>Improved Close Fighting: Increased Close Fighting effects</td>
-      </tr><tr style="text-align:center">
-        <td>Improved Double Shot: Increased Double Shot effects</td>
-      </tr><tr style="text-align:center">
         <td>Improved Sneak Attack: May use Sneak Attack on distracted foe</td>
       </tr><tr style="text-align:center">
         <td>Iron Jaw: +2 Soak rolls/+2 Vigor vs. knockout</td>
       </tr><tr style="text-align:center">
         <td>Martial Flexibility: May gain effects of chosen combat edge for 5 rd 1/encounter</td>
       </tr><tr style="text-align:center">
-        <td>Missile Deflection: When armed, physical ranged attacks on self must match Parry</td>
+        <td>Missile Deflection: When armed, physical ranged attacks on self must match Parry to succeed</td>
+      </tr><tr style="text-align:center">
+        <td>Really Dirty Fighter: Raise on Test gives The Drop on target until target unshakes</td>
+      </tr><tr style="text-align:center">
+        <td>Roar: May make Intimidation Test against multiple targets in 9" cone</td>
       </tr><tr style="text-align:center">
         <td>Savagery: Wild Attack inflicts additional +2 damage</td>
       </tr><tr style="text-align:center">
-        <td>Scorch: Breath weapon inflicts 1 die type higher damage and may be inflicted in a cone or stream</td>
+        <td>Scorch: Breath weapon inflicts 1 die type higher damage; may choose to affect a cone or line</td>
       </tr><tr style="text-align:center">
         <td>Shield Wall: +1 or +2 Parry when adjacent to 1 or 2 allies w/same edge</td>
       </tr><tr style="text-align:center">
-        <td>Sneak Attack: Assassin Edge inflicts +d6 damage</td>
+        <td>Stunning Blow: Successful attack with blunt weapon stuns (Vigor neg)</td>
       </tr><tr style="text-align:center">
         <td>Sunder: +d6 damage when striking to break an object</td>
       </tr><tr style="text-align:center">
         <td>Take The Hit: May take free reroll on rolls to Soak or resist Knockout</td>
       </tr><tr style="text-align:center">
-        <td>Uncanny Reflexes: Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect</td>
+        <td>Trick Shot: May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility</td>
       </tr><tr style="text-align:center">
-        <td>Wing Gust: R9" cone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)</td>
+        <td>Uncanny Reflexes: Ignores penalty for normal Evasion; may attempt Evasion-2 for any area effect</td>
+      </tr><tr style="text-align:center">
+        <td>Wing Gust: Successful Athletics shakes creatures of same size or smaller (Vigor neg; Raise -2) in 9" cone</td>
       </tr></table>
 </td>
     </tr></table>

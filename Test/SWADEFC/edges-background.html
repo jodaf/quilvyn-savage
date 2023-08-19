@@ -10,7 +10,7 @@ var attributes = {
   "advances":12, "agilityAllocation":2, "armor.None":1, "concepts.Adventurer":1, 
   "edges.Arcane Resistance":1, "edges.Chosen":1, "edges.Favored Enemy":1, "edges.Favored Terrain":1, 
   "edges.Fey Blood":1, "edges.Heirloom":1, "edges.Improved Arcane Resistance":1, "gender":"Male", 
-  "hindrances.Enemy":1, "hindrances.Mean":1, "hindrances.Obese":1, "hindrances.Shamed":1, 
+  "hindrances.Doubting Thomas":1, "hindrances.Mean":1, "hindrances.Obese":1, "hindrances.Shamed":1, 
   "improvementPointsAllocation.Attribute":12, "improvementPointsAllocation.Edge":12, 
   "improvementPointsAllocation.Skill":4, "name":"Edges-Background", "powers.Beast Friend":1, 
   "powers.Intangibility":1, "powers.Light/Darkness":1, "powers.Shape Change":1, "powers.Wall Walker":1, 
@@ -77,7 +77,15 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skill Notes</b>: <i>Mean: -1 Persuasion</i></td>
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td><i>Mean: -1 Persuasion</i></td>
+    </tr><tr style="text-align:center">
+      <td>Favored Enemy: May reroll failed Survival to track 1 chosen creature type</td>
+    </tr><tr style="text-align:center">
+      <td>Favored Terrain: May take free Notice and Survival reroll in 1 chosen terrain</td>
+    </tr></table>
+</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Description" style="width:100%">
     <tr style="text-align:center">
@@ -102,7 +110,7 @@ var attributes = {
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
       <td><b>Edges</b> (7 points): Arcane Resistance; Chosen; Favored Enemy; Favored Terrain; Fey Blood; Heirloom; Improved Arcane Resistance</td>
-      <td><b>Hindrances</b>: Enemy; Mean; Obese; Shamed</td>
+      <td><b>Hindrances</b>: Doubting Thomas; Mean; Obese; Shamed</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
 </td>
@@ -111,11 +119,15 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptable: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
-      <td>Chosen: Has Enemy+ feature/Permanent mark shows Chosen status</td>
+      <td><i>Chosen: Has Enemy+ feature</i></td>
     </tr><tr style="text-align:center">
-      <td>Enemy: Individual or remote group wants character eliminated</td>
+      <td>Chosen-1: Permanent mark shows Chosen status</td>
     </tr><tr style="text-align:center">
-      <td>Heirloom: Possesses powerful magic item</td>
+      <td>Doubting Thomas: Insists on rationalizing supernatural events</td>
+    </tr><tr style="text-align:center">
+      <td>Enemy+: Powerful individual or group wants character eliminated</td>
+    </tr><tr style="text-align:center">
+      <td>Heirloom: Possesses 1 powerful magic item</td>
     </tr><tr style="text-align:center">
       <td>Mean: Ill-tempered and disagreeable</td>
     </tr><tr style="text-align:center">
@@ -156,11 +168,15 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +5</i></td>
       </tr><tr style="text-align:center">
-        <td>Arcane Resistance: Takes -4 damage from magic/Foes' targeted arcane skill suffers -4 attack</td>
+        <td>Arcane Resistance: Foes suffer -4 arcane skill and arcane damage when targeting self</td>
       </tr><tr style="text-align:center">
         <td>Chosen: Conviction effects last until end of encounter</td>
       </tr><tr style="text-align:center">
-        <td>Fey Blood: May make free reroll to resist enemy powers and spell-like effects</td>
+        <td>Favored Enemy: May reroll failed attacks against 1 chosen creature type</td>
+      </tr><tr style="text-align:center">
+        <td>Favored Terrain: Gains additional Action Card in 1 chosen terrain</td>
+      </tr><tr style="text-align:center">
+        <td>Fey Blood: May take free reroll to resist enemy powers and spell-like effects</td>
       </tr></table>
 </td>
     </tr></table>
