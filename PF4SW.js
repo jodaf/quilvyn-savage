@@ -1485,7 +1485,7 @@ PF4SW.POWERS_CHANGES = {
     'Modifier=' +
       '"+1 PP Self learns best path to target" ' +
     'Description=' +
-      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
+      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks) for 10 min"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
