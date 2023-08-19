@@ -1688,7 +1688,7 @@ SWADE.WEAPONS = {
   'Hand Axe':'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
   'Battle Axe':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=1h AP=2',
   'Great Axe':
-    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1',
+    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1 AP=2',
   'Light Club':
     'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
   'Heavy Club':
@@ -1704,7 +1704,7 @@ SWADE.WEAPONS = {
   'Javelin':
     'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
   'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
+  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=2',
   'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
   'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=2h',
   'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
@@ -1748,13 +1748,13 @@ SWADE.WEAPONS = {
     'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
   'Long Bow':
     'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
-  'Net':'Era=Medieval Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
+  'Net':'Era=Medieval Damage=None MinStr=4 Weight=8 Category=R Range=3',
   'Sling':
     'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
   'Compound Bow':
-    'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
+    'Era=Modern Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
   'Crossbow':
-    'Era=Medieval Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
+    'Era=Modern Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
   'Flintlock Pistol':
     'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
   'Brown Bess':
@@ -3026,7 +3026,7 @@ SWADE.weaponRules = function(
     return;
   }
   let matchInfo = (damage + '').match(/^((Str\+)?((\d*)d\d+)([\-+]\d+)?)$/i);
-  if(!matchInfo) {
+  if(!matchInfo && damage != 'None') {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
@@ -3055,11 +3055,12 @@ SWADE.weaponRules = function(
 
   let isRanged = category.match(/^(r|ranged)$/i);
 
-  damage = matchInfo[1];
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   let weaponName = 'weapons.' + name;
-  let format = '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') + ')';
+  let format =
+    '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') +
+    (armorPiercing ? ' AP ' + armorPiercing : '') + ')';
   let strDamage = damage.startsWith('Str+');
   if(strDamage)
     damage = damage.substring(4);
