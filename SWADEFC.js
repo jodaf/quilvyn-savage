@@ -1008,12 +1008,13 @@ SWADEFC.FEATURES_ADDED = {
     'Section=skill ' +
     'Note="May take free reroll on Riding/Mount gains +2 Pace and +1 Run step"',
   'Charge':
-    'Section=combat Note="Fighting attack inflicts +2 damage after 5\\" run"',
+    'Section=combat Note="Fighting attack after 5\\" run inflicts +2 damage"',
   'Chosen':
-    'Section=combat,feature ' +
+    'Section=combat,feature,feature ' +
     'Note=' +
       '"Conviction effects last until end of encounter",' +
-      '"Has Enemy+ feature/Permanent mark shows Chosen status"',
+      '"Has Enemy+ feature",' +
+      '"Permanent mark shows Chosen status"',
   'Close Fighting':
     'Section=combat ' +
     'Note="+%V attack and Parry with knife against more heavily-armed foe"',
@@ -1022,35 +1023,37 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May choose whether target resists Smarts- or Spirit-linked Tests with Smarts or Spirit"',
   'Defender':
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
-  'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
+  'Dirty Fighter':'Section=combat Note="+2 Fighting (performing Test)"',
   'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
-  'Epic Mastery':'Section=arcana Note="All powers have Epic Mastery Modifiers"',
+  'Epic Mastery':'Section=arcana Note="May use Epic Power Modifiers"',
   'Explorer':
     'Section=feature ' +
-    'Note="Reduce travel time by 10%/May take best of 2 Action Cards when traveling"',
+    'Note="Reduces travel time by 10%/May take best of 2 Action Cards when traveling"',
   'Familiar':
     'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Favored Enemy':
     'Section=combat,skill ' +
-    'Note="May reroll failed attacks against %V chosen creature type",' +
-         '"May reroll failed Survival to track %V chosen creature type"',
+    'Note="May reroll failed attacks against %1 chosen creature type",' +
+         '"May reroll failed Survival to track %1 chosen creature type"',
   'Favored Power':
     'Section=arcana ' +
     'Note="May ignore two points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
-    'Note="Gains additional Action Card in %V chosen terrain",' +
-         '"May make free Notice and Survival reroll in %V chosen terrain"',
+    'Note="Gains additional Action Card in %1 chosen terrain",' +
+         '"May take free Notice and Survival reroll in %1 chosen terrain"',
   'Fey Blood':
     'Section=combat ' +
-    'Note="May make free reroll to resist enemy powers and spell-like effects"',
+    'Note="May take free reroll to resist enemy powers and spell-like effects"',
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
-  'Heirloom':'Section=feature Note="Possesses powerful magic item"',
+  'Heirloom':'Section=feature Note="Possesses %1 powerful magic item"',
   'Home Ground':
-    'Section=feature ' +
-    'Note="Within home area, may spend a Benny to recover all Power Points/10 min concentration answers 3 questions about state of home area"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"Within home area, may spend a Benny to recover all Power Points",' +
+      '"10 min concentration answers 3 questions about state of home area"',
   'Improved Close Fighting':
     'Section=combat Note="Increased Close Fighting effects"',
   'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
@@ -1069,16 +1072,16 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
   'Missile Deflection':
     'Section=combat ' +
-    'Note="When armed, physical ranged attacks on self must match Parry"',
+    'Note="When armed, physical ranged attacks on self must match Parry to succeed"',
   'Mount':
     'Section=feature ' +
-    'Note="Mount gains %{advances//4+1} Trait die increase, Edge, or Monstrous ability"',
+    'Note="Mount gains %{advances//4+1} Trait die increase, edge, or monstrous ability"',
   'Mystic Powers (Barbarian)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Fighter)':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Monk)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
@@ -1099,29 +1102,30 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
   'Rapid Change':'Section=feature Note="May change form as a limited action"',
   'Really Dirty Fighter':
-    'Section=skill Note="Raise on Test gives self The Drop on Test target"',
+    'Section=combat ' +
+    'Note="Raise on Test gives The Drop on target until target unshakes"',
   'Relic':'Section=arcana Note="Possesses powerful magic item"',
   'Roar':
-    'Section=skill ' +
-    'Note="R9\\" cone May make Intimidation Test against multiple targets"',
+    'Section=combat ' +
+    'Note="May make Intimidation Test against multiple targets in 9\\" cone"',
   'Savagery':'Section=combat Note="Wild Attack inflicts additional +2 damage"',
   'Scorch':
     'Section=combat ' +
-    'Note="Breath weapon inflicts 1 die type higher damage and may be inflicted in a cone or stream"',
+    'Note="Breath weapon inflicts 1 die type higher damage; may choose to affect a cone or line"',
   'Scout':
     'Section=skill ' +
-    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (Recall info about familiar route)"',
+    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about familiar route)"',
   'Shield Wall':
     'Section=combat ' +
     'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
-  'Silent Caster':'Section=arcana Note="May cast w/out speaking"',
-  'Sneak Attack':'Section=combat Note="Assassin Edge inflicts +d6 damage"',
+  'Silent Caster':'Section=arcana Note="May use powers w/out speaking"',
+  'Sneak Attack':'Section=combat Note="Increased Assassin effects"',
   'Stonecunning':
     'Section=skill ' + 
     'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
   'Stunning Blow':
-    'Section=feature ' +
-    'Note="Successful attack with blunt weapon causes Stunned (Vigor neg)"',
+    'Section=combat ' +
+    'Note="Successful attack with blunt weapon stuns (Vigor neg)"',
   'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
   'Take The Hit':
     'Section=combat ' +
@@ -1137,21 +1141,21 @@ SWADEFC.FEATURES_ADDED = {
       '"Successful Smarts gives approximate value of goods and magic item abilities",' +
       '"May spend Benny to have GM reroll magic item treasure"',
   'Trick Shot':
-    'Section=skill ' +
+    'Section=combat ' +
     'Note="May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility"',
   'Troubadour':
     'Section=skill ' +
-    'Note="+2 most Common Knowledge/May use Performance instead of Battle"',
+    'Note="+2 most Common Knowledge/May use Performance for Leadership and Battle edges"',
   'Uncanny Reflexes':
     'Section=combat ' +
-    'Note="Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect"',
+    'Note="Ignores penalty for normal Evasion; may attempt Evasion-2 for any area effect"',
   'Unstoppable':'Section=combat Note="Takes at most 1 Wound per attack"',
   'Warband':
-    'Section=feature ' +
-    'Note="%V followers may take 1 addition Wound before becoming incapacitated"',
+    'Section=combat ' +
+    'Note="%1 followers may take 1 addition Wound before becoming incapacitated"',
   'Wing Gust':
     'Section=combat ' +
-    'Note="R9\\" cone Successful Athletics roll shakes creatures of same or smaller size (Vigor neg; Raise -2)"',
+    'Note="Successful Athletics shakes creatures of same size or smaller (Vigor neg; Raise -2) in 9\\" cone"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
   'Chemist':'Section=arcana Note="Concoctions last 1 wk"',
@@ -1164,13 +1168,13 @@ SWADEFC.FEATURES_ADDED = {
     'Note="R6\\" May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead"',
   'Dirge':'Section=feature Note="R10\\" Target foe suffers -2 on Benny rolls"',
   'Eldritch Inspiration':
-    'Section=arcana Note="May spend Benny to cast spell from spellbook"',
+    'Section=arcana Note="May spend Benny to use power from spellbook"',
   'Elemental Absorption':
     'Section=combat Note="+2 Toughness during elemental synergy"',
   'Elemental Master':
     'Section=arcana Note="Has domain over %V elemental forces"',
   'Ferocious Summoning':
-    'Section=arcana Note="Summoned monsters gain 1 combat Edge"',
+    'Section=arcana Note="Summoned monsters gain 1 combat edge"',
   'Great Power':
     'Section=arcana ' +
     'Note="May spend a Benny to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
@@ -1203,7 +1207,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Powers inflict +2 damage/Critical failure inflicts Stunned on all in 6\\" radius"',
   'Sacred Fetish':
     'Section=skill ' +
-    'Note="May make free Faith reroll when fetish is held or prominently worn"',
+    'Note="May take free Faith reroll when fetish is held or prominently worn"',
   'Soul Jar':
     'Section=feature ' +
     'Note="Is Undead/2d6 days after being slain, hidden soul inhabits new corpse"',
@@ -1224,9 +1228,9 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Can communicate w/magical, Wild Card undead that stores 5 Power Points"',
   // Hindrances
   'Amorous':
-    'Section=skill Note="-2 on Tests by character w/Attractive feature"',
-  'Arcane Sensitivity':'Section=attribute Note="-2 to resist powers"',
-  'Arcane Sensitivity+':'Section=attribute Note="-4 to resist powers"',
+    'Section=skill Note="-2 on Tests by a foe w/the Attractive feature"',
+  'Arcane Sensitivity':'Section=combat Note="-2 to resist powers"',
+  'Arcane Sensitivity+':'Section=combat Note="-4 to resist powers"',
   'Armor Interference':
     'Section=arcana,feature ' +
     'Note=' +
@@ -1239,7 +1243,7 @@ SWADEFC.FEATURES_ADDED = {
       '"Cannot use arcane edge features in light, medium, or heavy armor"',
   'Blunderer+':
     'Section=skill ' +
-    'Note="Skill die of 1 inflicts critical failure on chosen important skill"',
+    'Note="Skill die of 1 on chosen essential skill inflicts critical failure"',
   'Corruption+':
     'Section=skill ' +
     'Note=' +
@@ -1250,7 +1254,7 @@ SWADEFC.FEATURES_ADDED = {
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Grim':
     'Section=combat ' +
-    'Note="Provoked (-2 to affect other opponents) by any successful Taunt until Joker is drawn"',
+    'Note="Provoked (-2 to affect other opponents) by any successful Taunt; lasts until a Joker is drawn"',
   'Idealistic':
     'Section=feature Note="Approaches moral dilemmas with absolute thinking"',
   'Jingoistic':
@@ -1270,10 +1274,10 @@ SWADEFC.FEATURES_ADDED = {
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
     'Section=arcana ' +
-    'Note="-1 arcane skill rolls when talisman unavailable; critical failure inflicts Stunned"',
+    'Note="-1 arcane skill rolls when talisman unavailable; critical failure stuns"',
   'Talisman+':
     'Section=arcana ' +
-    'Note="-2 arcane skill rolls when talisman unavailable; critical failure inflicts Stunned"'
+    'Note="-2 arcane skill rolls when talisman unavailable; critical failure stuns"'
 };
 SWADEFC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {
@@ -1283,10 +1287,10 @@ SWADEFC.HINDRANCES_ADDED = {
   'Arcane Sensitivity+':
     'Require="features.Arcane Sensitivity == 0" Severity=Major',
   'Armor Interference':
-    'Require="features.Armor Interference+ == 0","powerCount > 0" ' +
+    'Require="features.Armor Interference+ == 0","arcaneSkill" ' +
     'Severity=Minor',
   'Armor Interference+':
-    'Require="features.Armor Interference == 0","powerCount > 0" ' +
+    'Require="features.Armor Interference == 0","arcaneSkill" ' +
     'Severity=Major',
   'Blunderer+':'Severity=Major',
   'Corruption+':'Require="powerCount > 0" Severity=Major',
@@ -1336,7 +1340,7 @@ SWADEFC.POWERS_ADDED = {
     'Modifier=' +
       '"+1 PP Self learns best path to target" ' +
     'Description=' +
-      '"Gives direction of chosen item (-2 if self has never seen item, running water blocks spell) for 10 min"',
+      '"Gives direction of chosen item (-2 if self has never seen item, running water blocks) for 10 min"',
   'Lock/Unlock':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1798,15 +1802,17 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
   if(name.match(/Arcane Background .Cleric/)) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
+  } else if(name == 'Chosen') {
+    rules.defineRule('features.Enemy+', 'featureNotes.chosen', '=', '1');
   } else if(name == 'Close Fighting') {
     rules.defineRule('combatNotes.closeFighting',
       '', '=', '1',
-      'featureNotes.improvedCloseFighting', '+', '1'
+      'combatNotes.improvedCloseFighting', '+', '1'
     );
   } else if(name == 'Double Shot') {
     rules.defineRule('combatNotes.doubleShot',
       '', '=', '1',
-      'featureNotes.improvedDoubleShot', '+', '1'
+      'combatNotes.improvedDoubleShot', '+', '1'
     );
   } else if(name == 'Elemental Master') {
     rules.defineRule('arcanaNotes.elementalMaster',
@@ -1814,20 +1820,25 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Favored Enemy') {
     rules.defineRule
-      ('combatNotes.favoredEnemy', 'features.Favored Enemy', '=', null);
+      ('combatNotes.favoredEnemy.1', 'features.Favored Enemy', '=', null);
     rules.defineRule
-      ('skillNotes.favoredEnemy', 'features.Favored Enemy', '=', null);
+      ('skillNotes.favoredEnemy.1', 'features.Favored Enemy', '=', null);
   } else if(name == 'Favored Terrain') {
     rules.defineRule
-      ('combatNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+      ('combatNotes.favoredTerrain.1', 'features.Favored Terrain', '=', null);
     rules.defineRule
-      ('skillNotes.favoredTerrain', 'features.Favored Terrain', '=', null);
+      ('skillNotes.favoredTerrain.1', 'features.Favored Terrain', '=', null);
   } else if(name == 'Heartwood Staff') {
     SWADEFC.weaponRules(
       rules, 'Heartwood Staff', 'Str+d8', 6, 6, '2h', null, null, null, 1
     );
     rules.defineRule
       ('weapons.Heartwood Staff', 'features.Heartwood Staff', '=', '1');
+  } else if(name == 'Heirloom') {
+    rules.defineRule('featureNotes.heirloom.1', 'features.Heirloom', '=', null);
+  } else if(name == 'Sneak Attack') {
+    rules.defineRule
+      ('combatNotes.assassin', 'combatNotes.sneakAttack', '=', '"d6"');
   } else if(name == 'Spellbooks') {
     rules.defineRule('arcanaNotes.spellbooks',
       '', '=', null,
@@ -1835,7 +1846,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Warband') {
     rules.defineRule
-      ('combatNotes.warband', 'features.Warband', '=', 'source * 5');
+      ('combatNotes.warband.1', 'features.Warband', '=', 'source * 5');
   }
   if(SWADE.edgeRulesExtra)
     SWADE.edgeRulesExtra(rules, name);
@@ -1886,6 +1897,11 @@ SWADEFC.hindranceRules = function(rules, name, requires, severity) {
  * derived directly from the attributes passed to hindranceRules.
  */
 SWADEFC.hindranceRulesExtra = function(rules, name) {
+  if(name == 'Grim') {
+    // Fulfills prereq for Menacing edge
+    rules.defineRule
+      ('validationNotes.menacingEdgeAlt.0', 'features.Grim', '+', '1');
+  }
 };
 
 /* Defines in #rules# the rules associated with language #name#. */
