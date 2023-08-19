@@ -265,7 +265,7 @@ SWADEFC.ARCANAS = {
       '"Mystic Intervention","Object Reading","Mind Reading","Mind Wipe",' +
       'Protection,Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,' +
       'Smite,Sound/Silence,"Speak Language",Stun,"Summon Ally",' +
-      '"Summon Animal",Telekinesis,"Wall Walker","Warrior\’s Gift",Wish',
+      '"Summon Animal",Telekinesis,"Wall Walker","Warrior\'s Gift",Wish',
   'Wizard':
     'Skill=Spellcasting ' +
     'Powers=' +
@@ -279,7 +279,7 @@ SWADEFC.ARCANAS = {
       '"Object Reading","Planar Binding","Plane Shift",Protection,Puppet,' +
       'Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
       'Stun,"Summon Ally",Telekinesis,Teleport,"Time Stop","Wall Walker",' +
-      '"Warrior\’s Gift",Wish,Zombie',
+      '"Warrior\'s Gift",Wish,Zombie',
   'Cold Domain':
     'Skill=Faith ' +
     'Powers=' +
@@ -528,7 +528,7 @@ SWADEFC.EDGES_ADDED = {
   'Defender':'Type=combat Require="advances>=4","skills.Fighting>=6"',
   'Dirty Fighter':'Type=combat Require="advances>=4"',
   'Really Dirty Fighter':
-    'Type=combat Require="advances>=4","feature.Dirty Fighter"',
+    'Type=combat Require="advances>=4","features.Dirty Fighter"',
   'Double Shot':
     'Type=combat ' +
     'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
@@ -562,7 +562,7 @@ SWADEFC.EDGES_ADDED = {
     'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
   'Uncanny Reflexes':
     'Type=combat Require="advances>=8","agility>=8","skills.Athletics>=8"',
-  'Wing Gust':'Type=combat Require="advances>=4","features.Wings"',
+  'Wing Gust':'Type=combat Require="advances>=4","features.Flight"',
   'Artificer':'Type=power Require="advances>=4","powerPoints>0"',
   'Master Artificer':
     'Type=power ' +
@@ -1223,51 +1223,57 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card undead that stores 5 Power Points"',
   // Hindrances
-  'Amorous':'Section=skill Note="-2 on Tests vs. Attractive character"',
+  'Amorous':
+    'Section=skill Note="-2 on Tests by character w/Attractive feature"',
   'Arcane Sensitivity':'Section=attribute Note="-2 to resist powers"',
-  'Arcane Sensitivity+':'Section=feature Note="-4 to resist powers"',
+  'Arcane Sensitivity+':'Section=attribute Note="-4 to resist powers"',
   'Armor Interference':
-    'Section=feature,power ' +
+    'Section=arcana,feature ' +
     'Note=' +
-      '"Cannot use arcane edge features in medium or heavy armor",' +
-      '"-4 arcane skill rolls in medium or heavy armor"',
+      '"-4 arcane skill rolls in medium or heavy armor",' +
+      '"Cannot use arcane edge features in medium or heavy armor"',
+  'Armor Interference+':
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"-4 arcane skill rolls in light, medium, or heavy armor",' +
+      '"Cannot use arcane edge features in light, medium, or heavy armor"',
   'Blunderer+':
     'Section=skill ' +
-    'Note="Skill die of 1 inflicts critical failure on chosen central skill"',
+    'Note="Skill die of 1 inflicts critical failure on chosen important skill"',
   'Corruption+':
     'Section=skill ' +
     'Note=' +
       '"Critical failure on arcane skill inflicts additional or increased hindrance until next advance"',
   'Cursed+':
-    'Section=skill ' +
-    'Note="Ally and self suffer -2 arcane skill to to aid self; critical failure stuns"',
+    'Section=arcana ' +
+    'Note="Powers cast to aid self suffer -2 arcane skill; critical failure stuns caster"',
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Grim':
     'Section=combat ' +
-    'Note="Provoked by any successful Taunt (-2 to affect other opponents) until Joker is drawn"',
+    'Note="Provoked (-2 to affect other opponents) by any successful Taunt until Joker is drawn"',
   'Idealistic':
     'Section=feature Note="Approaches moral dilemmas with absolute thinking"',
   'Jingoistic':
     'Section=combat,skill ' +
     'Note=' +
       '"Command edges do not effect allies from other cultures",' +
-      '"-2 Persuasion (other cultures)"',
+      '"-2 Persuasion (characters from other cultures)"',
   'Jingoistic+':
     'Section=combat,skill ' +
     'Note=' +
       '"Command edges do not effect allies from other cultures",' +
-      '"-4 Persuasion (other cultures)"',
+      '"-4 Persuasion (characters from other cultures)"',
   'Material Components+':
     'Section=arcana ' +
-    'Note="-4 arcane skill rolls when materials are not available/Critical failure exhausts materials"',
+    'Note="-4 arcane skill rolls when materials unavailable; critical failure exhausts materials"',
   'Selfless':'Section=feature Note="Puts others first"',
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
     'Section=arcana ' +
-    'Note="-1 arcane skill rolls when talisman not available/Critical failure inflicts Stunned"',
+    'Note="-1 arcane skill rolls when talisman unavailable; critical failure inflicts Stunned"',
   'Talisman+':
     'Section=arcana ' +
-    'Note="-2 arcane skill rolls when talisman not available/Critical failure inflicts Stunned"'
+    'Note="-2 arcane skill rolls when talisman unavailable; critical failure inflicts Stunned"'
 };
 SWADEFC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {
@@ -1277,18 +1283,20 @@ SWADEFC.HINDRANCES_ADDED = {
   'Arcane Sensitivity+':
     'Require="features.Arcane Sensitivity == 0" Severity=Major',
   'Armor Interference':
-    'Require="features.Armor Interference+ == 0" Severity=Minor',
+    'Require="features.Armor Interference+ == 0","powerCount > 0" ' +
+    'Severity=Minor',
   'Armor Interference+':
-    'Require="features.Armor Interference == 0" Severity=Major',
+    'Require="features.Armor Interference == 0","powerCount > 0" ' +
+    'Severity=Major',
   'Blunderer+':'Severity=Major',
-  'Corruption+':'Severity=Major',
+  'Corruption+':'Require="powerCount > 0" Severity=Major',
   'Cursed+':'Severity=Major',
   'Doomed+':'Severity=Major',
   'Grim':'Severity=Minor',
   'Idealistic':'Severity=Minor',
   'Jingoistic':'Require="features.Jingoistic+ == 0" Severity=Minor',
   'Jingoistic+':'Require="features.Jingoistic == 0" Severity=Major',
-  'Material Components+':'Severity=Major',
+  'Material Components+':'Require="powerCount > 0" Severity=Major',
   'Selfless':'Require="features.Selfless+ == 0" Severity=Minor',
   'Selfless+':'Require="features.Selfless == 0" Severity=Major',
   'Talisman':'Require="features.Talisman+ == 0" Severity=Minor',
