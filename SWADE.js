@@ -477,13 +477,13 @@ SWADE.FEATURES = {
     'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=combat ' +
-    'Note="Takes %V damage from magic/Foes\' targeted arcane skill suffers %V attack"',
+    'Note="Foes suffer %V arcane skill and arcane damage when targeting self"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
   'Artificer':'Section=arcana Note="May give items arcane powers"',
   'Assassin':
-    'Section=combat Note="+2 damage to Vulnerable foes and with The Drop"',
+    'Section=combat Note="+%V damage to Vulnerable foes and with The Drop"',
   'Attractive':
     'Section=skill ' +
     'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
@@ -2401,6 +2401,8 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '-2',
       'combatNotes.improvedArcaneResistance', '+', '-2'
     );
+  } else if(name == 'Assassin') {
+    rules.defineRule('combatNotes.assassin', '', '=', '2');
   } else if(name == 'Attractive') {
     rules.defineRule('skillNotes.attractive',
       '', '=', '1',
