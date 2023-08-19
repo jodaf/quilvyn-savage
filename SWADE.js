@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
 "use strict";
 
 /*
