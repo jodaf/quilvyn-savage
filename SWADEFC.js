@@ -413,6 +413,10 @@ SWADEFC.ARMORS = {
   'Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8'
 };
 SWADEFC.CONCEPTS_ADDED = {
+  'Alchemist':
+    'Edge="Arcane Background (Alchemist)" ' +
+    'Attribute=Smarts ' +
+    'Skill=Alchemy',
   'Bard':
     'Edge="Arcane Background (Bard)" ' +
     'Attribute=Spirit ' +
@@ -1211,7 +1215,7 @@ SWADEFC.FEATURES_ADDED = {
   'Soul Jar':
     'Section=feature ' +
     'Note="Is Undead/2d6 days after being slain, hidden soul inhabits new corpse"',
-  'Spellbooks':'Section=arcana Note="+V Power Count"',
+  'Spellbooks':'Section=arcana Note="+%V Power Count"',
   'The Evil Eye':
     'Section=arcana ' +
     'Note="R6\\" Target Bennies have no effect (Spirit-2 neg) for remainder of encounter 1/encounter"',
