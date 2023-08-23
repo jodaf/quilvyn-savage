@@ -192,12 +192,18 @@ SWADEFC.ARCANAS = {
   'Druid':
     'Skill=Faith ' +
     'Powers=' +
-      '"Beast Friend","Environmental Protection","Shape Change"',
+      '"Arcane Protection","Beast Friend",Blessing,Blind,Bolt,' +
+      '"Boost/Lower Trait",Confusion,Darksight,Deflection,' +
+      '"Detect/Conceal Arcana",Disguise,Dispel,Divination,' +
+      '"Drain Power Points",Empathy,"Environmental Protection",Farsight,Fear,' +
+      'Fly,"Growth/Shrink",Healing,Illusion,Intangibility,Invisibility,' +
+      'Light/Darkness,"Mystic Intervention",Puppet,Relief,Sanctuary,' +
+      '"Shape Change",Sloth/Speed,Slumber,Sound/Silence,Stun',
   'Elementalist':
     'Skill=Spellcasting ' +
     'Powers=' +
       'Barrier,Blast,Bolt,Burrow,Burst,Confusion,"Damage Field",Deflection,' +
-      'Divination,"Environmental Manipulation",Entangle,' +
+      'Divination,"Elemental Manipulation",Entangle,' +
       '"Environmental Protection",Fly,Havoc,Healing,"Plane Shift",Protection,' +
       'Relief,"Summon Monster",Telekinesis',
   'Illusionist':
@@ -222,7 +228,7 @@ SWADEFC.ARCANAS = {
       '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
       'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Damage Field",' +
       'Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
-      'Divination,"Drain Power Points","Environmental Manipulation",Empathy,' +
+      'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
       'Entangle,"Environmental Protection",Farsight,Fear,Havoc,Healing,' +
       '"Mystic Intervention","Object Reading",Protection,Relief,Resurrection,' +
       '"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
@@ -256,7 +262,7 @@ SWADEFC.ARCANAS = {
   'Warlock/Witch':
     'Skill=Spellcasting ' +
     'Powers=' +
-      '"Arcane protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
+      '"Arcane Protection",Banish,Barrier,"Beast Friend",Blast,Blessing,' +
       'Blind,Bolt,"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",' +
       'Curse,Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
       'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
@@ -269,7 +275,7 @@ SWADEFC.ARCANAS = {
   'Wizard':
     'Skill=Spellcasting ' +
     'Powers=' +
-      '"Arcane protection",Barrier,"Beast Friend",Blast,Blind,Bolt,' +
+      '"Arcane Protection",Barrier,"Beast Friend",Blast,Blind,Bolt,' +
       '"Boost/Lower Trait",Burrow,Burst,Confusion,"Conjure Item",Curse,' +
       '"Damage Field",Darksight,Deflection,"Detect/Conceal Arcana",Disguise,' +
       'Dispel,"Drain Power Points","Elemental Manipulation",Empathy,' +
@@ -1424,6 +1430,15 @@ SWADEFC.POWERS_ADDED = {
       '"+1 PP Alerts self if unlocked" ' +
     'Description=' +
       '"Inflicts -4 to open (Raise seals shut) on target item or opens target item, ignoring 4 points of penalties (Raise disarms alarms and traps)"',
+  'Lower Trait': // Diabolist cannot Boost Trait
+    'Advances=0 ' +
+    'PowerPoints=2 ' +
+    'Range=smarts ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Spirit-2" ' +
+    'Description=' +
+      '"Target suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
   'Mystic Intervention':
     'Advances=16 ' +
     'PowerPoints=20 ' +
@@ -1498,7 +1513,13 @@ SWADEFC.POWERS_ADDED = {
     'PowerPoints=10 ' +
     'Range=self ' +
     'Description=' +
-      '"Self gains additional turn"'
+      '"Self gains additional turn"',
+  'Wish':
+    'Advances=12 ' +
+    'PowerPoints=20 ' +
+    'Range=smarts ' +
+    'Description=' +
+      '"Self alters reality, loses 3 PP permanently (Raise neg loss)"'
 };
 SWADEFC.POWERS = Object.assign({}, SWADE.POWERS, SWADEFC.POWERS_ADDED);
 SWADEFC.SHIELDS = {
@@ -2230,17 +2251,32 @@ SWADEFC.choiceEditorElements = function(rules, type) {
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SWADEFC.randomizeOneAttribute = function(attributes, attribute) {
-  // TODO: Specific starting spells for Arcane Backgrounds
-  // Bard: Boost/Lower Trait, Sound/Silence
-  // Cleric: Healing, Sanctuary
-  // Diabolist: Banish, Havoc, Summon Ally
-  // Druid: Beast Friend, Environmental Protection, Shape Change
-  // Elementalist: Elemental Manipulation, Elemental Protection
-  // Illusionist: Illusion, Light/Darkness, Sound/Silence
-  // Necromancer: Detect/Conceal Arcana, Displel, Zombie
-  // Shaman: Arcane Protection, Relief
-  // Summoner: Beast Friend, Boost/Lower Trait, Summon Ally
-  // Wizard: Detect/Conceal Arcana, Dispel, Lock/Unlock
+  if(attribute=='powers') {
+    let startingPowers = {
+      'Bard': ['Boost/Lower Trait', 'Sound/Silence'],
+      'Cleric': ['Healing', 'Sanctuary'],
+      'Diabolist': ['Banish', 'Havoc', 'Summon Ally'],
+      'Druid': ['Beast Friend', 'Environmental Protection', 'Shape Change'],
+      'Elementalist': ['Elemental Manipulation', 'Environmental Protection'],
+      'Illusionist': ['Illusion', 'Light/Darkness', 'Sound/Silence'],
+      'Necromancer': ['Detect/Conceal Arcana', 'Dispel', 'Zombie'],
+      'Shaman': ['Arcane Protection', 'Relief'],
+      'Summoner': ['Beast Friend', 'Boost/Lower Trait', 'Summon Ally'],
+      'Wizard': ['Detect/Conceal Arcana', 'Dispel', 'Lock/Unlock']
+    };
+    let allPowers = this.getChoices('powers');
+    for(let ab in startingPowers) {
+      if('edges.Arcane Background (' + ab + ')' in attributes ||
+         (ab == 'Cleric' && QuilvynUtils.sumMatching(attributes, /Arcane Background..Cleric/) > 0)) {
+        startingPowers[ab].forEach(p => {
+          if(p in allPowers)
+            attributes['powers.' + p] = 1;
+          else
+            console.log('Unknown power "' + p + '"');
+        });
+      }
+    }
+  }
   return SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
 };
 
