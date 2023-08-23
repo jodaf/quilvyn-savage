@@ -823,7 +823,7 @@ SWADEFC.EDGES_ADDED = {
     'Require=' +
       '"features.Arcane Background (Wizard)"'
 };
-SWADEFC.EDGES = Object.assign(Object.fromEntries(Object.entries(SWADE.EDGES).filter(([k, v]) => !k.includes('Arcane Background'))), SWADEFC.EDGES_ADDED);
+SWADEFC.EDGES = Object.assign(Object.fromEntries(Object.entries(SWADE.EDGES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.EDGES_ADDED);
 SWADEFC.FEATURES_ADDED = {
   // Ancestry
   'Additional Actions':
@@ -904,7 +904,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"-4 Stealth (sight-based) when glowing",' +
       '"Glow negates 2 points of illumination penalties",' +
-      '"Strobing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
+      '"Flashing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
   // Changed from SWADE
   'Infravision':
     'Section=combat ' +
@@ -955,51 +955,72 @@ SWADEFC.FEATURES_ADDED = {
   'Arcane Background (Alchemist)':
     'Section=arcana Note="3 Powers/15 Power Points"',
   'Arcane Background (Bard)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Cold Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Death Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Life Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Justice Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Knowledge Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Moon Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Nature Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Sea Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Sun Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (Thievery Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
-  'Arcane Background (Cleric (War Domain))':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"3 Powers/10 Power Points",' +
+      '"Has Armor Interference and Sharp Tongued features"',
+  'Arcane Background (Cleric)':
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Holy Symbol and Vow features"',
   'Arcane Background (Diabolist)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Armor Interference+, Corruption+, and Summoning features"',
   'Arcane Background (Druid)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Armor Interference, Material Components+, One With Nature, Vow, and Wilderness Stride features"',
   'Arcane Background (Elementalist)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Armor Interference+, Elemental Origin, and Elemental Synergy features"',
   'Arcane Background (Illusionist)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Armor Interference+ and Strong Illusions features"',
   'Arcane Background (Necromancer)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Corruption+ and Raise The Dead features"',
   'Arcane Background (Shaman)':
-    'Section=arcana Note="5 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/10 Power Points",' +
+      '"Has Armor Interference, Favored Power, Fetish, and Quirk features"',
   'Arcane Background (Sorcerer)':
-    'Section=arcana Note="3 Powers/15 Power Points"',
+    'Section=arcana,arcana,feature ' +
+    'Note=' +
+      '"3 Powers/15 Power Points",' +
+      '"Critical failure on Spellcasting inflicts Fatigued, Stunned, and Corruption",' +
+      '"Has Armor Interference, Corruption+, and Overpower features"',
   'Arcane Background (Summoner)':
-    'Section=arcana Note="5 Powers/15 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"5 Powers/15 Power Points",' +
+      '"Has Armor Interference and Master Summoner features"',
   'Arcane Background (Tinkerer)':
-    'Section=arcana Note="2 Powers/15 Power Points"',
+    'Section=arcana,arcana,feature ' +
+    'Note=' +
+      '"2 Powers/15 Power Points",' +
+      '"Critical failure disables device; requires 1 hr and successful Repair to mend",' +
+      '"Has Powers Are Devices and Jinx features"',
   'Arcane Background (Warlock/Witch)':
-    'Section=arcana Note="3 Powers/10 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"3 Powers/10 Power Points",' +
+      '"Has Armor Interference+, Corruption+, Coven, Familiar, Material Components+, and Prepared Powers features"',
   'Arcane Background (Wizard)':
-    'Section=arcana Note="6 Powers/15 Power Points"',
+    'Section=arcana,feature ' +
+    'Note=' +
+      '"6 Powers/15 Power Points",' +
+      '"Has Armor Interference+ and Material Components+ features"',
   'Aura Of Courage':
     'Section=combat ' +
     'Note="R10\\" Allies gain +1 on Fear checks and -1 on Fear Table results"',
@@ -1010,7 +1031,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Inflicting Wound on conscious, sapient being restores d6 Power Points to self"',
   'Born In The Saddle':
     'Section=skill ' +
-    'Note="May take free reroll on Riding/Mount gains +2 Pace and +1 Run step"',
+    'Note="May reroll Riding/Mount gains +2 Pace and +1 Run step"',
   'Charge':
     'Section=combat Note="Fighting attack after 5\\" run inflicts +2 damage"',
   'Chosen':
@@ -1022,6 +1043,8 @@ SWADEFC.FEATURES_ADDED = {
   'Close Fighting':
     'Section=combat ' +
     'Note="+%V attack and Parry with knife against more heavily-armed foe"',
+  'Coven':
+    'Section=arcana Note="R12\\" May freely transfer PP w/other coven members"',
   'Deceptive':
     'Section=skill ' +
     'Note="May choose whether target resists Smarts- or Spirit-linked Tests with Smarts or Spirit"',
@@ -1029,6 +1052,11 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
   'Dirty Fighter':'Section=combat Note="+2 Fighting (performing Test)"',
   'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
+  'Elemental Origin':
+    'Section=arcana Note="Powers must use trappings of chosen element"',
+  'Elemental Synergy':
+    'Section=arcana ' +
+    'Note="May reroll arcane skill near significant elemental source/-2 arcane skill where element is scarce"',
   'Epic Mastery':'Section=arcana Note="May use Epic Power Modifiers"',
   'Explorer':
     'Section=feature ' +
@@ -1038,21 +1066,26 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Favored Enemy':
     'Section=combat,skill ' +
-    'Note="May reroll failed attacks against %1 chosen creature type",' +
-         '"May reroll failed Survival to track %1 chosen creature type"',
+    'Note="May reroll attacks against %1 chosen creature type",' +
+         '"May reroll Survival to track %1 chosen creature type"',
   'Favored Power':
     'Section=arcana ' +
     'Note="May ignore two points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
-    'Note="Gains additional Action Card in %1 chosen terrain",' +
-         '"May take free Notice and Survival reroll in %1 chosen terrain"',
+    'Note=' +
+      '"Gains additional Action Card in %1 chosen terrain",' +
+      '"May reroll Notice and Survival in %1 chosen terrain"',
+  'Fetish':
+    'Section=arcana Note="-2 arcane skill rolls when fetish unavailable"',
   'Fey Blood':
     'Section=combat ' +
-    'Note="May take free reroll to resist enemy powers and spell-like effects"',
+    'Note="May reroll resisting enemy powers and spell-like effects"',
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
   'Heirloom':'Section=feature Note="Possesses %1 powerful magic item"',
+  'Holy Symbol':
+    'Section=skill Note="May reroll Faith when holding holy symbol"',
   'Home Ground':
     'Section=arcana,feature ' +
     'Note=' +
@@ -1063,6 +1096,8 @@ SWADEFC.FEATURES_ADDED = {
   'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
   'Improved Sneak Attack':
    'Section=combat Note="May use Sneak Attack on distracted foe"',
+  'Jinx':
+    'Section=skill Note="May disable mechanical device with successful Repair"',
   'Knight':
     'Section=feature,skill ' +
     'Note=' +
@@ -1074,6 +1109,9 @@ SWADEFC.FEATURES_ADDED = {
   'Master Artificer':
     'Section=arcana ' +
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
+  'Master Summoner':
+    'Section=arcana ' +
+    'Note="Reduces cost of <i>Summon Ally/Animal/Monster</i> by 2 PP (min 1) and increases duration by 10x"',
   'Missile Deflection':
     'Section=combat ' +
     'Note="When armed, physical ranged attacks on self must match Parry to succeed"',
@@ -1098,12 +1136,27 @@ SWADEFC.FEATURES_ADDED = {
   'Mystic Powers (Rogue)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
+  'One With Nature':
+    'Section=arcana ' +
+    'Note="<i>Summon Animal</i> and <i>Shape Change</i> (natural animal) last 1 hr"',
   'Opportunistic':
     'Section=feature ' +
     'Note="Joker gives additional +2 to Trait and damage rolls"',
+  'Overpower':
+    'Section=arcana ' +
+    'Note="May spend 1/3/5 PP to gain +1/+2/+3 Spellcasting after roll"',
   'Poisoner':
     'Section=skill ' +
     'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
+  'Powers Are Devices':
+    'Section=arcana ' +
+    'Note="May give devices to others for power use, using self Repair skill and PP"',
+  'Prepared Powers':
+    'Section=arcana ' +
+    'Note="May use hex bag to cast 2 prepared powers/dy w/out spending PP"',
+  'Raise The Dead':
+    'Section=arcana ' +
+    'Note="May cast <i>Zombie</i>, lasting 4 hr, at novice level"',
   'Rapid Change':'Section=feature Note="May change form as a limited action"',
   'Really Dirty Fighter':
     'Section=combat ' +
@@ -1119,6 +1172,9 @@ SWADEFC.FEATURES_ADDED = {
   'Scout':
     'Section=skill ' +
     'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about familiar route)"',
+  'Sharp Tongued':
+    'Section=skill ' +
+    'Note="May use Performance in place of Taunt and may repeat using different words"',
   'Shield Wall':
     'Section=combat ' +
     'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
@@ -1127,13 +1183,17 @@ SWADEFC.FEATURES_ADDED = {
   'Stonecunning':
     'Section=skill ' + 
     'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
+  'Strong Illusions':
+    'Section=arcana ' +
+    'Note="Illusion spells affect 3\\" radius and gain the Strong Power Modifier for free; those who save see through self illusions for remainder of encounter"',
   'Stunning Blow':
     'Section=combat ' +
     'Note="Successful attack with blunt weapon stuns (Vigor neg)"',
+  'Summoning':
+    'Section=arcana ' +
+    'Note="May use <i>Summon Ally</i> to conjure demonic soldiers for 4 PP%{advances>=8 ? \', hellhounds for 5 PP, or nightmares for 7 PP\' : advances>=4 ? \' or hellhounds for 5 PP\' : \'\'}"',
   'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
-  'Take The Hit':
-    'Section=combat ' +
-    'Note="May take free reroll on rolls to Soak or resist Knockout"',
+  'Take The Hit':'Section=combat Note="May reroll to Soak and to resist Knockout"',
   'Transfer':
     'Section=arcana Note="May transfer up to 5 PP to another in sight"',
   'Trap Sense':
@@ -1157,26 +1217,32 @@ SWADEFC.FEATURES_ADDED = {
   'Warband':
     'Section=combat ' +
     'Note="%1 followers may take 1 addition Wound before becoming incapacitated"',
+  'Wilderness Stride':
+    'Section=combat ' +
+    'Note="Suffers no movement penalty for difficult ground in natural terrain"',
   'Wing Gust':
     'Section=combat ' +
     'Note="Successful Athletics shakes creatures of same size or smaller (Vigor neg; Raise -2) in 9\\" cone"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
-  'Chemist':'Section=arcana Note="Concoctions last 1 wk"',
+  'Chemist':
+    'Section=arcana Note="Concoctions given to others last 1 wk or until used"',
   'Construct Familiar':
     'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card construct that stores 5 Power Points"',
-  'Deadly Illusion':'Section=arcana Note="No cost to use Dead Power Modifier"',
+  'Deadly Illusion':
+    'Section=arcana ' +
+    'Note="May use the Deadly Power Modifier on illusions for free"',
   'Destroy Undead':
     'Section=arcana ' +
-    'Note="R6\\" May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead"',
-  'Dirge':'Section=feature Note="R10\\" Target foe suffers -2 on Benny rolls"',
+    'Note="May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead in 3\\" radius"',
+  'Dirge':'Section=arcana Note="R10\\" Target foe suffers -2 on Benny rolls"',
   'Eldritch Inspiration':
     'Section=arcana Note="May spend Benny to use power from spellbook"',
   'Elemental Absorption':
-    'Section=combat Note="+2 Toughness during elemental synergy"',
+    'Section=combat Note="+2 Toughness near significant elemental source"',
   'Elemental Master':
-    'Section=arcana Note="Has domain over %V elemental forces"',
+    'Section=arcana Note="May use trappings of %1 chosen elements"',
   'Ferocious Summoning':
     'Section=arcana Note="Summoned monsters gain 1 combat edge"',
   'Great Power':
@@ -1192,14 +1258,16 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage"',
   'Infernal Armor':
-    'Section=combat Note="May invoke glowing field that gives self +2 armor"',
+    'Section=arcana ' +
+    'Note="May cover apparel with a glow that gives self +2 armor"',
   'Inspire Heroics':
-    'Section=feature ' +
-    'Note="R%{smarts}\\" May spend Benny 1/encounter to grant 5 Trait or damage rerolls"',
+    'Section=arcana ' +
+    'Note="R%{smarts}\\" May spend Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
   'Instrument':'Section=skill Note="+1 Performance (arcane skill)"',
   'Master Alchemist':'Section=arcana Note="May create potions for half cost"',
   'Master Of Illusion':
-    'Section=arcana Note="No cost to use Mobility and Sound Power Modifiers"',
+    'Section=arcana ' +
+    'Note="May use the Mobility and Sound Power Modifiers on illusions for free"',
   'Mercy':
     'Section=arcana ' +
     'Note="R%{spirit}\\" May spend 1 PP to remove Distracted, Vulnerable, or Shaken from target"',
@@ -1208,10 +1276,10 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May spend Conviction to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Primal Magic':
     'Section=arcana ' +
-    'Note="Powers inflict +2 damage/Critical failure inflicts Stunned on all in 6\\" radius"',
+    'Note="Powers inflict +2 damage/Critical failure inflicts Stunned on all in 3\\" radius"',
   'Sacred Fetish':
     'Section=skill ' +
-    'Note="May take free Faith reroll when fetish is held or prominently worn"',
+    'Note="May reroll Faith when fetish is held or prominently worn"',
   'Soul Jar':
     'Section=feature ' +
     'Note="Is Undead/2d6 days after being slain, hidden soul inhabits new corpse"',
@@ -1229,27 +1297,25 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="May cast powers at -2 penalty while shape changed"',
   'Undead Familiar':
     'Section=arcana ' +
-    'Note="Can communicate w/magical, Wild Card undead that stores 5 Power Points"',
+    'Note="Can communicate w/magical, Wild Card undead animal that stores 5 Power Points"',
   // Hindrances
   'Amorous':
     'Section=skill Note="-2 on Tests by a foe w/the Attractive feature"',
   'Arcane Sensitivity':'Section=combat Note="-2 to resist powers"',
   'Arcane Sensitivity+':'Section=combat Note="-4 to resist powers"',
   'Armor Interference':
-    'Section=arcana,feature ' +
+    'Section=arcana ' +
     'Note=' +
-      '"-4 arcane skill rolls in medium or heavy armor",' +
-      '"Cannot use arcane edge features in medium or heavy armor"',
+      '"-4 arcane skill rolls and cannot use arcane edge features in medium or heavy armor"',
   'Armor Interference+':
-    'Section=arcana,feature ' +
+    'Section=arcana ' +
     'Note=' +
-      '"-4 arcane skill rolls in light, medium, or heavy armor",' +
-      '"Cannot use arcane edge features in light, medium, or heavy armor"',
+      '"-4 arcane skill rolls and cannot use arcane edge features in light, medium, or heavy armor"',
   'Blunderer+':
     'Section=skill ' +
     'Note="Skill die of 1 on chosen essential skill inflicts critical failure"',
   'Corruption+':
-    'Section=skill ' +
+    'Section=arcana ' +
     'Note=' +
       '"Critical failure on arcane skill inflicts additional or increased hindrance until next advance"',
   'Cursed+':
@@ -1283,7 +1349,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="-2 arcane skill rolls when talisman unavailable; critical failure stuns"'
 };
-SWADEFC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEFC.FEATURES_ADDED);
+SWADEFC.FEATURES = Object.assign(Object.fromEntries(Object.entries(SWADE.FEATURES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {
   'Amorous':'Severity=Minor',
   'Arcane Sensitivity':
@@ -1831,9 +1897,155 @@ SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEFC.edgeRulesExtra = function(rules, name) {
-  if(name.match(/Arcane Background .Cleric/)) {
+  if(name.startsWith('Arcane Background')) {
+    if(name.match(/Alchemist|Sorcerer/)) {
+      // empty -- edge does not satisfy any SWADE AB requirements
+    } else if(name.match(/Cleric|Druid|Shaman/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
+        'edges.Arcane Background (Miracles)', '?', null
+      );
+      rules.defineRule
+        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
+    } else if(name.match(/Tinkerer/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(WeirdScience)',
+        'edges.Arcane Background (Weird Science)', '?', null
+      );
+      rules.defineRule('features.Arcane Background (Weird Science)',
+        'features.' + name, '=', '1'
+      );
+    } else if(name.match(/Bard|Diabolist|Elementalist|Illusionist|Necromancer|Summoner|Warlock.Witch|Wizard/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
+        'edges.Arcane Background (Magic)', '?', null
+      );
+      rules.defineRule
+        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
+    }
+  }
+  if(name == 'Arcane Background (Bard)') {
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Bard)', '=', '1'
+    );
+    rules.defineRule('features.Sharp Tongued',
+      'featureNotes.arcaneBackground(Bard)', '=', '1'
+    );
+  } else if(name.match(/Arcane Background .Cleric/)) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
+    rules.defineRule('features.Holy Symbol',
+      'featureNotes.arcaneBackground(Cleric)', '=', '1'
+    );
+    rules.defineRule
+      ('features.Vow', 'featureNotes.arcaneBackground(Cleric)', '=', '1');
+  } else if(name == 'Arcane Background (Diabolist)') {
+    rules.defineRule('features.Armor Interference+',
+      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
+    );
+    rules.defineRule('features.Corruption+',
+      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
+    );
+    rules.defineRule('features.Summoning',
+      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Druid)') {
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Druid)', '=', '1'
+    );
+    rules.defineRule('features.Material Components+',
+      'featureNotes.arcaneBackground(Druid)', '=', '1'
+    );
+    rules.defineRule('features.One With Nature',
+      'featureNotes.arcaneBackground(Druid)', '=', '1'
+    );
+    rules.defineRule
+      ('features.Vow', 'featureNotes.arcaneBackground(Druid)', '=', '1');
+    rules.defineRule('features.Wilderness Stride',
+      'featureNotes.arcaneBackground(Druid)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Elementalist)') {
+    rules.defineRule('features.Armor Interference+',
+      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
+    );
+    rules.defineRule('features.Elemental Origin',
+      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
+    );
+    rules.defineRule('features.Elemental Synergy',
+      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Illusionist)') {
+    rules.defineRule('features.Armor Interference+',
+      'featureNotes.arcaneBackground(Illusionist)', '=', '1'
+    );
+    rules.defineRule('features.Strong Illusions',
+      'featureNotes.arcaneBackground(Illusionist)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Necromancer)') {
+    rules.defineRule('features.Corruption+',
+      'featureNotes.arcaneBackground(Necromancer)', '=', '1'
+    );
+    rules.defineRule('features.Raise The Dead',
+      'featureNotes.arcaneBackground(Necromancer)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Shaman)') {
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Shaman)', '=', '1'
+    );
+    rules.defineRule('features.Favored Power',
+      'featureNotes.arcaneBackground(Shaman)', '=', '1'
+    );
+    rules.defineRule('features.Fetish',
+      'featureNotes.arcaneBackground(Shaman)', '=', '1'
+    );
+    rules.defineRule
+      ('features.Quirk', 'featureNotes.arcaneBackground(Shaman)', '=', '1');
+  } else if(name == 'Arcane Background (Sorcerer)') {
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
+    );
+    rules.defineRule('features.Corruption+',
+      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
+    );
+    rules.defineRule('features.Overpower',
+      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Summoner)') {
+    rules.defineRule('features.Armor Interference',
+      'featureNotes.arcaneBackground(Summoner)', '=', '1'
+    );
+    rules.defineRule('features.Master Summoner',
+      'featureNotes.arcaneBackground(Summoner)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Tinkerer)') {
+    rules.defineRule
+      ('features.Jinx', 'featureNotes.arcaneBackground(Tinkerer)', '=', '1');
+    rules.defineRule('features.Powers Are Devices',
+      'featureNotes.arcaneBackground(Tinkerer)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Warlock/Witch)') {
+    rules.defineRule('features.Armor Interference+',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+    rules.defineRule('features.Corruption+',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+    rules.defineRule('features.Coven',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+    rules.defineRule('features.Familiar',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+    rules.defineRule('features.Material Components+',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+    rules.defineRule('features.Prepared Powers',
+      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Wizard)') {
+    rules.defineRule('features.Armor Interference+',
+      'featureNotes.arcaneBackground(Wizard)', '=', '1'
+    );
+    rules.defineRule('features.Material Components+',
+      'featureNotes.arcaneBackground(Wizard)', '=', '1'
+    );
   } else if(name == 'Chosen') {
     rules.defineRule('features.Enemy+', 'featureNotes.chosen', '=', '1');
   } else if(name == 'Close Fighting') {
@@ -1847,7 +2059,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       'combatNotes.improvedDoubleShot', '+', '1'
     );
   } else if(name == 'Elemental Master') {
-    rules.defineRule('arcanaNotes.elementalMaster',
+    rules.defineRule('arcanaNotes.elementalMaster.1',
       'features.Elemental Master', '=', 'source + 1'
     );
   } else if(name == 'Favored Enemy') {
@@ -1873,7 +2085,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       ('combatNotes.assassin', 'combatNotes.sneakAttack', '=', '"d6"');
   } else if(name == 'Spellbooks') {
     rules.defineRule('arcanaNotes.spellbooks',
-      '', '=', null,
+      '', '=', '1',
       'features.New Powers', '+', null
     );
   } else if(name == 'Warband') {
