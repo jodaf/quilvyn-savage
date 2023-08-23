@@ -9,7 +9,7 @@ var attributes = {
   "_path":"ztest/swadefc/edges/cleric", 
   "advances":4, "agilityAllocation":2, "armor.Cloak With Hood":1, 
   "concepts.Cleric (Cold Domain)":1, "edges.Arcane Background (Cleric (Cold Domain))":1, 
-  "edges.Destroy Undead":1, "edges.Mercy":1, "edges.Power Points":1, "gender":"Male", 
+  "edges.Destroy Undead":1, "edges.Holy/Unholy Warrior":1, "edges.Mercy":1, "gender":"Male", 
   "hindrances.Amorous":1, "hindrances.Shamed":1, "hindrances.Vengeful+":1, 
   "improvementPointsAllocation.Attribute":6, "improvementPointsAllocation.Edge":6, "name":"Edges-Cleric", "race":"Human", 
   "shield":"None", "skillAllocation.Faith":5, "skillAllocation.Fighting":1, 
@@ -72,7 +72,13 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skill Notes</b>: Amorous: -2 on Tests by a foe w/the Attractive feature</td>
+    <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
+    <tr style="text-align:center">
+      <td>Amorous: -2 on Tests by a foe w/the Attractive feature</td>
+    </tr><tr style="text-align:center">
+      <td>Holy Symbol: May reroll Faith when holding holy symbol</td>
+    </tr></table>
+</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Description" style="width:100%">
     <tr style="text-align:center">
@@ -94,7 +100,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Arcane Background (Cleric (Cold Domain)); Destroy Undead; Mercy; Power Points</td>
+      <td><b>Edges</b> (4 points): Arcane Background (Cleric (Cold Domain)); Destroy Undead; Holy/Unholy Warrior; Mercy</td>
       <td><b>Hindrances</b>: Amorous; Shamed; Vengeful+</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
@@ -104,9 +110,13 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptable: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Cleric): Has Holy Symbol and Vow features</i></td>
+    </tr><tr style="text-align:center">
       <td>Shamed: Past event causes self-doubt</td>
     </tr><tr style="text-align:center">
       <td>Vengeful+: Seeks revenge by any means</td>
+    </tr><tr style="text-align:center">
+      <td>Vow: Has broad restrictions on behavior and decisions</td>
     </tr></table>
 </td>
   </tr></table>
@@ -150,7 +160,7 @@ var attributes = {
     <td>    <table id="PowerStats" style="width:100%">
     <tr style="text-align:center">
       <td><b>Power Count</b>: 5</td>
-      <td><b>Power Points</b>: 15</td>
+      <td><b>Power Points</b>: 10</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -158,11 +168,11 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td><b>Arcana Notes</b>:     <table id="ArcanaNotes" style="width:100%">
     <tr style="text-align:center">
-      <td><i>Arcane Background (Cleric (Cold Domain)): 5 Powers/10 Power Points</i></td>
+      <td><i>Arcane Background (Cleric): 5 Powers/10 Power Points</i></td>
     </tr><tr style="text-align:center">
-      <td><i>Power Points: +5 Power Points</i></td>
+      <td>Destroy Undead: May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead in 3" radius</td>
     </tr><tr style="text-align:center">
-      <td>Destroy Undead: R6" May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead</td>
+      <td>Holy/Unholy Warrior: May spend 1-4 Power Points to add equal amount to Soak roll</td>
     </tr><tr style="text-align:center">
       <td>Mercy: R8" May spend 1 PP to remove Distracted, Vulnerable, or Shaken from target</td>
     </tr></table>

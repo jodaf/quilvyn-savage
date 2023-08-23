@@ -8,15 +8,16 @@
 var attributes = {
   "_path":"ztest/swadefc/edges/druid", 
   "advances":4, "agilityAllocation":0, "armor.Tunic":1, "concepts.Druid":1, 
-  "edges.Arcane Background (Druid)":1, "edges.Heartwood Staff":1, "edges.True Form":1, "gender":"Male", 
-  "hindrances.Arcane Sensitivity":1, "hindrances.Doubting Thomas":1, "hindrances.One Arm+":1, 
-  "improvementPointsAllocation.Attribute":4, "improvementPointsAllocation.Edge":4, "improvementPointsAllocation.Skill":4, 
-  "name":"Edges-Druid", "race":"Human", "shield":"Small Shield", "skillAllocation.Academics":1, 
-  "skillAllocation.Alchemy":2, "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":5, 
-  "skillAllocation.Gambling":1, "skillAllocation.Notice":1, "skillAllocation.Occult":1, 
-  "skillAllocation.Performance":1, "skillAllocation.Research":1, "skillAllocation.Spellcasting":1, 
-  "skillAllocation.Survival":1, "smartsAllocation":0, "spiritAllocation":2, "strengthAllocation":2, 
-  "vigorAllocation":3, "weapons.Falchion":1, "weapons.Guisarme":1, "weapons.Morningstar":1
+  "edges.Arcane Background (Druid)":1, "edges.Heartwood Staff":1, "edges.Holy/Unholy Warrior":1, 
+  "edges.True Form":1, "gender":"Male", "hindrances.Arcane Sensitivity":1, 
+  "hindrances.Doubting Thomas":1, "hindrances.One Arm+":1, "improvementPointsAllocation.Attribute":4, 
+  "improvementPointsAllocation.Edge":6, "improvementPointsAllocation.Skill":2, "name":"Edges-Druid", "race":"Human", 
+  "shield":"Small Shield", "skillAllocation.Academics":1, "skillAllocation.Common Knowledge":1, 
+  "skillAllocation.Faith":5, "skillAllocation.Gambling":1, "skillAllocation.Notice":1, 
+  "skillAllocation.Occult":1, "skillAllocation.Performance":1, "skillAllocation.Research":1, 
+  "skillAllocation.Spellcasting":1, "skillAllocation.Survival":1, "smartsAllocation":0, "spiritAllocation":2, 
+  "strengthAllocation":2, "vigorAllocation":3, "weapons.Falchion":1, "weapons.Guisarme":1, 
+  "weapons.Morningstar":1
 };
   </script>
 </head>
@@ -43,7 +44,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (16 Points):</td>
+    <td><b>Skills</b> (14 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -51,10 +52,6 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Academics: (sma) d4</td>
-      <td>Gambling: (sma) d4</td>
-      <td>Research: (sma) d4</td>
-    </tr><tr style="text-align:left">
-      <td>Alchemy: (sma) d4</td>
       <td>Notice: (sma) d4</td>
       <td>Spellcasting: (sma) d4</td>
     </tr><tr style="text-align:left">
@@ -68,6 +65,10 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Faith: (spi) d10</td>
       <td>Persuasion: (spi) d4</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Gambling: (sma) d4</td>
+      <td>Research: (sma) d4</td>
       <td></td>
     </tr></table>
 </td>
@@ -84,7 +85,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 4</td>
       <td><b>Improvement Points</b>: 12</td>
-      <td><b>Improvement Points Allocation</b>: Attribute: 4; Edge: 4; Skill: 4</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 4; Edge: 6; Skill: 2</td>
     </tr></table>
 </td>
   </tr></table>
@@ -94,7 +95,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (3 points): Arcane Background (Druid); Heartwood Staff; True Form</td>
+      <td><b>Edges</b> (4 points): Arcane Background (Druid); Heartwood Staff; Holy/Unholy Warrior; True Form</td>
       <td><b>Hindrances</b>: Arcane Sensitivity; Doubting Thomas; One Arm+</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
@@ -104,7 +105,11 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptable: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Druid): Has Armor Interference, Material Components+, One With Nature, Vow, and Wilderness Stride features</i></td>
+    </tr><tr style="text-align:center">
       <td>Doubting Thomas: Insists on rationalizing supernatural events</td>
+    </tr><tr style="text-align:center">
+      <td>Vow: Has broad restrictions on behavior and decisions</td>
     </tr></table>
 </td>
   </tr></table>
@@ -140,6 +145,8 @@ var attributes = {
         <td>Heartwood Staff Parry Modifier: +1 Parry when wielded</td>
       </tr><tr style="text-align:center">
         <td>Heartwood Staff: Has heartwood staff; may spend 1 PP after hit to inflict +d6 damage</td>
+      </tr><tr style="text-align:center">
+        <td>Wilderness Stride: Suffers no movement penalty for difficult ground in natural terrain</td>
       </tr></table>
 </td>
     </tr></table>
@@ -161,6 +168,14 @@ var attributes = {
     <td><b>Arcana Notes</b>:     <table id="ArcanaNotes" style="width:100%">
     <tr style="text-align:center">
       <td><i>Arcane Background (Druid): 5 Powers/10 Power Points</i></td>
+    </tr><tr style="text-align:center">
+      <td>Armor Interference: -4 arcane skill rolls and cannot use arcane edge features in medium or heavy armor</td>
+    </tr><tr style="text-align:center">
+      <td>Holy/Unholy Warrior: May spend 1-4 Power Points to add equal amount to Soak roll</td>
+    </tr><tr style="text-align:center">
+      <td>Material Components+: -4 arcane skill rolls when materials unavailable; critical failure exhausts materials</td>
+    </tr><tr style="text-align:center">
+      <td>One With Nature: <i>Summon Animal</i> and <i>Shape Change</i> (natural animal) last 1 hr</td>
     </tr><tr style="text-align:center">
       <td>True Form: May cast powers at -2 penalty while shape changed</td>
     </tr></table>

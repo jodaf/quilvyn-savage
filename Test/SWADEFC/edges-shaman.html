@@ -8,9 +8,9 @@
 var attributes = {
   "_path":"ztest/swadefc/edges/shaman", 
   "advances":4, "agilityAllocation":1, "armor.Tunic":1, "concepts.Shaman":1, 
-  "edges.Arcane Background (Shaman)":1, "edges.Power Points":1, "edges.Primal Magic":1, "edges.Sacred Fetish":1, 
-  "gender":"Female", "hindrances.All Thumbs":1, "hindrances.Cautious":1, "hindrances.Quirk":1, 
-  "hindrances.Thin Skinned":1, "improvementPointsAllocation.Attribute":2, 
+  "edges.Arcane Background (Shaman)":1, "edges.Holy/Unholy Warrior":1, "edges.Primal Magic":1, 
+  "edges.Sacred Fetish":1, "gender":"Female", "hindrances.All Thumbs":1, "hindrances.Cautious":1, 
+  "hindrances.Poverty":1, "hindrances.Thin Skinned":1, "improvementPointsAllocation.Attribute":2, 
   "improvementPointsAllocation.Edge":6, "improvementPointsAllocation.Skill":4, "name":"Edges-Shaman", 
   "race":"Human", "shield":"None", "skillAllocation.Boating":1, 
   "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":5, "skillAllocation.Fighting":1, 
@@ -77,7 +77,7 @@ var attributes = {
     <tr style="text-align:center">
       <td>All Thumbs: Suffers -2 using mechanical and electrical devices; critical failure breaks device</td>
     </tr><tr style="text-align:center">
-      <td>Sacred Fetish: May take free Faith reroll when fetish is held or prominently worn</td>
+      <td>Sacred Fetish: May reroll Faith when fetish is held or prominently worn</td>
     </tr><tr style="text-align:center">
       <td>Thin Skinned: -2 vs. Taunt</td>
     </tr></table>
@@ -103,8 +103,8 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Arcane Background (Shaman); Power Points; Primal Magic; Sacred Fetish</td>
-      <td><b>Hindrances</b>: All Thumbs; Cautious; Quirk; Thin Skinned</td>
+      <td><b>Edges</b> (4 points): Arcane Background (Shaman); Holy/Unholy Warrior; Primal Magic; Sacred Fetish</td>
+      <td><b>Hindrances</b>: All Thumbs; Cautious; Poverty; Thin Skinned</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
 </td>
@@ -113,7 +113,11 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Adaptable: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
+      <td><i>Arcane Background (Shaman): Has Armor Interference, Favored Power, Fetish, and Quirk features</i></td>
+    </tr><tr style="text-align:center">
       <td>Cautious: Requires detailed plan before acting</td>
+    </tr><tr style="text-align:center">
+      <td>Poverty: Starts with half funds, loses half funds each wk</td>
     </tr><tr style="text-align:center">
       <td>Quirk: Has minor compulsion that occasionally causes trouble</td>
     </tr></table>
@@ -159,7 +163,7 @@ var attributes = {
     <td>    <table id="PowerStats" style="width:100%">
     <tr style="text-align:center">
       <td><b>Power Count</b>: 5</td>
-      <td><b>Power Points</b>: 15</td>
+      <td><b>Power Points</b>: 10</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -169,9 +173,15 @@ var attributes = {
     <tr style="text-align:center">
       <td><i>Arcane Background (Shaman): 5 Powers/10 Power Points</i></td>
     </tr><tr style="text-align:center">
-      <td><i>Power Points: +5 Power Points</i></td>
+      <td>Armor Interference: -4 arcane skill rolls and cannot use arcane edge features in medium or heavy armor</td>
     </tr><tr style="text-align:center">
-      <td>Primal Magic: Powers inflict +2 damage/Critical failure inflicts Stunned on all in 6" radius</td>
+      <td>Favored Power: May ignore two points of penalties when casting chosen power</td>
+    </tr><tr style="text-align:center">
+      <td>Fetish: -2 arcane skill rolls when fetish unavailable</td>
+    </tr><tr style="text-align:center">
+      <td>Holy/Unholy Warrior: May spend 1-4 Power Points to add equal amount to Soak roll</td>
+    </tr><tr style="text-align:center">
+      <td>Primal Magic: Powers inflict +2 damage/Critical failure inflicts Stunned on all in 3" radius</td>
     </tr></table>
 </td>
   </tr></table>
