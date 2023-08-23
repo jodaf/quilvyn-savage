@@ -953,7 +953,11 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Has Environmental Resistance (Water) and Aquatic features"',
   // Edges
   'Arcane Background (Alchemist)':
-    'Section=arcana Note="3 Powers/15 Power Points"',
+    'Section=arcana,arcana,feature ' +
+    'Note=' +
+      '"3 Powers/15 Power Points",' +
+      '"Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
+      '"Has Material Components+ feature (Alchemist\'s Bag)"',
   'Arcane Background (Bard)':
     'Section=arcana,feature ' +
     'Note=' +
@@ -963,7 +967,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Holy Symbol and Vow features"',
+      '"Has Holy Symbol and Vow+ features"',
   'Arcane Background (Diabolist)':
     'Section=arcana,feature ' +
     'Note=' +
@@ -973,7 +977,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference, Material Components+, One With Nature, Vow, and Wilderness Stride features"',
+      '"Has Armor Interference, Material Components+, One With Nature, Vow+, and Wilderness Stride features"',
   'Arcane Background (Elementalist)':
     'Section=arcana,feature ' +
     'Note=' +
@@ -1006,11 +1010,12 @@ SWADEFC.FEATURES_ADDED = {
       '"5 Powers/15 Power Points",' +
       '"Has Armor Interference and Master Summoner features"',
   'Arcane Background (Tinkerer)':
-    'Section=arcana,arcana,feature ' +
+    'Section=arcana,arcana,arcana,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
       '"Critical failure disables device; requires 1 hr and successful Repair to mend",' +
-      '"Has Powers Are Devices and Jinx features"',
+      '"Devices given to others use self Repair skill and PP to activate",' +
+      '"Has Jinx and Tools features"',
   'Arcane Background (Warlock/Witch)':
     'Section=arcana,feature ' +
     'Note=' +
@@ -1056,7 +1061,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="Powers must use trappings of chosen element"',
   'Elemental Synergy':
     'Section=arcana ' +
-    'Note="May reroll arcane skill near significant elemental source/-2 arcane skill where element is scarce"',
+    'Note="May reroll arcane skill near significant source of chosen element/-2 arcane skill where chosen element is scarce"',
   'Epic Mastery':'Section=arcana Note="May use Epic Power Modifiers"',
   'Explorer':
     'Section=feature ' +
@@ -1097,7 +1102,8 @@ SWADEFC.FEATURES_ADDED = {
   'Improved Sneak Attack':
    'Section=combat Note="May use Sneak Attack on distracted foe"',
   'Jinx':
-    'Section=skill Note="May disable mechanical device with successful Repair"',
+    'Section=skill ' +
+    'Note="May disable any mechanical device with successful Repair"',
   'Knight':
     'Section=feature,skill ' +
     'Note=' +
@@ -1111,7 +1117,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
   'Master Summoner':
     'Section=arcana ' +
-    'Note="Reduces cost of <i>Summon Ally/Animal/Monster</i> by 2 PP (min 1) and increases duration by 10x"',
+    'Note="Reduces cost of <i>Summon Ally/Animal/Monster</i> by 2 PP (minimum 1 PP) and increases duration by 10x"',
   'Missile Deflection':
     'Section=combat ' +
     'Note="When armed, physical ranged attacks on self must match Parry to succeed"',
@@ -1144,16 +1150,13 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Joker gives additional +2 to Trait and damage rolls"',
   'Overpower':
     'Section=arcana ' +
-    'Note="May spend 1/3/5 PP to gain +1/+2/+3 Spellcasting after roll"',
+    'Note="May spend 1/3/5 PP to improve Spellcasting roll by +1/+2/+3; cannot improve critical failure"',
   'Poisoner':
     'Section=skill ' +
     'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
-  'Powers Are Devices':
-    'Section=arcana ' +
-    'Note="May give devices to others for power use, using self Repair skill and PP"',
   'Prepared Powers':
     'Section=arcana ' +
-    'Note="May use hex bag to cast 2 prepared powers/dy w/out spending PP"',
+    'Note="May use hex bag to cast 2 prepared powers/dy w/out spending PP; critical failure empties bag"',
   'Raise The Dead':
     'Section=arcana ' +
     'Note="May cast <i>Zombie</i>, lasting 4 hr, at novice level"',
@@ -1172,6 +1175,7 @@ SWADEFC.FEATURES_ADDED = {
   'Scout':
     'Section=skill ' +
     'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about familiar route)"',
+  // TODO Implement allowing Perform instead of Taunt to satisfy prereqs
   'Sharp Tongued':
     'Section=skill ' +
     'Note="May use Performance in place of Taunt and may repeat using different words"',
@@ -1185,7 +1189,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
   'Strong Illusions':
     'Section=arcana ' +
-    'Note="Illusion spells affect 3\\" radius and gain the Strong Power Modifier for free; those who save see through self illusions for remainder of encounter"',
+    'Note="<i>Illusion</i> affects 3\\" radius and gains the Strong Power Modifier (Strength-2 to disbelieve) for free; those who successfully disbelieve see through self <i>Illusion</i> effects for remainder of encounter"',
   'Stunning Blow':
     'Section=combat ' +
     'Note="Successful attack with blunt weapon stuns (Vigor neg)"',
@@ -1194,6 +1198,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May use <i>Summon Ally</i> to conjure demonic soldiers for 4 PP%{advances>=8 ? \', hellhounds for 5 PP, or nightmares for 7 PP\' : advances>=4 ? \' or hellhounds for 5 PP\' : \'\'}"',
   'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
   'Take The Hit':'Section=combat Note="May reroll to Soak and to resist Knockout"',
+  'Tools':'Section=arcana Note="Must have tool kit to use Power Modifiers"',
   'Transfer':
     'Section=arcana Note="May transfer up to 5 PP to another in sight"',
   'Trap Sense':
@@ -1232,25 +1237,25 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Can communicate w/magical, Wild Card construct that stores 5 Power Points"',
   'Deadly Illusion':
     'Section=arcana ' +
-    'Note="May use the Deadly Power Modifier on illusions for free"',
+    'Note="May use the Deadly Illusion Power Modifier on <i>Illusion</i> for free"',
   'Destroy Undead':
     'Section=arcana ' +
     'Note="May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead in 3\\" radius"',
-  'Dirge':'Section=arcana Note="R10\\" Target foe suffers -2 on Benny rolls"',
+  'Dirge':'Section=arcana Note="R10\\" Target suffers -2 on Benny roll"',
   'Eldritch Inspiration':
     'Section=arcana Note="May spend Benny to use power from spellbook"',
   'Elemental Absorption':
-    'Section=combat Note="+2 Toughness near significant elemental source"',
+    'Section=combat Note="+2 Toughness near significant source of chosen element"',
   'Elemental Master':
     'Section=arcana Note="May use trappings of %1 chosen elements"',
   'Ferocious Summoning':
-    'Section=arcana Note="Summoned monsters gain 1 combat edge"',
+    'Section=arcana Note="May grant summoned monsters 1 combat edge"',
   'Great Power':
     'Section=arcana ' +
     'Note="May spend a Benny to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Great Summoning':
     'Section=arcana ' +
-    'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/t-rex/young dragon"',
+    'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/tyrannosaurus rex/young dragon"',
   'Heartwood Staff':
     'Section=combat ' +
     'Note="Has heartwood staff; may spend 1 PP after hit to inflict +d6 damage"',
@@ -1263,11 +1268,11 @@ SWADEFC.FEATURES_ADDED = {
   'Inspire Heroics':
     'Section=arcana ' +
     'Note="R%{smarts}\\" May spend Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
-  'Instrument':'Section=skill Note="+1 Performance (arcane skill)"',
+  'Instrument':'Section=arcana Note="+1 Performance to cast spell"',
   'Master Alchemist':'Section=arcana Note="May create potions for half cost"',
   'Master Of Illusion':
     'Section=arcana ' +
-    'Note="May use the Mobility and Sound Power Modifiers on illusions for free"',
+    'Note="May use the Mobility and Sound Power Modifiers on <i>Illusion</i> for free"',
   'Mercy':
     'Section=arcana ' +
     'Note="R%{spirit}\\" May spend 1 PP to remove Distracted, Vulnerable, or Shaken from target"',
@@ -1276,7 +1281,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May spend Conviction to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Primal Magic':
     'Section=arcana ' +
-    'Note="Powers inflict +2 damage/Critical failure inflicts Stunned on all in 3\\" radius"',
+    'Note="Powers inflict +2 damage/Critical failure stuns all in 3\\" radius"',
   'Sacred Fetish':
     'Section=skill ' +
     'Note="May reroll Faith when fetish is held or prominently worn"',
@@ -1292,7 +1297,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Gains free Soak and cannot critically fail between midnight and 1 a.m."',
   "Tinkerer's Armor":
     'Section=combat '+
-    'Note="May reduce armor Strength requirement by 1 die type and gain one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
+    'Note="May use Repair to reduce armor Strength requirement by 1 die type and gain one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
   'True Form':
     'Section=arcana Note="May cast powers at -2 penalty while shape changed"',
   'Undead Familiar':
@@ -1897,6 +1902,9 @@ SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEFC.edgeRulesExtra = function(rules, name) {
+  // Give characters with an Arcane Background feature the "base" AB feature
+  // from the core rules so that they satisfy any requirements based on it, but
+  // make sure that associated notes only apply to those with the base edge.
   if(name.startsWith('Arcane Background')) {
     if(name.match(/Alchemist|Sorcerer/)) {
       // empty -- edge does not satisfy any SWADE AB requirements
@@ -1921,7 +1929,11 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
         ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
     }
   }
-  if(name == 'Arcane Background (Bard)') {
+  if(name == 'Arcane Background (Alchemist)') {
+    rules.defineRule('features.Material Components+',
+      'featureNotes.arcaneBackground(Alchemist)', '=', '1'
+    );
+  } else if(name == 'Arcane Background (Bard)') {
     rules.defineRule('features.Armor Interference',
       'featureNotes.arcaneBackground(Bard)', '=', '1'
     );
@@ -1935,7 +1947,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       'featureNotes.arcaneBackground(Cleric)', '=', '1'
     );
     rules.defineRule
-      ('features.Vow', 'featureNotes.arcaneBackground(Cleric)', '=', '1');
+      ('features.Vow+', 'featureNotes.arcaneBackground(Cleric)', '=', '1');
   } else if(name == 'Arcane Background (Diabolist)') {
     rules.defineRule('features.Armor Interference+',
       'featureNotes.arcaneBackground(Diabolist)', '=', '1'
@@ -1957,7 +1969,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       'featureNotes.arcaneBackground(Druid)', '=', '1'
     );
     rules.defineRule
-      ('features.Vow', 'featureNotes.arcaneBackground(Druid)', '=', '1');
+      ('features.Vow+', 'featureNotes.arcaneBackground(Druid)', '=', '1');
     rules.defineRule('features.Wilderness Stride',
       'featureNotes.arcaneBackground(Druid)', '=', '1'
     );
@@ -2017,7 +2029,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Arcane Background (Tinkerer)') {
     rules.defineRule
       ('features.Jinx', 'featureNotes.arcaneBackground(Tinkerer)', '=', '1');
-    rules.defineRule('features.Powers Are Devices',
+    rules.defineRule('features.Tools',
       'featureNotes.arcaneBackground(Tinkerer)', '=', '1'
     );
   } else if(name == 'Arcane Background (Warlock/Witch)') {
@@ -2218,6 +2230,17 @@ SWADEFC.choiceEditorElements = function(rules, type) {
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SWADEFC.randomizeOneAttribute = function(attributes, attribute) {
+  // TODO: Specific starting spells for Arcane Backgrounds
+  // Bard: Boost/Lower Trait, Sound/Silence
+  // Cleric: Healing, Sanctuary
+  // Diabolist: Banish, Havoc, Summon Ally
+  // Druid: Beast Friend, Environmental Protection, Shape Change
+  // Elementalist: Elemental Manipulation, Elemental Protection
+  // Illusionist: Illusion, Light/Darkness, Sound/Silence
+  // Necromancer: Detect/Conceal Arcana, Displel, Zombie
+  // Shaman: Arcane Protection, Relief
+  // Summoner: Beast Friend, Boost/Lower Trait, Summon Ally
+  // Wizard: Detect/Conceal Arcana, Dispel, Lock/Unlock
   return SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
 };
 
