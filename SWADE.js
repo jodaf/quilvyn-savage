@@ -2823,7 +2823,7 @@ SWADE.powerRules = function(
   if(school)
     powerAttrs += ' ' + school.substring(0, 4);
   if(modifiers.length > 0)
-    description += ' (' + modifiers.map(x => x.replace(/(\+?\d(\/\+?\d)* PP)/, '<b>$1</b>')).join('; ') + ')';
+    description += ' (' + modifiers.map(x => x.replace(/(\+?\d+(\/\+?\d+)* PP)/, '<b>$1</b>')).join('; ') + ')';
   rules.defineChoice
     ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + description);
 };
