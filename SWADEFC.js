@@ -1389,31 +1389,173 @@ SWADEFC.HINDRANCES_ADDED = {
 };
 SWADEFC.HINDRANCES =
   Object.assign({}, SWADE.HINDRANCES, SWADEFC.HINDRANCES_ADDED);
-SWADEFC.POWERS_ADDED = {
+SWADEFC.POWER_CHANGES = {
+  'Arcane Protection':
+    'Modifier=' +
+      '"Epic +2 PP foes suffer -4 (Raise -6)"',
+  'Banish':
+    'Modifier=' +
+      '"Epic +1/+2/+3 PP 1\\"/2\\"/3\\" radius"',
+  'Barrier':SWADE.POWERS.Barrier +
+    'Modifier=' +
+      '"+0 PP Immaterial barrier",' +
+      '"+0/+1 PP Immaterial/material barrier inflicts 2d4 damage",' +
+      '"+1 PP Barrier has hardness 12 (Raise 14)",' +
+      '"+1 PP Shapes barrier",' +
+      '"+1 PP Creates 10\\"x2\\" barrier",' +
+      '"Epic +1/+2 PP Immaterial/material barrier inflicts 2d6 damage"',
+  'Beast Friend':
+    'Modifier=' +
+      '"+1 PP Duration 30 min",' +
+      '"Epic +2 PP Effects magical beasts"',
+  'Blast':
+    'Modifier=' +
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as Heavy Weapon"',
   'Blessing':
     'Advances=4 ' +
     'PowerPoints=10 ' +
-    'Range=community ' +
+    'Range=Community ' +
     'Description=' +
-      '"1 hr ritual gives increases crops, health, and prosperity in area"',
-  'Conjure Item':
+      '"1 hr ritual increases crops, health, and prosperity in area"',
+  'Bolt':
+    'Modifier=' +
+      '"Epic +2 PP Turns target to dust (Vigor neg)",' +
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as Heavy Weapon",' +
+      '"Epic +2 PP ROF 2"',
+  'Boost/Lower Trait':SWADE.POWERS['Boost/Lower Trait'] + ' ' +
+    'PowerPoints=3 ' +
+    'Modifier=' +
+      '"+2 PP/additional target",' +
+      '"+1 PP Spirit-2",' +
+      '"Epic +2 PP Free Trait reroll 1/rd or -2 affected Trait"',
+  'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
+    'Range= ' +
+    'Description="9\\" Cone or 12\\" stream inflicts 2d6 damage (Raise 3d6)" ' +
+    'Modifier=' +
+      '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
+      '"+1 PP Pushes 2d6\\" (large or greater d4\\")",' +
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as Heavy Weapon"',
+  'Confusion':
+    'Advances=0 ' +
+    'PowerPoints=2 ' +
+    'Range=smarts ' +
+    'Description=' +
+      '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd" ' +
+    'Modifier=' +
+      '"+0/+1 1\\"/3\\" radius",' +
+      '"Epic +2 PP Also inflicts Shaken"',
+  'Conjure Item':
+    'Advances=0 ' +
+    'PowerPoints=2/lb ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Complete set",' +
       '"+1 PP/lb Daily food",' +
       '"+1 PP/lb Lasts until dispelled" ' +
     'Description=' +
-      '"1 hr process creates 2 lb (+1 PP/additional lb) mundane item for 1 hr"',
+      '"1 hr process creates mundane item for 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
+      '"Epic +5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
       '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
+  'Damage Field':
+    'Modifier=' +
+      '"+2 PP 2\\" radius",' +
+      '"+2 PP Move area of effect %{smarts}\\"/rd",' +
+      '"Epic +4 PP Inflicts 3d6 damage as Heavy Weapon"',
+  'Darksight':
+    'Modifier=' +
+      '"Epic +2 PP Ignores all illumination penalties and 4 points from invisible creatures"',
+  'Deflection':
+    'PowerPoints=2',
+  'Detect/Conceal Arcana':
+    'Modifier=' +
+      '"+1 PP Detect supernatural good or evil",' +
+      '"+1 PP Identify magic item properties (Raise also any curse)"',
+  'Dispel':
+    'Modifier=' +
+      '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius",' +
+      '"+3 PP Affects all active powers",' +
+      '"Epic +8 PP Affects all in 2\\" radius around self, summoned creatures take 1 Wound/rd (Spirit neg)"',
+  'Divination':
+    'Modifier=' +
+      '"Epic +3 PP on sacred ground gives advice"',
+  'Drain Power Points':
+    'Modifier=' +
+      '"+2 PP Drains 2d6 PP"',
+  'Elemental Manipulation':
+    'Advances=0 ' +
+    'PowerPoints=1 ' +
+    'Range=smarts ' +
+    'Modifier=' +
+      '"Epic +3 PP Inflict 2d6 damage (Raise 3d6), affect 3x volume, or inflict Push w/-2 to resist",' +
+      '"+5 PP Summon weather" ' +
+    'Description="Self uses element to attack for 2d4 damage (Raise 3d4), move 1\' cu object %{smarts}\', Push target, or perform special effect for 5 rd"',
+  'Empathy':
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+2 PP Charm target",' +
+      '"+1 PP Lasts 5 min",' +
+      '"Epic +2 PP Discerns lies"',
+  'Entangle':
+    'Advances=0 ' +
+    'PowerPoints=2 ' +
+    'Range=smarts ' +
+    'Modifier=' +
+      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+2 PP Inflicts 2d4 damage",' +
+      '"+2 PP Hardness 10",' +
+      '"Epic +1 Inflicts 2d6 damage" ' +
+    'Description="Restrains target (Raise binds; Athletics or breaking Hardness 8 frees)"',
+  'Environmental Protection':
+    'Modifier=' +
+      '"+1 PP Reduces environmental damage by 4 (Raise 6)"',
+  'Farsight':
+    'Modifier=' +
+      '"Epic +2 PP Removes all range penalties (Raise dbl sight range)"',
+  'Fear':
+    'Modifier=' +
+      '"+2/+2/+3 PP Affects 1\\"/2\\"/3\\" radius",' +
+      '"Epic +2 PP Spirit-2 (Raise Spirit-4)"',
+  'Fly':
+    'Modifier=' +
+      '"+5 PP Pace 24 (Raise Pace 48)"',
+  'Growth/Shrink':
+    'Modifier=' +
+      '"Epic +2 Lasts 5 min",' +
+      '"Skink retains Toughness and Strength"',
+  'Havoc':SWADE.POWERS.Havoc
+    .replace('radius', 'radius, 12\\" stream,') + ' ' +
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"Epic +2 PP Throws 3d6\\"',
+  'Healing':
+    'Modifier=' +
+      '"Epic +2/+3 PP Affects 2\\"/3\\" radius"',
+  'Illusion':
+    'Modifier=' +
+      '"+1 PP 3\\" radius",' +
+      '"+1/+2 PP May move illusion 12/24 each rd",' +
+      '"Epic +3 PP Arcane skill vs. Smarts (Raise Smarts-2) Shakes target (Raise Wounds)",' +
+      '"Epic +2 Lasts 5 min"',
+  'Intangibility':
+    'Modifier=' +
+      '"Epic +3 PP/additional target",' +
+      '"Epic +3 PP Lasts 5 min"',
+  'Invisibility':
+    'Modifier=' +
+      '"Epic +2 PP Lasts 5 min; attack ends"',
+  'Light/Darkness':
+    'Modifier=' +
+      '"+1 PP Illuminates object, negating 2 points (Raise 4 points) of vision penalties",' +
+      '"Epic +2 PP Light affects %{smarts}\\" radius, range %{smarts*2}\\"",' +
+      '"Epic +2 PP Darkness blocks infravision, low light vision, and darkvision"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1436,15 +1578,30 @@ SWADEFC.POWERS_ADDED = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Spirit-2" ' +
+      '"+1 PP Spirit-2",' +
+      '"Epic +2 PP -2 affected Trait" ' +
     'Description=' +
       '"Target suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+  'Mind Link':
+    'Modifier=' +
+      '"Epic +2 PP Broadcast telepathic message in %{smarts*4}\\" radius (Raise %{smarts*8}\\" radius)",' +
+      '"Epic +3 PP Self may link to any familiar mind on same plane"',
+  'Mind Reading':
+    'Modifier=' +
+      '"+2 PP Extended access to target\'s mind"',
+  'Mind Wipe':
+    'Modifier=' +
+      '"+2 PP Completely remove topic from target memory"',
   'Mystic Intervention':
     'Advances=16 ' +
     'PowerPoints=20 ' +
     'Range=special ' +
     'Description=' +
       '"Ritual causes great event"',
+  'Object Reading':
+    // TODO Remove SWADE modifier?
+    'Modifier=' +
+      '"Epic +2 PP Share w/others nearby"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
@@ -1457,17 +1614,28 @@ SWADEFC.POWERS_ADDED = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Creates extra-dimensional shelter",' +
-      '"+2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
+      '"Epic +1 PP Creates extra-dimensional shelter",' +
+      '"Epic +2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles of known location"',
+  // TODO Remove SWADE Protection modifiers?
+  'Puppet':
+    'Modifier=' +
+      '"+2 PP Spirit-2"',
+  'Relief':
+    'Modifier=' +
+      '"+3 PP Restore 1 die type from energy drain (Raise 2 die types)",' +
+      '"+1 PP Also remove Stunned"',
+  'Resurrection':
+    'Modifier=' +
+      '"Epic +10 PP 12-hr ritual raises corpse of any age"',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+1 PP Spirit-2" ' +
+      '"Epic +1 PP Spirit-2" ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
   'Scrying':
@@ -1475,17 +1643,42 @@ SWADEFC.POWERS_ADDED = {
     'PowerPoints=3 ' +
     'Range=self ' +
     'Modifier=' +
-      '"+1 PP Shares vision with allies in %{smarts}\\" radius" ' +
+      '"+1 PP Shares with allies in %{smarts}\\" radius" ' +
     'Description=' +
-      '"Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
+      '"View chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
+  'Shape Change':
+    'Modifier=' +
+      '"+1 PP Lasts 5 min",' +
+      '"Epic +3 PP Transform touched target (Raise Smarts lowered to animal; Spirit neg, Spirit-2 recover)"',
+  'Sloth/Speed':
+    'Modifier=' +
+      '"Target runs maximum speed"',
+  'Smite':
+    'Modifier=' +
+      '"+2 PP +4 damage (Raise +6) as Heavy Weapon"',
+  'Sound/Silence':
+    'Modifier=' +
+      '"Epic +1 PP Target audible for 1 mile",' +
+      '"Epic +1 PP Smarts-2"',
+  'Speak Language':
+    'Modifier=' +
+      '"Epic +2 PP Speak, read, and write all languages",' +
+      '"Epic +5 PP All in %{smarts*2} radius can understand each other"',
+  'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
+    'Modifier=' +
+      '"+1 PP Servant gains combat edge",' +
+      '"+2 PP Servant has fly Pace 12",' +
+      '"+1 PP Servant gains +1 Trait step",' +
+      '"+1 PP Self can use servant\'s senses",' +
+      '"Epic +Half PP Additional servants"',
   'Summon Animal':
     'Advances=0 ' +
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional animals",' +
       '"+1 PP Increased Trait",' +
-      '"+1 PP Mind Rider" ' +
+      '"+1 PP Self can use animal\'s senses",' +
+      '"Epic +Half PP Additional animals" ' +
     'Description=' +
       '"Brings chosen animal type to perform task for 5 rd"',
   'Summon Monster':
@@ -1493,9 +1686,9 @@ SWADEFC.POWERS_ADDED = {
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional monsters",' +
       '"+1 PP Increased Trait",' +
-      '"+1 PP Mind Rider" ' +
+      '"+1 PP Self can use monster\'s senses",' +
+      '"Epic +Half PP Additional monsters" ' +
     'Description=' +
       '"Brings chosen monster type to perform task for 5 rd"',
   'Summon Undead':
@@ -1503,25 +1696,58 @@ SWADEFC.POWERS_ADDED = {
     'PowerPoints=Special ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+Half PP Additional undead",' +
       '"+1 PP Increased Trait",' +
-      '"+1 PP Mind Rider" ' +
+      '"+1 PP Self can use undead\'s senses",' +
+      '"Epic +Half PP Additional undead" ' +
     'Description=' +
       '"Brings chosen undead type to perform task for 5 rd"',
+  'Telekinesis':
+    'Modifier=' +
+      '"Epic +3 PP Strength d12 (Raise d12+2)"',
+  'Teleport':
+    'Modifier=' +
+      '"Epic +5 PP Opens portal to destination for 5 rd",' +
+      '"Epic +5 PP Teleport up to 100 miles"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=10 ' +
     'Range=self ' +
     'Description=' +
       '"Self gains additional turn"',
+  "Warrior's Gift":
+    'Modifier=' +
+      '"Epic +4 PP Two combat edges"',
   'Wish':
     'Advances=12 ' +
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Self alters reality, loses 3 PP permanently (Raise neg loss)"'
+      '"Self alters reality, loses 3 PP permanently (Raise neg loss)"',
+  'Zombie':SWADE.POWERS.Zombie + ' ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1 PP Target is armed and has 2 Armor points",' +
+      '"+1 PP Self can use target senses",' +
+      '"+1 PP Target becomes animated skeleton"'
 };
-SWADEFC.POWERS = Object.assign({}, SWADE.POWERS, SWADEFC.POWERS_ADDED);
+SWADEFC.POWERS = Object.assign({}, SWADE.POWERS);
+for(let p in SWADEFC.POWER_CHANGES) {
+  if(SWADEFC.POWER_CHANGES[p].includes('Description=')) {
+    // New power or completely new description
+    SWADEFC.POWERS[p] = SWADEFC.POWER_CHANGES[p];
+  } else if(!(p in SWADE.POWERS)) {
+    console.log('Unknown power "' + p + '"');
+  } else {
+    if(SWADEFC.POWER_CHANGES[p].includes('Modifier=')) {
+      // New modifiers
+      let allMods = QuilvynUtils.getAttrValueArray(SWADE.POWERS[p], 'Modifier').concat(QuilvynUtils.getAttrValueArray(SWADEFC.POWER_CHANGES[p], 'Modifier')).map(m => m.replaceAll('"', '\\"'));
+      SWADEFC.POWERS[p] += ' Modifier="' + allMods.join('","') + '"';
+    }
+    if(SWADEFC.POWER_CHANGES[p].includes('PowerPoints='))
+      // Changed PP
+      SWADEFC.POWERS[p] += ' PowerPoints=' + QuilvynUtils.getAttrValue(SWADEFC.POWER_CHANGES[p], 'PowerPoints');
+  }
+}
 SWADEFC.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Parry=1 Cover=0 MinStr=6 Weight=4',
