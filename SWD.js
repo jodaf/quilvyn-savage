@@ -71,7 +71,7 @@ function SWD() {
 
 }
 
-SWD.VERSION = '2.3.2.9';
+SWD.VERSION = '2.3.2.10';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -348,7 +348,7 @@ SWD.FEATURES = {
   'Arcane Resistance':
     'Section=combat ' +
     'Note="+%V Armor vs arcane powers/+%V trait resisting arcane powers"',
-  'Assassin':'Section=combat Note="+2 damage to unaware foes"',
+  'Assassin':'Section=combat Note="+%V damage to unaware foes"',
   'Attractive':'Section=skill Note="+%V Charisma"',
   'Beast Bond':'SWADE',
   'Beast Master':'SWADE',
