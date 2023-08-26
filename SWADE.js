@@ -549,7 +549,7 @@ SWADE.FEATURES = {
     'Note="Joker Action Card gives dbl damage from first successful ranged attack"',
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
-  'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
+  'Elan':'Section=feature Note="+2 on Benny-purchased Trait rerolls"',
   'Expert (%attribute)':
     'Section=attribute Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
@@ -623,7 +623,7 @@ SWADE.FEATURES = {
     'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':
     'Section=skill ' +
-    'Note="R%{commandRange}\\" May use Battle to Support all Extras on any trait 1/rd"',
+    'Note="R%{commandRange}\\" May use Battle to Support all Extras on any Trait 1/rd"',
   'Investigator':
     'Section=skill Note="+2 Research/+2 Notice (sifting for information)"',
   'Iron Jaw':'Section=combat Note="+2 Soak rolls/+2 Vigor vs. knockout"',
@@ -748,8 +748,8 @@ SWADE.FEATURES = {
     'Section=attribute ' +
     'Note="-2 Vigor (resist disease, sickness, fatigue, and environment)"',
   'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
-  'Bad Eyes':'Section=skill Note="-1 on visual trait rolls"',
-  'Bad Eyes+':'Section=skill Note="-2 on visual trait rolls"',
+  'Bad Eyes':'Section=skill Note="-1 on visual Trait rolls"',
+  'Bad Eyes+':'Section=skill Note="-2 on visual Trait rolls"',
   'Bad Luck+':'Section=feature Note="-1 Benny each session"',
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
   'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
@@ -832,10 +832,10 @@ SWADE.FEATURES = {
     'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
   'Phobia':
     'Section=feature ' +
-    'Note="Suffers -1 on trait rolls in presence of phobia subject"',
+    'Note="Suffers -1 on Trait rolls in presence of phobia subject"',
   'Phobia+':
     'Section=feature ' +
-    'Note="Suffers -2 on trait rolls in presence of phobia subject"',
+    'Note="Suffers -2 on Trait rolls in presence of phobia subject"',
   'Poverty':
     'Section=feature Note="Starts with half funds, loses half funds each wk"',
   'Quirk':
@@ -1222,7 +1222,7 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=smarts*2 ' +
     'Modifier=' +
-      '"+1 PP 3\\" radius",' +
+      '"+0/+1 PP 1\\"/3\\" radius",' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)" ' +
     'Description="2\\" radius inflicts 2d6 damage (Raise 3d6)"',
   'Blind':
@@ -1249,14 +1249,14 @@ SWADE.POWERS = {
       '"+1 PP/additional target",' +
       '"+1 PP Spirit-2" ' +
     'Description=' +
-      '"Target gains +1 trait step (Raise +2) for 5 rd or suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Allows merging into stone" ' +
+      '"+1 PP Allows burrowing through stone" ' +
     'Description="Allows target to merge into earth for 5 rd"',
   'Burst':
     'Advances=0 ' +
@@ -1372,7 +1372,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description=' +
-      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg)"',
+      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg; Raise Spirit-2, fear table +2)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
@@ -1508,7 +1508,7 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2/+3 PP 2\\"/3\\" radius",' +
+      '"+2/+3 PP Slows all in 2\\"/3\\" radius",' +
       '"+2 PP Reduces target multi-action penalty by 2",' +
       '"+1 PP Spirit-2" ' +
     'Description=' +
@@ -1533,7 +1533,8 @@ SWADE.POWERS = {
     'Range=smarts*5 ' +
     'Modifier=' +
       '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
-      '"1 PP/target (Spirit neg)" ' +
+      '"+0 PP Affects target (Spirit neg)",' +
+      '"+1 PP/addition targets" ' +
     'Description=' +
       '"Creates sound up to shout (Smarts neg) or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
   'Speak Language':
@@ -2795,9 +2796,6 @@ SWADE.powerRules = function(
   if(!powerPoints) {
     console.log('Bad powerPoints "' + powerPoints + '" for power ' + name);
   }
-  if(!range) {
-    console.log('Empty range for power ' + name);
-  }
   if(!description) {
     console.log('Empty description for power ' + name);
   }
@@ -2807,22 +2805,27 @@ SWADE.powerRules = function(
   if(!Array.isArray(modifiers)) {
     console.log('Bad modifiers "' + modifiers + '" for power ' + name);
   }
-  if((range+'').match(/^(self|sight|touch)$/i))
-    range =
-      'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase();
+  if(!range)
+    range = '';
+  else if((range+'').match(/^\d+$/))
+    range = 'R' + range + '" ';
+  else if(range.match(/\b(agility|smarts|spirit|strength|vigor)\b/))
+    range = 'R%{' + range + '}" ';
+  else if(range.match(/^(self|sight|special|touch)$/i))
+    range = 'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase() + ' ';
   else
-    range = 'R%{' + range + '}"';
-  // Not presently including advances in power description
-  // Test for QR.wVCS (v2.4 feature) for backward compatibility
+    range = 'R' + range + ' ';
+  // NOTE: Not presently including advances in power description
+  // NOTE: Test for QR.wVCS (v2.4 feature) for backward compatibility
   if(QuilvynRules.wrapVarsContainingSpace)
     description = QuilvynRules.wrapVarsContainingSpace(description);
   let powerAttrs = powerPoints + ' PP';
   if(school)
     powerAttrs += ' ' + school.substring(0, 4);
   if(modifiers.length > 0)
-    description += ' (' + modifiers.map(x => x.replace(/(^\+?\d[^P]*PP)/, '<b>$1</b>')).join('; ') + ')';
+    description += ' (' + modifiers.map(x => x.replace(/(\+?\d(\/\+?\d)* PP)/, '<b>$1</b>')).join('; ') + ')';
   rules.defineChoice
-    ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + ' ' + description);
+    ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + description);
 };
 
 /*
