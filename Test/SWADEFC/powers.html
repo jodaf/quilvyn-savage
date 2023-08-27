@@ -7,7 +7,7 @@
   <script>
 var attributes = {
   "_path":"ztest/swadefc/powers", "advances":16, 
-  "agilityAllocation":4, "armor.Cloak With Hood":1, "concepts.Thief":1, 
+  "agilityAllocation":4, "armor.Cloak With Hood":1, "concepts.Cleric (Cold Domain)":1, 
   "edges.Arcane Background (Cleric (Cold Domain))":1, "edges.New Powers":1, "gender":"Female", "hindrances.Arcane Sensitivity":1, 
   "hindrances.Driven":1, "hindrances.Poverty":1, "hindrances.Shamed":1, 
   "improvementPointsAllocation.Attribute":24, "improvementPointsAllocation.Edge":2, 
@@ -43,7 +43,7 @@ var attributes = {
 <tr style="text-align:center">
   <td style="border:1px solid black">  <table id="Header" style="width:100%">
   <tr style="text-align:center">
-    <td><b>Powers</b> -- <b>Female</b> <b>Human</b> <b>Legendary</b> <b>Thief</b></td>
+    <td><b>Powers</b> -- <b>Female</b> <b>Human</b> <b>Legendary</b> <b>Cleric (Cold Domain)</b></td>
   </tr></table>
 </td>
 </tr><tr style="text-align:center">
@@ -216,7 +216,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Disguise: (2 PP) R10" Target assumes another's appearance (familiar Notice-2 sees through (Raise Notice-4)) for 10 min (<b>+1 PP</b>/additional target; <b>+1 PP</b> Allows changing size by 2 steps)</td>
     </tr><tr style="text-align:left">
-      <td>Dispel: (1 PP) R10" Ends targeted power (Arcane skill neg, +2 if types differ) (<b>+1 PP</b> Disrupts magic item for 1 rd (Raise 2 rd); <b>+1/+2/+3 PP</b> 1"/2"/3" radius; <b>+3 PP</b> Affects all active powers; Epic <b>+8 PP</b> Affects all in 2" radius around self for 5 rd, summoned creatures take 1 Wound/rd (Spirit neg))</td>
+      <td>Dispel: (1 PP) R10" Ends targeted power (Arcane skill -2 if backgrounds differ) (Arcane skill neg) (<b>+1 PP</b> Disrupts magic item for 1 rd (Raise 2 rd); <b>+1/+2/+3 PP</b> 1"/2"/3" radius; <b>+3 PP</b> Affects all active powers; Epic <b>+8 PP</b> Affects all in 2" radius around self for 5 rd, summoned creatures take 1 Wound/rd (Spirit neg))</td>
     </tr><tr style="text-align:left">
       <td>Divination: (5 PP) RSelf 1 min contact with otherworld force grants arcane skill roll to gain information (Epic <b>+3 PP</b> on sacred ground gives advice)</td>
     </tr><tr style="text-align:left">
@@ -238,7 +238,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Growth/Shrink: (2/Size PP) R10" Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd (Epic +2 Lasts 5 min; Epic +2 Shink retains Toughness and Strength)</td>
     </tr><tr style="text-align:left">
-      <td>Havoc: (2 PP) R10" Distracts and throws 2d6" creatures in 2" radius or 9" cone (Strength neg) (<b>+1 PP</b> 3" radius; Epic <b>+2 PP</b> Throws 3d6\)</td>
+      <td>Havoc: (2 PP) R10" Distracts and throws 2d6" creatures in 2" radius, 12" stream, or 9" cone (Strength neg) (<b>+1 PP</b> 3" radius; Epic <b>+2 PP</b> Throws 3d6")</td>
     </tr><tr style="text-align:left">
       <td>Healing: (3 PP) RTouch Restores 1 Wound (Raise 2) suffered in past hr (<b>+10 PP</b> Restores older Wound; <b>+20 PP</b> Heals crippling injury; <b>+1 PP</b> Neutralizes poison or disease; Epic <b>+2/+3 PP</b> Affects 2"/3" radius)</td>
     </tr><tr style="text-align:left">
@@ -248,7 +248,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Invisibility: (5 PP) R10" Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd (<b>+3 PP</b>/additional target; Epic <b>+2 PP</b> Lasts 5 min; attack ends)</td>
     </tr><tr style="text-align:left">
-      <td>Light/Darkness: (2 PP) R10" Creates 3" radius bright light or darkness for 10 min (<b>+1 PP</b> Attaches to object or moves effect undefined"/rd; <b>+1 PP</b> Illuminates object, negating 2 points (Raise 4 points) of vision penalties; Epic <b>+2 PP</b> Light affects 10" radius, range 20"; Epic <b>+2 PP</b> Darkness blocks infravision, low light vision, and darkvision)</td>
+      <td>Light/Darkness: (2 PP) R10" Creates 3" radius bright light or darkness for 10 min (<b>+1 PP</b> Attaches to object or moves effect 10"/rd; <b>+1 PP</b> Illuminates object, negating 2 points (Raise 4 points) of vision penalties; Epic <b>+2 PP</b> Light affects 10" radius, range 20"; Epic <b>+2 PP</b> Darkness blocks infravision, low light vision, and darkvision)</td>
     </tr><tr style="text-align:left">
       <td>Locate: (3 PP) RSelf Gives direction of chosen item (-2 if self has never seen item, running water blocks) for 10 min (<b>+1 PP</b> Self learns best path to target)</td>
     </tr><tr style="text-align:left">
@@ -290,7 +290,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Smite: (2 PP) R10" Target weapon inflicts +2 damage (Raise +4) for 5 rd (<b>+1 PP</b>/additional target; <b>+2 PP</b> +4 damage (Raise +6) as Heavy Weapon)</td>
     </tr><tr style="text-align:left">
-      <td>Sound/Silence: (1 PP) R50" Creates sound up to shout (Smarts neg) or R10" mutes 3" radius for 5 rd (<b>+1 PP</b> Moves effect undefined"/rd; <b>+0 PP</b> Affects target (Spirit neg); <b>+1 PP</b>/addition targets; Epic <b>+1 PP</b> Target audible for 1 mile; Epic <b>+1 PP</b> Smarts-2)</td>
+      <td>Sound/Silence: (1 PP) R50" Creates sound up to shout (Smarts neg) or R10" mutes 3" radius for 5 rd (<b>+1 PP</b> Moves effect 10"/rd; <b>+0 PP</b> Affects target (Spirit neg); <b>+1 PP</b>/addition targets; Epic <b>+1 PP</b> Target audible for 1 mile; Epic <b>+1 PP</b> Smarts-2)</td>
     </tr><tr style="text-align:left">
       <td>Speak Language: (1 PP) R10" Target speaks unknown language for 10 min (<b>+1 PP</b>/additional target; Epic <b>+2 PP</b> Speak, read, and write all languages; Epic <b>+5 PP</b> All in 20 radius can understand each other)</td>
     </tr><tr style="text-align:left">
