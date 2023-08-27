@@ -1182,7 +1182,6 @@ SWADEFC.FEATURES_ADDED = {
   'Scout':
     'Section=skill ' +
     'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about familiar route)"',
-  // TODO Implement allowing Perform instead of Taunt to satisfy prereqs
   'Sharp Tongued':
     'Section=skill ' +
     'Note="May use Performance in place of Taunt and may repeat using different words"',
@@ -2202,6 +2201,23 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
     rules.defineRule('features.Sharp Tongued',
       'featureNotes.arcaneBackground(Bard)', '=', '1'
     );
+    // NOTE: The substitution of Performance for Taunt presently only affects
+    // validation for the SWADE Humiliate, Provoke, and Retort edges. In
+    // theory, it could also affect Hindrance and Ancestry requirements, but in
+    // practice this seems unlikely--a minimum Taunt value to be an Elf?
+    rules.defineRule('sharpTonguedPerformance',
+      'features.Sharp Tongued', '?', null,
+      'skills.Performance', '=', null
+    );
+    let allEdges = rules.getChoices('edges');
+    for(let e in allEdges) {
+      let m = allEdges[e].match(/skills\.Taunt(\s*(>=?\s*\d+))?/);
+      if(m)
+        rules.defineRule('validationNotes.' + e.charAt(0).toLowerCase() + e.substring(1).replaceAll(' ', '') + 'Edge',
+          'sharpTonguedPerformance', '+', 'source ' + m[1] + ' ? 1 : null',
+          '', 'v', '0'
+        );
+    }
   } else if(name.match(/Arcane Background .Cleric/)) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
