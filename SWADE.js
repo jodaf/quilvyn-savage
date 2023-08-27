@@ -1304,7 +1304,7 @@ SWADE.POWERS = {
       '"+1/+2 PP 2\\"/3\\" radius",' +
       '"+1 PP <i>Detect</i>-2" ' +
     'Description=' +
-      '"Target can detect supernatural effects (Raise also type) for 5 rd or conceals target aura for 1 hr (<i>Detect</i> neg)"',
+      '"Target can detect supernatural effects (Raise also type) for 5 rd or conceals target aura (<i>Detect</i> neg) for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1319,7 +1319,7 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)"' +
-    'Description="Ends targeted power (Arcane skill -2 if backgrounds differ) (Arcane skill neg)"',
+    'Description="Ends targeted power (Casting suffers -2 if backgrounds differ; opposed arcane skill neg)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
@@ -1330,7 +1330,7 @@ SWADE.POWERS = {
     'Advances=8 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Drains 1d6 Power Points (Arcane skill -2 if backgrounds differ; Raise adds drained Power Points to self) (Spirit neg)"',
+    'Description="Drains 1d6 Power Points (Cast suffers -2 if backgrounds differ; Raise adds drained Power Points to self; Spirit neg)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1340,7 +1340,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
-    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
+    'Description="Self learns target emotions and surface thoughts, gaining +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1411,13 +1411,13 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Illusion includes sound",' +
       '"+2 PP Smarts-2" ' +
-    'Description="Creates 2\\" radius visual illusion (Smarts neg) for 5 rd"',
+    'Description="Creates 2\\" radius visual illusion (Smarts neg; Raise Smarts-2) for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target becomes unaffected by physical world for 5 rd (Spirit neg)"',
+      '"Target becomes unaffected by physical world (Spirit neg) for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
@@ -1425,14 +1425,14 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+3 PP/additional target" ' +
     'Description=' +
-      '"Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd"',
+      '"Target becomes invisible; foes suffer -4 sight-based actions (Raise -6) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Attaches to object or moves effect %{arcaneSkill}\\"/rd" ' +
-    'Description="Creates 3\\" radius bright light or darkness for 10 min"',
+    'Description="Creates 3\\" radius (Raise or 5\\" beam) bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1440,7 +1440,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
+      '"Two targets may communicate up to 1 mile telepathically (Raise 5 miles) for 30 min; Wound to one shakes the other (Smarts neg)"',
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1453,7 +1453,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Edits memory",' +
       '"+2 PP Activate power as an action" ' +
-    'Description="Target forgets up to 30 min event (Smarts neg) after 1 min activation"',
+    'Description="Target forgets up to 30 min (Raise several hour) event (Smarts neg) after 1 min activation"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1478,7 +1478,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+2 PP/additional target" ' +
     'Description=' +
-      '"Target obeys self (Raise complete control) for 5 rd (Spirit neg)"',
+      '"Target obeys self (Raise complete control; Spirit neg) for 5 rd"',
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1501,25 +1501,25 @@ SWADE.POWERS = {
     'Range=self ' +
     'Modifier=' +
       '"+1 PP Allows speech while changed" ' +
-    'Description="transforms into animal form for 5 rd"',
+    'Description="transforms into animal form (Raise +1 Strength and Vigor) for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP/additional target",' +
-      '"+2/+3 PP Slows all in 2\\"/3\\" radius",' +
-      '"+2 PP Reduces target multi-action penalty by 2",' +
-      '"+1 PP Spirit-2" ' +
+      '"+1 PP/additional Speed target",' +
+      '"+2/+3 PP Sloth slows all in 2\\"/3\\" radius",' +
+      '"+2 PP Speed reduces target multi-action penalty by 2",' +
+      '"+1 PP Sloth Spirit-2" ' +
     'Description=' +
-      '"Target gains dbl Pace for 5 rd or suffers half Pace (Spirit ends)"',
+      '"Target suffers half Pace (Raise movement is an action; Spirit ends) or gains dbl Pace (Raise ignores -2 running penalty) for 5 rd"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
-    'Description="Target sleeps for 1 hr (Spirit neg)"',
+    'Description="Target sleeps (Spirit neg; Raise Spirit-2) for 1 hr"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1532,9 +1532,9 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts*5 ' +
     'Modifier=' +
-      '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
+      '"+1 PP May move effect %{arcaneSkill}\\"/rd",' +
       '"+0 PP Affects target (Spirit neg)",' +
-      '"+1 PP/addition targets" ' +
+      '"+1 PP/additional targets" ' +
     'Description=' +
       '"Creates sound up to shout (Smarts neg) or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
   'Speak Language':
@@ -1550,7 +1550,7 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
-    'Description="Stuns target (Vigor neg)"',
+    'Description="Stuns target (Vigor neg; Raise Vigor-2)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2+ ' +
@@ -1559,13 +1559,14 @@ SWADE.POWERS = {
       '"+1 PP Servant can bite/claw for Str+d6 damage",' +
       '"+2 PP Servant has fly Pace 12",' +
       '"+1 PP Self can use servant\'s senses" ' +
-    'Description="Creates obedient servant for 5 rd"',
+    'Description=' +
+      '"Creates obedient servant (Raise servant may take 1 Wound) for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=smarts*2 ' +
     'Description=' +
-      '"Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
+      '"Moves items remotely as Strength d10 (Raise d12; Spirit neg) for 5 rd"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1588,10 +1589,10 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
-    'Description="Target gains combat edge effects for 5 rd"',
+    'Description="Target gains combat edge effects (Raise improved version) for 5 rd"',
   'Zombie':
     'Advances=8 ' +
-    'PowerPoints=3 ' +
+    'PowerPoints=3+ ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
@@ -1599,7 +1600,7 @@ SWADE.POWERS = {
       '"+1 PP Target has 2 Armor points",' +
       '"+1 PP Self can use target senses" ' +
     'Description=' +
-      '"Animates and controls corpse for 1 hr or store PP for permanent"'
+      '"Animates and controls corpse for 1 hr or stores PP for permanent"'
 };
 SWADE.RACES = {
   'Android':
