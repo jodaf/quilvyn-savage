@@ -493,7 +493,7 @@ SWADE.FEATURES = {
     'Note="Has animal companion; other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
+    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
@@ -590,7 +590,7 @@ SWADE.FEATURES = {
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
     'Section=combat ' +
-    'Note="Ignores wound penalties on Vigor tests to avoid bleeding out"',
+    'Note="Ignores Wound penalties on Vigor tests to avoid bleeding out"',
   'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':
@@ -664,7 +664,7 @@ SWADE.FEATURES = {
   'Natural Leader':
     'Section=feature Note="May apply leadership edges to Wild Cards"',
   'Nerves Of Steel':
-    'Section=combat Note="Ignores %V points of wound penalties"',
+    'Section=combat Note="Ignores %V points of Wound penalties"',
   'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 on Benny damage reroll"',
   'Power Points':'Section=arcana Note="+%V Power Points"',
@@ -717,7 +717,7 @@ SWADE.FEATURES = {
   'Thief':
     'Section=skill ' +
     'Note="+1 Athletics (urban climbing)/+1 Stealth (urban)/+1 Thievery"',
-  'Tough As Nails':'Section=combat Note="Takes %V wounds before incapacitated"',
+  'Tough As Nails':'Section=combat Note="Takes %V Wounds before incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%melee)':
     'Section=combat Note="+%V attack and Parry with %melee"',
@@ -1199,7 +1199,7 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target suffers Shaken (Raise 1 wound), returns to native plane if incapacitated (Spirit neg)"',
+      '"Target suffers Shaken (Raise 1 Wound; Spirit neg), returns to native plane if incapacitated"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1209,7 +1209,7 @@ SWADE.POWERS = {
       '"+1 PP Barrier has +2 hardness",' +
       '"+2 PP Shapes barrier",' +
       '"+1 PP Creates 10\\"x2\\" barrier" ' +
-    'Description="Creates a 5\\" long by 1\\" high wall for 5 rd"',
+    'Description="Creates a 5\\" long by 1\\" high wall w/hardness 10 for 5 rd"',
   'Beast Friend':
     'Advances=0 ' +
     'PowerPoints=1/Size ' +
@@ -1249,7 +1249,7 @@ SWADE.POWERS = {
       '"+1 PP/additional target",' +
       '"+1 PP Spirit-2" ' +
     'Description=' +
-      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step (Raise all) each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1257,7 +1257,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Allows burrowing through stone" ' +
-    'Description="Allows target to merge into earth for 5 rd"',
+    'Description="Allows target to merge into earth and move half Pace (Raise full) for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1304,7 +1304,7 @@ SWADE.POWERS = {
       '"+1/+2 PP 2\\"/3\\" radius",' +
       '"+1 PP <i>Detect</i>-2" ' +
     'Description=' +
-      '"Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr (<i>Detect</i> neg)"',
+      '"Target can detect supernatural effects (Raise also type) for 5 rd or conceals target aura for 1 hr (<i>Detect</i> neg)"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1312,25 +1312,25 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Allows changing size by 2 steps" ' +
-    'Description="Target assumes another\'s appearance for 10 min"',
+    'Description="Target assumes another\'s appearance (familiar Notice-2 sees through (Raise Notice-4)) for 10 min"',
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)"' +
-    'Description="Ends targeted power (Arcane skill neg, +2 if types differ)"',
+    'Description="Ends targeted power (Arcane skill -2 if backgrounds differ) (Arcane skill neg)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Range=self ' +
     'Description=' +
-      '"5 min contact with otherworld force grants arcane skill roll to gain information"',
+      '"1 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=8 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Drains 1d6 Power Points (Raise adds drained Power Points to self) (Spirit neg, +2 if types differ)"',
+    'Description="Drains 1d6 Power Points (Arcane skill -2 if backgrounds differ; Raise adds drained Power Points to self) (Spirit neg)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1356,7 +1356,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Target gains protection from hazards for 1 hr"',
+      '"Target gains protection from hazards and -4 damage from like sources (Raise -6) for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1394,16 +1394,16 @@ SWADE.POWERS = {
       '"+1 PP 3\\" radius",' +
       '"+1 PP Strength-2" ' +
     'Description=' +
-      '"Distracts and throws creatures in 2\\" radius or 9\\" cone 2d6\\" (Strength neg)"',
+      '"Distracts and throws 2d6\\" creatures in 2\\" radius or 9\\" cone (Strength neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+10 PP Restores older wound",' +
+      '"+10 PP Restores older Wound",' +
       '"+20 PP Heals crippling injury",' +
       '"+1 PP Neutralizes poison or disease" ' +
-    'Description="Restores 1 wound (Raise 2) suffered in past hr"',
+    'Description="Restores 1 Wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1494,7 +1494,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+5 PP Raises 10 yr corpse" ' +
     'Description=' +
-      '"Successful -8 casting roll returns 1 yr corpse to life with 3 wounds and 2 fatigue (Raise 0 wounds)"',
+      '"Successful -8 casting roll returns 1 yr corpse to life with 3 Wounds and 2 fatigue (Raise 0 Wounds)"',
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=3+ ' +
