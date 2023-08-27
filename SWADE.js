@@ -869,7 +869,7 @@ SWADE.FEATURES = {
   'Vow':
     'Section=feature Note="Has broad restrictions on behavior and decisions"',
   'Vow+':
-    'Section=feature Note="Has tight restrictions on behavior and decisions"',
+    'Section=feature Note="Has strict restrictions on behavior and decisions"',
   'Wanted':
     'Section=feature Note="Has trouble with distant law or minor infractions"',
   'Wanted+':
@@ -920,7 +920,6 @@ SWADE.FEATURES = {
     'Section=combat,skill ' +
     'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
-  'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
   'Hardy':'Section=combat Note="Does not suffer Wound from 2nd Shaken result"',
   'Heritage':
     'Section=description Note="+2 Improvement Points (Agility or edge)"',
@@ -937,6 +936,7 @@ SWADE.FEATURES = {
     'Note="+4 damage when leaping during Wild Attack","x2 Jump distance"',
   'Low Light Vision':
     'Section=feature Note="Ignores penalties for dim and dark illumination"',
+  'Luck (Half-Folk)':'Section=feature Note="+1 Benny each session"',
   'No Vital Organs':
     'Section=combat Note="Takes no extra damage from Called Shot"',
   'Pace':'Section=combat Note="+1 Pace/+1 Run step"',
@@ -1623,7 +1623,7 @@ SWADE.RACES = {
       'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
     'Features=' +
-      '"Half-Folk Luck","Reduced Pace","Size -1",Spirited',
+      '"Luck (Half-Folk)","Reduced Pace","Size -1",Spirited',
   'Human':
     'Features=' +
       'Adaptable',

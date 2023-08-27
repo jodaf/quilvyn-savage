@@ -861,7 +861,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=feature Note="Has Environmental Resistance (Cold) feature"',
   'Cold-Blooded':
     'Section=attribute ' +
-    'Note="10 min in 60F/18C environment inflicts -1 Agility, Strength, and Vigor"',
+    'Note="10 min in 60F/18C or below inflicts -1 Agility, Strength, and Vigor"',
   'Craven':'Section=feature Note="Has Yellow+ feature"',
   'Cunning':'Section=attribute Note="+1 Smarts step"',
   'Darkvision':'Section=feature Note="R10\\" Ignore illumination penalties"',
@@ -949,7 +949,7 @@ SWADEFC.FEATURES_ADDED = {
   'Unusual Body Shape':
     'Section=feature Note="Cannot use standard armor or furnishings"',
   'Unusual Form':
-    'Section=feature Note="Cannot ride mounts or use some normal equipment"',
+    'Section=feature Note="Cannot ride mounts or use some standard equipment"',
   'Venomous Bite':
     'Section=combat Note="Successful bite inflicts Mild Poison (Vigor neg)"',
   'Very Strong':'Section=attribute Note="+2 Strength step"',
@@ -1039,10 +1039,12 @@ SWADEFC.FEATURES_ADDED = {
   'Beast Talker':'Section=skill Note="May speak with chosen class of animals"',
   'Blood Magic':
     'Section=arcana ' +
-    'Note="Inflicting Wound on conscious, sapient being restores d6 Power Points to self"',
+    'Note="Inflicting a Wound on a conscious, sapient being restores d6 Power Points to self"',
   'Born In The Saddle':
-    'Section=skill ' +
-    'Note="May reroll Riding/Mount gains +2 Pace and +1 Run step"',
+    'Section=feature,skill ' +
+    'Note=' +
+      '"Mount gains +2 Pace and +1 Run step",' +
+      '"May reroll Riding"',
   'Charge':
     'Section=combat Note="Fighting attack after 5\\" run inflicts +2 damage"',
   'Chosen':
@@ -1061,7 +1063,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May choose whether target resists Smarts- or Spirit-linked Tests with Smarts or Spirit"',
   'Defender':
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
-  'Dirty Fighter':'Section=combat Note="+2 Fighting (performing Test)"',
+  'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
   'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
   'Elemental Origin':
     'Section=arcana Note="Powers must use trappings of chosen element"',
@@ -1081,7 +1083,7 @@ SWADEFC.FEATURES_ADDED = {
          '"May reroll Survival to track %1 chosen creature type"',
   'Favored Power':
     'Section=arcana ' +
-    'Note="May ignore two points of penalties when casting chosen power"',
+    'Note="May ignore 2 points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
     'Note=' +
@@ -1091,17 +1093,16 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="-2 arcane skill rolls when fetish unavailable"',
   'Fey Blood':
     'Section=combat ' +
-    'Note="May reroll resisting enemy powers and spell-like effects"',
+    'Note="May reroll when resisting enemy powers and spell-like effects"',
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
   'Heirloom':'Section=feature Note="Possesses %1 powerful magic item"',
   'Holy Symbol':
     'Section=skill Note="May reroll Faith when holding holy symbol"',
   'Home Ground':
-    'Section=arcana,feature ' +
+    'Section=arcana ' +
     'Note=' +
-      '"Within home area, may spend a Benny to recover all Power Points",' +
-      '"10 min concentration answers 3 questions about state of home area"',
+      '"Within home area, may spend a Benny to recover all Power Points/10 min concentration answers 3 questions about state of home area"',
   'Improved Close Fighting':
     'Section=combat Note="Increased Close Fighting effects"',
   'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
@@ -1129,7 +1130,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="When armed, physical ranged attacks on self must match Parry to succeed"',
   'Mount':
     'Section=feature ' +
-    'Note="Mount gains %{advances//4+1} Trait die increase, edge, or monstrous ability"',
+    'Note="Mount gains %{advances//4+1} choice of Trait die increase, edge, or monstrous ability"',
   'Mystic Powers (Barbarian)':
     'Section=arcana ' +
     'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
@@ -1186,8 +1187,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=skill ' +
     'Note="May use Performance in place of Taunt and may repeat using different words"',
   'Shield Wall':
-    'Section=combat ' +
-    'Note="+1 or +2 Parry when adjacent to 1 or 2 allies w/same edge"',
+    'Section=combat Note="+1/+2 Parry when adjacent to 1/2 allies w/same edge"',
   'Silent Caster':'Section=arcana Note="May use powers w/out speaking"',
   'Sneak Attack':'Section=combat Note="Increased Assassin effects"',
   'Stonecunning':
@@ -1203,7 +1203,8 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="May use <i>Summon Ally</i> to conjure demonic soldiers for 4 PP%{advances>=8 ? \', hellhounds for 5 PP, or nightmares for 7 PP\' : advances>=4 ? \' or hellhounds for 5 PP\' : \'\'}"',
   'Sunder':'Section=combat Note="+d6 damage when striking to break an object"',
-  'Take The Hit':'Section=combat Note="May reroll to Soak and to resist Knockout"',
+  'Take The Hit':
+    'Section=combat Note="May reroll when Soaking or resisting Knockout"',
   'Tools':'Section=arcana Note="Must have tool kit to use Power Modifiers"',
   'Transfer':
     'Section=arcana Note="May transfer up to 5 PP to another in sight"',
@@ -1214,7 +1215,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=attribute,feature ' +
     'Note=' +
       '"Successful Smarts gives approximate value of goods and magic item abilities",' +
-      '"May spend Benny to have GM reroll magic item treasure"',
+      '"May spend a Benny to have the GM reroll magic item treasure"',
   'Trick Shot':
     'Section=combat ' +
     'Note="May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility"',
@@ -1227,13 +1228,13 @@ SWADEFC.FEATURES_ADDED = {
   'Unstoppable':'Section=combat Note="Takes at most 1 Wound per attack"',
   'Warband':
     'Section=combat ' +
-    'Note="%1 followers may take 1 addition Wound before becoming incapacitated"',
+    'Note="%1 followers may take 1 additional Wound before becoming incapacitated"',
   'Wilderness Stride':
     'Section=combat ' +
     'Note="Suffers no movement penalty for difficult ground in natural terrain"',
   'Wing Gust':
     'Section=combat ' +
-    'Note="Successful Athletics shakes creatures of same size or smaller (Vigor neg; Raise -2) in 9\\" cone"',
+    'Note="Successful Athletics shakes creatures of same size or smaller in 9\\" cone (Vigor neg; Raise -2)"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
   'Chemist':
@@ -1246,10 +1247,10 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May use the Deadly Illusion Power Modifier on <i>Illusion</i> for free"',
   'Destroy Undead':
     'Section=arcana ' +
-    'Note="May spend 1 or 2 PP to inflict 2d6 or 3d6 damage on all undead in 3\\" radius"',
+    'Note="May spend 1/2 PP to inflict 2d6/3d6 damage on all undead in 3\\" radius"',
   'Dirge':'Section=arcana Note="R10\\" Target suffers -2 on Benny roll"',
   'Eldritch Inspiration':
-    'Section=arcana Note="May spend Benny to use power from spellbook"',
+    'Section=arcana Note="May spend a Benny to use a power from spellbook"',
   'Elemental Absorption':
     'Section=combat Note="+2 Toughness near significant source of chosen element"',
   'Elemental Master':
@@ -1264,16 +1265,16 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/tyrannosaurus rex/young dragon"',
   'Heartwood Staff':
     'Section=combat ' +
-    'Note="Has heartwood staff; may spend 1 PP after hit to inflict +d6 damage"',
+    'Note="Has heartwood staff; may spend 1 PP after hit w/it to inflict +d6 damage"',
   "Hell's Wrath":
     'Section=arcana ' +
     'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage"',
   'Infernal Armor':
     'Section=arcana ' +
-    'Note="May cover apparel with a glow that gives self +2 armor"',
+    'Note="May cover apparel with a glow that gives self +2 Armor"',
   'Inspire Heroics':
     'Section=arcana ' +
-    'Note="R%{smarts}\\" May spend Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
+    'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
   'Instrument':'Section=arcana Note="+1 Performance to cast spell"',
   'Master Alchemist':'Section=arcana Note="May create potions for half cost"',
   'Master Of Illusion':
@@ -1303,7 +1304,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Gains free Soak and cannot critically fail between midnight and 1 a.m."',
   "Tinkerer's Armor":
     'Section=combat '+
-    'Note="May use Repair to reduce armor Strength requirement by 1 die type and gain one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
+    'Note="Successful Repair reduces armor Strength requirement by 1 die type and gains one of: +2 melee damage and free Strength reroll; +2 chest and back Armor; or dbl jump distance and +4 Pace/Wound has 50% chance of disabling armor"',
   'True Form':
     'Section=arcana Note="May cast powers at -2 penalty while shape changed"',
   'Undead Familiar':
@@ -1317,11 +1318,11 @@ SWADEFC.FEATURES_ADDED = {
   'Armor Interference':
     'Section=arcana ' +
     'Note=' +
-      '"-4 arcane skill rolls and cannot use arcane edge features in medium or heavy armor"',
+      '"In medium or heavy armor, suffers -4 arcane skill rolls and cannot use arcane edge features"',
   'Armor Interference+':
     'Section=arcana ' +
     'Note=' +
-      '"-4 arcane skill rolls and cannot use arcane edge features in light, medium, or heavy armor"',
+      '"In light, medium, or heavy armor, suffers -4 arcane skill rolls and cannot use arcane edge features"',
   'Blunderer+':
     'Section=skill ' +
     'Note="Skill die of 1 on chosen essential skill inflicts critical failure"',
@@ -1350,15 +1351,15 @@ SWADEFC.FEATURES_ADDED = {
       '"-4 Persuasion (characters from other cultures)"',
   'Material Components+':
     'Section=arcana ' +
-    'Note="-4 arcane skill rolls when materials unavailable; critical failure exhausts materials"',
+    'Note="Suffers -4 arcane skill rolls when materials unavailable; critical failure exhausts materials"',
   'Selfless':'Section=feature Note="Puts others first"',
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
     'Section=arcana ' +
-    'Note="-1 arcane skill rolls when talisman unavailable; critical failure stuns"',
+    'Note="Suffers -1 arcane skill rolls when talisman unavailable; critical failure stuns"',
   'Talisman+':
     'Section=arcana ' +
-    'Note="-2 arcane skill rolls when talisman unavailable; critical failure stuns"'
+    'Note="Suffers -2 arcane skill rolls when talisman unavailable; critical failure stuns"'
 };
 SWADEFC.FEATURES = Object.assign(Object.fromEntries(Object.entries(SWADE.FEATURES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {
@@ -2011,25 +2012,26 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
     QuilvynRules.prerequisiteRules
       (rules, 'validation', 'Elemental Scion', 'features.Elemental Scion',
        ['features.Air Scion || features.Earth Scion || features.Fire Scion || features.Water Scion']);
-    rules.defineRule('features.Aquatic', 'features.Water Scion', '=', null);
     rules.defineRule('features.Elemental Scion',
       'race', '=', 'source=="Elemental Scion" ? 1 : null'
     );
+    rules.defineRule('features.Aquatic', 'featureNotes.waterScion', '=', null);
     rules.defineRule('features.Environmental Resistance (Air)',
-      'features.Air Scion', '=', null
+      'featureNotes.airScion', '=', null
     );
     rules.defineRule('features.Environmental Resistance (Earth)',
-      'features.Earth Scion', '=', null
+      'featureNotes.earthScion', '=', null
     );
     rules.defineRule('features.Environmental Resistance (Fire)',
-      'features.Fire Scion', '=', null
+      'featureNotes.fireScion', '=', null
     );
     rules.defineRule('features.Environmental Resistance (Water)',
-      'features.Water Scion', '=', null
+      'featureNotes.waterScion', '=', null
     );
-    rules.defineRule('features.Inner Air', 'features.Air Scion', '=', null);
-    rules.defineRule('features.Quick', 'features.Fire Scion', '=', null);
-    rules.defineRule('features.Rock Solid', 'features.Earth Scion', '=', null);
+    rules.defineRule('features.Inner Air', 'featureNotes.airScion', '=', null);
+    rules.defineRule('features.Quick', 'featureNotes.fireScion', '=', null);
+    rules.defineRule
+      ('features.Rock Solid', 'featureNotes.earthScion', '=', null);
   } else if(name == 'Fairy') {
     rules.defineRule('combatNotes.flight', 'fairyAdvances', '=', '6');
   } else if(name == 'Golem') {
@@ -2363,6 +2365,12 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Warband') {
     rules.defineRule
       ('combatNotes.warband.1', 'features.Warband', '=', 'source * 5');
+    rules.defineRule('sumLeadershipEdges', 'features.Warband', '^=', '0');
+    let allEdges = rules.getChoices('edges');
+    for(let e in allEdges) {
+      if(allEdges[e].match(/leadership/i))
+        rules.defineRule('sumLeadershipEdges', 'edges.' + e, '+', '1');
+    }
   }
   if(SWADE.edgeRulesExtra)
     SWADE.edgeRulesExtra(rules, name);
