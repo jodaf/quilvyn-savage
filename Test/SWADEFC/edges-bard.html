@@ -8,17 +8,17 @@
 var attributes = {
   "_path":"ztest/swadefc/edges/bard", 
   "advances":12, "agilityAllocation":1, "armor.Tunic":1, "concepts.Bard":1, 
-  "edges.Arcane Background (Bard)":1, "edges.Dirge":1, "edges.Inspire Heroics":1, "edges.Instrument":1, 
-  "gender":"Male", "hindrances.Jingoistic":1, "hindrances.Pacifist":1, "hindrances.Slow":1, 
-  "hindrances.Small":1, "improvementPointsAllocation.Attribute":14, 
-  "improvementPointsAllocation.Edge":6, "improvementPointsAllocation.Skill":8, "name":"Edges-Bard", "race":"Human", 
-  "shield":"None", "skillAllocation.Academics":1, "skillAllocation.Alchemy":1, 
-  "skillAllocation.Boating":1, "skillAllocation.Common Knowledge":1, "skillAllocation.Faith":1, 
-  "skillAllocation.Focus":1, "skillAllocation.Healing":1, "skillAllocation.Performance":5, 
-  "skillAllocation.Persuasion":1, "skillAllocation.Psionics":2, "skillAllocation.Research":1, 
-  "skillAllocation.Stealth":1, "skillAllocation.Survival":1, "skillAllocation.Thievery":1, 
-  "skillAllocation.Weird Science":1, "smartsAllocation":2, "spiritAllocation":4, "strengthAllocation":1, 
-  "vigorAllocation":4, "weapons.Blowgun":1, "weapons.Hand Crossbow":1, "weapons.Sap":1
+  "edges.Arcane Background (Bard)":1, "edges.Dirge":1, "edges.Humiliate":1, "edges.Inspire Heroics":1, 
+  "edges.Instrument":1, "edges.Provoke":1, "edges.Retort":1, "gender":"Male", 
+  "hindrances.Jingoistic":1, "hindrances.Pacifist":1, "hindrances.Slow":1, "hindrances.Small":1, 
+  "improvementPointsAllocation.Attribute":14, "improvementPointsAllocation.Edge":12, 
+  "improvementPointsAllocation.Skill":2, "name":"Edges-Bard", "race":"Human", "shield":"None", 
+  "skillAllocation.Academics":1, "skillAllocation.Boating":1, "skillAllocation.Common Knowledge":1, 
+  "skillAllocation.Healing":1, "skillAllocation.Performance":4, "skillAllocation.Persuasion":1, 
+  "skillAllocation.Research":1, "skillAllocation.Stealth":1, "skillAllocation.Survival":1, 
+  "skillAllocation.Thievery":1, "skillAllocation.Weird Science":1, "smartsAllocation":2, 
+  "spiritAllocation":4, "strengthAllocation":1, "vigorAllocation":4, "weapons.Blowgun":1, 
+  "weapons.Hand Crossbow":1, "weapons.Sap":1
 };
   </script>
 </head>
@@ -45,7 +45,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
-    <td><b>Skills</b> (20 Points):</td>
+    <td><b>Skills</b> (14 Points):</td>
   </tr><tr style="text-align:center">
     <td>    <table id="Skills" style="width:100%">
     <col style="width:33%"/>
@@ -53,34 +53,36 @@ var attributes = {
     <col style="width:34%"/>
     <tr style="text-align:left">
       <td>Academics: (sma) d4</td>
-      <td>Focus: (spi) d4</td>
-      <td>Research: (sma) d4</td>
-    </tr><tr style="text-align:left">
-      <td>Alchemy: (sma) d4</td>
-      <td>Healing: (sma) d4</td>
-      <td>Stealth: (agi) d6</td>
-    </tr><tr style="text-align:left">
-      <td>Athletics: (agi) d4</td>
       <td>Notice: (sma) d4</td>
       <td>Survival: (sma) d4</td>
     </tr><tr style="text-align:left">
-      <td>Boating: (agi) d4</td>
-      <td>Performance: (spi) d12</td>
+      <td>Athletics: (agi) d4</td>
+      <td>Performance: (spi) d10</td>
       <td>Thievery: (agi) d4</td>
     </tr><tr style="text-align:left">
-      <td>Common Knowledge: (sma) d6</td>
+      <td>Boating: (agi) d4</td>
       <td>Persuasion: (spi) d6</td>
       <td>Weird Science: (sma) d4</td>
     </tr><tr style="text-align:left">
-      <td>Faith: (spi) d4</td>
-      <td>Psionics: (sma) d6</td>
+      <td>Common Knowledge: (sma) d6</td>
+      <td>Research: (sma) d4</td>
+      <td></td>
+    </tr><tr style="text-align:left">
+      <td>Healing: (sma) d4</td>
+      <td>Stealth: (agi) d6</td>
       <td></td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
     <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
     <tr style="text-align:center">
+      <td>Humiliate: May reroll Taunt</td>
+    </tr><tr style="text-align:center">
       <td>Jingoistic: -2 Persuasion (characters from other cultures)</td>
+    </tr><tr style="text-align:center">
+      <td>Provoke: Raise on Taunt inflicts -2 on foe attacks on other targets; joker Action Card ends</td>
+    </tr><tr style="text-align:center">
+      <td>Retort: Raise on resisting Intimidation or Taunt Test causes foe to be Distracted</td>
     </tr><tr style="text-align:center">
       <td>Sharp Tongued: May use Performance in place of Taunt and may repeat using different words</td>
     </tr></table>
@@ -96,7 +98,7 @@ var attributes = {
     <tr style="text-align:center">
       <td><b>Advances</b>: 12</td>
       <td><b>Improvement Points</b>: 28</td>
-      <td><b>Improvement Points Allocation</b>: Attribute: 14; Edge: 6; Skill: 8</td>
+      <td><b>Improvement Points Allocation</b>: Attribute: 14; Edge: 12; Skill: 2</td>
     </tr></table>
 </td>
   </tr><tr style="text-align:center">
@@ -108,7 +110,7 @@ var attributes = {
   <tr style="text-align:center">
     <td>    <table id="FeaturePart" style="width:100%">
     <tr style="text-align:center">
-      <td><b>Edges</b> (4 points): Arcane Background (Bard); Dirge; Inspire Heroics; Instrument</td>
+      <td><b>Edges</b> (7 points): Arcane Background (Bard); Dirge; Humiliate; Inspire Heroics; Instrument; Provoke; Retort</td>
       <td><b>Hindrances</b>: Jingoistic; Pacifist; Slow; Small</td>
       <td><b>Human Features</b>: Adaptable</td>
     </tr></table>
