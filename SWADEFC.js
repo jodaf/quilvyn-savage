@@ -1533,7 +1533,7 @@ SWADEFC.POWER_CHANGES = {
   'Growth/Shrink':
     'Modifier=' +
       '"Epic +2 Lasts 5 min",' +
-      '"Epic +2 Shink retains Toughness and Strength"',
+      '"Epic +2 Shrink retains Toughness and Strength"',
   'Havoc':SWADE.POWERS.Havoc
     .replace('radius or', 'radius, 12\\" stream, or') + ' ' +
     'Modifier=' +
@@ -1554,7 +1554,7 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +3 PP Lasts 5 min"',
   'Invisibility':
     'Modifier=' +
-      '"Epic +2 PP Lasts 5 min; attack ends"',
+      '"Epic +2 PP Lasts 5 min or until attacks"',
   'Light/Darkness':
     'Modifier=' +
       '"+1 PP Illuminates object, negating 2 points (Raise 4 points) of vision penalties",' +
@@ -1567,7 +1567,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Self learns best path to target" ' +
     'Description=' +
-      '"Gives direction of chosen item (-2 if self has never seen item, running water blocks) for 10 min"',
+      '"Gives direction of chosen item (-2 if self has never seen item; running water neg) for 10 min"',
   'Lock/Unlock':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1578,14 +1578,14 @@ SWADEFC.POWER_CHANGES = {
       '"Inflicts -4 to open (Raise seals shut) on target item or opens target item, ignoring 4 points of penalties (Raise disarms alarms and traps)"',
   'Lower Trait': // Diabolist cannot Boost Trait
     'Advances=0 ' +
-    'PowerPoints=2 ' +
+    'PowerPoints=3 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP/additional target",' +
+      '"+2 PP/additional target",' +
       '"+1 PP Spirit-2",' +
       '"Epic +2 PP -2 affected Trait" ' +
     'Description=' +
-      '"Target suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+      '"Target suffers -1 Trait step (Raise -2) (Spirit recovers 1 step (Raise all) each rd)"',
   'Mind Link':
     'Modifier=' +
       '"Epic +2 PP Broadcast telepathic message in %{smarts*4}\\" radius (Raise %{smarts*8}\\" radius)",' +
@@ -1602,16 +1602,17 @@ SWADEFC.POWER_CHANGES = {
     'Range=special ' +
     'Description=' +
       '"Ritual causes great event"',
-  'Object Reading':
-    // TODO Remove SWADE modifier?
+  'Object Reading':SWADE.POWERS['Object Reading'] + ' ' +
     'Modifier=' +
-      '"Epic +2 PP Share w/others nearby"',
+      '"Epic +2 PP Share w/others nearby" ' +
+    'Description=' +
+      '"Self sees history of target related to desired information"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Summons extraplanar creature to perform service (Spirit neg)"',
+      '"Summons and traps extraplanar creature to perform service (Spirit neg)"',
   'Plane Shift':
     'Advances=4 ' +
     'PowerPoints=4 ' +
@@ -1621,17 +1622,24 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +1 PP Creates extra-dimensional shelter",' +
       '"Epic +2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
-      '"Self travels to chosen plane, w/in 10d10 miles of known location"',
-  // TODO Remove SWADE Protection modifiers?
+      '"Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of known location"',
+  'Protection':SWADE.POWERS.Protection + ' ' +
+    'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd" ' +
+    'Modifier=' +
+      '"+1 PP/additional target"',
   'Puppet':
     'Modifier=' +
       '"+2 PP Spirit-2"',
-  'Relief':
+  'Relief':SWADE.POWERS.Relief + ' ' +
+    'Description=' +
+      '"Removes choice of Shaken, Distracted, or Vulnerable (Raise 2 choices) from target, or reduces penalties due to Wounds and Fatigue by 1 (Raise 2) for 1 hr" ' +
     'Modifier=' +
+      '"+1 PP/additional target",' +
       '"+3 PP Restore 1 die type from energy drain (Raise 2 die types)",' +
-      '"+1 PP Also remove Stunned"',
-  'Resurrection':
+      '"+1 PP Also removes Stunned"',
+  'Resurrection':SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
     'Modifier=' +
+      '"+5 PP Raises 10 yr corpse",' +
       '"Epic +10 PP 12-hr ritual raises corpse of any age"',
   'Sanctuary':
     'Advances=0 ' +
@@ -1639,9 +1647,9 @@ SWADEFC.POWER_CHANGES = {
     'Range=touch ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"Epic +1 PP Spirit-2" ' +
+      '"Epic +1 PP Spirit-2 (Raise Spirit-4)" ' +
     'Description=' +
-      '"Evil creatures cannot attack target (Spirit neg) for 5 rd"',
+      '"Evil creatures cannot attack target (Spirit neg; Raise Spirit-2); attacking ends"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
@@ -1649,14 +1657,15 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Shares with allies in %{smarts}\\" radius" ' +
     'Description=' +
-      '"View chosen target (-2 unfamiliar target, Spirit neg) for 5 rd"',
-  'Shape Change':
+      '"Gives view of chosen target (-2 unfamiliar target; Spirit target detects) for 5 rd"',
+  'Shape Change':SWADE.POWERS['Shape Change'] + ' ' +
     'Modifier=' +
       '"+1 PP Lasts 5 min",' +
-      '"Epic +3 PP Transform touched target (Raise Smarts lowered to animal; Spirit neg, Spirit-2 recover)"',
+      '"Epic +3 PP Transforms touched target (Raise Smarts lowered to animal; Spirit neg, Spirit-2 recover (Raise Spirit-4))",' +
+      '"Epic +2/+3 PP Transforms willing touched/R%{smarts}\\" target"',
   'Sloth/Speed':
     'Modifier=' +
-      '"Target runs maximum speed"',
+      '"+2 PP Speed target runs maximum speed"',
   'Smite':
     'Modifier=' +
       '"+2 PP +4 damage (Raise +6) as Heavy Weapon"',
@@ -1667,14 +1676,14 @@ SWADEFC.POWER_CHANGES = {
   'Speak Language':
     'Modifier=' +
       '"Epic +2 PP Speak, read, and write all languages",' +
-      '"Epic +5 PP All in %{smarts*2} radius can understand each other"',
+      '"Epic +5 PP All in %{smarts*2}\\" radius can understand each other"',
   'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
-      '"+2 PP Servant has fly Pace 12",' +
+      '"+2 PP Servant can fly Pace\\"/rd",' +
       '"+1 PP Servant gains +1 Trait step",' +
       '"+1 PP Self can use servant\'s senses",' +
-      '"Epic +Half PP Additional servants"',
+      '"Epic +Half PP/additional servant"',
   'Summon Animal':
     'Advances=0 ' +
     'PowerPoints=Special ' +
@@ -1682,7 +1691,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Increased Trait",' +
       '"+1 PP Self can use animal\'s senses",' +
-      '"Epic +Half PP Additional animals" ' +
+      '"Epic +Half/additional animal" ' +
     'Description=' +
       '"Brings chosen animal type to perform task for 5 rd"',
   'Summon Monster':
@@ -1692,7 +1701,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Increased Trait",' +
       '"+1 PP Self can use monster\'s senses",' +
-      '"Epic +Half PP Additional monsters" ' +
+      '"Epic +Half PP/additional monster" ' +
     'Description=' +
       '"Brings chosen monster type to perform task for 5 rd"',
   'Summon Undead':
@@ -1702,7 +1711,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Increased Trait",' +
       '"+1 PP Self can use undead\'s senses",' +
-      '"Epic +Half PP Additional undead" ' +
+      '"Epic +Half PP/additional undead" ' +
     'Description=' +
       '"Brings chosen undead type to perform task for 5 rd"',
   'Telekinesis':
@@ -1711,13 +1720,13 @@ SWADEFC.POWER_CHANGES = {
   'Teleport':
     'Modifier=' +
       '"Epic +5 PP Opens portal to destination for 5 rd",' +
-      '"Epic +5 PP Teleport up to 100 miles"',
+      '"Epic +5 PP Teleport up to 1000 miles"',
   'Time Stop':
     'Advances=12 ' +
     'PowerPoints=10 ' +
     'Range=self ' +
     'Description=' +
-      '"Self gains additional turn"',
+      '"Self gains 1d4+1 additional turns"',
   "Warrior's Gift":
     'Modifier=' +
       '"Epic +4 PP Two combat edges"',
@@ -1726,7 +1735,7 @@ SWADEFC.POWER_CHANGES = {
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Self alters reality, loses 3 PP permanently (Raise neg loss)"',
+      '"Self alters reality, loses 3 PP permanently (Raise no PP loss)"',
   'Zombie':SWADE.POWERS.Zombie + ' ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
