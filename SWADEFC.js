@@ -2555,16 +2555,6 @@ SWADEFC.ruleNotes = function() {
     '<h2>SWADE Fantasy Companion Quilvyn Module Notes</h2>\n' +
     'SWADE Fantasy Companion Quilvyn Module Version ' + SWADEFC.VERSION + '\n' +
     '\n' +
-    '<h3>Usage Notes</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '    Major hindrances are noted by a "+" after the name. For example,\n' +
-    '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
-    '    included in power descriptions\n' +
-    '  </li>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
@@ -2578,8 +2568,8 @@ SWADEFC.ruleNotes = function() {
     'representation or warranty as to the quality, viability, or\n' +
     'suitability for purpose of this product.\n' +
     '</p><p>\n' +
-    'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA\n' +
-    'Pinnacle Entertainment Group.\n' +
+    'Savage Worlds Adventure Edition Fantasy Companion ' +
+    '© 2022 Pinnacle Entertainment Group.\n' +
     '</p>\n' +
     '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };

@@ -67,7 +67,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.15';
+SWADE.VERSION = '2.3.3.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -4051,9 +4051,6 @@ SWADE.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
-    '    included in power descriptions\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
