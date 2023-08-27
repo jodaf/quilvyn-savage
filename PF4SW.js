@@ -81,7 +81,7 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.5';
+PF4SW.VERSION = '2.3.1.6';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
@@ -896,7 +896,7 @@ PF4SW.FEATURES_ADDED = {
   'Epic Tales':
     'Section=feature Note="Allies hearing story during rest each gain 1 Benny"',
   'Familiar':
-    'Section=feature ' +
+    'Section=arcana ' +
     'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
@@ -1485,7 +1485,7 @@ PF4SW.POWERS_CHANGES = {
     'Modifier=' +
       '"+1 PP Self learns best path to target" ' +
     'Description=' +
-      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks spell) for 10 min"',
+      '"Gives direction of chosen item (-2 if caster has never seen item, running water blocks) for 10 min"',
   'Planar Binding':
     'Advances=8 ' +
     'PowerPoints=8 ' +
@@ -1671,6 +1671,15 @@ PF4SW.WEAPONS = {
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
 };
 
+/* Defines rules related to powers. */
+PF4SW.arcaneRules = function(rules, arcanas, powers) {
+  SWADE.arcaneRules(rules, arcanas, powers);
+  let allNotes = rules.getChoices('notes');
+  if('commonPowerModifiers' in allNotes)
+    allNotes['commonPowerModifiers'] =
+      allNotes['commonPowerModifiers'].replace(/^/, '<b>+1 PP</b> Adaptable Caster; ');
+};
+
 /* Defines the rules related to character attributes and description. */
 PF4SW.attributeRules = function(rules) {
   SWADE.attributeRules(rules);
@@ -1704,15 +1713,6 @@ PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
   }
   // No changes needed to the rules defined by base method
-};
-
-/* Defines rules related to powers. */
-PF4SW.arcaneRules = function(rules, arcanas, powers) {
-  SWADE.arcaneRules(rules, arcanas, powers);
-  let allNotes = rules.getChoices('notes');
-  if('commonPowerModifiers' in allNotes)
-    allNotes['commonPowerModifiers'] =
-      allNotes['commonPowerModifiers'].replace(/^/, '<b>+1 PP</b> Adaptable Caster; ');
 };
 
 /* Defines rules related to character aptitudes. */
@@ -1866,7 +1866,7 @@ PF4SW.arcanaRules = function(rules, name, skill, powers) {
  */
 PF4SW.armorRules = function(rules, name, areas, armor, minStr, weight) {
   SWADE.armorRules
-    (rules, name, ['Victorian'], areas, armor, minStr, weight);
+    (rules, name, ['Medieval'], areas, armor, minStr, weight);
   // No changes needed to the rules defined by base method
 };
 
@@ -2389,7 +2389,7 @@ PF4SW.raceRulesExtra = function(rules, name) {
  */
 PF4SW.shieldRules = function(rules, name, parry, cover, minStr, weight) {
   SWADE.shieldRules
-    (rules, name, ['Victorian'], parry, cover, minStr, weight);
+    (rules, name, ['Medieval'], parry, cover, minStr, weight);
   // No changes needed to the rules defined by base method
 };
 
@@ -2416,7 +2416,7 @@ PF4SW.weaponRules = function(
   rateOfFire, parry
 ) {
   SWADE.weaponRules(
-    rules, name, ['Victorian'], damage, minStr, weight, category, armorPiercing,
+    rules, name, ['Medieval'], damage, minStr, weight, category, armorPiercing,
     range, rateOfFire, parry
   );
   // No changes needed to the rules defined by base method
@@ -2429,7 +2429,6 @@ PF4SW.weaponRules = function(
 PF4SW.choiceEditorElements = function(rules, type) {
   return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
-
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {

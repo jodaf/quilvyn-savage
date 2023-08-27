@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
 "use strict";
 
 /*
@@ -67,12 +67,12 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.2.13';
+SWADE.VERSION = '2.3.3.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
   'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
-  'Hindrance', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
+  'Hindrance', 'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -477,13 +477,13 @@ SWADE.FEATURES = {
     'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=combat ' +
-    'Note="Takes %V damage from magic/Foes\' targeted arcane skill suffers %V attack"',
+    'Note="Foes suffer %V arcane skill and arcane damage when targeting self"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
   'Artificer':'Section=arcana Note="May give items arcane powers"',
   'Assassin':
-    'Section=combat Note="+2 damage to Vulnerable foes and with The Drop"',
+    'Section=combat Note="+%V damage to Vulnerable foes and with The Drop"',
   'Attractive':
     'Section=skill ' +
     'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
@@ -493,7 +493,7 @@ SWADE.FEATURES = {
     'Note="Has animal companion; other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
+    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
   'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
@@ -549,7 +549,7 @@ SWADE.FEATURES = {
     'Note="Joker Action Card gives dbl damage from first successful ranged attack"',
   'Dodge':'Section=combat Note="-2 foe ranged attacks"',
   'Double Tap':'Section=combat Note="+1 firearm attack and damage"',
-  'Elan':'Section=feature Note="+2 on Benny-purchased trait rerolls"',
+  'Elan':'Section=feature Note="+2 on Benny-purchased Trait rerolls"',
   'Expert (%attribute)':
     'Section=attribute Note="Increased Professional effects"',
   'Expert (%skill)':'Section=skill Note="Increased Professional effects"',
@@ -590,7 +590,7 @@ SWADE.FEATURES = {
   'Great Luck':'Section=feature Note="Increased Luck effects"',
   'Hard To Kill':
     'Section=combat ' +
-    'Note="Ignores wound penalties on Vigor tests to avoid bleeding out"',
+    'Note="Ignores Wound penalties on Vigor tests to avoid bleeding out"',
   'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':
@@ -623,7 +623,7 @@ SWADE.FEATURES = {
     'Section=combat Note="No penalty w/improvised weapons"',
   'Inspire':
     'Section=skill ' +
-    'Note="R%{commandRange}\\" May use Battle to Support all Extras on any trait 1/rd"',
+    'Note="R%{commandRange}\\" May use Battle to Support all Extras on any Trait 1/rd"',
   'Investigator':
     'Section=skill Note="+2 Research/+2 Notice (sifting for information)"',
   'Iron Jaw':'Section=combat Note="+2 Soak rolls/+2 Vigor vs. knockout"',
@@ -664,7 +664,7 @@ SWADE.FEATURES = {
   'Natural Leader':
     'Section=feature Note="May apply leadership edges to Wild Cards"',
   'Nerves Of Steel':
-    'Section=combat Note="Ignores %V points of wound penalties"',
+    'Section=combat Note="Ignores %V points of Wound penalties"',
   'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 on Benny damage reroll"',
   'Power Points':'Section=arcana Note="+%V Power Points"',
@@ -717,7 +717,7 @@ SWADE.FEATURES = {
   'Thief':
     'Section=skill ' +
     'Note="+1 Athletics (urban climbing)/+1 Stealth (urban)/+1 Thievery"',
-  'Tough As Nails':'Section=combat Note="Takes %V wounds before incapacitated"',
+  'Tough As Nails':'Section=combat Note="Takes %V Wounds before incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%melee)':
     'Section=combat Note="+%V attack and Parry with %melee"',
@@ -748,8 +748,8 @@ SWADE.FEATURES = {
     'Section=attribute ' +
     'Note="-2 Vigor (resist disease, sickness, fatigue, and environment)"',
   'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
-  'Bad Eyes':'Section=skill Note="-1 on visual trait rolls"',
-  'Bad Eyes+':'Section=skill Note="-2 on visual trait rolls"',
+  'Bad Eyes':'Section=skill Note="-1 on visual Trait rolls"',
+  'Bad Eyes+':'Section=skill Note="-2 on visual Trait rolls"',
   'Bad Luck+':'Section=feature Note="-1 Benny each session"',
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
   'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
@@ -757,7 +757,7 @@ SWADE.FEATURES = {
     'Section=combat Note="Treats foes cruelly; never takes prisoners"',
   "Can't Swim":
     'Section=combat,skill ' +
-    'Note="Moves 1/3 speed through water","-2 Athletics (swimming)"',
+    'Note="Moves 1/3 Pace through water","-2 Athletics (swimming)"',
   'Cautious':'Section=feature Note="Requires detailed plan before acting"',
   'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
   'Clumsy+':'Section=skill Note="-2 Athletics/-2 Stealth"',
@@ -832,10 +832,10 @@ SWADE.FEATURES = {
     'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
   'Phobia':
     'Section=feature ' +
-    'Note="Suffers -1 on trait rolls in presence of phobia subject"',
+    'Note="Suffers -1 on Trait rolls in presence of phobia subject"',
   'Phobia+':
     'Section=feature ' +
-    'Note="Suffers -2 on trait rolls in presence of phobia subject"',
+    'Note="Suffers -2 on Trait rolls in presence of phobia subject"',
   'Poverty':
     'Section=feature Note="Starts with half funds, loses half funds each wk"',
   'Quirk':
@@ -869,7 +869,7 @@ SWADE.FEATURES = {
   'Vow':
     'Section=feature Note="Has broad restrictions on behavior and decisions"',
   'Vow+':
-    'Section=feature Note="Has tight restrictions on behavior and decisions"',
+    'Section=feature Note="Has strict restrictions on behavior and decisions"',
   'Wanted':
     'Section=feature Note="Has trouble with distant law or minor infractions"',
   'Wanted+':
@@ -891,53 +891,54 @@ SWADE.FEATURES = {
     'Section=combat Note="Ignores 2 points of Multi-Action penalties"',
   'Agile':'Section=attribute Note="+1 Agility step"',
   'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
-  'Armor +2':'Section=combat Note="+2 Parry"',
+  'Armor +2':'Section=combat Note="+2 Armor"',
   'Big':
-    'Section=feature,skill ' +
+    'Section=feature ' +
     'Note=' +
-      '"Difficulty finding armor and clothing that fits",' +
-      '"-2 using standard equipment"',
+      '"Has difficulty finding armor and clothing that fits; suffers -2 on all Trait rolls when using standard equipment"',
   'Bite':'Section=combat Note="Fangs are a natural weapon"',
   'Burrowing':
     'Section=feature Note="Can burrow into loose earth and surprise foes"',
   'Cannot Speak':'Section=feature Note="Cannot talk to other species"',
   'Claws':'Section=combat Note="Claws are a natural weapon"',
   'Construct':
-    'Section=attribute,combat ' +
+    'Section=attribute,combat,feature ' +
     'Note=' +
-      '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores one level of wound modifiers, requires Repair to heal"',
+      '"+2 Shaken recovery",' +
+      '"Immune to poison and disease/Ignores one level of Wound modifiers/Requires Repair to heal",' +
+      '"Does not need to breathe"',
   'Dependency':
     'Section=feature ' +
-    'Note="Must spend 1 hr/dy in native environment or becomes fatigued"',
+    'Note="Must spend 1 hr/dy in native environment or become fatigued"',
   "Doesn't Breathe":
     'Section=combat Note="Has immunity to inhaled toxins and suffocation"',
   'Environmental Resistance (Cold)':
-    'Section=combat Note="-4 damage from cold/+4 vs. cold effects"',
+    'Section=combat Note="+4 vs. cold effects/-4 damage from cold"',
   'Environmental Weakness (Cold)':
-    'Section=combat Note="+4 damage from cold/-4 vs. cold effects"',
+    'Section=combat Note="-4 vs. cold effects/+4 damage from cold"',
   'Flight':
     'Section=combat,skill ' +
-    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
+    'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
-  'Half-Folk Luck':'Section=feature Note="+1 Benny each session"',
-  'Hardy':'Section=combat Note="Does not incur wound from 2nd Shaken result"',
+  'Hardy':'Section=combat Note="Does not suffer Wound from 2nd Shaken result"',
   'Heritage':
-    'Section=description Note="+2 Improvement Points (attribute or edge)"',
+    'Section=description Note="+2 Improvement Points (Agility or edge)"',
   'Horns':'Section=combat Note="Horns are a natural weapon"',
-  'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
+  'Immune To Disease':'Section=combat Note="Has immunity to disease"',
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
-    'Note="Half penalties when attacking warm invisible targets"',
+    'Note="Half illumination penalties when attacking warm targets"',
   'Keen Senses':'Section=skill Note="+1 Notice step"',
-  'Keen Senses (Saurian)':'Section=feature Note="Alertness edge"',
+  'Keen Senses (Saurian)':'Section=feature Note="Has Alertness feature"',
   'Leaper':
     'Section=combat,skill ' +
     'Note="+4 damage when leaping during Wild Attack","x2 Jump distance"',
   'Low Light Vision':
     'Section=feature Note="Ignores penalties for dim and dark illumination"',
-  'No Vital Organs':'Section=combat Note="No extra damage from Called Shot"',
+  'Luck (Half-Folk)':'Section=feature Note="+1 Benny each session"',
+  'No Vital Organs':
+    'Section=combat Note="Takes no extra damage from Called Shot"',
   'Pace':'Section=combat Note="+1 Pace/+1 Run step"',
   'Parry':'Section=combat Note="+1 Parry"',
   'Poisonous Touch':
@@ -959,7 +960,7 @@ SWADE.FEATURES = {
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
     'Section=combat ' +
-    'Note="Normal Pace on vertical surfaces, %{pace//2} on inverted"'
+    'Note="May move full Pace on vertical surfaces, half Pace on inverted"'
 
 };
 SWADE.GOODIES = {
@@ -1198,7 +1199,7 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target suffers Shaken (Raise 1 wound), returns to native plane if incapacitated (Spirit neg)"',
+      '"Target suffers Shaken (Raise 1 Wound; Spirit neg), returns to native plane if incapacitated"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1208,7 +1209,7 @@ SWADE.POWERS = {
       '"+1 PP Barrier has +2 hardness",' +
       '"+2 PP Shapes barrier",' +
       '"+1 PP Creates 10\\"x2\\" barrier" ' +
-    'Description="Creates a 5\\" long by 1\\" high wall for 5 rd"',
+    'Description="Creates a 5\\" long by 1\\" high wall w/hardness 10 for 5 rd"',
   'Beast Friend':
     'Advances=0 ' +
     'PowerPoints=1/Size ' +
@@ -1221,7 +1222,7 @@ SWADE.POWERS = {
     'PowerPoints=3 ' +
     'Range=smarts*2 ' +
     'Modifier=' +
-      '"+1 PP 3\\" radius",' +
+      '"+0/+1 PP 1\\"/3\\" radius",' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)" ' +
     'Description="2\\" radius inflicts 2d6 damage (Raise 3d6)"',
   'Blind':
@@ -1248,15 +1249,15 @@ SWADE.POWERS = {
       '"+1 PP/additional target",' +
       '"+1 PP Spirit-2" ' +
     'Description=' +
-      '"Target gains +1 trait step (Raise +2) for 5 rd or suffers -1 trait step (Raise -2) (Spirit recovers 1 step each rd)"',
+      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step (Raise all) each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Allows merging into stone" ' +
-    'Description="Allows target to merge into earth for 5 rd"',
+      '"+1 PP Allows burrowing through stone" ' +
+    'Description="Allows target to merge into earth and move half Pace (Raise full) for 5 rd"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1303,7 +1304,7 @@ SWADE.POWERS = {
       '"+1/+2 PP 2\\"/3\\" radius",' +
       '"+1 PP <i>Detect</i>-2" ' +
     'Description=' +
-      '"Target can detect supernatural effects for 5 rd or conceals target aura for 1 hr (<i>Detect</i> neg)"',
+      '"Target can detect supernatural effects (Raise also type) for 5 rd or conceals target aura (<i>Detect</i> neg) for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1311,25 +1312,25 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Allows changing size by 2 steps" ' +
-    'Description="Target assumes another\'s appearance for 10 min"',
+    'Description="Target assumes another\'s appearance (familiar Notice-2 sees through (Raise Notice-4)) for 10 min"',
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)"' +
-    'Description="Ends targeted power (Arcane skill neg, +2 if types differ)"',
+    'Description="Ends targeted power (Casting suffers -2 if backgrounds differ; opposed arcane skill neg)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Range=self ' +
     'Description=' +
-      '"5 min contact with otherworld force grants arcane skill roll to gain information"',
+      '"1 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=8 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
-    'Description="Drains 1d6 Power Points (Raise adds drained Power Points to self) (Spirit neg, +2 if types differ)"',
+    'Description="Drains 1d6 Power Points (Cast suffers -2 if backgrounds differ; Raise adds drained Power Points to self; Spirit neg)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1339,7 +1340,7 @@ SWADE.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=smarts ' +
-    'Description="Self learns target emotions and surface thoughts, gains +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
+    'Description="Self learns target emotions and surface thoughts, gaining +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1355,7 +1356,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Target gains protection from hazards for 1 hr"',
+      '"Target gains protection from hazards and -4 damage from like sources (Raise -6) for 1 hr"',
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1371,7 +1372,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description=' +
-      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg)"',
+      '"Target Extra flees, Wild Card rolls on fear table (Spirit neg; Raise Spirit-2, fear table +2)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
@@ -1393,16 +1394,16 @@ SWADE.POWERS = {
       '"+1 PP 3\\" radius",' +
       '"+1 PP Strength-2" ' +
     'Description=' +
-      '"Distracts and throws creatures in 2\\" radius or 9\\" cone 2d6\\" (Strength neg)"',
+      '"Distracts and throws 2d6\\" creatures in 2\\" radius or 9\\" cone (Strength neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"+10 PP Restores older wound",' +
+      '"+10 PP Restores older Wound",' +
       '"+20 PP Heals crippling injury",' +
       '"+1 PP Neutralizes poison or disease" ' +
-    'Description="Restores 1 wound (Raise 2) suffered in past hr"',
+    'Description="Restores 1 Wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1410,13 +1411,13 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Illusion includes sound",' +
       '"+2 PP Smarts-2" ' +
-    'Description="Creates 2\\" radius visual illusion (Smarts neg) for 5 rd"',
+    'Description="Creates 2\\" radius visual illusion (Smarts neg; Raise Smarts-2) for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Target becomes unaffected by physical world for 5 rd (Spirit neg)"',
+      '"Target becomes unaffected by physical world (Spirit neg) for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
@@ -1424,14 +1425,14 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+3 PP/additional target" ' +
     'Description=' +
-      '"Target becomes invisible, foes -4 sight-based actions (Raise -6) for 5 rd"',
+      '"Target becomes invisible; foes suffer -4 sight-based actions (Raise -6) for 5 rd"',
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP Attaches to object or moves effect %{arcaneSkill}\\"/rd" ' +
-    'Description="Creates 3\\" radius bright light or darkness for 10 min"',
+    'Description="Creates 3\\" radius (Raise or 5\\" beam) bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1439,7 +1440,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Two targets communicate up to 1 mile telepathically (Raise 5 miles) for 30 min"',
+      '"Two targets may communicate up to 1 mile telepathically (Raise 5 miles) for 30 min; Wound to one shakes the other (Smarts neg)"',
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1452,7 +1453,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Edits memory",' +
       '"+2 PP Activate power as an action" ' +
-    'Description="Target forgets up to 30 min event (Smarts neg) after 1 min activation"',
+    'Description="Target forgets up to 30 min (Raise several hour) event (Smarts neg) after 1 min activation"',
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1477,7 +1478,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+2 PP/additional target" ' +
     'Description=' +
-      '"Target obeys self (Raise complete control) for 5 rd (Spirit neg)"',
+      '"Target obeys self (Raise complete control; Spirit neg) for 5 rd"',
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1493,32 +1494,32 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+5 PP Raises 10 yr corpse" ' +
     'Description=' +
-      '"Successful -8 casting roll returns 1 yr corpse to life with 3 wounds and 2 fatigue (Raise 0 wounds)"',
+      '"Successful -8 casting roll returns 1 yr corpse to life with 3 Wounds and 2 fatigue (Raise 0 Wounds)"',
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=3+ ' +
     'Range=self ' +
     'Modifier=' +
       '"+1 PP Allows speech while changed" ' +
-    'Description="transforms into animal form for 5 rd"',
+    'Description="transforms into animal form (Raise +1 Strength and Vigor) for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
-      '"+1 PP/additional target",' +
-      '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+2 PP Reduces target multi-action penalty by 2",' +
-      '"+1 PP Spirit-2" ' +
+      '"+1 PP/additional Speed target",' +
+      '"+2/+3 PP Sloth slows all in 2\\"/3\\" radius",' +
+      '"+2 PP Speed reduces target multi-action penalty by 2",' +
+      '"+1 PP Sloth Spirit-2" ' +
     'Description=' +
-      '"Target gains dbl Pace for 5 rd or suffers half Pace (Spirit ends)"',
+      '"Target suffers half Pace (Raise movement is an action; Spirit ends) or gains dbl Pace (Raise ignores -2 running penalty) for 5 rd"',
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
-    'Description="Target sleeps for 1 hr (Spirit neg)"',
+    'Description="Target sleeps (Spirit neg; Raise Spirit-2) for 1 hr"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1531,8 +1532,9 @@ SWADE.POWERS = {
     'PowerPoints=1 ' +
     'Range=smarts*5 ' +
     'Modifier=' +
-      '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
-      '"1 PP/target (Spirit neg)" ' +
+      '"+1 PP May move effect %{arcaneSkill}\\"/rd",' +
+      '"+0 PP Affects target (Spirit neg)",' +
+      '"+1 PP/additional targets" ' +
     'Description=' +
       '"Creates sound up to shout (Smarts neg) or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
   'Speak Language':
@@ -1548,7 +1550,7 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
-    'Description="Stuns target (Vigor neg)"',
+    'Description="Stuns target (Vigor neg; Raise Vigor-2)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2+ ' +
@@ -1557,13 +1559,14 @@ SWADE.POWERS = {
       '"+1 PP Servant can bite/claw for Str+d6 damage",' +
       '"+2 PP Servant has fly Pace 12",' +
       '"+1 PP Self can use servant\'s senses" ' +
-    'Description="Creates obedient servant for 5 rd"',
+    'Description=' +
+      '"Creates obedient servant (Raise servant may take 1 Wound) for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=smarts*2 ' +
     'Description=' +
-      '"Moves items remotely as Strength d10 (Raise d12) for 5 rd (Spirit neg)"',
+      '"Moves items remotely as Strength d10 (Raise d12; Spirit neg) for 5 rd"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1586,10 +1589,10 @@ SWADE.POWERS = {
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
-    'Description="Target gains combat edge effects for 5 rd"',
+    'Description="Target gains combat edge effects (Raise improved version) for 5 rd"',
   'Zombie':
     'Advances=8 ' +
-    'PowerPoints=3 ' +
+    'PowerPoints=3+ ' +
     'Range=smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
@@ -1597,56 +1600,43 @@ SWADE.POWERS = {
       '"+1 PP Target has 2 Armor points",' +
       '"+1 PP Self can use target senses" ' +
     'Description=' +
-      '"Animates and controls corpse for 1 hr or store PP for permanent"'
+      '"Animates and controls corpse for 1 hr or stores PP for permanent"'
 };
 SWADE.RACES = {
   'Android':
     'Features=' +
-      'Construct,"Outsider+","Pacifist+","Vow+" ' +
-    'Languages=Android',
+      'Construct,"Outsider+","Pacifist+","Vow+"',
   'Aquarian':
     'Features=' +
-      'Aquatic,Dependency,"Low Light Vision",Toughness ' +
-    'Languages=Aquarian',
+      'Aquatic,Dependency,"Low Light Vision",Toughness',
   'Avion':
     'Features=' +
-      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace" ' +
-    'Languages=Avion',
+      '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace"',
   'Dwarf':
     'Features=' +
-      '"Low Light Vision","Reduced Pace",Tough ' +
-    'Languages=Dwarf',
+      '"Low Light Vision","Reduced Pace",Tough',
   'Elf':
     'Features=' +
-      'Agile,"All Thumbs","Low Light Vision" ' +
-    'Languages=Elf',
+      'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
     'Features=' +
-      'Heritage,"Low Light Vision",Outsider ' +
-    'Languages=Elf,Human',
+      'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
     'Features=' +
-      '"Half-Folk Luck","Reduced Pace","Size -1",Spirited ' +
-    'Languages=Half-Folk',
+      '"Luck (Half-Folk)","Reduced Pace","Size -1",Spirited',
   'Human':
     'Features=' +
-      'Adaptable ' +
-    'Languages=Human',
+      'Adaptable',
   'Rakashan':
     'Features=' +
       'Agile,Bite,Claws,Bloodthirsty+,"Can\'t Swim","Low Light Vision",' +
-      '"Racial Enemy" ' +
-    'Languages=Rakashan',
+      '"Racial Enemy"',
   'Saurian':
     'Features=' +
       '"Armor +2",Bite,"Environmental Weakness (Cold)",' +
-      '"Keen Senses (Saurian)",Outsider ' +
-    'Languages=Saurian'
+      '"Keen Senses (Saurian)",Outsider'
 };
 SWADE.LANGUAGES = {};
-for(let r in SWADE.RACES) {
-  SWADE.LANGUAGES[r] = '';
-}
 SWADE.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
@@ -1700,7 +1690,7 @@ SWADE.WEAPONS = {
   'Hand Axe':'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
   'Battle Axe':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=1h AP=2',
   'Great Axe':
-    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1',
+    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1 AP=2',
   'Light Club':
     'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
   'Heavy Club':
@@ -1716,7 +1706,7 @@ SWADE.WEAPONS = {
   'Javelin':
     'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
   'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
+  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=2',
   'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
   'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=2h',
   'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
@@ -1760,13 +1750,13 @@ SWADE.WEAPONS = {
     'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
   'Long Bow':
     'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
-  'Net':'Era=Medieval Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
+  'Net':'Era=Medieval Damage=None MinStr=4 Weight=8 Category=R Range=3',
   'Sling':
     'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
   'Compound Bow':
-    'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
+    'Era=Modern Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
   'Crossbow':
-    'Era=Medieval Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
+    'Era=Modern Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
   'Flintlock Pistol':
     'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
   'Brown Bess':
@@ -2413,6 +2403,8 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '-2',
       'combatNotes.improvedArcaneResistance', '+', '-2'
     );
+  } else if(name == 'Assassin') {
+    rules.defineRule('combatNotes.assassin', '', '=', '2');
   } else if(name == 'Attractive') {
     rules.defineRule('skillNotes.attractive',
       '', '=', '1',
@@ -2585,7 +2577,7 @@ SWADE.edgeRulesExtra = function(rules, name) {
   }
 };
 
-/* Defines in #rules# the rules associated with language #name#. */
+/* Defines in #rules# the rules associated with era #name#. */
 SWADE.eraRules = function(rules, name) {
   if(!name) {
     console.log('Empty era name');
@@ -2618,6 +2610,10 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     return;
   }
 
+  // Test for QR.wVCS (v2.4 feature) for backward compatibility
+  if(QuilvynRules.wrapVarsContainingSpace)
+    notes = notes.map(x => QuilvynRules.wrapVarsContainingSpace(x));
+
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
@@ -2626,7 +2622,12 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     let section = sections[i];
     let effects = notes[i];
     let matchInfo;
+    let maxSubnote =
+      effects.includes('%1') ? effects.match(/%\d/g).sort().pop().replace('%') - 0 : 0;
     let note = section + 'Notes.' + prefix;
+    let priorInSection = sections.slice(0, i).filter(x => x == section).length;
+    if(priorInSection > 0)
+      note += '-' + priorInSection;
 
     rules.defineChoice('notes', note + ':' + effects);
     rules.defineRule
@@ -2648,7 +2649,24 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         continue;
 
       let adjust = matchInfo[1];
-      let adjusted = matchInfo[4];
+      let adjusted = matchInfo[4]=='Armor' ? 'Armor Toughness' : matchInfo[4];
+
+      // Support +%{expr} by evaling expr for each id it contains
+      if(adjust.match(/%{/)) {
+        let expression = adjust.substring(3, adjust.length - 1);
+        let sn = ++maxSubnote;
+        rules.defineRule(note + '.' + sn, 'features.' + name, '?', null);
+        new Expr(expression).identifiers().forEach(id => {
+          if(expression.trim() == id)
+            rules.defineRule(note + '.' + sn, id, '=', null);
+          else
+            rules.defineRule(note + '.' + sn, id,
+              '=', 'new Expr("' + expression + '").eval(dict)'
+            );
+        });
+        adjust = '%' + sn;
+      }
+
       let adjuster =
         adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
       let op = adjust.startsWith('x') ? '*' : '+';
@@ -2755,7 +2773,7 @@ SWADE.languageRules = function(rules, name) {
     console.log('Empty language name');
     return;
   }
-  // No rules pertain to language
+  SWADE.skillRules(rules, 'Language (' + name + ')', 'smarts', false, []);
 };
 
 /*
@@ -2779,9 +2797,6 @@ SWADE.powerRules = function(
   if(!powerPoints) {
     console.log('Bad powerPoints "' + powerPoints + '" for power ' + name);
   }
-  if(!range) {
-    console.log('Empty range for power ' + name);
-  }
   if(!description) {
     console.log('Empty description for power ' + name);
   }
@@ -2791,19 +2806,27 @@ SWADE.powerRules = function(
   if(!Array.isArray(modifiers)) {
     console.log('Bad modifiers "' + modifiers + '" for power ' + name);
   }
-  if((range+'').match(/^(self|sight|touch)$/i))
-    range =
-      'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase();
+  if(!range)
+    range = '';
+  else if((range+'').match(/^\d+$/))
+    range = 'R' + range + '" ';
+  else if(range.match(/\b(agility|smarts|spirit|strength|vigor)\b/))
+    range = 'R%{' + range + '}" ';
+  else if(range.match(/^(self|sight|special|touch)$/i))
+    range = 'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase() + ' ';
   else
-    range = 'R%{' + range + '}"';
-  // Not presently including advances in power description
+    range = 'R' + range + ' ';
+  // NOTE: Not presently including advances in power description
+  // NOTE: Test for QR.wVCS (v2.4 feature) for backward compatibility
+  if(QuilvynRules.wrapVarsContainingSpace)
+    description = QuilvynRules.wrapVarsContainingSpace(description);
   let powerAttrs = powerPoints + ' PP';
   if(school)
     powerAttrs += ' ' + school.substring(0, 4);
   if(modifiers.length > 0)
-    description += ' (' + modifiers.map(x => x.replace(/(^\+?\d[^P]*PP)/, '<b>$1</b>')).join('; ') + ')';
+    description += ' (' + modifiers.map(x => x.replace(/(\+?\d+(\/\+?\d+)* PP)/, '<b>$1</b>')).join('; ') + ')';
   rules.defineChoice
-    ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + ' ' + description);
+    ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + description);
 };
 
 /*
@@ -2862,7 +2885,9 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-  if(name == 'Half-Elf') {
+  if(name == 'Avion') {
+    rules.defineRule('combatNotes.flight', 'avionAdvances', '=', '12');
+  } if(name == 'Half-Elf') {
     rules.defineRule
       ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
   } else if(name == 'Saurian') {
@@ -3005,7 +3030,7 @@ SWADE.weaponRules = function(
     return;
   }
   let matchInfo = (damage + '').match(/^((Str\+)?((\d*)d\d+)([\-+]\d+)?)$/i);
-  if(!matchInfo) {
+  if(!matchInfo && damage != 'None') {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
@@ -3034,11 +3059,12 @@ SWADE.weaponRules = function(
 
   let isRanged = category.match(/^(r|ranged)$/i);
 
-  damage = matchInfo[1];
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   let weaponName = 'weapons.' + name;
-  let format = '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') + ')';
+  let format =
+    '%V (%1%2%3%4%5' + (range ? ' R%6"' : '') +
+    (armorPiercing ? ' AP ' + armorPiercing : '') + ')';
   let strDamage = damage.startsWith('Str+');
   if(strDamage)
     damage = damage.substring(4);
@@ -4025,12 +4051,6 @@ SWADE.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn assumes that every race has its own language and that\n' +
-    '    half-elf characters know both Elf and Human.\n' +
-    '  </li><li>\n' +
-    '    Common power modifiers (Lingering Damage, Selective, etc.) are not\n' +
-    '    included in power descriptions\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
