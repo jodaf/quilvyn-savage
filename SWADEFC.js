@@ -286,7 +286,7 @@ SWADEFC.ARCANAS = {
       'Scrying,"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
       'Stun,"Summon Ally",Telekinesis,Teleport,"Time Stop","Wall Walker",' +
       '"Warrior\'s Gift",Wish,Zombie',
-  'Cold Domain':
+  'Cleric (Cold Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Barrier,"Beast Friend",Blast,Blessing,Bolt,' +
@@ -296,7 +296,7 @@ SWADEFC.ARCANAS = {
       'Invisibility,Light/Darkness,"Mystic Intervention",Protection,' +
       'Sanctuary,"Shape Change",Sloth/Speed,Slumber,Smite,Sound/Silence,' +
       'Stun,"Summon Ally",Teleport,"Warrior\'s Gift",Zombie',
-  'Death Domain':
+  'Cleric (Death Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Banish,Barrier,Blast,Blind,Bolt,' +
@@ -307,7 +307,7 @@ SWADEFC.ARCANAS = {
       'Protection,Resurrection,Sanctuary,Sloth/Speed,Slumber,Smite,' +
       'Sound/Silence,Stun,"Summon Ally","Summon Monster","Summon Undead",' +
       'Teleport,"Warrior\'s Gift",Zombie',
-  'Life Domain':
+  'Cleric (Life Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Banish,Barrier,"Beast Friend",Blessing,' +
@@ -317,7 +317,7 @@ SWADEFC.ARCANAS = {
       'Light/Darkness,"Mystic Intervention",Protection,Relief,Resurrection,' +
       'Sanctuary,Sloth/Speed,Slumber,Smite,Sound/Silence,"Speak Language",' +
       'Stun,"Summon Ally","Summon Animal","Warrior\'s Gift"',
-  'Justice Domain':
+  'Cleric (Justice Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Projection",Banish,Blast,Blind,Bolt,"Boost/Lower Trait",Burst,' +
@@ -326,7 +326,7 @@ SWADEFC.ARCANAS = {
       'Empathy,Farsight,Fly,Havoc,Healing,Invisibility,Light/Darkness,' +
       '"Mind Reading","Object Reading","Mystic Intervention",Protection,' +
       'Sanctuary,Sloth/Speed,Smite,Sound/Silence,"Speak Language",Stun',
-  'Knowledge Domain':
+  'Cleric (Knowledge Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Banish,Barrier,Blessing,Blind,"Boost/Lower Trait",' +
@@ -335,7 +335,7 @@ SWADEFC.ARCANAS = {
       '"Mind Link","Mind Reading","Mind Wipe","Mystic Intervention",' +
       '"Object Reading",Protection,Sanctuary,Slumber,Sound/Silence,' +
       '"Speak Language",Stun,"Summon Ally"',
-  'Moon Domain':
+  'Cleric (Moon Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection","Beast Friend",Blessing,Blind,Bolt,' +
@@ -345,7 +345,7 @@ SWADEFC.ARCANAS = {
       'Illusion,Intangibility,Invisibility,Light/Darkness,' +
       '"Mystic Intervention",Puppet,Relief,Sanctuary,"Shape Change",' +
       'Sloth/Speed,Slumber,Sound/Silence,Stun',
-  'Nature Domain':
+  'Cleric (Nature Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Barrier,"Beast Friend",Blessing,Bolt,' +
@@ -355,7 +355,7 @@ SWADEFC.ARCANAS = {
       'Healing,"Mystic Intervention",Protection,Relief,Sanctuary,' +
       '"Shape Change",Sloth/Speed,Smite,Sound/Silence,Stun,"Summon Animal",' +
       '"Summon Monster","Wall Walker","Warrior\'s Gift"',
-  'Sea Domain':
+  'Cleric (Sea Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection","Beast Friend",Blast,Bolt,"Boost/Lower Trait",' +
@@ -364,7 +364,7 @@ SWADEFC.ARCANAS = {
       'Light/Darkness,"Mystic Intervention",Protection,Relief,Sanctuary,' +
       '"Shape Change",Sloth/Speed,Smite,Sound/Silence,"Summon Ally",' +
       '"Summon Animal"',
-  'Sun Domain':
+  'Cleric (Sun Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Banish,Blast,Blessing,Blind,Bolt,' +
@@ -373,7 +373,7 @@ SWADEFC.ARCANAS = {
       '"Environmental Protection",Fear,Fly,Havoc,Healing,Illusion,' +
       'Light/Darkness,"Mystic Intervention",Protection,Relief,Resurrection,' +
       'Sanctuary,Sloth/Speed,Smite,Stun',
-  'Thievery Domain':
+  'Cleric (Thievery Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Barrier,Blessing,Blind,"Boost/Lower Trait",' +
@@ -382,7 +382,7 @@ SWADEFC.ARCANAS = {
       'Healing,Illusion,Intangibility,Invisibility,Light/Darkness,' +
       '"Object Reading",Protection,Sanctuary,Sloth/Speed,Slumber,' +
       'Sound/Silence,"Speak Language","Wall Walker"',
-  'War Domain':
+  'Cleric (War Domain)':
     'Skill=Faith ' +
     'Powers=' +
       '"Arcane Protection",Barrier,Blast,Bolt,"Boost/Lower Trait",Burst,' +
@@ -1402,8 +1402,9 @@ SWADEFC.POWER_CHANGES = {
       '"+0/+1 PP Immaterial/material barrier inflicts 2d4 damage",' +
       '"+1 PP Barrier has hardness 12 (Raise 14)",' +
       '"+1 PP Shapes barrier",' +
-      '"+1 PP Creates 10\\"x2\\" barrier",' +
-      '"Epic +1/+2 PP Immaterial/material barrier inflicts 2d6 damage"',
+      '"+1 PP Dbl dimensions",' +
+      '"Epic +1/+2 PP Immaterial/material barrier inflicts 2d6 damage" ' +
+    'Description="Creates a 5\\" long (Raise 10\\") by 1\\" high wall w/hardness 10 for 5 rd"',
   'Beast Friend':
     'Modifier=' +
       '"+1 PP Duration 30 min",' +
@@ -1427,7 +1428,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+2 PP/additional target",' +
       '"+1 PP Spirit-2",' +
-      '"Epic +2 PP Free Trait reroll 1/rd or -2 affected Trait"',
+      '"Epic +2 PP Free reroll of affected Trait 1/rd or -2 affected Trait"',
   'Burst':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1455,7 +1456,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP/lb Daily food",' +
       '"+1 PP/lb Lasts until dispelled" ' +
     'Description=' +
-      '"1 hr process creates mundane item for 1 hr"',
+      '"Creates mundane item for 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
@@ -1467,13 +1468,14 @@ SWADEFC.POWER_CHANGES = {
   'Damage Field':
     'Modifier=' +
       '"+2 PP 2\\" radius",' +
-      '"+2 PP Move area of effect %{smarts}\\"/rd",' +
+      '"+2 PP May move area of effect %{smarts}\\"/rd",' +
       '"Epic +4 PP Inflicts 3d6 damage as Heavy Weapon"',
   'Darksight':
     'Modifier=' +
       '"Epic +2 PP Ignores all illumination penalties and 4 points from invisible creatures"',
-  'Deflection':
-    'PowerPoints=2',
+  'Deflection':SWADE.POWERS.Deflection + ' ' +
+    'PowerPoints=2 ' +
+    'Description="Foes suffer -2 on choice of ranged or melee attacks (Raise both) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Modifier=' +
       '"+1 PP Detect supernatural good or evil",' +
@@ -1482,7 +1484,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius",' +
       '"+3 PP Affects all active powers",' +
-      '"Epic +8 PP Affects all in 2\\" radius around self, summoned creatures take 1 Wound/rd (Spirit neg)"',
+      '"Epic +8 PP Affects all in 2\\" radius around self for 5 rd, summoned creatures take 1 Wound/rd (Spirit neg)"',
   'Divination':
     'Modifier=' +
       '"Epic +3 PP on sacred ground gives advice"',
@@ -1513,15 +1515,17 @@ SWADEFC.POWER_CHANGES = {
       '"+2 PP Hardness 10",' +
       '"Epic +1 Inflicts 2d6 damage" ' +
     'Description="Restrains target (Raise binds; Athletics or breaking Hardness 8 frees)"',
-  'Environmental Protection':
+  'Environmental Protection':SWADE.POWERS['Environmental Protection'] + ' ' +
     'Modifier=' +
-      '"+1 PP Reduces environmental damage by 4 (Raise 6)"',
+      '"+1 PP/additional target",' +
+      '"+1 PP Reduces environmental damage by 4 (Raise 6)" ' +
+    'Description=' +
+      '"Target gains protection from hazards for 1 hr (Raise 8 hr)"',
   'Farsight':
     'Modifier=' +
       '"Epic +2 PP Removes all range penalties (Raise dbl sight range)"',
   'Fear':
     'Modifier=' +
-      '"+2/+2/+3 PP Affects 1\\"/2\\"/3\\" radius",' +
       '"Epic +2 PP Spirit-2 (Raise Spirit-4)"',
   'Fly':
     'Modifier=' +
@@ -1529,12 +1533,12 @@ SWADEFC.POWER_CHANGES = {
   'Growth/Shrink':
     'Modifier=' +
       '"Epic +2 Lasts 5 min",' +
-      '"Skink retains Toughness and Strength"',
+      '"Epic +2 Shink retains Toughness and Strength"',
   'Havoc':SWADE.POWERS.Havoc
-    .replace('radius', 'radius, 12\\" stream,') + ' ' +
+    .replace('radius or', 'radius, 12\\" stream, or') + ' ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
-      '"Epic +2 PP Throws 3d6\\"',
+      '"Epic +2 PP Throws 3d6\\""',
   'Healing':
     'Modifier=' +
       '"Epic +2/+3 PP Affects 2\\"/3\\" radius"',
