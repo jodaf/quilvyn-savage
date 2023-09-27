@@ -67,12 +67,12 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.3.0';
+SWADE.VERSION = '2.3.3.1';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Goody',
-  'Hindrance', 'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
+  'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Hindrance',
+  'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -101,18 +101,19 @@ SWADE.ATTRIBUTES = {
 };
 SWADE.ARMORS = {
 
-  'None':'Area=Body Armor=0 MinStr=0 Weight=0',
+  'None':
+    'Era=Ancient,Medieval,Modern,Future Area=Body Armor=0 MinStr=0 Weight=0',
 
-  'Cloth Jacket':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=5',
-  'Cloth Robes':'Era=Medieval Area=Torso Armor=1 MinStr=4 Weight=8',
+  'Cloth Jacket':'Era=Medieval Area=Torso,Arms Armor=1 MinStr=4 Weight=5',
+  'Cloth Robes':'Era=Medieval Area=Torso,Arms,Legs Armor=1 MinStr=4 Weight=8',
   'Cloth Leggings':'Era=Medieval Area=Legs Armor=1 MinStr=4 Weight=5',
   'Cloth Cap':'Era=Medieval Area=Head Armor=1 MinStr=4 Weight=1',
 
-  'Leather Jacket':'Era=Medieval Area=Torso Armor=2 MinStr=6 Weight=8',
+  'Leather Jacket':'Era=Medieval Area=Torso,Arms Armor=2 MinStr=6 Weight=8',
   'Leather Leggings':'Era=Medieval Area=Legs Armor=2 MinStr=6 Weight=7',
   'Leather Cap':'Era=Medieval Area=Head Armor=2 MinStr=6 Weight=1',
 
-  'Chain Shirt':'Era=Medieval Area=Torso Armor=3 MinStr=8 Weight=25',
+  'Chain Shirt':'Era=Medieval Area=Torso,Arms Armor=3 MinStr=8 Weight=25',
   'Chain Leggings':'Era=Medieval Area=Legs Armor=3 MinStr=8 Weight=10',
   'Chain Hood':'Era=Medieval Area=Head Armor=3 MinStr=8 Weight=4',
 
@@ -126,10 +127,10 @@ SWADE.ARMORS = {
   'Plate Greaves':'Era=Medieval Area=Legs Armor=4 MinStr=10 Weight=10',
   'Plate Heavy Helm':'Era=Medieval Area=Head Armor=4 MinStr=10 Weight=8',
 
-  'Thick Coat':'Era=Victorian,Modern Area=Torso Armor=1 MinStr=4 Weight=5',
-  'Leather Chaps':'Era=Victorian,Modern Area=Legs Armor=1 MinStr=4 Weight=5',
-  'Kevlar Jacket':'Era=Modern Area=Torso Armor=2 MinStr=4 Weight=8',
-  'Kevlar Jeans':'Era=Modern Area=Legs Armor=2 MinStr=4 Weight=4',
+  'Thick Coat':'Era=Modern Area=Torso,Arms Armor=1 MinStr=4 Weight=5',
+  'Leather Riding Chaps':'Era=Modern Area=Legs Armor=1 MinStr=4 Weight=5',
+  'Kevlar Riding Jacket':'Era=Modern Area=Torso,Arms Armor=2 MinStr=4 Weight=8',
+  'Kevlar Riding Jeans':'Era=Modern Area=Legs Armor=2 MinStr=4 Weight=4',
   'Bike Helmet':'Era=Modern Area=Head Armor=2 MinStr=4 Weight=1',
   'Motorcycle Helmet':'Era=Modern Area=Head Armor=3 MinStr=4 Weight=3',
 
@@ -138,10 +139,12 @@ SWADE.ARMORS = {
   'Kevlar Vest With Ceramic Inserts':
      'Era=Modern Area=Torso Armor=4 MinStr=8 Weight=17',
   'Kevlar Helmet':'Era=Modern Area=Head Armor=4 MinStr=4 Weight=5',
-  'Bombproof Suit':'Era=Modern Area=Torso Armor=10 MinStr=12 Weight=80',
+  'Bombproof Suit':
+    'Era=Modern Area=Torso,Arms,Legs Armor=10 MinStr=12 Weight=80',
 
-  'Body Armor':'Era=Future Area=Torso Armor=4 MinStr=4 Weight=4',
-  'Infantry Battle Suit':'Era=Future Area=Torso Armor=6 MinStr=6 Weight=12',
+  'Body Armor':'Era=Future Area=Torso,Arms,Legs Armor=4 MinStr=4 Weight=4',
+  'Infantry Battle Suit':
+    'Era=Future Area=Torso,Arms,Legs Armor=6 MinStr=6 Weight=12',
   'Battle Helmet':'Era=Future Area=Head Armor=6 MinStr=6 Weight=2'
 
 };
@@ -203,101 +206,101 @@ SWADE.DEITIES = {
 };
 SWADE.EDGES = {
   // Background
-  'Alertness':'Type=background',
-  'Ambidextrous':'Type=background Require="agility >= 8"',
-  'Arcane Background (Gifted)':'Type=background',
-  'Arcane Background (Magic)':'Type=background',
-  'Arcane Background (Miracles)':'Type=background',
-  'Arcane Background (Psionics)':'Type=background',
-  'Arcane Background (Weird Science)':'Type=background',
-  'Arcane Resistance':'Type=background Require="spirit >= 8"',
+  'Alertness':'Type=Background',
+  'Ambidextrous':'Type=Background Require="agility >= 8"',
+  'Arcane Background (Gifted)':'Type=Background',
+  'Arcane Background (Magic)':'Type=Background',
+  'Arcane Background (Miracles)':'Type=Background',
+  'Arcane Background (Psionics)':'Type=Background',
+  'Arcane Background (Weird Science)':'Type=Background',
+  'Arcane Resistance':'Type=Background Require="spirit >= 8"',
   'Improved Arcane Resistance':
-    'Type=background Require="features.Arcane Resistance"',
-  'Aristocrat':'Type=background',
-  'Attractive':'Type=background Require="vigor >= 6"',
-  'Very Attractive':'Type=background Require="features.Attractive"',
-  'Berserk':'Type=background',
-  'Brave':'Type=background Require="spirit >= 6"',
-  'Brawny':'Type=background Require="strength >= 6","vigor >= 6"',
-  'Brute':'Type=background Require="strength >= 6","vigor >= 6"',
-  'Charismatic':'Type=background Require="spirit >= 8"',
-  'Elan':'Type=background Require="spirit >= 8"',
-  'Fame':'Type=background',
-  'Famous':'Type=background Require="advances >= 4","features.Fame"',
-  'Fast Healer':'Type=background Require="vigor >= 8"',
-  'Fleet-Footed':'Type=background Require="agility >= 6"',
-  'Linguist':'Type=background Require="smarts >= 6"',
-  'Luck':'Type=background',
-  'Great Luck':'Type=background Require="features.Luck"',
-  'Quick':'Type=background Require="agility >= 8"',
-  'Rich':'Type=background',
-  'Filthy Rich':'Type=background Require="features.Rich"',
+    'Type=Background Require="features.Arcane Resistance"',
+  'Aristocrat':'Type=Background',
+  'Attractive':'Type=Background Require="vigor >= 6"',
+  'Very Attractive':'Type=Background Require="features.Attractive"',
+  'Berserk':'Type=Background',
+  'Brave':'Type=Background Require="spirit >= 6"',
+  'Brawny':'Type=Background Require="strength >= 6","vigor >= 6"',
+  'Brute':'Type=Background Require="strength >= 6","vigor >= 6"',
+  'Charismatic':'Type=Background Require="spirit >= 8"',
+  'Elan':'Type=Background Require="spirit >= 8"',
+  'Fame':'Type=Background',
+  'Famous':'Type=Background Require="advances >= 4","features.Fame"',
+  'Fast Healer':'Type=Background Require="vigor >= 8"',
+  'Fleet-Footed':'Type=Background Require="agility >= 6"',
+  'Linguist':'Type=Background Require="smarts >= 6"',
+  'Luck':'Type=Background',
+  'Great Luck':'Type=Background Require="features.Luck"',
+  'Quick':'Type=Background Require="agility >= 8"',
+  'Rich':'Type=Background',
+  'Filthy Rich':'Type=Background Require="features.Rich"',
   // Combat
-  'Block':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
-  'Improved Block':'Type=combat Require="advances >= 8","features.Block"',
-  'Brawler':'Type=combat Require="strength >= 8","vigor >= 8"',
-  'Bruiser':'Type=combat Require="advances >= 4","features.Brawler"',
-  'Calculating':'Type=combat Require="smarts >= 8"',
-  'Combat Reflexes':'Type=combat Require="advances >= 4"',
-  'Counterattack':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
+  'Block':'Type=Combat Require="advances >= 4","skills.Fighting >= 8"',
+  'Improved Block':'Type=Combat Require="advances >= 8","features.Block"',
+  'Brawler':'Type=Combat Require="strength >= 8","vigor >= 8"',
+  'Bruiser':'Type=Combat Require="advances >= 4","features.Brawler"',
+  'Calculating':'Type=Combat Require="smarts >= 8"',
+  'Combat Reflexes':'Type=Combat Require="advances >= 4"',
+  'Counterattack':'Type=Combat Require="advances >= 4","skills.Fighting >= 8"',
   'Improved Counterattack':
-    'Type=combat Require="advances >= 8","features.Counterattack"',
+    'Type=Combat Require="advances >= 8","features.Counterattack"',
   'Dead Shot':
-    'Type=combat Require="skills.Athletics >= 8 || skills.Shooting >= 8"',
-  'Dodge':'Type=combat Require="advances >= 4","agility >= 8"',
-  'Improved Dodge':'Type=combat Require="advances >= 4","features.Dodge"',
-  'Double Tap':'Type=combat Require="advances >= 4","skills.Shooting >= 6"',
-  'Extraction':'Type=combat Require="agility >= 8"',
+    'Type=Combat Require="skills.Athletics >= 8 || skills.Shooting >= 8"',
+  'Dodge':'Type=Combat Require="advances >= 4","agility >= 8"',
+  'Improved Dodge':'Type=Combat Require="advances >= 4","features.Dodge"',
+  'Double Tap':'Type=Combat Require="advances >= 4","skills.Shooting >= 6"',
+  'Extraction':'Type=Combat Require="agility >= 8"',
   'Improved Extraction':
-    'Type=combat Require="advances >= 4","features.Extraction"',
-  'Feint':'Type=combat Require="skills.Fighting >= 8"',
-  'First Strike':'Type=combat Require="agility >= 8"',
+    'Type=Combat Require="advances >= 4","features.Extraction"',
+  'Feint':'Type=Combat Require="skills.Fighting >= 8"',
+  'First Strike':'Type=Combat Require="agility >= 8"',
   'Improved First Strike':
-    'Type=combat Require="advances >= 12","features.First Strike"',
-  'Free Runner':'Type=combat Require="agility >= 8","skills.Athletics >= 6"',
-  'Frenzy':'Type=combat Require="advances >= 4","skills.Fighting >= 8"',
-  'Improved Frenzy':'Type=combat Require="advances >= 8","features.Frenzy"',
-  'Giant Killer':'Type=combat Require="advances >= 8"',
-  'Hard To Kill':'Type=combat Require="spirit >= 8"',
+    'Type=Combat Require="advances >= 12","features.First Strike"',
+  'Free Runner':'Type=Combat Require="agility >= 8","skills.Athletics >= 6"',
+  'Frenzy':'Type=Combat Require="advances >= 4","skills.Fighting >= 8"',
+  'Improved Frenzy':'Type=Combat Require="advances >= 8","features.Frenzy"',
+  'Giant Killer':'Type=Combat Require="advances >= 8"',
+  'Hard To Kill':'Type=Combat Require="spirit >= 8"',
   'Harder To Kill':
-    'Type=combat Require="advances >= 8","features.Hard To Kill"',
-  'Improvisational Fighter':'Type=combat Require="advances >= 4","smarts >= 6"',
-  'Iron Jaw':'Type=combat Require="vigor >= 8"',
-  'Killer Instinct':'Type=combat Require="advances >= 4"',
-  'Level Headed':'Type=combat Require="advances >= 4","smarts >= 8"',
+    'Type=Combat Require="advances >= 8","features.Hard To Kill"',
+  'Improvisational Fighter':'Type=Combat Require="advances >= 4","smarts >= 6"',
+  'Iron Jaw':'Type=Combat Require="vigor >= 8"',
+  'Killer Instinct':'Type=Combat Require="advances >= 4"',
+  'Level Headed':'Type=Combat Require="advances >= 4","smarts >= 8"',
   'Improved Level Headed':
-    'Type=combat Require="advances >= 4","features.Level Headed"',
+    'Type=Combat Require="advances >= 4","features.Level Headed"',
   'Marksman':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Require="advances >= 4","skills.Athletics >= 8 || skills.Shooting >= 8"',
-  'Martial Artist':'Type=combat Require="skills.Fighting >= 6"',
+  'Martial Artist':'Type=Combat Require="skills.Fighting >= 6"',
   'Martial Warrior':
-    'Type=combat Require="advances >= 4","features.Martial Artist"',
-  'Mighty Blow':'Type=combat Require="skills.Fighting >= 8"',
-  'Nerves Of Steel':'Type=combat Require="vigor >= 8"',
-  'Improved Nerves Of Steel':'Type=combat Require="features.Nerves Of Steel"',
-  'No Mercy':'Type=combat Require="advances >= 4"',
-  'Rapid Fire':'Type=combat Require="advances >= 4","skills.Shooting >= 6"',
+    'Type=Combat Require="advances >= 4","features.Martial Artist"',
+  'Mighty Blow':'Type=Combat Require="skills.Fighting >= 8"',
+  'Nerves Of Steel':'Type=Combat Require="vigor >= 8"',
+  'Improved Nerves Of Steel':'Type=Combat Require="features.Nerves Of Steel"',
+  'No Mercy':'Type=Combat Require="advances >= 4"',
+  'Rapid Fire':'Type=Combat Require="advances >= 4","skills.Shooting >= 6"',
   'Improved Rapid Fire':
-    'Type=combat Require="advances >= 8","features.Rapid Fire"',
-  'Rock And Roll':'Type=combat Require="advances >= 4","skills.Shooting >= 8"',
-  'Steady Hands':'Type=combat Require="agility >= 8"',
-  'Sweep':'Type=combat Require="strength >= 8","skills.Fighting >= 8"',
-  'Improved Sweep':'Type=combat Require="advances >= 8","features.Sweep"',
+    'Type=Combat Require="advances >= 8","features.Rapid Fire"',
+  'Rock And Roll':'Type=Combat Require="advances >= 4","skills.Shooting >= 8"',
+  'Steady Hands':'Type=Combat Require="agility >= 8"',
+  'Sweep':'Type=Combat Require="strength >= 8","skills.Fighting >= 8"',
+  'Improved Sweep':'Type=Combat Require="advances >= 8","features.Sweep"',
   'Trademark Weapon (%melee)':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Imply="weapons.%melee" ' +
     'Require="skills.Fighting >= 8"',
   'Trademark Weapon (%ranged)':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Imply="weapons.%ranged" ' +
     'Require="skills.Shooting >= 8"',
   'Improved Trademark Weapon (%weapon)':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Imply="weapons.%weapon" ' +
     'Require="advances >= 4","features.Trademark Weapon (%weapon)"',
-  'Two-Fisted':'Type=combat Require="agility >= 8"',
-  'Two-Gun Kid':'Type=combat Require="agility >= 8"',
+  'Two-Fisted':'Type=Combat Require="agility >= 8"',
+  'Two-Gun Kid':'Type=Combat Require="agility >= 8"',
   // Leadership
   'Command':'Type=leadership Require="smarts >= 6"',
   'Command Presence':
@@ -316,140 +319,138 @@ SWADE.EDGES = {
       '"smarts >= 8",' +
       '"features.Command",' +
       '"skills.Battle >= 6"',
-  'Master Tactician':'Type=combat Require="advances >= 8","features.Tactician"',
+  'Master Tactician':'Type=Combat Require="advances >= 8","features.Tactician"',
   // Power
-  'Artificer':'Type=power Require="advances >= 4","powerPoints >= 1"',
-  'Channeling':'Type=power Require="advances >= 4","powerPoints >= 1"',
-  'Concentration':'Type=power Require="advances >= 4","powerPoints >= 1"',
+  'Artificer':'Type=Power Require="advances >= 4","powerPoints >= 1"',
+  'Channeling':'Type=Power Require="advances >= 4","powerPoints >= 1"',
+  'Concentration':'Type=Power Require="advances >= 4","powerPoints >= 1"',
   'Extra Effort':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Gifted)",' +
       '"skills.Focus >= 6"',
   'Gadgeteer':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Weird Science)",' +
       '"skills.Weird Science >= 6"',
   'Holy/Unholy Warrior':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Miracles)",' +
       '"skills.Faith >= 6"',
   'Mentalist':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Psionics)",' +
       '"skills.Psionics >= 6"',
-  'New Powers':'Type=power Require="powerPoints >= 1"',
-  'Power Points':'Type=power Require="powerPoints >= 1"',
-  'Power Surge':'Type=power Require="powerPoints >= 1","arcaneSkill >= 8"',
+  'New Powers':'Type=Power Require="powerPoints >= 1"',
+  'Power Points':'Type=Power Require="powerPoints >= 1"',
+  'Power Surge':'Type=Power Require="powerPoints >= 1","arcaneSkill >= 8"',
   'Rapid Recharge':
-    'Type=power Require="advances >= 4","spirit >= 6","powerPoints >= 1"',
+    'Type=Power Require="advances >= 4","spirit >= 6","powerPoints >= 1"',
   'Improved Rapid Recharge':
-    'Type=power Require="advances >= 8","features.Rapid Recharge"',
+    'Type=Power Require="advances >= 8","features.Rapid Recharge"',
   'Soul Drain':
-    'Type=power ' +
+    'Type=Power ' +
     'Require="advances >= 4","powerPoints >= 1","arcaneSkill >= 10"',
   'Wizard':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Magic)",' +
       '"skills.Spellcasting >= 6"',
   // Professional
-  'Ace':'Type=professional Require="agility >= 8"',
-  'Acrobat':'Type=professional Require="agility >= 8","skills.Athletics >= 8"',
+  'Ace':'Type=Professional Require="agility >= 8"',
+  'Acrobat':'Type=Professional Require="agility >= 8","skills.Athletics >= 8"',
   'Combat Acrobat':
-    'Type=professional Require="advances >= 4","features.Acrobat"',
+    'Type=Professional Require="advances >= 4","features.Acrobat"',
   'Assassin':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="agility >= 8","skills.Fighting >= 6","skills.Stealth >= 8"',
   'Investigator':
-    'Type=professional Require="smarts >= 8","skills.Research >= 8"',
-  'Jack-Of-All-Trades':'Type=professional Require="smarts >= 10"',
+    'Type=Professional Require="smarts >= 8","skills.Research >= 8"',
+  'Jack-Of-All-Trades':'Type=Professional Require="smarts >= 10"',
   'McGyver':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="smarts >= 6","skills.Notice >= 8","skills.Repair >= 6"',
-  'Mister Fix It':'Type=professional Require="skills.Repair >= 8"',
-  'Scholar (Academics)':'Type=professional Require="skills.Research >= 8"',
-  'Scholar (Battle)':'Type=professional Require="skills.Research >= 8"',
-  'Scholar (Occult)':'Type=professional Require="skills.Research >= 8"',
-  'Scholar (Science)':'Type=professional Require="skills.Research >= 8"',
-  'Soldier':'Type=professional Require="strength >= 6","vigor >= 6"',
+  'Mister Fix It':'Type=Professional Require="skills.Repair >= 8"',
+  'Scholar (Academics)':'Type=Professional Require="skills.Research >= 8"',
+  'Scholar (Battle)':'Type=Professional Require="skills.Research >= 8"',
+  'Scholar (Occult)':'Type=Professional Require="skills.Research >= 8"',
+  'Scholar (Science)':'Type=Professional Require="skills.Research >= 8"',
+  'Soldier':'Type=Professional Require="strength >= 6","vigor >= 6"',
   'Thief':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="agility >= 8","skills.Stealth >= 6","skills.Thievery >= 6"',
-  'Woodsman':'Type=professional Require="spirit >= 6","skills.Survival >= 8"',
+  'Woodsman':'Type=Professional Require="spirit >= 6","skills.Survival >= 8"',
   // Social
-  'Bolster':'Type=social Require="spirit >= 8"',
-  'Common Bond':'Type=social Require="spirit >= 8"',
-  'Connections':'Type=social',
-  'Humiliate':'Type=social Require="skills.Taunt >= 8"',
+  'Bolster':'Type=Social Require="spirit >= 8"',
+  'Common Bond':'Type=Social Require="spirit >= 8"',
+  'Connections':'Type=Social',
+  'Humiliate':'Type=Social Require="skills.Taunt >= 8"',
   'Menacing':
-    'Type=social ' +
+    'Type=Social ' +
     'Imply=skills.Intimidation ' +
     'Require=' +
       '"features.Bloodthirsty+ || features.Mean || features.Ruthless || ' +
       'features.Ugly"',
-  'Provoke':'Type=social Require="skills.Taunt >= 6"',
-  'Rabble-Rouser':'Type=social Require="spirit >= 8"',
-  'Reliable':'Type=social Require="spirit >= 8"',
-  'Retort':'Type=social Require="skills.Taunt >= 6"',
-  'Streetwise':'Type=social Require="smarts >= 6"',
-  'Strong Willed':'Type=social Require="spirit >= 8"',
+  'Provoke':'Type=Social Require="skills.Taunt >= 6"',
+  'Rabble-Rouser':'Type=Social Require="spirit >= 8"',
+  'Reliable':'Type=Social Require="spirit >= 8"',
+  'Retort':'Type=Social Require="skills.Taunt >= 6"',
+  'Streetwise':'Type=Social Require="smarts >= 6"',
+  'Strong Willed':'Type=Social Require="spirit >= 8"',
   'Iron Will':
-    'Type=social ' +
+    'Type=Social ' +
     'Require="advances >= 4","features.Brave","features.Strong Willed"',
-  'Work The Room':'Type=social Require="spirit >= 8"',
+  'Work The Room':'Type=Social Require="spirit >= 8"',
   'Work The Crowd':
-    'Type=social Require="advances >= 4","features.Work The Room"',
+    'Type=Social Require="advances >= 4","features.Work The Room"',
   // Weird
-  'Beast Bond':'Type=weird',
-  'Beast Master':'Type=weird Require="spirit >= 8"',
-  'Champion':'Type=weird Require="spirit >= 8","skills.Fighting >= 6"',
-  'Chi':'Type=weird Require="advances >= 8","features.Martial Warrior"',
-  'Danger Sense':'Type=weird',
-  'Healer':'Type=weird Imply=skills.Healing Require="spirit >= 8"',
-  'Liquid Courage':'Type=weird Require="vigor >= 8"',
-  'Scavenger':'Type=weird Require="features.Luck"',
+  'Beast Bond':'Type=Weird',
+  'Beast Master':'Type=Weird Require="spirit >= 8"',
+  'Champion':'Type=Weird Require="spirit >= 8","skills.Fighting >= 6"',
+  'Chi':'Type=Weird Require="advances >= 8","features.Martial Warrior"',
+  'Danger Sense':'Type=Weird',
+  'Healer':'Type=Weird Imply=skills.Healing Require="spirit >= 8"',
+  'Liquid Courage':'Type=Weird Require="vigor >= 8"',
+  'Scavenger':'Type=Weird Require="features.Luck"',
   // Legendary
-  'Followers':'Type=legendary Require="advances >= 16"',
+  'Followers':'Type=Legendary Require="advances >= 16"',
   'Professional (Agility)':
-    'Type=legendary Require="advances >= 16","agility >= 12"',
+    'Type=Legendary Require="advances >= 16","agility >= 12"',
   'Professional (Smarts)':
-    'Type=legendary Require="advances >= 16","smarts >= 12"',
+    'Type=Legendary Require="advances >= 16","smarts >= 12"',
   'Professional (Spirit)':
-    'Type=legendary Require="advances >= 16","spirit >= 12"',
+    'Type=Legendary Require="advances >= 16","spirit >= 12"',
   'Professional (Strength)':
-    'Type=legendary Require="advances >= 16","strength >= 12"',
+    'Type=Legendary Require="advances >= 16","strength >= 12"',
   'Professional (Vigor)':
-    'Type=legendary Require="advances >= 16","vigor >= 12"',
+    'Type=Legendary Require="advances >= 16","vigor >= 12"',
   'Professional (%skill)':
-    'Type=legendary Require="advances >= 16","skills.%skill >= 12"',
+    'Type=Legendary Require="advances >= 16","skills.%skill >= 12"',
   'Expert (%trait)':
-    'Type=legendary Require="advances >= 16","features.Professional (%trait)"',
+    'Type=Legendary Require="advances >= 16","features.Professional (%trait)"',
   'Master (%trait)':
-    'Type=legendary Require="advances >= 16","features.Expert (%trait)"',
-  'Sidekick':'Type=legendary Require="advances >= 16"',
-  'Tough As Nails':'Type=legendary Require="advances >= 16","vigor >= 8"',
+    'Type=Legendary Require="advances >= 16","features.Expert (%trait)"',
+  'Sidekick':'Type=Legendary Require="advances >= 16"',
+  'Tough As Nails':'Type=Legendary Require="advances >= 16","vigor >= 8"',
   'Tougher Than Nails':
-    'Type=legendary ' +
+    'Type=Legendary ' +
     'Require="advances >= 16","features.Tough As Nails","vigor >= 12"',
   'Weapon Master':
-    'Type=legendary Require="advances >= 16","skills.Fighting >= 12"',
+    'Type=Legendary Require="advances >= 16","skills.Fighting >= 12"',
   'Master Of Arms':
-    'Type=legendary Require="advances >= 16","features.Weapon Master"'
+    'Type=Legendary Require="advances >= 16","features.Weapon Master"'
 };
 SWADE.ERAS = {
   'Ancient':'',
   'Medieval':'',
-  'Colonial':'',
-  'Victorian':'',
   'Modern':'',
   'Future':''
 };
@@ -1638,7 +1639,7 @@ SWADE.RACES = {
 };
 SWADE.LANGUAGES = {};
 SWADE.SHIELDS = {
-  'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
+  'None':'Era=Ancient,Medieval,Modern,Future Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
   'Medium Shield':'Era=Ancient,Medieval Parry=2 Cover=2 MinStr=6 Weight=8',
   'Large Shield':'Era=Ancient,Medieval Parry=3 Cover=4 MinStr=8 Weight=12',
@@ -1649,191 +1650,231 @@ SWADE.SHIELDS = {
   'Large Polymer Shield':'Era=Future Parry=3 Cover=4 MinStr=6 Weight=6'
 };
 SWADE.SKILLS = {
-  'Academics':'Attribute=smarts',
-  'Athletics':'Attribute=agility Core=y',
-  'Battle':'Attribute=smarts',
-  'Boating':'Attribute=agility',
-  'Common Knowledge':'Attribute=smarts Core=y',
-  'Driving':'Attribute=agility Era=Modern,Future',
-  'Electronics':'Attribute=smarts Era=Modern,Future',
-  'Faith':'Attribute=spirit',
-  'Fighting':'Attribute=agility',
-  'Focus':'Attribute=spirit',
-  'Gambling':'Attribute=smarts',
-  'Hacking':'Attribute=smarts Era=Modern,Future',
-  'Healing':'Attribute=smarts',
-  'Intimidation':'Attribute=spirit',
-  'Language (%language)':'Attribute=smarts',
-  'Notice':'Attribute=smarts Core=y',
-  'Occult':'Attribute=smarts',
-  'Performance':'Attribute=spirit',
-  'Persuasion':'Attribute=spirit Core=y',
-  'Piloting':'Attribute=agility Era=Modern,Future',
-  'Psionics':'Attribute=smarts',
-  'Repair':'Attribute=smarts',
-  'Research':'Attribute=smarts',
-  'Riding':'Attribute=agility',
-  'Science':'Attribute=smarts',
-  'Shooting':'Attribute=agility',
-  'Spellcasting':'Attribute=smarts',
-  'Stealth':'Attribute=agility Core=y',
-  'Survival':'Attribute=smarts',
-  'Taunt':'Attribute=smarts',
-  'Thievery':'Attribute=agility',
-  'Weird Science':'Attribute=smarts'
+  'Academics':'Attribute=Smarts',
+  'Athletics':'Attribute=Agility Core=Y',
+  'Battle':'Attribute=Smarts',
+  'Boating':'Attribute=Agility',
+  'Common Knowledge':'Attribute=Smarts Core=Y',
+  'Driving':'Attribute=Agility Era=Modern,Future',
+  'Electronics':'Attribute=Smarts Era=Modern,Future',
+  'Faith':'Attribute=Spirit',
+  'Fighting':'Attribute=Agility',
+  'Focus':'Attribute=Spirit',
+  'Gambling':'Attribute=Smarts',
+  'Hacking':'Attribute=Smarts Era=Modern,Future',
+  'Healing':'Attribute=Smarts',
+  'Intimidation':'Attribute=Spirit',
+  'Language (%language)':'Attribute=Smarts',
+  'Notice':'Attribute=Smarts Core=Y',
+  'Occult':'Attribute=Smarts',
+  'Performance':'Attribute=Spirit',
+  'Persuasion':'Attribute=Spirit Core=Y',
+  'Piloting':'Attribute=Agility Era=Modern,Future',
+  'Psionics':'Attribute=Smarts',
+  'Repair':'Attribute=Smarts',
+  'Research':'Attribute=Smarts',
+  'Riding':'Attribute=Agility',
+  'Science':'Attribute=Smarts',
+  'Shooting':'Attribute=Agility',
+  'Spellcasting':'Attribute=Smarts',
+  'Stealth':'Attribute=Agility Core=Y',
+  'Survival':'Attribute=Smarts',
+  'Taunt':'Attribute=Smarts',
+  'Thievery':'Attribute=Agility',
+  'Weird Science':'Attribute=Smarts'
 };
 SWADE.WEAPONS = {
 
   'Unarmed':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern,Future ' +
-    'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
-  'Hand Axe':'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
-  'Battle Axe':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=1h AP=2',
+    'Era=Ancient,Medieval,Modern,Future ' +
+    'Damage=Str+d0 MinStr=0 Weight=0 Category=Unarmed',
+  'Hand Axe':
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=One-Handed',
+  'Battle Axe':
+    'Era=Medieval Damage=Str+d8 MinStr=8 Weight=4 Category=One-Handed AP=2',
   'Great Axe':
-    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=2h Parry=-1 AP=2',
+    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=7 Category=Two-Handed ' +
+    'Parry=-1 AP=2',
   'Light Club':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed',
   'Heavy Club':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed',
   'Dagger':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
+    'Era=Ancient,Medieval,Modern ' +
+    'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=3',
   'Knife':
-    'Era=Ancient,Medieval,Colonial,Victorian,Modern ' +
-    'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Flail':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=1h',
-  'Halberd':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=2h',
+    'Era=Ancient,Medieval,Modern ' +
+    'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=3',
+  'Flail':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed',
+  'Halberd':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=Two-Handed',
   'Javelin':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=2h',
-  'Lance':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=2',
-  'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
-  'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=2h',
-  'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
-  'Rapier':'Era=Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=Ranged ' +
+    'Range=3',
+  'Katana':'Era=Medieval Damage=Str+d6+1 MinStr=8 Weight=3 Category=Two-Handed',
+  'Lance':
+    'Era=Medieval Damage=Str+d8 MinStr=8 Weight=6 Category=One-Handed AP=2',
+  'Mace':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
+  'Maul':'Era=Medieval Damage=Str+d10 MinStr=10 Weight=10 Category=Two-Handed',
+  'Pike':'Era=Medieval Damage=Str+d8 MinStr=8 Weight=18 Category=Two-Handed',
+  'Rapier':
+    'Era=Medieval Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=1',
   'Spear':
     'Era=Ancient,Medieval ' +
-    'Damage=Str+d6 MinStr=6 Weight=3 Category=2h Range=3 Parry=1',
+    'Damage=Str+d6 MinStr=6 Weight=3 Category=Two-Handed Range=3 Parry=1',
   'Staff':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=4 ' +
+    'Category=Two-Handed Parry=1',
   'Great Sword':
-    'Era=Medieval,Colonial Damage=Str+d10 MinStr=10 Weight=6 Category=2h',
+    'Era=Medieval Damage=Str+d10 MinStr=10 Weight=6 Category=Two-Handed',
   'Long Sword':
-    'Era=Medieval,Colonial Damage=Str+d8 MinStr=8 Weight=3 Category=1h',
+    'Era=Medieval Damage=Str+d8 MinStr=8 Weight=3 Category=One-Handed',
   'Short Sword':
-    'Era=Medieval,Colonial Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
-  'Warhammer':'Era=Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=1h AP=1',
-  'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=1h',
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=One-Handed',
+  'Warhammer':
+    'Era=Medieval Damage=Str+d6 MinStr=6 Weight=2 Category=One-Handed AP=1',
+  'Bangstick':'Era=Modern Damage=3d6 MinStr=6 Weight=2 Category=One-Handed',
   'Bayonet':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h Parry=1',
+    'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Parry=1',
   'Billy Club':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Baton':'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+    'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Baton':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
   'Brass Knuckles':
-    'Era=Victorian,Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=1h',
-  'Switchblade':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Survival Knife':'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
+    'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Chainsaw':'Era=Modern Damage=2d6+4 MinStr=6 Weight=20 Category=One-Handed',
+  'Switchblade':
+    'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Survival Knife':
+    'Era=Modern Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
   'Molecular Knife':
-    'Era=Future Damage=Str+d4+2 MinStr=4 Weight=1 Category=1h AP=2',
+    'Era=Future Damage=Str+d4+2 MinStr=4 Weight=1 Category=One-Handed AP=2',
   'Molecular Sword':
-    'Era=Future Damage=Str+d8+2 MinStr=6 Weight=2 Category=1h AP=4',
+    'Era=Future Damage=Str+d8+2 MinStr=6 Weight=2 Category=One-Handed AP=4',
   'Laser Sword':
-    'Era=Future Damage=Str+d6+8 MinStr=4 Weight=2 Category=1h AP=12',
+    'Era=Future Damage=Str+d6+8 MinStr=4 Weight=2 Category=One-Handed AP=12',
 
   'Throwing Axe':
-    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=3',
-  'Bow':'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=R Range=12',
+    'Era=Ancient,Medieval Damage=Str+d6 MinStr=6 Weight=3 Category=Ranged ' +
+    'Range=3',
+  'Bow':
+    'Era=Ancient,Medieval Damage=2d6 MinStr=6 Weight=3 Category=Ranged ' +
+    'Range=12',
   'Hand Drawn Crossbow':
-    'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=R AP=2 Range=10',
+    'Era=Medieval Damage=2d6 MinStr=6 Weight=5 Category=Ranged AP=2 Range=10',
   'Heavy Crossbow':
-    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=10',
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=10',
   'Long Bow':
-    'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=R AP=1 Range=15',
-  'Net':'Era=Medieval Damage=None MinStr=4 Weight=8 Category=R Range=3',
+    'Era=Medieval Damage=2d6 MinStr=8 Weight=3 Category=Ranged AP=1 Range=15',
+  'Net':
+    'Era=Ancient,Medieval Damage=None MinStr=4 Weight=8 Category=Ranged ' +
+    'Range=3',
   'Sling':
-    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
+    'Era=Ancient,Medieval Damage=Str+d4 MinStr=4 Weight=1 Category=Ranged ' +
+    'Range=4',
   'Compound Bow':
-    'Era=Modern Damage=Str+d6 MinStr=6 Weight=3 Category=R AP=1 Range=12',
+    'Era=Modern Damage=Str+d6 MinStr=6 Weight=3 Category=Ranged AP=1 Range=12',
   'Crossbow':
-    'Era=Modern Damage=2d6 MinStr=6 Weight=7 Category=R AP=2 Range=15',
+    'Era=Modern Damage=2d6 MinStr=6 Weight=7 Category=Ranged AP=2 Range=15',
+
   'Flintlock Pistol':
-    'Era=Colonial Damage=2d6+1 MinStr=4 Weight=3 Category=R Range=5',
+    'Era=Medieval Damage=2d6+1 MinStr=4 Weight=3 Category=Ranged Range=5',
   'Brown Bess':
-    'Era=Colonial Damage=2d8 MinStr=6 Weight=15 Category=R Range=10',
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=15 Category=Ranged Range=10',
   'Blunderbuss':
-    'Era=Colonial Damage=3d6 MinStr=6 Weight=12 Category=R Range=10',
+    'Era=Medieval Damage=3d6 MinStr=6 Weight=12 Category=Ranged Range=10',
   'Kentucky Rifle':
-    'Era=Colonial Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=15',
   'Springfield Model 1861':
-    'Era=Victorian Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
-  'Derringer':'Era=Victorian Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
+    'Era=Medieval Damage=2d8 MinStr=6 Weight=11 Category=Ranged Range=15',
+
+  'Derringer':'Era=Modern Damage=2d4 MinStr=4 Weight=1 Category=Ranged Range=3',
   'Police Revolver':
-    'Era=Victorian Damage=2d6 MinStr=4 Weight=2 Category=R Range=10',
+    'Era=Modern Damage=2d6 MinStr=4 Weight=2 Category=Ranged Range=10',
   'Colt Peacemaker':
-    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=Ranged AP=1 Range=12',
   'Smith & Wesson':
-    'Era=Victorian Damage=2d6+1 MinStr=4 Weight=5 Category=R AP=1 Range=12',
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=5 Category=Ranged AP=1 Range=12',
   'Colt 1911':
-    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=R AP=1 Range=12',
+    'Era=Modern Damage=2d6+1 MinStr=4 Weight=4 Category=Ranged AP=1 Range=12',
   'Desert Eagle':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=15',
-  'Glock':'Era=Modern Damage=2d6 MinStr=4 Weight=3 Category=R AP=1 Range=12',
-  'Ruger':'Era=Modern Damage=2d4 MinStr=4 Weight=2 Category=R Range=10',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=15',
+  'Glock':
+    'Era=Modern Damage=2d6 MinStr=4 Weight=3 Category=Ranged AP=1 Range=12',
+  'Ruger':'Era=Modern Damage=2d4 MinStr=4 Weight=2 Category=Ranged Range=10',
+
   'H&K MP5':
-    'Era=Modern Damage=2d6 MinStr=6 Weight=10 Category=R AP=1 Range=12 ROF=3',
+    'Era=Modern Damage=2d6 MinStr=6 Weight=10 Category=Ranged AP=1 Range=12 ' +
+    'ROF=3',
   'Tommy Gun':
-    'Era=Modern Damage=2d6+1 MinStr=6 Weight=13 Category=R AP=1 Range=12 ROF=3',
+    'Era=Modern Damage=2d6+1 MinStr=6 Weight=13 Category=Ranged AP=1 ' +
+    'Range=12 ROF=3',
   'Uzi':
-    'Era=Modern Damage=2d6 MinStr=4 Weight=9 Category=R AP=1 Range=12 ROF=3',
+    'Era=Modern Damage=2d6 MinStr=4 Weight=9 Category=Ranged AP=1 Range=12 ' +
+    'ROF=3',
+
   'Double-Barrel Shotgun':
-    'Era=Modern Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
+    'Era=Modern Damage=3d6 MinStr=6 Weight=11 Category=Ranged Range=12',
   'Pump Action Shotgun':
-    'Era=Modern Damage=3d6 MinStr=4 Weight=8 Category=R Range=12',
+    'Era=Modern Damage=3d6 MinStr=4 Weight=8 Category=Ranged Range=12',
   'Sawed-Off Shotgun':
-    'Era=Modern Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
+    'Era=Modern Damage=3d6 MinStr=4 Weight=6 Category=Ranged Range=5',
   'Streetsweeper':
-    'Era=Modern Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
+    'Era=Modern Damage=3d6 MinStr=6 Weight=10 Category=Ranged Range=12',
+
   'Barrett Rifle':
-    'Era=Modern Damage=2d10 MinStr=8 Weight=35 Category=R AP=4 Range=50',
+    'Era=Modern Damage=2d10 MinStr=8 Weight=35 Category=Ranged AP=4 Range=50',
   'M1 Garand':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=Ranged AP=2 Range=24',
   'Hunting Rifle':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=24',
   'Sharps Big 50':
-    'Era=Modern Damage=2d10 MinStr=8 Weight=11 Category=R AP=2 Range=30',
+    'Era=Modern Damage=2d10 MinStr=8 Weight=11 Category=Ranged AP=2 Range=30',
   'Spencer Carbine':
-    'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=R AP=2 Range=20',
+    'Era=Modern Damage=2d8 MinStr=4 Weight=8 Category=Ranged AP=2 Range=20',
   "Winchester '73":
-    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=10 Category=Ranged AP=2 Range=24',
   'AK47':
-    'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8+1 MinStr=6 Weight=10 Category=Ranged AP=2 ' +
+    'Range=24 ROF=3',
   'M-16':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=24 ' +
+    'ROF=3',
   'Steyr AUG':
-    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 MinStr=6 Weight=8 Category=Ranged AP=2 Range=24 ' +
+    'ROF=3',
+
   'Browning Automatic Rifle':
-    'Era=Modern Damage=2d8 MinStr=8 Weight=17 Category=R AP=2 Range=20 ROF=3',
-  'Gatling Gun':
-    'Era=Modern Damage=2d8 MinStr=0 Weight=170 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 MinStr=8 Weight=17 Category=Ranged AP=2 Range=20 ' +
+    'ROF=3',
+  'Gatling':
+    'Era=Modern Damage=2d8 MinStr=0 Weight=170 Category=Ranged AP=2 Range=24 ' +
+    'ROF=3',
   'Minigun':
-    'Era=Modern Damage=2d8+1 MinStr=10 Weight=85 Category=R AP=2 Range=30 ROF=5',
+    'Era=Modern Damage=2d8+1 MinStr=10 Weight=85 Category=Ranged AP=2 ' +
+    'Range=30 ROF=5',
   'M2 Browning':
-    'Era=Modern Damage=2d10 MinStr=0 Weight=84 Category=R AP=4 Range=50 ROF=3',
+    'Era=Modern Damage=2d10 MinStr=0 Weight=84 Category=Ranged AP=4 Range=50 ' +
+    'ROF=3',
   'M60':
-    'Era=Modern Damage=2d8+1 MinStr=8 Weight=33 Category=R AP=2 Range=30 ROF=3',
+    'Era=Modern Damage=2d8+1 MinStr=8 Weight=33 Category=Ranged AP=2 ' +
+    'Range=30 ROF=3',
   'MG42':
-    'Era=Modern Damage=2d8+1 MinStr=10 Weight=26 Category=R AP=2 Range=30 ROF=4',
+    'Era=Modern Damage=2d8+1 MinStr=10 Weight=26 Category=Ranged AP=2 ' +
+    'Range=30 ROF=4',
   'SAW':
-    'Era=Modern Damage=2d8 MinStr=8 Weight=20 Category=R AP=2 Range=30 ROF=4',
+    'Era=Modern Damage=2d8 MinStr=8 Weight=20 Category=Ranged AP=2 Range=30 ' +
+    'ROF=4',
+
   'Laser Pistol':
-    'Era=Future Damage=2d6 MinStr=4 Weight=2 Category=R AP=2 Range=15',
+    'Era=Future Damage=2d6 MinStr=4 Weight=2 Category=Ranged AP=2 Range=15',
   'Laser SMG':
-    'Era=Future Damage=2d6 MinStr=4 Weight=4 Category=R AP=2 Range=15 ROF=4',
+    'Era=Future Damage=2d6 MinStr=4 Weight=4 Category=Ranged AP=2 Range=15 ' +
+    'ROF=4',
   'Laser Rifle':
-    'Era=Future Damage=3d6 MinStr=6 Weight=8 Category=R AP=2 Range=30 ROF=3',
+    'Era=Future Damage=3d6 MinStr=6 Weight=8 Category=Ranged AP=2 Range=30 ' +
+    'ROF=3',
   'Gatling Laser':
-    'Era=Future Damage=3d6+4 MinStr=8 Weight=20 Category=R AP=2 Range=50 ROF=4'
+    'Era=Future Damage=3d6+4 MinStr=8 Weight=20 Category=Ranged AP=2 ' +
+    'Range=50 ROF=4'
  
 };
 
@@ -3431,20 +3472,11 @@ SWADE.choiceEditorElements = function(rules, type) {
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
       ['Imply', 'Implies', 'text', [40]],
-      ['Type', 'Types', 'text', [20]]
+      ['Type', 'Type', 'text', [20]]
     );
   else if(type == 'Feature') {
     result.push(
-      ['Section', 'Section', 'select-one', sections],
-      ['Note', 'Note', 'text', [60]]
-    );
-  } else if(type == 'Goody') {
-    let effects = ['add', 'lower', 'raise', 'set'];
-    result.push(
-      ['Pattern', 'Pattern', 'text', [40]],
-      ['Effect', 'Effect', 'select-one', effects],
-      ['Value', 'Value', 'text', [20]],
-      ['Section', 'Section', 'select-one', sections],
+      ['Section', 'Section', 'text', [40]],
       ['Note', 'Note', 'text', [60]]
     );
   } else if(type == 'Hindrance') {
@@ -3964,7 +3996,7 @@ SWADE.makeValid = function(attributes) {
             toFixValue = toFixValue / 2 - 2;
             toFixAttr += 'Allocation';
           } else if(toFixAttr.startsWith('skills.')) {
-            toFixValue = toFixValue / 2 - (this.getChoices('skills')[toFixAttr.replace('skills.', '')].match(/Core=([y1]|true)/i) ? 2 : 1);
+            toFixValue = toFixValue / 2 - (this.getChoices('skills')[toFixAttr.replace('skills.', '')].match(/Core=([Yy1]|true)/i) ? 2 : 1);
             toFixAttr = toFixAttr.replace('skills', 'skillAllocation');
           }
           debug.push(
@@ -4051,6 +4083,12 @@ SWADE.ruleNotes = function() {
     '  <li>\n' +
     '    Major hindrances are noted by a "+" after the name. For example,\n' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
+    '  </li><li>\n' +
+    '    The rule book doesn\'t indicate which weapons are appropriate for\n' +
+    '    an ancient setting. Quilvyn considers these weapons valid when\n' +
+    '    randomly assigning weapons to an ancient-era character: hand axe,\n' +
+    '    light club, heavy club, dagger, knife, javelin, spear, staff,\n' +
+    '    short sword, throwing axe, bow, net, and sling.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
