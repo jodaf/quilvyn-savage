@@ -2,9 +2,9 @@
 
 The quilvyn-savage package bundles modules that extend Quilvyn to work with
 the Savage Worlds RPG, applying the rules of the
-<a href="https://www.peginc.com/store/savage-worlds-adventure-edition-core-rules-pdf-swade/">Savage Worlds Adventure Edition</a>,
+<a href="https://peginc.com/product/savage-worlds-adventure-edition-core-rules-pdf-swade/">Savage Worlds Adventure Edition</a>,
 <a href="https://peginc.com/product/fantasy-companion-swade/">SWADE Fantasy Companion</a>.
-<a href="https://peginc.com/store/savage-worlds-deluxe-explorers-edition/">Savage Worlds Deluxe Edition</a>,
+<a href="https://peginc.com/product/savage-worlds-deluxe-explorers-edition/">Savage Worlds Deluxe Edition</a>,
 <a href="https://peginc.com/product/deadlands-the-weird-west-core-rules/"> Deadlands: THe Weird West</a>, and
 <a href="https://peginc.com/product/pathfinder-for-savage-worlds-core-rules/">Pathfinder for Savage Worlds Core Rules</a>.
 
