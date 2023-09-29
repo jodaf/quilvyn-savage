@@ -71,7 +71,7 @@ SWADE.VERSION = '2.3.3.1';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
-  'Arcana', 'Armor', 'Concept', 'Deity', 'Edge', 'Era', 'Feature', 'Hindrance',
+  'Arcana', 'Armor', 'Concept', 'Edge', 'Era', 'Feature', 'Hindrance',
   'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
@@ -3450,10 +3450,9 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Powers', 'Powers', 'text', [60]]
     );
   else if(type == 'Armor') {
-    let areas = ['Arms', 'Body', 'Head', 'Legs', 'Torso'];
     result.push(
       ['Era', 'Era', 'text', [30]],
-      ['Area', 'Area Covered', 'select-one', areas],
+      ['Area', 'Area Covered', 'text', [30]],
       ['Armor', 'Armor', 'select-one', zeroToTen],
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]]
@@ -3461,28 +3460,32 @@ SWADE.choiceEditorElements = function(rules, type) {
   } else if(type == 'Concept')
     result.push(
       ['Attribute', 'Attribute', 'text', [30]],
-      ['Edge', 'Edge', 'text', [30]],
-      ['Skill', 'Skill', 'text', [30]]
+      ['Skill', 'Skill', 'text', [30]],
+      ['Edge', 'Edge', 'text', [30]]
     );
   else if(type == 'Deity')
     result.push(
       // empty
     );
-  else if(type == 'Edge')
+  else if(type == 'Edge') {
+    let edgeTypes = [
+      'Background', 'Combat', 'Leadership', 'Legendary', 'Power',
+      'Professional', 'Social', 'Weird'
+    ];
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
-      ['Imply', 'Implies', 'text', [40]],
-      ['Type', 'Type', 'text', [20]]
+      ['Type', 'Type', 'select-one', edgeTypes],
+      ['Require', 'Prerequisite', 'text', [40]],
+      ['Imply', 'Implies', 'text', [40]]
     );
-  else if(type == 'Feature') {
+  } else if(type == 'Feature') {
     result.push(
       ['Section', 'Section', 'text', [40]],
       ['Note', 'Note', 'text', [60]]
     );
   } else if(type == 'Hindrance') {
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
-      ['Severity', 'Severity', 'select-one', ['Major', 'Minor']]
+      ['Severity', 'Severity', 'select-one', ['Major', 'Minor']],
+      ['Require', 'Prerequisite', 'text', [40]]
     );
   } else if(type == 'Language')
     result.push(
@@ -3500,7 +3503,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     );
   } else if(type == 'Race')
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
+      ['Require', 'Prerequisite', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
       ['Languages', 'Languages', 'text', [30]]
     );
@@ -3536,7 +3539,7 @@ SWADE.choiceEditorElements = function(rules, type) {
   return result;
 };
 
-/* Returns the elements in a basic 5E character editor. */
+/* Returns the elements in a basic SWADE character editor. */
 SWADE.initialEditorElements = function() {
   let allocations = [0, 1, 2, 3, 4, 5, 6];
   let improvementTypes = ['Attribute', 'Edge', 'Hindrance', 'Skill'];
@@ -3553,7 +3556,6 @@ SWADE.initialEditorElements = function() {
     ['strengthAllocation', 'Strength', 'select-one', allocations],
     ['vigorAllocation', 'Vigor', 'select-one', allocations],
     ['skillAllocation', 'Skills', 'bag', 'skills'],
-    ['deity', 'Deity', 'select-one', 'deitys'],
     ['origin', 'Origin', 'text', [20]],
     ['player', 'Player', 'text', [20]],
     ['advances', 'Advances', 'text', [4]],
