@@ -1664,7 +1664,6 @@ SWADE.SKILLS = {
   'Hacking':'Attribute=Smarts Era=Modern,Future',
   'Healing':'Attribute=Smarts',
   'Intimidation':'Attribute=Spirit',
-  'Language (%language)':'Attribute=Smarts',
   'Notice':'Attribute=Smarts Core=Y',
   'Occult':'Attribute=Smarts',
   'Performance':'Attribute=Spirit',
@@ -3441,8 +3440,6 @@ SWADE.createViewers = function(rules, viewers) {
 SWADE.choiceEditorElements = function(rules, type) {
   let result = [];
   let dieTypes = ['4', '6', '8', '10', '12'];
-  let sections =
-    ['arcana', 'attribute', 'combat', 'description', 'feature', 'skill'];
   let zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Arcana')
     result.push(
@@ -3765,9 +3762,11 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
       if(attribute == 'hindrances') {
         let subChoices;
         if(howMany > 1 && QuilvynUtils.random(0, 9) > 7)
-          subChoices = choices.filter(x => x.endsWith('+'));
+          subChoices =
+            choices.filter(x => allChoices[x].match(/severity=major/i));
         else
-          subChoices = choices.filter(x => !x.endsWith('+'));
+          subChoices =
+            choices.filter(x => !allChoices[x].match(/severity=major/i));
         pick = subChoices[QuilvynUtils.random(0, subChoices.length - 1)];
       } else {
         pick = choices[QuilvynUtils.random(0, choices.length - 1)];
