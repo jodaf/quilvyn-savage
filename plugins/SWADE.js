@@ -32,14 +32,15 @@ function SWADE() {
 
   let rules =
     new QuilvynRules('Savage Worlds Adventure Edition', SWADE.VERSION);
+  rules.plugin = SWADE;
   SWADE.rules = rules;
 
   rules.defineChoice('choices', SWADE.CHOICES);
   rules.choiceEditorElements = SWADE.choiceEditorElements;
   rules.choiceRules = SWADE.choiceRules;
+  rules.removeChoice = SWADE.removeChoice;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
-  rules.getPlugins = SWADE.getPlugins;
   rules.makeValid = SWADE.makeValid;
   rules.randomizeOneAttribute = SWADE.randomizeOneAttribute;
   rules.defineChoice('random', SWADE.RANDOMIZABLE_ATTRIBUTES);
@@ -67,7 +68,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.3.3.1';
+SWADE.VERSION = '2.4.1.0';
 
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
@@ -2266,11 +2267,9 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature') {
-    type =
-      type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-    rules.addChoice(type, name, attrs);
-  }
+  type =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  rules.addChoice(type, name, attrs);
 };
 
 /*
@@ -4066,11 +4065,6 @@ SWADE.makeValid = function(attributes) {
     attributes.notes =
       (attributes.notes ? attributes.notes + '\n' : '') + debug.join('\n');
 
-};
-
-/* Returns an array of plugins upon which this one depends. */
-SWADE.getPlugins = function() {
-  return [];
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
