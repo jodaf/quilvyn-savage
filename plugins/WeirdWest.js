@@ -1650,7 +1650,7 @@ WeirdWest.shieldRules = function(rules, name, parry, cover, minStr, weight) {
  * #attribute# (one of 'agility', 'spirit', etc.).
  */
 WeirdWest.skillRules = function(rules, name, attribute, core) {
-  SWADE.skillRules(rules, name, attribute, core, []);
+  SWADE.skillRules(rules, name, [], attribute, core);
   // No changes needed to the rules defined by base method
 };
 

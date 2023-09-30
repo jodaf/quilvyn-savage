@@ -2438,7 +2438,7 @@ SWADEFC.shieldRules = function(rules, name, parry, cover, minStr, weight) {
  * #attribute# (one of 'agility', 'spirit', etc.).
  */
 SWADEFC.skillRules = function(rules, name, attribute, core) {
-  SWADE.skillRules(rules, name, attribute, core, ['Medieval']);
+  SWADE.skillRules(rules, name, ['Medieval'], attribute, core);
 };
 
 /*
