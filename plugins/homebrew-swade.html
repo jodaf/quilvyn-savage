@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Adding Homebrew Choices to Quilvyn's SWADE Rule Set</title>
+  <style>
+    img {
+      align: left;
+    }
+  </style>
+</head>
+
+<body bgcolor="wheat" background="../Images/parchment.jpg">
+
+<script>
+  document.write('<img src="../Images/quilvynlogodrop.png" style="height:75px" alt="Quilvyn"/>');
+</script>
+
+<h2>Adding Homebrew Choices to Quilvyn's SWADE Rule Set</h2>
+
+<p>
+The SWADE rule set allows you to add homebrew choices to most of its
+selections: powers, weapons, races, and so on. The entry dialog for each type
+of choice includes fields for all the information particular to that type. For
+most choices, the values to enter into the dialog can be determined by
+comparing them to similar choices from the core rule book.
+</p><p>
+The input fields used to enter homebrew choices are similar to those used by
+the Quilvyn editor&mdash;text fields, selection menus, checkboxes, etc. One
+difference between the two is that you can enter multiple values into most text
+boxes in the homebrew choices editor. For example, when entering a homebrew
+weapon, you may want to enter multiple values in the Era text box. To do this,
+separate the individual values by commas: Ancient,Medieval. If you ever need to
+enter a single value that contains a comma into a text box, enclose the value
+in quotes: "May create and mend magic weapons, armor, and shields".
+</p><p>
+Although the widest text boxes that Quilvyn uses show around 40 characters, you
+can enter longer text values. Only 40 characters will show at once, but you can
+use your arrow keys to move the cursor within the full text. Several examples
+below show only the beginning portion of longer values entered into text boxes.
+</p>
+
+<ul>
+  <li><a href="#arcana">Arcanas</a></li>
+  <li><a href="#armor">Armors</a></li>
+  <li><a href="#concept">Concepts</a></li>
+  <li><a href="#edge">Edges</a></li>
+  <li><a href="#era">Eras</a></li>
+  <li><a href="#feature">Features</a></li>
+  <li><a href="#hindrance">Hindrances</a></li>
+  <li><a href="#power">Powers</a></li>
+  <li><a href="#race">Races</a></li>
+  <li><a href="#shield">Shields</a></li>
+  <li><a href="#skill">Skills</a></li>
+  <li><a href="#weapon">Weapons</a></li>
+  <li><a href="#attrs">Using Character Attributes in Prerequisites and Notes</a></li>
+</ul>
+
+<table width="100%">
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="arcana"><h2>Arcanas</h2></a>
+<img src='../Images/shb-arcana.jpg' alt='Homebrew Arcana'/>
+</td><td>
+<p>
+The SWADE Quilvyn plugin uses the term <i>arcana</i> to indicate the various
+types of arcane backgrounds a character might have&mdash;Magic, Miracles, Weird
+Science, etc. When adding a homebrew arcana, Quilvyn provides a field that
+allows you to enter the arcane skill associated with that arcana. If the arcana
+limits practitioners to a subset of powers, you can also enter the list of 
+powers available; otherwise, Quilvyn assumes that characters with this arcana
+may make use of the full set.
+</p><p>
+The example shows the entry for an arcana named Necromancy, which uses Occult
+as its arcane skill and provides access to a limited set of powers.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="armor"><h2>Armors</h2></a>
+<img src='../Images/shb-armor.jpg' alt='Homebrew Armor'/>
+</td><td>
+<p>
+When entering a homebrew armor type, Quilvyn provides fields that allow you to
+enter the list of eras appropriate for the armor, the body areas that the armor
+covers (one or more of arms, body (torso, arms, and legs), head, legs, and
+torso), the toughness bonus provided by the armor, the minimum strength
+required to wear it, and the armor's weight.
+</p><p>
+</p>
+The example shows the entry for Chain Hauberk armor, taken from the Savage
+Worlds Deluxe Edition rules.
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="concept"><h2>Concepts</h2></a>
+</td></tr><tr><td>
+<img src='../Images/shb-concept.jpg' alt='Homebrew Concept'/>
+</td><td>
+<p>
+When entering a homebrew concept, Quilvyn provides fields that allow you to
+enter the most important attribute, skills, and/or edges for characters built
+around that concept. Quilvyn uses these values when randomly determining
+information for the character; it will choose the items listed as important
+to the character concept more often than other alternatives.
+</p><p>
+The example shows the entry for a Scavenger concept. It places high value on
+the Common Knowledge and Repair skills, both of which are linked to Smarts.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="edge"><h2>Edges</h2></a>
+</td></tr><tr><td>
+<img src='../Images/shb-edge.jpg' alt='Homebrew Edge'/>
+<hr style="width:75%"/><br/>
+<img src='../Images/shb-edge-feature.jpg' alt='Homebrew Edge'/>
+</td><td>
+<p>
+For homebrew edges, Quilvyn displays fields to note the edge type and any
+requirements that must be met to select it. Quilvyn allows you to specify two
+kinds of requirements for an edge. The Prerequisite box lists any requirements
+that must be met to select the edge; Quilvyn generates a validation error if
+the edge is selected for a character who does not meet these requirements. The
+Implies box lists any requirements that, while not strictly required, make the
+edge useless if not met. For example, although the rules don't require it,
+the Ace edge from the SWADE rules is likely to be useless to a character that
+lacks the Boating, Driving, and Piloting skills. Quilvyn will generate a
+validation warning if the Implies requirements are not met. When specified, the
+Prerequisite and Implies fields will normally contain references to character
+attributes; see the discussion of
+<a href="#attrs">using character attributes</a> for how to include these. The
+effects of an edge are entered separately as a feature.
+</p><p>
+The example shows the entry for a combat edge named Flail Expert. The
+Prerequisite box notes that it requires at least four advances (i.e., a rank of
+seasoned or higher), and the Implies box notes that the edge is useless unless
+the character possesses a flail. The example also shows the corresponding
+feature that describes the effect of selecting the Flail Expert edge.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="feature"><h2>Features</h2></a>
+<img src='../Images/shb-feature.jpg' alt='Homebrew Feature'/>
+</td><td>
+<p>
+In Quilvyn, <i>features</i> describe the effects of edges, hindrances, and
+racial features. When adding a homebrew feature, enter the section of the
+character sheet (one of arcana, attribute, combat, description, feature, or
+skill) where the note for the feature should appear, then enter the note text.
+You can enter multiple sections and notes, but the number of sections entered
+must equal the number of notes. Feature notes can both reference and modify
+character attributes; see the discussion of
+<a href="#attrs">using character attributes</a> for how to do this.
+</p><p>
+The example shows the entry for a feature named Glib with a note that appears
+in the skill section of the character sheet. It adds 1 to the character's
+Performance and Persuasion skills.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="hindrance"><h2>Hindrances</h2></a>
+</td></tr><tr><td>
+<img src='../Images/shb-hindrance.jpg' alt='Homebrew Hindrance'/>
+<hr style="width:75%"/><br/>
+<img src='../Images/shb-hindrance-feature.jpg' alt='Homebrew Hindrance'/>
+</td><td>
+<p>
+A homebrew hindrance requires only specifying the name and the severity (Major
+or Minor). By convention, Quilvyn adds a plus sign to the end of names of major
+hindrances (so, "One Arm+"), but there's no requirement that you follow this
+with homebrew hindrances. Although none of the hindrances from the core rule
+book have prerequisites that must be met, Quilvyn allows you to add them to
+homebrew hindrances. You could, for example, restrict certain homebrew
+hindrances to characters of a specific race or concept.
+</p><p>
+The example shows the entry for a minor hindrance named Gullible, along with
+the feature that describes its effects.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="power"><h2>Powers</h2></a>
+</td></tr><tr><td>
+<img src='../Images/shb-power.jpg' alt='Homebrew Power'/>
+</td><td>
+<p>
+When adding a homebrew power, Quilvyn displays fields that allow you to enter
+the minimum number of advances (i.e., rank) needed to use the power, the number
+of power points expended when using it, its maximum range, the description of
+its effects, and any power-specific modifiers that can be applied.
+</p><p>
+The example shows the entry for the a power named <i>Borrow Trait</i>, which
+which is available to seasoned characters and costs 2 power points to cast,
+plus 2 additional power points for multiple traits.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="race"><h2>Races</h2></a>
+<img src='../Images/shb-race.jpg' alt='Homebrew Race'/>
+</td><td>
+<p>
+FILL
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="shield"><h2>Shields</h2></a>
+</td></tr><tr><td>
+<img src='../Images/shb-shield.jpg' alt='Homebrew Shield'/>
+</td><td>
+<p>
+When adding a homebrew shield, Quilvyn provides fields for entering the era(s)
+to which it belongs (Ancient, Medieval, Modern, Future), the Parry and Cover
+values for the shield, the minimum strength required to us it, and its weight.
+</p><p>
+The example shows the entry for a medium steel shield, which provides a greater
+parry value at the cost of requiring a higher strength to use it.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="skill"><h2>Skills</h2></a>
+<img src='../Images/shb-skill.jpg' alt='Homebrew Skill'/>
+</td><td>
+<p>
+When adding a homebrew skill, Quilvyn displays fields for (optional) era(s) to
+which it belongs and the the skill's linked attribute. You can also check the
+"Core" box to indicate that this homebrew skill is a core skill, which means
+that all characters will automatically have a d4 in the skill.
+</p><p>
+The example shows the entry for a Flying skill, linked to Agility. In fantasy
+settings, this skill might indicate how well the character maneuvers when using
+a flying spell; in a modern setting, it could pertain to the character's
+ability to pilot aircraft.
+</p>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>
+<a name="weapon"><h2>Weapons</h2></a>
+<img src='../Images/shb-weapon.jpg' alt='Homebrew Weapon'/>
+</td><td>
+<p>
+When adding a homebrew weapon, Quilvyn displays fields that allow you to enter
+the (optional) era(s) to which it belongs, its primary category (Unarmed,
+One-Handed, Two-Handed, or Ranged), the damage it inflicts, the minimum 
+strength required to use it effectively, its weight, and any armor piercing,
+range, rate of fire, and parry attributes it might have.
+</p><p>
+The example shows the entry for a boomerang, a ranged weapon with a 5" (10
+yard) range that inflicts Str+d4 damage.
+</p>
+</td></tr>
+<tr><td colspan="2"><hr/></td></tr>
+
+</table>
+
+<a name="attrs"><h2>Using Character Attributes in Prerequisites and Notes</h2></a>
+
+<p>
+The use of character attributes in prerequisites and notes is described in
+detail in the <a href="homebrew-srd35.html#attrs">homebrew documentation for
+the SRD v3.5 plugin</a>.
+</p>
+
+
+<hr style="width: 100%"/>
+
+<a name="attrlist"><h2>Common Character Attributes</h2></a>
+The table below lists the character attributes that are most likely to be
+useful in entering SWADE homebrew edges, features, and races.
+</p>
+
+<table style="width:100%"><tr style="text-align:left">
+<th>Basic attributes</th>
+<th>Identity</th>
+<th>Combat</th>
+<th>Arcana</th>
+<th>Edges, skills and features</th>
+</tr><tr style="vertical-align:top">
+<td>
+<ul style="padding-left: 15px; margin-top: 0">
+<li>agility</li>
+<li>smarts</li>
+<li>spirit</li>
+<li>strength</li>
+<li>vigor</li>
+<li>agilityStep</li>
+<li>smartsStep</li>
+<li>spiritStep</li>
+<li>strengthStep</li>
+<li>vigorStep</li>
+</ul>
+</td><td>
+<ul style="padding-left: 15px; margin-top: 0">
+<li>advances</li>
+<li>alignment</li>
+<li>concepts.&lt;name&gt;, e.g.,<br/>
+  concepts.Commander</br>
+  concepts.Thief</li>
+<li>deity</li>
+<li>era</li>
+<li>race</li>
+<li>rank</li>
+<li>size</li>
+</ul>
+</td><td>
+<ul style="padding-left: 15px; margin-top: 0">
+<li>armor.&lt;name&gt;, e.g.,<br/>
+  armor.Chain Shirt</br>
+  armor.Battle Helmet</li>
+<li>cover</li>
+<li>pace</li>
+<li>run</li>
+<li>parry</li>
+<li>shieldParry</li>
+<li>toughness</li>
+<li>armorToughness</li>
+<li>weapons.&lt;name&gt;, e.g.,<br/>
+  weapons.Dagger</br>
+  weapons.Laser Sword</li>
+</ul>
+</td><td>
+<ul style="padding-left: 15px; margin-top: 0">
+<li>powerCount</li>
+<li>powerPoints</li>
+<li>powers.&lt;name&gt;, e.g.,<br>
+  powers.Banish<br/>
+  powers.Disguise</li>
+</ul>
+</td><td>
+<ul style="padding-left: 15px; margin-top: 0">
+<li>edgePoints</li>
+<li>edges.&lt;name&gt;, e.g.<br/>
+  edges.Fame<br/>
+  edges.Feint Shot</li>
+<li>hindrances.&lt;name&gt;, e.g.<br/>
+  hindrances.All Thumbs<br/>
+  hindrances.Jealous+</li>
+<li>features.&lt;name&gt;, e.g.<br/>
+  features.Dodge<br/>
+  features.Precise Shot</li>
+<li>skillPoints</li>
+<li>skills.&lt;name&gt;, e.g.,<br/>
+  skills.Healing<br/>
+  skills.Performance</li>
+</ul>
+</td>
+</tr></table>
+
+</body>
+</html>
