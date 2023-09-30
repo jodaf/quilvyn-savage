@@ -475,16 +475,16 @@ SWADE.FEATURES = {
     'Section=arcana Note="2 Powers/15 Power Points"',
   'Arcane Resistance':
     'Section=combat ' +
-    'Note="Foes suffer %V arcane skill and arcane damage when targeting self"',
+    'Note="Foes suffer %{combatNotes.improvedArcaneResistance?-4:-2} arcane skill and arcane damage when targeting self"',
   'Aristocrat':
     'Section=skill ' +
     'Note="+2 Persuasion (networking with aristocrats)/+2 Common Knowledge (etiquette, heraldry, gossip)"',
   'Artificer':'Section=arcana Note="May give items arcane powers"',
   'Assassin':
-    'Section=combat Note="+%V damage to Vulnerable foes and with The Drop"',
+    'Section=combat Note="+2 damage to Vulnerable foes and with The Drop"',
   'Attractive':
     'Section=skill ' +
-    'Note="+%V Performance (attracted target)/+%V Persuasion (attracted target)"',
+    'Note="+%{skillNotes.veryAttractive?2:1} Performance (attracted target)/+%{skillNotes.veryAttractive?2:1} Persuasion (attracted target)"',
   'Beast Bond':'Section=feature Note="May spend Bennies on companion animals"',
   'Beast Master':
     'Section=feature ' +
@@ -492,12 +492,15 @@ SWADE.FEATURES = {
   'Berserk':
     'Section=combat ' +
     'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
-  'Block':'Section=combat Note="+%V Parry/-%V foe Gang Up bonus"',
+  'Block':
+    'Section=combat ' +
+    'Note="+%{combatNotes.improvedBlock?2:1} Parry/-%{combatNotes.improvedBlock?2:1} foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
     'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear, -2 fear table roll"',
-  'Brawler':'Section=combat Note="+%V Toughness/+%1 Unarmed damage step"',
+  'Brawler':
+    'Section=combat Note="+%{combatNotes.bruiser?2:1} Toughness/+%{combatNotes.bruiser?2:1} Unarmed damage step"',
   'Brawny':
     'Section=attribute,combat,description ' +
     'Note=' +
@@ -538,7 +541,8 @@ SWADE.FEATURES = {
     'Section=feature ' +
     'Note="May call in favors from acquaintance or organization"',
   'Counterattack':
-    'Section=combat Note="Free attack after failed foe attack %V/rd"',
+    'Section=combat ' +
+    'Note="Free attack after failed foe attack %{combatNotes.improvedCounterattack?3:1}/rd"',
   'Danger Sense':
     'Section=skill ' +
     'Note="+2 Notice (surprise)/Rolls Notice-2 in circumstances not normally subject to Notice"',
@@ -555,12 +559,13 @@ SWADE.FEATURES = {
     'Section=arcana ' +
     'Note="May spend 1 or 3 Power Points to gain +1 or +2 Focus"',
   'Extraction':
-    'Section=combat Note="Negate attack of %V foes when withdrawing"',
+    'Section=combat ' +
+    'Note="Negate attack of %{combatNotes.improvedExtraction?3:1} foes when withdrawing"',
   'Fame':
     'Section=feature,skill ' +
     'Note=' +
-      '"%Vx fee from performing",' +
-      '"+%V Persuasion (influence friendly individuals)"',
+      '"%{featureNotes.famous?5:2}x fee from performing",' +
+      '"+%{featureNotes.famous?2:1} Persuasion (influence friendly individuals)"',
   'Famous':'Section=feature Note="Increased Fame effects"',
   'Fast Healer':
     'Section=combat Note="+2 Vigor (natural healing) and check every 3 dy"',
@@ -572,7 +577,8 @@ SWADE.FEATURES = {
     'Note="R%{commandRange}\\" Commanded gain +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
-    'Section=combat Note="Free attack when foe moves into reach %V/rd"',
+    'Section=combat ' +
+    'Note="Free attack when foe moves into reach %{combatNotes.improvedFirstStrike?3:1}/rd"',
   'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
   'Followers':'Section=feature Note="Has 5 soldier followers"',
   'Free Runner':
@@ -580,7 +586,9 @@ SWADE.FEATURES = {
     'Note=' +
       '"Move full Pace on difficult ground",' +
       '"+2 Athletics (climbing)/+2 on foot chases"',
-  'Frenzy':'Section=combat Note="Extra Fighting die on %V attacks/rd"',
+  'Frenzy':
+    'Section=combat ' +
+    'Note="Extra Fighting die on %{combatNotes.improvedFrenzy?2:1} attacks/rd"',
   'Gadgeteer':
     'Section=arcana Note="May jury rig arcane device from available parts"',
   'Giant Killer':
@@ -631,19 +639,23 @@ SWADE.FEATURES = {
     'Note="Successful Smarts roll gives d4 (Raise d6) on chosen skill"',
   'Killer Instinct':
     'Section=skill Note="May reroll self-initiated opposed Test"',
-  'Level Headed':'Section=combat Note="Choose best of %V Action Cards"',
+  'Level Headed':
+    'Section=combat ' +
+    'Note="May choose best of %{combatNotes.improvedLevelHeaded?3:2} Action Cards"',
   'Linguist':
     'Section=skill ' +
     'Note="+%V Skill Points (d6 in in %{smarts//2} Language skills)"',
   'Liquid Courage':
     'Section=attribute ' +
     'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts, Agility and associated skills for 1 hr"',
-  'Luck':'Section=feature Note="+%V Benny each session"',
+  'Luck':
+   'Section=feature ' +
+   'Note="+%{featureNotes.greatLuck?2:1} Benny each session"',
   'Marksman':
     'Section=combat ' +
     'Note="May forego move for +1 ranged attack or to ignore 2 ranged attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%1 Unarmed attack/+%V Unarmed damage step"',
+    'Section=combat Note="+%{combatNotes.martialWarrior?2:1} Unarmed attack/+%{combatNotes.martialWarrior?2:1} Unarmed damage step"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':
@@ -662,7 +674,8 @@ SWADE.FEATURES = {
   'Natural Leader':
     'Section=feature Note="May apply leadership edges to Wild Cards"',
   'Nerves Of Steel':
-    'Section=combat Note="Ignores %V points of Wound penalties"',
+    'Section=combat ' +
+    'Note="Ignores %{combatNotes.improvedNervesOfSteel?2:1} points of Wound penalties"',
   'New Powers':'Section=arcana Note="+%V Power Count"',
   'No Mercy':'Section=combat Note="+2 on Benny damage reroll"',
   'Power Points':'Section=arcana Note="+%V Power Points"',
@@ -680,13 +693,18 @@ SWADE.FEATURES = {
   'Quick':'Section=combat Note="May redraw Action Cards lower than 6"',
   'Rabble-Rouser':
     'Section=skill Note="May Taunt or Intimidate all foes in 2\\" radius"',
-  'Rapid Fire':'Section=combat Note="Increase ROF by 1 %V/rd"',
-  'Rapid Recharge':'Section=arcana Note="Recovers %V Power Points/hr"',
+  'Rapid Fire':
+    'Section=combat ' +
+    'Note="Increase ROF by 1 %{combatNotes.improvedRapidFire?2:1}/rd"',
+  'Rapid Recharge':
+    'Section=arcana ' +
+    'Note="Recovers %{arcanaNotes.improvedRapidRecharge?20:10} Power Points/hr"',
   'Reliable':'Section=skill Note="May reroll Support"',
   'Retort':
     'Section=skill ' +
     'Note="Raise on resisting Intimidation or Taunt Test causes foe to be Distracted"',
-  'Rich':'Section=feature Note="%Vx starting funds"',
+  'Rich':
+    'Section=feature Note="%{featureNotes.filthyRich?5:3}x starting funds"',
   'Rock And Roll':'Section=combat Note="May trade move for ignoring recoil"',
   'Scavenger':
     'Section=combat Note="May recover knowledge or equipment 1/encounter"',
@@ -708,14 +726,18 @@ SWADE.FEATURES = {
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
   'Strong Willed':
     'Section=attribute Note="+2 Smarts (resist Tests)/+2 Spirit (resist Tests)"',
-  'Sweep':'Section=combat Note="May make %1attack on all within reach"',
+  'Sweep':
+    'Section=combat ' +
+    'Note="May make %{combatNotes.improvedSweep?\'\':\'-2 \'}attack on all within reach"',
   'Tactician':
     'Section=combat ' +
-    'Note="R%{commandRange}\\" May distribute %V Action Cards to commanded each rd"',
+    'Note="R%{commandRange}\\" May distribute %{combatNotes.masterTactician?2:1} Action Cards to commanded each rd"',
   'Thief':
     'Section=skill ' +
     'Note="+1 Athletics (urban climbing)/+1 Stealth (urban)/+1 Thievery"',
-  'Tough As Nails':'Section=combat Note="Takes %V Wounds before incapacitated"',
+  'Tough As Nails':
+    'Section=combat ' +
+    'Note="Takes %{combatNotes.tougherThanNails?5:4} Wounds before incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%melee)':
     'Section=combat Note="+%V attack and Parry with %melee"',
@@ -729,14 +751,14 @@ SWADE.FEATURES = {
     'Note="No multi-action penalty for ranged attack with each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':
-    'Section=combat Note="+%V Parry/+d%1 damage on melee attack Raise"',
+    'Section=combat Note="+%{combatNotes.masterOfArms?2:1} Parry/+d%{combatNotes.masterOfArms?10:8} damage on melee attack Raise"',
   'Wizard':
     'Section=arcana Note="May spend 1 Power Point to change Power trapping"',
   'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (wilds)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
     'Section=skill ' +
-    'Note="Roll additional Performance or Persuasion die in Support %V/rd"',
+    'Note="Roll additional Performance or Persuasion die in Support %{skillNotes.workTheCrowd?2:1}/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -916,7 +938,7 @@ SWADE.FEATURES = {
     'Section=combat Note="-4 vs. cold effects/+4 damage from cold"',
   'Flight':
     'Section=combat,skill ' +
-    'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
+    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
   'Hardy':'Section=combat Note="Does not suffer Wound from 2nd Shaken result"',
   'Heritage':
@@ -2403,33 +2425,10 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
 SWADE.edgeRulesExtra = function(rules, name) {
   let matchInfo;
   let note;
-  if(name == 'Arcane Resistance') {
-    rules.defineRule('combatNotes.arcaneResistance',
-      '', '=', '-2',
-      'combatNotes.improvedArcaneResistance', '+', '-2'
-    );
-  } else if(name == 'Assassin') {
-    rules.defineRule('combatNotes.assassin', '', '=', '2');
-  } else if(name == 'Attractive') {
-    rules.defineRule('skillNotes.attractive',
-      '', '=', '1',
-      'skillNotes.veryAttractive', '+', '1'
-    );
-  } else if(name == 'Block') {
-    rules.defineRule('combatNotes.block',
-      '', '=', '1',
-      'combatNotes.improvedBlock', '+', '1'
-    );
-  } else if(name == 'Brawler') {
-    rules.defineRule('combatNotes.brawler',
-      '', '=', '1',
-      'combatNotes.bruiser', '+', '1'
-    );
-    rules.defineRule('combatNotes.brawler.1',
-      'features.Brawler', '=', '1',
-      'combatNotes.bruiser', '+', '1'
-    );
-    rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler.1', '+=', null);
+  if(name == 'Brawler') {
+    rules.defineRule('damageStep.Unarmed', 'combatNotes.brawler', '+=', '1');
+  } else if(name == 'Bruiser') {
+    rules.defineRule('damageStep.Unarmed', 'combatNotes.bruiser', '+=', '1');
   } else if(name == 'Brawny') {
     rules.defineRule
       ('armorStrengthStepShortfall', 'attributeNotes.brawny', '+', '-1');
@@ -2448,67 +2447,20 @@ SWADE.edgeRulesExtra = function(rules, name) {
       'features.Command', '=', '5',
       'featureNotes.commandPresence', '+', '5'
     );
-  } else if(name == 'Counterattack') {
-    rules.defineRule('combatNotes.counterattack',
-      '', '=', '1',
-      'combatNotes.improvedCounterattack', '+', '2'
-    );
-  } else if(name == 'Extraction') {
-    rules.defineRule('combatNotes.extraction',
-      '', '=', '1',
-      'combatNotes.improvedExtraction', '+', '2'
-    );
-  } else if(name == 'Fame') {
-    rules.defineRule('featureNotes.fame',
-      '', '=', '2',
-      'featureNotes.famous', '+', '3'
-    );
-    rules.defineRule('skillNotes.fame',
-      '', '=', '1',
-      'featureNotes.famous', '+', '1'
-    );
-  } else if(name == 'First Strike') {
-    rules.defineRule('combatNotes.firstStrike',
-      '', '=', '1',
-      'combatNotes.improvedFirstStrike', '+', '2'
-    );
-  } else if(name == 'Frenzy') {
-    rules.defineRule('combatNotes.frenzy',
-      '', '=', '1',
-      'combatNotes.improvedFrenzy', '+', '1'
-    );
-  } else if(name == 'Level Headed') {
-    rules.defineRule('combatNotes.levelHeaded',
-      '', '=', '2',
-      'combatNotes.improvedLevelHeaded', '+', '1'
-    );
   } else if(name == 'Linguist') {
     rules.defineRule
       ('skillNotes.linguist', 'smarts', '=', 'Math.floor(source/2) * 2');
     rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
-  } else if(name == 'Luck') {
-    rules.defineRule('featureNotes.luck',
-      '', '=', '1',
-      'featureNotes.greatLuck', '+', '1'
-    );
   } else if(name == 'Martial Artist') {
-    rules.defineRule('combatNotes.martialArtist',
-      '', '=', '1',
-      'combatNotes.martialWarrior', '+', '1'
-    );
-    rules.defineRule('combatNotes.martialArtist.1',
-      'features.Martial Artist', '=', '1',
-      'combatNotes.martialWarrior', '+', '1'
-    );
     rules.defineRule
-      ('attackAdjustment.Unarmed', 'combatNotes.martialArtist.1', '+', null);
+      ('attackAdjustment.Unarmed', 'combatNotes.martialArtist', '+=', '1');
     rules.defineRule
-      ('damageStep.Unarmed', 'combatNotes.martialArtist', '+=', null);
-  } else if(name == 'Nerves Of Steel') {
-    rules.defineRule('combatNotes.nervesOfSteel',
-      '', '=', '1',
-      'combatNotes.improvedNervesOfSteel', '+', '1'
-    );
+      ('damageStep.Unarmed', 'combatNotes.martialArtist', '+=', '1');
+  } else if(name == 'Martial Warrior') {
+    rules.defineRule
+      ('attackAdjustment.Unarmed', 'combatNotes.martialWarrior', '+', '1');
+    rules.defineRule
+      ('damageStep.Unarmed', 'combatNotes.martialWarrior', '+', '1');
   } else if(name == 'New Powers') {
     rules.defineRule
       ('arcanaNotes.newPowers', 'edges.New Powers', '=', 'source * 2');
@@ -2523,40 +2475,10 @@ SWADE.edgeRulesExtra = function(rules, name) {
       '', '=', '1',
       note.replace('professional', 'expert'), '+', '1'
     );
-  } else if(name == 'Rapid Fire') {
-    rules.defineRule('combatNotes.rapidFire',
-      '', '=', '1',
-      'combatNotes.improvedRapidFire', '+', '1'
-    );
-  } else if(name == 'Rapid Recharge') {
-    rules.defineRule('arcanaNotes.rapidRecharge',
-      '', '=', '10',
-      'arcanaNotes.improvedRapidRecharge', '+', '10'
-    );
-  } else if(name == 'Rich') {
-    rules.defineRule('featureNotes.rich',
-      '', '=', '3',
-      'featureNotes.filthyRich', '^', '5'
-    );
   } else if(name == 'Soldier') {
     rules.defineRule
       ('armorStrengthStepShortfall', 'attributeNotes.soldier', '+', '-1');
     rules.defineRule('weaponStrength', 'attributeNotes.soldier', '+', '2');
-  } else if(name == 'Sweep') {
-    rules.defineRule('combatNotes.sweep.1',
-      'features.Sweep', '=', '"-2 "',
-      'combatNotes.improvedSweep', '=', '""'
-    );
-  } else if(name == 'Tactician') {
-    rules.defineRule('combatNotes.tactician',
-      '', '=', '1',
-      'combatNotes.masterTactician', '+', '1'
-    );
-  } else if(name == 'Tough As Nails') {
-    rules.defineRule('combatNotes.toughAsNails',
-      '', '=', '4',
-      'combatNotes.tougherThanNails', '+', '1'
-    );
   } else if((matchInfo = name.match(/^Trademark Weapon \((.*)\)$/)) != null) {
     let weapon = matchInfo[1];
     note = 'combatNotes.trademarkWeapon(' + weapon.replaceAll(' ', '') + ')';
@@ -2565,20 +2487,6 @@ SWADE.edgeRulesExtra = function(rules, name) {
       note.replace('trademark', 'improvedTrademark'), '+', '1'
     );
     rules.defineRule('attackAdjustment.' + weapon, note, '+', null);
-  } else if(name == 'Weapon Master') {
-    rules.defineRule('combatNotes.weaponMaster',
-      '', '=', '1',
-      'combatNotes.masterOfArms', '+', '1'
-    );
-    rules.defineRule('combatNotes.weaponMaster.1',
-      '', '=', '8',
-      'combatNotes.masterOfArms', '=', '10'
-    );
-  } else if(name == 'Work The Room') {
-    rules.defineRule('skillNotes.workTheRoom',
-      '', '=', '1',
-      'skillNotes.workTheCrowd', '+', '1'
-    );
   }
 };
 
@@ -2615,20 +2523,19 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     return;
   }
 
-  // Test for QR.wVCS (v2.4 feature) for backward compatibility
-  if(QuilvynRules.wrapVarsContainingSpace)
-    notes = notes.map(x => QuilvynRules.wrapVarsContainingSpace(x));
+  notes = notes.map(x => QuilvynRules.wrapVarsContainingSpace(x));
 
+  let matchInfo;
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
   for(let i = 0; i < sections.length; i++) {
 
-    let section = sections[i];
+    let section = sections[i].toLowerCase();
     let effects = notes[i];
-    let matchInfo;
     let maxSubnote =
-      effects.includes('%1') ? effects.match(/%\d/g).sort().pop().replace('%') - 0 : 0;
+      effects.includes('%1') ? +effects.match(/%\d/g).sort().pop().replace('%') :
+      effects.includes('%V') ? 0 : -1;
     let note = section + 'Notes.' + prefix;
     let priorInSection = sections.slice(0, i).filter(x => x == section).length;
     if(priorInSection > 0)
@@ -2638,71 +2545,89 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     rules.defineRule
       (note, 'features.' + name, effects.indexOf('%V') >= 0 ? '?' : '=', null);
 
-    let pieces = effects.split('/');
+    while(effects.length > 0) {
 
-    for(let j = 0; j < pieces.length; j++) {
-
-      matchInfo = pieces[j].match(/^(\d+)\s+powers?$/i);
+      let m = effects.match(/^((%\{[^\}]*\}|[^\/])*)\/?(.*)$/);
+      let effect = m[1];
+      effects = m[3];
+ 
+      matchInfo = effect.match(/^(\d+)\s+powers?$/i);
       if(matchInfo)
         rules.defineRule('powerCount', note, '+=', matchInfo[1]);
-      matchInfo = pieces[j].match(/^(\d+)\s+power\s+points?$/i);
+      matchInfo = effect.match(/^(\d+)\s+power\s+points?$/i);
       if(matchInfo)
         rules.defineRule('powerPoints', note, '+=', matchInfo[1]);
 
-      matchInfo = pieces[j].match(/^([-+x](\d+(\.\d+)?|%[V1-9]))\s+(.*)$/);
-      if(!matchInfo)
-        continue;
+      if((matchInfo = effect.match(/^([-+x](\d+(\.\d+)?|%[V1-9]|%\{[^\}]*\}))\s+(.*)$/)) != null) {
 
-      let adjust = matchInfo[1];
-      let adjusted = matchInfo[4]=='Armor' ? 'Armor Toughness' : matchInfo[4];
+        let adjust = matchInfo[1];
+        let adjusted = matchInfo[4]=='Armor' ? 'Armor Toughness' : matchInfo[4];
 
-      // Support +%{expr} by evaling expr for each id it contains
-      if(adjust.match(/%{/)) {
-        let expression = adjust.substring(3, adjust.length - 1);
-        let sn = ++maxSubnote;
-        rules.defineRule(note + '.' + sn, 'features.' + name, '?', null);
-        new Expr(expression).identifiers().forEach(id => {
-          if(expression.trim() == id)
-            rules.defineRule(note + '.' + sn, id, '=', null);
+        // Support +%{expr} by evaling expr for each id it contains
+        if(adjust.match(/%{.*}/) && !adjusted.match(/\b[a-z]/)) {
+          let expression = adjust.substring(3, adjust.length - 1);
+          let ids = new Expr(expression).identifiers();
+          let sn = ++maxSubnote;
+          let target = sn>0 ? note + '.' + sn : note;
+          rules.defineRule(target, 'features.' + name, '?', null);
+          ids.forEach(id => {
+            if(expression.trim() == id)
+              rules.defineRule(target, id, '=', null);
+            else
+              rules.defineRule
+                (target, id, '=', 'new Expr("' + expression + '").eval(dict)');
+          });
+          adjust = '%' + (sn==0 ? 'V' : sn);
+          if(sn == 0)
+            // Override '=' feature dependency rule created above
+            rules.defineRule(note, 'features.' + name, '?', null);
+        }
+
+        let adjuster =
+          adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
+        let op = adjust.startsWith('x') ? '*' : '+';
+        if(op == '*')
+          adjust = adjust.substring(1);
+
+        if(section == 'skill' && adjusted != 'Skill Points' && adjusted != 'Charisma' &&
+           adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
+          adjusted = 'skillModifier.' + adjusted;
+        } else if(adjusted == 'Run' ||
+                  adjusted.toLowerCase() in SWADE.ATTRIBUTES) {
+          adjusted = adjusted.toLowerCase() + 'Modifier';
+        } else if(adjusted.match(/^[A-Z]\w+ step$/)) {
+          adjusted = adjusted.replace(' step', '');
+          if(section == 'attribute' || adjusted == 'Run')
+            adjusted = adjusted.toLowerCase() + 'Step';
+          else if(sections == 'skill')
+            adjusted = 'skillStep.' + adjusted;
           else
-            rules.defineRule(note + '.' + sn, id,
-              '=', 'new Expr("' + expression + '").eval(dict)'
-            );
-        });
-        adjust = '%' + sn;
-      }
+            adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1);
+        } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
+          adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
+        } else {
+          continue;
+        }
+        rules.defineRule(adjusted,
+          adjuster, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
+        );
 
-      let adjuster =
-        adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
-      let op = adjust.startsWith('x') ? '*' : '+';
-      if(op == '*')
-        adjust = adjust.substring(1);
-
-      if(section == 'skill' && adjusted != 'Skill Points' && adjusted != 'Charisma' &&
-         adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
-        adjusted = 'skillModifier.' + adjusted;
-      } else if(adjusted == 'Run' ||
-                adjusted.toLowerCase() in SWADE.ATTRIBUTES) {
-        adjusted = adjusted.toLowerCase() + 'Modifier';
-      } else if(adjusted.match(/^[A-Z]\w+ step$/)) {
-        adjusted = adjusted.replace(' step', '');
-        if(section == 'attribute' || adjusted == 'Run')
-          adjusted = adjusted.toLowerCase() + 'Step';
-        else if(sections == 'skill')
-          adjusted = 'skillStep.' + adjusted;
-        else
-          adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1);
-      } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
-        adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
-      } else {
-        continue;
       }
-      rules.defineRule(adjusted,
-        adjuster, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
-      );
 
     }
 
+  }
+
+  // Define a noop rule for each note referenced in expressions to ensure that
+  // the note appears in italics.
+  matchInfo = notes.join('').match(/%{[^}]*}/g);
+  if(matchInfo) {
+    matchInfo.forEach(e => {
+      new Expr(e.substring(2, e.length-1)).identifiers().forEach(id => {
+        if(id.match(/Notes./))
+          rules.defineRule('italics', id, '=', 'null');
+      });
+    });
   }
 
 };
@@ -2865,9 +2790,7 @@ SWADE.raceRules = function(rules, name, requires, features) {
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-  if(name == 'Avion') {
-    rules.defineRule('combatNotes.flight', 'avionAdvances', '=', '12');
-  } if(name == 'Half-Elf') {
+  if(name == 'Half-Elf') {
     rules.defineRule
       ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
   } else if(name == 'Saurian') {
