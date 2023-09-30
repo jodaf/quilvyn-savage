@@ -60,9 +60,8 @@ function SWADE() {
   SWADE.arcaneRules(rules, SWADE.ARCANAS, SWADE.POWERS);
   SWADE.talentRules
     (rules, SWADE.EDGES, SWADE.FEATURES, SWADE.GOODIES, SWADE.HINDRANCES,
-     SWADE.LANGUAGES, SWADE.SKILLS);
-  SWADE.identityRules
-    (rules, SWADE.RACES, SWADE.ERAS, SWADE.CONCEPTS, SWADE.DEITIES);
+     SWADE.SKILLS);
+  SWADE.identityRules(rules, SWADE.RACES, SWADE.ERAS, SWADE.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -73,7 +72,7 @@ SWADE.VERSION = '2.4.1.0';
 /* List of items handled by choiceRules method. */
 SWADE.CHOICES = [
   'Arcana', 'Armor', 'Concept', 'Edge', 'Era', 'Feature', 'Hindrance',
-  'Language', 'Power', 'Race', 'Shield', 'Skill', 'Weapon'
+  'Power', 'Race', 'Shield', 'Skill', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -82,7 +81,7 @@ SWADE.CHOICES = [
 SWADE.RANDOMIZABLE_ATTRIBUTES = [
   'era', 'race', 'gender', 'name', 'advances', 'hindrances', 'improvements',
   'concepts', 'attributes', 'edges', 'skills', 'armor', 'weapons', 'shield',
-  'deity', 'powers'
+  'powers'
 ];
 SWADE.VIEWERS = ['Collected Notes', 'Compact', 'Standard', 'Stat Block'];
 
@@ -201,9 +200,6 @@ SWADE.CONCEPTS = {
     'Edge=Woodsman ' +
     'Attribute=Spirit ' +
     'Skill=Survival'
-};
-SWADE.DEITIES = {
-  'None':''
 };
 SWADE.EDGES = {
   // Background
@@ -1191,7 +1187,7 @@ SWADE.POWERS = {
   'Arcane Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1199,13 +1195,13 @@ SWADE.POWERS = {
   'Banish':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description=' +
       '"Target suffers Shaken (Raise 1 Wound; Spirit neg), returns to native plane if incapacitated"',
   'Barrier':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Barrier inflicts 2d4 damage",' +
       '"+1 PP Barrier has +2 hardness",' +
@@ -1215,14 +1211,14 @@ SWADE.POWERS = {
   'Beast Friend':
     'Advances=0 ' +
     'PowerPoints=1/Size ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Target can use beast\'s senses" ' +
     'Description="Target can speak with and control beast actions for 10 min"',
   'Blast':
     'Advances=4 ' +
     'PowerPoints=3 ' +
-    'Range=smarts*2 ' +
+    'Range=Smarts*2 ' +
     'Modifier=' +
       '"+0/+1 PP 1\\"/3\\" radius",' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)" ' +
@@ -1230,7 +1226,7 @@ SWADE.POWERS = {
   'Blind':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
       '"+1 PP Vigor-2" ' +
@@ -1239,14 +1235,14 @@ SWADE.POWERS = {
   'Bolt':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts*2 ' +
+    'Range=Smarts*2 ' +
     'Modifier=' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)" ' +
     'Description="Inflicts 2d6 damage (Raise 3d6)"',
   'Boost/Lower Trait':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Spirit-2" ' +
@@ -1255,7 +1251,7 @@ SWADE.POWERS = {
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Allows burrowing through stone" ' +
@@ -1270,7 +1266,7 @@ SWADE.POWERS = {
   'Confusion':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description=' +
@@ -1278,14 +1274,14 @@ SWADE.POWERS = {
   'Damage Field':
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2 PP 2d6 damage" ' +
     'Description="Creatures adjacent to target suffer 2d4 damage for 5 rd"',
   'Darksight':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1293,14 +1289,14 @@ SWADE.POWERS = {
   'Deflection':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description="Foes suffer -2 attacks (Raise -4) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1/+2 PP 2\\"/3\\" radius",' +
@@ -1310,7 +1306,7 @@ SWADE.POWERS = {
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Allows changing size by 2 steps" ' +
@@ -1318,35 +1314,35 @@ SWADE.POWERS = {
   'Dispel':
     'Advances=4 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)"' +
     'Description="Ends targeted power (Casting suffers -2 if backgrounds differ; opposed arcane skill neg)"',
   'Divination':
     'Advances=12 ' +
     'PowerPoints=5 ' +
-    'Range=self ' +
+    'Range=Self ' +
     'Description=' +
       '"1 min contact with otherworld force grants arcane skill roll to gain information"',
   'Drain Power Points':
     'Advances=8 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description="Drains 1d6 Power Points (Cast suffers -2 if backgrounds differ; Raise adds drained Power Points to self; Spirit neg)"',
   'Elemental Manipulation':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description="Self performs minor elemental manipulation for 5 rd"',
   'Empathy':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description="Self learns target emotions and surface thoughts, gaining +1 Intimidation, Persuasion, Performance, and Taunt (Raise +2; Spirit neg) for 5 rd"',
   'Entangle':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
       '"+2 PP Athletics-2, Hardness 7" ' +
@@ -1354,7 +1350,7 @@ SWADE.POWERS = {
   'Environmental Protection':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1362,7 +1358,7 @@ SWADE.POWERS = {
   'Farsight':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1370,7 +1366,7 @@ SWADE.POWERS = {
   'Fear':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description=' +
@@ -1378,20 +1374,20 @@ SWADE.POWERS = {
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2 PP/additional target" ' +
     'Description="Target gains fly Pace 12 (Raise Pace 24) for 5 rd"',
   'Growth/Shrink':
     'Advances=4 ' +
     'PowerPoints=2/Size ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description=' +
       '"Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
       '"+1 PP Strength-2" ' +
@@ -1400,7 +1396,7 @@ SWADE.POWERS = {
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Range=touch ' +
+    'Range=Touch ' +
     'Modifier=' +
       '"+10 PP Restores older Wound",' +
       '"+20 PP Heals crippling injury",' +
@@ -1409,7 +1405,7 @@ SWADE.POWERS = {
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Illusion includes sound",' +
       '"+2 PP Smarts-2" ' +
@@ -1417,13 +1413,13 @@ SWADE.POWERS = {
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description=' +
       '"Target becomes unaffected by physical world (Spirit neg) for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+3 PP/additional target" ' +
     'Description=' +
@@ -1431,14 +1427,14 @@ SWADE.POWERS = {
   'Light/Darkness':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Attaches to object or moves effect %{arcaneSkill}\\"/rd" ' +
     'Description="Creates 3\\" radius (Raise or 5\\" beam) bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1446,12 +1442,12 @@ SWADE.POWERS = {
   'Mind Reading':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Description="Self gains 1 truthful answer from target (Smarts neg)"',
   'Mind Wipe':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Edits memory",' +
       '"+2 PP Activate power as an action" ' +
@@ -1459,7 +1455,7 @@ SWADE.POWERS = {
   'Object Reading':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=touch ' +
+    'Range=Touch ' +
     'Modifier=' +
       '"+2 PP Self sees events beginning with target creation" ' +
     'Description=' +
@@ -1467,7 +1463,7 @@ SWADE.POWERS = {
   'Protection':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP +4 Armor (Raise +6)",' +
@@ -1476,7 +1472,7 @@ SWADE.POWERS = {
   'Puppet':
     'Advances=8 ' +
     'PowerPoints=3 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2 PP/additional target" ' +
     'Description=' +
@@ -1484,7 +1480,7 @@ SWADE.POWERS = {
   'Relief':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1492,7 +1488,7 @@ SWADE.POWERS = {
   'Resurrection':
     'Advances=12 ' +
     'PowerPoints=30 ' +
-    'Range=touch ' +
+    'Range=Touch ' +
     'Modifier=' +
       '"+5 PP Raises 10 yr corpse" ' +
     'Description=' +
@@ -1500,14 +1496,14 @@ SWADE.POWERS = {
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=3+ ' +
-    'Range=self ' +
+    'Range=Self ' +
     'Modifier=' +
       '"+1 PP Allows speech while changed" ' +
     'Description="transforms into animal form (Raise +1 Strength and Vigor) for 5 rd"',
   'Sloth/Speed':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional Speed target",' +
       '"+2/+3 PP Sloth slows all in 2\\"/3\\" radius",' +
@@ -1518,21 +1514,21 @@ SWADE.POWERS = {
   'Slumber':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description="Target sleeps (Spirit neg; Raise Spirit-2) for 1 hr"',
   'Smite':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description="Target weapon inflicts +2 damage (Raise +4) for 5 rd"',
   'Sound/Silence':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts*5 ' +
+    'Range=Smarts*5 ' +
     'Modifier=' +
       '"+1 PP May move effect %{arcaneSkill}\\"/rd",' +
       '"+0 PP Affects target (Spirit neg)",' +
@@ -1542,21 +1538,21 @@ SWADE.POWERS = {
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description="Target speaks unknown language for 10 min"',
   'Stun':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description="Stuns target (Vigor neg; Raise Vigor-2)"',
   'Summon Ally':
     'Advances=0 ' +
     'PowerPoints=2+ ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Servant can bite/claw for Str+d6 damage",' +
       '"+2 PP Servant has fly Pace 12",' +
@@ -1566,13 +1562,13 @@ SWADE.POWERS = {
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=5 ' +
-    'Range=smarts*2 ' +
+    'Range=Smarts*2 ' +
     'Description=' +
       '"Moves items remotely as Strength d10 (Raise d12; Spirit neg) for 5 rd"',
   'Teleport':
     'Advances=4 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+2 PP Touch teleports foe (Spirit neg)" ' +
@@ -1580,7 +1576,7 @@ SWADE.POWERS = {
   'Wall Walker':
     'Advances=0 ' +
     'PowerPoints=2 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
@@ -1588,14 +1584,14 @@ SWADE.POWERS = {
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description="Target gains combat edge effects (Raise improved version) for 5 rd"',
   'Zombie':
     'Advances=8 ' +
     'PowerPoints=3+ ' +
-    'Range=smarts ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Target is armed",' +
@@ -1638,7 +1634,6 @@ SWADE.RACES = {
       '"Armor +2",Bite,"Environmental Weakness (Cold)",' +
       '"Keen Senses (Saurian)",Outsider'
 };
-SWADE.LANGUAGES = {};
 SWADE.SHIELDS = {
   'None':'Era=Ancient,Medieval,Modern,Future Parry=0 Cover=0 MinStr=0 Weight=0',
   'Small Shield':'Era=Ancient,Medieval Parry=1 Cover=0 MinStr=4 Weight=4',
@@ -1652,10 +1647,10 @@ SWADE.SHIELDS = {
 };
 SWADE.SKILLS = {
   'Academics':'Attribute=Smarts',
-  'Athletics':'Attribute=Agility Core=Y',
+  'Athletics':'Attribute=Agility Core=True',
   'Battle':'Attribute=Smarts',
   'Boating':'Attribute=Agility',
-  'Common Knowledge':'Attribute=Smarts Core=Y',
+  'Common Knowledge':'Attribute=Smarts Core=True',
   'Driving':'Attribute=Agility Era=Modern,Future',
   'Electronics':'Attribute=Smarts Era=Modern,Future',
   'Faith':'Attribute=Spirit',
@@ -1665,10 +1660,10 @@ SWADE.SKILLS = {
   'Hacking':'Attribute=Smarts Era=Modern,Future',
   'Healing':'Attribute=Smarts',
   'Intimidation':'Attribute=Spirit',
-  'Notice':'Attribute=Smarts Core=Y',
+  'Notice':'Attribute=Smarts Core=True',
   'Occult':'Attribute=Smarts',
   'Performance':'Attribute=Spirit',
-  'Persuasion':'Attribute=Spirit Core=Y',
+  'Persuasion':'Attribute=Spirit Core=True',
   'Piloting':'Attribute=Agility Era=Modern,Future',
   'Psionics':'Attribute=Smarts',
   'Repair':'Attribute=Smarts',
@@ -1677,7 +1672,7 @@ SWADE.SKILLS = {
   'Science':'Attribute=Smarts',
   'Shooting':'Attribute=Agility',
   'Spellcasting':'Attribute=Smarts',
-  'Stealth':'Attribute=Agility Core=Y',
+  'Stealth':'Attribute=Agility Core=True',
   'Survival':'Attribute=Smarts',
   'Taunt':'Attribute=Smarts',
   'Thievery':'Attribute=Agility',
@@ -2052,18 +2047,14 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADE.identityRules = function(rules, races, eras, concepts, deitys) {
+SWADE.identityRules = function(rules, races, eras, concepts) {
 
   QuilvynUtils.checkAttrTable(concepts, ['Attribute', 'Edge', 'Skill']);
-  QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(eras, []);
-  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features', 'Languages']);
+  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features']);
 
   for(let concept in concepts) {
     rules.choiceRules(rules, 'Concept', concept, concepts[concept]);
-  }
-  for(let deity in deitys) {
-    rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
   }
   for(let era in eras) {
     rules.choiceRules(rules, 'Era', era, eras[era]);
@@ -2076,7 +2067,7 @@ SWADE.identityRules = function(rules, races, eras, concepts, deitys) {
 
 /* Defines rules related to character aptitudes. */
 SWADE.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills
 ) {
 
   let c;
@@ -2087,7 +2078,6 @@ SWADE.talentRules = function(
   QuilvynUtils.checkAttrTable
     (goodies, ['Pattern', 'Effect', 'Value', 'Attribute', 'Section', 'Note']);
   QuilvynUtils.checkAttrTable(hindrances, ['Require', 'Severity']);
-  QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Era', 'Attribute', 'Core']);
 
   for(let goody in goodies) {
@@ -2095,9 +2085,6 @@ SWADE.talentRules = function(
   }
   for(let hindrance in hindrances) {
     rules.choiceRules(rules, 'Hindrance', hindrance, hindrances[hindrance]);
-  }
-  for(let language in languages) {
-    rules.choiceRules(rules, 'Language', language, languages[language]);
   }
   for(let skill in skills) {
     if((matchInfo = skill.match(/(%(\w+))/)) != null) {
@@ -2185,11 +2172,6 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
-  else if(type == 'Deity')
-    SWADE.deityRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Alignment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Domain')
-    );
   else if(type == 'Edge') {
     SWADE.edgeRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -2219,9 +2201,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Severity')
     );
     SWADE.hindranceRulesExtra(rules, name);
-  } else if(type == 'Language')
-    SWADE.languageRules(rules, name);
-  else if(type == 'Power')
+  } else if(type == 'Power')
     SWADE.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
@@ -2233,8 +2213,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+      QuilvynUtils.getAttrValueArray(attrs, 'Features')
     );
     SWADE.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
@@ -2247,9 +2226,9 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Skill')
     SWADE.skillRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValue(attrs, 'Core'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Era')
+      QuilvynUtils.getAttrValue(attrs, 'Core')
     );
   else if(type == 'Weapon')
     SWADE.weaponRules(rules, name,
@@ -2375,19 +2354,6 @@ SWADE.conceptRules = function(rules, name, attributes, edges, skills) {
     }
   }
   // No rules pertain to concept
-};
-
-/*
- * Defines in #rules# the rules associated with deity #name#. The optional
- * #alignment# gives the deity's alignment, and #domains# lists any domains
- * connected to the deity.
- */
-SWADE.deityRules = function(rules, name, alignment, domains) {
-  if(!name) {
-    console.log('Empty deity name');
-    return;
-  }
-  // No rules pertain to deity
 };
 
 /*
@@ -2806,15 +2772,6 @@ SWADE.hindranceRulesExtra = function(rules, name) {
   }
 };
 
-/* Defines in #rules# the rules associated with language #name#. */
-SWADE.languageRules = function(rules, name) {
-  if(!name) {
-    console.log('Empty language name');
-    return;
-  }
-  SWADE.skillRules(rules, 'Language (' + name + ')', 'smarts', false, []);
-};
-
 /*
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
@@ -2839,9 +2796,6 @@ SWADE.powerRules = function(
   if(!description) {
     console.log('Empty description for power ' + name);
   }
-  // TODO Default value for modifiers for backward-compatibility
-  if(modifiers == null)
-    modifiers = [];
   if(!Array.isArray(modifiers)) {
     console.log('Bad modifiers "' + modifiers + '" for power ' + name);
   }
@@ -2849,8 +2803,8 @@ SWADE.powerRules = function(
     range = '';
   else if((range+'').match(/^\d+$/))
     range = 'R' + range + '" ';
-  else if(range.match(/\b(agility|smarts|spirit|strength|vigor)\b/))
-    range = 'R%{' + range + '}" ';
+  else if(range.match(/^(agility|smarts|spirit|strength|vigor)\b/i))
+    range = 'R%{' + range.toLowerCase() + '}" ';
   else if(range.match(/^(self|sight|special|touch)$/i))
     range = 'R' + range.charAt(0).toUpperCase() + range.substring(1).toLowerCase() + ' ';
   else
@@ -2870,10 +2824,9 @@ SWADE.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# lists associated features and
- * #languages# any automatic languages.
+ * of hard prerequisites #requires#. #features# lists associated features.
  */
-SWADE.raceRules = function(rules, name, requires, features, languages) {
+SWADE.raceRules = function(rules, name, requires, features) {
 
   if(!name) {
     console.log('Empty race name');
@@ -2885,10 +2838,6 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
   }
   if(!Array.isArray(features)) {
     console.log('Bad features list "' + features + '" for race ' + name);
-    return;
-  }
-  if(!Array.isArray(languages)) {
-    console.log('Bad languages list "' + languages + '" for race ' + name);
     return;
   }
 
@@ -2908,14 +2857,6 @@ SWADE.raceRules = function(rules, name, requires, features, languages) {
   SWADE.featureListRules(rules, features, name, raceAdvances, false);
   rules.defineSheetElement(name + ' Features', 'Hindrances+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
-
-  if(languages.length > 0) {
-    for(let i = 0; i < languages.length; i++) {
-      if(languages[i] != 'any')
-        rules.defineRule
-          ('skillStep.Language ('+languages[i]+')', raceAdvances, '+=', '3');
-    }
-  }
 
 };
 
@@ -2998,11 +2939,14 @@ SWADE.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
  * not the character automatically gets a d4 in the skill. If specified, the
  * skill is available only in the eras listed in #eras#.
  */
-SWADE.skillRules = function(rules, name, attribute, core, eras) {
+SWADE.skillRules = function(rules, name, eras, attribute, core) {
 
   if(!name) {
     console.log('Empty skill name');
     return;
+  }
+  if(!Array.isArray(eras)) {
+    console.log('Bad eras "' + eras + '" for skill ' + name);
   }
   if(attribute) {
     attribute = attribute.toLowerCase();
@@ -3011,11 +2955,14 @@ SWADE.skillRules = function(rules, name, attribute, core, eras) {
       return;
     }
   }
-  if(!Array.isArray(eras)) {
-    console.log('Bad eras "' + eras + '" for skill ' + name);
+  if(typeof core == 'string') {
+    if(!core.match(/^(false|true)$/i))
+      console.log('Bad core "' + core + '" for skill ' + name);
+      // Not fatal
+    core = core.match(/^true$/i);
   }
 
-  if(core && core != 'n' && core != 'N') {
+  if(core) {
     rules.defineRule('skillStep.' + name, '', '=', '1');
     rules.defineRule('skillStepPastAttribute.' + name, '', '=', '1');
   }
@@ -3301,7 +3248,6 @@ SWADE.createViewers = function(rules, viewers) {
       viewer.addElements(
           {name: 'Description', within: 'Characteristics', separator: innerSep},
             {name: 'Size', within: 'Description'},
-            {name: 'Deity', within: 'Description'},
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AdvanceStats', within: 'Characteristics', separator: innerSep},
@@ -3459,10 +3405,6 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Skill', 'Skill', 'text', [30]],
       ['Edge', 'Edge', 'text', [30]]
     );
-  else if(type == 'Deity')
-    result.push(
-      // empty
-    );
   else if(type == 'Edge') {
     let edgeTypes = [
       'Background', 'Combat', 'Leadership', 'Legendary', 'Power',
@@ -3483,11 +3425,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Severity', 'Severity', 'select-one', ['Major', 'Minor']],
       ['Require', 'Prerequisite', 'text', [40]]
     );
-  } else if(type == 'Language')
-    result.push(
-      // empty
-    );
-  else if(type == 'Power') {
+  } else if(type == 'Power') {
     let zeroToSixteen =
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
@@ -3500,8 +3438,7 @@ SWADE.choiceEditorElements = function(rules, type) {
   } else if(type == 'Race')
     result.push(
       ['Require', 'Prerequisite', 'text', [40]],
-      ['Features', 'Features', 'text', [60]],
-      ['Languages', 'Languages', 'text', [30]]
+      ['Features', 'Features', 'text', [60]]
     );
   else if(type == 'Shield')
     result.push(
@@ -3515,7 +3452,7 @@ SWADE.choiceEditorElements = function(rules, type) {
     result.push(
       ['Era', 'Era', 'text', [30]],
       ['Attribute', 'Attribute', 'select-one', QuilvynUtils.getKeys(rules.getChoices('attributes'))],
-      ['Core', 'Core', 'select-one', ['N', 'Y']]
+      ['Core', 'Core', 'checkbox', ['']]
     );
   else if(type == 'Weapon') {
     let zeroToOneFifty =
@@ -3870,7 +3807,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         howMany -= attributes[attr];
     }
     let knowledgePicked = null;
-    let languagePicked = null;
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(allSkills);
       if(allSkills[attr].includes('Era') && !allSkills[attr].includes(era))
@@ -3882,11 +3818,6 @@ SWADE.randomizeOneAttribute = function(attributes, attribute) {
         if(knowledgePicked && attr != knowledgePicked)
           continue;
         knowledgePicked = attr;
-      }
-      if(attr.startsWith('Language')) {
-        if(languagePicked && attr != languagePicked)
-          continue;
-        languagePicked = attr;
       }
       attr = 'skillAllocation.' + attr;
       if(attributes[attr] && attributes[attr] >= 5)
@@ -4067,6 +3998,11 @@ SWADE.makeValid = function(attributes) {
 
 };
 
+/* Returns an array of plugins upon which this one depends. */
+SWADE.getPlugins = function() {
+  return [];
+};
+
 /* Returns HTML body content for user notes associated with this rule set. */
 SWADE.ruleNotes = function() {
   return '' +
@@ -4076,30 +4012,33 @@ SWADE.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Major hindrances are noted by a "+" after the name. For example,\n' +
+    '    Major hindrances are noted by a "+" after the name. For example,' +
     '    "Greedy" is a minor hindrance and "Greedy+" a major one.\n' +
     '  </li><li>\n' +
-    '    The rule book doesn\'t indicate which weapons are appropriate for\n' +
-    '    an ancient setting. Quilvyn considers these weapons valid when\n' +
-    '    randomly assigning weapons to an ancient-era character: hand axe,\n' +
-    '    light club, heavy club, dagger, knife, javelin, spear, staff,\n' +
+    '    The rule book doesn\'t indicate which weapons are appropriate for' +
+    '    an ancient setting. Quilvyn considers these weapons valid when' +
+    '    randomly assigning weapons to an ancient-era character: hand axe,' +
+    '    light club, heavy club, dagger, knife, javelin, spear, staff,' +
     '    short sword, throwing axe, bow, net, and sling.\n' +
+    '  </li><li>\n' +
+    '    Homebrew choices are described in <a href="plugins/homebrew-swade.html">' +
+    '    a separate document</a>.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
-    'All copyrights to character, vehicle, and other rules and settings are\n' +
-    'owned by their respective copyright holders. This application makes no\n' +
+    'All copyrights to character, vehicle, and other rules and settings are ' +
+    'owned by their respective copyright holders. This application makes no ' +
     'claim against any properties.\n' +
     '</p><p>\n' +
-    'This game references the Savage Worlds game system, available from\n' +
-    'Pinnacle Entertainment Group at www.peginc.com. Savage Worlds and all\n' +
-    'associated logos and trademarks are copyrights of Pinnacle\n' +
-    'Entertainment Group. Used with permission. Pinnacle makes no\n' +
-    'representation or warranty as to the quality, viability, or\n' +
-    'suitability for purpose of this product.\n' +
+    'This game references the Savage Worlds game system, available from ' +
+    'Pinnacle Entertainment Group at www.peginc.com. Savage Worlds and all ' +
+    'associated logos and trademarks are copyrights of Pinnacle ' +
+    'Entertainment Group. Used with permission. Pinnacle makes no ' +
+    'representation or warranty as to the quality, viability, or suitability ' +
+    'for purpose of this product.\n' +
     '</p><p>\n' +
-    'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA\n' +
+    'Savage Worlds Adventure Edition © 2020 Great White Games, LLC; DBA ' +
     'Pinnacle Entertainment Group.\n' +
     '</p>\n' +
     '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
