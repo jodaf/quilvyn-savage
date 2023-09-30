@@ -65,16 +65,14 @@ function SWADEFC(baseRules) {
   SWADEFC.arcaneRules(rules, SWADEFC.ARCANAS, SWADEFC.POWERS);
   SWADEFC.talentRules
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
-     SWADEFC.HINDRANCES, SWADEFC.LANGUAGES, SWADEFC.SKILLS);
-  SWADEFC.identityRules
-    (rules, SWADEFC.ANCESTRIES, SWADEFC.CONCEPTS, SWADEFC.DEITIES,
-     SWADEFC.ALIGNMENTS);
+     SWADEFC.HINDRANCES, SWADEFC.SKILLS);
+  SWADEFC.identityRules(rules, SWADEFC.ANCESTRIES, SWADEFC.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
 
 }
 
-SWADEFC.VERSION = '2.3.1.0';
+SWADEFC.VERSION = '2.4.1.0';
 
 // Throughout the plugin we take steps to show 'Ancestry' to the user to match
 // the rule book, but under the hood we use 'race' for the character attribute
@@ -517,8 +515,6 @@ SWADEFC.CONCEPTS_ADDED = {
     'Skill=Spellcasting'
 };
 SWADEFC.CONCEPTS = Object.assign(Object.fromEntries(Object.entries(SWADE.CONCEPTS).filter(([k, v]) => !v.includes('Arcane Background'))), SWADEFC.CONCEPTS_ADDED);
-SWADEFC.DEITIES = {
-};
 SWADEFC.EDGES_ADDED = {
   'Air Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
   'Earth Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
@@ -1777,62 +1773,65 @@ SWADEFC.WEAPONS = {
   'Hand Axe':SWADE.WEAPONS['Hand Axe'] + ' Range=3',
   'Battle Axe':SWADE.WEAPONS['Battle Axe'],
   'Great Axe':SWADE.WEAPONS['Great Axe'] + ' AP=3',
-  'Chakram':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=4 Parry=1',
+  'Chakram':
+    'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=4 Parry=1',
   'Light Club':SWADE.WEAPONS['Light Club'],
   'Heavy Club':SWADE.WEAPONS['Heavy Club'],
-  'Cutlass':'Damage=Str+d6 MinStr=4 Weight=4 Category=1h',
+  'Cutlass':'Damage=Str+d6 MinStr=4 Weight=4 Category=One-Handed',
   'Dagger':SWADE.WEAPONS.Dagger,
   'Knife':SWADE.WEAPONS.Knife,
   'Flail':SWADE.WEAPONS.Flail,
-  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
-  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
-  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
-  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h AP=1',
+  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
+  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
+  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
+  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=Two-Handed AP=1',
   'Halberd':SWADE.WEAPONS.Halberd + ' AP=1',
   'Katana':SWADE.WEAPONS.Katana,
   'Lance':SWADE.WEAPONS.Lance,
   'Light Mace':SWADE.WEAPONS.Mace,
-  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
-  'Mancatcher':'Damage=Str+d4 MinStr=6 Weight=10 Category=2h',
-  'Meteor Hammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=2h',
-  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h',
+  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
+  'Mancatcher':'Damage=Str+d4 MinStr=6 Weight=10 Category=Two-Handed',
+  'Meteor Hammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=Two-Handed',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed',
   'Maul':SWADE.WEAPONS.Maul + ' AP=2',
   'Pike':SWADE.WEAPONS.Pike,
   'Rapier':SWADE.WEAPONS.Rapier,
-  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h AP=1',
-  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
-  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
-  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
+  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=One-Handed AP=1',
+  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
+  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=Two-Handed',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed',
+  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed Range=4',
   'Spear':SWADE.WEAPONS.Spear,
-  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
-  'Spiked Gauntlet':'Damage=Str+d4 MinStr=6 Weight=1 Category=Un',
+  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed AP=1',
+  'Spiked Gauntlet':'Damage=Str+d4 MinStr=6 Weight=1 Category=Unarmed',
   'Staff':SWADE.WEAPONS.Staff,
   'Quarterstaff':SWADE.WEAPONS.Staff,
-  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=One-Handed AP=1',
   'Great Sword':SWADE.WEAPONS['Great Sword'] + ' AP=2',
-  'Hook Sword':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h AP=1',
+  'Hook Sword':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed AP=1',
   'Long Sword':SWADE.WEAPONS['Long Sword'],
   'Short Sword':SWADE.WEAPONS['Short Sword'],
-  'Trident':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h Range=3',
+  'Trident':'Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed Range=3',
   'Warhammer':SWADE.WEAPONS.Warhammer,
-  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
+  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=-1',
 
-  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
-  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=Ranged Range=3',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=Ranged Range=3',
   'Short Bow':SWADE.WEAPONS.Bow,
   'Long Bow':SWADE.WEAPONS['Long Bow'],
   'Composite Bow':SWADE.WEAPONS['Compound Bow'],
-  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
-  'Repeating Hand Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=Ranged Range=5',
+  'Repeating Hand Crossbow':
+    'Damage=2d4 MinStr=4 Weight=3 Category=Ranged Range=5',
   'Light Crossbow':SWADE.WEAPONS['Hand Drawn Crossbow'],
   'Repeating Light Crossbow':SWADE.WEAPONS['Hand Drawn Crossbow'] + ' Weight=8',
-  'Heavy Crossbow':'Damage=2d8 MinStr=8 Weight=8 Category=R Range=15 AP=2',
-  'Repeating Heavy Crossbow':'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
+  'Heavy Crossbow':'Damage=2d8 MinStr=8 Weight=8 Category=Ranged Range=15 AP=2',
+  'Repeating Heavy Crossbow':
+    'Damage=2d8 MinStr=8 Weight=12 Category=Ranged Range=15 AP=2',
   'Net':SWADE.WEAPONS.Net,
   'Javelin':SWADE.WEAPONS.Javelin,
-  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=Ranged Range=3',
   'Sling':SWADE.WEAPONS.Sling
 };
 
@@ -1861,8 +1860,8 @@ SWADEFC.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEFC.identityRules = function(rules, races, concepts, deitys) {
-  SWADE.identityRules(rules, races, {}, concepts, deitys);
+SWADEFC.identityRules = function(rules, races, concepts) {
+  SWADE.identityRules(rules, races, {}, concepts);
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
@@ -1870,10 +1869,10 @@ SWADEFC.identityRules = function(rules, races, concepts, deitys) {
 
 /* Defines rules related to character aptitudes. */
 SWADEFC.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills
 ) {
   SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, languages, skills);
+    (rules, edges, features, goodies, hindrances, skills);
   // No changes needed to the rules defined by base method
 };
 
@@ -1885,8 +1884,7 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Ancestry' || type == 'Race') {
     SWADEFC.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+      QuilvynUtils.getAttrValueArray(attrs, 'Features')
     );
     SWADEFC.ancestryRulesExtra(rules, name);
   } else if(type == 'Arcana')
@@ -1906,11 +1904,6 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
-    );
-  else if(type == 'Deity')
-    SWADEFC.deityRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Alignment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Domain')
     );
   else if(type == 'Edge') {
     SWADEFC.edgeRules(rules, name,
@@ -1939,9 +1932,7 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Severity')
     );
     SWADEFC.hindranceRulesExtra(rules, name);
-  } else if(type == 'Language')
-    SWADEFC.languageRules(rules, name);
-  else if(type == 'Power')
+  } else if(type == 'Power')
     SWADEFC.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
@@ -1986,11 +1977,10 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
 
 /*
  * Defines in #rules# the rules associated with ancestry #name#, which has the
- * list of hard prerequisites #requires#. #features# list associated features
- * and #languages# any automatic languages.
+ * list of hard prerequisites #requires#. #features# list associated features.
  */
-SWADEFC.ancestryRules = function(rules, name, requires, features, languages) {
-  SWADE.raceRules(rules, name, requires, features, languages);
+SWADEFC.ancestryRules = function(rules, name, requires, features) {
+  SWADE.raceRules(rules, name, requires, features);
   rules.defineRule('ancestry', 'race', '=', null);
   rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
 };
@@ -2119,33 +2109,6 @@ SWADEFC.armorRules = function(rules, name, areas, armor, minStr, weight) {
 SWADEFC.conceptRules = function(rules, name, attributes, edges, skills) {
   SWADE.conceptRules(rules, name, attributes, edges, skills); 
   // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with deity #name#, who has alignment
- * #alignment# and is associated the the list of domains #domains#.
- */
-SWADEFC.deityRules = function(rules, name, alignment, domains) {
-
-  SWADE.deityRules(rules, name, alignment, domains);
-
-  if(rules.deityStats == null) {
-    rules.deityStats = {
-      alignment:{},
-      domains:{}
-    };
-  }
-
-  rules.deityStats.alignment[name] = alignment;
-  rules.deityStats.domains[name] = domains.join('/');
-
-  rules.defineRule('deityAlignment',
-    'deity', '=', QuilvynUtils.dictLit(rules.deityStats.alignment) + '[source]'
-  );
-  rules.defineRule('deityDomains',
-    'deity', '=', QuilvynUtils.dictLit(rules.deityStats.domains) + '[source]'
-  );
-
 };
 
 /*
@@ -2364,7 +2327,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       ('skillNotes.favoredTerrain.1', 'features.Favored Terrain', '=', null);
   } else if(name == 'Heartwood Staff') {
     SWADEFC.weaponRules(
-      rules, 'Heartwood Staff', 'Str+d8', 6, 6, '2h', null, null, null, 1
+      rules, 'Heartwood Staff', 'Str+d8', 6, 6, 'Two-Handed', null, null, null, 1
     );
     rules.defineRule
       ('weapons.Heartwood Staff', 'features.Heartwood Staff', '=', '1');
@@ -2442,12 +2405,6 @@ SWADEFC.hindranceRulesExtra = function(rules, name) {
     rules.defineRule
       ('validationNotes.menacingEdgeAlt.0', 'features.Grim', '+', '1');
   }
-};
-
-/* Defines in #rules# the rules associated with language #name#. */
-SWADEFC.languageRules = function(rules, name) {
-  SWADE.languageRules(rules, name);
-  // No changes needed to the rules defined by base method
 };
 
 /*

@@ -61,22 +61,22 @@ function WeirdWest(baseRules) {
   WeirdWest.arcaneRules(rules, WeirdWest.ARCANAS, WeirdWest.POWERS);
   WeirdWest.talentRules
     (rules, WeirdWest.EDGES, WeirdWest.FEATURES, WeirdWest.GOODIES,
-     WeirdWest.HINDRANCES, WeirdWest.LANGUAGES, WeirdWest.SKILLS);
+     WeirdWest.HINDRANCES, WeirdWest.SKILLS);
   WeirdWest.identityRules
-    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.DEITIES,
-     WeirdWest.ETHNICITIES, WeirdWest.GENDERS, WeirdWest.NICKNAMES);
+    (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.ETHNICITIES,
+     WeirdWest.GENDERS, WeirdWest.NICKNAMES);
 
   Quilvyn.addRuleSet(rules);
 
 }
 
-WeirdWest.VERSION = '2.3.3.4';
+WeirdWest.VERSION = '2.4.1.0';
 
 WeirdWest.CHOICES =
   SWADE.CHOICES.filter(x => x != 'Race')
     .concat(['Ethnicity', 'Gender', 'Nickname']);
 WeirdWest.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['deity','era','race'].includes(x))
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['era','race'].includes(x))
     .concat(['ethnicity']);
 
 WeirdWest.ARCANAS = {
@@ -220,9 +220,6 @@ WeirdWest.CONCEPTS = {
   'Town Marshall': // Estimated related features
     'Attribute=Agility,Smarts,Spirit ' +
     'Skill="Common Knowledge",Intimidation,Notice,Shooting'
-};
-WeirdWest.DEITIES = {
-  'None':'',
 };
 WeirdWest.EDGES_ADDED = {
   // Background
@@ -1123,10 +1120,6 @@ WeirdWest.RACES = {
   'Human':
     'Features=' +
       'Adaptable'
-  // Dropped SWADE "Human" language; English proficiency is assumed
-};
-WeirdWest.LANGUAGES = {
-  'English':''
 };
 WeirdWest.SHIELDS = {
   'None':'Parry=0 Cover=0 MinStr=0 Weight=0',
@@ -1134,90 +1127,107 @@ WeirdWest.SHIELDS = {
   'Small Native Shield':'Parry=1 Cover=1 MinStr=4 Weight=3'
 };
 WeirdWest.SKILLS_ADDED = {
-  'Trade':'Attribute=smarts'
+  'Trade':'Attribute=Smarts'
 };
 WeirdWest.SKILLS = Object.assign({}, SWADE.SKILLS, WeirdWest.SKILLS_ADDED);
 delete WeirdWest.SKILLS.Electronics;
 delete WeirdWest.SKILLS.Hacking;
 WeirdWest.WEAPONS = {
 
-  'Brass Knuckles':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Bayonet':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Club':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'War Club':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
-  'Bladed War Club':'Damage=Str+d8 MinStr=8 Weight=6 Category=2h AP=2 Parry=-1',
-  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Bowie Knife':'Damage=Str+d4+1 MinStr=4 Weight=2 Category=1h AP=1 Range=2',
-  'Plains Indian Lance':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=2',
-  'Saber':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
-  'Spear':'Damage=Str+d6 MinStr=6 Weight=5 Category=2h Parry=1 Range=3',
-  'Tomahawk':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3',
+  'Brass Knuckles':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Bayonet':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Club':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'War Club':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed Range=3',
+  'Bladed War Club':
+    'Damage=Str+d8 MinStr=8 Weight=6 Category=Two-Handed AP=2 Parry=-1',
+  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=3',
+  'Bowie Knife':
+    'Damage=Str+d4+1 MinStr=4 Weight=2 Category=One-Handed AP=1 Range=2',
+  'Plains Indian Lance':
+    'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed Range=2',
+  'Saber':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
+  'Spear':'Damage=Str+d6 MinStr=6 Weight=5 Category=Two-Handed Parry=1 Range=3',
+  'Tomahawk':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed Range=3',
   'Unarmed':SWADE.WEAPONS.Unarmed,
-  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
+  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=-1',
 
   'Gatling Pistol':
-    'Damage=2d6 MinStr=4 Weight=5 Category=R Range=12 AP=1 ROF=3',
+    'Damage=2d6 MinStr=4 Weight=5 Category=Ranged Range=12 AP=1 ROF=3',
   'Gatling Carbine':
-    'Damage=2d8 MinStr=6 Weight=12 Category=R Range=20 AP=2 ROF=2',
+    'Damage=2d8 MinStr=6 Weight=12 Category=Ranged Range=20 AP=2 ROF=2',
   'Gatling Rifle':
-    'Damage=2d8 MinStr=8 Weight=17 Category=R Range=24 AP=2 ROF=2',
-  'Gatling Shotgun':'Damage=3d6 MinStr=8 Weight=15 Category=R Range=12 ROF=2',
-  'Gatling Gun':'Damage=2d8 MinStr=6 Weight=40 Category=R Range=24 AP=2 ROF=3',
+    'Damage=2d8 MinStr=8 Weight=17 Category=Ranged Range=24 AP=2 ROF=2',
+  'Gatling Shotgun':
+    'Damage=3d6 MinStr=8 Weight=15 Category=Ranged Range=12 ROF=2',
+  'Gatling Gun':
+    'Damage=2d8 MinStr=6 Weight=40 Category=Ranged Range=24 AP=2 ROF=3',
 
-  'Derringer':'Damage=2d4 MinStr=4 Weight=1 Category=R Range=3',
-  'English 1840 Model':'Damage=2d6-1 MinStr=4 Weight=1 Category=R Range=5 AP=1',
-  'Rupertus Pepperbox':'Damage=2d4 MinStr=6 Weight=1 Category=R Range=5',
-  'Wesson Dagger-Pistol':'Damage=2d4 MinStr=6 Weight=1 Category=R Range=5',
+  'Derringer':'Damage=2d4 MinStr=4 Weight=1 Category=Ranged Range=3',
+  'English 1840 Model':
+    'Damage=2d6-1 MinStr=4 Weight=1 Category=Ranged Range=5 AP=1',
+  'Rupertus Pepperbox':'Damage=2d4 MinStr=6 Weight=1 Category=Ranged Range=5',
+  'Wesson Dagger-Pistol':'Damage=2d4 MinStr=6 Weight=1 Category=Ranged Range=5',
 
-  'Colt Army':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
+  'Colt Army':'Damage=2d6+1 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
   'Colt Buntline Special':
-    'Damage=2d6+1 MinStr=6 Weight=3 Category=R Range=15 AP=1',
-  'Colt Dragoon':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
-  'Colt Navy':'Damage=2d6 MinStr=4 Weight=3 Category=R Range=12 AP=1',
-  'Colt Peacemaker':'Damage=2d6+1 MinStr=4 Weight=4 Category=R Range=12 AP=1',
-  'LeMat Revolver':'Damage=2d6 MinStr=6 Weight=4 Category=R Range=12 AP=1',
-  'LeMat Revolver Shotgun':'Damage=3d6 MinStr=6 Weight=4 Category=R Range=5',
+    'Damage=2d6+1 MinStr=6 Weight=3 Category=Ranged Range=15 AP=1',
+  'Colt Dragoon':'Damage=2d6+1 MinStr=4 Weight=4 Category=Ranged Range=12 AP=1',
+  'Colt Navy':'Damage=2d6 MinStr=4 Weight=3 Category=Ranged Range=12 AP=1',
+  'Colt Peacemaker':
+    'Damage=2d6+1 MinStr=4 Weight=4 Category=Ranged Range=12 AP=1',
+  'LeMat Revolver':'Damage=2d6 MinStr=6 Weight=4 Category=Ranged Range=12 AP=1',
+  'LeMat Revolver Shotgun':
+    'Damage=3d6 MinStr=6 Weight=4 Category=Ranged Range=5',
 
-  'Colt Frontier':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
-  'Colt Lightning':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
-  'Colt Rainmaker':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
-  'Colt Thunderer':'Damage=2d6 MinStr=4 Weight=2 Category=R Range=12 AP=1',
-  'Starr Revolver':'Damage=2d6+1 MinStr=4 Weight=2 Category=R Range=12 AP=1',
+  'Colt Frontier':
+    'Damage=2d6+1 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
+  'Colt Lightning':'Damage=2d6 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
+  'Colt Rainmaker':'Damage=2d6 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
+  'Colt Thunderer':'Damage=2d6 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
+  'Starr Revolver':
+    'Damage=2d6+1 MinStr=4 Weight=2 Category=Ranged Range=12 AP=1',
 
-  "Sharps '55":'Damage=2d8 MinStr=6 Weight=8 Category=R Range=20 AP=2',
-  'Spencer':'Damage=2d8 MinStr=4 Weight=8 Category=R Range=20 AP=2',
-  'LeMat Carbine':'Damage=2d8 MinStr=6 Weight=9 Category=R Range=20 AP=1',
-  'LeMat Carbine Shotgun':'Damage=3d6 MinStr=6 Weight=9 Category=R Range=12',
+  "Sharps '55":'Damage=2d8 MinStr=6 Weight=8 Category=Ranged Range=20 AP=2',
+  'Spencer':'Damage=2d8 MinStr=4 Weight=8 Category=Ranged Range=20 AP=2',
+  'LeMat Carbine':'Damage=2d8 MinStr=6 Weight=9 Category=Ranged Range=20 AP=1',
+  'LeMat Carbine Shotgun':
+    'Damage=3d6 MinStr=6 Weight=9 Category=Ranged Range=12',
 
-  "Ballard '72":'Damage=2d8 MinStr=6 Weight=11 Category=R Range=24 AP=2',
-  'Bullard Express':'Damage=2d10 MinStr=8 Weight=11 Category=R Range=24 AP=2',
+  "Ballard '72":'Damage=2d8 MinStr=6 Weight=11 Category=Ranged Range=24 AP=2',
+  'Bullard Express':
+    'Damage=2d10 MinStr=8 Weight=11 Category=Ranged Range=24 AP=2',
   "Colt-Paterson Model '36":
-    'Damage=2d10 MinStr=8 Weight=12 Category=R Range=24 AP=2',
-  'Enfield Musket':'Damage=2d8 MinStr=6 Weight=9 Category=R Range=12 AP=2',
+    'Damage=2d10 MinStr=8 Weight=12 Category=Ranged Range=24 AP=2',
+  'Enfield Musket':'Damage=2d8 MinStr=6 Weight=9 Category=Ranged Range=12 AP=2',
   'Evans Old Model Sporter':
-    'Damage=2d8 MinStr=6 Weight=12 Category=R Range=24 AP=2',
+    'Damage=2d8 MinStr=6 Weight=12 Category=Ranged Range=24 AP=2',
   'Sawed-Off Winchester':
-    'Damage=2d8-1 MinStr=4 Weight=4 Category=R Range=12 AP=2',
-  "Sharp's Big 50":'Damage=2d10 MinStr=8 Weight=11 Category=R Range=30 AP=2',
+    'Damage=2d8-1 MinStr=4 Weight=4 Category=Ranged Range=12 AP=2',
+  "Sharp's Big 50":
+    'Damage=2d10 MinStr=8 Weight=11 Category=Ranged Range=30 AP=2',
   'Springfield Rifled Musket':
-    'Damage=2d8 MinStr=6 Weight=11 Category=R Range=15',
-  "Winchester '73":'Damage=2d8-1 MinStr=6 Weight=10 Category=R Range=24 AP=2',
-  "Winchester '76":'Damage=2d8 MinStr=4 Weight=7 Category=R Range=24 AP=2',
+    'Damage=2d8 MinStr=6 Weight=11 Category=Ranged Range=15',
+  "Winchester '73":
+    'Damage=2d8-1 MinStr=6 Weight=10 Category=Ranged Range=24 AP=2',
+  "Winchester '76":'Damage=2d8 MinStr=4 Weight=7 Category=Ranged Range=24 AP=2',
 
-  'Colt Revolving Shotgun':'Damage=3d6 MinStr=6 Weight=10 Category=R Range=12',
-  'Double-Barrel Shotgun':'Damage=3d6 MinStr=6 Weight=11 Category=R Range=12',
+  'Colt Revolving Shotgun':
+    'Damage=3d6 MinStr=6 Weight=10 Category=Ranged Range=12',
+  'Double-Barrel Shotgun':
+    'Damage=3d6 MinStr=6 Weight=11 Category=Ranged Range=12',
   'Sawed-Off Double-Barrel Shotgun':
-    'Damage=3d6 MinStr=4 Weight=6 Category=R Range=5',
-  'Single-Barrel Shotgun':'Damage=3d6 MinStr=4 Weight=6 Category=R Range=12',
+    'Damage=3d6 MinStr=4 Weight=6 Category=Ranged Range=5',
+  'Single-Barrel Shotgun':
+    'Damage=3d6 MinStr=4 Weight=6 Category=Ranged Range=12',
   'Winchester Lever-Action Shotgun':
-    'Damage=3d6 MinStr=6 Weight=6 Category=R Range=12',
+    'Damage=3d6 MinStr=6 Weight=6 Category=Ranged Range=12',
 
-  'Bola':'Damage=Str+d1 MinStr=4 Weight=1 Category=R Range=4',
-  'Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
+  'Bola':'Damage=Str+d1 MinStr=4 Weight=1 Category=Ranged Range=4',
+  'Bow':'Damage=2d6 MinStr=6 Weight=2 Category=Ranged Range=12',
 
-  'Flamethrower':'Damage=3d6 MinStr=6 Weight=15 Category=R Range=9',
-  'Steam Saw':'Damage=2d6+4 MinStr=8 Weight=20 Category=2h',
-  'Steam Gatling':'Damage=2d8 MinStr=6 Weight=50 Category=R Range=24'
+  'Flamethrower':'Damage=3d6 MinStr=6 Weight=15 Category=Ranged Range=9',
+  'Steam Saw':'Damage=2d6+4 MinStr=8 Weight=20 Category=Two-Handed',
+  'Steam Gatling':'Damage=2d8 MinStr=6 Weight=50 Category=Ranged Range=24'
 
 };
 
@@ -1235,10 +1245,10 @@ WeirdWest.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines rules related to basic character identity. */
 WeirdWest.identityRules = function(
-  rules, races, concepts, deities, ethnicities, genders, nicknames
+  rules, races, concepts, ethnicities, genders, nicknames
 ) {
 
-  SWADE.identityRules(rules, races, {}, concepts, deities);
+  SWADE.identityRules(rules, races, {}, concepts);
 
   QuilvynUtils.checkAttrTable
     (ethnicities, ['Family', 'Female', 'Male', 'Nonbinary']);
@@ -1269,10 +1279,9 @@ WeirdWest.arcaneRules = function(rules, arcanas, powers) {
 
 /* Defines rules related to character aptitudes. */
 WeirdWest.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills
 ) {
-  SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, languages, skills);
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, skills);
   // No changes needed to the rules defined by base method
 };
 
@@ -1299,8 +1308,6 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
-  else if(type == 'Deity')
-    WeirdWest.deityRules(rules, name);
   else if(type == 'Edge') {
     WeirdWest.edgeRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -1422,12 +1429,6 @@ WeirdWest.armorRules = function(rules, name, areas, armor, minStr, weight) {
  */
 WeirdWest.conceptRules = function(rules, name, attributes, edges, skills) {
   SWADE.conceptRules(rules, name, attributes, edges, skills); 
-  // No changes needed to the rules defined by base method
-};
-
-/* Defines in #rules# the rules associated with deity #name#. */
-WeirdWest.deityRules = function(rules, name) {
-  SWADE.deityRules(rules, name);
   // No changes needed to the rules defined by base method
 };
 
