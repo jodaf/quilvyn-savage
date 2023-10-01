@@ -701,7 +701,7 @@ SWADE.FEATURES = {
     'Note="Raise on Taunt inflicts -2 on foe attacks on other targets; joker Action Card ends"',
   'Quick':'Section=combat Note="May redraw Action Cards lower than 6"',
   'Rabble-Rouser':
-    'Section=skill Note="May Taunt or Intimidate all foes in 2\\" radius"',
+    'Section=skill Note="May Taunt or Intimidate all foes in a 2\\" radius"',
   'Rapid Fire':
     'Section=combat ' +
     'Note="May increase ROF by 1 %{combatNotes.improvedRapidFire?2:1}/rd"',
@@ -1349,7 +1349,7 @@ SWADE.POWERS = {
       '"+1/+2 PP 2\\"/3\\" radius",' +
       '"+1 PP <i>Detect</i>-2" ' +
     'Description=' +
-      '"Target can detect presence of supernatural effects (Raise also type) for 5 rd or conceals target aura (<i>Detect</i> neg) for 1 hr"',
+      '"Target can detect the presence of supernatural effects (Raise also the type) for 5 rd or conceals target aura (<i>Detect</i> neg) for 1 hr"',
   'Disguise':
     'Advances=4 ' +
     'PowerPoints=2 ' +
@@ -1444,7 +1444,7 @@ SWADE.POWERS = {
       '"+1 PP 3\\" radius",' +
       '"+1 PP Strength-2" ' +
     'Description=' +
-      '"Distracts and throws 2d6\\" creatures in 2\\" radius or 9\\" cone (Strength neg)"',
+      '"Distracts and throws 2d6\\" creatures in a 2\\" radius or 9\\" cone (Strength neg)"',
   'Healing':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1462,7 +1462,7 @@ SWADE.POWERS = {
       '"+1 PP Illusion includes sound",' +
       '"+2 PP Smarts-2" ' +
     'Description=' +
-      '"Creates 2\\" radius visual illusion (Smarts neg; Raise Smarts-2) for 5 rd"',
+      '"Creates a 2\\" radius visual illusion (Smarts neg; Raise Smarts-2) for 5 rd"',
   'Intangibility':
     'Advances=12 ' +
     'PowerPoints=5 ' +
@@ -1484,7 +1484,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP Attaches to object or moves effect %{arcaneSkill}\\"/rd" ' +
     'Description=' +
-      '"Creates 3\\" radius (Raise or 5\\" beam) bright light or darkness for 10 min"',
+      '"Creates a 3\\" radius (Raise or a 5\\" beam) bright light or darkness for 10 min"',
   'Mind Link':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1562,7 +1562,7 @@ SWADE.POWERS = {
     'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional Speed target",' +
-      '"+2/+3 PP Sloth slows all in 2\\"/3\\" radius",' +
+      '"+2/+3 PP Sloth slows all in a 2\\"/3\\" radius",' +
       '"+2 PP Speed reduces target multi-action penalty by 2",' +
       '"+1 PP Sloth Spirit-2" ' +
     'Description=' +
@@ -1590,7 +1590,7 @@ SWADE.POWERS = {
       '"+0 PP Affects target (Spirit neg)",' +
       '"+1 PP/additional targets" ' +
     'Description=' +
-      '"Creates sound up to a shout (Smarts neg) or R%{smarts}\\" mutes 3\\" radius for 5 rd"',
+      '"Creates sound up to a shout (Smarts neg) or R%{smarts}\\" mutes a 3\\" radius for 5 rd"',
   'Speak Language':
     'Advances=0 ' +
     'PowerPoints=1 ' +

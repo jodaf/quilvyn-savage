@@ -1491,7 +1491,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius",' +
       '"+3 PP Affects all active powers",' +
-      '"Epic +8 PP Affects all in 2\\" radius around self for 5 rd, summoned creatures take 1 Wound/rd (Spirit neg)"',
+      '"Epic +8 PP Affects all in a 2\\" radius around self for 5 rd, summoned creatures take 1 Wound/rd (Spirit neg)"',
   'Divination':
     'Modifier=' +
       '"Epic +3 PP on sacred ground gives advice"',
@@ -1550,7 +1550,7 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +2 PP Throws 3d6\\""',
   'Healing':
     'Modifier=' +
-      '"Epic +2/+3 PP Affects 2\\"/3\\" radius"',
+      '"Epic +2/+3 PP Affects a 2\\"/3\\" radius"',
   'Illusion':
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
@@ -1567,7 +1567,7 @@ SWADEFC.POWER_CHANGES = {
   'Light/Darkness':
     'Modifier=' +
       '"+1 PP Illuminates object, negating 2 points (Raise 4 points) of vision penalties",' +
-      '"Epic +2 PP Light affects %{smarts}\\" radius, range %{smarts*2}\\"",' +
+      '"Epic +2 PP Light affects a %{smarts}\\" radius, range %{smarts*2}\\"",' +
       '"Epic +2 PP Darkness blocks infravision, low light vision, and darkvision"',
   'Locate':
     'Advances=0 ' +
@@ -1597,7 +1597,7 @@ SWADEFC.POWER_CHANGES = {
       '"Target suffers -1 Trait Step (Raise -2) (Spirit recovers 1 Step (Raise all) each rd)"',
   'Mind Link':
     'Modifier=' +
-      '"Epic +2 PP Broadcast telepathic message in %{smarts*4}\\" radius (Raise %{smarts*8}\\" radius)",' +
+      '"Epic +2 PP Broadcast telepathic message in a %{smarts*4}\\" radius (Raise %{smarts*8}\\" radius)",' +
       '"Epic +3 PP Self may link to any familiar mind on same plane"',
   'Mind Reading':
     'Modifier=' +
@@ -1664,7 +1664,7 @@ SWADEFC.POWER_CHANGES = {
     'PowerPoints=3 ' +
     'Range=self ' +
     'Modifier=' +
-      '"+1 PP Shares with allies in %{smarts}\\" radius" ' +
+      '"+1 PP Shares with allies in a %{smarts}\\" radius" ' +
     'Description=' +
       '"Gives view of chosen target (-2 unfamiliar target; Spirit target detects) for 5 rd"',
   'Shape Change':SWADE.POWERS['Shape Change'] + ' ' +
@@ -1685,7 +1685,7 @@ SWADEFC.POWER_CHANGES = {
   'Speak Language':
     'Modifier=' +
       '"Epic +2 PP Speak, read, and write all languages",' +
-      '"Epic +5 PP All in %{smarts*2}\\" radius can understand each other"',
+      '"Epic +5 PP All in a %{smarts*2}\\" radius can understand each other"',
   'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
@@ -2497,6 +2497,15 @@ SWADEFC.ruleNotes = function() {
     '<h2>SWADE Fantasy Companion Quilvyn Module Notes</h2>\n' +
     'SWADE Fantasy Companion Quilvyn Module Version ' + SWADEFC.VERSION + '\n' +
     '\n' +
+    '<h3>Usage Notes</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '  Quilvyn assumes that the skills Driving, Electronics, Hacking, and ' +
+    "  Piloting are not meaningful in a fantasy setting, and so doesn't " +
+    '  include them in the SWADEFC list of skills. You can add any of these ' +
+    '  as homebrew choices if they are appropriate to your game.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
