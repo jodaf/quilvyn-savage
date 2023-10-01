@@ -456,7 +456,7 @@ SWADE.FEATURES = {
   // Edges
   'Ace':
     'Section=skill ' +
-    'Note="Ignores 2 penalty points on Boating, Driving, and Piloting; may spend Benny to Soak vehicle damage"',
+    'Note="Ignores 2 penalty points on Boating, Driving, and Piloting; may spend a Benny to Soak vehicle damage"',
   'Acrobat':
     'Section=skill Note="May reroll Athletics (balance, tumble, or grapple)"',
   'Alertness':'Section=skill Note="+2 Notice"',
@@ -488,23 +488,25 @@ SWADE.FEATURES = {
   'Beast Bond':'Section=feature Note="May spend Bennies on companion animals"',
   'Beast Master':
     'Section=feature ' +
-    'Note="Has animal companion; other animals will not attack first"',
+    'Note="Has an animal companion; other animals will not attack first"',
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +1 Strength step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
+    'Note="Injury causes +1 Strength Step, wild attacks, +2 Toughness, ignore 1 Wound penalty, and random hits on critical failure for up to 10 rd (Smarts-2 neg)"',
   'Block':
-    'Section=combat ' +
-    'Note="+%{combatNotes.improvedBlock?2:1} Parry/-%{combatNotes.improvedBlock?2:1} foe Gang Up bonus"',
+    'Section=combat,combat ' +
+    'Note=' +
+      '"+%{combatNotes.improvedBlock?2:1} Parry",' +
+      '"-%{combatNotes.improvedBlock?2:1} foe Gang Up bonus"',
   'Bolster':
     'Section=combat ' +
     'Note="Successful foe Test removes Distracted or Vulnerable from ally"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear, -2 fear table roll"',
   'Brawler':
-    'Section=combat Note="+%{combatNotes.bruiser?2:1} Toughness/+%{combatNotes.bruiser?2:1} Unarmed damage step"',
+    'Section=combat Note="+%{combatNotes.bruiser?2:1} Toughness/+%{combatNotes.bruiser?2:1} Unarmed damage Step"',
   'Brawny':
     'Section=attribute,combat,description ' +
     'Note=' +
-      '"+1 Strength step (encumbrance and minimum strength requirements)",' +
+      '"+1 Strength Step (encumbrance and minimum strength requirements)",' +
       '"+1 Toughness",' +
       '"+1 Size"',
   'Bruiser':'Section=combat Note="Increased Brawler effects"',
@@ -512,12 +514,12 @@ SWADE.FEATURES = {
     'Section=combat,skill ' +
     'Note=' +
       '"+1/+2/+4 thrown weapon range",' +
-      '"Advance Athletics relative to Strength/Use Strength vs. Athletics Tests"',
+      '"Advances Athletics relative to Strength/May use Strength vs. Athletics Tests"',
   'Calculating':
     'Section=combat ' +
     'Note="Ignores 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':
-   'Section=combat Note="Gains +2 damage on supernaturally opposed alignment"',
+   'Section=combat Note="+2 damage on foe w/supernaturally opposed alignment"',
   'Channeling':
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
@@ -536,16 +538,16 @@ SWADE.FEATURES = {
   'Command Presence':'Section=feature Note="Increased Command effects"',
   'Common Bond':
     'Section=feature Note="Communication allows transfer of Bennies to allies"',
-  'Concentration':'Section=arcana Note="Power duration doubled"',
+  'Concentration':'Section=arcana Note="Dbl Power duration"',
   'Connections':
     'Section=feature ' +
-    'Note="May call in favors from acquaintance or organization"',
+    'Note="May call in favors from an acquaintance or organization"',
   'Counterattack':
     'Section=combat ' +
-    'Note="Free attack after failed foe attack %{combatNotes.improvedCounterattack?3:1}/rd"',
+    'Note="May make a free attack after a failed foe attack %{combatNotes.improvedCounterattack?3:1}/rd"',
   'Danger Sense':
     'Section=skill ' +
-    'Note="+2 Notice (surprise)/Rolls Notice-2 in circumstances not normally subject to Notice"',
+    'Note="+2 Notice (surprise)/May attempt Notice-2 in circumstances not normally subject to Notice"',
   'Dead Shot':
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage from first successful ranged attack"',
@@ -560,7 +562,7 @@ SWADE.FEATURES = {
     'Note="May spend 1 or 3 Power Points to gain +1 or +2 Focus"',
   'Extraction':
     'Section=combat ' +
-    'Note="Negate attack of %{combatNotes.improvedExtraction?3:1} foes when withdrawing"',
+    'Note="Negates attack of %{combatNotes.improvedExtraction?3:1} foes during withdrawl"',
   'Fame':
     'Section=feature,skill ' +
     'Note=' +
@@ -568,27 +570,27 @@ SWADE.FEATURES = {
       '"+%{featureNotes.famous?2:1} Persuasion (influence friendly individuals)"',
   'Famous':'Section=feature Note="Increased Fame effects"',
   'Fast Healer':
-    'Section=combat Note="+2 Vigor (natural healing) and check every 3 dy"',
+    'Section=combat Note="+2 Vigor (natural healing) and may check every 3 dy"',
   'Feint':
     'Section=skill ' +
-    'Note="Force foe to oppose Fighting test with Smarts instead of Agility"',
+    'Note="May force foe to oppose Fighting test with Smarts instead of Agility"',
   'Fervor':
     'Section=combat ' +
     'Note="R%{commandRange}\\" Commanded gain +1 Fighting damage"',
   'Filthy Rich':'Section=feature Note="Increased Rich effects"',
   'First Strike':
     'Section=combat ' +
-    'Note="Free attack when foe moves into reach %{combatNotes.improvedFirstStrike?3:1}/rd"',
-  'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run step"',
+    'Note="May make a free attack when a foe moves into reach %{combatNotes.improvedFirstStrike?3:1}/rd"',
+  'Fleet-Footed':'Section=combat Note="+2 Pace/+1 Run Step"',
   'Followers':'Section=feature Note="Has 5 soldier followers"',
   'Free Runner':
     'Section=combat,skill ' +
     'Note=' +
-      '"Move full Pace on difficult ground",' +
+      '"May move full Pace on difficult ground",' +
       '"+2 Athletics (climbing)/+2 on foot chases"',
   'Frenzy':
     'Section=combat ' +
-    'Note="Extra Fighting die on %{combatNotes.improvedFrenzy?2:1} attacks/rd"',
+    'Note="May use an additional Fighting attack die %{combatNotes.improvedFrenzy?2:1}/rd"',
   'Gadgeteer':
     'Section=arcana Note="May jury rig arcane device from available parts"',
   'Giant Killer':
@@ -597,13 +599,13 @@ SWADE.FEATURES = {
   'Hard To Kill':
     'Section=combat ' +
     'Note="Ignores Wound penalties on Vigor tests to avoid bleeding out"',
-  'Harder To Kill':'Section=combat Note="50% chance to cheat death"',
+  'Harder To Kill':'Section=combat Note="Has a 50% chance to cheat death"',
   'Healer':'Section=skill Note="+2 Healing"',
   'Hold The Line!':
     'Section=combat Note="R%{commandRange}\\" Commanded gain +1 Toughness"',
   'Holy/Unholy Warrior':
     'Section=arcana ' +
-    'Note="May spend 1-4 Power Points to add equal amount to Soak roll"',
+    'Note="May spend 1-4 Power Points to add an equal amount to a Soak roll"',
   'Humiliate':'Section=skill Note="May reroll Taunt"',
   'Improved Arcane Resistance':
     'Section=combat Note="Increased Arcane Resistance effects"',
@@ -626,12 +628,15 @@ SWADE.FEATURES = {
   'Improved Trademark Weapon (%weapon)':
     'Section=combat Note="Increased Trademark Weapon effects"',
   'Improvisational Fighter':
-    'Section=combat Note="No penalty w/improvised weapons"',
+    'Section=combat Note="Suffers no penalty for improvised weapons"',
   'Inspire':
     'Section=skill ' +
     'Note="R%{commandRange}\\" May use Battle to Support all Extras on any Trait 1/rd"',
   'Investigator':
-    'Section=skill Note="+2 Research/+2 Notice (sifting for information)"',
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+2 Research",' +
+      '"+2 Notice (sifting for information)"',
   'Iron Jaw':'Section=combat Note="+2 Soak rolls/+2 Vigor vs. knockout"',
   'Iron Will':'Section=combat Note="+2 to resist Powers"',
   'Jack-Of-All-Trades':
@@ -641,21 +646,21 @@ SWADE.FEATURES = {
     'Section=skill Note="May reroll self-initiated opposed Test"',
   'Level Headed':
     'Section=combat ' +
-    'Note="May choose best of %{combatNotes.improvedLevelHeaded?3:2} Action Cards"',
+    'Note="May choose from %{combatNotes.improvedLevelHeaded?3:2} Action Cards"',
   'Linguist':
     'Section=skill ' +
     'Note="+%V Skill Points (d6 in in %{smarts//2} Language skills)"',
   'Liquid Courage':
     'Section=attribute ' +
-    'Note="Drinking alcohol gives +1 Vigor step, -1 Smarts, Agility and associated skills for 1 hr"',
+    'Note="Drinking alcohol gives +1 Vigor Step and -1 Smarts, Agility and associated skills for 1 hr"',
   'Luck':
    'Section=feature ' +
    'Note="+%{featureNotes.greatLuck?2:1} Benny each session"',
   'Marksman':
     'Section=combat ' +
-    'Note="May forego move for +1 ranged attack or to ignore 2 ranged attack penalties"',
+    'Note="May forego move for a +1 ranged attack or to ignore 2 ranged attack penalties"',
   'Martial Artist':
-    'Section=combat Note="+%{combatNotes.martialWarrior?2:1} Unarmed attack/+%{combatNotes.martialWarrior?2:1} Unarmed damage step"',
+    'Section=combat Note="+%{combatNotes.martialWarrior?2:1} Unarmed attack/+%{combatNotes.martialWarrior?2:1} Unarmed damage Step"',
   'Martial Warrior':'Section=combat Note="Increased Martial Artist effects"',
   'Master Of Arms':'Section=combat Note="Increased Weapon Master effects"',
   'Master (%attribute)':
@@ -664,13 +669,17 @@ SWADE.FEATURES = {
   'Master Tactician':'Section=combat Note="Increased Tactician effects"',
   'McGyver':
     'Section=skill ' +
-    'Note="Use Repair to create improvised weapon, explosive, or tool"',
+    'Note="May use Repair to create an improvised weapon, explosive, or tool"',
   'Menacing':'Section=skill Note="+2 Intimidation"',
   'Mentalist':'Section=skill Note="+2 opposed Psionics"',
   'Mighty Blow':
     'Section=combat ' +
     'Note="Joker Action Card gives dbl damage on first successful melee attack"',
-  'Mister Fix It':'Section=skill Note="+2 Repair/Raise cuts time by half"',
+  'Mister Fix It':
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+2 Repair",' +
+      '"Raise on Repair cuts time required by half"',
   'Natural Leader':
     'Section=feature Note="May apply leadership edges to Wild Cards"',
   'Nerves Of Steel':
@@ -681,12 +690,12 @@ SWADE.FEATURES = {
   'Power Points':'Section=arcana Note="+%V Power Points"',
   'Power Surge':
     'Section=arcana Note="Joker Action Card restores 10 Power Points"',
-  'Professional (Agility)':'Section=attribute Note="+%V Agility step"',
-  'Professional (Smarts)':'Section=attribute Note="+%V Smarts step"',
-  'Professional (Spirit)':'Section=attribute Note="+%V Spirit step"',
-  'Professional (Strength)':'Section=attribute Note="+%V Strength step"',
-  'Professional (Vigor)':'Section=attribute Note="+%V Vigor step"',
-  'Professional (%skill)':'Section=skill Note="+%V %skill step"',
+  'Professional (Agility)':'Section=attribute Note="+%V Agility Step"',
+  'Professional (Smarts)':'Section=attribute Note="+%V Smarts Step"',
+  'Professional (Spirit)':'Section=attribute Note="+%V Spirit Step"',
+  'Professional (Strength)':'Section=attribute Note="+%V Strength Step"',
+  'Professional (Vigor)':'Section=attribute Note="+%V Vigor Step"',
+  'Professional (%skill)':'Section=skill Note="+%V %skill Step"',
   'Provoke':
     'Section=skill ' +
     'Note="Raise on Taunt inflicts -2 on foe attacks on other targets; joker Action Card ends"',
@@ -695,7 +704,7 @@ SWADE.FEATURES = {
     'Section=skill Note="May Taunt or Intimidate all foes in 2\\" radius"',
   'Rapid Fire':
     'Section=combat ' +
-    'Note="Increase ROF by 1 %{combatNotes.improvedRapidFire?2:1}/rd"',
+    'Note="May increase ROF by 1 %{combatNotes.improvedRapidFire?2:1}/rd"',
   'Rapid Recharge':
     'Section=arcana ' +
     'Note="Recovers %{arcanaNotes.improvedRapidRecharge?20:10} Power Points/hr"',
@@ -715,12 +724,12 @@ SWADE.FEATURES = {
   'Sidekick':'Section=feature Note="Has special bond with companion"',
   'Soldier':
     'Section=attribute ' +
-    'Note="+1 Strength step (encumbrance)/May reroll Vigor (environmental hazards)"',
+    'Note="+1 Strength Step (encumbrance)/May reroll Vigor (environmental hazards)"',
   'Soul Drain':
     'Section=arcana Note="May suffer fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
-    'Note="No penalty for shot from unstable platform; reduces running shot penalty by 1"',
+    'Note="Suffers no penalty for a shot from an unstable platform and reduces running shot penalty by 1"',
   'Streetwise':
     'Section=skill ' +
     'Note="+2 Intimidation (criminal network)/+2 Persuasion (criminal network)/+2 Common Knowledge (criminals)"',
@@ -733,11 +742,13 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="R%{commandRange}\\" May distribute %{combatNotes.masterTactician?2:1} Action Cards to commanded each rd"',
   'Thief':
-    'Section=skill ' +
-    'Note="+1 Athletics (urban climbing)/+1 Stealth (urban)/+1 Thievery"',
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+1 Thievery",' +
+      '"+1 Athletics (urban climbing)/+1 Stealth (urban)"',
   'Tough As Nails':
     'Section=combat ' +
-    'Note="Takes %{combatNotes.tougherThanNails?5:4} Wounds before incapacitated"',
+    'Note="Takes %{combatNotes.tougherThanNails?5:4} Wounds before becoming incapacitated"',
   'Tougher Than Nails':'Section=combat Note="Increased Tough As Nails effects"',
   'Trademark Weapon (%melee)':
     'Section=combat Note="+%V attack and Parry with %melee"',
@@ -745,20 +756,26 @@ SWADE.FEATURES = {
     'Section=combat Note="+%V attack and Parry with %ranged"',
   'Two-Fisted':
     'Section=combat ' +
-    'Note="No multi-action penalty for melee attack with each hand"',
+    'Note="Suffers no multi-action penalty for making a melee attack with each hand"',
   'Two-Gun Kid':
     'Section=combat ' +
-    'Note="No multi-action penalty for ranged attack with each hand"',
+    'Note="Suffers no multi-action penalty for making a ranged attack with each hand"',
   'Very Attractive':'Section=skill Note="Increased Attractive effects"',
   'Weapon Master':
-    'Section=combat Note="+%{combatNotes.masterOfArms?2:1} Parry/+d%{combatNotes.masterOfArms?10:8} damage on melee attack Raise"',
+    'Section=combat,combat ' +
+    'Note=' +
+      '"+%{combatNotes.masterOfArms?2:1} Parry",' +
+      '"+d%{combatNotes.masterOfArms?10:8} damage on a melee attack Raise"',
   'Wizard':
-    'Section=arcana Note="May spend 1 Power Point to change Power trapping"',
-  'Woodsman':'Section=skill Note="+2 Survival/+2 Stealth (wilds)"',
+    'Section=arcana Note="May spend 1 Power Point to change a Power trapping"',
+  'Woodsman':
+    'Section=skill,skill ' +
+    'Note="+2 Survival",' +
+    '"+2 Stealth (wilds)"',
   'Work The Crowd':'Section=skill Note="Increased Work The Room effects"',
   'Work The Room':
     'Section=skill ' +
-    'Note="Roll additional Performance or Persuasion die in Support %{skillNotes.workTheCrowd?2:1}/rd"',
+    'Note="Gains additional Performance or Persuasion die to Support %{skillNotes.workTheCrowd?2:1}/rd"',
 
   // Hindrances
   'All Thumbs':
@@ -774,24 +791,25 @@ SWADE.FEATURES = {
   'Big Mouth':'Section=feature Note="Cannot keep secrets"',
   'Blind+':'Section=feature,skill Note="+1 Edge Points","-6 on visual tasks"',
   'Bloodthirsty+':
-    'Section=combat Note="Treats foes cruelly; never takes prisoners"',
+    'Section=combat Note="Treats foes cruelly and never takes prisoners"',
   "Can't Swim":
     'Section=combat,skill ' +
     'Note="Moves 1/3 Pace through water","-2 Athletics (swimming)"',
-  'Cautious':'Section=feature Note="Requires detailed plan before acting"',
+  'Cautious':'Section=feature Note="Requires a detailed plan before acting"',
   'Clueless+':'Section=skill Note="-1 Common Knowledge/-1 Notice"',
   'Clumsy+':'Section=skill Note="-2 Athletics/-2 Stealth"',
   'Code Of Honor+':'Section=feature Note="Always insists on acting nobly"',
   'Curious+':
     'Section=feature Note="Insists on investigating every mystery and secret"',
-  'Death Wish':'Section=feature Note="Will risk death for valued goal"',
-  'Delusional':'Section=feature Note="Has harmless conspiracy belief"',
-  'Delusional+':'Section=feature Note="Frequently acts on conspiracy belief"',
+  'Death Wish':'Section=feature Note="Will risk death for a valued goal"',
+  'Delusional':'Section=feature Note="Has a harmless conspiracy belief"',
+  'Delusional+':'Section=feature Note="Frequently acts on a conspiracy belief"',
   'Doubting Thomas':
     'Section=feature Note="Insists on rationalizing supernatural events"',
   'Driven':'Section=feature Note="Personal goal affects decision-making"',
   'Driven+':
-    'Section=feature Note="Has overwhelming need to fulfill personal goal"',
+    'Section=feature ' +
+    'Note="Has an overwhelming need to fulfill a personal goal"',
   'Elderly+':
     'Section=attribute,combat,skill ' +
     'Note="-1 Agility/-1 Strength/-1 Vigor",' +
@@ -807,13 +825,14 @@ SWADE.FEATURES = {
   'Greedy+':
     'Section=feature ' +
     'Note="Violently insists on getting more than a fair share"',
-  'Habit':'Section=feature Note="Has irritating but harmless compulsion"',
-  'Habit+':'Section=feature Note="Has dangerous physical or mental addiction"',
+  'Habit':'Section=feature Note="Has an irritating but harmless compulsion"',
+  'Habit+':
+    'Section=feature Note="Has a dangerous physical or mental addiction"',
   'Hard Of Hearing':'Section=skill Note="-4 Notice (hearing)"',
   'Hard Of Hearing+':
     'Section=skill Note="Deaf; automatically fails Notice (hearing)"',
   'Heroic+':'Section=feature Note="Always tries to help others"',
-  'Hesitant':'Section=combat Note="Uses lowest of 2 Action Cards"',
+  'Hesitant':'Section=combat Note="Uses the lowest of 2 Action Cards"',
   'Illiterate':'Section=feature Note="Cannot read or write"',
   'Impulsive+':'Section=feature Note="Always acts without thinking"',
   'Jealous':'Section=feature Note="Has focused envy about one topic or person"',
@@ -829,13 +848,13 @@ SWADE.FEATURES = {
   'Obese':
     'Section=attribute,combat,description ' +
     'Note=' +
-      '"-1 Strength step (worn gear)",' +
-      '"-1 Pace/-1 Run step/+1 Toughness",' +
+      '"-1 Strength Step (worn gear)",' +
+      '"-1 Pace/-1 Run Step/+1 Toughness",' +
       '"+1 Size"',
   'Obligation':
-    'Section=feature Note="Has regular responsibility that occupies 20 hr/wk"',
+    'Section=feature Note="Has a responsibility that occupies 20 hr/wk"',
   'Obligation+':
-    'Section=feature Note="Has regular responsibility that occupies 40+ hr/wk"',
+    'Section=feature Note="Has a responsibility that occupies 40+ hr/wk"',
   'One Arm+':'Section=skill Note="Suffers -4 on two-handed tasks"',
   'One Eye+':'Section=feature Note="Suffers -2 on visual tasks 5\\" distant"',
   'Outsider':'Section=skill Note="-2 Persuasion (other races)"',
@@ -843,24 +862,25 @@ SWADE.FEATURES = {
     'Section=feature,skill ' +
     'Note="Has no legal rights","-2 Persuasion (other races)"',
   'Overconfident+':
-    'Section=feature Note="Has excessive opinion of own capabilities"',
+    'Section=feature Note="Has an excessive opinion of own capabilities"',
   'Pacifist':
     'Section=combat ' +
-    'Note="Will harm others only when no other option available"',
+    'Note="Will harm others only when no other option is available"',
   'Pacifist+':
     'Section=combat ' +
-    'Note="Will not fight living creatures, uses nonlethal methods only in defense"',
+    'Note="Will not fight living creatures; uses nonlethal methods only in defense"',
   'Phobia':
     'Section=feature ' +
-    'Note="Suffers -1 on Trait rolls in presence of phobia subject"',
+    'Note="Suffers -1 on Trait rolls in the presence of phobia subject"',
   'Phobia+':
     'Section=feature ' +
-    'Note="Suffers -2 on Trait rolls in presence of phobia subject"',
+    'Note="Suffers -2 on Trait rolls in the presence of phobia subject"',
   'Poverty':
-    'Section=feature Note="Starts with half funds, loses half funds each wk"',
+    'Section=feature ' +
+    'Note="Starts with half funds and loses half of funds each wk"',
   'Quirk':
     'Section=feature ' +
-    'Note="Has minor compulsion that occasionally causes trouble"',
+    'Note="Has a minor compulsion that occasionally causes trouble"',
   'Ruthless':'Section=combat Note="Attacks those opposing personal goal"',
   'Ruthless+':'Section=combat Note="Attacks any who impede personal goal"',
   'Secret':
@@ -871,8 +891,8 @@ SWADE.FEATURES = {
     'Note="Hides knowledge to protect self or others from major trouble"',
   'Shamed':'Section=feature Note="Past event causes self-doubt"',
   'Shamed+':'Section=feature Note="Past event causes social antagonism"',
-  'Slow':'Section=combat Note="-1 Pace/-1 Run step"',
-  'Slow+':'Section=combat,skill Note="-2 Pace/-1 Run step","-2 Athletics"',
+  'Slow':'Section=combat Note="-1 Pace/-1 Run Step"',
+  'Slow+':'Section=combat,skill Note="-2 Pace/-1 Run Step","-2 Athletics"',
   'Small':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Stubborn':'Section=feature Note="Never admits error"',
   'Suspicious':'Section=feature Note="Trusts no one"',
@@ -900,16 +920,17 @@ SWADE.FEATURES = {
     'Section=attribute,feature,skill ' +
     'Note="-1 Attribute Points","+1 Benny each session","-2 Skill Points"',
   'Young+':
-    'Section=attribute,feature,skill ' +
+    'Section=attribute,feature,feature,skill ' +
     'Note="-2 Attribute Points",' +
-          '"Has Small feature/+2 Benny each session",' +
+          '"Has Small feature",' +
+          '"+2 Benny each session",' +
           '"-2 Skill Points"',
 
   // Races
   'Adaptable':'Section=feature Note="+1 Edge Points"',
   'Additional Action':
-    'Section=combat Note="Ignores 2 points of Multi-Action penalties"',
-  'Agile':'Section=attribute Note="+1 Agility step"',
+    'Section=combat Note="Ignores 2 points of multi-action penalties"',
+  'Agile':'Section=attribute Note="+1 Agility Step"',
   'Aquatic':'Section=combat,feature Note="Swim Pace %{pace}","Cannot drown"',
   'Armor +2':'Section=combat Note="+2 Armor"',
   'Big':
@@ -918,7 +939,7 @@ SWADE.FEATURES = {
       '"Has difficulty finding armor and clothing that fits; suffers -2 on all Trait rolls when using standard equipment"',
   'Bite':'Section=combat Note="Fangs are a natural weapon"',
   'Burrowing':
-    'Section=feature Note="Can burrow into loose earth and surprise foes"',
+    'Section=feature Note="May burrow into loose earth and surprise foes"',
   'Cannot Speak':'Section=feature Note="Cannot talk to other species"',
   'Claws':'Section=combat Note="Claws are a natural weapon"',
   'Construct':
@@ -940,7 +961,8 @@ SWADE.FEATURES = {
     'Section=combat,skill ' +
     'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
-  'Hardy':'Section=combat Note="Does not suffer Wound from 2nd Shaken result"',
+  'Hardy':
+    'Section=combat Note="Does not suffer a Wound from 2nd Shaken result"',
   'Heritage':
     'Section=description Note="+2 Improvement Points (Agility or edge)"',
   'Horns':'Section=combat Note="Horns are a natural weapon"',
@@ -948,8 +970,8 @@ SWADE.FEATURES = {
   'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
-    'Note="Half illumination penalties when attacking warm targets"',
-  'Keen Senses':'Section=skill Note="+1 Notice step"',
+    'Note="Suffers half normal illumination penalties when attacking a warm targets"',
+  'Keen Senses':'Section=skill Note="+1 Notice Step"',
   'Keen Senses (Saurian)':'Section=feature Note="Has Alertness feature"',
   'Leaper':
     'Section=combat,skill ' +
@@ -958,25 +980,26 @@ SWADE.FEATURES = {
     'Section=feature Note="Ignores penalties for dim and dark illumination"',
   'Luck (Half-Folk)':'Section=feature Note="+1 Benny each session"',
   'No Vital Organs':
-    'Section=combat Note="Takes no extra damage from Called Shot"',
-  'Pace':'Section=combat Note="+1 Pace/+1 Run step"',
+    'Section=combat Note="Takes no extra damage from a Called Shot"',
+  'Pace':'Section=combat Note="+1 Pace/+1 Run Step"',
   'Parry':'Section=combat Note="+1 Parry"',
   'Poisonous Touch':
     'Section=combat Note="Touch causes Mild Poison effects (Vigor neg)"',
   'Poor Parry':'Section=combat Note="-1 Parry"',
   'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
   'Reach':'Section=combat Note="+1 Reach"',
-  'Reduced Pace':'Section=combat Note="-1 Pace/-1 Run step"',
-  'Regeneration':'Section=attribute Note="Make natural healing roll 1/dy"',
+  'Reduced Pace':'Section=combat Note="-1 Pace/-1 Run Step"',
+  'Regeneration':
+    'Section=attribute Note="May make a natural healing attempt 1/dy"',
   'Semi-Aquatic':'Section=feature Note="Can hold breath for 15 min"',
   'Size -1':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Size +1':'Section=combat,description Note="+1 Toughness","+1 Size"',
-  'Sleep Reduction':'Section=feature Note="Needs only 4 hr sleep/dy"',
-  'Smart':'Section=attribute Note="+1 Smarts step"',
-  'Spirited':'Section=attribute Note="+1 Spirit step"',
-  'Strong':'Section=attribute Note="+1 Strength step"',
+  'Sleep Reduction':'Section=feature Note="Requires only 4 hr sleep/dy"',
+  'Smart':'Section=attribute Note="+1 Smarts Step"',
+  'Spirited':'Section=attribute Note="+1 Spirit Step"',
+  'Strong':'Section=attribute Note="+1 Strength Step"',
   'Tail':'Section=combat Note="Tail is a natural weapon"',
-  'Tough':'Section=attribute Note="+1 Vigor step"',
+  'Tough':'Section=attribute Note="+1 Vigor Step"',
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
     'Section=combat ' +
@@ -995,7 +1018,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=agilityStep ' +
-    'Section=attribute Note="%V Agility step"',
+    'Section=attribute Note="%V Agility Step"',
   'Armor':
     'Pattern="([-+]\\d+)\\s+armor(?:$|\\s+$|\\s+[^d])|armor\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1061,7 +1084,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=runStep ' +
-    'Section=combat Note="%V Run step"',
+    'Section=combat Note="%V Run Step"',
   'Skill Points':
     'Pattern="([-+]\\d+)\\s+skill\\s+points|skill\\s+points\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1079,7 +1102,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=smartsStep ' +
-    'Section=attribute Note="%V Smarts step"',
+    'Section=attribute Note="%V Smarts Step"',
   'Spirit':
     'Pattern="([-+]\\d+)\\s+spi(?:rit)?(?:$|\\s+$|\\s+[^d])|spi(?:rit)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1091,7 +1114,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=spiritStep ' +
-    'Section=attribute Note="%V Spirit step"',
+    'Section=attribute Note="%V Spirit Step"',
   'Strength':
     'Pattern="([-+]\\d+)\\s+str(?:ength)?(?:$|\\s+$|\\s+[^d])|str(?:ength)?\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1103,7 +1126,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=strengthStep ' +
-    'Section=attribute Note="%V Strength step"',
+    'Section=attribute Note="%V Strength Step"',
   'Toughness':
     'Pattern="([-+]\\d+)\\s+toughness(?:$|\\s+$|\\s+[^d])|toughness\\s+([-+]\\d+)" ' +
     'Effect=add ' +
@@ -1121,7 +1144,7 @@ SWADE.GOODIES = {
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=vigorStep ' +
-    'Section=attribute Note="%V Vigor step"'
+    'Section=attribute Note="%V Vigor Step"'
 };
 SWADE.HINDRANCES = {
   'All Thumbs':'Severity=Minor',
@@ -1269,7 +1292,7 @@ SWADE.POWERS = {
       '"+1 PP/additional target",' +
       '"+1 PP Spirit-2" ' +
     'Description=' +
-      '"Target gains +1 Trait step (Raise +2) for 5 rd or suffers -1 Trait step (Raise -2) (Spirit recovers 1 step (Raise all) each rd)"',
+      '"Target gains +1 Trait Step (Raise +2) for 5 rd or suffers -1 Trait Step (Raise -2) (Spirit recovers 1 Step (Raise all) each rd)"',
   'Burrow':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1405,7 +1428,7 @@ SWADE.POWERS = {
     'PowerPoints=2/Size ' +
     'Range=Smarts ' +
     'Description=' +
-      '"Target gains or loses Toughness and Strength step (Spirit neg) for 5 rd"',
+      '"Target gains or loses Toughness and Strength Step (Spirit neg) for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -2589,17 +2612,18 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         if(op == '*')
           adjust = adjust.substring(1);
 
-        if(section == 'skill' && adjusted != 'Skill Points' && adjusted != 'Charisma' &&
+        if(section == 'skill' &&
+           !adjusted.match(/Skill Points|Charisma|Step$/) &&
            adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
           adjusted = 'skillModifier.' + adjusted;
         } else if(adjusted == 'Run' ||
                   adjusted.toLowerCase() in SWADE.ATTRIBUTES) {
           adjusted = adjusted.toLowerCase() + 'Modifier';
-        } else if(adjusted.match(/^[A-Z]\w+ step$/)) {
-          adjusted = adjusted.replace(' step', '');
+        } else if(adjusted.match(/^[A-Z]\w+ Step$/)) {
+          adjusted = adjusted.replace(' Step', '');
           if(section == 'attribute' || adjusted == 'Run')
             adjusted = adjusted.toLowerCase() + 'Step';
-          else if(sections == 'skill')
+          else if(section == 'skill')
             adjusted = 'skillStep.' + adjusted;
           else
             adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1);
