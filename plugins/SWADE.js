@@ -962,7 +962,7 @@ SWADE.FEATURES = {
     'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
   'Frail':'Section=combat Note="-1 Toughness"',
   'Hardy':
-    'Section=combat Note="Does not suffer a Wound from 2nd Shaken result"',
+    'Section=combat Note="Does not suffer a Wound from a second Shaken result"',
   'Heritage':
     'Section=description Note="+2 Improvement Points (Agility or edge)"',
   'Horns':'Section=combat Note="Horns are a natural weapon"',
@@ -1615,7 +1615,7 @@ SWADE.POWERS = {
       '"+2 PP Servant has fly Pace 12",' +
       '"+1 PP Self can use servant\'s senses" ' +
     'Description=' +
-      '"Creates obedient servant (Raise servant may take 1 Wound) for 5 rd"',
+      '"Creates an obedient servant (Raise servant may take 1 Wound) for 5 rd"',
   'Telekinesis':
     'Advances=4 ' +
     'PowerPoints=5 ' +
@@ -2307,6 +2307,52 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
   type =
     type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
   rules.addChoice(type, name, attrs);
+};
+
+/*
+ * Removes #name# from the set of user #type# choices, reversing the effects of
+ * choiceRules.
+ */
+SWADE.removeChoice = function(rules, type, name) {
+  let choiceGroup =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  let choices = rules.getChoices(choiceGroup);
+  let constantName = type.toUpperCase().replaceAll(' ', '_') + 'S';
+  if(choices && choices[name]) {
+    let currentAttrs = choices[name];
+    delete choices[name];
+    // Disable rules based on this choice that affect character sheet
+    // Assume there are no rules to disable:
+    //   Concept, Era
+    // Assume any rules are sufficiently disabled by choice removal:
+    //   Arcana, Armor, Hindrance, Power, Shield, Skill, Weapon
+    // Need to take action to disable rules:
+    //   Edge, Feature, Race
+    if(type == 'Edge') {
+      rules.defineRule('features.' + name, 'edges.' + name, '=', 'null');
+    } else if(type == 'Feature') {
+      let prefix =
+        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+      QuilvynUtils.getAttrValueArray(currentAttrs, 'Section').forEach(s => {
+        rules.defineRule(s.toLowerCase() + 'Notes.' + prefix,
+          'features.' + name, '=', 'null'
+        );
+      });
+    } else if(type == 'Race') {
+      let features = QuilvynUtils.getAttrValueArray(currentAttrs, 'Features');
+      let prefix =
+        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+      let raceAdvances = prefix + 'Level';
+      features.forEach(f => {
+        rules.defineRule(prefix + 'Features.' + f, raceAdvances, '=', 'null');
+      });
+    }
+    if(rules.plugin &&
+       rules.plugin[constantName] &&
+       name in rules.plugin[constantName] &&
+       rules.plugin[constantName][name] != currentAttrs)
+      rules.choiceRules(rules, type, name, rules.plugin[constantName][name]);
+  }
 };
 
 /*
