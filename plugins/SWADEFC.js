@@ -37,11 +37,13 @@ function SWADEFC(baseRules) {
   }
 
   var rules = new QuilvynRules('SWADE Fantasy', SWADEFC.VERSION);
+  rules.plugin = SWADEFC;
   SWADEFC.rules = rules;
 
   rules.defineChoice('choices', SWADEFC.CHOICES);
   rules.choiceEditorElements = SWADEFC.choiceEditorElements;
   rules.choiceRules = SWADEFC.choiceRules;
+  rules.removeChoice = SWADE.removeChoice;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
   rules.getPlugins = SWADEFC.getPlugins;
@@ -514,7 +516,7 @@ SWADEFC.CONCEPTS_ADDED = {
     'Attribute=Smarts ' +
     'Skill=Spellcasting'
 };
-SWADEFC.CONCEPTS = Object.assign(Object.fromEntries(Object.entries(SWADE.CONCEPTS).filter(([k, v]) => !v.includes('Arcane Background'))), SWADEFC.CONCEPTS_ADDED);
+SWADEFC.CONCEPTS = Object.assign({}, SWADE.CONCEPTS, SWADEFC.CONCEPTS_ADDED);
 SWADEFC.EDGES_ADDED = {
   'Air Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
   'Earth Scion':'Type=background Require="ancestry == \'Elemental Scion\'"',
@@ -825,7 +827,8 @@ SWADEFC.EDGES_ADDED = {
     'Require=' +
       '"features.Arcane Background (Wizard)"'
 };
-SWADEFC.EDGES = Object.assign(Object.fromEntries(Object.entries(SWADE.EDGES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.EDGES_ADDED);
+SWADEFC.EDGES = Object.assign({}, SWADE.EDGES, SWADEFC.EDGES_ADDED);
+delete SWADEFC.EDGES.Wizard;
 SWADEFC.FEATURES_ADDED = {
   // Ancestry
   'Additional Actions':
@@ -845,7 +848,7 @@ SWADEFC.FEATURES_ADDED = {
   'Boneheaded':'Section=attribute Note="-1 Smarts"',
   'Breath Weapon':
     'Section=combat ' +
-    'Note="Successful Athletics inflicts 2d6 fire damage in 9\\" cone or 12\\" line; critical failure inflicts fatigue"',
+    'Note="Successful Athletics inflicts 2d6 fire damage in a 9\\" cone or 12\\" line; critical failure inflicts fatigue on self"',
   'Brutish':'Section=attribute Note="-1 Smarts"',
   'Change Shape':
     'Section=arcana,feature ' +
@@ -859,8 +862,8 @@ SWADEFC.FEATURES_ADDED = {
     'Section=attribute ' +
     'Note="10 min in 60F/18C or below inflicts -1 Agility, Strength, and Vigor"',
   'Craven':'Section=feature Note="Has Yellow+ feature"',
-  'Cunning':'Section=attribute Note="+1 Smarts step"',
-  'Darkvision':'Section=feature Note="R10\\" Ignore illumination penalties"',
+  'Cunning':'Section=attribute Note="+1 Smarts Step"',
+  'Darkvision':'Section=feature Note="R10\\" Ignores illumination penalties"',
   'Devilish Nature':'Section=skill Note="+1 Intimidation"',
   'Diminutive (Tiny)':
     'Section=arcana,attribute,combat,combat,feature ' +
@@ -890,6 +893,9 @@ SWADEFC.FEATURES_ADDED = {
   'Fire Scion':
     'Section=feature ' +
     'Note="Has Environmental Resistance (Fire) and Quick features"',
+  'Flight': // Changed from SWADE
+    'Section=combat,skill ' +
+    'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
   'Hardened':'Section=attribute Note="+1 Attribute Points (Strength or Vigor)"',
   'Hive Minded':
     'Section=feature Note="Has Driven+ and Loyal features wrt colony"',
@@ -907,8 +913,7 @@ SWADEFC.FEATURES_ADDED = {
       '"-4 Stealth (sight-based) when glowing",' +
       '"Glow negates 2 points of illumination penalties",' +
       '"Flashing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
-  // Changed from SWADE
-  'Infravision':
+  'Infravision':  // Changed from SWADE
     'Section=combat ' +
     'Note="Illumination penalties reduced by half when attacking targets that radiate heat"',
   'Infravision (Goblin)':
@@ -916,14 +921,14 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Illumination penalties reduced by half when attacking targets that radiate heat or cold"',
   'Inner Air':'Section=feature Note="Does not need to breathe"',
   'Natural Resistance':'Section=combat Note="Immune to poison and disease"',
-  'Pace (Serpentfolk)':'Section=combat Note="+4 Pace/+2 Run step"',
-  'Pace +4':'Section=combat Note="+4 Pace/+2 Run step"',
+  'Pace (Serpentfolk)':'Section=combat Note="+4 Pace/+2 Run Step"',
+  'Pace +4':'Section=combat Note="+4 Pace/+2 Run Step"',
   'Phobia (Cats)':
     'Section=feature Note="Suffers -1 on Trait rolls in the presence of cats"',
   'Reduced Core Skills':
     'Section=skill ' +
     'Note="Has no starting Common Knowledge, Persuasion, or Stealth ability"',
-  'Rock Solid':'Section=attribute Note="+1 Vigor step"',
+  'Rock Solid':'Section=attribute Note="+1 Vigor Step"',
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Size +2':
     'Section=combat,description ' +
@@ -935,21 +940,21 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"+3 Toughness",' +
       '"+3 Size"',
-  'Sneaky':'Section=skill Note="+1 Stealth step"',
+  'Sneaky':'Section=skill Note="+1 Stealth Step"',
   'Sunlight Sensitivity':
     'Section=combat Note="Suffers Distraction in sunlight or equivalent"',
   'Survivors':'Section=feature Note="+1 Edge Points"',
   'Uneducated':'Section=attribute Note="-1 Smarts"',
   'Unimposing':'Section=feature Note="Has Mild Mannered feature"',
-  'Unnatural Strength':'Section=attribute Note="+1 Strength step"',
+  'Unnatural Strength':'Section=attribute Note="+1 Strength Step"',
   'Unusual Body Shape':
     'Section=feature Note="Cannot use standard armor or furnishings"',
   'Unusual Form':
     'Section=feature Note="Cannot ride mounts or use some standard equipment"',
   'Venomous Bite':
     'Section=combat Note="Successful bite inflicts Mild Poison (Vigor neg)"',
-  'Very Strong':'Section=attribute Note="+2 Strength step"',
-  'Very Tough':'Section=attribute Note="+2 Vigor step"',
+  'Very Strong':'Section=attribute Note="+2 Strength Step"',
+  'Very Tough':'Section=attribute Note="+2 Vigor Step"',
   'Water Scion':
     'Section=feature ' +
     'Note="Has Environmental Resistance (Water) and Aquatic features"',
@@ -1028,9 +1033,11 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"6 Powers/15 Power Points",' +
       '"Has Armor Interference+ and Material Components+ features"',
+  'Assassin': // Changed from SWADE
+    'Section=combat Note="+d6 damage to Vulnerable foes and with The Drop"',
   'Aura Of Courage':
     'Section=combat ' +
-    'Note="R10\\" Allies gain +1 on Fear checks and -1 on Fear Table results"',
+    'Note="R10\\" Allies gain +1 vs. fear and -1 on fear table results"',
   'Battle Magic':'Section=arcana Note="May cast spells on units of Extras"',
   'Beast Talker':'Section=skill Note="May speak with chosen class of animals"',
   'Blood Magic':
@@ -1039,19 +1046,19 @@ SWADEFC.FEATURES_ADDED = {
   'Born In The Saddle':
     'Section=feature,skill ' +
     'Note=' +
-      '"Mount gains +2 Pace and +1 Run step",' +
+      '"Mount gains +2 Pace and +1 Run Step",' +
       '"May reroll Riding"',
   'Charge':
     'Section=combat Note="Fighting attack after 5\\" run inflicts +2 damage"',
   'Chosen':
     'Section=combat,feature,feature ' +
     'Note=' +
-      '"Conviction effects last until end of encounter",' +
+      '"Conviction effects last until the end of the encounter",' +
       '"Has Enemy+ feature",' +
       '"Permanent mark shows Chosen status"',
   'Close Fighting':
     'Section=combat ' +
-    'Note="+%V attack and Parry with knife against more heavily-armed foe"',
+    'Note="+%{combatNotes.improvedCloseFighting?2:1} attack and Parry with a knife against a more heavily-armed foe"',
   'Coven':
     'Section=arcana Note="R12\\" May freely transfer PP w/other coven members"',
   'Deceptive':
@@ -1060,39 +1067,42 @@ SWADEFC.FEATURES_ADDED = {
   'Defender':
     'Section=combat Note="May share shield Parry w/chosen adjacent ally"',
   'Dirty Fighter':'Section=skill Note="+2 Fighting (performing Test)"',
-  'Double Shot':'Section=combat Note="May fire or throw 2 projectiles %V/tn"',
+  'Double Shot':
+    'Section=combat ' +
+    'Note="May fire or throw 2 projectiles %{combatNotes.improvedDoubleShot?2:1}/tn"',
   'Elemental Origin':
     'Section=arcana Note="Powers must use trappings of chosen element"',
   'Elemental Synergy':
     'Section=arcana ' +
-    'Note="May reroll arcane skill near significant source of chosen element/-2 arcane skill where chosen element is scarce"',
+    'Note="May reroll arcane skill near a significant source of chosen element/-2 arcane skill where chosen element is scarce"',
   'Epic Mastery':'Section=arcana Note="May use Epic Power Modifiers"',
   'Explorer':
     'Section=feature ' +
-    'Note="Reduces travel time by 10%/May take best of 2 Action Cards when traveling"',
+    'Note="Reduces travel time by 10%/May choose from 2 Action Cards when traveling"',
   'Familiar':
     'Section=arcana ' +
-    'Note="Can communicate w/magical, Wild Card pet that stores 5 Power Points"',
+    'Note="Can communicate w/a magical, Wild Card pet that stores 5 Power Points"',
   'Favored Enemy':
     'Section=combat,skill ' +
-    'Note="May reroll attacks against %1 chosen creature type",' +
-         '"May reroll Survival to track %1 chosen creature type"',
+    'Note=' +
+      '"May reroll attacks against %{$\'features.Favored Enemy\'} chosen creature type",' +
+      '"May reroll Survival to track %{$\'features.Favored Enemy\'} chosen creature type"',
   'Favored Power':
     'Section=arcana ' +
     'Note="May ignore 2 points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
     'Note=' +
-      '"Gains additional Action Card in %1 chosen terrain",' +
-      '"May reroll Notice and Survival in %1 chosen terrain"',
+      '"Gains an additional Action Card in %{$\'features.Favored Terrain\'} chosen terrain",' +
+      '"May reroll Notice and Survival in %{$\'features.Favored Terrain\'} chosen terrain"',
   'Fetish':
-    'Section=arcana Note="-2 arcane skill rolls when fetish unavailable"',
+    'Section=arcana Note="-2 arcane skill rolls when fetish is unavailable"',
   'Fey Blood':
     'Section=combat ' +
     'Note="May reroll when resisting enemy powers and spell-like effects"',
   'Formation Fighter':
     'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
-  'Heirloom':'Section=feature Note="Possesses %1 powerful magic item"',
+  'Heirloom':'Section=feature Note="Possesses a powerful magic item"',
   'Holy Symbol':
     'Section=skill Note="May reroll Faith when holding holy symbol"',
   'Home Ground':
@@ -1103,10 +1113,10 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat Note="Increased Close Fighting effects"',
   'Improved Double Shot':'Section=combat Note="Increased Double Shot effects"',
   'Improved Sneak Attack':
-   'Section=combat Note="May use Sneak Attack on distracted foe"',
+   'Section=combat Note="May use Sneak Attack on a distracted foe"',
   'Jinx':
     'Section=skill ' +
-    'Note="May disable any mechanical device with successful Repair"',
+    'Note="May disable any mechanical device with a successful Repair"',
   'Knight':
     'Section=feature,skill ' +
     'Note=' +
@@ -1114,7 +1124,7 @@ SWADEFC.FEATURES_ADDED = {
       '"+1 Intimidation and Persuasion in areas of liege authority"',
   'Martial Flexibility':
     'Section=combat ' +
-    'Note="May gain effects of chosen combat edge for 5 rd 1/encounter"',
+    'Note="May gain effects of a chosen combat edge for 5 rd 1/encounter"',
   'Master Artificer':
     'Section=arcana ' +
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
@@ -1150,10 +1160,10 @@ SWADEFC.FEATURES_ADDED = {
     'Note="<i>Summon Animal</i> and <i>Shape Change</i> (natural animal) last 1 hr"',
   'Opportunistic':
     'Section=feature ' +
-    'Note="Joker gives additional +2 to Trait and damage rolls"',
+    'Note="Joker gives an additional +2 to Trait and damage rolls"',
   'Overpower':
     'Section=arcana ' +
-    'Note="May spend 1/3/5 PP to improve Spellcasting roll by +1/+2/+3; cannot improve critical failure"',
+    'Note="May spend 1/3/5 PP to improve a Spellcasting roll (but not a critical failure) by +1/+2/+3"',
   'Poisoner':
     'Section=skill ' +
     'Note="Creates poisons in half normal time/Contact poisons last 12 hr"',
@@ -1166,23 +1176,24 @@ SWADEFC.FEATURES_ADDED = {
   'Rapid Change':'Section=feature Note="May change form as a limited action"',
   'Really Dirty Fighter':
     'Section=combat ' +
-    'Note="Raise on Test gives The Drop on target until target unshakes"',
-  'Relic':'Section=arcana Note="Possesses powerful magic item"',
+    'Note="Raise on a Test gives The Drop on target until target unshakes"',
+  'Relic':'Section=arcana Note="Possesses a powerful magic item"',
   'Roar':
     'Section=combat ' +
-    'Note="May make Intimidation Test against multiple targets in 9\\" cone"',
-  'Savagery':'Section=combat Note="Wild Attack inflicts additional +2 damage"',
+    'Note="May make an Intimidation Test against multiple targets in a 9\\" cone"',
+  'Savagery':
+    'Section=combat Note="Wild Attack inflicts an additional +2 damage"',
   'Scorch':
     'Section=combat ' +
     'Note="Breath weapon inflicts 1 die type higher damage; may choose to affect a cone or line"',
   'Scout':
     'Section=skill ' +
-    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about familiar route)"',
+    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about a familiar route)"',
   'Sharp Tongued':
     'Section=skill ' +
     'Note="May use Performance in place of Taunt and may repeat using different words"',
   'Shield Wall':
-    'Section=combat Note="+1/+2 Parry when adjacent to 1/2 allies w/same edge"',
+    'Section=combat Note="+1/+2 Parry when adjacent to 1/2 allies w/this edge"',
   'Silent Caster':'Section=arcana Note="May use powers w/out speaking"',
   'Sneak Attack':'Section=combat Note="Increased Assassin effects"',
   'Stonecunning':
@@ -1190,10 +1201,10 @@ SWADEFC.FEATURES_ADDED = {
     'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
   'Strong Illusions':
     'Section=arcana ' +
-    'Note="<i>Illusion</i> affects 3\\" radius and gains the Strong Power Modifier (Strength-2 to disbelieve) for free; those who successfully disbelieve see through self <i>Illusion</i> effects for remainder of encounter"',
+    'Note="<i>Illusion</i> affects a 3\\" radius and gains the Strong Power Modifier (Strength-2 to disbelieve) for free; those who successfully disbelieve see through self <i>Illusion</i> effects for the remainder of the encounter"',
   'Stunning Blow':
     'Section=combat ' +
-    'Note="Successful attack with blunt weapon stuns (Vigor neg)"',
+    'Note="Successful attack with a blunt weapon stuns (Vigor neg)"',
   'Summoning':
     'Section=arcana ' +
     'Note="May use <i>Summon Ally</i> to conjure demonic soldiers for 4 PP%{advances>=8 ? \', hellhounds for 5 PP, or nightmares for 7 PP\' : advances>=4 ? \' or hellhounds for 5 PP\' : \'\'}"',
@@ -1223,44 +1234,43 @@ SWADEFC.FEATURES_ADDED = {
   'Unstoppable':'Section=combat Note="Takes at most 1 Wound per attack"',
   'Warband':
     'Section=combat ' +
-    'Note="%1 followers may take 1 additional Wound before becoming incapacitated"',
+    'Note="%{features.Warband*5} followers may take an additional Wound before becoming incapacitated"',
   'Wilderness Stride':
     'Section=combat ' +
     'Note="Suffers no movement penalty for difficult ground in natural terrain"',
   'Wing Gust':
     'Section=combat ' +
-    'Note="Successful Athletics shakes creatures of same size or smaller in 9\\" cone (Vigor neg; Raise -2)"',
+    'Note="Successful Athletics shakes creatures of same size or smaller in a 9\\" cone (Vigor neg; Raise -2)"',
   // AB-dependent edges
   'Arcane Barding':'Section=arcana Note="Summoned animals gain +2 Toughness"',
-  'Chemist':
-    'Section=arcana Note="Concoctions given to others last 1 wk or until used"',
+  'Chemist':'Section=arcana Note="Concoctions given to others last 1 wk"',
   'Construct Familiar':
     'Section=arcana ' +
-    'Note="Can communicate w/magical, Wild Card construct that stores 5 Power Points"',
+    'Note="Can communicate w/a magical, Wild Card construct that stores 5 Power Points"',
   'Deadly Illusion':
     'Section=arcana ' +
     'Note="May use the Deadly Illusion Power Modifier on <i>Illusion</i> for free"',
   'Destroy Undead':
     'Section=arcana ' +
-    'Note="May spend 1/2 PP to inflict 2d6/3d6 damage on all undead in 3\\" radius"',
+    'Note="May spend 1/2 PP to inflict 2d6/3d6 damage on all undead in a 3\\" radius"',
   'Dirge':'Section=arcana Note="R10\\" Target suffers -2 on Benny roll"',
   'Eldritch Inspiration':
     'Section=arcana Note="May spend a Benny to use a power from spellbook"',
   'Elemental Absorption':
     'Section=combat Note="+2 Toughness near significant source of chosen element"',
   'Elemental Master':
-    'Section=arcana Note="May use trappings of %1 chosen elements"',
+    'Section=arcana Note="May use trappings of %{$\'features.Elemental Master\'+1} chosen elements"',
   'Ferocious Summoning':
     'Section=arcana Note="May grant summoned monsters 1 combat edge"',
   'Great Power':
     'Section=arcana ' +
-    'Note="May spend a Benny to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
+    'Note="May spend a Benny to cast any power up to 20 PP at a -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Great Summoning':
     'Section=arcana ' +
-    'Note="May spend 5/7/8/8/11 PP to summon barghest/mammoth/frost mammoth/tyrannosaurus rex/young dragon"',
+    'Note="May spend 5/7/8/8/11 PP to summon a barghest/mammoth/frost mammoth/tyrannosaurus rex/young dragon"',
   'Heartwood Staff':
     'Section=combat ' +
-    'Note="Has heartwood staff; may spend 1 PP after hit w/it to inflict +d6 damage"',
+    'Note="Has a heartwood staff; may spend 1 PP after a hit w/it to inflict +d6 damage"',
   "Hell's Wrath":
     'Section=arcana ' +
     'Note="<i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage"',
@@ -1283,17 +1293,17 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May spend Conviction to cast any power up to 20 PP at -2 penalty; failure inflicts permanent loss of 1 attribute die type"',
   'Primal Magic':
     'Section=arcana ' +
-    'Note="Powers inflict +2 damage/Critical failure stuns all in 3\\" radius"',
+    'Note="Powers inflict +2 damage/Critical failure stuns all in a 3\\" radius"',
   'Sacred Fetish':
     'Section=skill ' +
     'Note="May reroll Faith when fetish is held or prominently worn"',
   'Soul Jar':
     'Section=feature ' +
-    'Note="Is Undead/2d6 days after being slain, hidden soul inhabits new corpse"',
+    'Note="Is undead/2d6 days after being slain, hidden soul inhabits a new corpse"',
   'Spellbooks':'Section=arcana Note="+%V Power Count"',
   'The Evil Eye':
     'Section=arcana ' +
-    'Note="R6\\" Target Bennies have no effect (Spirit-2 neg) for remainder of encounter 1/encounter"',
+    'Note="R6\\" Target Bennies have no effect (Spirit-2 neg) for the remainder of the encounter 1/encounter"',
   'The Witching Hour':
     'Section=feature ' +
     'Note="Gains free Soak and cannot critically fail between midnight and 1 a.m."',
@@ -1304,7 +1314,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="May cast powers at -2 penalty while shape changed"',
   'Undead Familiar':
     'Section=arcana ' +
-    'Note="Can communicate w/magical, Wild Card undead animal that stores 5 Power Points"',
+    'Note="Can communicate w/a magical, Wild Card undead animal that stores 5 Power Points"',
   // Hindrances
   'Amorous':
     'Section=skill Note="-2 on Tests by a foe w/the Attractive feature"',
@@ -1346,15 +1356,15 @@ SWADEFC.FEATURES_ADDED = {
       '"-4 Persuasion (characters from other cultures)"',
   'Material Components+':
     'Section=arcana ' +
-    'Note="Suffers -4 arcane skill rolls when materials unavailable; critical failure exhausts materials"',
+    'Note="Suffers -4 arcane skill rolls when materials are unavailable; critical failure exhausts materials"',
   'Selfless':'Section=feature Note="Puts others first"',
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
     'Section=arcana ' +
-    'Note="Suffers -1 arcane skill rolls when talisman unavailable; critical failure stuns"',
+    'Note="Suffers -1 arcane skill rolls when talisman is unavailable; critical failure stuns"',
   'Talisman+':
     'Section=arcana ' +
-    'Note="Suffers -2 arcane skill rolls when talisman unavailable; critical failure stuns"'
+    'Note="Suffers -2 arcane skill rolls when talisman is unavailable; critical failure stuns"'
 };
 SWADEFC.FEATURES = Object.assign(Object.fromEntries(Object.entries(SWADE.FEATURES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {
@@ -1452,7 +1462,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP/lb Daily food",' +
       '"+1 PP/lb Lasts until dispelled" ' +
     'Description=' +
-      '"Creates mundane item for 1 hr"',
+      '"Creates a mundane item for 1 hr"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
@@ -1460,7 +1470,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"Epic +5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and additional level each sunset (Spirit neg)"',
+      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
   'Damage Field':
     'Modifier=' +
       '"+2 PP 2\\" radius",' +
@@ -1471,7 +1481,8 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +2 PP Ignores all illumination penalties and 4 points from invisible creatures"',
   'Deflection':SWADE.POWERS.Deflection + ' ' +
     'PowerPoints=2 ' +
-    'Description="Foes suffer -2 on choice of ranged or melee attacks (Raise both) on target for 5 rd"',
+    'Description=' +
+      '"Foes suffer -2 on choice of ranged or melee attacks (Raise both) on target for 5 rd"',
   'Detect/Conceal Arcana':
     'Modifier=' +
       '"+1 PP Detect supernatural good or evil",' +
@@ -1494,7 +1505,8 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"Epic +3 PP Inflict 2d6 damage (Raise 3d6), affect 3x volume, or inflict Push w/-2 to resist",' +
       '"+5 PP Summon weather" ' +
-    'Description="Self uses element to attack for 2d4 damage (Raise 3d4), move 1\' cu object %{smarts}\', Push target, or perform special effect for 5 rd"',
+    'Description=' +
+      '"Self uses element to attack for 2d4 damage (Raise 3d4), move 1\' cu object %{smarts}\', push target, or perform a special effect for 5 rd"',
   'Empathy':
     'Modifier=' +
       '"+1 PP/additional target",' +
@@ -1510,7 +1522,8 @@ SWADEFC.POWER_CHANGES = {
       '"+2 PP Inflicts 2d4 damage",' +
       '"+2 PP Hardness 10",' +
       '"Epic +1 Inflicts 2d6 damage" ' +
-    'Description="Restrains target (Raise binds; Athletics or breaking Hardness 8 frees)"',
+    'Description=' +
+      '"Restrains target (Raise binds; Athletics or breaking Hardness 8 frees)"',
   'Environmental Protection':SWADE.POWERS['Environmental Protection'] + ' ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
@@ -1571,7 +1584,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Alerts self if unlocked" ' +
     'Description=' +
-      '"Inflicts -4 to open (Raise seals shut) on target item or opens target item, ignoring 4 points of penalties (Raise disarms alarms and traps)"',
+      '"Inflicts -4 to open on target item (Raise seals shut) or opens target item, ignoring 4 points of penalties (Raise disarms alarms and traps)"',
   'Lower Trait': // Diabolist cannot Boost Trait
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1581,7 +1594,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP Spirit-2",' +
       '"Epic +2 PP -2 affected Trait" ' +
     'Description=' +
-      '"Target suffers -1 Trait step (Raise -2) (Spirit recovers 1 step (Raise all) each rd)"',
+      '"Target suffers -1 Trait Step (Raise -2) (Spirit recovers 1 Step (Raise all) each rd)"',
   'Mind Link':
     'Modifier=' +
       '"Epic +2 PP Broadcast telepathic message in %{smarts*4}\\" radius (Raise %{smarts*8}\\" radius)",' +
@@ -1608,7 +1621,7 @@ SWADEFC.POWER_CHANGES = {
     'PowerPoints=8 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Summons and traps extraplanar creature to perform service (Spirit neg)"',
+      '"Summons and traps an extraplanar creature to perform a service (Spirit neg)"',
   'Plane Shift':
     'Advances=4 ' +
     'PowerPoints=4 ' +
@@ -1618,7 +1631,7 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +1 PP Creates extra-dimensional shelter",' +
       '"Epic +2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
-      '"Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of known location"',
+      '"Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of a known location"',
   'Protection':SWADE.POWERS.Protection + ' ' +
     'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd" ' +
     'Modifier=' +
@@ -1677,7 +1690,7 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
       '"+2 PP Servant can fly Pace\\"/rd",' +
-      '"+1 PP Servant gains +1 Trait step",' +
+      '"+1 PP Servant gains +1 Trait Step",' +
       '"+1 PP Self can use servant\'s senses",' +
       '"Epic +Half PP/additional servant"',
   'Summon Animal':
@@ -1689,7 +1702,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP Self can use animal\'s senses",' +
       '"Epic +Half/additional animal" ' +
     'Description=' +
-      '"Brings chosen animal type to perform task for 5 rd"',
+      '"Brings chosen animal type to perform a task for 5 rd"',
   'Summon Monster':
     'Advances=0 ' +
     'PowerPoints=Special ' +
@@ -1699,7 +1712,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP Self can use monster\'s senses",' +
       '"Epic +Half PP/additional monster" ' +
     'Description=' +
-      '"Brings chosen monster type to perform task for 5 rd"',
+      '"Brings chosen monster type to perform a task for 5 rd"',
   'Summon Undead':
     'Advances=0 ' +
     'PowerPoints=Special ' +
@@ -1709,7 +1722,7 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP Self can use undead\'s senses",' +
       '"Epic +Half PP/additional undead" ' +
     'Description=' +
-      '"Brings chosen undead type to perform task for 5 rd"',
+      '"Brings chosen undead type to perform a task for 5 rd"',
   'Telekinesis':
     'Modifier=' +
       '"Epic +3 PP Strength d12 (Raise d12+2)"',
@@ -1731,7 +1744,7 @@ SWADEFC.POWER_CHANGES = {
     'PowerPoints=20 ' +
     'Range=smarts ' +
     'Description=' +
-      '"Self alters reality, loses 3 PP permanently (Raise no PP loss)"',
+      '"Self alters reality and loses 3 PP permanently (Raise no PP loss)"',
   'Zombie':SWADE.POWERS.Zombie + ' ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
@@ -1990,8 +2003,9 @@ SWADEFC.ancestryRules = function(rules, name, requires, features) {
  * derived directly from the attributes passed to ancestryRules.
  */
 SWADEFC.ancestryRulesExtra = function(rules, name) {
-  if(name == 'Celestial') {
-    rules.defineRule('combatNotes.flight', 'celestialAdvances', '=', '12');
+  let advanceAttr = name.toLowerCase() + 'Advances';
+  if(name == 'Avion' || name == 'Celestial') {
+    rules.defineRule('combatNotes.flight', advanceAttr, '=', '12');
   } else if(name == 'Dragonfolk') {
     rules.defineRule
       ('features.Arrogant+', 'featureNotes.ill-Tempered', '=', '1');
@@ -2022,7 +2036,7 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Rock Solid', 'featureNotes.earthScion', '=', null);
   } else if(name == 'Fairy') {
-    rules.defineRule('combatNotes.flight', 'fairyAdvances', '=', '6');
+    rules.defineRule('combatNotes.flight', advanceAttr, '=', '6');
   } else if(name == 'Golem') {
     rules.defineRule('lacksCommonKnowledge',
       'skillNotes.reducedCoreSkills', '=', '1',
@@ -2061,8 +2075,7 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
     rules.defineRule('weapons.Claws', 'combatNotes.biteOrClaw', '=', '1');
   } else if(name == 'Minotaur') {
     SWADE.weaponRules(
-      rules, 'Hooves', ['Ancient', 'Medieval'], 'Str+d4', 0, 0,
-      'Un', null, null, null, null
+      rules, 'Hooves', [], 'Str+d4', 0, 0, 'Un', null, null, null, null
     );
     rules.defineRule('weapons.Hooves', 'combatNotes.hooves', '=', null);
   } else if(name == 'Mouseling') {
@@ -2301,38 +2314,12 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Chosen') {
     rules.defineRule('features.Enemy+', 'featureNotes.chosen', '=', '1');
-  } else if(name == 'Close Fighting') {
-    rules.defineRule('combatNotes.closeFighting',
-      '', '=', '1',
-      'combatNotes.improvedCloseFighting', '+', '1'
-    );
-  } else if(name == 'Double Shot') {
-    rules.defineRule('combatNotes.doubleShot',
-      '', '=', '1',
-      'combatNotes.improvedDoubleShot', '+', '1'
-    );
-  } else if(name == 'Elemental Master') {
-    rules.defineRule('arcanaNotes.elementalMaster.1',
-      'features.Elemental Master', '=', 'source + 1'
-    );
-  } else if(name == 'Favored Enemy') {
-    rules.defineRule
-      ('combatNotes.favoredEnemy.1', 'features.Favored Enemy', '=', null);
-    rules.defineRule
-      ('skillNotes.favoredEnemy.1', 'features.Favored Enemy', '=', null);
-  } else if(name == 'Favored Terrain') {
-    rules.defineRule
-      ('combatNotes.favoredTerrain.1', 'features.Favored Terrain', '=', null);
-    rules.defineRule
-      ('skillNotes.favoredTerrain.1', 'features.Favored Terrain', '=', null);
   } else if(name == 'Heartwood Staff') {
     SWADEFC.weaponRules(
       rules, 'Heartwood Staff', 'Str+d8', 6, 6, 'Two-Handed', null, null, null, 1
     );
     rules.defineRule
       ('weapons.Heartwood Staff', 'features.Heartwood Staff', '=', '1');
-  } else if(name == 'Heirloom') {
-    rules.defineRule('featureNotes.heirloom.1', 'features.Heirloom', '=', null);
   } else if(name == 'Sneak Attack') {
     rules.defineRule
       ('combatNotes.assassin', 'combatNotes.sneakAttack', '=', '"d6"');
@@ -2342,8 +2329,6 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
       'features.New Powers', '+', null
     );
   } else if(name == 'Warband') {
-    rules.defineRule
-      ('combatNotes.warband.1', 'features.Warband', '=', 'source * 5');
     rules.defineRule('sumLeadershipEdges', 'features.Warband', '^=', '0');
     let allEdges = rules.getChoices('edges');
     for(let e in allEdges) {
