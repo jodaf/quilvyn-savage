@@ -58,7 +58,7 @@ function WeirdWest(baseRules) {
   rules.defineChoice('preset',
     'advances:Advances,text,4',
     'concepts:Concepts,set,concepts',
-    'gender:Gender,select-one,genders',
+    'gender:Gender,text,10',
     'ethnicity:Ethnicity,select-one,ethnicitys'
   );
 
@@ -71,7 +71,7 @@ function WeirdWest(baseRules) {
      WeirdWest.HINDRANCES, WeirdWest.SKILLS);
   WeirdWest.identityRules
     (rules, WeirdWest.RACES, WeirdWest.CONCEPTS, WeirdWest.ETHNICITIES,
-     WeirdWest.GENDERS, WeirdWest.NICKNAMES);
+     WeirdWest.NICKNAMES);
 
   Quilvyn.addRuleSet(rules);
 
@@ -80,8 +80,7 @@ function WeirdWest(baseRules) {
 WeirdWest.VERSION = '2.4.1.0';
 
 WeirdWest.CHOICES =
-  SWADE.CHOICES.filter(x => x != 'Race')
-    .concat(['Ethnicity', 'Gender', 'Nickname']);
+  SWADE.CHOICES.filter(x => x != 'Race').concat(['Ethnicity', 'Nickname']);
 WeirdWest.RANDOMIZABLE_ATTRIBUTES =
   SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => !['era','race'].includes(x))
     .concat(['ethnicity']);
@@ -1060,11 +1059,6 @@ WeirdWest.FEATURES_ADDED = {
 };
 WeirdWest.FEATURES =
   Object.assign({}, SWADE.FEATURES, WeirdWest.FEATURES_ADDED);
-WeirdWest.GENDERS = {
-  'Female':'',
-  'Male':'',
-  'Nonbinary':''
-};
 WeirdWest.GOODIES = Object.assign({}, SWADE.GOODIES);
 WeirdWest.HINDRANCES_ADDED = {
   "Ailin'":'Require="hindrances.Ailin\'+ == 0" Severity=Minor',
@@ -1287,21 +1281,17 @@ WeirdWest.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines rules related to basic character identity. */
 WeirdWest.identityRules = function(
-  rules, races, concepts, ethnicities, genders, nicknames
+  rules, races, concepts, ethnicities, nicknames
 ) {
 
   SWADE.identityRules(rules, races, {}, concepts);
 
   QuilvynUtils.checkAttrTable
     (ethnicities, ['Family', 'Female', 'Male', 'Nonbinary']);
-  QuilvynUtils.checkAttrTable(genders, []);
   QuilvynUtils.checkAttrTable(nicknames, ['Type', 'Long', 'Move']);
 
   for(var ethnicity in ethnicities) {
     rules.choiceRules(rules, 'Ethnicity', ethnicity, ethnicities[ethnicity]);
-  }
-  for(var gender in genders) {
-    rules.choiceRules(rules, 'Gender', gender, genders[gender]);
   }
   for(var nickname in nicknames) {
     rules.choiceRules(rules, 'Nickname', nickname, nicknames[nickname]);
@@ -1369,8 +1359,6 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
     );
-  else if(type == 'Gender')
-    WeirdWest.genderRules(rules, name);
   else if(type == 'Goody')
     WeirdWest.goodyRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Pattern'),
@@ -1553,15 +1541,6 @@ WeirdWest.featureRules = function(rules, name, sections, notes) {
   // No changes needed to the rules defined by base method
 };
 
-/* Defines in #rules# the rules associated with gender #name#. */
-WeirdWest.genderRules = function(rules, name) {
-  if(!name) {
-    console.log('Empty gender name');
-    return;
-  }
-  // No rules pertain to gender
-};
-
 /*
  * Defines in #rules# the rules associated with goody #name#, triggered by
  * a starred line in the character notes that matches #pattern#. #effect#
@@ -1706,8 +1685,6 @@ WeirdWest.choiceEditorElements = function(rules, type) {
       ['Nonbinary', 'Nonbinary Names', 'text', [60]],
       ['Family', 'Family Names', 'text', [60]]
     ]);
-  } else if(type == 'Gender') {
-    return([]);
   } else if(type == 'Nickname') {
     return([
       ['Type', 'Type', 'text', [25]],
@@ -1812,7 +1789,8 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
       ethnicity = 'Multiethnic';
     var names = allEthnicities[ethnicity];
     var gender =
-      ['Female', 'Male'].includes(attributes.gender) ? attributes.gender :
+      attributes.gender && attributes.gender.match(/^f(emale)?$/i) ? 'Female' :
+      attributes.gender && attributes.gender.match(/^m(ale)?$/i) ? 'Male' :
       'Nonbinary';
     var choices = QuilvynUtils.getAttrValueArray(names, gender);
     while(choices.length == 0)
