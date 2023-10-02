@@ -2075,19 +2075,19 @@ SWADE.combatRules = function(rules, armors, shields, weapons) {
 
   SWADE.weaponRules(
     rules, 'Bite', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
+    'Unarmed', null, null, null, null
   );
   SWADE.weaponRules(
     rules, 'Claws', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
+    'Unarmed', null, null, null, null
   );
   SWADE.weaponRules(
     rules, 'Horns', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
+    'Unarmed', null, null, null, null
   );
   SWADE.weaponRules(
     rules, 'Tail', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d4', 0, 0,
-    'Un', null, null, null, null
+    'Unarmed', null, null, null, null
   );
   rules.defineRule('weapons.Bite', 'combatNotes.bite', '=', null);
   rules.defineRule('weapons.Claws', 'combatNotes.claws', '=', null);
@@ -3035,7 +3035,7 @@ SWADE.weaponRules = function(
   if(typeof weight != 'number') {
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }
-  if(!(category + '').match(/^(1h|2h|R|Un|one-handed|two-handed|ranged|unarmed)$/i)) {
+  if(!(category + '').match(/^(one-handed|two-handed|ranged|unarmed)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
   }
