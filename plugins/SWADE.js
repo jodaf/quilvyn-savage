@@ -455,14 +455,16 @@ SWADE.FEATURES = {
 
   // Edges
   'Ace':
-    'Section=skill ' +
-    'Note="Ignores 2 penalty points on Boating, Driving, and Piloting; may spend a Benny to Soak vehicle damage"',
+    'Section=combat,skill ' +
+    'Note=' +
+      '"May spend a Benny to Soak vehicle damage",' +
+      '"Ignores 2 penalty points on Boating, Driving, and Piloting"',
   'Acrobat':
     'Section=skill Note="May reroll Athletics (balance, tumble, or grapple)"',
   'Alertness':'Section=skill Note="+2 Notice"',
   'Ambidextrous':
     'Section=combat ' +
-    'Note="Has no off-hand penalty/Parry bonuses from two weapons stack"',
+    'Note="Suffers no off-hand penalty/Parry bonuses from two weapons stack"',
   'Arcane Background (Gifted)':
     'Section=arcana Note="1 Powers/15 Power Points"',
   'Arcane Background (Magic)':
@@ -519,7 +521,7 @@ SWADE.FEATURES = {
     'Section=combat ' +
     'Note="Ignores 2 points of penalties on 1 action when Action Card is 5 or less"',
   'Champion':
-   'Section=combat Note="+2 damage on foe w/supernaturally opposed alignment"',
+    'Section=combat Note="+2 damage on foe w/supernaturally opposed alignment"',
   'Channeling':
     'Section=arcana ' +
     'Note="Raise on arcane skill roll reduces Power Point cost by 1"',
@@ -689,7 +691,8 @@ SWADE.FEATURES = {
   'No Mercy':'Section=combat Note="+2 on Benny damage reroll"',
   'Power Points':'Section=arcana Note="+%V Power Points"',
   'Power Surge':
-    'Section=arcana Note="Joker Action Card restores 10 Power Points"',
+    'Section=arcana ' +
+    'Note="Drawing a joker Action Card restores 10 Power Points"',
   'Professional (Agility)':'Section=attribute Note="+%V Agility Step"',
   'Professional (Smarts)':'Section=attribute Note="+%V Smarts Step"',
   'Professional (Spirit)':'Section=attribute Note="+%V Spirit Step"',
@@ -946,7 +949,7 @@ SWADE.FEATURES = {
     'Section=attribute,combat,feature ' +
     'Note=' +
       '"+2 Shaken recovery",' +
-      '"Immune to poison and disease/Ignores one level of Wound modifiers/Requires Repair to heal",' +
+      '"Immune to poison and disease/Ignores one level of Wound penalties/Requires Repair to heal",' +
       '"Does not need to breathe"',
   'Dependency':
     'Section=feature ' +
@@ -984,7 +987,7 @@ SWADE.FEATURES = {
   'Pace':'Section=combat Note="+1 Pace/+1 Run Step"',
   'Parry':'Section=combat Note="+1 Parry"',
   'Poisonous Touch':
-    'Section=combat Note="Touch causes Mild Poison effects (Vigor neg)"',
+    'Section=combat Note="Touch inflicts Mild Poison effects (Vigor neg)"',
   'Poor Parry':'Section=combat Note="-1 Parry"',
   'Racial Enemy':'Section=skill Note="-2 Persuasion (racial enemy)"',
   'Reach':'Section=combat Note="+1 Reach"',
@@ -1435,7 +1438,7 @@ SWADE.POWERS = {
     'PowerPoints=2/Size ' +
     'Range=Smarts ' +
     'Description=' +
-      '"Target gains or loses Toughness and Strength Step (Spirit neg) for 5 rd"',
+      '"Target gains or loses Toughness and 1 Strength Step (Spirit neg) for 5 rd"',
   'Havoc':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1453,7 +1456,7 @@ SWADE.POWERS = {
       '"+10 PP Restores older Wound",' +
       '"+20 PP Heals crippling injury",' +
       '"+1 PP Neutralizes poison or disease" ' +
-    'Description="Target recovers 1 Wound (Raise 2) suffered in past hr"',
+    'Description="Target recovers from 1 Wound (Raise 2) suffered in past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
