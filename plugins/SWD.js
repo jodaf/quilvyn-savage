@@ -37,11 +37,13 @@ function SWD() {
 
   var rules =
     new QuilvynRules('Savage Worlds Deluxe Edition', SWD.VERSION);
+  rules.plugin = SWD;
   SWD.rules = rules;
 
   rules.defineChoice('choices', SWD.CHOICES);
   rules.choiceEditorElements = SWD.choiceEditorElements;
   rules.choiceRules = SWD.choiceRules;
+  rules.removeChoice = SWADE.removeChoice;
   rules.editorElements = SWD.initialEditorElements();
   rules.getFormats = SWD.getFormats;
   rules.getPlugins = SWD.getPlugins;
@@ -63,15 +65,14 @@ function SWD() {
   SWD.combatRules(rules, SWD.ARMORS, SWD.SHIELDS, SWD.WEAPONS);
   SWD.arcaneRules(rules, SWD.ARCANAS, SWD.POWERS);
   SWD.talentRules
-    (rules, SWD.EDGES, SWD.FEATURES, SWD.GOODIES, SWD.HINDRANCES,
-     SWD.LANGUAGES, SWD.SKILLS);
-  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.CONCEPTS, SWD.DEITIES);
+    (rules, SWD.EDGES, SWD.FEATURES, SWD.GOODIES, SWD.HINDRANCES, SWD.SKILLS);
+  SWD.identityRules(rules, SWD.RACES, SWD.ERAS, SWD.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
 
 }
 
-SWD.VERSION = '2.3.2.10';
+SWD.VERSION = '2.4.1.0';
 
 /* List of items handled by choiceRules method. */
 SWD.CHOICES = [].concat(SWADE.CHOICES);
@@ -136,9 +137,6 @@ for(var concept in SWADE.CONCEPTS) {
     SWD.CONCEPTS[concept] =
       SWADE.CONCEPTS[concept] + ' ' + SWD.CONCEPTS_CHANGES[concept];
 }
-SWD.DEITIES = {
-  'None':''
-};
 SWD.EDGES_CHANGES = {
   // Background
   'Aristocrat':null,
@@ -318,283 +316,321 @@ SWD.FEATURES = {
 
   // Edges
   'Ace':
-    'Section=skill ' +
-    'Note="+2 Boating/+2 Driving/+2 Piloting/Spend Benny to Soak vehicle damage"',
+    'Section=combat,skill ' +
+    'Note=' +
+      '"May spend a Benny to Soak vehicle damage",' +
+      '"+2 Boating/+2 Driving/+2 Piloting"',
   'Acrobat':
     'Section=attribute,combat ' +
     'Note="+2 Agility (acrobatic maneuvers)","+1 Parry"',
   'Adept':
     'Section=arcana ' +
-    'Note="May spend 1 Power Point for unarmed AP 2, activate self power as free action"',
-  'Alertness':'SWADE',
-  'Ambidextrous':'Section=combat Note="No off-hand penalty"',
+    'Note="May spend 1 Power Point for unarmed AP 2/May activate chosen power on self as a free action"',
+  'Alertness':SWADE.FEATURES.Alertness,
+  'Ambidextrous':'Section=combat Note="Suffers no off-hand penalty"',
   'Arcane Background (Magic)':
-    'Section=arcana,skill ' +
-    'Note="3 Powers/10 Power Points",' +
-         '"1 on Spellcasting inflicts Shaken"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"3 Powers/10 Power Points",' +
+      '"Rolled 1 on Spellcasting die inflicts Shaken"',
   'Arcane Background (Miracles)':
     'Section=arcana,feature ' +
-    'Note="2 Powers/10 Power Points",' +
-         '"Violating core beliefs inflicts -2 Faith for 1 wk; major sins remove powers"',
+    'Note=' +
+      '"2 Powers/10 Power Points",' +
+      '"Violating core beliefs inflicts -2 Faith for 1 wk; major sins remove powers"',
   'Arcane Background (Psionics)':
-    'Section=arcana,skill ' +
-    'Note="3 Powers/10 Power Points",' +
-         '"1 on Psionics inflicts Shaken, critical failure shakes allies in 3%{in} radius"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"3 Powers/10 Power Points",' +
+      '"Rolled 1 on Psionics die inflicts Shaken; critical failure shakes allies in a 3\\" radius"',
   'Arcane Background (Super Powers)':
     'Section=arcana Note="1 Power/20 Power Points"',
   'Arcane Background (Weird Science)':
-    'Section=arcana,skill ' +
-    'Note="1 Power/10 Power Points","1 on Weird Science causes malfunction"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"1 Power/10 Power Points",' +
+      '"Rolled 1 on Weird Science die causes a malfunction"',
   'Arcane Resistance':
     'Section=combat ' +
-    'Note="+%V Armor vs arcane powers/+%V trait resisting arcane powers"',
-  'Assassin':'Section=combat Note="+%V damage to unaware foes"',
-  'Attractive':'Section=skill Note="+%V Charisma"',
-  'Beast Bond':'SWADE',
-  'Beast Master':'SWADE',
+    'Note="+%{combatNotes.improvedArcaneResistance?4:2} Armor vs. arcane powers/+%{combatNotes.improvedArcaneResistance?4:2} Trait resisting arcane powers"',
+  'Assassin':'Section=combat Note="+2 damage to unaware foes"',
+  'Attractive':
+    'Section=skill Note="+%{skillNotes.veryAttractive?4:2} Charisma"',
+  'Beast Bond':SWADE.FEATURES['Beast Bond'],
+  'Beast Master':SWADE.FEATURES['Beast Master'],
   'Berserk':
     'Section=combat ' +
-    'Note="Injury causes +2 Fighting, Strength, melee damage, and Toughness, -2 Parry, ignores Wound penalties, and random hits on 1 on Fighting die (Smarts-2 neg)"',
-  'Block':'Section=combat Note="+%V Parry"',
+    'Note="Injury causes +2 Fighting, Strength, melee damage, and Toughness, -2 Parry, ignores Wound penalties, and random hits when 1 rolled on Fighting die (Smarts-2 neg)"',
+  'Block':'Section=combat Note="+%{combatNotes.improvedBlock?2:1} Parry"',
   'Brave':'Section=attribute Note="+2 Spirit vs. fear"',
   'Brawler':'Section=combat Note="+2 Unarmed damage"',
   'Brawny':
     'Section=attribute,combat ' +
     'Note=' +
-      '"+1 Strength step (encumbrance and minimum strength requirements)",' +
+      '"+1 Strength Step (encumbrance and minimum strength requirements)",' +
       '"+1 Toughness"',
-  'Bruiser':'Section=combat Note="Roll d8 for unarmed damage Raise"',
+  'Bruiser':'Section=combat Note="Raise on unarmed attack inflicts d8 damage"',
   'Champion':
     'Section=combat ' +
-    'Note="+2 damage and Toughness vs. supernatural creatures of opposed alignment"',
+    'Note="+2 damage and Toughness vs. foe w/supernaturally opposed alignment"',
   'Charismatic':'Section=skill Note="+2 Charisma"',
   'Combat Reflexes':'Section=combat Note="+2 on Shaken recovery rolls"',
   'Command':
     'Section=feature ' +
-    'Note="R%{commandRange}%{in} Commanded +%V to recover from Shaken"',
-  'Command Presence':'SWADE',
-  'Common Bond':'SWADE',
-  'Connections':'SWADE',
+    'Note="R%{commandRange}\\" Commanded gain +%{featureNotes.inspire?2:1} to recover from Shaken"',
+  'Command Presence':SWADE.FEATURES['Command Presence'],
+  'Common Bond':SWADE.FEATURES['Common Bond'],
+  'Connections':SWADE.FEATURES.Connections,
   'Counterattack':
-    'Section=combat Note="Free %1attack after failed foe attack"',
+    'Section=combat ' +
+    'Note="May make a free %{combatNotes.improvedCounterattack?\'\':\'-2 \'}attack after a failed foe attack"',
   'Danger Sense':
-    'Section=combat Note="May test Notice-2 before surprise attack"',
-  'Dead Shot':'SWADE',
-  'Dodge':'Section=combat Note="-%V foe ranged attacks, +%V evading area attacks"',
-  'Elan':'SWADE',
-  'Expert (%attribute)':'SWADE',
-  'Expert (%skill)':'SWADE',
+    'Section=combat Note="May test Notice-2 before a surprise attack"',
+  'Dead Shot':SWADE.FEATURES['Dead Shot'],
+  'Dodge':
+    'Section=combat ' +
+    'Note="-%{combatNotes.improvedDodge?2:1} foe ranged attacks, +%{combatNotes.improvedDodge?2:1} evading area attacks"',
+  'Elan':SWADE.FEATURES.Elan,
+  'Expert (%attribute)':SWADE.FEATURES['Expert (%attribute)'],
+  'Expert (%skill)':SWADE.FEATURES['Expert (%skill)'],
   'Extraction':
     'Section=combat ' +
-    'Note="May make Agility test to negate attack of %V when withdrawing"',
+    'Note="Successful Agility negates attack of 1 foe%{combatNotes.improvedExtraction?\' (Raise all foes)\':\'\'} during withdrawal"',
   'Fast Healer':'Section=combat Note="+2 Vigor (natural healing)"',
-  'Fervor':'SWADE',
-  'Filthy Rich':'SWADE',
-  'First Strike':'SWADE',
-  'Fleet-Footed':'Section=combat Note="+2 Pace/+2 Run step"',
+  'Fervor':SWADE.FEATURES.Fervor,
+  'Filthy Rich':SWADE.FEATURES['Filthy Rich'],
+  'First Strike':
+    'Section=combat ' +
+    'Note="May make a free attack when a foe moves into reach%{combatNotes.improvedFirstStrike?\'\':\' 1/rd\'}"',
+  'Fleet-Footed':'Section=combat Note="+2 Pace/+2 Run Step"',
   'Florentine':
     'Section=combat ' +
-    'Note="+1 attack vs. single-weapon foe, -1 foe Gang Up bonus"',
-  'Followers':'SWADE',
-  'Frenzy':'Section=combat Note="+1 Fighting roll/rd%1"',
-  'Gadgeteer':'SWADE',
-  'Giant Killer':'SWADE',
-  'Great Luck':'SWADE',
+    'Note="+1 attack vs. a foe wielding a single weapon/-1 foe Gang Up bonus"',
+  'Followers':SWADE.FEATURES.Followers,
+  'Frenzy':
+    'Section=combat Note="May make an additional Fighting attack each rd%{combatNotes.improvedFrenzy?\'\':\', suffering -2 on all attacks\'}"',
+  'Gadgeteer':SWADE.FEATURES.Gadgeteer,
+  'Giant Killer':SWADE.FEATURES['Giant Killer'],
+  'Great Luck':SWADE.FEATURES['Great Luck'],
   'Hard To Kill':
     'Section=combat ' +
-    'Note="Ignores wound penalties on Vigor tests to avoid incapacitation or death"',
-  'Harder To Kill':'SWADE',
-  'Healer':'SWADE',
-  'Hold The Line!':'SWADE',
+    'Note="Ignores Wound penalties on Vigor tests to avoid incapacitation or death"',
+  'Harder To Kill':SWADE.FEATURES['Harder To Kill'],
+  'Healer':SWADE.FEATURES.Healer,
+  'Hold The Line!':SWADE.FEATURES['Hold The Line!'],
   'Holy/Unholy Warrior':
     'Section=arcana ' +
-    'Note="R%{spirit}%{in} Spend 1 Power Point to shake supernatural creatures (Spirit neg; critical failure destroyed)"',
-  'Improved Arcane Resistance':'SWADE',
-  'Improved Block':'SWADE',
-  'Improved Counterattack':'SWADE',
+    'Note="R%{spirit}\\" May spend 1 Power Point to shake supernatural creatures (Spirit neg; critical failure destroyed)"',
+  'Improved Arcane Resistance':SWADE.FEATURES['Improved Arcane Resistance'],
+  'Improved Block':SWADE.FEATURES['Improved Block'],
+  'Improved Counterattack':SWADE.FEATURES['Improved Counterattack'],
   'Improved Dodge':'Section=combat Note="Increased Dodge effects"',
-  'Improved Extraction':'SWADE',
-  'Improved First Strike':'SWADE',
-  'Improved Frenzy':'SWADE',
-  'Improved Level Headed':'SWADE',
+  'Improved Extraction':SWADE.FEATURES['Improved Extraction'],
+  'Improved First Strike':SWADE.FEATURES['Improved First Strike'],
+  'Improved Frenzy':SWADE.FEATURES['Improved Frenzy'],
+  'Improved Level Headed':SWADE.FEATURES['Improved Level Headed'],
   'Improved Martial Artist':
     'Section=combat Note="Increased Martial Artist effects"',
-  'Improved Nerves Of Steel':'SWADE',
-  'Improved Rapid Recharge':'SWADE',
-  'Improved Sweep':'SWADE',
+  'Improved Nerves Of Steel':SWADE.FEATURES['Improved Nerves Of Steel'],
+  'Improved Rapid Recharge':SWADE.FEATURES['Improved Rapid Recharge'],
+  'Improved Sweep':SWADE.FEATURES['Improved Sweep'],
   'Improved Tough As Nails':
     'Section=combat Note="Increased Tough As Nails effects"',
-  'Improved Trademark Weapon (%weapon)':'SWADE',
-  'Improvisational Fighter':'SWADE',
+  'Improved Trademark Weapon (%weapon)':
+    SWADE.FEATURES['Improved Trademark Weapon (%weapon)'],
+  'Improvisational Fighter':SWADE.FEATURES['Improvisational Fighter'],
   'Inspire':'Section=feature Note="Increased Command effects"',
   'Investigator':
-    'Section=skill ' +
-    'Note="+2 Investigation/+2 Streetwise/+2 Notice (sifting for information)"',
-  'Jack-Of-All-Trades':'Section=skill Note="d4 on untrained Smarts skills"',
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+2 Investigation/+2 Streetwise",' +
+      '"+2 Notice (sifting for information)"',
+  'Jack-Of-All-Trades':
+    'Section=skill Note="Rolls d4 when attempting untrained Smarts skills"',
   'Killer Instinct':
     'Section=skill Note="May reroll 1s and wins ties on opposed tests"',
   'Leader Of Men':
-    'Section=combat Note="R%{commandRange}%{in} Commanded use d10 wild die"',
-  'Level Headed':'SWADE',
+    'Section=combat Note="R%{commandRange}\\" Commanded use d10 wild die"',
+  'Level Headed':SWADE.FEATURES['Level Headed'],
   'Linguist':
     'Section=skill ' +
-    'Note="+%V Skill Points (d4 in in %{smarts} Knowledge (Language) skills), Smarts-2 to understand other familiar tongues"',
+    'Note="+%V Skill Points (d4 in in %{smarts} Knowledge (Language) skills)/May attempt smarts-2 to understand other familiar tongues"',
   'Liquid Courage':
     'Section=attribute ' +
-    'Note="Drinking alcohol gives +1 Vigor step, ignore 1 wound penalty for 1 hr"',
-  'Luck':'SWADE',
-  'Marksman':'Section=combat Note="Trade move for +2 ranged attack"',
-  'Martial Artist':'Section=combat Note="+%V Unarmed damage step"',
+    'Note="Drinking alcohol gives +1 Vigor Step and negates 1 Wound penalty for 1 hr"',
+  'Luck':SWADE.FEATURES.Luck,
+  'Marksman':'Section=combat Note="May forego move for a +2 ranged attack"',
+  'Martial Artist':
+    'Section=combat ' +
+    'Note="+%{combatNotes.improvedMartialArtist?2:1} Unarmed damage Step"',
   'Martial Arts Master':'Section=combat Note="+2 Unarmed damage"',
-  'Master Of Arms':'SWADE',
-  'Master (%attribute)':'SWADE',
-  'Master (%skill)':'SWADE',
+  'Master Of Arms':SWADE.FEATURES['Master Of Arms'],
+  'Master (%attribute)':SWADE.FEATURES['Master (%attribute)'],
+  'Master (%skill)':SWADE.FEATURES['Master (%skill)'],
   'McGyver':
-    'Section=skill Note="May create improvised weapon, explosive, or tool"',
-  'Mentalist':'SWADE',
-  'Mighty Blow':'SWADE',
-  'Mister Fix It':'SWADE',
+    'Section=skill Note="May create an improvised weapon, explosive, or tool"',
+  'Mentalist':SWADE.FEATURES.Mentalist,
+  'Mighty Blow':SWADE.FEATURES['Mighty Blow'],
+  'Mister Fix It':SWADE.FEATURES['Mister Fix It'],
   'Natural Leader':
-    'Section=feature Note="R%{commandRange}%{in} Share bennies with commanded"',
-  'Nerves Of Steel':'SWADE',
+    'Section=feature Note="R%{commandRange}\\" May share Bennies with commanded"',
+  'Nerves Of Steel':SWADE.FEATURES['Nerves Of Steel'],
   'New Power':'Section=arcana Note="+%V Power Count"',
-  'No Mercy':'Section=combat Note="May spend Benny to reroll damage"',
+  'No Mercy':'Section=combat Note="May spend a Benny to reroll damage"',
   'Noble':
     'Section=feature,skill ' +
     'Note="Has Rich feature","+2 Charisma"',
-  'Power Points':'SWADE',
+  'Power Points':SWADE.FEATURES['Power Points'],
   'Power Surge':
-    'Section=arcana Note="Joker Action Card restores 2d6 Power Points"',
-  'Professional (Agility)':'SWADE',
-  'Professional (Smarts)':'SWADE',
-  'Professional (Spirit)':'SWADE',
-  'Professional (Strength)':'SWADE',
-  'Professional (Vigor)':'SWADE',
-  'Professional (%skill)':'SWADE',
-  'Quick':'SWADE',
-  'Quick Draw':'Section=combat Note="Draw weapon as free action"',
-  'Rapid Recharge':'SWADE',
-  'Rich':'SWADE',
-  'Rock And Roll':'SWADE',
+    'Section=arcana ' +
+    'Note="Drawing a joker Action Card restores 2d6 Power Points"',
+  'Professional (Agility)':SWADE.FEATURES['Professional (Agility)'],
+  'Professional (Smarts)':SWADE.FEATURES['Professional (Smarts)'],
+  'Professional (Spirit)':SWADE.FEATURES['Professional (Spirit)'],
+  'Professional (Strength)':SWADE.FEATURES['Professional (Strength)'],
+  'Professional (Vigor)':SWADE.FEATURES['Professional (Vigor)'],
+  'Professional (%skill)':SWADE.FEATURES['Professional (%skill)'],
+  'Quick':SWADE.FEATURES.Quick,
+  'Quick Draw':'Section=combat Note="May draw a weapon as a free action"',
+  'Rapid Recharge':
+    'Section=arcana ' +
+    'Note="Recovers %{arcanaNotes.improvedRapidRecharge?4:2} Power Points/hr"',
+  'Rich':SWADE.FEATURES.Rich,
+  'Rock And Roll':SWADE.FEATURES['Rock And Roll'],
   'Scavenger':'Section=combat Note="May recover equipment 1/encounter"',
   'Scholar':'Section=skill Note="+2 on 2 chosen skills"',
-  'Sidekick':'SWADE',
+  'Sidekick':SWADE.FEATURES.Sidekick,
   'Soul Drain':
-    'Section=arcana Note="May make Spirit roll to recover Power Points"',
-  'Steady Hands':
-    'Section=combat ' +
-    'Note="No penalty for shot from unstable platform, reduce running shot penalty by 1"',
+    'Section=arcana ' +
+    'Note="Successful Spirit roll allows immediate Power activation w/out spending Power Points"',
+  'Steady Hands':SWADE.FEATURES['Steady Hands'],
   'Strong Willed':
     'Section=attribute,skill ' +
     'Note="+2 Smarts (resist Tests)/+2 Spirit (resist Tests)",' +
          '"+2 Intimidation/+2 Taunt"',
-  'Sweep':'SWADE',
+  'Sweep':SWADE.FEATURES.Sweep,
   'Tactician':
     'Section=combat ' +
-    'Note="R%{commandRange}%{in} Roll Knowledge (Battle), distribute %V Action Card to commanded for each success and raise"',
+    'Note="R%{commandRange}\\" Successful Knowledge (Battle) allows distribution of an Action Card to commanded for each success and raise"',
   'Thief':
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+2 Climbing/+2 Lockpicking",' +
+      '"+2 Notice (traps)/+1 Repair (traps)/+2 Stealth (urban)"',
+  'Tough As Nails':
+    'Section=combat Note="+%{combatNotes.improvedToughAsNails?2:1} Toughness"',
+  'Trademark Weapon (%melee)':'Section=combat Note="+%V attack with %melee"',
+  'Trademark Weapon (%ranged)':'Section=combat Note="+%V attack with %ranged"',
+  'Two-Fisted':SWADE.FEATURES['Two-Fisted'],
+  'Very Attractive':SWADE.FEATURES['Very Attractive'],
+  'Weapon Master':
+    'Section=combat Note="+%{combatNotes.masterOfArms?2:1} Parry"',
+  'Wizard':
+    'Section=arcana ' +
+    'Note="Each raise on an arcane roll reduces the cost of a Power use by 1"',
+  'Woodsman':
     'Section=skill ' +
-    'Note="+2 Climbing/+2 Lockpicking/+2 Notice (traps)/+1 Repair (traps)/+2 Stealth (urban)"',
-  'Tough As Nails':'Section=combat Note="+%V Toughness"',
-  'Trademark Weapon (%melee)':
-    'Section=combat Note="+%V attack with %melee"',
-  'Trademark Weapon (%ranged)':
-    'Section=combat Note="+%V attack with %ranged"',
-  'Two-Fisted':'SWADE',
-  'Very Attractive':'SWADE',
-  'Weapon Master':'Section=combat Note="+%V Parry"',
-  'Wizard':'Section=arcana Note="Raises reduce Power Point cost of casting"',
-  'Woodsman':'Section=skill Note="+2 Stealth (wilds)/+2 Survival (wilds)/+2 Tracking (wilds)"',
+    'Note="+2 Stealth (wilds)/+2 Survival (wilds)/+2 Tracking (wilds)"',
 
   // Hindrances
-  'All Thumbs':'Section=skill Note="-2 Repair/Roll of 1 breaks device"',
+  'All Thumbs':
+    'Section=skill,skill ' +
+    'Note=' +
+      '"-2 Repair",' +
+      '"Rolled 1 on Repair die breaks device"',
   'Anemic':
     'Section=feature Note="-2 Fatigue checks (resist poison and disease)"',
-  'Arrogant+':'SWADE',
+  'Arrogant+':SWADE.FEATURES['Arrogant+'],
   'Bad Eyes':
      'Section=skill ' +
-     'Note="-2 on distant visual trait rolls and ranged attacks w/out corrective lenses"',
+     'Note="-2 on distant visual Trait rolls and ranged attacks w/out corrective lenses"',
   'Bad Eyes+':
-    'Section=skill Note="-2 on distant visual trait rolls and ranged attacks"',
-  'Bad Luck+':'SWADE',
-  'Big Mouth':'SWADE',
+    'Section=skill Note="-2 on distant visual Trait rolls and ranged attacks"',
+  'Bad Luck+':SWADE.FEATURES['Bad Luck+'],
+  'Big Mouth':SWADE.FEATURES['Big Mouth'],
   'Blind+':
     'Section=feature,skill ' +
     'Note="+1 Edge Points","-6 on visual tasks, -2 on social"',
   'Bloodthirsty+':'Section=skill Note="-4 Charisma"',
-  'Cautious':'SWADE',
+  'Cautious':SWADE.FEATURES.Cautious,
   'Clueless+':'Section=attribute Note="-2 Smarts (common knowledge)"',
-  'Code Of Honor+':'SWADE',
-  'Curious+':'SWADE',
-  'Death Wish':'SWADE',
-  'Delusional':'SWADE',
-  'Delusional+':'SWADE',
+  'Code Of Honor+':SWADE.FEATURES['Code Of Honor+'],
+  'Curious+':SWADE.FEATURES['Curious+'],
+  'Death Wish':SWADE.FEATURES['Death Wish'],
+  'Delusional':SWADE.FEATURES.Delusional,
+  'Delusional+':SWADE.FEATURES['Delusional+'],
   'Doubting Thomas':'Section=attribute Note="-2 vs. supernatural horror"',
   'Elderly+':
     'Section=attribute,combat,skill ' +
-    'Note="-1 Strength step/-1 Vigor step","-1 Pace","+5 Skill Points"',
-  'Enemy':'SWADE',
-  'Enemy+':'SWADE',
-  'Greedy':'SWADE',
-  'Greedy+':'SWADE',
+    'Note="-1 Strength Step/-1 Vigor Step","-1 Pace","+5 Skill Points"',
+  'Enemy':SWADE.FEATURES.Enemy,
+  'Enemy+':SWADE.FEATURES['Enemy+'],
+  'Greedy':SWADE.FEATURES.Greedy,
+  'Greedy+':SWADE.FEATURES['Greedy+'],
   'Habit':
     'Section=feature,skill ' +
-    'Note="Has irritating but harmless compulsion","-1 Charisma"',
-  'Habit+':'SWADE',
+    'Note="Has an irritating but harmless compulsion","-1 Charisma"',
+  'Habit+':SWADE.FEATURES['Habit+'],
   'Hard Of Hearing':'Section=skill Note="-2 Notice (hearing)"',
-  'Hard Of Hearing+':'SWADE',
-  'Heroic+':'SWADE',
-  'Illiterate':'SWADE',
-  'Lame+':'Section=combat Note="-2 Pace/-1 Run step"',
-  'Loyal':'SWADE',
+  'Hard Of Hearing+':SWADE.FEATURES['Hard Of Hearing+'],
+  'Heroic+':SWADE.FEATURES['Heroic+'],
+  'Illiterate':SWADE.FEATURES.Illiterate,
+  'Lame+':'Section=combat Note="-2 Pace/-1 Run Step"',
+  'Loyal':SWADE.FEATURES.Loyal,
   'Mean':
     'Section=feature,skill ' +
     'Note="Ill-tempered and disagreeable","-2 Charisma"',
-  'Obese':'Section=combat Note="-1 Pace/-1 Run step/+1 Toughness"',
-  'One Arm+':'SWADE',
+  'Obese':'Section=combat Note="-1 Pace/-1 Run Step/+1 Toughness"',
+  'One Arm+':SWADE.FEATURES['One Arm+'],
   'One Eye+':
-    'Section=feature,skill ' +
-    'Note="-2 Shooting/-2 Throwing/-2 tasks requiring depth perception",' +
-         '"-1 Charisma unless missing eye is covered"',
+    'Section=feature,skill,skill ' +
+    'Note=' +
+      '"-1 Charisma unless missing eye is covered",' +
+      '"-2 Shooting/-2 Throwing",' +
+      '"-2 tasks requiring depth perception"',
   'One Leg+':
-    'Section=combat,skill ' +
-    'Note="-4 Pace/Cannot run","-2 Climbing/-2 Fighting/-2 Swimming"',
+    'Section=combat,combat,skill ' +
+    'Note=' +
+      '"-4 Pace",' +
+      '"Cannot run",' +
+      '"-2 Climbing/-2 Fighting/-2 Swimming"',
   'Outsider':'Section=skill Note="-2 Charisma (other races)"',
-  'Overconfident+':'SWADE',
-  'Pacifist':'SWADE',
-  'Pacifist+':'SWADE',
+  'Overconfident+':SWADE.FEATURES['Overconfident+'],
+  'Pacifist':SWADE.FEATURES.Pacifist,
+  'Pacifist+':SWADE.FEATURES['Pacifist+'],
   'Phobia':
-    'Section=feature Note="-2 on trait rolls in presence of phobia subject"',
+    'Section=feature ' +
+    'Note="-2 on Trait rolls in the presence of phobia subject"',
   'Phobia+':
-    'Section=feature Note="-4 on trait rolls in presence of phobia subject"',
-  'Poverty':'SWADE',
-  'Quirk':'SWADE',
+    'Section=feature ' +
+    'Note="-4 on Trait rolls in the presence of phobia subject"',
+  'Poverty':SWADE.FEATURES.Poverty,
+  'Quirk':SWADE.FEATURES.Quirk,
   'Small+':'Section=combat Note="-1 Toughness"',
-  'Stubborn':'SWADE',
+  'Stubborn':SWADE.FEATURES.Stubborn,
   'Ugly':'Section=skill Note="-2 Charisma"',
-  'Vengeful':'SWADE',
-  'Vengeful+':'SWADE',
-  'Vow':'SWADE',
-  'Vow+':'SWADE',
-  'Wanted':'SWADE',
-  'Wanted+':'SWADE',
+  'Vengeful':SWADE.FEATURES.Vengeful,
+  'Vengeful+':SWADE.FEATURES['Vengeful+'],
+  'Vow':SWADE.FEATURES.Vow,
+  'Vow+':SWADE.FEATURES['Vow+'],
+  'Wanted':SWADE.FEATURES.Wanted,
+  'Wanted+':SWADE.FEATURES['Wanted+'],
   'Yellow+':'Section=attribute Note="-2 Spirit vs. fear"',
   'Young+':
     'Section=attribute,feature,skill ' +
     'Note="-2 Attribute Points","+1 Benny each session","-2 Skill Points"',
 
   // Races
-  'Adaptable':'Section=feature Note="+1 Edge Points"',
-  'Advanced Civilization':'Section=attribute Note="+1 Smarts step"',
-  'Agile':'SWADE',
+  'Adaptable':SWADE.FEATURES.Adaptable,
+  'Advanced Civilization':'Section=attribute Note="+1 Smarts Step"',
+  'Agile':SWADE.FEATURES.Agile,
   'Aquatic':
     'Section=combat,feature,skill ' +
     'Note="Swim Pace %{pace}","Cannot drown","d6 in Swimming"',
-  'Asimov Circuits':'Section=feature Note="Has Pacifist+ hindrance"',
+  'Asimov Circuits':'Section=feature Note="Has Pacifist+ feature"',
   'Atlantean Tough':'Section=combat Note="+1 Toughness"',
-  'Bite':'SWADE',
-  'Burrowing':
-    'Section=feature Note="Can burrow into loose earth and surprise foes"',
+  'Bite':SWADE.FEATURES.Bite,
+  'Burrowing':SWADE.FEATURES.Burrowing,
   'Claws':
     'Section=combat,skill ' +
     'Note="Claws are a natural weapon","+2 Climbing"',
@@ -602,50 +638,46 @@ SWD.FEATURES = {
     'Section=attribute,combat ' +
     'Note=' +
       '"+2 Shaken recovery, immune to disease and poison",' +
-      '"Ignores wound modifiers, requires Repair to heal"',
+      '"Ignores Wound penalties/Requires Repair to heal"',
   'Dehydration':
-    'Section=feature Note="Requires 1 hr immersion/dy to avoid fatigue"',
+    'Section=feature Note="Requires 1 hr/dy immersion to avoid fatigue"',
   'Flight':'Section=combat Note="Fly Pace %{pace}"',
   'Fortunate':'Section=feature Note="+1 Benny each session"',
-  'Hardy':'Section=combat Note="Not wounded by second Shaken result"',
-  'Heritage':'SWADE',
+  'Hardy':SWADE.FEATURES.Hardy,
+  'Heritage':SWADE.FEATURES.Heritage,
   'Hollow-Boned':'Section=combat Note="-1 Toughness"',
-  'Immune To Disease':'Section=attribute Note="Has immunity to disease"',
-  'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
+  'Immune To Disease':SWADE.FEATURES['Immune To Disease'],
+  'Immune To Poison':SWADE.FEATURES['Immune To Poison'],
   'Infravision':
     'Section=combat ' +
-    'Note="Half penalties when attacking in bad lighting"',
-  'Low Light Vision':'SWADE',
+    'Note="Suffers half normal penalties when attacking in poor lighting"',
+  'Low Light Vision':SWADE.FEATURES['Low Light Vision'],
   'Mostly Human':'Section=feature Note="+1 Edge Points"',
   'Multiple Limbs':
-    'Section=combat Note="Extra actions w/out multi-action penalty"',
+    'Section=combat ' +
+    'Note="May take 1 additional actions per extra limb w/out a multi-action penalty"',
   'Natural Weapons':'Section=combat Note="Has Bite, Claws, and Tail features"',
-  'Poison':'Section=combat Note="Touch inflicts Mild Poison effects (Vigor neg)"',
-  'Potent Poison':'Section=combat Note="Poison target -%V Vigor to resist"',
+  'Poison':SWADE.FEATURES['Poisonous Touch'],
+  'Potent Poison':
+    'Section=combat Note="Poison target suffers -%V Vigor to resist"',
   'Programming':'Section=skill Note="+2 Skill Points"',
   'Racial Enemy':'Section=skill Note="-4 Charisma (racial enemy)"',
   'Recharge':
     'Section=feature ' +
-    'Note="Requires access to power source 1/dy to avoid fatigue"',
+    'Note="Requires access to a power source 1/dy to avoid fatigue"',
   'Saurian Senses':'Section=skill Note="+2 Notice"',
-  'Semi-Aquatic':'SWADE',
+  'Semi-Aquatic':SWADE.FEATURES['Semi-Aquatic'],
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
   'Slow':'Section=combat Note="-1 Pace"',
-  'Spirited':'SWADE',
-  'Strong':'Section=attribute Note="+1 Strength step"',
-  'Tail':'SWADE',
-  'Tough':'SWADE',
+  'Spirited':SWADE.FEATURES.Spirited,
+  'Strong':SWADE.FEATURES.Strong,
+  'Tail':SWADE.FEATURES.Tail,
+  'Tough':SWADE.FEATURES.Tough,
   'Unnatural':'Section=feature Note="-2 arcane power effects"',
-  'Wall Walker':
-    'Section=combat ' +
-    'Note="Normal Pace on vertical surfaces, %{pace//2} on inverted"',
+  'Wall Walker':SWADE.FEATURES['Wall Walker'],
   'Warm Natured':'Section=attribute Note="-4 Vigor (resist cold)"'
 
 };
-for(var feature in SWD.FEATURES) {
-  SWD.FEATURES[feature] =
-    SWD.FEATURES[feature].replace('SWADE', SWADE.FEATURES[feature]);
-}
 SWD.GOODIES = Object.assign({}, SWADE.GOODIES);
 SWD.HINDRANCES_CHANGES = {
   "Can't Swim":null,
@@ -694,18 +726,18 @@ SWD.POWERS_CHANGES = {
   'Arcane Protection':null,
   'Barrier':
     'PowerPoints=1/Section ' +
-    'Description="Creates sections of 1%{in} high wall for PP rd"',
+    'Description="Creates sections of 1\\" high wall for PP rd"',
   'Beast Friend':
     'PowerPoints=3+2xSize ' +
     'Range=smarts*50',
   'Blast':
     'PowerPoints=2 ' +
     'Range=24 ' +
-    'Description="2%{in} radius inflicts 2d6 damage"',
+    'Description="2\\" radius inflicts 2d6 damage"',
   'Blind':
     'Range=12 ' +
     'Description=' +
-      '"Target Shaken and suffers -2 on Parry (Agility-2 neg, 1 on die also suffers -6 trait tests) for 1 rd"',
+      '"Target suffers Shaken and -2 on Parry (Agility-2 neg, 1 on die also suffers -6 Trait tests) for 1 rd"',
   'Bolt':
     'PowerPoints=1/missile ' +
     'Range=12 ' +
@@ -713,7 +745,7 @@ SWD.POWERS_CHANGES = {
   'Boost/Lower Trait':
     'Range=smarts ' +
     'Description=' +
-      '"Target gains +1 trait step or suffers -1 trait step (Raise +2 or -2 (Spirit neg)) for 3 rd"',
+      '"Target gains +1 Trait Step or suffers -1 Trait Step (Raise +2 or -2 (Spirit neg)) for 3 rd"',
   'Burrow':
     'PowerPoints=3 ' +
     'Range=self',
@@ -763,7 +795,7 @@ SWD.POWERS_CHANGES = {
     'PowerPoints=2 ' +
     'Range=smarts*2 ' +
     'Description=' +
-      '"Distracts and throws creatures in 2%{in} radius 2d6%{in} (Strength neg)"',
+      '"Distracts and throws creatures in 2\\" radius 2d6\\" (Strength neg)"',
   'Illusion':null,
   'Intangibility':'Range=touch',
   'Invisibility':'Range=self',
@@ -795,7 +827,7 @@ SWD.POWERS_CHANGES = {
   'Teleport':
     'PowerPoints=3+ ' +
     'Range=self ' +
-    'Description="Teleports PPx10%{in} (Raise PPx15%{in})"',
+    'Description="Teleports PPx10\\" (Raise PPx15\\")"',
   "Warrior's Gift":'Range=touch',
   'Zombie':
     'Description=' +
@@ -806,43 +838,43 @@ SWD.POWERS = {
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
-    'Description="Gives +2 Armor (Raise +4) for 3 rd"',
+    'Description="Target gains +2 Armor (Raise +4) for 3 rd"',
   'Greater Healing':
     'Advances=8 ' +
     'PowerPoints=10 ' +
     'Range=touch ' +
-    'Description="Restores 1 wound (Raise 2 wounds) w/out time limit or removes poison, disease, or sickness"',
+    'Description="Restores 1 wound (Raise 2 wounds) w/out a time limit or removes poison, disease, or sickness"',
   'Light/Obscure':SWADE.POWERS['Light/Darkness'] + ' ' +
     'Description=' +
-      '"Creates 3%{in} radius bright light for 30 min or darkness for 3 rd"',
+      '"Creates a 3\\" radius bright light for 30 min or darkness for 3 rd"',
   'Pummel':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=9 ' +
-    'Description="Cone pushes creatures 2d6%{in} (Strength neg)"',
+    'Description="Cone pushes creatures 2d6\\" (Strength neg)"',
   'Quickness':
     'Advances=4 ' +
     'PowerPoints=4 ' +
     'Range=touch ' +
-    'Description="Target gains second action for 3 rd (Raise also redraw Action Cards below 8)"',
+    'Description="Target gains an additional action for 3 rd (Raise also may redraw Action Cards below 8)"',
   'Slow':
     'Advances=4 ' +
     'PowerPoints=1 ' +
     'Range=smarts*2 ' +
     'Description=' +
-      '"Target move counts as action (Raise also redraw Action Cards above 10) for 3 rd (Spirit neg)"',
+      '"Target move counts as an action (Raise also must redraw Action Cards above 10) for 3 rd (Spirit neg)"',
   'Smite':
     'Range=touch',
   'Speed':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description="Target dbl Pace (Raise also Run as free action) for 3 rd"',
+    'Description="Target gains dbl Pace (Raise also Run as a free action) for 3 rd"',
   'Succor':
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description="Removes 1 level of fatigue (Raise 2 levels) and Shaken"',
+    'Description="Target recovers from 1 level of fatigue (Raise 2 levels) and Shaken"',
   'Wall Walker':
     'Range=touch'
 };
@@ -887,7 +919,6 @@ SWD.RACES = {
     'Features=' +
       '"Natural Weapons",Outsider,"Saurian Senses","Warm Natured"',
 };
-SWD.LANGUAGES = {};
 SWD.SHIELDS = {
   'None':'Parry=0 Cover=0 Weight=0',
   'Small Shield':'Era=Medieval Parry=1 Cover=0 Weight=8',
@@ -895,161 +926,189 @@ SWD.SHIELDS = {
   'Large Shield':'Era=Medieval Parry=2 Cover=2 Weight=20'
 };
 SWD.SKILLS = {
-  'Boating':'Attribute=agility',
-  'Climbing':'Attribute=strength',
-  'Driving':'Attribute=agility Era=Modern,Future',
-  'Fighting':'Attribute=agility',
-  'Gambling':'Attribute=smarts',
-  'Healing':'Attribute=smarts',
-  'Intimidation':'Attribute=spirit',
-  'Investigation':'Attribute=smarts',
-  'Knowledge (Academics)':'Attribute=smarts',
-  'Knowledge (Arcana)':'Attribute=smarts',
-  'Knowledge (Battle)':'Attribute=smarts',
-  'Knowledge (Computers)':'Attribute=smarts Era=Modern,Future',
-  'Knowledge (Electronics)':'Attribute=smarts Era=Modern,Future',
-  'Knowledge (History)':'Attribute=smarts',
-  'Knowledge (Journalism)':'Attribute=smarts',
-  'Knowledge (Language (%language))':'Attribute=smarts',
-  'Knowledge (Law)':'Attribute=smarts',
-  'Knowledge (Medicine)':'Attribute=smarts',
-  'Knowledge (Occult)':'Attribute=smarts',
-  'Knowledge (Science)':'Attribute=smarts',
-  'Lockpicking':'Attribute=agility',
-  'Notice':'Attribute=smarts',
-  'Persuasion':'Attribute=spirit',
-  'Piloting':'Attribute=agility Era=Modern,Future',
-  'Repair':'Attribute=smarts',
-  'Riding':'Attribute=agility',
-  'Shooting':'Attribute=agility',
-  'Stealth':'Attribute=agility',
-  'Streetwise':'Attribute=smarts',
-  'Survival':'Attribute=smarts',
-  'Swimming':'Attribute=agility',
-  'Taunt':'Attribute=smarts',
-  'Throwing':'Attribute=agility',
-  'Tracking':'Attribute=smarts',
+  'Boating':'Attribute=Agility',
+  'Climbing':'Attribute=Strength',
+  'Driving':'Attribute=Agility Era=Modern,Future',
+  'Fighting':'Attribute=Agility',
+  'Gambling':'Attribute=Smarts',
+  'Healing':'Attribute=Smarts',
+  'Intimidation':'Attribute=Spirit',
+  'Investigation':'Attribute=Smarts',
+  'Knowledge (Academics)':'Attribute=Smarts',
+  'Knowledge (Arcana)':'Attribute=Smarts',
+  'Knowledge (Battle)':'Attribute=Smarts',
+  'Knowledge (Computers)':'Attribute=Smarts Era=Modern,Future',
+  'Knowledge (Electronics)':'Attribute=Smarts Era=Modern,Future',
+  'Knowledge (History)':'Attribute=Smarts',
+  'Knowledge (Journalism)':'Attribute=Smarts',
+  'Knowledge (Law)':'Attribute=Smarts',
+  'Knowledge (Medicine)':'Attribute=Smarts',
+  'Knowledge (Occult)':'Attribute=Smarts',
+  'Knowledge (Science)':'Attribute=Smarts',
+  'Lockpicking':'Attribute=Agility',
+  'Notice':'Attribute=Smarts',
+  'Persuasion':'Attribute=Spirit',
+  'Piloting':'Attribute=Agility Era=Modern,Future',
+  'Repair':'Attribute=Smarts',
+  'Riding':'Attribute=Agility',
+  'Shooting':'Attribute=Agility',
+  'Stealth':'Attribute=Agility',
+  'Streetwise':'Attribute=Smarts',
+  'Survival':'Attribute=Smarts',
+  'Swimming':'Attribute=Agility',
+  'Taunt':'Attribute=Smarts',
+  'Throwing':'Attribute=Agility',
+  'Tracking':'Attribute=Smarts',
   // Arcane Background skills
-  'Faith':'Attribute=spirit',
-  'Psionics':'Attribute=smarts',
-  'Spellcasting':'Attribute=smarts',
-  'Weird Science':'Attribute=smarts'
+  'Faith':'Attribute=Spirit',
+  'Psionics':'Attribute=Smarts',
+  'Spellcasting':'Attribute=Smarts',
+  'Weird Science':'Attribute=Smarts'
 };
 SWD.WEAPONS = {
 
-  'Unarmed':'Era=Medieval,Modern,Future Damage=Str+d0 Weight=0 Category=Un',
-  'Dagger':'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=1h Range=3',
-  'Knife':'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=1h Range=3',
-  'Great Sword':'Era=Medieval Damage=Str+d10 Weight=12 Category=2h Parry=-1',
-  'Flail':'Era=Medieval Damage=Str+d6 Weight=8 Category=1h',
-  'Katana':'Era=Medieval Damage=Str+d6+2 Weight=6 Category=2h AP=2',
-  'Long Sword':'Era=Medieval Damage=Str+d8 Weight=8 Category=1h',
-  'Rapier':'Era=Medieval Damage=Str+d4 Weight=3 Category=1h Parry=1',
-  'Short Sword':'Era=Medieval Damage=Str+d6 Weight=4 Category=1h',
+  'Unarmed':
+    'Era=Medieval,Modern,Future Damage=Str+d0 Weight=0 Category=Unarmed',
+  'Dagger':
+    'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=One-Handed Range=3',
+  'Knife':
+    'Era=Medieval,Modern Damage=Str+d4 Weight=1 Category=One-Handed Range=3',
+  'Great Sword':
+    'Era=Medieval Damage=Str+d10 Weight=12 Category=Two-Handed Parry=-1',
+  'Flail':'Era=Medieval Damage=Str+d6 Weight=8 Category=One-Handed',
+  'Katana':'Era=Medieval Damage=Str+d6+2 Weight=6 Category=Two-Handed AP=2',
+  'Long Sword':'Era=Medieval Damage=Str+d8 Weight=8 Category=One-Handed',
+  'Rapier':'Era=Medieval Damage=Str+d4 Weight=3 Category=One-Handed Parry=1',
+  'Short Sword':'Era=Medieval Damage=Str+d6 Weight=4 Category=One-Handed',
 
-  'Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=1h',
-  'Battle Axe':'Era=Medieval Damage=Str+d8 Weight=10 Category=1h',
-  'Great Axe':'Era=Medieval Damage=Str+d10 Weight=15 Category=2h AP=1 Parry=-1',
-  'Maul':'Era=Medieval Damage=Str+d8 Weight=20 Category=2h AP=2 Parry=-1',
-  'Warhammer':'Era=Medieval Damage=Str+d6 Weight=8 Category=1h AP=1',
+  'Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=One-Handed',
+  'Battle Axe':'Era=Medieval Damage=Str+d8 Weight=10 Category=One-Handed',
+  'Great Axe':
+    'Era=Medieval Damage=Str+d10 Weight=15 Category=Two-Handed AP=1 Parry=-1',
+  'Maul':
+    'Era=Medieval Damage=Str+d8 Weight=20 Category=Two-Handed AP=2 Parry=-1',
+  'Warhammer':'Era=Medieval Damage=Str+d6 Weight=8 Category=One-Handed AP=1',
 
-  'Halberd':'Era=Medieval Damage=Str+d8 Weight=15 Category=2h',
-  'Lance':'Era=Medieval Damage=Str+d8 Weight=10 Category=1h AP=2',
-  'Pike':'Era=Medieval Damage=Str+d8 Weight=25 Category=2h',
-  'Staff':'Era=Medieval Damage=Str+d4 Weight=8 Category=2h Parry=1',
-  'Spear':'Era=Medieval Damage=Str+d6 Weight=5 Category=2h Range=3 Parry=1',
+  'Halberd':'Era=Medieval Damage=Str+d8 Weight=15 Category=Two-Handed',
+  'Lance':'Era=Medieval Damage=Str+d8 Weight=10 Category=One-Handed AP=2',
+  'Pike':'Era=Medieval Damage=Str+d8 Weight=25 Category=Two-Handed',
+  'Staff':'Era=Medieval Damage=Str+d4 Weight=8 Category=Two-Handed Parry=1',
+  'Spear':
+    'Era=Medieval Damage=Str+d6 Weight=5 Category=Two-Handed Range=3 Parry=1',
 
-  'Bangstick':'Era=Modern Damage=3d6 Weight=2 Category=1h',
-  'Bayonet':'Era=Modern Damage=Str+d6 Weight=1 Category=1h Parry=1',
-  'Billy Club':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
-  'Baton':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
-  'Brass Knuckles':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
-  'Chainsaw':'Era=Modern Damage=2d6+4 Weight=20 Category=1h',
-  'Switchblade':'Era=Modern Damage=Str+d4 Weight=1 Category=1h',
-  'Survival Knife':'Era=Modern Damage=Str+d4 Weight=3 Category=1h',
+  'Bangstick':'Era=Modern Damage=3d6 Weight=2 Category=One-Handed',
+  'Bayonet':'Era=Modern Damage=Str+d6 Weight=1 Category=One-Handed Parry=1',
+  'Billy Club':'Era=Modern Damage=Str+d4 Weight=1 Category=One-Handed',
+  'Baton':'Era=Modern Damage=Str+d4 Weight=1 Category=One-Handed',
+  'Brass Knuckles':'Era=Modern Damage=Str+d4 Weight=1 Category=One-Handed',
+  'Chainsaw':'Era=Modern Damage=2d6+4 Weight=20 Category=One-Handed',
+  'Switchblade':'Era=Modern Damage=Str+d4 Weight=1 Category=One-Handed',
+  'Survival Knife':'Era=Modern Damage=Str+d4 Weight=3 Category=One-Handed',
 
-  'Molecular Knife':'Era=Future Damage=Str+d4+2 Weight=1 Category=1h AP=2',
-  'Molecular Sword':'Era=Future Damage=Str+d8+2 Weight=8 Category=1h AP=4',
-  'Laser Sword':'Era=Future Damage=Str+d6+8 Weight=5 Category=1h AP=12',
+  'Molecular Knife':
+    'Era=Future Damage=Str+d4+2 Weight=1 Category=One-Handed AP=2',
+  'Molecular Sword':
+    'Era=Future Damage=Str+d8+2 Weight=8 Category=One-Handed AP=4',
+  'Laser Sword':'Era=Future Damage=Str+d6+8 Weight=5 Category=One-Handed AP=12',
 
-  'Throwing Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=R Range=3',
-  'Bow':'Era=Medieval Damage=2d6 Weight=3 MinStr=6 Category=R Range=12',
-  'Crossbow':'Era=Medieval Damage=2d6 Weight=10 MinStr=6 Category=R Range=15',
+  'Throwing Axe':'Era=Medieval Damage=Str+d6 Weight=2 Category=Ranged Range=3',
+  'Bow':'Era=Medieval Damage=2d6 Weight=3 MinStr=6 Category=Ranged Range=12',
+  'Crossbow':
+    'Era=Medieval Damage=2d6 Weight=10 MinStr=6 Category=Ranged Range=15',
   'English Long Bow':
-    'Era=Medieval Damage=2d6 Weight=5 MinStr=8 Category=R Range=15',
-  'Sling':'Era=Medieval Damage=Str+d4 Weight=1 Category=R Range=4',
+    'Era=Medieval Damage=2d6 Weight=5 MinStr=8 Category=Ranged Range=15',
+  'Sling':'Era=Medieval Damage=Str+d4 Weight=1 Category=Ranged Range=4',
 
-  'Brown Bess':'Era=Modern Damage=2d8 Weight=15 MinStr=6 Category=R Range=10',
-  'Blunderbuss':'Era=Modern Damage=3d6 Weight=12 MinStr=6 Category=R Range=10',
-  'Flintlock Pistol':'Era=Modern Damage=2d6+1 Weight=3 Category=R Range=5',
+  'Brown Bess':
+    'Era=Modern Damage=2d8 Weight=15 MinStr=6 Category=Ranged Range=10',
+  'Blunderbuss':
+    'Era=Modern Damage=3d6 Weight=12 MinStr=6 Category=Ranged Range=10',
+  'Flintlock Pistol':'Era=Modern Damage=2d6+1 Weight=3 Category=Ranged Range=5',
   'Kentucky Rifle':
-    'Era=Modern Damage=2d8 Weight=8 MinStr=6 Category=R Range=15 AP=2',
-  'Springfield':'Era=Modern Damage=2d8 Weight=11 MinStr=6 Category=R Range=15',
+    'Era=Modern Damage=2d8 Weight=8 MinStr=6 Category=Ranged Range=15 AP=2',
+  'Springfield':
+    'Era=Modern Damage=2d8 Weight=11 MinStr=6 Category=Ranged Range=15',
 
-  'Derringer':'Era=Modern Damage=2d6+1 Weight=2 Category=R Range=5 AP=1',
-  'Colt Dragoon':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12',
-  'Colt 1911':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12',
-  'S&W 44':'Era=Modern Damage=2d6+1 Weight=5 Category=R Range=12 AP=1',
-  'Desert Eagle':'Era=Modern Damage=2d8 Weight=8 Category=R Range=15 AP=2',
-  'Glock':'Era=Modern Damage=2d6 Weight=3 Category=R AP=1 Range=12 AP=1',
-  'Peacemaker':'Era=Modern Damage=2d6+1 Weight=3 Category=R AP=1 Range=12 AP=1',
-  'Ruger':'Era=Modern Damage=2d6+1 Weight=2 Category=R Range=10',
-  'S&W 357':'Era=Modern Damage=2d6+1 Weight=4 Category=R Range=12 AP=1',
-  'H&K MP5':'Era=Modern Damage=2d6 Weight=10 Category=R AP=1 Range=12 ROF=3',
-  'MP40':'Era=Modern Damage=2d6 Weight=11 Category=R AP=1 Range=12 ROF=3',
+  'Derringer':'Era=Modern Damage=2d6+1 Weight=2 Category=Ranged Range=5 AP=1',
+  'Colt Dragoon':'Era=Modern Damage=2d6+1 Weight=4 Category=Ranged Range=12',
+  'Colt 1911':'Era=Modern Damage=2d6+1 Weight=4 Category=Ranged Range=12',
+  'S&W 44':'Era=Modern Damage=2d6+1 Weight=5 Category=Ranged Range=12 AP=1',
+  'Desert Eagle':'Era=Modern Damage=2d8 Weight=8 Category=Ranged Range=15 AP=2',
+  'Glock':'Era=Modern Damage=2d6 Weight=3 Category=Ranged AP=1 Range=12 AP=1',
+  'Peacemaker':
+    'Era=Modern Damage=2d6+1 Weight=3 Category=Ranged AP=1 Range=12 AP=1',
+  'Ruger':'Era=Modern Damage=2d6+1 Weight=2 Category=Ranged Range=10',
+  'S&W 357':'Era=Modern Damage=2d6+1 Weight=4 Category=Ranged Range=12 AP=1',
+  'H&K MP5':
+    'Era=Modern Damage=2d6 Weight=10 Category=Ranged AP=1 Range=12 ROF=3',
+  'MP40':'Era=Modern Damage=2d6 Weight=11 Category=Ranged AP=1 Range=12 ROF=3',
   'Tommy Gun':
-    'Era=Modern Damage=2d6+1 Weight=13 Category=R AP=1 Range=12 ROF=3',
-  'Uzi':'Era=Modern Damage=2d6 Weight=9 Category=R AP=1 Range=12 ROF=3',
+    'Era=Modern Damage=2d6+1 Weight=13 Category=Ranged AP=1 Range=12 ROF=3',
+  'Uzi':'Era=Modern Damage=2d6 Weight=9 Category=Ranged AP=1 Range=12 ROF=3',
 
-  'Double-Barrel Shotgun':'Era=Modern Damage=3d6 Weight=11 Category=R Range=12',
-  'Pump Action Shotgun':'Era=Modern Damage=3d6 Weight=8 Category=R Range=12',
-  'Sawed Off DB':'Era=Modern Damage=3d6 Weight=6 Category=R Range=5',
-  'Streetsweeper':'Era=Modern Damage=3d6 Weight=10 Category=R Range=12',
+  'Double-Barrel Shotgun':
+    'Era=Modern Damage=3d6 Weight=11 Category=Ranged Range=12',
+  'Pump Action Shotgun':
+    'Era=Modern Damage=3d6 Weight=8 Category=Ranged Range=12',
+  'Sawed Off DB':'Era=Modern Damage=3d6 Weight=6 Category=Ranged Range=5',
+  'Streetsweeper':'Era=Modern Damage=3d6 Weight=10 Category=Ranged Range=12',
 
   'Barrett Rifle':
-    'Era=Modern Damage=2d10 Weight=35 MinStr=8 Category=R AP=4 Range=50',
-  'M1':'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24',
-  'Kar98':'Era=Modern Damage=2d8 Weight=9 MinStr=6 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d10 Weight=35 MinStr=8 Category=Ranged AP=4 Range=50',
+  'M1':'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=Ranged AP=2 Range=24',
+  'Kar98':
+    'Era=Modern Damage=2d8 Weight=9 MinStr=6 Category=Ranged AP=2 Range=24',
   'Sharps Big 50':
-    'Era=Modern Damage=2d10 Weight=11 MinStr=8 Category=R AP=2 Range=30',
-  'Spencer Carbine':'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=20',
+    'Era=Modern Damage=2d10 Weight=11 MinStr=8 Category=Ranged AP=2 Range=30',
+  'Spencer Carbine':
+    'Era=Modern Damage=2d8 Weight=8 Category=Ranged AP=2 Range=20',
   "Winchester '76":
-    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24',
+    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=Ranged AP=2 Range=24',
 
   'AK47':
-    'Era=Modern Damage=2d8+1 Weight=10 MinStr=6 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=10 MinStr=6 Category=Ranged AP=2 ' +
+    'Range=24 ROF=3',
   'H&K G3':
-    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=R AP=2 Range=24 ROF=3',
-  'M-16':'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 Weight=10 MinStr=6 Category=Ranged AP=2 ' +
+    'Range=24 ROF=3',
+  'M-16':'Era=Modern Damage=2d8 Weight=8 Category=Ranged AP=2 Range=24 ROF=3',
   'Steyr AUG':
-    'Era=Modern Damage=2d8 Weight=8 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 Weight=8 Category=Ranged AP=2 Range=24 ROF=3',
 
   'Gatling Gun':
-    'Era=Modern Damage=2d8 Weight=40 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d8 Weight=40 Category=Ranged AP=2 Range=24 ROF=3',
   'M2 Browning':
-    'Era=Modern Damage=2d10 Weight=84 Category=R AP=4 Range=50 ROF=3',
-  'M1919':'Era=Modern Damage=2d8 Weight=32 Category=R AP=2 Range=24 ROF=3',
+    'Era=Modern Damage=2d10 Weight=84 Category=Ranged AP=4 Range=50 ROF=3',
+  'M1919':'Era=Modern Damage=2d8 Weight=32 Category=Ranged AP=2 Range=24 ROF=3',
   'M60':
-    'Era=Modern Damage=2d8+1 Weight=33 MinStr=8 Category=R AP=2 Range=30 ROF=3',
-  '7.7 MG':'Era=Modern Damage=2d8 Weight=85 Category=R AP=2 Range=30 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=33 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=30 ROF=3',
+  '7.7 MG':
+    'Era=Modern Damage=2d8 Weight=85 Category=Ranged AP=2 Range=30 ROF=3',
   'MG34':
-    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=30 ROF=3',
   'MG42':
-    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=4',
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=30 ROF=4',
   'SAW':
-    'Era=Modern Damage=2d8 Weight=20 MinStr=8 Category=R AP=2 Range=30 ROF=4',
+    'Era=Modern Damage=2d8 Weight=20 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=30 ROF=4',
   'Besa MG':
-    'Era=Modern Damage=2d8 Weight=54 MinStr=8 Category=R AP=2 Range=40 ROF=3',
+    'Era=Modern Damage=2d8 Weight=54 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=40 ROF=3',
   'DTMG':
-    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=R AP=2 Range=30 ROF=3',
+    'Era=Modern Damage=2d8+1 Weight=26 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=30 ROF=3',
   '14.5mm MG':
-    'Era=Modern Damage=3d6 Weight=26 MinStr=8 Category=R AP=2 Range=50 ROF=3',
+    'Era=Modern Damage=3d6 Weight=26 MinStr=8 Category=Ranged AP=2 ' +
+    'Range=50 ROF=3',
 
-  'Laser Pistol':'Era=Future Damage=3d6 Weight=4 Category=R Range=15',
+  'Laser Pistol':'Era=Future Damage=3d6 Weight=4 Category=Ranged Range=15',
   'Laser Rifle':
-    'Era=Future Damage=3d6 Weight=8 MinStr=6 Category=R Range=30 ROF=3',
+    'Era=Future Damage=3d6 Weight=8 MinStr=6 Category=Ranged Range=30 ROF=3',
   'Laser MG':
-    'Era=Future Damage=3d6 Weight=15 MinStr=8 Category=R Range=50 ROF=5'
+    'Era=Future Damage=3d6 Weight=15 MinStr=8 Category=Ranged Range=50 ROF=5'
  
 };
 
@@ -1066,8 +1125,8 @@ SWD.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWD.identityRules = function(rules, races, eras, concepts, deitys) {
-  SWADE.identityRules(rules, races, eras, concepts, deitys);
+SWD.identityRules = function(rules, races, eras, concepts) {
+  SWADE.identityRules(rules, races, eras, concepts);
   // No changes needed to the rules defined by base method
 };
 
@@ -1080,10 +1139,12 @@ SWD.arcaneRules = function(rules, arcanas, powers) {
 
 /* Defines rules related to character aptitudes. */
 SWD.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills
 ) {
-  SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, languages, skills);
+  for(let f in features)
+    if(!features[f])
+      console.log(f);
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, skills);
   rules.defineRule('skillPoints', '', '=', '15');
   rules.defineChoice
     ('notes', 'skillNotes.charisma:%V Persuasion/%V Streetwise');
@@ -1120,8 +1181,6 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
       QuilvynUtils.getAttrValueArray(attrs, 'Skill')
     );
-  else if(type == 'Deity')
-    SWD.deityRules(rules, name);
   else if(type == 'Edge') {
     SWD.edgeRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -1151,9 +1210,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Severity')
     );
     SWD.hindranceRulesExtra(rules, name);
-  } else if(type == 'Language')
-    SWD.languageRules(rules, name);
-  else if(type == 'Power')
+  } else if(type == 'Power')
     SWD.powerRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
@@ -1163,8 +1220,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Race') {
     SWD.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+      QuilvynUtils.getAttrValueArray(attrs, 'Features')
     );
     SWD.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
@@ -1177,9 +1233,9 @@ SWD.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Skill')
     SWD.skillRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Era'),
       QuilvynUtils.getAttrValue(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValue(attrs, 'Core'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Era')
+      QuilvynUtils.getAttrValue(attrs, 'Core')
     );
   else if(type == 'Weapon')
     SWD.weaponRules(rules, name,
@@ -1235,12 +1291,6 @@ SWD.conceptRules = function(rules, name, attributes, edges, skills) {
   // No changes needed to the rules defined by base method
 };
 
-/* Defines in #rules# the rules associated with deity #name#. */
-SWD.deityRules = function(rules, name) {
-  SWADE.deityRules(rules, name);
-  // No changes needed to the rules defined by base method
-};
-
 /*
  * Defines in #rules# the rules associated with edge #name#. #require# and
  * #implies# list any hard and soft prerequisites for the edge, and #types#
@@ -1256,17 +1306,7 @@ SWD.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWD.edgeRulesExtra = function(rules, name) {
-  if(name == 'Arcane Resistance') {
-    rules.defineRule('combatNotes.arcaneResistance',
-      '', '=', '2',
-      'combatNotes.improvedArcaneResistance', '+', '2'
-    );
-  } else if(name == 'Attractive') {
-    rules.defineRule('skillNotes.attractive',
-      '', '=', '2',
-      'skillNotes.veryAttractive', '+', '2'
-    );
-  } else if(name == 'Brawler') {
+  if(name == 'Brawler') {
     rules.defineRule
       ('damageAdjustment.Unarmed', 'combatNotes.brawler', '+', '2');
   } else if(name == 'Command') {
@@ -1274,41 +1314,12 @@ SWD.edgeRulesExtra = function(rules, name) {
       'features.Command', '=', '5',
       'featureNotes.commandPresence', '+', '5'
     );
-    rules.defineRule('featureNotes.command',
-      '', '=', '1',
-      'featureNotes.inspire', '+', '1'
-    );
-  } else if(name == 'Counterattack') {
-    rules.defineRule('combatNotes.counterattack.1',
-      '', '=', '"-2 "',
-      'combatNotes.improvedCounterattack', '=', '""'
-    );
-  } else if(name == 'Dodge') {
-    rules.defineRule('combatNotes.dodge',
-      '', '=', '1',
-      'combatNotes.improvedDodge', '+', '1'
-    );
-  } else if(name == 'Extraction') {
-    rules.defineRule('combatNotes.extraction',
-      '', '=', '"1 foe"',
-      'combatNotes.improvedExtraction', '=', '"all foes"'
-    );
-  } else if(name == 'First Strike') {
-    rules.defineRule('combatNotes.firstStrike',
-      '', '=', '1',
-      'combatNotes.improvedFirstStrike', '=', '"all"'
-    );
-  } else if(name == 'Frenzy') {
-    rules.defineRule('combatNotes.frenzy.1',
-      '', '=', '", all at -2"',
-      'combatNotes.improvedFrenzy', '=', '""'
-    );
   } else if(name == 'Linguist') {
     rules.defineRule('skillNotes.linguist', 'smarts', '=', null);
     rules.defineRule('skillPoints', 'skillNotes.linguist', '+', null);
   } else if(name == 'Martial Artist') {
-    SWADE.edgeRulesExtra(rules, name);
-    rules.defineRule('combatNotes.martialArtist',
+    rules.defineRule('damageStep.Unarmed',
+      'combatNotes.martialArtist', '+=', '1',
       'combatNotes.improvedMartialArtist', '+', '1'
     );
   } else if(name == 'Martial Arts Master') {
@@ -1318,17 +1329,7 @@ SWD.edgeRulesExtra = function(rules, name) {
     rules.defineRule('arcanaNotes.newPower', 'edges.New Power', '=', null);
   } else if(name == 'Noble') {
     rules.defineRule('features.Rich', 'featureNotes.noble', '=', '1');
-  } else if(name == 'Rapid Recharge') {
-    rules.defineRule('arcanaNotes.rapidRecharge',
-      '', '=', '2',
-      'arcanaNotes.improvedRapidRecharge', '+', '2'
-    );
-  } else if(name == 'Tough As Nails') {
-    rules.defineRule('combatNotes.toughAsNails',
-      '', '=', '1',
-      'combatNotes.improvedToughAsNails', '+', '1'
-    );
-  } else {
+  } else if(SWADE.edgeRulesExtra) {
     SWADE.edgeRulesExtra(rules, name);
   }
 };
@@ -1384,18 +1385,9 @@ SWD.hindranceRules = function(rules, name, requires, severity) {
  * derived directly from the attributes passed to hindranceRules.
  */
 SWD.hindranceRulesExtra = function(rules, name) {
-  SWADE.hindranceRulesExtra(rules, name);
+  if(SWADE.hindranceRulesExtra)
+    SWADE.hindranceRulesExtra(rules, name);
   // No changes needed to the rules defined by base method
-};
-
-/* Defines in #rules# the rules associated with language #name#. */
-SWD.languageRules = function(rules, name) {
-  if(!name) {
-    console.log('Empty language name');
-    return;
-  }
-  SWD.skillRules
-    (rules, 'Knowledge (Language (' + name + '))', 'smarts', false, []);
 };
 
 /*
@@ -1414,11 +1406,10 @@ SWD.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# list associated features and
- * #languages# any automatic languages.
+ * of hard prerequisites #requires#. #features# list associated features.
  */
-SWD.raceRules = function(rules, name, requires, features, languages) {
-  SWADE.raceRules(rules, name, requires, features, languages);
+SWD.raceRules = function(rules, name, requires, features) {
+  SWADE.raceRules(rules, name, requires, features);
   // No changes needed to the rules defined by base method
 };
 
@@ -1461,8 +1452,8 @@ SWD.shieldRules = function(rules, name, eras, parry, cover, minStr, weight) {
  * #attribute# (one of 'agility', 'spirit', etc.). If specified, the skill is
  * available only in the eras listed in #eras#.
  */
-SWD.skillRules = function(rules, name, attribute, core, eras) {
-  SWADE.skillRules(rules, name, attribute, core, eras);
+SWD.skillRules = function(rules, name, eras, attribute, core) {
+  SWADE.skillRules(rules, name, eras, attribute, core);
   // No changes needed to the rules defined by base method
 };
 
@@ -1526,8 +1517,12 @@ SWD.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Quilvyn does not note characters with the Gadgeteer edge who do\n' +
-    '    not have the required d6+ in two scientific Knowledge skills.\n' +
+    '  Quilvyn does not note characters with the Gadgeteer edge who do' +
+    '  not have the required d6+ in two scientific Knowledge skills.\n' +
+    '  </li><li>\n' +
+    '  The SWD plugin supports all the same homebrew choices as the SWADE' +
+    '  plugin. See the <a href="plugins/homebrew-swade.html">SWADE Homebrew' +
+    '  documentation</a> for details.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
