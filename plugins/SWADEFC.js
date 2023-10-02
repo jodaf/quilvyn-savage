@@ -2075,7 +2075,7 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
     rules.defineRule('weapons.Claws', 'combatNotes.biteOrClaw', '=', '1');
   } else if(name == 'Minotaur') {
     SWADE.weaponRules(
-      rules, 'Hooves', [], 'Str+d4', 0, 0, 'Un', null, null, null, null
+      rules, 'Hooves', [], 'Str+d4', 0, 0, 'Unarmed', null, null, null, null
     );
     rules.defineRule('weapons.Hooves', 'combatNotes.hooves', '=', null);
   } else if(name == 'Mouseling') {
