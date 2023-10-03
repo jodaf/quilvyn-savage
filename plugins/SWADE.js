@@ -3439,7 +3439,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     result.push(
       ['Advances', 'Advances', 'select-one', zeroToSixteen],
-      ['PowerPoints', 'Power Points', 'select-one', zeroToTen],
+      ['PowerPoints', 'Power Points', 'text', [5]],
       ['Range', 'Range', 'text', [15]],
       ['Description', 'Description', 'text', [60]],
       ['Modifier', 'Modifier', 'text', [60]]
