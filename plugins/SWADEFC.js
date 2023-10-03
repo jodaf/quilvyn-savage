@@ -1848,21 +1848,15 @@ SWADEFC.WEAPONS = {
   'Sling':SWADE.WEAPONS.Sling
 };
 
-/* Defines the rules related to character attributes and description. */
-SWADEFC.attributeRules = function(rules) {
-  SWADE.attributeRules(rules);
-  // No changes needed to the rules defined by base method
-};
-
-/* Defines the rules related to combat. */
-SWADEFC.combatRules = function(rules, armors, shields, weapons) {
-  SWADE.combatRules(rules, armors, shields, weapons);
-  // No changes needed to the rules defined by base method
-};
-
 /* Defines rules related to powers. */
 SWADEFC.arcaneRules = function(rules, arcanas, powers) {
   SWADE.arcaneRules(rules, arcanas, powers);
+  // No changes needed to the rules defined by base method
+};
+
+/* Defines the rules related to character attributes and description. */
+SWADEFC.attributeRules = function(rules) {
+  SWADE.attributeRules(rules);
   // No changes needed to the rules defined by base method
 };
 
@@ -1981,11 +1975,9 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature') {
-    type =
-      type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-    rules.addChoice(type, name, attrs);
-  }
+  type =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  rules.addChoice(type, name, attrs);
 };
 
 /*

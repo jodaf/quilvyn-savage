@@ -1253,11 +1253,9 @@ SWD.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature') {
-    type =
-      type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-    rules.addChoice(type, name, attrs);
-  }
+  type =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  rules.addChoice(type, name, attrs);
 };
 
 /*
