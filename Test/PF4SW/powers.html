@@ -222,9 +222,9 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Confusion: (1 PP Ench) R12" 2" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd (<b>+1 PP</b> 3" radius; <b>+2 PP</b> Radius also inflicts Shaken)</td>
     </tr><tr style="text-align:left">
-      <td>Conjure Item: (2/lb PP Conj) R12" Creates mundane item that lasts 1 hr (<b>+1 PP</b> Creates a set of items; <b>+1 PP</b>/dy Creates food and water; <b>+1 PP</b>/lb Item lasts until dispelled)</td>
+      <td>Conjure Item: (2/lb PP Conj) R12" Creates a mundane item for 1 hr (<b>+1 PP</b> Creates a set of items; <b>+1 PP</b>/dy Creates food and water; <b>+1 PP</b>/lb Item lasts until dispelled)</td>
     </tr><tr style="text-align:left">
-      <td>Curse: (5 PP Necr) RTouch Target suffers 1 level fatigue and additional level each sunset (Spirit neg) (<b>+5 PP</b> Inflicts fatigue each rd (Spirit neg); incapacity turns to stone)</td>
+      <td>Curse: (5 PP Necr) RTouch Target suffers 1 level fatigue and an additional level each sunset (Spirit neg) (<b>+5 PP</b> Inflicts fatigue each rd (Spirit neg); incapacity turns to stone)</td>
     </tr><tr style="text-align:left">
       <td>Damage Field: (4 PP Abju) R12" Creatures adjacent to target suffer 2d4 damage for 5 rd (<b>+2 PP</b> 2" radius; <b>+2 PP</b> 2d6 damage; <b>+4 PP</b> Inflicts 3d6 damage as heavy weapon; <b>+2 PP</b> Moves effect 12"/rd)</td>
     </tr><tr style="text-align:left">
@@ -236,7 +236,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Disguise: (2 PP Illu) R12" Target assumes another's appearance (familiar Notice-2 sees through (Raise Notice-4)) for 10 min (<b>+1 PP</b>/additional target; <b>+1 PP</b> Allows changing size by 2 steps)</td>
     </tr><tr style="text-align:left">
-      <td>Dispel: (1 PP Abju) R12" End targeted power (Arcane skill neg) (<b>+8 PP</b> 2" radius suppresses powers and effects for 5 rd; <b>+1/+2/+3 PP</b> 1"/2"/3" radius; <b>+1 PP</b> Disrupts magic item for 1 rd (Raise 2 rd); <b>+3 PP</b> Ends all of target's activated powers)</td>
+      <td>Dispel: (1 PP Abju) R12" Ends targeted power (Arcane skill neg) (<b>+8 PP</b> 2" radius suppresses powers and effects for 5 rd; <b>+1/+2/+3 PP</b> 1"/2"/3" radius; <b>+1 PP</b> Disrupts magic item for 1 rd (Raise 2 rd); <b>+3 PP</b> Ends all of target's activated powers)</td>
     </tr><tr style="text-align:left">
       <td>Divination: (5 PP Divi) RSelf Successful arcane skill roll after 1 min contact with otherworld force provides information (<b>+3 PP</b> Contact gives advice)</td>
     </tr><tr style="text-align:left">
@@ -270,7 +270,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Light/Darkness: (2 PP Evoc) R12" Creates a 3" radius (Raise or a 5" beam) bright light or darkness for 10 min (<b>+2 PP</b> Light occupies 12" radius; <b>+2 PP</b> Darkness blocks Infravision, Low-Light Vision, and Darkvision; <b>+1 PP</b> Moves effect 10"/rd)</td>
     </tr><tr style="text-align:left">
-      <td>Locate: (3 PP Divi) RSelf Gives direction of chosen item (-2 if caster has never seen item, running water blocks) for 10 min (<b>+1 PP</b> Self learns best path to target)</td>
+      <td>Locate: (3 PP Divi) RSelf Gives direction of chosen item (-2 if self has never seen item; running water neg) for 10 min (<b>+1 PP</b> Self learns best path to target)</td>
     </tr><tr style="text-align:left">
       <td>Mind Link: (1 PP Divi) R12" Two targets may communicate up to 1 mile telepathically (Raise 5 miles) for 30 min; Wound to one inflicts Shaken on the other (Smarts neg) (<b>+1 PP</b>/additional target; <b>+2 PP</b> Broadcasts short thought in 48" radius; <b>+3 PP</b> Self can connect with any familiar mind)</td>
     </tr><tr style="text-align:left">
@@ -278,11 +278,11 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Mind Wipe: (3 PP Ench) R12" Target forgets up to 30 min (Raise several hour) event (Smarts neg) after 1 min activation (<b>+1 PP</b> Edits memory; <b>+2 PP</b> Activate power as an action; <b>+2 PP</b> Completely removes all memory of a person, place, or thing)</td>
     </tr><tr style="text-align:left">
-      <td>Object Reading: (2 PP Divi) RTouch Self sees visions of history of target (<b>+2 PP</b> Shares vision with others nearby)</td>
+      <td>Object Reading: (2 PP Divi) RTouch Self sees visions of the history of target (<b>+2 PP</b> Shares vision with others nearby)</td>
     </tr><tr style="text-align:left">
-      <td>Planar Binding: (8 PP Conj) R12" Summons extraplanar creature to perform service (Spirit neg)</td>
+      <td>Planar Binding: (8 PP Conj) R12" Summons and traps an extraplanar creature to perform a service (Spirit neg)</td>
     </tr><tr style="text-align:left">
-      <td>Plane Shift: (4 PP Conj) R12" Self travels to chosen plane, w/in 10d10 miles of known location (<b>+1 PP</b>/additional target; <b>+1 PP</b> Creates extra-dimensional shelter; <b>+2 PP</b> Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd))</td>
+      <td>Plane Shift: (4 PP Conj) R12" Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of a known location (<b>+1 PP</b>/additional target; <b>+1 PP</b> Creates extra-dimensional shelter; <b>+2 PP</b> Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd))</td>
     </tr><tr style="text-align:left">
       <td>Protection: (2 PP Abju) R12" Target gains +2 Armor (Raise +2 Toughness) for 5 rd (<b>+1 PP</b>/additional target)</td>
     </tr><tr style="text-align:left">
@@ -292,9 +292,9 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Resurrection: (20 PP Conj) RTouch Successful -8 casting roll returns corpse dead up to 1 yr to life with 3 Wounds and 2 fatigue levels (Raise 0 Wounds) (<b>+20 PP</b> Raises any dead; <b>+5 PP</b> Raises 10 yr corpse)</td>
     </tr><tr style="text-align:left">
-      <td>Sanctuary: (2 PP Ench) RTouch Evil creatures cannot attack target (Spirit neg) for 5 rd (<b>+2/+3 PP</b> 2"/3" radius; <b>+1 PP</b> Spirit-2)</td>
+      <td>Sanctuary: (2 PP Ench) RTouch Evil creatures cannot attack target (Spirit neg; Raise Spirit-2) for 5 rd; attacking ends (<b>+2/+3 PP</b> 2"/3" radius; <b>+1 PP</b> Spirit-2)</td>
     </tr><tr style="text-align:left">
-      <td>Scrying: (3 PP Divi) RSelf Self sees chosen target (-2 unfamiliar target, Spirit neg) for 5 rd (<b>+1 PP</b> Shares vision with allies in 12" radius)</td>
+      <td>Scrying: (3 PP Divi) RSelf Gives view of chosen target (-2 unfamiliar target; Spirit target detects) for 5 rd (<b>+1 PP</b> Shares vision with allies in 12" radius)</td>
     </tr><tr style="text-align:left">
       <td>Shape Change: (3+ PP Tran) RSelf transforms into animal form (Raise +1 Strength and Vigor) for 5 rd (<b>+1 PP</b> Effects last 5 min; <b>+2/+3 PP</b> Effect willing target at range touch/12")</td>
     </tr><tr style="text-align:left">
@@ -322,7 +322,7 @@ var attributes = {
     </tr><tr style="text-align:left">
       <td>Warrior's Gift: (4 PP Conj) R12" Target gains combat edge effects (Raise improved version) for 5 rd (<b>+1 PP</b>/additional target; <b>+4 PP</b> Target gains 2 combat edges)</td>
     </tr><tr style="text-align:left">
-      <td>Wish: (20 PP Univ) R12" Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)</td>
+      <td>Wish: (20 PP Univ) R12" Self alters reality and loses 3 PP permanently (Raise no PP loss)</td>
     </tr><tr style="text-align:left">
       <td>Zombie: (3+ PP Necr) R12" Animates and controls corpse for 1 hr or stores PP for permanent (<b>+1 PP</b>/additional target; <b>+1 PP</b> Target is armed; <b>+1 PP</b> Target has 2 Armor points; <b>+1 PP</b> Self can use target senses; <b>+1 PP</b> Corpse becomes animated skeleton)</td>
     </tr></table>
