@@ -90,7 +90,7 @@ var attributes = {
   </tr><tr style="text-align:center">
     <td><b>Skill Notes</b>:     <table id="SkillNotes" style="width:100%">
     <tr style="text-align:center">
-      <td><i>Arcane Background (Sorcerer): Spellcasting linked to Spirit instead of Smarts</i></td>
+      <td><i>Arcane Background (Sorcerer): Spellcasting is linked to Spirit instead of Smarts</i></td>
     </tr><tr style="text-align:center">
       <td><i>Ugly+: -2 Persuasion</i></td>
     </tr><tr style="text-align:center">
@@ -100,7 +100,9 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td>Bad Eyes: -1 on visual Trait rolls</td>
     </tr><tr style="text-align:center">
-      <td>Bonded Object: Gains +1 Spellcasting when object held or worn</td>
+      <td>Bonded Object: Gains +1 Spellcasting when bonded object is held or worn</td>
+    </tr><tr style="text-align:center">
+      <td>Flight: Uses Athletics for flight maneuvers</td>
     </tr><tr style="text-align:center">
       <td>Outsider+: -2 Persuasion (other races)</td>
     </tr></table>
@@ -139,6 +141,10 @@ var attributes = {
       <td><i>Adaptability: +1 Edge Points</i></td>
     </tr><tr style="text-align:center">
       <td><i>Advanced Bloodline: Has Advanced Undead Bloodline features</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Advanced Celestial Bloodline: Has Flight feature</i></td>
+    </tr><tr style="text-align:center">
+      <td><i>Advanced Infernal Bloodline: Has Flight feature</i></td>
     </tr><tr style="text-align:center">
       <td><i>Advanced Undead Bloodline: Has Undead, Outsider+, and Ugly+ features</i></td>
     </tr><tr style="text-align:center">
@@ -187,21 +193,21 @@ var attributes = {
       <tr style="text-align:center">
         <td><i>Aberrant Bloodline: +1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Abyssal Bloodline: +1 Toughness/Claws inflict d6+d4 damage/Has Resistance to electricity</i></td>
+        <td><i>Abyssal Bloodline: +1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Advanced Aberrant Bloodline: +1 Toughness/Immune to surprise and The Drop</i></td>
+        <td><i>Advanced Aberrant Bloodline: +1 Toughness</i></td>
       </tr><tr style="text-align:center">
-        <td><i>Draconic Bloodline: +2 Armor/Claws inflict d6+d4</i></td>
-      </tr><tr style="text-align:center">
-        <td><i>Undead Bloodline: Has Resistance to cold/+1 Soak</i></td>
+        <td><i>Draconic Bloodline: +2 Armor</i></td>
       </tr><tr style="text-align:center">
         <td><i>Undead: +2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn't breathe or eat/Immune to disease and poison/Doesn't Bleed Out or heal naturally/R10" Ignores illumination penalties</i></td>
       </tr><tr style="text-align:center">
         <td><i>Vigor Toughness Modifier: +6</i></td>
       </tr><tr style="text-align:center">
-        <td>Advanced Abyssal Bloodline: Has Resistance to cold and fire</td>
+        <td>Abyssal Bloodline-1: Claws inflict d6+d4 damage/Has Resistance to electricity</td>
       </tr><tr style="text-align:center">
-        <td>Advanced Celestial Bloodline: Angel wings grant Flight 12</td>
+        <td>Advanced Aberrant Bloodline-1: Immune to surprise and The Drop</td>
+      </tr><tr style="text-align:center">
+        <td>Advanced Abyssal Bloodline: Has Resistance to cold and fire</td>
       </tr><tr style="text-align:center">
         <td>Advanced Draconic Bloodline: Claws gain AP +2/Has Resistance to draconic energy</td>
       </tr><tr style="text-align:center">
@@ -213,19 +219,23 @@ var attributes = {
       </tr><tr style="text-align:center">
         <td>Advanced Elemental Bloodline (Water): R9" cone inflicts 3d6 damage 1/encounter</td>
       </tr><tr style="text-align:center">
-        <td>Advanced Infernal Bloodline: Bat wings grant Flight 12</td>
-      </tr><tr style="text-align:center">
         <td>Celestial Bloodline: Has Resistance to cold and acid</td>
       </tr><tr style="text-align:center">
-        <td>Elemental Bloodline (Air): May fly at Pace 6</td>
+        <td>Draconic Bloodline-1: Claws inflict d6+d4</td>
+      </tr><tr style="text-align:center">
+        <td>Elemental Bloodline (Air): Has fly Pace 6</td>
       </tr><tr style="text-align:center">
         <td>Elemental Bloodline (Earth): May burrow at Pace 6</td>
       </tr><tr style="text-align:center">
         <td>Fey Bloodline: Ignores movement penalties for difficult ground/Touch inflicts Distracted</td>
       </tr><tr style="text-align:center">
+        <td>Flight: Fly Pace 12</td>
+      </tr><tr style="text-align:center">
         <td>Infernal Bloodline: Has Resistance to fire and immunity to poison</td>
       </tr><tr style="text-align:center">
         <td>Pacifist: Will harm others only when no other option is available</td>
+      </tr><tr style="text-align:center">
+        <td>Undead Bloodline: Has Resistance to cold/+1 on Soak attempts</td>
       </tr></table>
 </td>
     </tr></table>
@@ -264,25 +274,25 @@ var attributes = {
     </tr><tr style="text-align:center">
       <td><i>Power Points: +5 Power Points</i></td>
     </tr><tr style="text-align:center">
-      <td>Aberrant Bloodline: May cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> only with Lingering Damage for +1 Power Point</td>
+      <td>Aberrant Bloodline: Must cast <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> with Lingering Damage for +1 Power Point</td>
     </tr><tr style="text-align:center">
-      <td>Advanced Abyssal Bloodline: <i>Summon Ally</i> costs -2 Power Points; summoned entities inflict Fear</td>
+      <td>Advanced Abyssal Bloodline: <i>Summon Ally</i> costs -2 Power Points/Summoned entities inflict Fear</td>
     </tr><tr style="text-align:center">
       <td>Advanced Fey Bloodline: Power targets suffer -2 to recover</td>
     </tr><tr style="text-align:center">
-      <td>Arcane Mastery: May use epic power modifiers on arcane spells</td>
+      <td>Arcane Mastery: May use Epic Power modifiers on arcane spells</td>
     </tr><tr style="text-align:center">
       <td>Celestial Bloodline: <i>Bolt</i>, <i>Blast</i>, and <i>Burst</i> inflict +2 damage on evil creatures</td>
     </tr><tr style="text-align:center">
-      <td>Draconic Bloodline: +1 damage from powers w/draconic trappings</td>
+      <td>Draconic Bloodline: +1 damage from Powers w/draconic trappings</td>
     </tr><tr style="text-align:center">
       <td>Elemental Bloodline (Fire): Powers with fire trapping inflict +2 damage</td>
     </tr><tr style="text-align:center">
       <td>Elemental Bloodline (Water): Powers hinder targets</td>
     </tr><tr style="text-align:center">
-      <td>Familiar: Can communicate w/magical, Wild Card pet that stores 5 Power Points</td>
+      <td>Familiar: Can communicate w/a magical, Wild Card pet that stores 5 Power Points</td>
     </tr><tr style="text-align:center">
-      <td>Favored Powers (Sorcerer): May ignore two points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i></td>
+      <td>Favored Powers (Sorcerer): Ignores two points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i></td>
     </tr><tr style="text-align:center">
       <td>Infernal Bloodline: Powers with fire trapping inflict +1 damage</td>
     </tr></table>
