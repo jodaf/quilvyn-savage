@@ -1,5 +1,5 @@
 /*
-Copyright 2021, James J. Hayes
+Copyright 2023, James J. Hayes
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -1658,7 +1658,7 @@ SWADEFC.POWER_CHANGES = {
       '"+2/+3 PP 2\\"/3\\" radius",' +
       '"Epic +1 PP Spirit-2 (Raise Spirit-4)" ' +
     'Description=' +
-      '"Evil creatures cannot attack target (Spirit neg; Raise Spirit-2); attacking ends"',
+      '"Evil creatures cannot attack target (Spirit neg; Raise Spirit-2) for 5 rd; attacking ends"',
   'Scrying':
     'Advances=4 ' +
     'PowerPoints=3 ' +
