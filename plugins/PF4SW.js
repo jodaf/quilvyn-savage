@@ -23,8 +23,8 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*
  * This module loads the rules from the PF4SW Player's Guide. The PF4SW
  * function contains methods that load rules for particular parts of the rules:
- * raceRules for character races, arcaneRules for powers, etc. These member
- * methods can be called independently in order to use a subset of the
+ * ancestryRules for character ancestries, arcaneRules for powers, etc. These
+ * member methods can be called independently in order to use a subset of the
  * PF4SW rules. Similarly, the constant fields of PF4SW (SKILLS, EDGES,
  * etc.) can be manipulated to modify the choices.
  */
@@ -35,12 +35,14 @@ function PF4SW(baseRules) {
     return;
   }
 
-  var rules = new QuilvynRules('Pathfinder for SWADE', PF4SW.VERSION);
+  let rules = new QuilvynRules('Pathfinder for SWADE', PF4SW.VERSION);
+  rules.plugin = PF4SW;
   PF4SW.rules = rules;
 
   rules.defineChoice('choices', PF4SW.CHOICES);
   rules.choiceEditorElements = PF4SW.choiceEditorElements;
   rules.choiceRules = PF4SW.choiceRules;
+  rules.removeChoice = SWADE.removeChoice;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
   rules.getPlugins = PF4SW.getPlugins;
@@ -54,7 +56,7 @@ function PF4SW(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Ancestry,select-one,races', 'advances:Advances,text,4',
+    'race:Ancestry,select-one,ancestrys', 'advances:Advances,text,4',
     'concepts:Concepts,set,concepts'
   );
 
@@ -64,9 +66,9 @@ function PF4SW(baseRules) {
   PF4SW.arcaneRules(rules, PF4SW.ARCANAS, PF4SW.POWERS);
   PF4SW.talentRules
     (rules, PF4SW.EDGES, PF4SW.FEATURES, PF4SW.GOODIES,
-     PF4SW.HINDRANCES, PF4SW.LANGUAGES, PF4SW.SKILLS);
+     PF4SW.HINDRANCES, PF4SW.SKILLS, PF4SW.LANGUAGES);
   PF4SW.identityRules
-    (rules, PF4SW.RACES, PF4SW.CONCEPTS, PF4SW.DEITIES, PF4SW.ALIGNMENTS);
+    (rules, PF4SW.ANCESTRIES, PF4SW.CONCEPTS, PF4SW.DEITIES, PF4SW.ALIGNMENTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -81,14 +83,45 @@ PF4SW.CHOICES =
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
   ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
 
-PF4SW.VERSION = '2.3.1.6';
+PF4SW.VERSION = '2.4.1.0';
 
 PF4SW.ALIGNMENTS = {
   'Good':'',
   'Neutral':'',
   'Evil':''
 };
-
+PF4SW.ANCESTRIES = {
+  'Dwarf':
+    'Features=' +
+      'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Stout,Tough '+
+    'Languages=Common,Dwarven',
+  'Elf':
+    'Features=' +
+      'Agile,"Elven Magic",Intelligence,"Keen Senses","Low Light Vision",' +
+      'Slender ' +
+    'Languages=Common,Elven',
+  'Gnome':
+    'Features=' +
+      '"Gnome Magic","Keen Senses","Low Light Vision",Obsessive,' +
+      '"Reduced Pace","Size -1",Tough ' +
+    'Languages=Common,Gnome,Sylvan',
+  'Half-Elf':
+    'Features=' +
+      '"Elven Magic",Flexibility,"Low Light Vision" ' +
+    'Languages=Common,Elven',
+  'Half-Orc':
+    'Features=' +
+      'Darkvision,Intimidating,"Orc Ferocity",Outsider,Strong ' +
+    'Languages=Common,Orc',
+  'Halfling':
+    'Features=' +
+      'Agile,"Keen Senses",Lucky,"Reduced Pace","Size -1",Sure-Footed ' +
+    'Languages=Common,Halfling',
+  'Human':
+    'Features=' +
+      'Adaptability ' +
+    'Languages=Common'
+};
 PF4SW.ARCANAS = {
   'Bard':
     'Skill=Performance ' +
@@ -665,7 +698,7 @@ PF4SW.EDGES_ADDED = {
   'Liquid Courage':null
 };
 PF4SW.EDGES = Object.assign({}, SWADE.EDGES, PF4SW.EDGES_ADDED);
-for(var e in PF4SW.EDGES) {
+for(let e in PF4SW.EDGES) {
   if(PF4SW.EDGES[e] == null)
     delete PF4SW.EDGES[e];
 }
@@ -810,7 +843,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=skill Note="Gains +1 Spellcasting when object held or worn"',
   'Born In The Saddle':
     'Section=skill ' +
-    'Note="May make free reroll on Riding; +2 mount Pace, +1 mount Run step"',
+    'Note="May make free reroll on Riding; +2 mount Pace, +1 mount Run Step"',
   'Breath Weapon':
     'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
   'Call Down The Legends':'Section=combat Note="May summon 5 shades for 1 hr"',
@@ -841,7 +874,7 @@ PF4SW.FEATURES_ADDED = {
   'Destined Bloodline':'Section=feature Note="+1 Benny each session"',
   'Destroy Undead':
     'Section=combat ' +
-    'Note="R2\\" May spend 2 Power Points to inflict wound on all undead (Spirit neg)"',
+    'Note="R2\\" May spend 2 Power Points to inflict Wound on all undead (Spirit neg)"',
   'Detect Evil':
     'Section=arcana ' +
     'Note="R%{smarts}\\" May detect evil creature or object at will"',
@@ -892,7 +925,7 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat Note="Arrow gains +1 attack and inflicts +1 damage"',
   'Enraged':
     'Section=feature ' +
-    'Note="Ignores 2 points of wound penalties and all fatigue penalties"',
+    'Note="Ignores 2 points of Wound penalties and all fatigue penalties"',
   'Epic Tales':
     'Section=feature Note="Allies hearing story during rest each gain 1 Benny"',
   'Familiar':
@@ -924,7 +957,7 @@ PF4SW.FEATURES_ADDED = {
   'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
   'Fury':
     'Section=combat ' +
-    'Note="+%V Strength step; every attack must be a Wild Attack"',
+    'Note="+%V Strength Step; every attack must be a Wild Attack"',
   'Great Ki':
     'Section=arcana ' +
     'Note="May use Mystic Powers (Monk) to cast <i>Boost Trait</i> (Strength), <i>Protection</i>, <i>Wall Walker</i>, and <i>Warrior\'s Gift</i>"',
@@ -972,7 +1005,7 @@ PF4SW.FEATURES_ADDED = {
   'Mercy':
     'Section=arcana ' +
     'Note="R%{spirit}\\" Removes Distracted, Shaken, or Vulnerable from target"',
-  'Mobility':'Section=combat Note="+1 Run step"',
+  'Mobility':'Section=combat Note="+1 Run Step"',
   'Monk':
     'Section=feature ' +
     'Note="Has Armor Restriction, Martial Discipline, Mobility, Stunning Fist, and Unarmed Strike features"',
@@ -1086,7 +1119,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Ignores penalty for normal Evasion; may use Evasion at -2 for any area effect"',
   'Undead':
     'Section=combat ' +
-    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
+    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
   'Undead Bloodline':
     'Section=combat Note="Has Resistance to cold/+1 Soak"',
   'Wholeness Of Body':
@@ -1099,7 +1132,7 @@ PF4SW.FEATURES_ADDED = {
   'Wizard':
     'Section=feature ' +
     'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference, School, and Spellbooks features"',
-  'Rapid Shot':SWADE.FEATURES['Rapid Fire'],
+  'Rapid Shot':SWADE.FEATURES['Rapid Fire'].replace('Fire', 'Shot'),
   'Improved Rapid Shot':
     SWADE.FEATURES['Improved Rapid Fire'].replaceAll('Fire', 'Shot'),
   'Two-Weapon Fighting':SWADE.FEATURES['Two-Fisted'],
@@ -1119,8 +1152,8 @@ PF4SW.FEATURES_ADDED = {
   'Gnome Magic':
     'Section=arcana ' +
     'Note="Knows <i>Beast Friend</i>, <i>Light</i>, <i>Sound</i>, and <i>Telekinesis</i>/1 Power Point"',
-  'Intelligence':'Section=attribute Note="+1 Smarts step"',
-  'Intimidating':'Section=skill Note="+1 Intimidation step"',
+  'Intelligence':'Section=attribute Note="+1 Smarts Step"',
+  'Intimidating':'Section=skill Note="+1 Intimidation Step"',
   'Iron Constitution':
     'Section=combat ' +
     'Note="+1 to resist poison/+1 to resist and recover from powers"',
@@ -1132,11 +1165,11 @@ PF4SW.FEATURES_ADDED = {
   'Stonecunning':
     'Section=skill ' +
     'Note="Automatic Notice+2 to note unusual stonework within 10\'"',
-  'Sure-Footed':'Section=skill Note="+1 Athletics step"',
+  'Sure-Footed':'Section=skill Note="+1 Athletics Step"',
   'Stout':
     'Section=attribute ' +
-    'Note="+1 Strength step (encumbrance and minimum strength requirements)"',
-  'Tough':'Section=attribute Note="+1 Vigor step"',
+    'Note="+1 Strength Step (encumbrance and minimum strength requirements)"',
+  'Tough':'Section=attribute Note="+1 Vigor Step"',
 };
 PF4SW.FEATURES =
   Object.assign({}, SWADE.FEATURES, PF4SW.FEATURES_ADDED);
@@ -1304,7 +1337,7 @@ PF4SW.POWERS_CHANGES = {
   'Healing':
     'School=Conjuration ' +
     'Modifier=' +
-      '"+10 PP Restores older wound",' +
+      '"+10 PP Restores older Wound",' +
       '"+15 PP Heals crippling injury",' +
       '"+2/+3 PP 2\\"/3\\" radius heals allies",' +
       '"+1 PP Neutralizes poison or disease"',
@@ -1312,7 +1345,7 @@ PF4SW.POWERS_CHANGES = {
     'School=Illusion ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
-      '"+3 PP Inflicts Shaken (Raise wounds) (Smarts neg)",' +
+      '"+3 PP Inflicts Shaken (Raise Wounds) (Smarts neg)",' +
       '"+2 PP Effect lasts 5 min",' +
       '"+1/+2 PP Moves effect 12\\"/24\\"/rd",' +
       '"+1 PP Illusion includes sound",' +
@@ -1374,7 +1407,7 @@ PF4SW.POWERS_CHANGES = {
       '"+3 PP Restores 1 energy-draining effect (Raise 2)",' +
       '"+1 PP Removes Stunned condition" ' +
     'Description=' +
-      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 wound or fatigue penalty (Raise 2) for 1 hr"',
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Wound or fatigue penalty (Raise 2) for 1 hr"',
   'Resurrection':
     'School=Conjuration ' +
     'PowerPoints=20 ' +
@@ -1539,41 +1572,9 @@ PF4SW.POWERS_CHANGES = {
       '"Alters reality in exchange for permanent loss of 3 Power Points (Raise no loss)"'
 };
 PF4SW.POWERS = {};
-for(var p in PF4SW.POWERS_CHANGES) {
+for(let p in PF4SW.POWERS_CHANGES) {
   PF4SW.POWERS[p] = (SWADE.POWERS[p] || '') + ' ' + PF4SW.POWERS_CHANGES[p];
 }
-PF4SW.RACES = {
-  'Dwarf':
-    'Features=' +
-      'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Stout,Tough '+
-    'Languages=Common,Dwarven',
-  'Elf':
-    'Features=' +
-      'Agile,"Elven Magic",Intelligence,"Keen Senses","Low Light Vision",' +
-      'Slender ' +
-    'Languages=Common,Elven',
-  'Gnome':
-    'Features=' +
-      '"Gnome Magic","Keen Senses","Low Light Vision",Obsessive,' +
-      '"Reduced Pace","Size -1",Tough ' +
-    'Languages=Common,Gnome,Sylvan',
-  'Half-Elf':
-    'Features=' +
-      '"Elven Magic",Flexibility,"Low Light Vision" ' +
-    'Languages=Common,Elven',
-  'Half-Orc':
-    'Features=' +
-      'Darkvision,Intimidating,"Orc Ferocity",Outsider,Strong ' +
-    'Languages=Common,Orc',
-  'Halfling':
-    'Features=' +
-      'Agile,"Keen Senses",Lucky,"Reduced Pace","Size -1",Sure-Footed ' +
-    'Languages=Common,Halfling',
-  'Human':
-    'Features=' +
-      'Adaptability ' +
-    'Languages=Common'
-};
 PF4SW.LANGUAGES = {
   'Abyssal':'',
   'Aklo':'',
@@ -1612,63 +1613,67 @@ delete PF4SW.SKILLS['Psionics'];
 delete PF4SW.SKILLS['Research'];
 delete PF4SW.SKILLS['Weird Science'];
 PF4SW.WEAPONS = {
-  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h AP=1',
-  'Battle Axe':'Damage=Str+d8 MinStr=8 Weight=6 Category=1h',
-  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=R Range=3',
-  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=R Range=3',
-  'Composite Bow':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=12 AP=1',
-  'Dagger':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
-  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
-  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
-  'Great Axe':'Damage=Str+d10 MinStr=10 Weight=12 Category=2h AP=3 Parry=-1',
-  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=2h AP=2',
-  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=2h AP=1',
-  'Halberd':'Damage=Str+d8 MinStr=8 Weight=12 Category=2h AP=1',
-  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=3',
-  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=R Range=5',
-  'Hand Repeating Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=R Range=5',
-  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h',
-  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=R Range=15 AP=2',
-  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=2h',
-  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=1h AP=1',
+  'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=One-Handed AP=1',
+  'Battle Axe':'Damage=Str+d8 MinStr=8 Weight=6 Category=One-Handed',
+  'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=Ranged Range=3',
+  'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=Ranged Range=3',
+  'Composite Bow':
+    'Damage=Str+d6 MinStr=6 Weight=3 Category=Ranged Range=12 AP=1',
+  'Dagger':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=3',
+  'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
+  'Flail':'Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed',
+  'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
+  'Great Axe':
+    'Damage=Str+d10 MinStr=10 Weight=12 Category=Two-Handed AP=3 Parry=-1',
+  'Great Sword':'Damage=Str+d10 MinStr=10 Weight=6 Category=Two-Handed AP=2',
+  'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=Two-Handed AP=1',
+  'Halberd':'Damage=Str+d8 MinStr=8 Weight=12 Category=Two-Handed AP=1',
+  'Hand Axe':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed Range=3',
+  'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=Ranged Range=5',
+  'Hand Repeating Crossbow':
+    'Damage=2d4 MinStr=4 Weight=3 Category=Ranged Range=5',
+  'Heavy Club':'Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed',
+  'Heavy Crossbow':'Damage=2d8 MinStr=6 Weight=8 Category=Ranged Range=15 AP=2',
+  'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
+  'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
   'Heavy Repeating Crossbow':
-    'Damage=2d8 MinStr=8 Weight=12 Category=R Range=15 AP=2',
-  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=R Range=4',
-  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=2h',
-  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h Range=3',
-  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=1h',
-  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=R Range=10 AP=2',
-  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
+    'Damage=2d8 MinStr=8 Weight=12 Category=Ranged Range=15 AP=2',
+  'Javelin':'Damage=Str+d6 MinStr=6 Weight=3 Category=Ranged Range=4',
+  'Katana':'Damage=Str+d6+1 MinStr=6 Weight=3 Category=Two-Handed',
+  'Knife':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=3',
+  'Lance':'Damage=Str+d8 MinStr=8 Weight=10 Category=One-Handed',
+  'Light Club':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed',
+  'Light Crossbow':'Damage=2d6 MinStr=6 Weight=5 Category=Ranged Range=10 AP=2',
+  'Light Mace':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
   'Light Repeating Crossbow':
-    'Damage=2d6 MinStr=6 Weight=8 Category=R Range=10 AP=2',
-  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=R Range=15 AP=1',
-  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=1h',
-  'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=2h AP=2',
-  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=1h',
-  'Net':'Damage=d0 MinStr=4 Weight=8 Category=R Range=3',
-  'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=2h',
-  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
-  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=1h',
-  'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=1',
-  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=1h',
-  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h',
-  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=2h',
-  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=R Range=12',
-  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=1h Range=4',
-  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=1h',
-  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=R Range=3',
-  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h',
-  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=R Range=4',
-  'Spear':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h Range=3',
-  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=2h AP=1',
-  'Staff':'Damage=Str+d4 MinStr=4 Weight=4 Category=2h Parry=1',
-  'Starknife':'Damage=Str+d4 MinStr=4 Weight=3 Category=1h Range=3 Parry=1',
-  'Trident':'Damage=Str+d6 MinStr=6 Weight=4 Category=1h Range=3 AP=1',
-  'Unarmed':'Damage=Str+d0 MinStr=0 Weight=0 Category=Un',
-  'Warhammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=1h AP=1',
-  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=1h Parry=-1',
+    'Damage=2d6 MinStr=6 Weight=8 Category=Ranged Range=10 AP=2',
+  'Long Bow':'Damage=2d6 MinStr=8 Weight=3 Category=Ranged Range=15 AP=1',
+  'Long Sword':'Damage=Str+d8 MinStr=8 Weight=4 Category=One-Handed',
+  'Maul':'Damage=Str+d10 MinStr=10 Weight=10 Category=Two-Handed AP=2',
+  'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=One-Handed',
+  'Net':'Damage=d0 MinStr=4 Weight=8 Category=Ranged Range=3',
+  'Pike':'Damage=Str+d8 MinStr=8 Weight=18 Category=Two-Handed',
+  'Quarterstaff':'Damage=Str+d4 MinStr=4 Weight=4 Category=Two-Handed Parry=1',
+  'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=One-Handed',
+  'Rapier':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=1',
+  'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
+  'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
+  'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=Two-Handed',
+  'Short Bow':'Damage=2d6 MinStr=6 Weight=2 Category=Ranged Range=12',
+  'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed Range=4',
+  'Short Sword':'Damage=Str+d6 MinStr=6 Weight=2 Category=One-Handed',
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=Ranged Range=3',
+  'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed',
+  'Sling':'Damage=Str+d4 MinStr=4 Weight=1 Category=Ranged Range=4',
+  'Spear':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed Range=3',
+  'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed AP=1',
+  'Staff':'Damage=Str+d4 MinStr=4 Weight=4 Category=Two-Handed Parry=1',
+  'Starknife':
+    'Damage=Str+d4 MinStr=4 Weight=3 Category=One-Handed Range=3 Parry=1',
+  'Trident':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed Range=3 AP=1',
+  'Unarmed':'Damage=Str+d0 MinStr=0 Weight=0 Category=Unarmed',
+  'Warhammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed AP=1',
+  'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=-1',
 };
 
 /* Defines rules related to powers. */
@@ -1693,34 +1698,52 @@ PF4SW.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-PF4SW.identityRules = function(rules, races, concepts, deitys, alignments) {
+PF4SW.identityRules = function(
+  rules, ancestries, concepts, deitys, alignments)
+{
+
   QuilvynUtils.checkAttrTable(alignments, []);
-  SWADE.identityRules(rules, races, {}, concepts, deitys);
+  QuilvynUtils.checkAttrTable
+    (ancestries, ['Requires', 'Features', 'Languages']);
+  QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
+  SWADE.identityRules(rules, {}, {}, concepts);
+
+  for(let a in alignments) {
+    rules.choiceRules(rules, 'Alignment', a, alignments[a]);
+  }
+  for(let a in ancestries) {
+    rules.choiceRules(rules, 'Ancestry', a, ancestries[a]);
+  }
+  for(let d in deitys) {
+    rules.choiceRules(rules, 'Deity', d, deitys[d]);
+  }
+
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
   rules.defineEditorElement
-    ('alignment', 'Alignment', 'select-one', 'alignments', 'deity');
-  rules.defineSheetElement('Alignment', 'Deity');
-  rules.defineSheetElement('Deity');
+    ('alignment', 'Alignment', 'select-one', 'alignments', 'origin');
+  rules.defineEditorElement
+    ('deity', 'Deity', 'select-one', 'deity', 'origin');
+  rules.defineSheetElement('Alignment', 'Origin');
   rules.defineSheetElement('DeityInfo', 'Alignment+', '<b>Deity</b>: %V', ' ');
   rules.defineSheetElement('Deity', 'DeityInfo/', '%V');
   rules.defineSheetElement('Deity Alignment', 'DeityInfo/', '(%V)');
-  for(var deity in deitys) {
-    rules.choiceRules(rules, 'Deity', deity, deitys[deity]);
-  }
-  for(var alignment in alignments) {
-    rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
-  }
-  // No changes needed to the rules defined by base method
+
 };
 
 /* Defines rules related to character aptitudes. */
 PF4SW.talentRules = function(
-  rules, edges, features, goodies, hindrances, languages, skills
+  rules, edges, features, goodies, hindrances, skills, languages
 ) {
-  SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, languages, skills);
+
+  QuilvynUtils.checkAttrTable(languages, []);
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, skills);
+
+  for(let l in languages) {
+    PF4SW.choiceRules(rules, 'Language', l, languages[l]);
+  }
+
   rules.defineRule('edgePoints', '', '=', '1');
   rules.defineRule
     ('languageCount', 'smarts', '=', '1 + Math.floor(source / 2)');
@@ -1729,6 +1752,7 @@ PF4SW.talentRules = function(
   rules.defineSheetElement('Languages', 'Skills+', null, '; ');
   QuilvynRules.validAllocationRules
     (rules, 'language', 'languageCount', 'Sum "^languages\\."');
+
 };
 
 /*
@@ -1738,7 +1762,14 @@ PF4SW.talentRules = function(
 PF4SW.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Alignment')
     PF4SW.alignmentRules(rules, name);
-  else if(type == 'Arcana')
+  else if(type == 'Ancestry' || type == 'Race') {
+    PF4SW.ancestryRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+    );
+    PF4SW.ancestryRulesExtra(rules, name);
+  } else if(type == 'Arcana')
     PF4SW.arcanaRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Skill'),
       QuilvynUtils.getAttrValueArray(attrs, 'Powers')
@@ -1799,14 +1830,7 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'School'),
       QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
     );
-  else if(type == 'Race' || type == 'Ancestry') {
-    PF4SW.raceRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
-    );
-    PF4SW.raceRulesExtra(rules, name);
-  } else if(type == 'Shield')
+  else if(type == 'Shield')
     PF4SW.shieldRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Parry'),
       QuilvynUtils.getAttrValue(attrs, 'Cover'),
@@ -1833,11 +1857,9 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature') {
-    type =
-      type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-    rules.addChoice(type, name, attrs);
-  }
+  type =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  rules.addChoice(type, name, attrs);
 };
 
 /* Defines in #rules# the rules associated with alignment #name#. */
@@ -1847,6 +1869,37 @@ PF4SW.alignmentRules = function(rules, name) {
     return;
   }
   // No rules pertain to alignment
+};
+
+/*
+ * Defines in #rules# the rules associated with ancestry #name#, which has the
+ * list of hard prerequisites #requires#. #features# list associated features
+ * and * #languages# any automatic languages.
+ */
+PF4SW.ancestryRules = function(rules, name, requires, features, languages) {
+  SWADE.raceRules(rules, name, requires, features);
+  let prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+  let raceAdvances = prefix + 'Advances';
+  languages.forEach(x => {
+    rules.defineRule('languages.' + x, raceAdvances, '=', '1');
+  });
+};
+
+/*
+ * Defines in #rules# the rules associated with ancestry #name# that cannot be
+ * derived directly from the attributes passed to ancestryRules.
+ */
+PF4SW.ancestryRulesExtra = function(rules, name) {
+  if(name == 'Dwarf') {
+    rules.defineRule
+      ('armorStrengthStepShortfall', 'attributeNotes.stout', '+', '-1');
+  } else if(name == 'Gnome') {
+    rules.defineRule('skillPoints', 'skillNotes.obsessive', '+=', '1');
+  } else if(name == 'Half-Orc') {
+    rules.defineRule
+      ('skillStep.Intimidation', 'skillNotes.intimidating', '+=', '1');
+  }
 };
 
 /*
@@ -1886,8 +1939,6 @@ PF4SW.conceptRules = function(rules, name, attributes, edges, skills) {
  */
 PF4SW.deityRules = function(rules, name, alignment, domains) {
 
-  SWADE.deityRules(rules, name, alignment, domains);
-
   if(rules.deityStats == null) {
     rules.deityStats = {
       alignment:{},
@@ -1923,7 +1974,7 @@ PF4SW.edgeRules = function(rules, name, requires, implies, types) {
  */
 PF4SW.edgeRulesExtra = function(rules, name) {
   if(name.match(/Bloodline/) && !name.startsWith('Advanced')) {
-    var bloodline = name.replace(/\s+Bloodline/, '');
+    let bloodline = name.replace(/\s+Bloodline/, '');
     rules.defineRule('featureNotes.advancedBloodline',
       'features.' + name, '=', '"' + bloodline + '"'
     );
@@ -2202,11 +2253,6 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       ('features.Wilderness Stride', 'featureNotes.ranger', '=', '1');
     rules.defineRule
       ('skillNotes.armorRestriction', 'featureNotes.ranger', '=', '"heavy"');
-  } else if(name == 'Rapid Shot') {
-    rules.defineRule('combatNotes.rapidShot',
-      '', '=', '1',
-      'combatNotes.improvedRapidShot', '+', '1'
-    );
   } else if(name == 'Rogue') {
     rules.defineRule('attributeNotes.armorRestriction',
       'featureNotes.rogue', '=', '"medium or heavy"'
@@ -2328,8 +2374,7 @@ PF4SW.hindranceRulesExtra = function(rules, name) {
 
 /* Defines in #rules# the rules associated with language #name#. */
 PF4SW.languageRules = function(rules, name) {
-  SWADE.languageRules(rules, name);
-  // No changes needed to the rules defined by base method
+  // No rules pertain to language
 };
 
 /*
@@ -2352,37 +2397,6 @@ PF4SW.powerRules = function(
 };
 
 /*
- * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# list associated features and
- * #languages# any automatic languages.
- */
-PF4SW.raceRules = function(rules, name, requires, features, languages) {
-  SWADE.raceRules(rules, name, requires, features, languages);
-  var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-  var raceAdvances = prefix + 'Advances';
-  languages.forEach(x => {
-    rules.defineRule('languages.' + x, raceAdvances, '=', '1');
-  });
-};
-
-/*
- * Defines in #rules# the rules associated with race #name# that cannot be
- * derived directly from the attributes passed to raceRules.
- */
-PF4SW.raceRulesExtra = function(rules, name) {
-  if(name == 'Dwarf') {
-    rules.defineRule
-      ('armorStrengthStepShortfall', 'attributeNotes.stout', '+', '-1');
-  } else if(name == 'Gnome') {
-    rules.defineRule('skillPoints', 'skillNotes.obsessive', '+=', '1');
-  } else if(name == 'Half-Orc') {
-    rules.defineRule
-      ('skillStep.Intimidation', 'skillNotes.intimidating', '+=', '1');
-  }
-};
-
-/*
  * Defines in #rules# the rules associated with shield #name#, which adds
  * #parry# to the character's Parry, provides #cover# cover, requires #minStr#
  * to handle, and weighs #weight#.
@@ -2398,7 +2412,7 @@ PF4SW.shieldRules = function(rules, name, parry, cover, minStr, weight) {
  * #attribute# (one of 'agility', 'spirit', etc.).
  */
 PF4SW.skillRules = function(rules, name, attribute, core) {
-  SWADE.skillRules(rules, name, attribute, core, []);
+  SWADE.skillRules(rules, name, ['Medieval'], attribute, core);
   // No changes needed to the rules defined by base method
 };
 
@@ -2427,16 +2441,24 @@ PF4SW.weaponRules = function(
  * item to #rules#.
  */
 PF4SW.choiceEditorElements = function(rules, type) {
-  return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
+  let result;
+  if(type == 'Ancestry') {
+    result = SWADE.choiceEditorElements(rules, 'Race').push([
+      'Languages', 'Languages', 'text', [40]
+    ]);
+  } else {
+    result = SWADE.choiceEditorElements(rules, type);
+  }
+  return result;
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 PF4SW.randomizeOneAttribute = function(attributes, attribute) {
 
-  var attr;
-  var attrs = this.applyRules(attributes);
-  var choices;
-  var howMany;
+  let attr;
+  let attrs = this.applyRules(attributes);
+  let choices;
+  let howMany;
 
   if(attribute == 'ancestry')
     attribute = 'race';
@@ -2447,7 +2469,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'edges') {
     // First, make sure class edge is assigned; otherwise, prerequisite tests
     // for other edges may fail
-    var allEdges = this.getChoices('edges');
+    let allEdges = this.getChoices('edges');
     if(attributes.concept in allEdges) {
       attributes['edges.' + attributes.concept] = 1;
       attrs = this.applyRules(attributes);
@@ -2456,7 +2478,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         attributes['edges.Arcane Background (Cleric)'] ||
         attributes['edges.Arcane Background (Miracles)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Domain/) == 0) {
-      var deityAttrs = this.getChoices('deitys')[attributes.deity];
+      let deityAttrs = this.getChoices('deitys')[attributes.deity];
       if(!deityAttrs || !deityAttrs.includes('Domain')) {
         choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Arcane Background.*Domain/);
       } else {
@@ -2501,7 +2523,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
         choices = choices.filter(x => x != attr);
         attributes['edges.' + attr] = 1;
         attrs = this.applyRules(attributes);
-        var name = attr.charAt(0).toLowerCase() +
+        let name = attr.charAt(0).toLowerCase() +
                    attr.substring(1).replaceAll(' ', '');
         if(attrs['validationNotes.' + name + 'Edge'] ||
            attrs['sanityNotes.' + name + 'Edge'])
@@ -2542,7 +2564,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
 
 /* Returns an array of plugins upon which this one depends. */
 PF4SW.getPlugins = function() {
-  var result = [SWADE].concat(SWADE.getPlugins());
+  let result = [SWADE].concat(SWADE.getPlugins());
   return result;
 };
 
