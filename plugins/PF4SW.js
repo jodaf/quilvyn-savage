@@ -68,7 +68,7 @@ function PF4SW(baseRules) {
     (rules, PF4SW.EDGES, PF4SW.FEATURES, PF4SW.GOODIES,
      PF4SW.HINDRANCES, PF4SW.SKILLS, PF4SW.LANGUAGES);
   PF4SW.identityRules
-    (rules, PF4SW.ANCESTRIES, PF4SW.CONCEPTS, PF4SW.DEITIES, PF4SW.ALIGNMENTS);
+    (rules, PF4SW.ANCESTRYS, PF4SW.CONCEPTS, PF4SW.DEITYS, PF4SW.ALIGNMENTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -78,10 +78,10 @@ function PF4SW(baseRules) {
 // the rule book, but under the hood we use 'race' for the character attribute
 // so that we can easily reuse SWADE rules.
 PF4SW.CHOICES =
-  SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x).concat('Alignment');
+  SWADE.CHOICES.filter(x => !['Era', 'Race'].includes(x)).concat('Ancestry', 'Deity', 'Language');
 // Put deity before edges so that we can randomize domain edge properly
 PF4SW.RANDOMIZABLE_ATTRIBUTES =
-  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'deity').map(x => x == 'race' ? 'ancestry' : x), 'languages', 'alignment');
+  ['deity'].concat(SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'era').map(x => x == 'race' ? 'ancestry' : x), 'languages');
 
 PF4SW.VERSION = '2.4.1.0';
 
@@ -90,7 +90,7 @@ PF4SW.ALIGNMENTS = {
   'Neutral':'',
   'Evil':''
 };
-PF4SW.ANCESTRIES = {
+PF4SW.ANCESTRYS = {
   'Dwarf':
     'Features=' +
       'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Stout,Tough '+
@@ -370,7 +370,7 @@ delete PF4SW.CONCEPTS.Gifted;
 delete PF4SW.CONCEPTS['Martial Artist'];
 delete PF4SW.CONCEPTS.Psionicist;
 delete PF4SW.CONCEPTS['Weird Scientist'];
-PF4SW.DEITIES = {
+PF4SW.DEITYS = {
   'Abadar':'Alignment=Neutral Domain=Earth,Nobility,Protection,Travel',
   'Asmodeus':'Alignment=Evil Domain=Evil,Fire,Magic,Trickery',
   'Calistria':'Alignment=Neutral Domain=Knowledge,Luck,Trickery',
@@ -1792,9 +1792,11 @@ PF4SW.talentRules = function(
  * related to selecting that choice.
  */
 PF4SW.choiceRules = function(rules, type, name, attrs) {
+  if(type == 'Race')
+    type = 'Ancestry';
   if(type == 'Alignment')
     PF4SW.alignmentRules(rules, name);
-  else if(type == 'Ancestry' || type == 'Race') {
+  else if(type == 'Ancestry') {
     PF4SW.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
@@ -2391,6 +2393,10 @@ PF4SW.hindranceRulesExtra = function(rules, name) {
 
 /* Defines in #rules# the rules associated with language #name#. */
 PF4SW.languageRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty language name');
+    return;
+  }
   // No rules pertain to language
 };
 
@@ -2460,9 +2466,15 @@ PF4SW.weaponRules = function(
 PF4SW.choiceEditorElements = function(rules, type) {
   let result;
   if(type == 'Ancestry') {
-    result = SWADE.choiceEditorElements(rules, 'Race').push([
-      'Languages', 'Languages', 'text', [40]
-    ]);
+    result = SWADE.choiceEditorElements(rules, 'Race');
+    result.push(['Languages', 'Languages', 'text', [40]]);
+  } else if(type == 'Deity') {
+    result = [
+      ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
+      ['Domain', 'Domains', 'text', [40]]
+    ];
+  } else if(type == 'Langauge') {
+    result = [];
   } else {
     result = SWADE.choiceEditorElements(rules, type);
   }
@@ -2599,6 +2611,9 @@ PF4SW.ruleNotes = function() {
     '    feature changes the linked attribute for the Survival skill from\n' +
     '    Smarts to Spirit). Quilvyn uses the new attribute when calculating\n' +
     '    the skill rank.\n' +
+    '  </li><li>\n' +
+    '  Discussion of adding different types of homebrew options to the' +
+    '  PF4SW rule set can be found in <a href="plugins/homebrew-pf4sw.html">PF4SW Homebrew Examples</a>.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +

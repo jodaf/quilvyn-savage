@@ -80,9 +80,9 @@ SWADEFC.VERSION = '2.4.1.0';
 // the rule book, but under the hood we use 'race' for the character attribute
 // so that we can easily reuse SWADE rules.
 SWADEFC.CHOICES =
-  SWADE.CHOICES.map(x => x == 'Race' ? 'Ancestry' : x);
+  SWADE.CHOICES.filter(x => !['Era', 'Race'].includes(x)).concat('Ancestry');
 SWADEFC.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.map(x => x == 'race' ? 'ancestry' : x);
+  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'era').map(x => x == 'race' ? 'ancestry' : x);
 
 SWADEFC.ANCESTRIES = {
   'Aquarian':SWADE.RACES.Aquarian,
@@ -1888,7 +1888,9 @@ SWADEFC.talentRules = function(
  * related to selecting that choice.
  */
 SWADEFC.choiceRules = function(rules, type, name, attrs) {
-  if(type == 'Ancestry' || type == 'Race') {
+  if(type == 'Race')
+    type = 'Ancestry';
+  if(type == 'Ancestry') {
     SWADEFC.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features')
@@ -2496,6 +2498,11 @@ SWADEFC.ruleNotes = function() {
     "  Piloting are not meaningful in a fantasy setting, and so doesn't " +
     '  include them in the SWADEFC list of skills. You can add any of these ' +
     '  as homebrew choices if they are appropriate to your game.\n' +
+    '  </li><li>\n' +
+    '  The SWADEFC plugin supports all the same homebrew choices as the SWADE' +
+    '  plugin, the one difference being that SWADE Races are called ' +
+    '  Ancestries in SWADEFC. See the <a href="plugins/homebrew-swade.html">' +
+    '  SWADE Homebrew documentation</a> for details.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
