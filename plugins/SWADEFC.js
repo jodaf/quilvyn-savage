@@ -23,7 +23,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*
  * This module loads the rules from the Savage Worlds Adventure Edition Fantasy
  * Companion. The SWADEFC function contains methods that load rules for
- * particular parts of the rules: ancestryRules for character races,
+ * particular parts of the rules: ancestryRules for character ancestries,
  * arcaneRules for powers, etc. These member methods can be called
  * independently in order to use a subset of the SWADEFC rules. Similarly, the
  * constant fields of SWADE (SKILLS, EDGES, etc.) can be manipulated to modify
@@ -57,7 +57,7 @@ function SWADEFC(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Ancestry,select-one,races', 'advances:Advances,text,4',
+    'ancestry:Ancestry,select-one,ancestrys', 'advances:Advances,text,4',
     'concepts:Concepts,set,concepts'
   );
 
@@ -68,7 +68,7 @@ function SWADEFC(baseRules) {
   SWADEFC.talentRules
     (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
      SWADEFC.HINDRANCES, SWADEFC.SKILLS);
-  SWADEFC.identityRules(rules, SWADEFC.ANCESTRIES, SWADEFC.CONCEPTS);
+  SWADEFC.identityRules(rules, SWADEFC.ANCESTRYS, SWADEFC.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -76,15 +76,12 @@ function SWADEFC(baseRules) {
 
 SWADEFC.VERSION = '2.4.1.0';
 
-// Throughout the plugin we take steps to show 'Ancestry' to the user to match
-// the rule book, but under the hood we use 'race' for the character attribute
-// so that we can easily reuse SWADE rules.
 SWADEFC.CHOICES =
   SWADE.CHOICES.filter(x => !['Era', 'Race'].includes(x)).concat('Ancestry');
 SWADEFC.RANDOMIZABLE_ATTRIBUTES =
   SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'era').map(x => x == 'race' ? 'ancestry' : x);
 
-SWADEFC.ANCESTRIES = {
+SWADEFC.ANCESTRYS = {
   'Aquarian':SWADE.RACES.Aquarian,
   'Avion':SWADE.RACES.Avion,
   'Celestial':
@@ -1867,11 +1864,11 @@ SWADEFC.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEFC.identityRules = function(rules, races, concepts) {
-  SWADE.identityRules(rules, races, {}, concepts);
+SWADEFC.identityRules = function(rules, ancestrys, concepts) {
+  SWADE.identityRules(rules, ancestrys, {}, concepts);
   rules.defineEditorElement('race');
   rules.defineEditorElement
-    ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
+    ('ancestry', 'Ancestry', 'select-one', 'ancestrys', 'imageUrl');
 };
 
 /* Defines rules related to character aptitudes. */
@@ -1988,7 +1985,7 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
  */
 SWADEFC.ancestryRules = function(rules, name, requires, features) {
   SWADE.raceRules(rules, name, requires, features);
-  rules.defineRule('ancestry', 'race', '=', null);
+  rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
   rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
 };
 
@@ -2010,7 +2007,7 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
       (rules, 'validation', 'Elemental Scion', 'features.Elemental Scion',
        ['features.Air Scion || features.Earth Scion || features.Fire Scion || features.Water Scion']);
     rules.defineRule('features.Elemental Scion',
-      'race', '=', 'source=="Elemental Scion" ? 1 : null'
+      'ancestry', '=', 'source=="Elemental Scion" ? 1 : null'
     );
     rules.defineRule('features.Aquatic', 'featureNotes.waterScion', '=', null);
     rules.defineRule('features.Environmental Resistance (Air)',
