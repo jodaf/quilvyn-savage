@@ -28,7 +28,7 @@ lines to the file plugins/plugins.js:
       url:'plugins/SWADE.js',
       group:'Savage Worlds'
     };
-    RULESETS["Savage Worlds Adventurer's Edition Fantasy Companion"] = {
+    RULESETS["SWADE Fantasy Companion"] = {
       url:'plugins/SWADEFC.js',
       group:'Savage Worlds',
       require:'SWADE.js'
