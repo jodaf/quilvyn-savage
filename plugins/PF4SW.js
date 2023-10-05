@@ -56,7 +56,7 @@ function PF4SW(baseRules) {
     'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
   );
   rules.defineChoice('preset',
-    'race:Ancestry,select-one,ancestrys', 'advances:Advances,text,4',
+    'ancestry:Ancestry,select-one,ancestrys', 'advances:Advances,text,4',
     'concepts:Concepts,set,concepts'
   );
 
@@ -74,9 +74,6 @@ function PF4SW(baseRules) {
 
 }
 
-// Throughout the plugin we take steps to show 'Ancestry' to the user to match
-// the rule book, but under the hood we use 'race' for the character attribute
-// so that we can easily reuse SWADE rules.
 PF4SW.CHOICES =
   SWADE.CHOICES.filter(x => !['Era', 'Race'].includes(x)).concat('Ancestry', 'Deity', 'Language');
 // Put deity before edges so that we can randomize domain edge properly
@@ -1165,9 +1162,9 @@ PF4SW.FEATURES_ADDED = {
     'Section=feature,skill ' +
     'Note=' +
       '"Strangers are unfriendly or hostile",' +
-      '"-2 Persuasion (other races)"',
+      '"-2 Persuasion (other ancestries)"',
   'Timid+':SWADE.FEATURES['Yellow+'],
-  // Races
+  // Ancestries
   'Adaptability':
     'Section=attribute,feature ' +
     'Note=' +
@@ -1752,7 +1749,7 @@ PF4SW.identityRules = function(
 
   rules.defineEditorElement('race');
   rules.defineEditorElement
-    ('race', 'Ancestry', 'select-one', 'races', 'imageUrl');
+    ('ancestry', 'Ancestry', 'select-one', 'ancestrys', 'imageUrl');
   rules.defineEditorElement
     ('alignment', 'Alignment', 'select-one', 'alignments', 'origin');
   rules.defineEditorElement
@@ -1912,6 +1909,7 @@ PF4SW.alignmentRules = function(rules, name) {
  */
 PF4SW.ancestryRules = function(rules, name, requires, features, languages) {
   SWADE.raceRules(rules, name, requires, features);
+  rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   let raceAdvances = prefix + 'Advances';
@@ -2488,9 +2486,6 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
   let attrs = this.applyRules(attributes);
   let choices;
   let howMany;
-
-  if(attribute == 'ancestry')
-    attribute = 'race';
 
   if(attribute == 'alignment') {
     choices = QuilvynUtils.getKeys(this.getChoices('alignments'));
