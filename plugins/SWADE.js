@@ -2619,7 +2619,7 @@ SWADE.featureRules = function(rules, name, sections, notes) {
     let section = sections[i].toLowerCase();
     let effects = notes[i];
     let maxSubnote =
-      effects.includes('%1') ? +effects.match(/%\d/g).sort().pop().replace('%') :
+      effects.includes('%1') ? +effects.match(/%\d/g).sort().pop().replace('%'):
       effects.includes('%V') ? 0 : -1;
     let note = section + 'Notes.' + prefix;
     let priorInSection = sections.slice(0, i).filter(x => x == section).length;
@@ -2655,13 +2655,15 @@ SWADE.featureRules = function(rules, name, sections, notes) {
           let sn = ++maxSubnote;
           let target = sn>0 ? note + '.' + sn : note;
           rules.defineRule(target, 'features.' + name, '?', null);
-          ids.forEach(id => {
-            if(expression.trim() == id)
-              rules.defineRule(target, id, '=', null);
-            else
-              rules.defineRule
-                (target, id, '=', 'new Expr("' + expression + '").eval(dict)');
-          });
+          if(ids.length == 1 && expression.trim() == ids[0]) {
+            rules.defineRule(target, ids[0], '=', null);
+          } else {
+            // Add a rule to evaluate the expression, and a no-op rule to
+            // express the dependency on each id.
+            rules.defineRule
+              (target, '', '=', 'new Expr("' + expression + '").eval(dict)');
+            ids.forEach(id => {rules.defineRule(target, id, '=', 'null');});
+          }
           adjust = '%' + (sn==0 ? 'V' : sn);
           if(sn == 0)
             // Override '=' feature dependency rule created above
