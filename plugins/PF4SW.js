@@ -2564,12 +2564,12 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       else
         choices.push(l);
     }
-    let allRaces = this.getChoices('races');
-    let racialLanguages = [];
-    if(allRaces && attrs.race && allRaces[attrs.race])
-      racialLanguages =
-        QuilvynUtils.getAttrValueArray(allRaces[attrs.race], 'Languages');
-    racialLanguages.forEach(l => {
+    let allAncestrys = this.getChoices('ancestrys');
+    let ancestralLanguages = [];
+    if(allAncestrys && attrs.ancestry && allAncestrys[attrs.ancestry])
+      ancestralLanguages =
+        QuilvynUtils.getAttrValueArray(allAncestrys[attrs.ancestry],'Languages');
+    ancestralLanguages.forEach(l => {
       if(howMany > 0 && choices.includes(l)) {
         attributes['languages.' + l] = 1;
         howMany--;
