@@ -583,11 +583,10 @@ SWD.FEATURES = {
   'Obese':'Section=combat Note="-1 Pace/-1 Run Step/+1 Toughness"',
   'One Arm+':SWADE.FEATURES['One Arm+'],
   'One Eye+':
-    'Section=feature,skill,skill ' +
+    'Section=skill,skill ' +
     'Note=' +
-      '"-1 Charisma unless missing eye is covered",' +
       '"-2 Shooting/-2 Throwing",' +
-      '"-2 tasks requiring depth perception"',
+      '"-2 tasks requiring depth perception/-1 Charisma unless missing eye is covered"',
   'One Leg+':
     'Section=combat,combat,skill ' +
     'Note=' +
