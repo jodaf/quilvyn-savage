@@ -69,7 +69,7 @@ function SWADE() {
 
 SWADE.VERSION = '2.4.1.0';
 
-/* List of items handled by choiceRules method. */
+/* List of choices that can be expanded by house rules. */
 SWADE.CHOICES = [
   'Arcana', 'Armor', 'Concept', 'Edge', 'Era', 'Feature', 'Hindrance',
   'Power', 'Race', 'Shield', 'Skill', 'Weapon'
@@ -1456,7 +1456,8 @@ SWADE.POWERS = {
       '"+10 PP Restores older Wound",' +
       '"+20 PP Heals crippling injury",' +
       '"+1 PP Neutralizes poison or disease" ' +
-    'Description="Target recovers from 1 Wound (Raise 2) suffered in past hr"',
+    'Description=' +
+      '"Target recovers from 1 Wound (Raise 2) suffered in the past hr"',
   'Illusion':
     'Advances=0 ' +
     'PowerPoints=3 ' +
@@ -1640,7 +1641,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Target moves at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
+      '"Target may move at half Pace (Raise full Pace) on vertical and inverted surfaces for 5 rd"',
   "Warrior's Gift":
     'Advances=4 ' +
     'PowerPoints=4 ' +
