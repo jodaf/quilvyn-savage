@@ -1777,7 +1777,7 @@ PF4SW.talentRules = function(
   rules.defineRule
     ('languageCount', 'smarts', '=', '1 + Math.floor(source / 2)');
   rules.defineEditorElement
-    ('languages', 'Languages', 'set', 'languages', 'deity');
+    ('languages', 'Languages', 'set', 'languages', 'origin');
   rules.defineSheetElement('Languages', 'Skills+', null, '; ');
   QuilvynRules.validAllocationRules
     (rules, 'language', 'languageCount', 'Sum "^languages\\."');
@@ -1910,12 +1910,6 @@ PF4SW.alignmentRules = function(rules, name) {
 PF4SW.ancestryRules = function(rules, name, requires, features, languages) {
   SWADE.raceRules(rules, name, requires, features);
   rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
-  let prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-  let raceAdvances = prefix + 'Advances';
-  languages.forEach(x => {
-    rules.defineRule('languages.' + x, raceAdvances, '=', '1');
-  });
 };
 
 /*
@@ -2563,14 +2557,25 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       attributes['hindrances.Vow'] = 1;
   } else if(attribute == 'languages') {
     howMany = attrs.languageCount || 1;
-    choices = QuilvynUtils.getKeys(this.getChoices('languages'));
-    for(attr in attrs) {
-      if(attr.startsWith('languages.')) {
-        attr = attr.replace('languages.', '');
-        choices = choices.filter(x => x != attr);
+    choices = [];
+    for(let l in this.getChoices('languages')) {
+      if('languages.' + l in attrs)
         howMany--;
-      }
+      else
+        choices.push(l);
     }
+    let allRaces = this.getChoices('races');
+    let racialLanguages = [];
+    if(allRaces && attrs.race && allRaces[attrs.race])
+      racialLanguages =
+        QuilvynUtils.getAttrValueArray(allRaces[attrs.race], 'Languages');
+    racialLanguages.forEach(l => {
+      if(howMany > 0 && choices.includes(l)) {
+        attributes['languages.' + l] = 1;
+        howMany--;
+        choices = choices.filter(x => x != l);
+      }
+    });
     while(howMany > 0 && choices.length > 0) {
       attr = choices[QuilvynUtils.random(0, choices.length - 1)];
       attributes['languages.' + attr] = 1;
