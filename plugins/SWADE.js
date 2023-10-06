@@ -2498,7 +2498,8 @@ SWADE.edgeRules = function(rules, name, requires, implies, types) {
       (rules, 'sanity', prefix + 'Edge', 'edges.' + name, implies);
   rules.defineRule('features.' + name, 'edges.' + name, '=', null);
   for(let i = 0; i < types.length; i++) {
-    rules.defineRule(types[i] + 'EdgeCount', 'features.' + name, '+=', '1');
+    rules.defineRule
+      (types[i].toLowerCase() + 'EdgeCount', 'features.' + name, '+=', '1');
   }
 
 };
