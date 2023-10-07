@@ -85,84 +85,84 @@ SWADEFC.ANCESTRYS = {
   'Aquarian':SWADE.RACES.Aquarian,
   'Avion':SWADE.RACES.Avion,
   'Celestial':
-    'Features=' +
+    'Abilities=' +
       'Flight,Attractive,"Code Of Honor+",Vow+',
   'Centaur':
-    'Features=' +
+    'Abilities=' +
       'Dependency,Hooves,"Size +1","Pace +4","Unusual Form"',
   'Dragonfolk':
-    'Features=' +
+    'Abilities=' +
       '"Armor +2",Bite,Claws,"Breath Weapon",Cold-Blooded,' +
       '"Environmental Resistance (Heat)","Environmental Weakness (Cold)",' +
       'Ill-Tempered',
   'Dwarf':SWADE.RACES.Dwarf,
   'Elemental Scion':
-    'Features=' +
+    'Abilities=' +
       '"Elemental Connection",Outsider',
   'Elf':SWADE.RACES.Elf,
   'Fairy':
-    'Features=' +
+    'Abilities=' +
       '"All Thumbs","Big Mouth",Curious+,Flight,Impulsive+,"Diminutive (Tiny)"',
   'Gnome':
-    'Features=' +
+    'Abilities=' +
       'Cunning,"Low Light Vision","Keen Senses","Size -1","Reduced Pace"',
   'Goblin':
-    'Features=' +
+    'Abilities=' +
       '"Infravision (Goblin)",Mean,Short,Sneaky,Survivors',
   'Golem':
-    'Features=' +
+    'Abilities=' +
       '"Armor +2",Big,Clueless+,Clumsy+,Construct,"No Vital Organs",' +
       '"Reduced Core Skills","Reduced Pace","Size +2"',
   'Graveborn':
-    'Features=' +
+    'Abilities=' +
       '"Animal Aversion",Bite,"Blood Drinker","Low Light Vision",Outsider+,' +
       '"Sunlight Sensitivity","Unnatural Strength","Cold Resistance"',
   'Half-Elf':SWADE.RACES['Half-Elf'],
   'Half-Folk':SWADE.RACES['Half-Folk'],
   'Half-Giant':
-    'Features=' +
+    'Abilities=' +
       'Big,Boneheaded,Clueless+,Illiterate,Outsider+,"Size +3","Very Strong",' +
       '"Very Tough"',
   'Half-Orc':
-    'Features=' +
+    'Abilities=' +
       'Infravision,Outsider,Hardened',
   'Human':SWADE.RACES.Human,
   'Infernal':
-    'Features=' +
+    'Abilities=' +
       'Darkvision,"Devilish Nature","Environmental Resistance (Heat)",' +
       '"Environmental Weakness (Cold)",Horns,Outsider',
   'Insectoid':
-    'Features=' +
+    'Abilities=' +
       '"Additional Actions","Armor +2","Hive Minded","Bite Or Claw",Outsider,' +
       '"Unusual Body Shape","Wall Walker"',
   'Minotaur':
-    'Features=' +
+    'Abilities=' +
       '"Thin Skinned+","Size +1","Very Strong",Horns,Uneducated,Tough,Big,Mean',
   'Mouseling':
-    'Features=' +
+    'Abilities=' +
       '"Diminutive (Tiny)","Low Light Vision",Outsider+,"Phobia (Cats)",' +
       '"Reduced Pace",Unimposing',
   'Ogre':
-    'Features=' +
+    'Abilities=' +
       'Arrogant+,Big,Clueless+,Clumsy+,Outsider,Hardy,"Size +1",' +
       '"Very Strong","Very Tough"',
   'Orc':
-    'Features=' +
+    'Abilities=' +
       'Brutish,Infravision,Outsider+,"Size +1",Strong,Tough',
   'Rakashan':
     SWADE.RACES.Rakashan.replace('Racial', 'Ancestral')
-                        .replace('Features=', 'Features="Claws (Climbing)",'),
+                        .replace('Abilities=', 'Abilities="Claws (Climbing)",'),
   'Ratling':
-    'Features=' +
+    'Abilities=' +
       'Bite,Claws,"Claws (Climbing)","Natural Resistance","Low Light Vision",' +
       'Scavenger,"Size -1",Outsider+,Craven,Greedy',
   'Saurian':SWADE.RACES.Saurian,
   'Serpentfolk':
-    'Features=' +
+    'Abilities=' +
       'Bite,Cold-Blooded,"Environmental Weakness (Cold)",Infravision,' +
       '"Pace (Serpentfolk)","Venomous Bite",Outsider',
   'Shapeshifter':
-    'Features=' +
+    'Abilities=' +
       'Charismatic,"Change Shape",Secret+'
 };
 SWADEFC.ARCANAS = {
@@ -1890,7 +1890,7 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Ancestry') {
     SWADEFC.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
+      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
     );
     SWADEFC.ancestryRulesExtra(rules, name);
   } else if(type == 'Arcana')
@@ -1981,10 +1981,10 @@ SWADEFC.choiceRules = function(rules, type, name, attrs) {
 
 /*
  * Defines in #rules# the rules associated with ancestry #name#, which has the
- * list of hard prerequisites #requires#. #features# list associated features.
+ * list of hard prerequisites #requires#. #abilities# list associated abilities.
  */
-SWADEFC.ancestryRules = function(rules, name, requires, features) {
-  SWADE.raceRules(rules, name, requires, features);
+SWADEFC.ancestryRules = function(rules, name, requires, abilities) {
+  SWADE.raceRules(rules, name, requires, abilities);
   rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
   rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
 };

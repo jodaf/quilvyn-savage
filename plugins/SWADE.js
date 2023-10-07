@@ -1664,35 +1664,35 @@ SWADE.POWERS = {
 };
 SWADE.RACES = {
   'Android':
-    'Features=' +
+    'Abilities=' +
       'Construct,"Outsider+","Pacifist+","Vow+"',
   'Aquarian':
-    'Features=' +
+    'Abilities=' +
       'Aquatic,Dependency,"Low Light Vision",Toughness',
   'Avion':
-    'Features=' +
+    'Abilities=' +
       '"Can\'t Swim",Flight,Frail,"Keen Senses","Reduced Pace"',
   'Dwarf':
-    'Features=' +
+    'Abilities=' +
       '"Low Light Vision","Reduced Pace",Tough',
   'Elf':
-    'Features=' +
+    'Abilities=' +
       'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
-    'Features=' +
+    'Abilities=' +
       'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
-    'Features=' +
+    'Abilities=' +
       '"Luck (Half-Folk)","Reduced Pace","Size -1",Spirited',
   'Human':
-    'Features=' +
+    'Abilities=' +
       'Adaptable',
   'Rakashan':
-    'Features=' +
+    'Abilities=' +
       'Agile,Bite,Claws,Bloodthirsty+,"Can\'t Swim","Low Light Vision",' +
       '"Racial Enemy"',
   'Saurian':
-    'Features=' +
+    'Abilities=' +
       '"Armor +2",Bite,"Environmental Weakness (Cold)",' +
       '"Keen Senses (Saurian)",Outsider'
 };
@@ -2113,7 +2113,7 @@ SWADE.identityRules = function(rules, races, eras, concepts) {
 
   QuilvynUtils.checkAttrTable(concepts, ['Attribute', 'Edge', 'Skill']);
   QuilvynUtils.checkAttrTable(eras, []);
-  QuilvynUtils.checkAttrTable(races, ['Requires', 'Features']);
+  QuilvynUtils.checkAttrTable(races, ['Requires', 'Abilities']);
 
   for(let concept in concepts) {
     rules.choiceRules(rules, 'Concept', concept, concepts[concept]);
@@ -2275,7 +2275,7 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
+      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
     );
     SWADE.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
@@ -2343,11 +2343,11 @@ SWADE.removeChoice = function(rules, type, name) {
         );
       });
     } else if(type == 'Race') {
-      let features = QuilvynUtils.getAttrValueArray(currentAttrs, 'Features');
+      let abilities = QuilvynUtils.getAttrValueArray(currentAttrs, 'Abilities');
       let prefix =
         name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
       let raceAdvances = prefix + 'Level';
-      features.forEach(f => {
+      abilities.forEach(f => {
         rules.defineRule(prefix + 'Features.' + f, raceAdvances, '=', 'null');
       });
     }
@@ -2839,9 +2839,9 @@ SWADE.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# lists associated features.
+ * of hard prerequisites #requires#. #abilities# lists associated abilities.
  */
-SWADE.raceRules = function(rules, name, requires, features) {
+SWADE.raceRules = function(rules, name, requires, abilities) {
 
   if(!name) {
     console.log('Empty race name');
@@ -2851,8 +2851,8 @@ SWADE.raceRules = function(rules, name, requires, features) {
     console.log('Bad requires list "' + requires + '" for race ' + name);
     return;
   }
-  if(!Array.isArray(features)) {
-    console.log('Bad features list "' + features + '" for race ' + name);
+  if(!Array.isArray(abilities)) {
+    console.log('Bad abilities list "' + abilities + '" for race ' + name);
     return;
   }
 
@@ -2869,8 +2869,11 @@ SWADE.raceRules = function(rules, name, requires, features) {
     QuilvynRules.prerequisiteRules
       (rules, 'validation', prefix + 'Race', raceAdvances, requires);
 
-  SWADE.featureListRules(rules, features, name, raceAdvances, false);
-  rules.defineSheetElement(name + ' Features', 'Hindrances+', null, '; ');
+  SWADE.featureListRules(rules, abilities, name, raceAdvances, false);
+  rules.defineSheetElement(
+    name + ' Features', 'Hindrances+',
+    '<b>' + name + ' Abilities</b>: %V', '; '
+  );
   rules.defineChoice('extras', prefix + 'Features');
 
 };
@@ -3451,7 +3454,7 @@ SWADE.choiceEditorElements = function(rules, type) {
   } else if(type == 'Race')
     result.push(
       ['Require', 'Prerequisite', 'text', [40]],
-      ['Features', 'Features', 'text', [60]]
+      ['Abilities', 'Abilities', 'text', [60]]
     );
   else if(type == 'Shield')
     result.push(
@@ -3468,8 +3471,11 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['Core', 'Core', 'checkbox', ['']]
     );
   else if(type == 'Weapon') {
-    let zeroToOneFifty =
-     [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+    let oneToFifty =
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+       11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+       21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+       35, 40, 45, 50];
     result.push(
       ['Era', 'Era', 'text', [30]],
       ['Category', 'Category', 'select-one', ['Unarmed', 'One-Handed', 'Two-Handed', 'Ranged']],
@@ -3477,7 +3483,7 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['MinStr', 'Min Strength', 'select-one', dieTypes],
       ['Weight', 'Weight', 'text', [2]],
       ['AP', 'Armor Piercing', 'select-one', zeroToTen],
-      ['Range', 'Range in Yards', 'select-one', zeroToOneFifty],
+      ['Range', 'Range (")', 'select-one', oneToFifty],
       ['ROF', 'Rate of Fire', 'select-one', zeroToTen],
       ['Parry', 'Parry', 'text', [2]]
     );

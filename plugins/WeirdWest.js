@@ -1164,7 +1164,7 @@ WeirdWest.POWERS_ADDED = {
 WeirdWest.POWERS = Object.assign({}, SWADE.POWERS, WeirdWest.POWERS_ADDED);
 WeirdWest.RACES = {
   'Human':
-    'Features=' +
+    'Abilities=' +
       'Adaptable'
 };
 WeirdWest.SHIELDS = {
@@ -1405,8 +1405,7 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Race')
     WeirdWest.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
     );
   else if(type == 'Shield')
     WeirdWest.shieldRules(rules, name,
@@ -1641,11 +1640,10 @@ WeirdWest.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# list associated features and
- * #languages# any automatic languages.
+ * of hard prerequisites #requires#. #abilities# lists associated abilities.
  */
-WeirdWest.raceRules = function(rules, name, requires, features, languages) {
-  SWADE.raceRules(rules, name, requires, features, languages);
+WeirdWest.raceRules = function(rules, name, requires, abilities) {
+  SWADE.raceRules(rules, name, requires, abilities);
   // No changes needed to the rules defined by base method
 };
 

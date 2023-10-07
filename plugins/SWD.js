@@ -885,37 +885,37 @@ for(var power in SWADE.POWERS) {
 }
 SWD.RACES = {
   'Android':
-    'Features=' +
+    'Abilities=' +
       '"Asimov Circuits",Construct,Outsider,Programming,Recharge,Unnatural',
   'Atlantean':
-    'Features=' +
+    'Abilities=' +
       '"Advanced Civilization",Aquatic,"Atlantean Tough",Dehydration',
   'Avion':
-    'Features=' +
+    'Abilities=' +
       'Flight,"Hollow-Boned","Mostly Human"',
   'Dwarf':
-    'Features=' +
+    'Abilities=' +
       '"Low Light Vision",Slow,Tough',
   'Elf':
-    'Features=' +
+    'Abilities=' +
       'Agile,"All Thumbs","Low Light Vision"',
   'Half-Elf':
-    'Features=' +
+    'Abilities=' +
       'Heritage,"Low Light Vision",Outsider',
   'Half-Folk':
-    'Features=' +
+    'Abilities=' +
       'Fortunate,Short,Spirited',
   'Half-Orc':
-    'Features=' +
+    'Abilities=' +
       'Infravision,Outsider,Strong',
   'Human':
-    'Features=' +
+    'Abilities=' +
       'Adaptable',
   'Rakashan':
-    'Features=' +
+    'Abilities=' +
       'Agile,Bloodthirsty+,Claws,"Low Light Vision","Racial Enemy"',
   'Saurian':
-    'Features=' +
+    'Abilities=' +
       '"Natural Weapons",Outsider,"Saurian Senses","Warm Natured"',
 };
 SWD.SHIELDS = {
@@ -1219,7 +1219,7 @@ SWD.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Race') {
     SWD.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
+      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
     );
     SWD.raceRulesExtra(rules, name);
   } else if(type == 'Shield')
@@ -1403,10 +1403,10 @@ SWD.powerRules = function(
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
- * of hard prerequisites #requires#. #features# list associated features.
+ * of hard prerequisites #requires#. #abilities# list associated abilities.
  */
-SWD.raceRules = function(rules, name, requires, features) {
-  SWADE.raceRules(rules, name, requires, features);
+SWD.raceRules = function(rules, name, requires, abilities) {
+  SWADE.raceRules(rules, name, requires, abilities);
   // No changes needed to the rules defined by base method
 };
 

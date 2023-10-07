@@ -89,33 +89,33 @@ PF4SW.ALIGNMENTS = {
 };
 PF4SW.ANCESTRYS = {
   'Dwarf':
-    'Features=' +
+    'Abilities=' +
       'Darkvision,"Iron Constitution","Reduced Pace",Stonecunning,Stout,Tough '+
     'Languages=Common,Dwarven',
   'Elf':
-    'Features=' +
+    'Abilities=' +
       'Agile,"Elven Magic",Intelligence,"Keen Senses","Low Light Vision",' +
       'Slender ' +
     'Languages=Common,Elven',
   'Gnome':
-    'Features=' +
+    'Abilities=' +
       '"Gnome Magic","Keen Senses","Low Light Vision",Obsessive,' +
       '"Reduced Pace","Size -1",Tough ' +
     'Languages=Common,Gnome,Sylvan',
   'Half-Elf':
-    'Features=' +
+    'Abilities=' +
       '"Elven Magic",Flexibility,"Low Light Vision" ' +
     'Languages=Common,Elven',
   'Half-Orc':
-    'Features=' +
+    'Abilities=' +
       'Darkvision,Intimidating,"Orc Ferocity",Outsider,Strong ' +
     'Languages=Common,Orc',
   'Halfling':
-    'Features=' +
+    'Abilities=' +
       'Agile,"Keen Senses",Lucky,"Reduced Pace","Size -1",Sure-Footed ' +
     'Languages=Common,Halfling',
   'Human':
-    'Features=' +
+    'Abilities=' +
       'Adaptability ' +
     'Languages=Common'
 };
@@ -1733,7 +1733,7 @@ PF4SW.identityRules = function(
 
   QuilvynUtils.checkAttrTable(alignments, []);
   QuilvynUtils.checkAttrTable
-    (ancestries, ['Requires', 'Features', 'Languages']);
+    (ancestries, ['Requires', 'Abilities', 'Languages']);
   QuilvynUtils.checkAttrTable(deitys, ['Alignment', 'Domain']);
   SWADE.identityRules(rules, {}, {}, concepts);
 
@@ -1796,7 +1796,7 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Ancestry') {
     PF4SW.ancestryRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Abilities'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
     PF4SW.ancestryRulesExtra(rules, name);
@@ -1904,11 +1904,11 @@ PF4SW.alignmentRules = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with ancestry #name#, which has the
- * list of hard prerequisites #requires#. #features# list associated features
- * and * #languages# any automatic languages.
+ * list of hard prerequisites #requires#. #abilities# list associated Abilities
+ * and #languages# any automatic languages.
  */
-PF4SW.ancestryRules = function(rules, name, requires, features, languages) {
-  SWADE.raceRules(rules, name, requires, features);
+PF4SW.ancestryRules = function(rules, name, requires, abilities, languages) {
+  SWADE.raceRules(rules, name, requires, abilities);
   rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
 };
 
