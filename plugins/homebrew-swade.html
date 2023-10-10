@@ -179,7 +179,7 @@ character stats; see the discussion of
 </p><p>
 The example shows the entry for a feature named Glib with a note that appears
 in the skill section of the character sheet. It adds 1 to the character's
-Performance and Persuasion skills.
+Performance and Persuasion skill modifiers.
 </p>
 </td></tr>
 
@@ -406,7 +406,7 @@ Glib feature reads:
 <code>+1 Performance/+1 Persuasion</code>
 </p><p>
 As shown here, notes in the skill section can affect skill modifiers by
-referencing the skill name directly; the skills. prefix is not necessary.
+referencing the skill name directly; the skillModifier. prefix is not necessary.
 </p>
 
 <h2>Embedding stats in features notes and power descriptions and modifiers</h2>
@@ -420,8 +420,8 @@ racial ability gives the character a swim speed equal to their pace; and the
 each round a number of squares equal to their arcane skill.
 </p><p>
 You can embed references to character stats in the text of feature notes
-and power definitions by enclosing them within the characters %{}. Using this
-ability, the modifier for the <i>Light/Darkness</i> power reads:
+and power descriptions and modifiers by enclosing them within the characters
+%{}. Using this ability, the modifier for the <i>Light/Darkness</i> power reads:
 </p><p>
 <code>+1 PP Attaches to object or moves effect %{arcaneSkill}"/rd</code>
 </p><p>
@@ -445,7 +445,7 @@ italics.
 </p><p>
 Recall, however, that we want to add <i>half</i> of the character's smarts
 value to their parry value, replacing the half of their fighting skill value
-that is normally added. Beyond simple stat references, Quilvyn supports
+that is already added. Beyond simple stat references, Quilvyn supports
 performing calculations within embedded references. Using this feature, we can
 update the definition of the Alert Dodger feature to its final form:
 </p>
@@ -464,13 +464,13 @@ of their two operands, respectively. Using these operators, we can define the
 note for the Tactician feature as follows:
 </p>
 
-<code>R%{commandRange}\\" May distribute %{combatNotes.masterTactician?2:1} Action Cards to commanded each rd</code>
+<code>R%{commandRange}" May distribute %{combatNotes.masterTactician?2:1} Action Cards to commanded each rd</code>
 
 <hr style="width: 100%"/>
 
 <a name="statlist"><h2>Common Character Stats</h2></a>
 The table below lists the character stats that are most likely to be
-useful in entering SWADE homebrew edges, features, and races.
+useful in entering SWADE homebrew choices.
 </p>
 
 <table style="width:100%"><tr style="text-align:left">
