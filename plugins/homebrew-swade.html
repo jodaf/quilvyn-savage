@@ -55,7 +55,7 @@ below show only the beginning portion of longer values entered into text boxes.
   <li><a href="#shield">Shields</a></li>
   <li><a href="#skill">Skills</a></li>
   <li><a href="#weapon">Weapons</a></li>
-  <li><a href="#attrs">Using Character Attributes in Prerequisites and Notes</a></li>
+  <li><a href="#stats">Using Character Stats in Prerequisites and Notes</a></li>
 </ul>
 
 <table width="100%">
@@ -135,8 +135,8 @@ the Ace edge from the SWADE rules is likely to be useless to a character that
 lacks the Boating, Driving, and Piloting skills. Quilvyn will generate a
 validation warning if the Implies requirements are not met. When specified, the
 Prerequisite and Implies fields will normally contain references to character
-attributes; see the discussion of
-<a href="#attrs">using character attributes</a> for how to include these. The
+stats; see the discussion of
+<a href="#stats">using character stats</a> for how to include these. The
 effects of an edge are described separately in a feature with the same name.
 </p><p>
 The example shows the entry for a combat edge named Flail Expert. The
@@ -154,7 +154,7 @@ feature that describes the effect of selecting the Flail Expert edge.
 </td><td>
 <p>
 Adding a homebrew era requires only specifying the name, although you will
-likely want to also add weapons, and perhaps armor and skills, that are
+likely also want to add weapons, and perhaps armor and skills, that are
 particular to that era.
 </p><p>
 The example shows the entry for the Victorian era, which might be useful when
@@ -174,8 +174,8 @@ character sheet (one of arcana, attribute, combat, description, feature, or
 skill) where the note for the feature should appear, then enter the note text.
 You can enter multiple sections and notes, but the number of sections entered
 must equal the number of notes. Feature notes can both reference and modify
-character attributes; see the discussion of
-<a href="#attrs">using character attributes</a> for how to do this.
+character stats; see the discussion of
+<a href="#stats">using character stats</a> for how to do this.
 </p><p>
 The example shows the entry for a feature named Glib with a note that appears
 in the skill section of the character sheet. It adds 1 to the character's
@@ -193,12 +193,14 @@ Performance and Persuasion skills.
 </td><td>
 <p>
 Adding a homebrew hindrance requires only specifying the name and the severity
-(Major or Minor). By convention, Quilvyn adds a plus sign to the end of names
-of major hindrances (so, "One Arm+"), but there's no requirement that you
-follow this with homebrew hindrances. Although none of the hindrances from the
-core rule book have prerequisites that must be met, Quilvyn allows you to add
-them to homebrew hindrances. You could, for example, restrict certain homebrew
-hindrances to characters of a specific race or concept.
+(Major or Minor). For major hindrances from the core rules, Quilvyn includes a
+plus sign at the end of the name to allow for quick identification and to
+distinguish them from minor hindrances with the same name. You may follow this
+convention when entering homebrew hindrances, but Quilvyn doesn't require it.
+Although none of the hindrances from the core rule book have prerequisites that
+must be met, Quilvyn allows you to add them to homebrew hindrances. For
+example, you might want to restrict certain homebrew hindrances to characters
+of a specific race or concept.
 </p><p>
 The example shows the entry for a minor hindrance named Gullible, along with
 the corresponding feature that describes its effects.
@@ -215,7 +217,12 @@ the corresponding feature that describes its effects.
 When adding a homebrew power, Quilvyn displays fields that allow you to enter
 the minimum number of advances (i.e., rank) needed to use the power, the number
 of power points expended when using it, its maximum range, the description of
-its effects, and any power-specific modifiers that can be applied.
+its effects, and any power-specific modifiers that can be applied. Power
+descriptions and modifiers can embed references to character stats; see the
+discussion of <a href=#stats>using character stats</a> for how to include
+these. As a special form of character stat reference, the Range field for a
+power may contain the word "Smarts" (or a calculation, such as Smarts/2), which
+will be replaced on the character sheet with the character's smarts value.
 </p><p>
 The example shows the entry for the a power named <i>Borrow Trait</i>, which is
 available to seasoned characters and costs 2 power points to cast, plus an
@@ -234,8 +241,8 @@ associated with the race. Quilvyn also allows you to specify prerequisites for
 homebrew races; for example, you might want to define a race that has a minimum
 strength requirement.
 </p><p>
-The example shows the entry for the Celestial race, taken from the ancestries
-in the SWADE Fantasy Companion.
+The example shows the entry for the Celestial race, taken from the list of
+ancestries in the SWADE Fantasy Companion.
 </p>
 </td></tr>
 
@@ -247,7 +254,7 @@ in the SWADE Fantasy Companion.
 </td><td>
 <p>
 When adding a homebrew shield, Quilvyn provides fields for entering the
-optional list of eras appropriate for the shield, the Parry and Cover values it
+optional list of eras appropriate for the shield, the parry and cover values it
 provides, the minimum strength required to use it, and its weight.
 </p><p>
 The example shows the entry for a medium steel shield, which provides a greater
@@ -265,7 +272,7 @@ strength to use it.
 When adding a homebrew skill, Quilvyn displays fields for the optional list of
 eras appropriate for the skill and for the skill's linked attribute. You can
 also check the "Core" box to indicate that this homebrew skill is a core skill,
-which means that all characters will automatically have a d4 in the skill.
+which means that all characters will automatically start with a d4 in the skill.
 </p><p>
 The example shows the entry for an Appraise skill, linked to Smarts.
 </p>
@@ -281,38 +288,197 @@ When adding a homebrew weapon, Quilvyn displays fields that allow you to enter
 the optional list of eras appropriate for the weapon, its primary category
 (Unarmed, One-Handed, Two-Handed, or Ranged), the damage it inflicts, the
 minimum strength required to use it effectively, its weight, and any armor
-piercing, range, rate of fire, and parry attributes it might have.
+piercing, range, rate of fire, and parry values it might have.
 </p><p>
-The example shows the entry for a boomerang, a ranged weapon with a 5" (10
-yard) range that inflicts Str+d4 damage.
+The example shows the entry for a boomerang, a ranged weapon with a 5" range
+that inflicts Str+d4 damage.
 </p>
 </td></tr>
 <tr><td colspan="2"><hr/></td></tr>
 
 </table>
 
-<a name="attrs"><h2>Using Character Attributes in Prerequisites and Notes</h2></a>
+<a name="stats"><h2>Using Character Stats in Prerequisites and Notes</h2></a>
 
 <p>
-The use of character attributes in prerequisites and notes is described in
-detail in the <a href="homebrew-srd35.html#attrs">homebrew documentation for
-the SRD v3.5 plugin</a>.
+There are three places that you might want to use references to character stats
+when adding homebrew choices: prerequisites for homebrew edges, hindrances, and
+races; in feature notes that modify character stats; and embedded in feature
+notes and spell descriptions and modifiers. Stat references appear somewhat
+differently in each of these contexts.
+</p><p>
+The examples below develop a homebrew edge named Alert Dodger, which allows
+a character to add half of their smarts to their parry instead of half of their
+fighting skill. This will be a combat edge, so the initial entry for the edge
+looks like this:
+</p>
+<img src='../Images/shb-stat-0.jpg' alt='Alert Dodger edge'/>
+
+<h2>Using stats in prerequisites</h2>
+
+<p>
+In the core rulebook, many edges have prerequisites&mdash;stat values that the
+character must have to take the edge. Quilvyn allows you to specify similar
+prerequisites when entering a homebrew edge, hindrance, or race.
+</p><p>
+Since the effects of the Alert Dodger edge come from battle experience, it
+makes sense to require a minimum experience to take it. We can give the edge
+a minimum requirement of seasoned rank (i.e., at least 4 advances) by adding
+text to the edge's Prerequisite field:
+</p>
+<img src='../Images/shb-stat-1.jpg' alt='Alert Dodger edge'/>
+
+<p>
+Quilvyn will generate tests for this requirement and will show a validation
+error if a character with fewer then 4 advances is given this edge. You can
+also specify that the character must have a specific feature as part of your
+prerequisites. For the Alert Dodger edge, it might be reasonable to require
+that the character also have the Alertness feature:
+</p>
+<img src='../Images/shb-stat-2.jpg' alt='Alert Dodger edge'/>
+
+<p>
+Finally, although a high smarts value might not be required to take this edge,
+it will make little sense to do so unless the character's smarts value is
+greater than their fighting skill value. This can be specified by adding text
+to the Implies field:
+</p>
+<img src='../Images/shb-stat-3.jpg' alt='Alert Dodger edge'/>
+
+<p>
+Within prerequisites, Quilvyn recognizes the common comparison operators
+(&lt;, &lt;=, &gt;, &gt;=, ==, !=), and you can use the OR operator (||) to
+require that at least one of a set of prerequisites is satisfied:
+</p><p>
+<code>smarts &gt;= 6 || spirit &gt;= 6</code>
+</p><p>
+When making a comparison to a text value rather than a number, surround the
+value with single or double quotes. Quilvyn also supports the matching
+operators =~ (matches) and !~ (does not match) with strings. The first of these
+two prerequisites requires that the character's origin be Arden Wood, while
+the second allows any origin with Wood in the name:
+</p><p>
+<code>origin == 'Arden Wood'</code><br/>
+<code>origin =~ 'Wood'</code>
+</p><p>
+(You can think of the =~ and !~ operators as "contains" and "does not contain",
+but they actually perform a pattern match, treating their second operand as a
+regular expression. This means that certain characters, such as * and ?, have
+special meanings if they appear in the second operand. The Mozilla project
+provides a web page with
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions">a detailed description of regular expressions</a>.)
 </p>
 
+<h2>Using features to modify character stats</h2>
+
+<p>
+With the Alert Dodger edge definition complete, the next step is to create the
+corresponding feature, also named Alert Dodger. This will add the description
+of the edge to the character sheet and allow Quilvyn to create rules to
+implement its effects. Since the edge affects a character's parry, its note
+will fit best in the combat section of the character sheet.
+</p><p>
+To illustrate how Quilvyn processes feature notes, we'll initially define the
+Alert Dodger edge to add a fixed +1 to the character's parry, switching
+later to using the character's smarts value instead.
+</p>
+
+<img src='../Images/shb-stat-feature-0.jpg' alt='Alert Dodger feature'/>
+
+<p>
+Given this definition, Quilvyn will automatically generate a rule that adds one
+to the character's parry value, and the note will appear in italics on
+the character sheet. For readability, character stats in feature notes must
+appear as shown above, with an initial capital letter. If the stat consists of
+multiple words, each word must be capitalized, and the words must be separated
+by spaces. For example, a feature that increases a character's armorToughness
+by one would have a note that reads:
+</p>
+
+<code>+1 Armor Toughness</code>
+
+<p>
+Single features can modify multiple stats; in these cases, the note should
+list the individual modifications separated by slashes. This was shown above in
+the <a href="#feature">feature definition example</a>, where the note for the
+Glib feature reads:
+</p><p>
+<code>+1 Performance/+1 Persuasion</code>
+</p><p>
+As shown here, notes in the skill section can affect skill modifiers by
+referencing the skill name directly; the skills. prefix is not necessary.
+</p>
+
+<h2>Embedding stats in features notes and power descriptions and modifiers</h2>
+
+<p>
+Some edges, racial abilities, and powers have effects that vary based on
+character stats. For example: the Block edge increases the character's parry by
+one, or by two if the character also has the Improved Block edge; the Aquatic
+racial ability gives the character a swim speed equal to their pace; and the
+<i>Light/Darkness</i> power has a modifier that allows the caster to move it
+each round a number of squares equal to their arcane skill.
+</p><p>
+You can embed references to character stats in the text of feature notes
+and power definitions by enclosing them within the characters %{}. Using this
+ability, the modifier for the <i>Light/Darkness</i> power reads:
+</p><p>
+<code>+1 PP Attaches to object or moves effect %{arcaneSkill}"/rd</code>
+</p><p>
+When Quilvyn displays this note on the character sheet, it first replaces the
+reference to the character's arcaneSkill stat with its value, so the note
+might appear on the sheet as
+</p><p>
+<code>+1 PP Attaches to object or moves effect 8"/rd</code></code>
+</p><p>
+We can use this ability to replace the fixed +1 entered earlier for the effects
+of the Alert Dodger feature with an amount equal to the character's smarts
+value:
+</p>
+
+<img src='../Images/shb-stat-feature-1.jpg' alt='Alert Dodger feature'/>
+
+<p>
+Given this note, Quilvyn will automatically generate a rule to add the
+character's smarts value to their parry value and will display the note in
+italics.
+</p><p>
+Recall, however, that we want to add <i>half</i> of the character's smarts
+value to their parry value, replacing the half of their fighting skill value
+that is normally added. Beyond simple stat references, Quilvyn supports
+performing calculations within embedded references. Using this feature, we can
+update the definition of the Alert Dodger feature to its final form:
+</p>
+
+<img src='../Images/shb-stat-feature-2.jpg' alt='Alert Dodger feature'/>
+
+<p>
+As this note shows, individual references can make use of use multiple stats.
+</p><p>
+Within embedded references, Quilvyn supports the common comparison operators
+(&lt;, &lt;=, &gt;, &gt;=, ==, !=), the common arithmetic operators
+(+, -, *, /, unary -), AND (&amp;&amp;), OR (||), matching (=~, !~),
+and integer division (//). It also supports the ternary if-then-else operator
+(?:) and the operators &lt;? and &gt;?, which return the smaller and larger
+of their two operands, respectively. Using these operators, we can define the
+note for the Tactician feature as follows:
+</p>
+
+<code>R%{commandRange}\\" May distribute %{combatNotes.masterTactician?2:1} Action Cards to commanded each rd</code>
 
 <hr style="width: 100%"/>
 
-<a name="attrlist"><h2>Common Character Attributes</h2></a>
-The table below lists the character attributes that are most likely to be
+<a name="statlist"><h2>Common Character Stats</h2></a>
+The table below lists the character stats that are most likely to be
 useful in entering SWADE homebrew edges, features, and races.
 </p>
 
 <table style="width:100%"><tr style="text-align:left">
-<th>Basic attributes</th>
+<th>Traits</th>
 <th>Identity</th>
 <th>Combat</th>
 <th>Arcana</th>
-<th>Edges, skills and features</th>
+<th>Edges and features</th>
 </tr><tr style="vertical-align:top">
 <td>
 <ul style="padding-left: 15px; margin-top: 0">
@@ -326,6 +492,13 @@ useful in entering SWADE homebrew edges, features, and races.
 <li>spiritStep</li>
 <li>strengthStep</li>
 <li>vigorStep</li>
+<li>skillPoints</li>
+<li>skills.&lt;name&gt;, e.g.,<br/>
+  skills.Healing<br/>
+  skills.Performance</li>
+<li>skillModifier.&lt;name&gt;, e.g.,<br/>
+  skillModifier.Healing<br/>
+  skillModifier.Performance</li>
 </ul>
 </td><td>
 <ul style="padding-left: 15px; margin-top: 0">
@@ -343,6 +516,7 @@ useful in entering SWADE homebrew edges, features, and races.
 <li>armor.&lt;name&gt;, e.g.,<br/>
   armor.Chain Shirt</br>
   armor.Battle Helmet</li>
+<li>commandRange</li>
 <li>cover</li>
 <li>pace</li>
 <li>run</li>
@@ -356,6 +530,7 @@ useful in entering SWADE homebrew edges, features, and races.
 </ul>
 </td><td>
 <ul style="padding-left: 15px; margin-top: 0">
+<li>arcaneSkill</li>
 <li>powerCount</li>
 <li>powerPoints</li>
 <li>powers.&lt;name&gt;, e.g.,<br>
@@ -373,11 +548,7 @@ useful in entering SWADE homebrew edges, features, and races.
   hindrances.Jealous+</li>
 <li>features.&lt;name&gt;, e.g.<br/>
   features.Dodge<br/>
-  features.Precise Shot</li>
-<li>skillPoints</li>
-<li>skills.&lt;name&gt;, e.g.,<br/>
-  skills.Healing<br/>
-  skills.Performance</li>
+  features.Steady Hands</li>
 </ul>
 </td>
 </tr></table>
