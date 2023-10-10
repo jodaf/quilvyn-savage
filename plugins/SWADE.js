@@ -1425,7 +1425,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius" ' +
     'Description=' +
-      '"Target Extra flees; target Wild Card rolls on fear table (Spirit neg; Raise Spirit-2, fear table +2)"',
+      '"Target Extra flees; target Wild Card rolls on fear table (Spirit neg; Raise Spirit-2 and fear table +2)"',
   'Fly':
     'Advances=8 ' +
     'PowerPoints=3 ' +
