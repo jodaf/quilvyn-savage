@@ -393,281 +393,255 @@ PF4SW.DEITYS = {
 };
 PF4SW.EDGES_ADDED = {
   // Class
-  'Barbarian':'Type=class Require="strength >= 6","vigor >= 6"',
-  'Powerful Blow':
-    'Type=class,Barbarian Require="advances >= 4",features.Barbarian',
-  'Intimidating Glare':
-    'Type=class,Barbarian Require="advances >= 8",features.Barbarian',
-  'Strength Surge':
-    'Type=class,Barbarian Require="advances >= 12",features.Barbarian',
-  'Bard':'Type=class Require="spirit >= 6","skills.Common Knowledge >= 6"',
-  'Inspire Heroics':'Type=class,Bard Require="advances >= 4",features.Bard',
-  'Countersong':'Type=class,Bard Require="advances >= 8",features.Bard',
-  'Dirge Of Doom':'Type=class,Bard Require="advances >= 12",features.Bard',
-  'Cleric':'Type=class Require="spirit >= 6","skills.Occult >= 6"',
+  'Barbarian':'Type=Class Require="strength >= 6","vigor >= 6"',
+  'Powerful Blow':'Type=Class Require="advances >= 4",features.Barbarian',
+  'Intimidating Glare':'Type=Class Require="advances >= 8",features.Barbarian',
+  'Strength Surge':'Type=Class Require="advances >= 12",features.Barbarian',
+  'Bard':'Type=Class Require="spirit >= 6","skills.Common Knowledge >= 6"',
+  'Inspire Heroics':'Type=Class Require="advances >= 4",features.Bard',
+  'Countersong':'Type=Class Require="advances >= 8",features.Bard',
+  'Dirge Of Doom':'Type=Class Require="advances >= 12",features.Bard',
+  'Cleric':'Type=Class Require="spirit >= 6","skills.Occult >= 6"',
   'Arcane Background (Civilization Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Civilization\'"',
   'Arcane Background (Death Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Death\'"',
   'Arcane Background (Destruction Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Destruction\'"',
   'Arcane Background (Elemental Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Elemental\'"',
   'Arcane Background (Glory Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Glory\'"',
   'Arcane Background (Knowledge Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Knowledge\'"',
   'Arcane Background (Luck Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Luck\'"',
   'Arcane Background (Magic Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Magic\'"',
   'Arcane Background (Nature Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Nature\'"',
   'Arcane Background (Protection Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Protection\'"',
   'Arcane Background (Strength Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Strength\'"',
   'Arcane Background (Sun Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Sun\'"',
   'Arcane Background (Travel Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Travel\'"',
   'Arcane Background (Trickery Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'Trickery\'"',
   'Arcane Background (War Domain)':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="features.Cleric || features.Arcane Background (Miracles)",' +
             '"deity == \'None\' || deityDomains =~ \'War\'"',
-  'Destroy Undead':'Type=class,Cleric Require="advances >= 4",features.Cleric',
+  'Destroy Undead':'Type=Class Require="advances >= 4",features.Cleric',
   'Favored Powers (Cleric)':
-    'Type=class,Cleric Require="advances >= 8",features.Cleric',
+    'Type=Class Require="advances >= 8",features.Cleric',
   'Divine Mastery':
-    'Type=class,Cleric,Druid ' +
-    'Require="advances >= 12","features.Cleric || features.Druid"',
-  'Druid':'Type=class Require="spirit >= 6","skills.Survival >= 6"',
-  'Attuned':'Type=class,Druid Require=features.Druid',
-  'Wild Shape':'Type=class,Druid Require="advances >= 4",features.Druid',
-  'Favored Powers (Druid)':
-    'Type=class,Druid Require="advances >= 8",features.Druid',
-  'Fighter':'Type=class Require="strength >= 6","skills.Fighting >= 6"',
-  'Deadly Blow':'Type=class,Fighter Require="advances >= 4",features.Fighter',
+    'Type=Class Require="advances >= 12","features.Cleric || features.Druid"',
+  'Druid':'Type=Class Require="spirit >= 6","skills.Survival >= 6"',
+  'Attuned':'Type=Class Require=features.Druid',
+  'Wild Shape':'Type=Class Require="advances >= 4",features.Druid',
+  'Favored Powers (Druid)':'Type=Class Require="advances >= 8",features.Druid',
+  'Fighter':'Type=Class Require="strength >= 6","skills.Fighting >= 6"',
+  'Deadly Blow':'Type=Class Require="advances >= 4",features.Fighter',
   'Martial Flexibility (Improved)':
-    'Type=class,Fighter Require="advances >= 7",features.Fighter',
-  'Martial Prowess':
-    'Type=class,Fighter Require="advances >= 12",features.Fighter',
+    'Type=Class Require="advances >= 7",features.Fighter',
+  'Martial Prowess':'Type=Class Require="advances >= 12",features.Fighter',
   'Monk':
-    'Type=class Require="agility >= 6","spirit >= 6","skills.Fighting >= 6"',
-  'Mystic Powers (Monk)':
-    'Type=class,Monk Require="advances >= 4",features.Monk',
+    'Type=Class Require="agility >= 6","spirit >= 6","skills.Fighting >= 6"',
+  'Mystic Powers (Monk)': 'Type=Class Require="advances >= 4",features.Monk',
   'Great Ki':
-    'Type=class,Monk Require="advances >= 8","features.Mystic Powers (Monk)"',
+    'Type=Class Require="advances >= 8","features.Mystic Powers (Monk)"',
   'Wholeness Of Body':
-    'Type=class,Monk Require="advances >= 12","features.Mystic Powers (Monk)"',
+    'Type=Class Require="advances >= 12","features.Mystic Powers (Monk)"',
   'Paladin':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="spirit >= 6","strength >= 6","hindrances.Vow || hindrances.Vow+"',
   'Mystic Powers (Paladin)':
-    'Type=class,Paladin Require="advances >= 4",features.Paladin',
-  'Mercy':'Type=class,Paladin Require="advances >= 8",features.Paladin',
-  'Mount':'Type=class,Paladin Require="advances >= 12",features.Paladin',
+    'Type=Class Require="advances >= 4",features.Paladin',
+  'Mercy':'Type=Class Require="advances >= 8",features.Paladin',
+  'Mount':'Type=Class Require="advances >= 12",features.Paladin',
   'Ranger':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="skills.Athletics >= 6 || skills.Fighting >= 6 || skills.Shooting >= 6","skills.Survival >= 6"',
-  'Quarry':'Type=class,Ranger Require="advances >= 4",features.Ranger',
-  'Mystic Powers (Ranger)':
-    'Type=class,Ranger Require="advances >= 8",features.Ranger',
-  'Master Hunter':'Type=class,Ranger Require="advances >= 12",features.Ranger',
+  'Quarry':'Type=Class Require="advances >= 4",features.Ranger',
+  'Mystic Powers (Ranger)':'Type=Class Require="advances >= 8",features.Ranger',
+  'Master Hunter':'Type=Class Require="advances >= 12",features.Ranger',
   'Rogue':
-    'Type=class ' +
+    'Type=Class ' +
     'Require="agility >= 6","skills.Notice >= 6","skills.Stealth >= 6"',
-  'Trap Sense':'Type=class,Rogue Require="advances >= 4",features.Rogue',
-  'Uncanny Reflexes':'Type=class,Rogue Require="advances >= 8",features.Rogue',
-  'Opportunist':'Type=class,Rogue Require="advances >= 12",features.Rogue',
-  'Sorcerer':'Type=class Require="smarts >= 6","spirit >= 6"',
+  'Trap Sense':'Type=Class Require="advances >= 4",features.Rogue',
+  'Uncanny Reflexes':'Type=Class Require="advances >= 8",features.Rogue',
+  'Opportunist':'Type=Class Require="advances >= 12",features.Rogue',
+  'Sorcerer':'Type=Class Require="smarts >= 6","spirit >= 6"',
   'Favored Powers (Sorcerer)':
-    'Type=class,Sorcerer Require="advances >= 4",features.Sorcerer',
+    'Type=Class Require="advances >= 4",features.Sorcerer',
   'Aberrant Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Abyssal Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Arcane Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Celestial Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Destined Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Draconic Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Elemental Bloodline (Air)':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Elemental Bloodline (Earth)':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Elemental Bloodline (Fire)':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Elemental Bloodline (Water)':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Fey Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Infernal Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Undead Bloodline':
-    'Type=class,Sorcerer,bloodline ' +
-    'Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
+    'Type=Class Require=features.Sorcerer,"bloodlineEdgeCount == 1"',
   'Arcane Mastery':
-    'Type=class,Sorcerer,Wizard ' +
-    'Require="advances >= 8","features.Sorcerer || features.Wizard"',
-  'Advanced Bloodline':
-    'Type=class,Sorcerer Require="advances >= 12",features.Sorcerer',
-  'Wizard':'Type=class Require="smarts >= 6","skills.Occult >= 6"',
+    'Type=Class Require="advances >= 8","features.Sorcerer || features.Wizard"',
+  'Advanced Bloodline':'Type=Class Require="advances >= 12",features.Sorcerer',
+  'Wizard':'Type=Class Require="smarts >= 6","skills.Occult >= 6"',
   'Bonded Object':
-    'Type=class,Wizard ' +
-    'Require="features.Arcane Bond || features.Arcane Bloodline"',
+    'Type=Class Require="features.Arcane Bond || features.Arcane Bloodline"',
   'Familiar':
-    'Type=class,Wizard ' +
-    'Require="features.Arcane Bond || features.Arcane Bloodline"',
+    'Type=Class Require="features.Arcane Bond || features.Arcane Bloodline"',
   'Favored Powers (Wizard)':
-    'Type=class,Wizard Require="advances >= 4",features.Wizard',
-  'Eldritch Inspiration':
-    'Type=class,Wizard Require="advances >= 12",features.Wizard',
+    'Type=Class Require="advances >= 4",features.Wizard',
+  'Eldritch Inspiration':'Type=Class Require="advances >= 12",features.Wizard',
   // Combat
-  'Formation Fighter':'Type=combat Require="skills.Fighting >= 8"',
-  'Rapid Reload':'Type=combat Require="skills.Shooting >= 6"',
+  'Formation Fighter':'Type=Combat Require="skills.Fighting >= 8"',
+  'Rapid Reload':'Type=Combat Require="skills.Shooting >= 6"',
   'Rapid Shot':SWADE.EDGES['Rapid Fire'],
   'Improved Rapid Shot':
     SWADE.EDGES['Improved Rapid Fire'].replaceAll('Fire', 'Shot'),
   'Improved Trademark Weapon (%weapon)': // Changed requirements
-    'Type=combat ' +
+    'Type=Combat ' +
     'Imply="weapons.%weapon" ' +
     'Require="advances >= 8","features.Trademark Weapon (%weapon)"',
   'Two-Weapon Fighting':SWADE.EDGES['Two-Fisted'],
   // Power
-  'Arcane Armor':'Type=power Require="features.Armor Interference"',
+  'Arcane Armor':'Type=Power Require="features.Armor Interference"',
   'Holy/Unholy Warrior': // Changed requirements
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
       '"powerPoints >= 1",' +
       '"features.Vow || features.Vow+"',
   'Soul Drain': // Changed requirements
-    'Type=power ' +
+    'Type=Power ' +
     'Require="advances >= 4","powerPoints >= 1","spirit >= 8"',
   // Prestige
   'Arcane Archer':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","powerPoints >= 1","skills.Shooting >= 8"',
   'Arcane Archer II':
-    'Type=prestige Require="advances >= 8","features.Arcane Archer"',
+    'Type=Prestige Require="advances >= 8","features.Arcane Archer"',
   'Arcane Archer III':
-    'Type=prestige Require="advances >= 12","features.Arcane Archer II"',
+    'Type=Prestige Require="advances >= 12","features.Arcane Archer II"',
   'Arcane Trickster':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","powerPoints >= 1","features.Sneak Attack","skills.Thievery >= 8"',
   'Arcane Trickster II':
-    'Type=prestige Require="advances >= 4","features.Arcane Trickster"',
+    'Type=Prestige Require="advances >= 4","features.Arcane Trickster"',
   'Arcane Trickster III':
-    'Type=prestige Require="advances >= 8","features.Arcane Trickster II"',
-  'Assassin':'Type=prestige Require="advances >= 4","features.Sneak Attack"',
-  'Assassin II':'Type=prestige Require="advances >= 8","features.Assassin"',
+    'Type=Prestige Require="advances >= 8","features.Arcane Trickster II"',
+  'Assassin':'Type=Prestige Require="advances >= 4","features.Sneak Attack"',
+  'Assassin II':'Type=Prestige Require="advances >= 8","features.Assassin"',
   'Assassin III':
-    'Type=prestige Require="advances >= 12","features.Assassin II"',
+    'Type=Prestige Require="advances >= 12","features.Assassin II"',
   'Dragon Disciple':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","powerPoints >= 1","skills.Occult >= 6"',
   'Dragon Disciple II':
-    'Type=prestige Require="advances >= 8","features.Dragon Disciple"',
+    'Type=Prestige Require="advances >= 8","features.Dragon Disciple"',
   'Dragon Disciple III':
-    'Type=prestige Require="advances >= 12","features.Dragon Disciple II"',
+    'Type=Prestige Require="advances >= 12","features.Dragon Disciple II"',
   'Duelist':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","agility >= 8","skills.Fighting >= 8"',
-  'Duelist II':'Type=prestige Require="advances >= 4","features.Duelist"',
-  'Duelist III':'Type=prestige Require="advances >= 8","features.Duelist II"',
+  'Duelist II':'Type=Prestige Require="advances >= 4","features.Duelist"',
+  'Duelist III':'Type=Prestige Require="advances >= 8","features.Duelist II"',
   'Eldritch Knight':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","powerPoints >= 1","skills.Fighting >= 8"',
   'Eldritch Knight II':
-    'Type=prestige Require="advances >= 8","features.Eldritch Knight"',
+    'Type=Prestige Require="advances >= 8","features.Eldritch Knight"',
   'Eldritch Knight III':
-    'Type=prestige Require="advances >= 12","features.Eldritch Knight II"',
+    'Type=Prestige Require="advances >= 12","features.Eldritch Knight II"',
   'Loremaster':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","smarts >= 8","skills.Academics >= 8 || skills.Common Knowledge >= 8 || skills.Occult >= 8"',
-  'Loremaster II':'Type=prestige Require="advances >= 8","features.Loremaster"',
+  'Loremaster II':'Type=Prestige Require="advances >= 8","features.Loremaster"',
   'Loremaster III':
-    'Type=prestige Require="advances >= 12","features.Loremaster II"',
+    'Type=Prestige Require="advances >= 12","features.Loremaster II"',
   'Mystic Theurge':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","arcaneEdgeCount >= 2","powerPoints >= 1"',
   'Mystic Theurge II':
-    'Type=prestige Require="advances >= 8","features.Mystic Theurge"',
+    'Type=Prestige Require="advances >= 8","features.Mystic Theurge"',
   'Mystic Theurge III':
-    'Type=prestige Require="advances >= 12","features.Mystic Theurge II"',
+    'Type=Prestige Require="advances >= 12","features.Mystic Theurge II"',
   'Pathfinder Chronicler':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","skills.Survival >= 6","skills.Common Knowledge >= 8 || skills.Occult >= 8"',
   'Pathfinder Chronicler II':
-    'Type=prestige Require="advances >= 4","features.Pathfinder Chronicler"',
+    'Type=Prestige Require="advances >= 4","features.Pathfinder Chronicler"',
   'Pathfinder Chronicler III':
-    'Type=prestige Require="advances >= 8","features.Pathfinder Chronicler II"',
+    'Type=Prestige Require="advances >= 8","features.Pathfinder Chronicler II"',
   'Shadowdancer':
-    'Type=prestige ' +
+    'Type=Prestige ' +
     'Require="advances >= 4","skills.Performance >= 6","skills.Stealth >= 8","skills.Thievery >= 6"',
   'Shadowdancer II':
-    'Type=prestige Require="advances >= 4","features.Shadowdancer"',
+    'Type=Prestige Require="advances >= 4","features.Shadowdancer"',
   'Shadowdancer III':
-    'Type=prestige Require="advances >= 8","features.Shadowdancer II"',
+    'Type=Prestige Require="advances >= 8","features.Shadowdancer II"',
   // Professional
   'Born In The Saddle':
-    'Type=professional Require="agility >= 8","skills.Riding >= 6"',
+    'Type=Professional Require="agility >= 8","skills.Riding >= 6"',
   'Fix It':SWADE.EDGES['Mister Fix It'],
   'Investigator': // Changed requirements
-    'Type=professional Require="smarts >= 8","skills.Academics >= 8"',
+    'Type=Professional Require="smarts >= 8","skills.Academics >= 8"',
   'Scholar (Academics)': // Changed requirements
-    'Type=professional Require="smarts >= 8"',
-  'Scholar (Battle)':'Type=professional Require="smarts >= 8"',
-  'Scholar (Occult)':'Type=professional Require="smarts >= 8"',
-  'Scholar (Science)':'Type=professional Require="smarts >= 8"',
+    'Type=Professional Require="smarts >= 8"',
+  'Scholar (Battle)':'Type=Professional Require="smarts >= 8"',
+  'Scholar (Occult)':'Type=Professional Require="smarts >= 8"',
+  'Scholar (Science)':'Type=Professional Require="smarts >= 8"',
   'Troubadour':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="skills.Common Knowledge >= 6","skills.Performance >- 8"',
   // Removed
   'Arcane Background (Gifted)':null,
@@ -2008,6 +1982,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.advancedBloodline', '?', null,
       'features.' + name, '=', '1'
     );
+    rules.defineRule('bloodlineEdgeCount', 'features.' + name, '+=', '1');
   }
   if(name == 'Arcane Armor') {
     rules.defineRule('arcanaNotes.arcaneArmor',
@@ -2465,6 +2440,11 @@ PF4SW.choiceEditorElements = function(rules, type) {
       ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
       ['Domain', 'Domains', 'text', [40]]
     ];
+  } else if(type == 'Edge') {
+    result = SWADE.choiceEditorElements(rules, 'Edge');
+    let typeIndex = result.findIndex(x => x[0] == 'Type');
+    result[typeIndex][3] =
+      result[typeIndex][3].concat('Class', 'Prestige').sort();
   } else if(type == 'Langauge') {
     result = [];
   } else {
@@ -2488,11 +2468,14 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
     // First, make sure class edge is assigned; otherwise, prerequisite tests
     // for other edges may fail
     let allEdges = this.getChoices('edges');
-    if(attributes.concept in allEdges) {
-      attributes['edges.' + attributes.concept] = 1;
-      attrs = this.applyRules(attributes);
-    }
-    if((attributes.concept == 'Cleric' ||
+    let concepts = QuilvynUtils.getKeys(attributes, /^concepts\./);
+    concepts.forEach(c => {
+      if('edges.' + c in allEdges) {
+        attributes['edges.' + c] = 1;
+        attrs = this.applyRules(attributes);
+      }
+    });
+    if((attributes['concepts.Cleric'] ||
         attributes['edges.Arcane Background (Cleric)'] ||
         attributes['edges.Arcane Background (Miracles)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Domain/) == 0) {
@@ -2504,20 +2487,20 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       }
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
-    if((attributes.concept == 'Druid' ||
+    if((attributes['concepts.Druid'] ||
         attributes['edges.Arcane Background (Druid)']) &&
        (!attributes['edges.Attuned'] && !attributes['edges.Beast Master'])) {
       choices = ['Attuned', 'Beast Master'];
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
-    if((attributes.concept == 'Sorcerer' ||
+    if((attributes['concepts.Sorcerer'] ||
         attributes['edges.Arcane Background (Sorcerer)']) &&
        QuilvynUtils.sumMatching(attributes, /edges.*Bloodline$/) -
        QuilvynUtils.sumMatching(attributes, /edges.Advanced.*Bloodline$/) <= 0){
       choices = QuilvynUtils.getKeys(this.getChoices('edges'), /Bloodline$/).filter(x => !x.startsWith('Advanced'));
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
-    if((attributes.concept == 'Wizard' ||
+    if((attributes['concepts.Wizard'] ||
         attributes['edges.Arcane Background (Wizard)'] ||
         attributes['edges.Arcane Bloodline']) &&
        (!attributes['edges.Bonded Object'] && !attributes['edges.Familiar'])) {
@@ -2525,12 +2508,14 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       attributes['edges.' + choices[QuilvynUtils.random(0, choices.length - 1)]] = 1;
     }
     // Prioritize edges particular to the character's concept, if any
-    if(attributes.concept) {
+    if(concepts.length > 0) {
       choices = [];
       for(attr in allEdges) {
-        if(allEdges[attr].match('Type=\\S*' + attributes.concept) &&
-           !attributes['edges.' + attr])
-          choices.push(attr);
+        concepts.forEach(c => {
+          if(!attributes['edges.' + attr] &&
+             allEdges[attr].match('Require=.*features\\.' + c))
+            choices.push(attr);
+        });
       }
       // Try to assign a random number of unassigned edges to concept edges
       howMany = (attrs.edgePoints || 0) -
@@ -2551,7 +2536,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   } else if(attribute == 'hindrances') {
-    if((attributes.concept == 'Paladin' || attributes['edges.Paladin']) &&
+    if((attributes['concepts.Paladin'] || attributes['edges.Paladin']) &&
        !attributes['hindrances.Vow'] &&
        !attributes['hindrances.Vow+'])
       attributes['hindrances.Vow'] = 1;
@@ -2583,7 +2568,7 @@ PF4SW.randomizeOneAttribute = function(attributes, attribute) {
       howMany--;
     }
   } else if(attribute == 'powers') {
-    if(attributes.concept == 'Cleric' || attributes['edges.Cleric'])
+    if(attributes['concepts.Cleric'] || attributes['edges.Cleric'])
       attributes['powers.Healing'] = 1;
   }
 
