@@ -230,55 +230,55 @@ WeirdWest.CONCEPTS = {
 WeirdWest.EDGES_ADDED = {
   // Background
   'Arcane Background (Blessed)':
-    'Type=background Require="spirit >= 6","skills.Faith >= 4"',
+    'Type=Background Require="spirit >= 6","skills.Faith >= 4"',
   'Arcane Background (Chi Master)':
-    'Type=background ' +
+    'Type=Background ' +
     'Require=' +
       '"agility >= 6",' +
       '"spirit >= 6",' +
       '"features.Martial Artist",' +
       '"skills.Focus >= 4"',
   'Arcane Background (Huckster)':
-    'Type=background Require="skills.Gambling >= 6","skills.Spellcasting >= 4"',
+    'Type=Background Require="skills.Gambling >= 6","skills.Spellcasting >= 4"',
   'Arcane Background (Mad Scientist)':
-    'Type=background ' +
+    'Type=Background ' +
     'Require="smarts >= 8","skills.Science >= 6","skills.Weird Science >= 4"',
   'Arcane Background (Shaman)':
-    'Type=background Require="spirit >= 8","skills.Faith >= 4"',
-  'Gallows Humor':'Type=background Require="skills.Taunt >= 6"',
+    'Type=Background Require="spirit >= 8","skills.Faith >= 4"',
+  'Gallows Humor':'Type=Background Require="skills.Taunt >= 6"',
   "Veteran O' The Weird West":
-    'Type=background Require="spirit >= 6","skills.Occult >= 6"',
+    'Type=Background Require="spirit >= 6","skills.Occult >= 6"',
   // Combat
-  "Don't Get 'im Riled!":'Type=combat',
-  'Duelist':'Type=combat Require="skills.Shooting >= 6"',
+  "Don't Get 'im Riled!":'Type=Combat',
+  'Duelist':'Type=Combat Require="skills.Shooting >= 6"',
   'Fan The Hammer':
-    'Type=combat Require="advances >= 4","agility >= 8","skills.Shooting >= 8"',
+    'Type=Combat Require="advances >= 4","agility >= 8","skills.Shooting >= 8"',
   'Improved Fan The Hammer':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Require=' +
       '"advances >= 12",' +
       '"agility >= 10",' +
       '"features.Fan The Hammer",' +
       '"skills.Shooting >= 10"',
-  'Quick Draw':'Type=combat Require="agility >= 8"',
+  'Quick Draw':'Type=Combat Require="agility >= 8"',
   // Professional
   'Agent':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"smarts >= 8",' +
       '"skills.Fighting >= 6",' +
       '"skills.Occult >= 6",' +
       '"skills.Shooting >= 6"',
   'Born In The Saddle':
-    'Type=professional Require="agility >= 8","skills.Riding >= 6"',
-  'Card Sharp':'Type=professional Require="skills.Gambling >= 6"',
-  'Guts':'Type=professional Require="spirit >= 6"',
-  'Scout':'Type=professional Require="advances >= 4",features.Woodsman',
+    'Type=Professional Require="agility >= 8","skills.Riding >= 6"',
+  'Card Sharp':'Type=Professional Require="skills.Gambling >= 6"',
+  'Guts':'Type=Professional Require="spirit >= 6"',
+  'Scout':'Type=Professional Require="advances >= 4",features.Woodsman',
   'Tale-Teller':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="skills.Performance >= 8 || skills.Persuasion >= 8"',
   'Territorial Ranger':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"vigor >= 6",' +
       '"skills.Fighting >= 6",' +
@@ -289,187 +289,187 @@ WeirdWest.EDGES_ADDED = {
   // Social
   'Reputation':'Require="advances >= 8"',
   // Weird
-  'Grit':'Type=weird Require="advances >= 8","spirit >= 8",features.Guts',
-  'Knack (Bastard)':'Type=weird',
-  "Knack (Born On All Hallows' Eve)":'Type=weird',
+  'Grit':'Type=Weird Require="advances >= 8","spirit >= 8",features.Guts',
+  'Knack (Bastard)':'Type=Weird',
+  "Knack (Born On All Hallows' Eve)":'Type=Weird',
   'Knack (Born On Christmas)':
-     'Type=weird ' +
+     'Type=Weird ' +
      'Require="features.Arcane Background (Blessed) || features.Arcane Background (Shaman)"',
-  'Knack (Breech Birth)':'Type=weird',
-  'Knack (Seventh Son)':'Type=weird',
-  'Knack (Shooting Star)':'Type=weird',
-  'Knack (Storm Born)':'Type=weird',
+  'Knack (Breech Birth)':'Type=Weird',
+  'Knack (Seventh Son)':'Type=Weird',
+  'Knack (Shooting Star)':'Type=Weird',
+  'Knack (Storm Born)':'Type=Weird',
   // Legendary
-  'Behold A Pale Horse':'Type=legendary Require="advances >= 16"',
+  'Behold A Pale Horse':'Type=Legendary Require="advances >= 16"',
   'Damned':
-    'Type=legendary Require="advances >= 16","spirit >= 6",features.Reputation',
+    'Type=Legendary Require="advances >= 16","spirit >= 6",features.Reputation',
   'Fast As Lightning':
-    'Type=legendary Require="advances >= 16","agility >= 10",features.Quick',
+    'Type=Legendary Require="advances >= 16","agility >= 10",features.Quick',
   'Right Hand Of The Devil':
-    'Type=legendary ' +
+    'Type=Legendary ' +
     'Require=' +
       '"advances >= 16",' +
       '"Sum \'features.Trademark Weapon\' > 0",' +
       '"skills.Shooting>=10 || skills.Fighting>=10 || skills.Athletics>=10"',
   'True Grit':
-    'Type=legendary Require="advances >= 16","spirit >= 10",features.Grit',
+    'Type=Legendary Require="advances >= 16","spirit >= 10",features.Grit',
   // Agent
-  'Agency Promotion':'Type=professional Require="advances >= 4",features.Agent',
+  'Agency Promotion':'Type=Professional Require="advances >= 4",features.Agent',
   'Man Of A Thousand Faces':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       'features.Agent,' +
       '"advances >= 4",' +
       '"skills.Performance >= 8"',
   // Blessed
   'Flock':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Blessed)",' +
       '"advances >= 8",' +
       '"skills.Persuasion >= 8"',
   'True Believer':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Blessed)",' +
       '"spirit >= 10",' +
       '"skills.Faith >= 6"',
   // Chi Master
   'Celestial Kung Fu':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 8",' +
       '"spirit >= 8",' +
       '"Sum \'features.Superior Kung Fu\' > 0",' +
       '"skills.Fighting >= 10"',
   'Superior Kung Fu (Drunken Style)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Eagle Claw)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Mantis)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Monkey)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Shuai Chao)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Tan Tui)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   'Superior Kung Fu (Wing Chun)':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Chi Master)",' +
       '"spirit >= 6",' +
       '"skills.Fighting >= 8"',
   // Harrowed
-  'Harrowed':'Type=weird Require="spirit >= 6"',
-  'Cat Eyes':'Type=power Require=features.Harrowed',
+  'Harrowed':'Type=Weird Require="spirit >= 6"',
+  'Cat Eyes':'Type=Power Require=features.Harrowed',
   'Improved Cat Eyes':
-    'Type=power Require=features.Harrowed,"advances >= 4","features.Cat Eyes"',
-  "Chill O' The Grave":'Type=power Require=features.Harrowed,"advances >= 4"',
-  'Claws':'Type=combat Require=features.Harrowed',
+    'Type=Power Require=features.Harrowed,"advances >= 4","features.Cat Eyes"',
+  "Chill O' The Grave":'Type=Power Require=features.Harrowed,"advances >= 4"',
+  'Claws':'Type=Combat Require=features.Harrowed',
   'Improved Claws':
-    'Type=combat Require=features.Harrowed,"advances >= 8",features.Claws',
-  'Ghost':'Type=power Require=features.Harrowed,"advances >= 12"',
-  'Hellfire':'Type=power Require=features.Harrowed,"advances >= 12"',
-  'Implacable':'Type=combat Require=features.Harrowed,"advances >= 12"',
-  'Infest':'Type=power Require=features.Harrowed',
-  'Soul Eater':'Type=power Require=features.Harrowed,"advances >= 8"',
-  'Spook':'Type=power Require=features.Harrowed',
-  "Stitchin'":'Type=power Require=features.Harrowed',
+    'Type=Combat Require=features.Harrowed,"advances >= 8",features.Claws',
+  'Ghost':'Type=Power Require=features.Harrowed,"advances >= 12"',
+  'Hellfire':'Type=Power Require=features.Harrowed,"advances >= 12"',
+  'Implacable':'Type=Combat Require=features.Harrowed,"advances >= 12"',
+  'Infest':'Type=Power Require=features.Harrowed',
+  'Soul Eater':'Type=Power Require=features.Harrowed,"advances >= 8"',
+  'Spook':'Type=Power Require=features.Harrowed',
+  "Stitchin'":'Type=Power Require=features.Harrowed',
   "Improved Stitchin'":
-    'Type=power ' +
+    'Type=Power ' +
     'Require=features.Harrowed,"advances >= 8","features.Stitchin\'"',
-  'Supernatural Attribute':'Type=power Require=features.Harrowed',
-  'Wither':'Type=power Require=features.Harrowed',
+  'Supernatural Attribute':'Type=Power Require=features.Harrowed',
+  'Wither':'Type=Power Require=features.Harrowed',
   // Huckster
   'Hexslinging':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Huckster)",' +
       '"advances >= 4",' +
       '"skills.Shooting >= 8"',
   'High Roller':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Huckster)",' +
       '"advances >= 4",' +
       '"spirit >= 8",' +
       '"skills.Spellcasting >= 6"',
   'Improved High Roller':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"advances >= 8",' +
       '"features.High Roller"',
   'Old Hand':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Huckster)",' +
       '"advances >= 12",' +
       '"skills.Spellcasting >= 10"',
   'Whateley Blood':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Huckster)"',
   // Mad Scientist
   'Alchemy':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Mad Scientist)",' +
       '"advances >= 4",' +
       '"skills.Weird Science >= 8"',
   'Iron Bound':
-    'Type=power Require="features.Arcane Background (Mad Scientist)"',
+    'Type=Power Require="features.Arcane Background (Mad Scientist)"',
   'Ore Eater':
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Mad Scientist)",' +
       '"skills.Weird Science >= 6"',
   'True Genius':
-    'Type=power ' +
+    'Type=Power ' +
     'Require="features.Arcane Background (Mad Scientist)","smarts >= 8"',
   // Shaman
   'Fetish':
-    'Type=power ' +
+    'Type=Power ' +
     'Require="features.Arcane Background (Shaman)","skills.Faith >= 8"',
   "Spirit's Favor":
-    'Type=power ' +
+    'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Shaman)",' +
       '"advances >= 4",' +
       '"skills.Faith >= 8"',
   // Territorial Ranger
   'Like An Oak':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Territorial Ranger",' +
       '"advances >= 8",' +
       '"features.Grit"',
   'Ranger Promotion':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Territorial Ranger",' +
       '"advances >= 4"'

@@ -299,18 +299,18 @@ SWADE.EDGES = {
   'Two-Fisted':'Type=Combat Require="agility >= 8"',
   'Two-Gun Kid':'Type=Combat Require="agility >= 8"',
   // Leadership
-  'Command':'Type=leadership Require="smarts >= 6"',
+  'Command':'Type=Leadership Require="smarts >= 6"',
   'Command Presence':
-    'Type=leadership Require="advances >= 4","features.Command"',
+    'Type=Leadership Require="advances >= 4","features.Command"',
   'Fervor':
-    'Type=leadership Require="advances >= 8","spirit >= 8","features.Command"',
+    'Type=Leadership Require="advances >= 8","spirit >= 8","features.Command"',
   'Hold The Line!':
-    'Type=leadership Require="advances >= 4","smarts >= 8","features.Command"',
-  'Inspire':'Type=leadership Require="advances >= 4","features.Command"',
+    'Type=Leadership Require="advances >= 4","smarts >= 8","features.Command"',
+  'Inspire':'Type=Leadership Require="advances >= 4","features.Command"',
   'Natural Leader':
-    'Type=leadership Require="advances >= 4","spirit >= 8","features.Command"',
+    'Type=Leadership Require="advances >= 4","spirit >= 8","features.Command"',
   'Tactician':
-    'Type=leadership ' +
+    'Type=Leadership ' +
     'Require=' +
       '"advances >= 4",' +
       '"smarts >= 8",' +

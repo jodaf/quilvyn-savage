@@ -152,7 +152,7 @@ SWD.EDGES_CHANGES = {
     'Require="advances >= 4","skills.Shooting >= 10 || skills.Throwing >= 10"',
   'Improved Dodge':'Require="advances >= 8","features.Dodge"',
   'Double Tap':null,
-  'Elan':'Type=combat Require="spirit >= 8"',
+  'Elan':'Type=Combat Require="spirit >= 8"',
   'Improved Extraction':'Require="features.Extraction"',
   'Feint':null,
   'Free Runner':null,
@@ -193,7 +193,7 @@ SWD.EDGES_CHANGES = {
       '"skills.Fighting >= 6",' +
       '"skills.Stealth >= 8"',
   'Champion':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Miracles)",' +
       '"spirit >= 8",' +
@@ -202,14 +202,14 @@ SWD.EDGES_CHANGES = {
       '"skills.Faith >= 6",' +
       '"skills.Fighting >= 8"',
   'Gadgeteer':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Weird Science)",' +
       '"smarts >= 8",' +
       '"skills.Repair >= 8",' +
       '"skills.Weird Science >= 8"',
   'Holy/Unholy Warrior':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Miracles)",' +
       '"spirit >= 8",' +
@@ -220,7 +220,7 @@ SWD.EDGES_CHANGES = {
       '"skills.Investigation >= 8",' +
       '"skills.Streetwise >= 8"',
   'Mentalist':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Psionics)",' +
       '"smarts >= 8",' +
@@ -231,25 +231,25 @@ SWD.EDGES_CHANGES = {
   'Scholar (Science)':null,
   'Soldier':null,
   'Thief':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"agility >= 8",' +
       '"skills.Climbing >= 6",' +
       '"skills.Lockpicking >= 6",' +
       '"skills.Stealth >= 8"',
   'Wizard':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Magic)",' +
       '"smarts >= 8",' +
       '"skills.Knowledge (Arcana) >= 8",' +
       '"skills.Spellcasting >= 6"',
   'Woodsman':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require="spirit >= 6","skills.Survival >= 8","skills.Tracking >= 8"',
   // Social
   'Bolster':null,
-  'Charismatic':'Type=social Require="spirit >= 8"',
+  'Charismatic':'Type=Social Require="spirit >= 8"',
   'Humiliate':null,
   'Menacing':null,
   'Provoke':null,
@@ -264,42 +264,42 @@ SWD.EDGES_CHANGES = {
   // Weird
   'Chi':null,
   // Legendary
-  'Tough As Nails':'Type=legendary Require="advances >= 16"',
+  'Tough As Nails':'Type=Legendary Require="advances >= 16"',
   'Tougher Than Nails':null
 
 };
 SWD.EDGES = {
   // Background
-  'Arcane Background (Super Powers)':'Type=background',
-  'Noble':'Type=background',
+  'Arcane Background (Super Powers)':'Type=Background',
+  'Noble':'Type=Background',
   // Combat
-  'Florentine':'Type=combat Require="agility >= 8","skills.Fighting >= 8"',
+  'Florentine':'Type=Combat Require="agility >= 8","skills.Fighting >= 8"',
   'Improved Martial Artist':
-    'Type=combat ' +
+    'Type=Combat ' +
     'Require="advances >= 8","features.Martial Artist","skills.Fighting >= 10"',
-  'Quick Draw':'Type=combat Require="agility >= 8"',
+  'Quick Draw':'Type=Combat Require="agility >= 8"',
   // Leadership
-  'Leader Of Men':'Type=leadership Require="advances >= 4","features.Command"',
+  'Leader Of Men':'Type=Leadership Require="advances >= 4","features.Command"',
   // Power
-  'New Power':'Type=power Require="powerPoints >= 1"',
+  'New Power':'Type=Power Require="powerPoints >= 1"',
   // Professional
   'Adept':
-    'Type=professional ' +
+    'Type=Professional ' +
     'Require=' +
       '"features.Arcane Background (Miracles)",' +
       '"features.Martial Artist",' +
       '"skills.Faith >= 8",' +
       '"skills.Fighting >= 8"',
-  'Scholar':'Type=professional"',
+  'Scholar':'Type=Professional"',
   // Legendary
   'Martial Arts Master':
-    'Type=legendary ' +
+    'Type=Legendary ' +
     'Require=' +
       '"advances >= 16",' +
       '"features.Improved Martial Artist",' +
       '"skills.Fighting >= 12"',
   'Improved Tough As Nails':
-    'Type=legendary Require="advances >= 16","features.Tough As Nails"'
+    'Type=Legendary Require="advances >= 16","features.Tough As Nails"'
 };
 for(var edge in SWADE.EDGES) {
   if(!(edge in SWD.EDGES_CHANGES))
