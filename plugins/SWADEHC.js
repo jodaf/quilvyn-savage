@@ -131,15 +131,17 @@ SWADEHC.EDGES_ADDED = {
   'Angel':'Type=Monstrous Require="monstrousTypeCount==1"',
   'Divine Blade':'Type=Monstrous Require="advances >= 8","features.Angel"',
   'Holy Light':'Type=Monstrous Require="features.Angel"',
-  'Searing Light':'Type=Monstrous Require="advances >= 8","features.Angel"',
+  'Searing Blast':'Type=Monstrous Require="advances >= 8","features.Angel"',
   'Immortality':'Type=Monstrous Require="advances >= 12","features.Angel"',
-  'Mystic Powers (Angel)':
+  'Mystic Powers (Angel (Death))':
+    'Type=Monstrous Require="advances >= 4","features.Angel"',
+  'Mystic Powers (Angel (Herald))':
     'Type=Monstrous Require="advances >= 4","features.Angel"',
   'Sense Supernatural':
     'Type=Monstrous Require="features.Angel||features.Demon"',
-  'Speed':'Type=Monstrous Require="advances >= 4","features.Angel"',
+  'Speed (Angel)':'Type=Monstrous Require="advances >= 4","features.Angel"',
   'Tongues':'Type=Monstrous Require="advances >= 4","features.Angel"',
-  'Toughness':'Type=Monstrous Require="advances >= 4","features.Angel"',
+  'Toughness (Angel)':'Type=Monstrous Require="advances >= 4","features.Angel"',
   'Divine Toughness':
     'Type=Monstrous Require="advances >= 4","features.Toughness"',
   'Wing Strike':'Type=Monstrous Require="advances >= 4","features.Angel"',
@@ -153,7 +155,13 @@ SWADEHC.EDGES_ADDED = {
   'Hellfire':'Type=Monstrous Require="advances >= 4","features.Demon"',
   'Scorch':'Type=Monstrous Require="advances >= 8","features.Hellfire"',
   'Incorporeal':'Type=Monstrous Require="features.Demon"',
-  'Mystic Powers (Demon)':
+  'Mystic Powers (Demon (Possessor))':
+    'Type=Monstrous Require="advances >= 4","features.Demon"',
+  'Mystic Powers (Demon (Summoner))':
+    'Type=Monstrous Require="advances >= 4","features.Demon"',
+  'Mystic Powers (Demon (Tempter))':
+    'Type=Monstrous Require="advances >= 4","features.Demon"',
+  'Mystic Powers (Demon (Trickster))':
     'Type=Monstrous Require="advances >= 4","features.Demon"',
   // Sense Supernatural as Angel
   'True Demon':'Type=Monstrous Require="advances >= 8","features.Demon"',
@@ -162,7 +170,9 @@ SWADEHC.EDGES_ADDED = {
   'Mummy':'Type=Monstrous Require="monstrousTypeCount==1"',
   'Burrow':'Type=Monstrous Require="advances >= 4","features.Mummy"',
   'Mummy Rot':'Type=Monstrous Require="advances >= 8","features.Mummy"',
-  'Mystic Powers (Mummy)':
+  'Mystic Powers (Mummy (Architect))':
+    'Type=Monstrous Require="advances >= 4","features.Mummy"',
+  'Mystic Powers (Mummy (Royal))':
     'Type=Monstrous Require="advances >= 4","features.Mummy"',
   'Regeneration (Slow)':
     'Type=Monstrous Require="advances >= 4","features.Mummy"',
@@ -247,12 +257,11 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Has Ageless, Beautify, Divine Might, Faith, Flight, Immune To Disease And Poison, and Servant Of Heaven features"',
   'Animal Form':'Section=feature Note="FILL"',
   'Armored Hide':'Section=combat Note="+4 Armor"',
-  'Beautify':'Section=feature Note="FILL"',
+  'Beautify':'Section=arcana Note="May create minor beauty effects"',
   'Berserk':'Section=feature Note="FILL"',
-  'Bespoil':'Section=feature Note="FILL"',
+  'Bespoil':'Section=arcana Note="May create minor ugliness effects"',
   'Bite/Claws':'Section=feature Note="FILL"',
   'Bite & Claws':'Section=feature Note="FILL"',
-  'Bite':'Section=feature Note="FILL"',
   'Bleeder+':
     'Section=combat ' +
     'Note="Taking a Wound inflicts a level of fatigue each rd (Vigor neg 1 rd; Raise or Healing ends)"',
@@ -263,12 +272,11 @@ SWADEHC.FEATURES_ADDED = {
   'Bully':'Section=feature Note="Frequently belittles others"',
   'Bully+':
     'Section=feature Note="Frequently belittles others and may turn violent"',
-  'Burrow':'Section=feature Note="FILL"',
+  'Burrow':'Section=combat Note="Burrow Pace %{pace/2}"',
   'Cannot Speak':'Section=feature Note="Cannot speak while transformed"',
   'Charm':'Section=feature Note="FILL"',
   'Children Of The Night':'Section=feature Note="FILL"',
   'Chilling Touch':'Section=feature Note="FILL"',
-  'Claws':'Section=feature Note="FILL"',
   'Corruption+':
     'Section=arcana ' +
     'Note=' +
@@ -288,18 +296,20 @@ SWADEHC.FEATURES_ADDED = {
   'Demon':
     'Section=feature ' +
     'Note="Has Ageless, Bespoil, Darkvision, Deal Maker, Doesn\'t Breathe, Environmental Resistance (Cold, Electricity, Heat), Immune To Disease And Poison, Infernal Stamina, Spirited, and Weakness (Cold Iron) features"',
-  'Demonic Immortality':'Section=feature Note="FILL"',
+  'Demonic Immortality':'Section=combat Note="Reforms d4 dy after being slain"',
   'Detachable Parts':'Section=feature Note="FILL"',
   'Discharge':'Section=feature Note="FILL"',
-  'Divine Blade':'Section=feature Note="FILL"',
-  'Divine Might':'Section=feature Note="FILL"',
-  'Divine Toughness':'Section=feature Note="FILL"',
-  "Doesn't Breathe":'Section=feature Note="FILL"',
+  'Divine Blade':
+    'Section=combat ' +
+    'Note="Has a magical weapon that inflicts +d6 damage and ignores Immortality edge"',
+  'Divine Might':'Section=attribute Note="+2 Strength Step/+2 Vigor Step"',
+  'Divine Toughness':'Section=feature Note="+2 Toughness"',
+  "Doesn't Breathe":'Section=feature Note="Does not require oxygen"',
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Dread':'Section=feature Note="+2 rolls on Fear Effects"',
   'Environmental Resistance (Cold, Electricity, Heat)':'Section=feature Note="FILL"',
   'Ethereal':'Section=feature Note="FILL"',
-  'Faith':'Section=feature Note="FILL"',
+  'Faith':'Section=skill Note="+1 Faith Step"',
   'Favored Power':
     'Section=arcana ' + 
     'Note="May ignore 2 points of penalties when casting chosen power"',
@@ -313,7 +323,8 @@ SWADEHC.FEATURES_ADDED = {
     'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant 5 Trait or damage rerolls"',
   'Fire Bad!':'Section=feature Note="Has Phobia+ hindrance (fire)"',
   'Flashbacks':'Section=feature Note="FILL"',
-  'Flight':'Section=feature Note="FILL"',
+  'Flight': // Modified from SWADE
+    'Section=combat Note="Fly Pace %V"',
   'Gallows Humor':
     'Section=skill ' +
     'Note="May use Taunt vs. fear instead of spirit; Raise gives +1 to allies"',
@@ -322,12 +333,19 @@ SWADEHC.FEATURES_ADDED = {
   'Heavy Sleeper':
     'Section=attribute,skill ' +
     'Note="-4 Vigor (stay awake)","-4 Notice (wake up)"',
-  'Hellfire':'Section=feature Note="FILL"',
-  'Holy Light':'Section=feature Note="FILL"',
-  'Immortality':'Section=feature Note="FILL"',
-  'Immune To Disease And Poison':'Section=feature Note="FILL"',
-  'Incorporeal':'Section=feature Note="FILL"',
-  'Infernal Stamina':'Section=feature Note="FILL"',
+  'Hellfire':
+    'Section=combat ' +
+    'Note="R12\\" May create and move a 1\\" radius fire that inflicts %{combatNotes.scorch?2:1}d6 damage or attack with a 9\\" cone%{combatNotes.scorch?\' or 12\\" stream\':\'\'} that inflicts 2d4 damage"',
+  'Holy Light':
+    'Section=combat ' +
+    'Note="R12\\" May create and move a dim or bright light or attack with a 9\\" cone or 12\\" stream that inflicts 2d%{combatNotes.searingBlast?6:4} damage"',
+  'Immortality':'Section=combat Note="Reforms d4 dy after being slain"',
+  'Immune To Disease And Poison':
+    'Section=combat Note="Has immunity to disease and poiton"',
+  'Incorporeal':
+    'Section=feature ' +
+    'Note="Unaffected by the physical world; successful Spirit allows becoming corporeal for 1 rd"',
+  'Infernal Stamina':'Section=attribute Note="+1 Vigor Step"',
   'Infravision':'Section=feature Note="FILL"',
   'Invisibility':'Section=feature Note="FILL"',
   'Jumpy':'Section=attribute Note="Must attempt Fear check whenever startled"',
@@ -336,13 +354,36 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Suffers -4 arcane skill rolls when materials are unavailable; critical failure exhausts materials"',
   'Mist Form':'Section=feature Note="FILL"',
   'Monster Hunter':'Section=combat Note="Immune to fear from %V creature type"',
-  'Mummy Rot':
+  'Mummy':
     'Section=feature ' +
     'Note="Has Ageless, Slow, The Strenth Of Ages, Undead, and Weakness (Fire) features"',
-  'Mummy':'Section=feature Note="FILL"',
-  'Mystic Powers (Angel)':'Section=feature Note="FILL"',
-  'Mystic Powers (Demon)':'Section=feature Note="FILL"',
-  'Mystic Powers (Mummy)':'Section=feature Note="FILL"',
+  'Mummy Rot':
+    'Section=combat ' +
+    'Note="Touch causes a Wound (Vigor neg); death may convert target into a mummy"',
+  'Mystic Powers (Angel (Death))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, self <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Angel (Herald))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Divination</i>, <i>Healing</i>, or <i>Scrying</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Demon (Possessor))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Curse</i>, <i>Nightmares</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Demon (Summoner))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Protection</i>, <i>Summon Ally</i>, <i>Sumon Demon</i>, or <i>Zombie</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Demon (Tempter))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Disguise</i>, <i>Empathy</i>, or <i>Mind Reading</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Demon (Trickster))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast self <i>Deflection</i>, <i>Disguise</i>, <i>Fear</i>, or <i>Illusionary Horrors</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Mummy (Architect))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Blade Barrier</i>, <i>Detect/Conceal Arcana</i>, <i>Lock/Unlock</i>, or <i>Telekinesis</i> for 2 PP (+2 PP for Raise)"',
+  'Mystic Powers (Mummy (Royal))':
+    'Section=arcana ' +
+    'Note="10 Power Points/May cast <i>Blast</i>, <i>Burst</i>, or <i>Spite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Phantom)':'Section=feature Note="FILL"',
   'Night Terrors+':
     'Section=attribute,feature ' +
@@ -361,7 +402,9 @@ SWADEHC.FEATURES_ADDED = {
   'Phantom':
     'Section=feature ' +
     'Note="Has Ageless, Darkvision, Doesn\'t Breathe, Ethereal, Flight, Immune To Disease And Poison, Strong Spirit, and Weakness (Salt) features"',
-  'Regeneration (Fast)':'Section=combat Note="Successful Vigor remove incapacitation or restores 1 Wound (Raise 2 Wounds)"',
+  'Regeneration (Fast)':
+    'Section=combat ' +
+    'Note="Successful Vigor removes incapacitation or restores 1 Wound (Raise 2 Wounds)"',
   'Regeneration (Slow)':
     'Section=skill Note="May make a natural healing roll 1/dy"',
   'Relentless Tracker':'Section=feature Note="FILL"',
@@ -376,6 +419,7 @@ SWADEHC.FEATURES_ADDED = {
   'Roar':'Section=feature Note="FILL"',
   'Savagery':'Section=feature Note="FILL"',
   'Science!':'Section=feature Note="FILL"',
+  'Scorch':'Section=combat Note="Increased Hellfire effects"',
   'Scream Queen/King':'Section=attribute Note="May reroll Fear Effects"',
   'Screamer':
     'Section=attribute Note="Screams in reponse to a failed Fear check"',
@@ -384,34 +428,45 @@ SWADEHC.FEATURES_ADDED = {
     'Note=' +
       '"Screams in reponse to a failed Fear check",' +
       '"Scream after failed Fear check inflicts Distracted on self an allies in a 3\\" radius; successful smarts ends"',
-  'Searing Light':'Section=feature Note="FILL"',
-  'Sense Supernatural':'Section=feature Note="FILL"',
-  'Servant Of Heaven':'Section=feature Note="FILL"',
+  'Searing Blast':'Section=combat Note="Increased Holy Light effects"',
+  'Sense Supernatural':
+    'Section=feature ' +
+    'Note="R10\\" May sense presense of superatural beings and effects"',
+  'Servant Of Heaven':'Section=feature Note="Has Vow+ feature"',
   'Silent Caster':'Section=arcana Note="May use Powers w/out speech"',
   'Sire':'Section=feature Note="FILL"',
   'Slow':'Section=feature Note="FILL"',
   'Speech':'Section=feature Note="FILL"',
   'Speed':'Section=combat Note="+2 Pace/+1 Run Step"',
-  'Scorch':'Section=feature Note="FILL"',
+  'Speed (Angel)':'Section=combat Note="Increased Flight speed"',
+  // Spirited as SWADE
   'Stench':'Section=feature Note="FILL"',
   'Strength Of The Damned':'Section=feature Note="FILL"',
   'Strength Of The Dead':
     'Section=attribute Note="+1 Spirit Step/+1 Vigor Step"',
   'Strong Spirit':'Section=attribute Note="+1 Spirit Step"',
-  'Summon Great Swarm':'Section=feature Note="FILL"',
-  'Summon Storm':'Section=feature Note="FILL"',
-  'Summon Swarm':'Section=feature Note="FILL"',
+  'Summon Great Swarm':
+    'Section=arcana ' +
+    'Note="Summoned swarm splits into two medium swarms when slain"',
+  'Summon Storm':
+    'Section=arcana ' +
+    'Note="Sandstorm several miles in diameter causes darkness and Fatigue (Vigor or shelter neg) 1/min"',
+  'Summon Swarm':
+    'Section=arcana ' +
+    'Note="May summon a %{$\'edges.Summon Great Swarm\'?\'large\':\'medium\'} swarm 1/dy"',
   'Superstitious':
     'Section=feature ' +
     'Note="-1 on all Trait rolls if focus object or routine is disturbed"',
   'The Strenth Of Ages':'Section=feature Note="FILL"',
   'Thought Eater':'Section=feature Note="FILL"',
   'Thrall':'Section=feature Note="FILL"',
-  'Tongues':'Section=feature Note="FILL"',
+  'Tongues':'Section=feature Note="Is fluent in every human language"',
   'Tough (Werewolf)':'Section=combat Note="+2 Toughness"',
-  'Toughness':'Section=feature Note="FILL"',
+  'Toughness (Angel)':'Section=combat Note="+2 Toughness"',
   'Transformation':'Section=feature Note="FILL"',
-  'True Demon':'Section=feature Note="FILL"',
+  'True Demon':
+    'Section=combat ' +
+    'Note="Suffers half damage from nonmagical attacks other than cold iron"',
   'Undead':
     'Section=combat ' +
     'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe/Immune to disease and poison"',
@@ -420,7 +475,7 @@ SWADEHC.FEATURES_ADDED = {
   'Vampire':
     'Section=feature ' +
     'Note="Has Ageless, Bite, Darkvision, Feed, Regeneration (Slow), Strength Of The Damned, Undead, and Weakness features"',
-  'Vengeance':'Section=feature Note="Has Vow+ hindrance"',
+  'Vengeance':'Section=feature Note="Has Vow+ feature"',
   'Veteran Of The Dark World':
      'Section=description,feature ' +
      'Note="+4 Advances","Has an additional hindrance"',
@@ -429,15 +484,19 @@ SWADEHC.FEATURES_ADDED = {
   'Wall Walker':
     'Section=combat ' +
     'Note="May move on vertical and inverted surfaces at half Pace"',
-  'Weakness (Cold Iron)':'Section=feature Note="FILL"',
+  'Weakness (Cold Iron)':
+    'Section=combat Note="Suffers +4 damage from cold iron weapons"',
   'Weakness (Fire)':'Section=feature Note="FILL"',
   'Weakness (Salt)':'Section=feature Note="FILL"',
   'Weakness':'Section=feature Note="FILL"',
   'Werewolf':
     'Section=feature ' +
     'Note="Has Bite/Claws, Cannot Speak, Ferocity, Infravision, Regeneration (Slow), Speed, Transformation, and Weakness features"',
-  'Wing Strike':'Section=feature Note="FILL"',
-  'Wings':'Section=feature Note="FILL"',
+  'Wing Strike':
+    'Section=combat ' +
+    'Note="Wings inflict d%{strength}+d8; 5\\" charge inflicts an additional +4/+2 Toughness when wings extended (Called Shot-2 neg)"',
+  'Wings':
+    'Section=combat Note="Fly Pace %{edges.Wings>2?48:edges.Wings>1?24:12}"',
   'Zombie Master':'Section=feature Note="FILL"'
 };
 SWADEHC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEHC.FEATURES_ADDED);
@@ -647,7 +706,9 @@ SWADEHC.conceptRules = function(rules, name, attributes, edges, skills) {
  */
 SWADEHC.edgeRules = function(rules, name, requires, implies, types) {
   SWADE.edgeRules(rules, name, requires, implies, types);
-  if(requires.length == 0 && types[0] == 'Monstrous')
+  if(types[0] == 'Monstrous' &&
+     requires.length == 1 &&
+     requires[0].includes('monstrousTypeCount'))
     rules.defineRule('monstrousTypeCount', 'edges.' + name, '+=', '1');
 };
 
@@ -657,19 +718,35 @@ SWADEHC.edgeRules = function(rules, name, requires, implies, types) {
  */
 SWADEHC.edgeRulesExtra = function(rules, name) {
   let monstrousFeatures = [];
-  if(name == 'Angel')
+  if(name == 'Angel') {
     monstrousFeatures = [
       'Ageless', 'Beautify', 'Divine Might', 'Faith', 'Flight',
       'Immune To Disease And Poison', 'Servant Of Heaven'
     ];
-  else if(name == 'Demon')
+    rules.defineRule('features.Vow+', 'featureNotes.servantOfHeaven', '=', '1');
+    rules.defineRule('combatNotes.flight',
+      'features.Angel', '=', '12',
+      'features.Speed (Angel)', '+', 'source==1 ? 12 : 36',
+      'combatNotes.speed(Angel)', '+', 'null'
+    );
+  } else if(name == 'Demon') {
     monstrousFeatures = [
       'Ageless', 'Bespoil', 'Darkvision', 'Deal Maker', 'Doesn\'t Breathe',
       'Environmental Resistance (Cold, Electricity, Heat)',
       'Immune To Disease And Poison', 'Infernal Stamina', 'Spirited',
       'Weakness (Cold Iron)'
     ];
-  else if(name == 'Demon')
+    let allNotes = rules.getChoices('notes');
+    if(allNotes && 'weapons.Bite' in allNotes)
+      allNotes['weapons.Bite'] =
+        allNotes['weapons.Bite'].replace(')', '%{edges.Bite>1 ? \' AP 2\':\'\'})');
+    if(allNotes && 'weapons.Claws' in allNotes)
+      allNotes['weapons.Claws'] =
+        allNotes['weapons.Claws'].replace(')', '%{edges.Claws>1 ? \' AP 2\':\'\'})');
+    rules.defineRule('damageStep.Bite', 'edges.Bite', '^=', '2');
+    rules.defineRule
+      ('damageStep.Claws', 'edges.Claws', '^=', 'source>1 ? 2 : null');
+  } else if(name == 'Demon')
     monstrousFeatures = [
       'Ageless', 'Slow', 'The Strenth Of Ages', 'Undead', 'Weakness (Fire)'
     ];
@@ -683,12 +760,13 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
       'Ageless', 'Darkvision', "Doesn't Breathe", 'Ethereal', 'Flight',
       'Immune To Disease And Poison', 'Strong Spirit', 'Weakness (Salt)'
     ];
-  else if(name == 'Revenant')
+  else if(name == 'Revenant') {
     monstrousFeatures = [
       'Ageless', 'Hardy', 'Regeneration (Slow)', 'Strength Of The Dead',
-      'Undead', 'Vengeance', 'Vow+'
+      'Undead', 'Vengeance'
     ];
-  else if(name == 'Vampire')
+    rules.defineRule('features.Vow+', 'featureNotes.vengeance', '=', '1');
+  } else if(name == 'Vampire')
     monstrousFeatures = [
       'Ageless', 'Bite', 'Darkvision', 'Feed', 'Regeneration (Slow)',
       'Strength Of The Damned', 'Undead', 'Weakness'
@@ -829,7 +907,6 @@ SWADEHC.weaponRules = function(
     rules, name, ['Medieval'], damage, minStr, weight, category, armorPiercing,
     range, rateOfFire, parry
   );
-  // No changes needed to the rules defined by base method
 };
 
 /*
