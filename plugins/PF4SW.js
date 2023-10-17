@@ -959,7 +959,7 @@ PF4SW.FEATURES_ADDED = {
       '"Powers with fire trapping inflict +1 damage",' +
       '"Has Resistance to fire and immunity to poison"',
   'Inspire Heroics':
-    'Section=feature ' +
+    'Section=combat ' +
     'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant 5 Trait or damage rerolls"',
   'Intimidating Glare':
     'Section=combat ' +
@@ -1144,8 +1144,7 @@ PF4SW.FEATURES_ADDED = {
     'Note=' +
       '"+1 Attribute Points",' +
       '"+1 Edge Points"',
-  'Darkvision':
-    'Section=skill Note="Ignores illumination penalties up to 10\\""',
+  'Darkvision':'Section=feature Note="R10\\" Ignores illumination penalties"',
   'Elven Magic':'Section=combat Note="May reroll to resist Powers"',
   'Flexibility':'Section=attribute Note="+1 Attribute Points"',
   'Gnome Magic':
