@@ -166,6 +166,15 @@ SWADEFC.ANCESTRYS = {
       'Charismatic,"Change Shape",Secret+'
 };
 SWADEFC.ARCANAS = {
+  'Alchemist':
+    'Skill=Alchemy ' +
+    'Powers=' +
+      'Banish,"Beast Friend",Blast,Blind,"Boost/Lower Trait",Burst,Confusion,' +
+      'Darksight,Deflection,"Detect/Conceal Arcana",Empathy,Entangle,' +
+      '"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,Healing,' +
+      'Intangibility,Light/Darkness,Protection,Puppet,Relief,Resurrection,' +
+      '"Shape Change",Sloth/Speed,Slumber,Smite,"Speak Language",' +
+      '"Wall Walker","Warrior\'s Gift"',
   'Bard':
     'Skill=Performance ' +
     'Powers=' +
@@ -644,30 +653,41 @@ SWADEFC.EDGES_ADDED = {
     'Type=Legendary ' +
     'Require="features.Command","sumLeadershipEdges>=3","features.Followers"',
   // Arcane Backgrounds
-  'Arcane Background (Alchemist)':'Type=Background',
-  'Arcane Background (Bard)':'Type=Background',
-  'Arcane Background (Cleric (Cold Domain))':'Type=Background',
-  'Arcane Background (Cleric (Death Domain))':'Type=Background',
-  'Arcane Background (Cleric (Life Domain))':'Type=Background',
-  'Arcane Background (Cleric (Justice Domain))':'Type=Background',
-  'Arcane Background (Cleric (Knowledge Domain))':'Type=Background',
-  'Arcane Background (Cleric (Moon Domain))':'Type=Background',
-  'Arcane Background (Cleric (Nature Domain))':'Type=Background',
-  'Arcane Background (Cleric (Sea Domain))':'Type=Background',
-  'Arcane Background (Cleric (Sun Domain))':'Type=Background',
-  'Arcane Background (Cleric (Thievery Domain))':'Type=Background',
-  'Arcane Background (Cleric (War Domain))':'Type=Background',
-  'Arcane Background (Diabolist)':'Type=Background',
-  'Arcane Background (Druid)':'Type=Background',
-  'Arcane Background (Elementalist)':'Type=Background',
-  'Arcane Background (Illusionist)':'Type=Background',
-  'Arcane Background (Necromancer)':'Type=Background',
-  'Arcane Background (Shaman)':'Type=Background',
-  'Arcane Background (Sorcerer)':'Type=Background',
-  'Arcane Background (Summoner)':'Type=Background',
-  'Arcane Background (Tinkerer)':'Type=Background',
-  'Arcane Background (Warlock/Witch)':'Type=Background',
-  'Arcane Background (Wizard)':'Type=Background',
+  'Arcane Background (Alchemist)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Bard)':'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Cold Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Death Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Life Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Justice Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Knowledge Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Moon Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Nature Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Sea Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Sun Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (Thievery Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Cleric (War Domain))':
+    'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Diabolist)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Druid)':'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Elementalist)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Illusionist)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Necromancer)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Shaman)':'Type=Background Require="spirit >= 6"',
+  'Arcane Background (Sorcerer)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Summoner)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Tinkerer)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Warlock/Witch)':'Type=Background Require="smarts >= 6"',
+  'Arcane Background (Wizard)':'Type=Background Require="smarts >= 6"',
   // AB-dependent edges
   'Chemist':
     'Type=Power ' +
@@ -1475,7 +1495,7 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +4 PP Inflicts 3d6 damage as Heavy Weapon"',
   'Darksight':
     'Modifier=' +
-      '"Epic +2 PP Ignores all illumination penalties and 4 points from invisible creatures"',
+      '"Epic +2 PP Target ignores all illumination penalties and 4 points from invisibility"',
   'Deflection':SWADE.POWERS.Deflection + ' ' +
     'PowerPoints=2 ' +
     'Description=' +
