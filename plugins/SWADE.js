@@ -970,7 +970,7 @@ SWADE.FEATURES = {
     'Section=description Note="+2 Improvement Points (Agility or edge)"',
   'Horns':'Section=combat Note="Horns are a natural weapon"',
   'Immune To Disease':'Section=combat Note="Has immunity to disease"',
-  'Immune To Poison':'Section=attribute Note="Has immunity to poison"',
+  'Immune To Poison':'Section=combat Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
     'Note="Suffers half normal illumination penalties when attacking a warm targets"',
@@ -1472,7 +1472,7 @@ SWADE.POWERS = {
     'PowerPoints=5 ' +
     'Range=Smarts ' +
     'Description=' +
-      '"Target becomes unaffected by physical world (Spirit neg) for 5 rd"',
+      '"Target becomes unaffected by the physical world (Spirit neg) for 5 rd"',
   'Invisibility':
     'Advances=4 ' +
     'PowerPoints=5 ' +
