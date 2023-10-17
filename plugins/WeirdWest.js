@@ -1026,7 +1026,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="Ignores penalties vs. fear/May reroll fear effects"',
   "Veteran O' The Weird West":
      'Section=description,feature ' +
-     'Note="+4 Advances","Has additional hindrance"',
+     'Note="+4 Advances","Has an additional hindrance"',
   'Whateley Blood':
     'Section=arcana,skill ' +
     'Note="May suffer fatigue to gain 5 Power Points or 1 Wound to gain 10","-1 Persuasion"',
