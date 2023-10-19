@@ -2644,6 +2644,13 @@ SWADE.featureRules = function(rules, name, sections, notes) {
       matchInfo = effect.match(/^(\d+)\s+power\s+points?$/i);
       if(matchInfo)
         rules.defineRule('powerPoints', note, '+=', matchInfo[1]);
+      matchInfo = effect.match(/^has\s+(.*)\s+features?$/i);
+      if(matchInfo && !matchInfo[1].match(/%[V\d]/)) {
+        matchInfo[1].split(/\s*(?:,|\band\b)\s*/).forEach(f => {
+          if(f != '')
+            rules.defineRule('features.' + f, note, '=', '1');
+        });
+      }
 
       if((matchInfo = effect.match(/^([-+x](\d+(\.\d+)?|%[V1-9]|%\{[^\}]*\}))\s+(.*)$/)) != null) {
 
@@ -2782,8 +2789,6 @@ SWADE.hindranceRulesExtra = function(rules, name) {
       ('armorStrengthStepShortfall', 'attributeNotes.obese', '+', '1');
   } else if(name == 'Small') {
     rules.defineRule('descriptionNotes.small', 'features.Size -1', 'v', '0');
-  } else if(name == 'Young+') {
-    rules.defineRule('features.Small', 'featureNotes.young+', '=', '1');
   }
 };
 
@@ -2883,13 +2888,9 @@ SWADE.raceRules = function(rules, name, requires, abilities) {
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-  if(name == 'Half-Elf') {
+  if(name == 'Half-Elf')
     rules.defineRule
       ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
-  } else if(name == 'Saurian') {
-    rules.defineRule
-      ('features.Alertness', 'featureNotes.keenSenses(Saurian)', '=', '1');
-  }
 };
 
 /*

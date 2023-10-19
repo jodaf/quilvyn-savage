@@ -914,10 +914,9 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat,skill ' +
     'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
   'Hardened':'Section=attribute Note="+1 Attribute Points (Strength or Vigor)"',
-  'Hive Minded':
-    'Section=feature Note="Has Driven+ and Loyal features wrt colony"',
+  'Hive Minded': 'Section=feature Note="Has Driven+ and Loyal features"',
   'Hooves':'Section=combat Note="Hooves are a natural weapon"',
-  'Ill-Tempered':'Section=feature Note="Has Arrogant+ hindrance"',
+  'Ill-Tempered':'Section=feature Note="Has Arrogant+ feature"',
   // Additional from New Ancestry Abilities table
   'Camouflage':
     'Section=skill Note="+2 Stealth (+4 if motionless) in chosen terrain"',
@@ -981,7 +980,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"3 Powers/15 Power Points",' +
       '"Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
-      '"Has Material Components+ feature (Alchemist\'s Bag)"',
+      '"Has Material Components+ feature"',
   'Arcane Background (Bard)':
     'Section=arcana,feature ' +
     'Note=' +
@@ -2017,9 +2016,6 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
   let advanceAttr = name.toLowerCase() + 'Advances';
   if(name == 'Avion' || name == 'Celestial') {
     rules.defineRule('combatNotes.flight', advanceAttr, '=', '12');
-  } else if(name == 'Dragonfolk') {
-    rules.defineRule
-      ('features.Arrogant+', 'featureNotes.ill-Tempered', '=', '1');
   } else if(name == 'Elemental Scion') {
     rules.defineRule
       ('edgePoints', 'featureNotes.elementalConnection', '+=', '1');
@@ -2029,23 +2025,6 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
     rules.defineRule('features.Elemental Scion',
       'ancestry', '=', 'source=="Elemental Scion" ? 1 : null'
     );
-    rules.defineRule('features.Aquatic', 'featureNotes.waterScion', '=', null);
-    rules.defineRule('features.Environmental Resistance (Air)',
-      'featureNotes.airScion', '=', null
-    );
-    rules.defineRule('features.Environmental Resistance (Earth)',
-      'featureNotes.earthScion', '=', null
-    );
-    rules.defineRule('features.Environmental Resistance (Fire)',
-      'featureNotes.fireScion', '=', null
-    );
-    rules.defineRule('features.Environmental Resistance (Water)',
-      'featureNotes.waterScion', '=', null
-    );
-    rules.defineRule('features.Inner Air', 'featureNotes.airScion', '=', null);
-    rules.defineRule('features.Quick', 'featureNotes.fireScion', '=', null);
-    rules.defineRule
-      ('features.Rock Solid', 'featureNotes.earthScion', '=', null);
   } else if(name == 'Fairy') {
     rules.defineRule('combatNotes.flight', advanceAttr, '=', '6');
   } else if(name == 'Golem') {
@@ -2073,15 +2052,9 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
       'lacksStealth', '?', 'source != 1',
       'skillNotes.reducedCoreSkills', '+', '-1' // Reverse automatic d4
     );
-  } else if(name == 'Graveborn') {
-    rules.defineRule('features.Environmental Resistance (Cold)',
-      'featureNotes.coldResistance', '=', '1'
-    );
   } else if(name == 'Half-Orc') {
     rules.defineRule('attributePoints', 'attributeNotes.hardened', '+=', '1');
   } else if(name == 'Insectoid') {
-    rules.defineRule('features.Driven+', 'featureNotes.hiveMinded', '=', '1');
-    rules.defineRule('features.Loyal', 'featureNotes.hiveMinded', '=', '1');
     rules.defineRule('weapons.Bite', 'combatNotes.biteOrClaw', '=', '1');
     rules.defineRule('weapons.Claws', 'combatNotes.biteOrClaw', '=', '1');
   } else if(name == 'Minotaur') {
@@ -2089,15 +2062,7 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
       rules, 'Hooves', [], 'Str+d4', 0, 0, 'Unarmed', null, null, null, null
     );
     rules.defineRule('weapons.Hooves', 'combatNotes.hooves', '=', null);
-  } else if(name == 'Mouseling') {
-    rules.defineRule
-      ('features.Mild Mannered', 'featureNotes.unimposing', '=', '1');
-  } else if(name == 'Ratling') {
-    rules.defineRule('features.Yellow+', 'featureNotes.craven', '=', '1');
   } else if(name == 'Shapeshifter') {
-    rules.defineRule('features.Arcane Background (Gifted)',
-      'featureNotes.changeShape', '=', '1'
-    );
     rules.defineRule('powers.Disguise', 'features.Change Shape', '=', '1');
   }
   if(SWADE.raceRulesExtra)
@@ -2177,17 +2142,7 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
         ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
     }
   }
-  if(name == 'Arcane Background (Alchemist)') {
-    rules.defineRule('features.Material Components+',
-      'featureNotes.arcaneBackground(Alchemist)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Bard)') {
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Bard)', '=', '1'
-    );
-    rules.defineRule('features.Sharp Tongued',
-      'featureNotes.arcaneBackground(Bard)', '=', '1'
-    );
+  if(name == 'Arcane Background (Bard)') {
     // NOTE: The substitution of Performance for Taunt presently only affects
     // validation for the SWADE Humiliate, Provoke, and Retort edges. In
     // theory, it could also affect Hindrance and Ancestry requirements, but in
@@ -2208,123 +2163,6 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
   } else if(name.match(/Arcane Background .Cleric/)) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
-    rules.defineRule('features.Holy Symbol',
-      'featureNotes.arcaneBackground(Cleric)', '=', '1'
-    );
-    rules.defineRule
-      ('features.Vow+', 'featureNotes.arcaneBackground(Cleric)', '=', '1');
-  } else if(name == 'Arcane Background (Diabolist)') {
-    rules.defineRule('features.Armor Interference+',
-      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
-    );
-    rules.defineRule('features.Corruption+',
-      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
-    );
-    rules.defineRule('features.Summoning',
-      'featureNotes.arcaneBackground(Diabolist)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Druid)') {
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Druid)', '=', '1'
-    );
-    rules.defineRule('features.Material Components+',
-      'featureNotes.arcaneBackground(Druid)', '=', '1'
-    );
-    rules.defineRule('features.One With Nature',
-      'featureNotes.arcaneBackground(Druid)', '=', '1'
-    );
-    rules.defineRule
-      ('features.Vow+', 'featureNotes.arcaneBackground(Druid)', '=', '1');
-    rules.defineRule('features.Wilderness Stride',
-      'featureNotes.arcaneBackground(Druid)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Elementalist)') {
-    rules.defineRule('features.Armor Interference+',
-      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
-    );
-    rules.defineRule('features.Elemental Origin',
-      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
-    );
-    rules.defineRule('features.Elemental Synergy',
-      'featureNotes.arcaneBackground(Elementalist)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Illusionist)') {
-    rules.defineRule('features.Armor Interference+',
-      'featureNotes.arcaneBackground(Illusionist)', '=', '1'
-    );
-    rules.defineRule('features.Strong Illusions',
-      'featureNotes.arcaneBackground(Illusionist)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Necromancer)') {
-    rules.defineRule('features.Corruption+',
-      'featureNotes.arcaneBackground(Necromancer)', '=', '1'
-    );
-    rules.defineRule('features.Raise The Dead',
-      'featureNotes.arcaneBackground(Necromancer)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Shaman)') {
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Shaman)', '=', '1'
-    );
-    rules.defineRule('features.Favored Power',
-      'featureNotes.arcaneBackground(Shaman)', '=', '1'
-    );
-    rules.defineRule('features.Fetish',
-      'featureNotes.arcaneBackground(Shaman)', '=', '1'
-    );
-    rules.defineRule
-      ('features.Quirk', 'featureNotes.arcaneBackground(Shaman)', '=', '1');
-  } else if(name == 'Arcane Background (Sorcerer)') {
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
-    );
-    rules.defineRule('features.Corruption+',
-      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
-    );
-    rules.defineRule('features.Overpower',
-      'featureNotes.arcaneBackground(Sorcerer)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Summoner)') {
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Summoner)', '=', '1'
-    );
-    rules.defineRule('features.Master Summoner',
-      'featureNotes.arcaneBackground(Summoner)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Tinkerer)') {
-    rules.defineRule
-      ('features.Jinx', 'featureNotes.arcaneBackground(Tinkerer)', '=', '1');
-    rules.defineRule('features.Tools',
-      'featureNotes.arcaneBackground(Tinkerer)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Warlock/Witch)') {
-    rules.defineRule('features.Armor Interference+',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-    rules.defineRule('features.Corruption+',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-    rules.defineRule('features.Coven',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-    rules.defineRule('features.Familiar',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-    rules.defineRule('features.Material Components+',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-    rules.defineRule('features.Prepared Powers',
-      'featureNotes.arcaneBackground(Warlock/Witch)', '=', '1'
-    );
-  } else if(name == 'Arcane Background (Wizard)') {
-    rules.defineRule('features.Armor Interference+',
-      'featureNotes.arcaneBackground(Wizard)', '=', '1'
-    );
-    rules.defineRule('features.Material Components+',
-      'featureNotes.arcaneBackground(Wizard)', '=', '1'
-    );
-  } else if(name == 'Chosen') {
-    rules.defineRule('features.Enemy+', 'featureNotes.chosen', '=', '1');
   } else if(name == 'Heartwood Staff') {
     SWADEFC.weaponRules(
       rules, 'Heartwood Staff', 'Str+d8', 6, 6, 'Two-Handed', null, null, null, 1

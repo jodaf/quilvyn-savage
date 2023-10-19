@@ -1324,8 +1324,6 @@ SWD.edgeRulesExtra = function(rules, name) {
       ('damageAdjustment.Unarmed', 'combatNotes.martialArtsMaster', '+', '2');
   } else if(name == 'New Power') {
     rules.defineRule('arcanaNotes.newPower', 'edges.New Power', '=', null);
-  } else if(name == 'Noble') {
-    rules.defineRule('features.Rich', 'featureNotes.noble', '=', '1');
   } else if(SWADE.edgeRulesExtra) {
     SWADE.edgeRulesExtra(rules, name);
   }
@@ -1415,10 +1413,7 @@ SWD.raceRules = function(rules, name, requires, abilities) {
  * derived directly from the attributes passed to raceRules.
  */
 SWD.raceRulesExtra = function(rules, name) {
-  if(name == 'Android') {
-    rules.defineRule
-      ('features.Pacifist+', 'featureNotes.asimovCircuits', '=', '1');
-  } else if(name == 'Atlantean') {
+  if(name == 'Atlantean') {
     rules.defineRule('skillStep.Swimming', 'skillNotes.aquatic', '+=', '2');
   } else if(name == 'Half-Elf') {
     rules.defineRule
@@ -1427,10 +1422,6 @@ SWD.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('isRakashan', 'race', '=', 'source == "Rakashan" ? 1 : null');
     rules.defineRule('damageStep.Claws', 'isRakashan', '^=', '2');
-  } else if(name == 'Saurian') {
-    rules.defineRule('features.Bite', 'combatNotes.naturalWeapons', '=', '1');
-    rules.defineRule('features.Claws', 'combatNotes.naturalWeapons', '=', '1');
-    rules.defineRule('features.Tail', 'combatNotes.naturalWeapons', '=', '1');
   }
 };
 

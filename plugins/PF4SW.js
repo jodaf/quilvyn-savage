@@ -1996,9 +1996,6 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.arcaneBackground(Magic)', '=', '"medium or heavy"'
     );
-    rules.defineRule('features.Armor Interference',
-      'featureNotes.arcaneBackground(Magic)', '=', '1'
-    );
     rules.defineRule('skillNotes.armorInterference.1',
       'featureNotes.arcaneBackground(Magic)', '=', '"medium or heavy"'
     );
@@ -2007,20 +2004,8 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Arcane Background (Miracles)') {
     rules.defineRule('edgePoints', 'featureNotes.domain', '+', '1');
-    rules.defineRule
-      ('features.Domain', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
-    rules.defineRule
-      ('features.Vow+', 'featureNotes.arcaneBackground(Miracles)', '=', '1');
   } else if(name == 'Arcane Bloodline') {
     rules.defineRule('edgePoints', 'featureNotes.arcaneBloodline', '+', '1');
-  } else if(name == 'Assassin') {
-    rules.defineRule
-      ('features.Death Attack', 'featureNotes.assassin', '=', '1');
-  } else if(name == 'Assassin II') {
-    rules.defineRule
-      ('features.Hide In Plain Sight', 'featureNotes.assassinII', '=', '1');
-    rules.defineRule
-      ('features.Resistance To Poison', 'featureNotes.assassinII', '=', '1');
   } else if(name == 'Assassin III') {
     rules.defineRule
       ('features.Angel Of Death', 'featureNotes.assassinIII', '=', '1');
@@ -2049,19 +2034,12 @@ PF4SW.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Arcane Trickster II') {
     rules.defineRule
       ('features.Invisible Thief', 'featureNotes.arcaneTricksterII', '=', '1');
-  } else if(name == 'Arcane Trickster III') {
-    rules.defineRule
-      ('features.Surprise Spells', 'featureNotes.arcaneTricksterIII', '=', '1');
   } else if(name == 'Barbarian') {
     rules.defineRule('attributeNotes.armorRestriction.1',
       'featureNotes.barbarian', '=', '"heavy"'
     );
-    rules.defineRule
-      ('features.Armor Restriction', 'featureNotes.barbarian', '=', '1');
     rules.defineRule('features.Enraged', 'features.Rage', '=', '1');
     rules.defineRule('features.Fury', 'features.Rage', '=', '1');
-    rules.defineRule('features.Fast', 'featureNotes.barbarian', '=', '1');
-    rules.defineRule('features.Rage', 'featureNotes.barbarian', '=', '1');
     rules.defineRule('features.Reckless Abandon', 'features.Rage', '=', '1');
     rules.defineRule('skillNotes.armorRestriction.1',
       'featureNotes.barbarian', '=', '"heavy"'
@@ -2070,37 +2048,20 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.bard', '=', '"medium or heavy"'
     );
-    rules.defineRule
-      ('features.Arcane Background (Bard)', 'featureNotes.bard', '=', '1');
-    rules.defineRule
-      ('features.Armor Interference', 'featureNotes.bard', '=', '1');
-    rules.defineRule('features.Sharp Tongued', 'featureNotes.bard', '=', '1');
     rules.defineRule('skillNotes.armorInterference.1',
       'featureNotes.bard', '=', '"medium or heavy"'
     );
     rules.defineRule('skillNotes.armorInterference.2',
       'featureNotes.bard', '=', '"Performance"'
     );
-  } else if(name == 'Celestial Bloodline') {
-    rules.defineRule
-      ('features.Flight', 'featureNotes.advancedCelestialBloodline', '=', '1');
   } else if(name == 'Cleric') {
     rules.defineRule('edgePoints', 'featureNotes.domain', '+', '1');
-    rules.defineRule
-      ('features.Arcane Background (Cleric)', 'featureNotes.cleric', '=', '1');
-    rules.defineRule
-      ('features.Channel Energy', 'featureNotes.cleric', '=', '1');
-    rules.defineRule('features.Domain', 'featureNotes.cleric', '=', '1');
-    rules.defineRule('features.Vow+', 'featureNotes.cleric', '=', '1');
   } else if(name == 'Draconic Bloodline') {
     rules.defineRule
       ('armorToughness', 'combatNotes.draconicBloodline', '+=', '2');
   } else if(name == 'Dragon Disciple') {
     rules.defineRule
       ('features.Breath Weapon', 'featureNotes.dragonDisciple', '=', '1');
-  } else if(name == 'Dragon Disciple II') {
-    rules.defineRule
-      ('features.Wings', 'featureNotes.dragonDiscipleII', '=', '1');
   } else if(name == 'Dragon Disciple III') {
     rules.defineRule
       ('features.Dragon Form', 'featureNotes.dragonDiscipleIII', '=', '1');
@@ -2109,17 +2070,6 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.druid', '=', '"medium or heavy"'
     );
     rules.defineRule('edgePoints', 'featureNotes.natureBond', '+', '1');
-    rules.defineRule
-      ('features.Arcane Background (Druid)', 'featureNotes.druid', '=', '1');
-    rules.defineRule
-      ('features.Armor Interference', 'featureNotes.druid', '=', '1');
-    rules.defineRule('features.Nature Bond', 'featureNotes.druid', '=', '1');
-    rules.defineRule('features.Nature Sense', 'featureNotes.druid', '=', '1');
-    rules.defineRule
-      ('features.Secret Language (Druidic)', 'featureNotes.druid', '=', '1');
-    rules.defineRule('features.Vow+', 'featureNotes.druid', '=', '1');
-    rules.defineRule
-      ('features.Wilderness Stride', 'featureNotes.druid', '=', '1');
     rules.defineRule('survivalStepAdjustment',
       'skillNotes.natureSense', '?', null,
       'spiritStep', '=', null,
@@ -2134,43 +2084,9 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.armorInterference.2',
       'featureNotes.druid', '=', '"Faith"'
     );
-  } else if(name == 'Duelist') {
-    rules.defineRule
-      ('features.Surgical Strike', 'featureNotes.duelist', '=', '1');
-    rules.defineRule('features.Parry', 'featureNotes.duelist', '=', '1');
-  } else if(name == 'Duelist II') {
-    rules.defineRule
-      ('features.Crippling Strike', 'featureNotes.duelistII', '=', '1');
-  } else if(name == 'Duelist III') {
-    rules.defineRule
-      ('features.Deflect Arrows', 'featureNotes.duelistIII', '=', '1');
-  } else if(name == 'Eldritch Knight') {
-    rules.defineRule
-      ('features.Eldritch Recharge', 'featureNotes.eldritchKnight', '=', '1');
-  } else if(name == 'Eldritch Knight II') {
-    rules.defineRule
-      ('features.Eldritch Strike', 'featureNotes.eldritchKnightII', '=', '1');
-  } else if(name == 'Eldritch Knight III') {
-    rules.defineRule('features.Eldritch Strike (Improved)',
-      'featureNotes.eldritchKnightIII', '=', '1'
-    );
-  } else if(name == 'Fighter') {
-    rules.defineRule
-      ('features.Martial Flexibility', 'featureNotes.fighter', '=', '1');
-  } else if(name == 'Infernal Bloodline') {
-    rules.defineRule
-      ('features.Flight', 'featureNotes.advancedInfernalBloodline', '=', '1');
   } else if(name == 'Linguist') {
     // SWADE thinks Language Count is a skill name
     rules.defineRule('languageCount', 'skillNotes.linguist', '+', null);
-  } else if(name == 'Loremaster') {
-    rules.defineRule('features.Lore', 'featureNotes.loremaster', '=', '1');
-  } else if(name == 'Loremaster II') {
-    rules.defineRule
-      ('features.Secret (Loremaster)', 'featureNotes.loremasterII', '=', '1');
-  } else if(name == 'Loremaster III') {
-    rules.defineRule
-      ('features.Greater Lore', 'featureNotes.loremasterIII', '=', '1');
   } else if(name == 'Monk') {
     rules.defineRule
       ('attackAdjustment.Unarmed', 'combatNotes.unarmedStrike', '+=', '1');
@@ -2182,35 +2098,9 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('damageStep.Unarmed', 'combatNotes.unarmedStrike', '+=', '1');
-    rules.defineRule
-      ('features.Armor Restriction', 'featureNotes.monk', '=', '1');
-    rules.defineRule
-      ('features.Martial Discipline', 'featureNotes.monk', '=', '1');
-    rules.defineRule('features.Mobility', 'featureNotes.monk', '=', '1');
-    rules.defineRule('features.Stunning Fist', 'featureNotes.monk', '=', '1');
-    rules.defineRule('features.Unarmed Strike', 'featureNotes.monk', '=', '1');
     rules.defineRule('toughness', 'combatNotes.martialDiscipline.1', '+', null);
     rules.defineRule
       ('skillNotes.armorRestriction.1', 'featureNotes.monk', '=', '"any"');
-  } else if(name == 'Mystic Theurge') {
-    rules.defineRule
-      ('features.Combined Spells', 'featureNotes.mysticTheurge', '=', '1');
-  } else if(name == 'Mystic Theurge II') {
-    rules.defineRule
-      ('features.Spell Synergy', 'featureNotes.mysticTheurgeII', '=', '1');
-  } else if(name == 'Mystic Theurge III') {
-    rules.defineRule
-      ('features.Spell Synthesis', 'featureNotes.mysticTheurgeIII', '=', '1');
-  } else if(name == 'Paladin') {
-    rules.defineRule
-      ('features.Aura Of Courage', 'featureNotes.paladin', '=', '1');
-    rules.defineRule
-      ('features.Code Of Honor+', 'featureNotes.paladin', '=', '1');
-    rules.defineRule('features.Detect Evil', 'featureNotes.paladin', '=', '1');
-    rules.defineRule('features.Smite Evil', 'featureNotes.paladin', '=', '1');
-  } else if(name == 'Pathfinder Chronicler') {
-    rules.defineRule
-      ('features.Pathfinding', 'featureNotes.pathfinderChronicler', '=', '1');
   } else if(name == 'Pathfinder Chronicler II') {
     rules.defineRule
       ('features.Epic Tales', 'featureNotes.pathfinderChroniclerII', '=', '1');
@@ -2223,45 +2113,19 @@ PF4SW.edgeRulesExtra = function(rules, name) {
       'featureNotes.ranger', '=', '"heavy"'
     );
     rules.defineRule
-      ('features.Armor Restriction', 'featureNotes.ranger', '=', '1');
-    rules.defineRule('features.Favored Enemy', 'featureNotes.ranger', '=', '1');
-    rules.defineRule
-      ('features.Favored Terrain', 'featureNotes.ranger', '=', '1');
-    rules.defineRule
-      ('features.Wilderness Stride', 'featureNotes.ranger', '=', '1');
-    rules.defineRule
       ('skillNotes.armorRestriction.1', 'featureNotes.ranger', '=', '"heavy"');
   } else if(name == 'Rogue') {
     rules.defineRule('attributeNotes.armorRestriction.1',
       'featureNotes.rogue', '=', '"medium or heavy"'
     );
-    rules.defineRule
-      ('features.Armor Restriction', 'featureNotes.rogue', '=', '1');
-    rules.defineRule('features.Sneak Attack', 'featureNotes.rogue', '=', '1');
     rules.defineRule('skillNotes.armorRestriction.1',
       'featureNotes.rogue', '=', '"medium or heavy"'
-    );
-  } else if(name == 'Shadowdancer') {
-    rules.defineRule
-      ('features.Greater Darkvision', 'featureNotes.shadowdancer', '=', '1');
-  } else if(name == 'Shadowdancer II') {
-    rules.defineRule
-      ('features.Shadow Cloak', 'featureNotes.shadowdancerII', '=', '1');
-  } else if(name == 'Shadowdancer III') {
-    rules.defineRule('features.Mystic Powers (Shadow Force)',
-      'featureNotes.shadowdancerIII', '=', '1'
     );
   } else if(name == 'Sorcerer') {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.sorcerer', '=', '"any"'
     );
     rules.defineRule('edgePoints', 'featureNotes.bloodline', '+', '1');
-    rules.defineRule('features.Arcane Background (Sorcerer)',
-      'featureNotes.sorcerer', '=', '1'
-    );
-    rules.defineRule
-      ('features.Armor Interference', 'featureNotes.sorcerer', '=', '1');
-    rules.defineRule('features.Bloodline', 'featureNotes.sorcerer', '=', '1');
     rules.defineRule('spellcastingStepAdjustment',
       'skillNotes.arcaneBackground(Sorcerer)', '?', null,
       'spiritStep', '=', null,
@@ -2278,25 +2142,11 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     );
     QuilvynRules.validAllocationRules
       (rules, 'bloodline', 'features.Sorcerer', 'bloodlineEdgeCount');
-  } else if(name == 'Undead Bloodline') {
-    rules.defineRule
-      ('features.Undead', 'featureNotes.advancedUndeadBloodline', '=', '1');
-    rules.defineRule
-      ('features.Outsider+', 'featureNotes.advancedUndeadBloodline', '=', '1');
-    rules.defineRule
-      ('features.Ugly+', 'featureNotes.advancedUndeadBloodline', '=', '1');
   } else if(name == 'Wizard') {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.wizard', '=', '"any"'
     );
     rules.defineRule('edgePoints', 'featureNotes.arcaneBond', '+', '1');
-    rules.defineRule
-      ('features.Arcane Background (Wizard)', 'featureNotes.wizard', '=', '1');
-    rules.defineRule('features.Arcane Bond', 'featureNotes.wizard', '=', '1');
-    rules.defineRule
-      ('features.Armor Interference', 'featureNotes.wizard', '=', '1');
-    rules.defineRule('features.School', 'featureNotes.wizard', '=', '1');
-    rules.defineRule('features.Spellbooks', 'featureNotes.wizard', '=', '1');
     rules.defineRule('skillNotes.armorInterference.1',
       'featureNotes.wizard', '=', '"any"'
     );
