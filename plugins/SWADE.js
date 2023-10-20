@@ -2646,10 +2646,16 @@ SWADE.featureRules = function(rules, name, sections, notes) {
         rules.defineRule('powerPoints', note, '+=', matchInfo[1]);
       matchInfo = effect.match(/^has\s+(.*)\s+features?$/i);
       if(matchInfo && !matchInfo[1].match(/%[V\d]/)) {
-        matchInfo[1].split(/\s*(?:,|\band\b)\s*/).forEach(f => {
-          if(f != '')
-            rules.defineRule('features.' + f, note, '=', '1');
-        });
+        let features = matchInfo[1].replace(/[,\s]+and\s+/, ',');
+        while(features) {
+          matchInfo = features.match(/([^,(]+(\([^)]*\))?)\s*,?\s*/);
+          if(!matchInfo)
+            break;
+          let feature = matchInfo[1];
+          if(feature)
+            rules.defineRule('features.' + feature, note, '=', '1');
+          features = features.substring(matchInfo[0].length);
+        }
       }
 
       if((matchInfo = effect.match(/^([-+x](\d+(\.\d+)?|%[V1-9]|%\{[^\}]*\}))\s+(.*)$/)) != null) {
