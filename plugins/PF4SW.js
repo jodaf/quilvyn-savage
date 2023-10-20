@@ -885,7 +885,8 @@ PF4SW.FEATURES_ADDED = {
   'Duelist II':'Section=feature Note="Has Crippling Strike feature"',
   'Duelist III':'Section=feature Note="Has Deflect Arrows feature"',
   'Eldritch Inspiration':
-    'Section=arcana Note="May spend a Benny to cast a spell from spellbook"',
+    'Section=arcana ' +
+    'Note="May spend a Benny to cast any power of an appropriate rank from spellbook"',
   'Eldritch Knight':'Section=feature Note="Has Eldritch Recharge feature"',
   'Eldritch Knight II':'Section=feature Note="Has Eldritch Strike feature"',
   'Eldritch Knight III':

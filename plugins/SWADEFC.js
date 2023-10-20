@@ -1271,7 +1271,8 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May spend 1/2 PP to inflict 2d6/3d6 damage on all undead in a 3\\" radius"',
   'Dirge':'Section=arcana Note="R10\\" Target suffers -2 on Benny roll"',
   'Eldritch Inspiration':
-    'Section=arcana Note="May spend a Benny to use a power from spellbook"',
+    'Section=arcana ' +
+    'Note="May spend a Benny to cast any power of an appropriate rank from spellbook"',
   'Elemental Absorption':
     'Section=combat Note="+2 Toughness near significant source of chosen element"',
   'Elemental Master':
