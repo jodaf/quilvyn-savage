@@ -503,13 +503,13 @@ SWADEHC.FEATURES_ADDED = {
     'Section=arcana,arcana,feature ' +
     'Note=' +
       '"3 Powers/15 Power Points",' +
-      '"Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
-      '"Has Material Components+ feature (Alchemist\'s Bag)"',
+      '"May make alchemical items/Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
+      '"Has Material Components+ feature"',
   'Arcane Background (Blighted)':
     'Section=arcana,feature,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
-      '"Has Favored Power and Corruption features",' +
+      '"Has Favored Power and Corruption+ features",' +
       '"May take edges particular to other arcane backgrounds"',
   'Arcane Background (Demonologist)':
     'Section=arcana,feature ' +
@@ -555,7 +555,7 @@ SWADEHC.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="R10\\" Allies gain +1 vs. fear and -1 on fear table results"',
   'Beautify':'Section=arcana Note="May create minor beauty effects"',
-  'Been To The Crossroads':'Section=skill Note="May attempt free Faith reroll"',
+  'Been To The Crossroads':'Section=skill Note="May reroll Faith"',
   // Berserk as SWADE
   'Bespoil':'Section=arcana Note="May create minor ugliness effects"',
   // Bite as SWADE
@@ -585,14 +585,14 @@ SWADEHC.FEATURES_ADDED = {
   'Claws (Climbing)':'Section=skill Note="+2 Athletics (climbing)"',
   'Consort':
     'Section=arcana ' +
-    'Note="May spend a Benny to cast any spell; failure triggers Corruption+"',
+    'Note="May spend a Benny to cast any power; failure triggers Corruption+"',
   'Corruption+':
     'Section=arcana ' +
     'Note=' +
       '"Critical failure on arcane skill inflicts additional or increased hindrance until next advance"',
   'Courage':
     'Section=combat ' +
-    'Note="R%{commandRange} Allies may reroll failed fear checks"',
+    'Note="R%{commandRange}\\" Allies may reroll failed fear checks"',
   'Crossover':'Section=feature Note="May network with other spirits"',
   'Cursed+':
     'Section=arcana ' +
@@ -631,7 +631,8 @@ SWADEHC.FEATURES_ADDED = {
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Dread':'Section=feature Note="+2 rolls on Fear Effects"',
   'Eldritch Inspiration':
-    'Section=arcana Note="May spend a Benny to cast a spell from spellbook"',
+    'Section=arcana ' +
+    'Note="May spend a Benny to cast any power of an appropriate rank from spellbook"',
   'Environmental Resistance (Cold, Electricity, Heat)':
     'Section=combat ' +
     'Note="+4 vs. cold, electricity, and heat effects/-4 damage from cold, electricity, and heat"',
@@ -660,6 +661,9 @@ SWADEHC.FEATURES_ADDED = {
   'Flashbacks':
     'Section=skill ' +
     'Note="May increase any skill one step (linked attribute maximum) 1/encounter"',
+  'Flashbacks+':
+    'Section=combat Note="Drawing a club Action Card inflicts Distracted"',
+  'Forlorn+':'Section=attribute Note="-2 Spirit"',
   'Flight': // Modified from SWADE
     'Section=combat Note="Fly Pace %V"',
   'Forewarning':
@@ -667,7 +671,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="May spend a Benny to force a foe to redraw a non-joker Action Card"',
   'Gallows Humor':
     'Section=skill ' +
-    'Note="May use Taunt vs. fear instead of spirit; Raise gives +1 to allies"',
+    'Note="May use Taunt vs. fear instead of Spirit; Raise gives +1 to allies"',
   'Gorge':
     'Section=attribute ' +
     'Note="Draining a human of blood gives +1 Strength Step and +1 Vigor Step for 1 hr 1/dy"',
@@ -711,7 +715,9 @@ SWADEHC.FEATURES_ADDED = {
   'Mist Form':
     'Section=feature ' +
     'Note="Successful Smarts-2 allows transformation into mist 1/night; failure inflicts Fatigue (crit prevents retry)"',
-  'Monster Hunter':'Section=combat Note="Immune to fear from %V creature type"',
+  'Monster Hunter':
+    'Section=combat ' +
+    'Note="Immune to fear from %{$\'edges.Monster Hunter\'} creature type"',
   'Mummy':
     'Section=feature ' +
     'Note="Has Ageless, Rage, Slow, The Strength Of Ages, Undead, and Weakness (Fire) features"',
@@ -729,7 +735,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Curse</i>, <i>Nightmares</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Summoner))':
     'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Protection</i>, <i>Summon Ally</i>, <i>Sumon Demon</i>, or <i>Zombie</i> for 2 PP (+2 PP for Raise)"',
+    'Note="10 Power Points/May cast <i>Protection</i>, <i>Summon Ally</i>, <i>Summon Demon</i>, or <i>Zombie</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Tempter))':
     'Section=arcana ' +
     'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Disguise</i>, <i>Empathy</i>, or <i>Mind Reading</i> for 2 PP (+2 PP for Raise)"',
@@ -780,14 +786,14 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Successful healing removes incapacitation or restores 1 Wound (Raise 2 Wounds) 1/rd"',
   'Regeneration (Slow)':
     'Section=combat Note="May attempt a natural healing roll 1/dy"',
-  'Relentless Tracker':
-    'Section=skill ' +
-    'Note="+2 Survival (tracking) vs. revenge target; regains trail after 2d6 hr if lost"',
   'Relentless':
     'Section=combat,feature ' +
     'Note=' +
-      '"May take an action at -2 when shaken",' +
+      '"May take an action at a -2 penalty when Shaken",' +
       '"Driven to pursue and defeat evil"',
+  'Relentless Tracker':
+    'Section=skill ' +
+    'Note="+2 Survival (tracking) vs. revenge target; regains trail after 2d6 hr if lost"',
   'Revenant':
     'Section=feature ' +
     'Note="Has Ageless, Hardy, Rage, Regeneration (Slow), Strength Of The Dead, Undead, and Vengeance features"',
@@ -802,18 +808,18 @@ SWADEHC.FEATURES_ADDED = {
   'Scorch':'Section=combat Note="Increased Hellfire effects"',
   'Scream Queen/King':'Section=attribute Note="May reroll Fear Effects"',
   'Screamer':
-    'Section=attribute Note="Screams in reponse to a failed Fear check"',
+    'Section=attribute Note="Screams in response to a failed Fear check"',
   'Screamer+':
     'Section=attribute,combat ' +
     'Note=' +
-      '"Screams in reponse to a failed Fear check",' +
+      '"Screams in response to a failed Fear check",' +
       '"Scream after failed Fear check inflicts Distracted on self and allies in a 3\\" radius; successful smarts ends"',
   'Searing Blast':'Section=combat Note="Increased Holy Light effects"',
   'Sense Supernatural':
     'Section=feature ' +
-    'Note="R10\\" May sense presense of superatural beings and effects"',
+    'Note="R10\\" May sense presence of supernatural beings and effects"',
   'Servant Of Heaven':'Section=feature Note="Has Vow+ feature"',
-  'Silent Caster':'Section=arcana Note="May use Powers w/out speech"',
+  'Silent Caster':'Section=arcana Note="May use powers w/out speech"',
   'Sire':
     'Section=feature ' +
     'Note="d4-hr process transforms target into a vampire (<i>Healing</i> w/Neutralize Disease neg)"',
@@ -880,7 +886,8 @@ SWADEHC.FEATURES_ADDED = {
       '"+2 Toughness",' +
       '"+2 Shaken recovery/Takes no additional damage from a Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe/Immune to disease and poison"',
   'Universal Ward':
-   'Section=combat Note="Supernatural creatures cannot attack (Spirit-4 neg)"',
+   'Section=combat ' +
+   'Note="Supernatural creatures cannot attack self (Spirit-4 neg)"',
   'Unnatural Appetite':
     'Section=skill Note="-2 Persuasion when eating habits are known"',
   'Vampire':
@@ -891,7 +898,7 @@ SWADEHC.FEATURES_ADDED = {
      'Section=description,feature ' +
      'Note="+4 Advances","Has an additional hindrance"',
   'Victim+':'Section=combat Note="Frequently chosen as the random target"',
-  'Visions':'Section=feature Note="Receives a vision 1/session"',
+  'Visions':'Section=feature Note="Receives a portentous vision 1/session"',
   'Wall Walker':
     'Section=combat ' +
     'Note="May move on vertical and inverted surfaces at half Pace"',
@@ -930,6 +937,8 @@ SWADEHC.HINDRANCES_ADDED = {
   'Cursed+':'Severity=Major',
   'Doomed+':'Severity=Major',
   'Dread':'Severity=Minor',
+  'Flashbacks+':'Severity=Major', // Veteran Of The Dark World
+  'Forlorn+':'Severity=Major',    // Veteran Of The Dark World
   'Heavy Sleeper':'Severity=Minor',
   'Jumpy':'Severity=Minor',
   'Material Components+':'Require="powerCount > 0" Severity=Major',
@@ -1046,6 +1055,7 @@ SWADEHC.POWERS_ADDED = {
     'PowerPoints=3 ' +
     'Range=Self ' +
     'Description="FILL"',
+  // Summon Ally as SWADE
   'Summon Demon':
     'Advances=8 ' +
     'PowerPoints=Special ' +
@@ -1057,7 +1067,16 @@ SWADEHC.POWERS_ADDED = {
     'Range=Touch ' +
     'Modifier=' +
       '"+4 PP Permanent cure" ' +
-    'Description="FILL"'
+    'Description="FILL"',
+  'Detect Arcana': // For Fortune Teller power list
+    'Advances=0 ' +
+    'PowerPoints=2 ' +
+    'Range=Smarts ' +
+    'Modifier=' +
+      '"+1 PP/additional target",' +
+      '"+1/+2 PP 2\\"/3\\" radius" ' +
+    'Description=' +
+      '"Target can detect the presence of supernatural effects (Raise also the type) for 5 rd"'
 };
 SWADEHC.POWERS = Object.assign({}, SWADE.POWERS, SWADEHC.POWERS_ADDED);
 SWADEHC.RACES = Object.assign({}, SWADE.RACES);
@@ -1068,10 +1087,10 @@ SWADEHC.SKILLS_ADDED = {
 SWADEHC.SKILLS = Object.assign({}, SWADE.SKILLS, SWADEHC.SKILLS_ADDED);
 SWADEHC.WEAPONS_ADDED = {
   'Atomic Ghost Pack':'Damage=2d8 MinStr=6 Weight=15 Category=Ranged Range=5',
-  'Mini Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=Ranged Range=6',
+  'Mini Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=Ranged Range=6 AP=1',
   'Repeating Crossbow':
-    'Damage=2d6 MinStr=6 Weight=15 Category=Ranged Range=15 ROF=3',
-  'Winch Crossbow':'Damage=2d6 MinStr=6 Weight=15 Category=Ranged Range=5',
+    'Damage=2d6 MinStr=6 Weight=15 Category=Ranged Range=15 ROF=3 AP=2',
+  'Winch Crossbow':'Damage=2d6 MinStr=6 Weight=15 Category=Ranged Range=5 AP=2',
   'Flare Gun':'Damage=2d4 MinStr=4 Weight=4 Category=Ranged Range=3',
   'Holy Water Grenade':'Damage=None MinStr=4 Weight=2 Category=Ranged Range=5',
   'Holy Water Pistol':'Damage=None MinStr=4 Weight=4 Category=Ranged Range=1',
@@ -1269,6 +1288,31 @@ SWADEHC.edgeRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEHC.edgeRulesExtra = function(rules, name) {
+  // Give characters with an Arcane Background feature the "base" AB feature
+  // from the core rules so that they satisfy any requirements based on it, but
+  // make sure that associated notes only apply to those with the base edge.
+  if(name.startsWith('Arcane Background')) {
+    if(name.match(/Demonologist|Fortune Teller|Medium|Occultist|Warlock/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
+        'edges.Arcane Background (Magic)', '?', null
+      );
+      rules.defineRule
+        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
+    } else if(name.match(/Priest|Voodooist/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
+        'edges.Arcane Background (Miracles)', '?', null
+      );
+      rules.defineRule
+        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
+    } else if(name.match(/Psychic Investigator/)) {
+      rules.defineRule('arcanaNotes.arcaneBackground(Psionics)',
+        'edges.Arcane Background (Psionics)', '?', null
+      );
+      rules.defineRule('features.Arcane Background (Psionics)',
+        'features.' + name, '=', '1'
+      );
+    }
+  }
   if(name == 'Angel') {
     rules.defineRule('combatNotes.flight',
       'features.Angel', '=', '12',
@@ -1444,21 +1488,14 @@ SWADEHC.choiceEditorElements = function(rules, type) {
 SWADEHC.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute=='powers') {
     let startingPowers = {
-      'Bard': ['Boost/Lower Trait', 'Sound/Silence'],
-      'Cleric': ['Healing', 'Sanctuary'],
-      'Diabolist': ['Banish', 'Havoc', 'Summon Ally'],
-      'Druid': ['Beast Friend', 'Environmental Protection', 'Shape Change'],
-      'Elementalist': ['Elemental Manipulation', 'Environmental Protection'],
-      'Illusionist': ['Illusion', 'Light/Darkness', 'Sound/Silence'],
-      'Necromancer': ['Detect/Conceal Arcana', 'Dispel', 'Zombie'],
-      'Shaman': ['Arcane Protection', 'Relief'],
-      'Summoner': ['Beast Friend', 'Boost/Lower Trait', 'Summon Ally'],
-      'Wizard': ['Detect/Conceal Arcana', 'Dispel', 'Lock/Unlock']
+      'Demonologist': ['Banish', 'Havoc', 'Summon Ally'],
+      'Medium': ['Banish', 'Detect/Conceal Arcana'],
+      'Occultist': ['Detect/Conceal Arcana', 'Dispel', 'Lock/Unlock'],
+      'Priest': ['Healing', 'Sanctuary']
     };
     let allPowers = this.getChoices('powers');
     for(let ab in startingPowers) {
-      if('edges.Arcane Background (' + ab + ')' in attributes ||
-         (ab == 'Cleric' && QuilvynUtils.sumMatching(attributes, /Arcane Background..Cleric/) > 0)) {
+      if('edges.Arcane Background (' + ab + ')' in attributes) {
         startingPowers[ab].forEach(p => {
           if(p in allPowers)
             attributes['powers.' + p] = 1;
@@ -1494,6 +1531,9 @@ SWADEHC.ruleNotes = function() {
     '  To avoid confusion with core features, Quilvyn combines the Angel ' +
     '  Toughness edge and the Werewolf Tough edges into an edge named ' +
     '  Toughness +2 and renames the Angel Speed edge as Speed Flight.\n' +
+    '  </li><li>\n' +
+    '  Quilvyn adds Flashbacks+ and Forlorn+ hindrances to support the ' +
+    '  effects of the Veteran Of The Dark World hindrance.\n' +
     '  </li><li>\n' +
     '  The SWADEHC plugin supports all the same homebrew choices as the SWADE' +
     '  plugin, the one difference being that SWADE Races are called ' +
