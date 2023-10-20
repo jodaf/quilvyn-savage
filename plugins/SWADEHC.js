@@ -807,7 +807,7 @@ SWADEHC.FEATURES_ADDED = {
     'Section=attribute,combat ' +
     'Note=' +
       '"Screams in reponse to a failed Fear check",' +
-      '"Scream after failed Fear check inflicts Distracted on self an allies in a 3\\" radius; successful smarts ends"',
+      '"Scream after failed Fear check inflicts Distracted on self and allies in a 3\\" radius; successful smarts ends"',
   'Searing Blast':'Section=combat Note="Increased Holy Light effects"',
   'Sense Supernatural':
     'Section=feature ' +
@@ -890,7 +890,7 @@ SWADEHC.FEATURES_ADDED = {
   'Veteran Of The Dark World':
      'Section=description,feature ' +
      'Note="+4 Advances","Has an additional hindrance"',
-  'Victim+':'Section=combat Note="Frequently chosen as random target"',
+  'Victim+':'Section=combat Note="Frequently chosen as the random target"',
   'Visions':'Section=feature Note="Receives a vision 1/session"',
   'Wall Walker':
     'Section=combat ' +
@@ -924,8 +924,8 @@ SWADEHC.HINDRANCES_ADDED = {
   'Amorous':'Severity=Minor',
   'Bleeder+':'Severity=Major',
   'Bullet Magnet':'Severity=Minor',
-  'Bully':'Severity=Minor',
-  'Bully+':'Severity=Major',
+  'Bully':'Severity=Minor Require="features.Bully+ == 0"',
+  'Bully+':'Severity=Major Require="features.Bully == 0"',
   'Corruption+':'Require="powerCount > 0" Severity=Major',
   'Cursed+':'Severity=Major',
   'Doomed+':'Severity=Major',
@@ -934,8 +934,8 @@ SWADEHC.HINDRANCES_ADDED = {
   'Jumpy':'Severity=Minor',
   'Material Components+':'Require="powerCount > 0" Severity=Major',
   'Night Terrors+':'Severity=Major',
-  'Screamer':'Severity=Minor',
-  'Screamer+':'Severity=Major',
+  'Screamer':'Severity=Minor Require="features.Screamer+ == 0"',
+  'Screamer+':'Severity=Major Require="features.Screamer == 0"',
   'Superstitious':'Severity=Minor',
   'Unnatural Appetite':'Severity=Minor',
   'Victim+':'Severity=Major'
