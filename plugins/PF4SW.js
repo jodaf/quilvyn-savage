@@ -1195,15 +1195,15 @@ PF4SW.POWERS_CHANGES = {
     'School=Abjuration ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP -4 (Raise -6) on arcane attacks and damage"',
+      '"Epic +2 PP -4 (Raise -6) on arcane attacks and damage"',
   'Banish':
     'School=Abjuration ' +
     'Modifier=' +
-      '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius"',
+      '"Epic +1/+2/+3 PP 1\\"/2\\"/3\\" radius"',
   'Barrier':
     'School=Conjuration ' +
     'Modifier=' +
-      '"+1/+2 PP Barrier inflicts 2d4/2d6 damage",' +
+      '"+1/Epic +2 PP Barrier inflicts 2d4/2d6 damage",' +
       '"+1 PP Barrier has +2 hardness",' +
       '"+1 PP Shapes barrier",' +
       '"+1 PP Creates 10\\"x2\\" barrier" ' +
@@ -1212,7 +1212,7 @@ PF4SW.POWERS_CHANGES = {
   'Beast Friend':
     'School=Enchantment ' +
     'Modifier=' +
-      '"+2 PP Affects magical beasts",' +
+      '"Epic +2 PP Affects magical beasts",' +
       '"+1 PP Effects last for 30 min",' +
       '"+1 PP Target can use beast\'s senses"',
   'Blast':
@@ -1220,32 +1220,32 @@ PF4SW.POWERS_CHANGES = {
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
-      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
   'Blind':'School=Necromancy',
   'Bolt':
     'School=Evocation ' +
     'Modifier=' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
-      '"+2 PP Incapacitating damage disintegrates (Vigor neg)",' +
-      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon",' +
-      '"+2 PP ROF 2"',
+      '"Epic +2 PP Incapacitating damage disintegrates (Vigor neg)",' +
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon",' +
+      '"Epic +2 PP ROF 2"',
   'Boost/Lower Trait':
     'School=Transmutation ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Target gains free reroll 1/rd (Raise 1/action) or suffers -2 penalty",' +
+      '"Epic +2 PP Target gains reroll 1/rd (Raise 1/action) or suffers -2 penalty",' +
       '"+1 PP Spirit-2"',
   'Burrow':'School=Conjuration',
   'Burst':
     'School=Evocation ' +
     'Modifier=' +
       '"+2 PP Inflicts 3d6 damage (Raise 4d6)",' +
-      '"+4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
+      '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as heavy weapon"',
   'Confusion':
     'School=Enchantment ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
-      '"+2 PP Radius also inflicts Shaken" ' +
+      '"Epic +2 PP Radius also inflicts Shaken" ' +
     'Description=' +
       '"2\\" radius inflicts Distracted or Vulnerable (Raise both) for 1 rd"',
   'Damage Field':
@@ -1253,13 +1253,13 @@ PF4SW.POWERS_CHANGES = {
     'Modifier=' +
       '"+2 PP 2\\" radius",' +
       '"+2 PP 2d6 damage",' +
-      '"+4 PP Inflicts 3d6 damage as heavy weapon",' +
+      '"Epic +4 PP Inflicts 3d6 damage as heavy weapon",' +
       '"+2 PP Moves effect %{smarts}\\"/rd"',
   'Darksight':
    'School=Transmutation ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Target ignores all illumination penalties and 4 points from invisibility"',
+      '"Epic +2 PP Target ignores illumination penalties and 4 points from invisibility"',
   'Deflection':
     'School=Abjuration ' +
     'PowerPoints=2 ' +
@@ -1278,9 +1278,9 @@ PF4SW.POWERS_CHANGES = {
     'School=Abjuration ' +
     'Advances=0 ' +
     'Modifier=' +
-      '"+8 PP 2\\" radius suppresses powers and effects for 5 rd",' +
+      '"Epic +8 PP 2\\" radius suppresses powers and effects for 5 rd",' +
       '"+1/+2/+3 PP 1\\"/2\\"/3\\" radius",' +
-      '"+1 PP Disrupts magic item for 1 rd (Raise 2 rd)",' +
+      '"Epic +1 PP Disrupts magic item for 1 rd (Raise 2 rd)",' +
       '"+3 PP Ends all of target\'s activated powers" ' +
     'Description=' +
       '"Ends targeted power (Arcane skill neg)"',
@@ -1288,7 +1288,7 @@ PF4SW.POWERS_CHANGES = {
     'School=Divination ' +
     'Advances=4 ' +
     'Modifier=' +
-      '"+3 PP Contact gives advice"',
+      '"Epic +3 PP Contact gives advice"',
   'Drain Power Points':
     'School=Necromancy ' +
     'Modifier=' +
@@ -1297,19 +1297,19 @@ PF4SW.POWERS_CHANGES = {
     'School=Transmutation ' +
     'Modifier=' +
       '"+3 PP Triples effect volume",' +
-      '"+5 PP Summons weather"',
+      '"Epic +5 PP Summons weather"',
   'Empathy':
     'School=Enchantment ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+2 PP Makes uncooperative or neutral target cooperative (Raise friendly)",' +
       '"+1 PP Effect lasts 5 min",' +
-      '"+2 PP Self can detect target\'s lies"',
+      '"Epic +2 PP Self can detect target\'s lies"',
   'Entangle':
     'School=Transmutation ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+2/+4 PP Inflicts 2d4/2d6 damage",' +
+      '"+2/Epic +4 PP Inflicts 2d4/2d6 damage",' +
       '"+1 PP Entangling material has Hardness 10"',
   'Environmental Protection':
     'School=Abjuration ' +
@@ -1322,12 +1322,12 @@ PF4SW.POWERS_CHANGES = {
     'School=Transmutation ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Target ignores range penalties"',
+      '"Epic +2 PP Target ignores range penalties"',
   'Fear':
     'School=Necromancy ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+2 PP Inflicts Spirit-2 on Fear (Raise -4)"',
+      '"Epic +2 PP Inflicts Spirit-2 on Fear (Raise -4)"',
   'Fly':
     'School=Transmutation ' +
     'Modifier=' +
@@ -1336,26 +1336,26 @@ PF4SW.POWERS_CHANGES = {
   'Growth/Shrink':
     'School=Transmutation ' +
     'Modifier=' +
-      '"+2 PP Effect lasts 5 min",' +
-      '"+2 PP Target retains Strength and Toughness"',
+      '"Epic +2 PP Effect lasts 5 min",' +
+      '"Epic +2 PP Target retains Strength and Toughness"',
   'Havoc':
     'School=Evocation ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
-      '"+2 PP Throws 3d6\\""',
+      '"Epic +2 PP Throws 3d6\\""',
   'Healing':
     'School=Conjuration ' +
     'Modifier=' +
       '"+10 PP Restores older Wound",' +
       '"+15 PP Heals crippling injury",' +
-      '"+2/+3 PP 2\\"/3\\" radius heals allies",' +
+      '"Epic +2/+3 PP 2\\"/3\\" radius heals allies",' +
       '"+1 PP Neutralizes poison or disease"',
   'Illusion':
     'School=Illusion ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
-      '"+3 PP Inflicts Shaken (Raise Wounds) (Smarts neg)",' +
-      '"+2 PP Effect lasts 5 min",' +
+      '"Epic +3 PP Inflicts Shaken (Raise Wounds) (Smarts neg)",' +
+      '"Epic +2 PP Effect lasts 5 min",' +
       '"+1/+2 PP Moves effect 12\\"/24\\"/rd",' +
       '"+1 PP Illusion includes sound",' +
       '"+2 PP Smarts-2"',
@@ -1363,41 +1363,41 @@ PF4SW.POWERS_CHANGES = {
     'School=Transmutation ' +
     'Advances=8 ' +
     'Modifier=' +
-      '"+3 PP/additional target",' +
-      '"+3 PP Effect lasts 5 min"',
+      '"Epic +3 PP/additional target",' +
+      '"Epic +3 PP Effect lasts 5 min"',
   'Invisibility':
     'School=Illusion ' +
     'Modifier=' +
       '"+3 PP/additional target",' +
-      '"+3 PP Effect lasts 5 min"',
+      '"Epic +3 PP Effect lasts 5 min"',
   'Light/Darkness':
     'School=Evocation ' +
     'Modifier=' +
-      '"+2 PP Light occupies %{smarts}\\" radius",' +
-      '"+2 PP Darkness blocks Infravision, Low-Light Vision, and Darkvision",' +
+      '"Epic +2 PP Light occupies %{smarts}\\" radius",' +
+      '"Epic +2 PP Darkness blocks Infravision, Low-Light Vision, and Darkvision",' +
       '"+1 PP Moves effect %{arcaneSkill}\\"/rd"',
   'Mind Link':
     'School=Divination ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Broadcasts short thought in %{smarts*4}\\" radius",' +
-      '"+3 PP Self can connect with any familiar mind"',
+      '"Epic +2 PP Broadcasts short thought in %{smarts*4}\\" radius",' +
+      '"Epic +3 PP Self can connect with any familiar mind"',
   'Mind Reading':
     'School=Divination ' +
     'Modifier=' +
-      '"+2 PP Self views entire scene or related memories"',
+      '"Epic +2 PP Self views entire scene or related memories"',
   'Mind Wipe':
     'School=Enchantment ' +
     'Modifier=' +
       '"+1 PP Edits memory",' +
       '"+2 PP Activate power as an action",' +
-      '"+2 PP Completely removes all memory of a person, place, or thing"',
+      '"Epic +2 PP Completely removes all memory of a person, place, or thing"',
   'Object Reading':
     'School=Divination ' +
     'Description=' +
       '"Self sees visions of the history of target" ' +
     'Modifier=' +
-      '"+2 PP Shares vision with others nearby"',
+      '"Epic +2 PP Shares vision with others nearby"',
   'Protection':
     'School=Abjuration ' +
     'PowerPoints=2 ' +
@@ -1421,13 +1421,13 @@ PF4SW.POWERS_CHANGES = {
     'School=Conjuration ' +
     'PowerPoints=20 ' +
     'Modifier=' +
-      '"+20 PP Raises any dead",' +
+      '"Epic +10 PP Raises any dead",' +
       '"+5 PP Raises 10 yr corpse"',
   'Shape Change':
     'School=Transmutation ' +
     'Modifier=' +
       '"+1 PP Effects last 5 min",' +
-      '"+2/+3 PP Effect willing target at range touch/%{smarts}\\""',
+      '"Epic +2/+3 PP Effect willing target at range touch/%{smarts}\\""',
   'Sloth/Speed':
     'School=Transmutation ' +
     'Modifier=' +
@@ -1441,24 +1441,24 @@ PF4SW.POWERS_CHANGES = {
     'School=Transmutation ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Inflicts +4 damage (Raise +6) as heavy weapon"',
+      '"Epic +2 PP Inflicts +4 damage (Raise +6) as heavy weapon"',
   'Sound/Silence':
     'School=Illusion ' +
     'Modifier=' +
-      '"+1 PP Smarts-2",' +
+      '"Epic +1 PP Smarts-2",' +
       '"+1 PP Moves effect %{arcaneSkill}\\"/rd",' +
       '"1 PP/target (Spirit neg)"',
   'Speak Language':
     'School=Divination ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+2 PP Target understands all languages",' +
-      '"+5 PP All within %{smarts}\\" radius can understand each other"',
+      '"Epic +2 PP Target understands all languages",' +
+      '"Epic +5 PP All within %{smarts}\\" radius can understand each other"',
   'Stun':'School=Evocation',
   'Summon Ally':
     'School=Conjuration ' +
     'Modifier=' +
-      '"+1+ PP/additional servant",' +
+      '"Epic +1+ PP/additional servant",' +
       '"+1 PP Servant can bite/claw for Str+d6",' +
       '"+1 PP Servant has combat edge",' +
       '"+2 PP Servant has fly Pace 12",' +
@@ -1467,20 +1467,20 @@ PF4SW.POWERS_CHANGES = {
   'Telekinesis':
     'School=Transmutation ' +
     'Modifier=' +
-      '"+3 PP Moves items as Strength d12 (Raise d12+2)"',
+      '"Epic +3 PP Moves items as Strength d12 (Raise d12+2)"',
   'Teleport':
     'School=Conjuration ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+5 PP Opens gate to destination for 5 rd",' +
-      '"+5 PP Teleport great distance",' +
+      '"Epic +5 PP Opens gate to destination for 5 rd",' +
+      '"Epic +5 PP Teleport great distance",' +
       '"+2 PP Touch teleports foe (Spirit neg)"',
   'Wall Walker':'School=Transmutation',
   "Warrior's Gift":
     'School=Conjuration ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+4 PP Target gains 2 combat edges"',
+      '"Epic +4 PP Target gains 2 combat edges"',
   'Zombie':
     'School=Necromancy ' +
     'Modifier=' +
@@ -1496,7 +1496,7 @@ PF4SW.POWERS_CHANGES = {
     'Range=smarts ' +
     'School=Transmutation ' +
     'Modifier=' +
-      '"+2 PP Transformation lasts for 5 min" ' +
+      '"Epic +2 PP Transformation lasts for 5 min" ' +
     'Description=' +
       '"Target becomes chosen animal for 5 rd (Spirit neg, Spirit-2 ends)"',
   'Conjure Item':
@@ -1516,7 +1516,7 @@ PF4SW.POWERS_CHANGES = {
     'Range=touch ' +
     'School=Necromancy ' +
     'Modifier=' +
-      '"+5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
+      '"Epic +5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
       '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
   'Locate':
@@ -1542,8 +1542,8 @@ PF4SW.POWERS_CHANGES = {
     'School=Conjuration ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
-      '"+1 PP Creates extra-dimensional shelter",' +
-      '"+2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
+      '"Epic +1 PP Creates extra-dimensional shelter",' +
+      '"Epic +2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of a known location"',
   'Sanctuary':
@@ -1553,7 +1553,7 @@ PF4SW.POWERS_CHANGES = {
     'School=Enchantment ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+1 PP Spirit-2" ' +
+      '"Epic +1 PP Spirit-2" ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg; Raise Spirit-2) for 5 rd; attacking ends"',
   'Scrying':
