@@ -929,9 +929,6 @@ SWADEFC.FEATURES_ADDED = {
       '"-4 Stealth (sight-based) when glowing",' +
       '"Glow negates 2 points of illumination penalties",' +
       '"Flashing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
-  'Infravision':  // Changed from SWADE
-    'Section=combat ' +
-    'Note="Illumination penalties reduced by half when attacking targets that radiate heat"',
   'Infravision (Goblin)':
     'Section=combat ' +
     'Note="Illumination penalties reduced by half when attacking targets that radiate heat or cold"',
@@ -979,7 +976,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana,arcana,feature ' +
     'Note=' +
       '"3 Powers/15 Power Points",' +
-      '"Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
+      '"May make alchemical items/Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
       '"Has Material Components+ feature"',
   'Arcane Background (Bard)':
     'Section=arcana,feature ' +
@@ -1060,10 +1057,8 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="Inflicting a Wound on a conscious, sapient being restores d6 Power Points to self"',
   'Born In The Saddle':
-    'Section=feature,skill ' +
-    'Note=' +
-      '"Mount gains +2 Pace and +1 Run Step",' +
-      '"May reroll Riding"',
+    'Section=skill ' +
+    'Note="May reroll Riding/Mount gains +2 Pace and +1 Run Step"',
   'Charge':
     'Section=combat Note="Fighting attack after 5\\" run inflicts +2 damage"',
   'Chosen':
@@ -1105,7 +1100,7 @@ SWADEFC.FEATURES_ADDED = {
       '"May reroll Survival to track %{$\'features.Favored Enemy\'} chosen creature type"',
   'Favored Power':
     'Section=arcana ' +
-    'Note="May ignore 2 points of penalties when casting chosen power"',
+    'Note="Ignores 2 points of penalties when casting chosen power"',
   'Favored Terrain':
     'Section=combat,skill ' +
     'Note=' +
@@ -1140,7 +1135,7 @@ SWADEFC.FEATURES_ADDED = {
       '"+1 Intimidation and Persuasion in areas of liege authority"',
   'Martial Flexibility':
     'Section=combat ' +
-    'Note="May gain effects of a chosen combat edge for 5 rd 1/encounter"',
+    'Note="May gain the benefits of a combat edge for 5 rd 1/encounter"',
   'Master Artificer':
     'Section=arcana ' +
     'Note="Gains 1000 GP progress for each success and raise when imbuing magic items"',
@@ -1154,23 +1149,35 @@ SWADEFC.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Mount gains %{advances//4+1} choice of Trait die increase, edge, or monstrous ability"',
   'Mystic Powers (Barbarian)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, <i>Smite</i>, or <i>Speed</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Fighter)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Monk)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, <i>Deflection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Paladin)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Healing</i>, self <i>Protection</i>, self <i>Sanctuary</i> or self <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, <i>Healing</i>, self <i>Protection</i>, self <i>Sanctuary</i> or self <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Ranger)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Beast Friend</i>, self <i>Boost Trait</i>, <i>Entangle</i>, or self <i>Farsight</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Beast Friend</i>, self <i>Boost Trait</i>, <i>Entangle</i>, or self <i>Farsight</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Rogue)':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, self <i>Darksight</i>, <i>Lock/Unlock</i> or self <i>Wall Walker</i> for 2 PP (+2 PP for Raise)"',
   'One With Nature':
     'Section=arcana ' +
     'Note="<i>Summon Animal</i> and <i>Shape Change</i> (natural animal) last 1 hr"',
@@ -1196,7 +1203,7 @@ SWADEFC.FEATURES_ADDED = {
   'Relic':'Section=arcana Note="Possesses a powerful magic item"',
   'Roar':
     'Section=combat ' +
-    'Note="May make an Intimidation Test against multiple targets in a 9\\" cone"',
+    'Note="May make an Intimidation Test against all targets in a 9\\" cone"',
   'Savagery':
     'Section=combat Note="Wild Attack inflicts an additional +2 damage"',
   'Scorch':
@@ -1204,7 +1211,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="Breath weapon inflicts 1 die type higher damage; may choose to affect a cone or line"',
   'Scout':
     'Section=skill ' +
-    'Note="Successful Notice-2 during travel detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about a familiar route)"',
+    'Note="Successful Notice-2 detects encounters/Always considered alert vs. Stealth/+2 Common Knowledge (recall info about a familiar route)"',
   'Sharp Tongued':
     'Section=skill ' +
     'Note="May use Performance in place of Taunt and may repeat using different words"',
@@ -1213,8 +1220,8 @@ SWADEFC.FEATURES_ADDED = {
   'Silent Caster':'Section=arcana Note="May use powers w/out speaking"',
   'Sneak Attack':'Section=combat Note="Increased Assassin effects"',
   'Stonecunning':
-    'Section=skill ' + 
-    'Note="R10\' +2 Notice (detect traps and hidden doors in stonework)"',
+    'Section=skill ' +
+    'Note="R10\\" Successful automatic Notice+2 notes unusual stonework"',
   'Strong Illusions':
     'Section=arcana ' +
     'Note="<i>Illusion</i> affects a 3\\" radius and gains the Strong Power Modifier (Strength-2 to disbelieve) for free; those who successfully disbelieve see through self <i>Illusion</i> effects for the remainder of the encounter"',
@@ -1232,7 +1239,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana Note="May transfer up to 5 PP to another in sight"',
   'Trap Sense':
     'Section=skill ' +
-    'Note="R5\\" Successful automatic Notice detects mechanical and magical traps"',
+    'Note="R5\\" Successful automatic Notice detects mechanical and magical traps and ignores 2 penalty points to evade and disarm"',
   'Treasure Hunter':
     'Section=attribute,feature ' +
     'Note=' +
@@ -1242,8 +1249,10 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="May force foe to resist Athletics and Shooting Tests with Smarts instead of Agility"',
   'Troubadour':
-    'Section=skill ' +
-    'Note="+2 most Common Knowledge/May use Performance for Leadership and Battle edges"',
+    'Section=skill,skill ' +
+    'Note=' +
+      '"+2 Common Knowledge",' +
+      '"May use Performance for edges requiring Battle"',
   'Uncanny Reflexes':
     'Section=combat ' +
     'Note="Ignores penalty for normal Evasion; may attempt Evasion-2 for any area effect"',
@@ -1268,7 +1277,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="May use the Deadly Illusion Power Modifier on <i>Illusion</i> for free"',
   'Destroy Undead':
     'Section=arcana ' +
-    'Note="May spend 1/2 PP to inflict 2d6/3d6 damage on all undead in a 3\\" radius"',
+    'Note="May spend 1 PP to inflict 2d6 damage (or 2 PP for 3d6) on all undead in a 3\\" radius"',
   'Dirge':'Section=arcana Note="R10\\" Target suffers -2 on Benny roll"',
   'Eldritch Inspiration':
     'Section=arcana ' +
@@ -1295,7 +1304,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="May cover apparel with a glow that gives self +2 Armor"',
   'Inspire Heroics':
-    'Section=arcana ' +
+    'Section=combat ' +
     'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
   'Instrument':'Section=arcana Note="+1 Performance to cast spell"',
   'Master Alchemist':'Section=arcana Note="May create potions for half cost"',
@@ -1378,10 +1387,10 @@ SWADEFC.FEATURES_ADDED = {
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
     'Section=arcana ' +
-    'Note="Suffers -1 arcane skill rolls when talisman is unavailable; critical failure stuns"',
+    'Note="-1 casting when talisman is unavailable; critical failure stuns"',
   'Talisman+':
     'Section=arcana ' +
-    'Note="Suffers -2 arcane skill rolls when talisman is unavailable; critical failure stuns"'
+    'Note="-2 casting when talisman is unavailable; critical failure stuns"'
 };
 SWADEFC.FEATURES = Object.assign(Object.fromEntries(Object.entries(SWADE.FEATURES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.FEATURES_ADDED);
 SWADEFC.HINDRANCES_ADDED = {

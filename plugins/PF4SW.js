@@ -809,7 +809,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="May use Angel Of Death and Swift Death features 1/dy"',
   'Attuned':'Section=arcana Note="May reroll failed Faith to cast spell"',
   'Aura Of Courage':
-    'Section=combat Note="R10\\" Allies gain +1 to resist Fear"',
+    'Section=combat Note="R10\\" Allies gain +1 vs. fear"',
   'Barbarian':
     'Section=feature Note="Has Armor Restriction, Fast, and Rage features"',
   'Bard':
@@ -821,7 +821,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Gains +1 Spellcasting when bonded object is held or worn"',
   'Born In The Saddle':
     'Section=skill ' +
-    'Note="May make a free reroll on Riding/Mount gains +2 Pace and +1 Run Step"',
+    'Note="May reroll Riding/Mount gains +2 Pace and +1 Run Step"',
   'Breath Weapon':
     'Section=combat Note="9\\" cone inflicts 3d6 damage plus energy effects"',
   'Call Down The Legends':'Section=combat Note="May summon 5 shades for 1 hr"',
@@ -914,20 +914,20 @@ PF4SW.FEATURES_ADDED = {
   'Fast':'Section=combat Note="+2 Pace"',
   'Favored Powers (Cleric)':
     'Section=arcana ' +
-    'Note="Ignores two points of penalties when casting <i>Healing</i>, <i>Sanctuary</i>, or <i>Smite</i>"',
+    'Note="Ignores 2 points of penalties when casting <i>Healing</i>, <i>Sanctuary</i>, or <i>Smite</i>"',
   'Favored Powers (Druid)':
     'Section=arcana ' +
-    'Note="Ignores two points of penalties when casting <i>Entangle</i>, <i>Protection</i>, or <i>Smite</i>"',
+    'Note="Ignores 2 points of penalties when casting <i>Entangle</i>, <i>Protection</i>, or <i>Smite</i>"',
   'Favored Powers (Sorcerer)':
     'Section=arcana ' +
-    'Note="Ignores two points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i>"',
+    'Note="Ignores 2 points of penalties when casting <i>Bolt</i>, <i>Elemental Manipulation</i>, or <i>Protection</i>"',
   'Favored Powers (Wizard)':
     'Section=arcana ' +
-    'Note="Ignores two points of penalties when casting <i>Arcane Protection</i>, <i>Deflection</i>, or <i>Dispel</i>"',
+    'Note="Ignores 2 points of penalties when casting <i>Arcane Protection</i>, <i>Deflection</i>, or <i>Dispel</i>"',
   'Favored Enemy':
     'Section=combat,skill ' +
     'Note=' +
-      '"May reroll failed attacks against %{1+(combatNotes.quarry||0)} chosen creature type",' +
+      '"May reroll attacks against %{1+(combatNotes.quarry||0)} chosen creature type",' +
       '"May reroll failed Survival to track %{1+(combatNotes.quarry||0)} chosen creature type"',
   'Favored Terrain':
     'Section=combat Note="Gains an additional Action Card in %{1+(combatNotes.quarry||0)} chosen terrain"',
@@ -935,7 +935,8 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Ignores movement penalties for difficult ground/Touch inflicts Distracted"',
   'Fighter':'Section=feature Note="Has Martial Flexibility feature"',
-  'Formation Fighter':'Section=combat Note="+1 Gang Up bonus (+4 max)"',
+  'Formation Fighter':
+    'Section=combat Note="Self and allies gain +1 Gang Up bonus (+4 max)"',
   'Fury':
     'Section=combat ' +
     'Note="Gains +%{combatNotes.strengthSurge?2:1} Strength Step and may only make Wild Attacks during rage"',
@@ -961,7 +962,7 @@ PF4SW.FEATURES_ADDED = {
       '"Has Resistance to fire and immunity to poison"',
   'Inspire Heroics':
     'Section=combat ' +
-    'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant 5 Trait or damage rerolls"',
+    'Note="R%{smarts}\\" May spend a Benny 1/encounter to grant allies 5 Trait or damage rerolls"',
   'Intimidating Glare':
     'Section=combat ' +
     'Note="May attempt a free Intimidation when self Action card is a jack or higher"',
@@ -988,7 +989,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Successful attacks on a favored enemy inflict +d6 damage"',
   'Mercy':
     'Section=arcana ' +
-    'Note="R%{spirit}\\" Removes Distracted, Shaken, or Vulnerable from target"',
+    'Note="R%{spirit}\\" May remove Distracted, Shaken, or Vulnerable from target"',
   'Mobility':'Section=combat Note="+1 Run Step"',
   'Monk':
     'Section=feature ' +
@@ -1072,10 +1073,12 @@ PF4SW.FEATURES_ADDED = {
   'Shadowdancer II':'Section=feature Note="Has Shadow Cloak feature"',
   'Shadowdancer III':
     'Section=feature Note="Has Mystic Powers (Shadow Force) feature"',
-  'Sharp Tongued':'Section=skill Note="May substitute Performance for Taunt"',
+  'Sharp Tongued':
+    'Section=skill ' +
+    'Note="May use Performance in place of Taunt and may repeat using different words"',
   'Smite Evil':
     'Section=combat ' +
-    'Note="May reroll failed attacks on %{advances//4+1} chosen evil foes/encounter"',
+    'Note="May reroll attacks on %{advances//4+1} chosen evil foes/encounter"',
   'Sneak Attack':
     'Section=combat ' +
     'Note="Successful attack with The Drop or on Vulnerable foe inflicts +d6 damage"',
@@ -1100,12 +1103,12 @@ PF4SW.FEATURES_ADDED = {
   'Swift Death':'Section=combat Note="May attack aware foe w/The Drop"',
   'Trap Sense':
     'Section=feature ' +
-    'Note="R5\\" Automatically attempts Notice for traps and ignores 2 penalty points to evade and disarm"',
+    'Note="R5\\" Successful automatic Notice detects mechanical and magical traps and ignores 2 penalty points to evade and disarm"',
   'Troubadour':
     'Section=skill,skill ' +
     'Note=' +
       '"+2 Common Knowledge",' +
-      '"May use Performance in place of Battle"',
+      '"May use Performance for edges requiring Battle"',
   'Unarmed Strike':
     'Section=combat ' +
     'Note="+1 Unarmed attacks, AP +2, damage d%{strength}+d4, and always considered armed"',
@@ -1113,8 +1116,10 @@ PF4SW.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Ignores penalty for normal Evasion; may attempt Evasion-2 for any area effect"',
   'Undead':
-    'Section=combat ' +
-    'Note="+2 Toughness/+2 Shaken recovery/Takes no additional damage from Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe or eat/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
+    'Section=combat,combat ' +
+    'Note=' +
+      '"+2 Toughness",' +
+      '"+2 Shaken recovery/Takes no additional damage from a Called Shot/Ignores 1 point of Wound penalties/Doesn\'t breathe/Immune to disease and poison/Doesn\'t Bleed Out or heal naturally/R10\\" Ignores illumination penalties"',
   'Undead Bloodline':
     'Section=combat Note="Has Resistance to cold/+1 on Soak attempts"',
   'Wholeness Of Body':
@@ -1122,8 +1127,9 @@ PF4SW.FEATURES_ADDED = {
   'Wild Shape':
     'Section=arcana Note="May cast <i>Shape Change</i> at dbl duration"',
   'Wilderness Stride':
-    'Section=combat Note="Ignores movement penalties for difficult ground"',
-  'Wings':'Section=combat Note="Has fly Pace 8"',
+    'Section=combat ' +
+    'Note="Suffers no movement penalty for difficult ground in natural terrain"',
+  'Wings':'Section=combat Note="Fly Pace 8"',
   'Wizard':
     'Section=feature ' +
     'Note="Has Arcane Background (Wizard), Arcane Bond, Armor Interference, School, and Spellbooks features"',
@@ -1167,7 +1173,7 @@ PF4SW.FEATURES_ADDED = {
       '"-1 Toughness"',
   'Stonecunning':
     'Section=skill ' +
-    'Note="Automatic Notice+2 to note unusual stonework within 10\'"',
+    'Note="R10\\" Successful automatic Notice+2 notes unusual stonework"',
   'Sure-Footed':'Section=skill Note="+1 Athletics Step"',
   'Stout':
     'Section=attribute ' +

@@ -973,7 +973,7 @@ SWADE.FEATURES = {
   'Immune To Poison':'Section=combat Note="Has immunity to poison"',
   'Infravision':
     'Section=combat ' +
-    'Note="Suffers half normal illumination penalties when attacking a warm targets"',
+    'Note="Suffers half normal illumination penalties when attacking warm targets"',
   'Keen Senses':'Section=skill Note="+1 Notice Step"',
   'Keen Senses (Saurian)':'Section=feature Note="Has Alertness feature"',
   'Leaper':

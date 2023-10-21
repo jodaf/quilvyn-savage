@@ -907,8 +907,7 @@ WeirdWest.FEATURES_ADDED = {
   'Fetish':'Section=skill Note="May reroll Faith"',
   'Flock':'Section=feature Note="Has 5 townsfolk followers"',
   'Gallows Humor':
-    'Section=skill ' +
-    'Note="May use Taunt vs. fear; Raise gives +1 Support to allies"',
+    'Section=skill Note="May use Taunt vs. fear; Raise gives +1 to allies"',
   'Ghost':'Section=feature Note="May become incorporeal at will"',
   'Grit':'Section=attribute Note="Reduces penalties vs. fear by 2"',
   'Guts':'Section=attribute Note="May reroll Vigor vs. fear"',
@@ -983,7 +982,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=combat Note="Trademark weapon does +1 die of damage"',
   'Scout':
     'Section=skill ' +
-    'Note="Rolls Notice-2 to detect encounters/Always alert when rolling Notice vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
+    'Note="Successful Notice-2 detects encounters/Always considered alert vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
   'Soul Eater':
     'Section=combat ' +
     'Note="Successful Spirit-2 roll after inflicting an unarmed Wound heals self Wound or reduces fatigue"',
@@ -1052,7 +1051,7 @@ WeirdWest.FEATURES_ADDED = {
     'Note="-1 Gambling (poker and faro)/-1 Intimidation (lies)/-1 Persuasion (lies)"',
   'Night Terrors+':
     'Section=attribute,feature ' +
-    'Note="-1 Spirit","Makes noise while sleeping that keeps others awake"',
+    'Note="-1 Spirit","Disturbs the sleep of others nearby"',
   'Old Ways Oath':
     'Section=attribute,feature ' +
     'Note="May reroll Spirit","Has vowed not to use ghost rock-powered items"',

@@ -570,7 +570,8 @@ SWADEHC.FEATURES_ADDED = {
   'Bully+':
     'Section=feature Note="Frequently belittles others and may turn violent"',
   'Burrow':'Section=combat Note="Burrow Pace %{pace//2}"',
-  'Cannot Speak':'Section=feature Note="Cannot speak while transformed"',
+  'Cannot Speak': // Modified from SWADE
+    'Section=feature Note="Cannot speak while transformed"',
   'Charm':
     'Section=arcana ' +
     'Note="Successful Persuasion plus spending a Benny allows use of <i>Puppet</i> effects on an unwary target for 1 dy"',
@@ -599,7 +600,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Powers cast to aid self suffer -2 arcane skill; critical failure stuns caster"',
   'Darkvision':
     'Section=feature ' +
-    'Note="R10\\" Ignores all illumination penalties and 2 points from invisibility"',
+    'Note="R10\\" Ignores illumination penalties and 2 points from invisibility"',
   'Daywalker':'Section=feature Note="Not harmed by sunlight"',
   'Deal Maker':
     'Section=feature ' +
@@ -627,7 +628,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Has a magical weapon that inflicts +d6 damage and negates the Immortality edge"',
   'Divine Might':'Section=attribute Note="+2 Strength Step/+2 Vigor Step"',
   'Divine Toughness':'Section=combat Note="+2 Toughness"',
-  "Doesn't Breathe":'Section=feature Note="Does not require oxygen"',
+  // Doesn't Breathe as SWADE
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Dread':'Section=feature Note="+2 rolls on Fear Effects"',
   'Eldritch Inspiration':
@@ -648,7 +649,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Reduces cost of <i>Aspect Of The Rada Loa</i> and <i>Fury Of The Petra Loa</i> to 3 PP"',
   'Favored Power':
     'Section=arcana ' + 
-    'Note="May ignore 2 points of penalties when casting chosen power"',
+    'Note="Ignores 2 points of penalties when casting chosen power"',
   'Fear -2':
     'Section=combat Note="Inflicts -2 penalty on others\' first Fear check"',
   'Feed':'Section=feature Note="Has Habit+ feature"',
@@ -670,8 +671,7 @@ SWADEHC.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="May spend a Benny to force a foe to redraw a non-joker Action Card"',
   'Gallows Humor':
-    'Section=skill ' +
-    'Note="May use Taunt vs. fear instead of Spirit; Raise gives +1 to allies"',
+    'Section=skill Note="May use Taunt vs. fear; Raise gives +1 to allies"',
   'Gorge':
     'Section=attribute ' +
     'Note="Draining a human of blood gives +1 Strength Step and +1 Vigor Step for 1 hr 1/dy"',
@@ -725,38 +725,60 @@ SWADEHC.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Touch causes a Wound (Vigor neg); death allows using <i>Zombie</i> to convert target into a mummy"',
   'Mystic Powers (Angel (Death))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Boost Trait</i>, <i>Deflection</i>, self <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Boost Trait</i>, <i>Deflection</i>, self <i>Protection</i>, or <i>Smite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Angel (Herald))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Divination</i>, <i>Healing</i>, or <i>Scrying</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Boost/Lower Trait</i>, <i>Divination</i>, <i>Healing</i>, or <i>Scrying</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Possessor))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Curse</i>, <i>Nightmares</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Boost/Lower Trait</i>, <i>Curse</i>, <i>Nightmares</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Summoner))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Protection</i>, <i>Summon Ally</i>, <i>Summon Demon</i>, or <i>Zombie</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Protection</i>, <i>Summon Ally</i>, <i>Summon Demon</i>, or <i>Zombie</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Tempter))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Boost/Lower Trait</i>, <i>Disguise</i>, <i>Empathy</i>, or <i>Mind Reading</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Boost/Lower Trait</i>, <i>Disguise</i>, <i>Empathy</i>, or <i>Mind Reading</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Demon (Trickster))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast self <i>Deflection</i>, <i>Disguise</i>, <i>Fear</i>, or <i>Illusionary Horrors</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast self <i>Deflection</i>, <i>Disguise</i>, <i>Fear</i>, or <i>Illusionary Horrors</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Mummy (Architect))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Barrier</i>, <i>Detect/Conceal Arcana</i>, <i>Lock/Unlock</i>, or <i>Telekinesis</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Barrier</i>, <i>Detect/Conceal Arcana</i>, <i>Lock/Unlock</i>, or <i>Telekinesis</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Mummy (Royal))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Blast</i>, <i>Burst</i>, or <i>Spite</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Blast</i>, <i>Burst</i>, or <i>Spite</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Phantom (Poltergeist))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Havoc</i>, <i>Illusionary Horrors</i>, <i>Sound/Silence</i>, or <i>Telekinesis</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Havoc</i>, <i>Illusionary Horrors</i>, <i>Sound/Silence</i>, or <i>Telekinesis</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Phantom (Shade))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Confusion</i>, <i>Elemental Manipulation</i>, <i>Fear</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Confusion</i>, <i>Elemental Manipulation</i>, <i>Fear</i>, or <i>Puppet</i> for 2 PP (+2 PP for Raise)"',
   'Mystic Powers (Phantom (Wraith))':
-    'Section=arcana ' +
-    'Note="10 Power Points/May cast <i>Blind</i>, <i>Light/Darkness</i>, <i>Sloth</i>, or <i>Stun</i> for 2 PP (+2 PP for Raise)"',
+    'Section=arcana,arcana ' +
+    'Note=' +
+      '"10 Power Points",' +
+      '"May cast <i>Blind</i>, <i>Light/Darkness</i>, <i>Sloth</i>, or <i>Stun</i> for 2 PP (+2 PP for Raise)"',
   'Night Terrors+':
     'Section=attribute,feature ' +
     'Note=' +
@@ -800,7 +822,8 @@ SWADEHC.FEATURES_ADDED = {
   'Roar':
     'Section=combat ' +
     'Note="May make an Intimidation Test against all targets in a 9\\" cone"',
-  'Savagery':'Section=combat Note="Wild Attack inflicts +4 damage"',
+  'Savagery':
+    'Section=combat Note="Wild Attack inflicts an additional +2 damage"',
   'Scan':
     'Section=arcana ' +
     'Note="R10\\" May sense presence of minds and strong emotions"',
@@ -819,7 +842,7 @@ SWADEHC.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="R10\\" May sense presence of supernatural beings and effects"',
   'Servant Of Heaven':'Section=feature Note="Has Vow+ feature"',
-  'Silent Caster':'Section=arcana Note="May use powers w/out speech"',
+  'Silent Caster':'Section=arcana Note="May use powers w/out speaking"',
   'Sire':
     'Section=feature ' +
     'Note="d4-hr process transforms target into a vampire (<i>Healing</i> w/Neutralize Disease neg)"',
@@ -854,7 +877,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="May summon a %{$\'edges.Summon Great Swarm\'?\'large\':\'medium\'} swarm of pests 1/dy"',
   'Summoning':
     'Section=arcana ' +
-    'Note="May use <i>Summon Ally</i> w/4 PP to conjure demonic legionnaires%{advances>=4?\', 5 PP for hellhounds\':\'\'}%{advances>=8?\', 7 PP for a demonic steed\':\'\'}"',
+    'Note="May use <i>Summon Ally</i> to conjure demonic legionnaires for 4 PP%{advances>=4?\', hellhounds for 5 PP\':\'\'}%{advances>=8?\', a demonic steed for 7 PP\':\'\'}"',
   'Superstitious':
     'Section=feature ' +
     'Note="-1 on all Trait rolls if focus object or routine is disturbed"',
@@ -899,7 +922,7 @@ SWADEHC.FEATURES_ADDED = {
      'Note="+4 Advances","Has an additional hindrance"',
   'Victim+':'Section=combat Note="Frequently chosen as the random target"',
   'Visions':'Section=feature Note="Receives a portentous vision 1/session"',
-  'Wall Walker':
+  'Wall Walker': // Modified from SWADE
     'Section=combat ' +
     'Note="May move on vertical and inverted surfaces at half Pace"',
   'Weakness':
