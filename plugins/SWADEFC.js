@@ -1713,6 +1713,7 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +2 PP Speak, read, and write all languages",' +
       '"Epic +5 PP All in a %{smarts*2}\\" radius can understand each other"',
   'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
+    'PowerPoints=1+ ' +
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
       '"+2 PP Servant can fly Pace\\"/rd",' +
