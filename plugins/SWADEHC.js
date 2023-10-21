@@ -979,61 +979,63 @@ SWADEHC.POWERS_ADDED = {
     'Advances=0 ' +
     'PowerPoints=5 ' +
     'Range=Self ' +
-    'Description="FILL"',
+    'Description="Gives use of spirit-specific abilities for 1 hr"',
   'Consecrate Ground':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=Touch ' +
     'Modifier=' +
       '"+5 PP Lasts until sunset" ' +
-    'Description="FILL"',
+    'Description="3\\" radius gives supernaturally good entities +2 Toughness and inflicts Distracted and Vulnerable (Raise also 2d4 damage) on evil entities for 1 hr"',
   'Corpse Sense':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=Self ' +
     'Modifier=' +
-      '"+1 PP Caster can speak through skulls or mindless undead" ' +
-    'Description="FILL"',
+      '"+1 PP Caster can speak through nonsentient corpses" ' +
+    'Description="Detects and allows vision and hearing through corpses in 1 mile radius (Raise 5 miles; Spirit neg for sentient undead)"',
   'Curse':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=Touch ' +
     'Modifier=' +
       '"+2 PP Inflicts minor hindrance (Raise major)" ' +
-    'Description="FILL"',
+    'Description=' +
+      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
   'Exorcism':
     'Advances=8 ' +
     'PowerPoints=3+ ' +
-    'Range=Touch ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+4 PP May exorcise unseen spirit" ' +
-    'Description="FILL"',
+    'Description="Ritual banishes or destroys otherworldly being (Spirit neg)"',
   'Fury Of The Petro Loa':
     'Advances=0 ' +
     'PowerPoints=5 ' +
     'Range=Self ' +
-    'Description="FILL"',
+    'Description="Gives use of spirit-specific abilities for 5 rd"',
   'Grave Shroud':
     'Advances=4 ' +
     'PowerPoints=2 ' +
     'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP/additional target" ' +
-    'Description="FILL"',
+    'Description="Target appears undead for 10 min (Spirit neg)"',
   'Illusionary Horrors':
     'Advances=4 ' +
     'PowerPoints=5 ' +
     'Range=Touch ' +
     'Modifier=' +
-      '"+1 PP Know best route to target" ' +
-    'Description="FILL"',
+      '"+2 PP/additional target" ' +
+    'Description="Visions distract and influence target for 1 dy"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +
     'Range=Self ' +
     'Modifier=' +
-      '"+5 PP Lasts until sunset" ' +
-    'Description="FILL"',
+      '"+1 PP Know best route to target" ' +
+    'Description=' +
+      '"Gives direction of chosen item (-2 if self has never seen item) for 10 min"',
   'Lock/Unlock':
     'Advances=0 ' +
     'PowerPoints=1 ' +
@@ -1048,14 +1050,14 @@ SWADEHC.POWERS_ADDED = {
     'Range=Unlimited ' +
     'Modifier=' +
       '"+1 PP Add specific themes" ' +
-    'Description="FILL"',
+    'Description="Target suffers Night Terrors+ for 1 wk"',
   'Sanctuary':
     'Advances=0 ' +
     'PowerPoints=2 ' +
     'Range=touch ' +
     'Modifier=' +
       '"+2/+3 PP 2\\"/3\\" radius",' +
-      '"+1 PP Spirit-2 (Raise Spirit-4)" ' +
+      '"Epic +1 PP Spirit-2 (Raise Spirit-4)" ' +
     'Description=' +
       '"Evil creatures cannot attack target (Spirit neg; Raise Spirit-2) for 5 rd; attacking ends"',
   'Scrying':
@@ -1072,25 +1074,34 @@ SWADEHC.POWERS_ADDED = {
     'Range=Self ' +
     'Modifier=' +
       '"+2 PP Speak w/demons","+2 PP Spirit performs a simple task" ' +
-    'Description="FILL"',
+    'Description="Allows asking a spirit 3 questions"',
   'Spite':
     'Advances=4 ' +
     'PowerPoints=3 ' +
     'Range=Self ' +
-    'Description="FILL"',
-  // Summon Ally as SWADE
+    'Description=' +
+      '"Successful attackers suffer 1d6 damage per Wound inflicted for 5 rd"',
+  'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
+    'PowerPoints=1+ ' +
+    'Modifier=' +
+      '"+1 PP Servant gains combat edge",' +
+      '"+2 PP Servant can fly Pace\\"/rd",' +
+      '"+1 PP Servant gains +1 Trait Step",' +
+      '"+1 PP Self can use servant\'s senses",' +
+      '"Epic +Half PP/additional servant"',
   'Summon Demon':
     'Advances=8 ' +
-    'PowerPoints=Special ' +
+    'PowerPoints=3+ ' +
     'Range=Smarts ' +
-    'Description="FILL"',
+    'Description=' +
+      '"Ritual transports and binds a demon (Spirit neg) to perform a task"',
   'Suppress Transformation':
     'Advances=8 ' +
     'PowerPoints=3 ' +
     'Range=Touch ' +
     'Modifier=' +
       '"+4 PP Permanent cure" ' +
-    'Description="FILL"',
+    'Description="Suppresses lycanthropy in target for 1 dy"',
   'Detect Arcana': // For Fortune Teller power list
     'Advances=0 ' +
     'PowerPoints=2 ' +
