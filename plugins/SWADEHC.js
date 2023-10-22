@@ -29,57 +29,29 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * constant fields of SWADE (SKILLS, EDGES, etc.) can be manipulated to modify
  * the choices.
  */
-function SWADEHC(baseRules) {
+function SWADEHC(baseRules, rules) {
 
   if(window.SWADE == null) {
     alert('The SWADEHC module requires use of the SWADE module');
     return;
   }
 
-  var rules = new QuilvynRules('SWADE Horror', SWADEHC.VERSION);
-  rules.plugin = SWADEHC;
-  SWADEHC.rules = rules;
-
-  rules.defineChoice('choices', SWADEHC.CHOICES);
-  rules.choiceEditorElements = SWADEHC.choiceEditorElements;
-  rules.choiceRules = SWADEHC.choiceRules;
-  rules.removeChoice = SWADE.removeChoice;
-  rules.editorElements = SWADE.initialEditorElements();
-  rules.getFormats = SWADE.getFormats;
-  rules.getPlugins = SWADEHC.getPlugins;
-  rules.makeValid = SWADE.makeValid;
+  if(rules == null)
+    rules = SWADE.rules;
+  rules.hcReplacedRandomizer = rules.randomizeOneAttribute;
   rules.randomizeOneAttribute = SWADEHC.randomizeOneAttribute;
-  rules.defineChoice('random', SWADEHC.RANDOMIZABLE_ATTRIBUTES);
-  rules.ruleNotes = SWADEHC.ruleNotes;
-
-  SWADE.createViewers(rules, SWADE.VIEWERS);
-  rules.defineChoice('extras',
-    'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
-  );
-  rules.defineChoice('preset',
-    'race:Race,select-one,races', 'advances:Advances,text,4',
-    'concepts:Concepts,set,concepts'
-  );
-
-  SWADEHC.attributeRules(rules);
-  SWADEHC.combatRules
-    (rules, SWADEHC.ARMORS, SWADEHC.SHIELDS, SWADEHC.WEAPONS);
+  SWADEHC.combatRules(rules, SWADEHC.WEAPONS);
   SWADEHC.arcaneRules(rules, SWADEHC.ARCANAS, SWADEHC.POWERS);
   SWADEHC.talentRules
-    (rules, SWADEHC.EDGES, SWADEHC.FEATURES, SWADEHC.GOODIES,
-     SWADEHC.HINDRANCES, SWADEHC.SKILLS);
-  SWADEHC.identityRules(rules, SWADEHC.RACES, SWADEHC.CONCEPTS);
-
-  Quilvyn.addRuleSet(rules);
+    (rules, SWADEHC.EDGES, SWADEHC.FEATURES, SWADEHC.HINDRANCES,
+     SWADEHC.SKILLS);
+  SWADEHC.identityRules(rules, SWADEHC.CONCEPTS);
 
 }
 
 SWADEHC.VERSION = '2.4.1.0';
 
-SWADEHC.CHOICES = [].concat(SWADE.CHOICES);
-SWADEHC.RANDOMIZABLE_ATTRIBUTES = [].concat(SWADE.RANDOMIZABLE_ATTRIBUTES);
-
-SWADEHC.ARCANAS_ADDED = {
+SWADEHC.ARCANAS = {
   'Alchemist':
     'Skill=Alchemy ' +
     'Powers=' +
@@ -170,9 +142,7 @@ SWADEHC.ARCANAS_ADDED = {
       '"Summon Demon","Suppress Transformation",Telekinesis,"Wall Walker",' +
       '"Warrior\'s Gift"'
 };
-SWADEHC.ARCANAS = Object.assign({}, SWADE.ARCANAS, SWADEHC.ARCANAS_ADDED);
-SWADEHC.ARMORS = Object.assign({}, SWADE.ARMORS);
-SWADEHC.CONCEPTS_ADDED = {
+SWADEHC.CONCEPTS = {
   'Angel':
     'Edge=Angel',
   'Demon':
@@ -230,8 +200,7 @@ SWADEHC.CONCEPTS_ADDED = {
     'Attribute=Smarts ' +
     'Skill=Spellcasting'
 };
-SWADEHC.CONCEPTS = Object.assign({}, SWADE.CONCEPTS, SWADEHC.CONCEPTS_ADDED);
-SWADEHC.EDGES_ADDED = {
+SWADEHC.EDGES = {
   'Gallows Humor':'Type=Background Require="skills.Taunt >= 6"',
   'Relentless':'Type=Background Require="spirit >= 8"',
   'Veteran Of The Dark World':'Type=Background Require="smarts >= 8"',
@@ -482,8 +451,7 @@ SWADEHC.EDGES_ADDED = {
       '"advances >= 4",' +
       '"features.Arcane Background (Warlock/Witch)"'
 };
-SWADEHC.EDGES = Object.assign({}, SWADE.EDGES, SWADEHC.EDGES_ADDED);
-SWADEHC.FEATURES_ADDED = {
+SWADEHC.FEATURES = {
   'Ageless':'Section=feature Note="Does not age"',
   'Aggravated Damage':
     'Section=combat ' +
@@ -570,7 +538,7 @@ SWADEHC.FEATURES_ADDED = {
   'Bully+':
     'Section=feature Note="Frequently belittles others and may turn violent"',
   'Burrow':'Section=combat Note="Burrow Pace %{pace//2}"',
-  'Cannot Speak': // Modified from SWADE
+  'Cannot Speak (Werewolf)':
     'Section=feature Note="Cannot speak while transformed"',
   'Charm':
     'Section=arcana ' +
@@ -664,9 +632,8 @@ SWADEHC.FEATURES_ADDED = {
     'Note="May increase any skill one step (linked attribute maximum) 1/encounter"',
   'Flashbacks+':
     'Section=combat Note="Drawing a club Action Card inflicts Distracted"',
+  // Flight as SWADE
   'Forlorn+':'Section=attribute Note="-2 Spirit"',
-  'Flight': // Modified from SWADE
-    'Section=combat Note="Fly Pace %V"',
   'Forewarning':
     'Section=combat ' +
     'Note="May spend a Benny to force a foe to redraw a non-joker Action Card"',
@@ -922,9 +889,7 @@ SWADEHC.FEATURES_ADDED = {
      'Note="+4 Advances","Has an additional hindrance"',
   'Victim+':'Section=combat Note="Frequently chosen as the random target"',
   'Visions':'Section=feature Note="Receives a portentous vision 1/session"',
-  'Wall Walker': // Modified from SWADE
-    'Section=combat ' +
-    'Note="May move on vertical and inverted surfaces at half Pace"',
+  // Wall Walker as SWADE
   'Weakness':
     'Section=feature ' +
     'Note="Suffers negative effects from particular objects or situations"',
@@ -939,7 +904,7 @@ SWADEHC.FEATURES_ADDED = {
     'Note="Suffers +4 damage from silvered weapons while in werewolf form"',
   'Werewolf':
     'Section=feature ' +
-    'Note="Has Bite, Claws, Cannot Speak, Ferocity, Infravision, Rage, Regeneration (Slow), Speed, Transformation, and Weakness (Silver) features"',
+    'Note="Has Bite, Claws, Cannot Speak (Werewolf), Ferocity, Infravision, Rage, Regeneration (Slow), Speed, Transformation, and Weakness (Silver) features"',
   'Wing Strike':
     'Section=combat ' +
     'Note="Wings inflict d%{strength}+d8 damage; 5\\" charge inflicts an additional +4 damage/+2 Toughness when wings extended (Called Shot-2 neg)"',
@@ -949,8 +914,7 @@ SWADEHC.FEATURES_ADDED = {
     'Section=skill ' +
     'Note="Successful Intimidation vs. Spirit gives control of mindless skeletons and zombies until the end of the encounter"'
 };
-SWADEHC.FEATURES = Object.assign({}, SWADE.FEATURES, SWADEHC.FEATURES_ADDED);
-SWADEHC.HINDRANCES_ADDED = {
+SWADEHC.HINDRANCES = {
   'Amorous':'Severity=Minor',
   'Bleeder+':'Severity=Major',
   'Bullet Magnet':'Severity=Minor',
@@ -972,9 +936,7 @@ SWADEHC.HINDRANCES_ADDED = {
   'Unnatural Appetite':'Severity=Minor',
   'Victim+':'Severity=Major'
 };
-SWADEHC.HINDRANCES =
-  Object.assign({}, SWADE.HINDRANCES, SWADEHC.HINDRANCES_ADDED);
-SWADEHC.POWERS_ADDED = {
+SWADEHC.POWERS = {
   'Aspect Of The Rada Loa':
     'Advances=0 ' +
     'PowerPoints=5 ' +
@@ -1112,14 +1074,10 @@ SWADEHC.POWERS_ADDED = {
     'Description=' +
       '"Target can detect the presence of supernatural effects (Raise also the type) for 5 rd"'
 };
-SWADEHC.POWERS = Object.assign({}, SWADE.POWERS, SWADEHC.POWERS_ADDED);
-SWADEHC.RACES = Object.assign({}, SWADE.RACES);
-SWADEHC.SHIELDS = Object.assign({}, SWADE.SHIELDS);
-SWADEHC.SKILLS_ADDED = {
+SWADEHC.SKILLS = {
   'Alchemy':'Attribute=smarts'
 };
-SWADEHC.SKILLS = Object.assign({}, SWADE.SKILLS, SWADEHC.SKILLS_ADDED);
-SWADEHC.WEAPONS_ADDED = {
+SWADEHC.WEAPONS = {
   'Atomic Ghost Pack':'Damage=2d8 MinStr=6 Weight=15 Category=Ranged Range=5',
   'Mini Crossbow':'Damage=2d4 MinStr=4 Weight=3 Category=Ranged Range=6 AP=1',
   'Repeating Crossbow':
@@ -1135,7 +1093,6 @@ SWADEHC.WEAPONS_ADDED = {
   'Silver-tipped Stake':
     'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Range=2'
 };
-SWADEHC.WEAPONS = Object.assign({}, SWADE.WEAPONS, SWADEHC.WEAPONS_ADDED);
 
 /* Defines rules related to powers. */
 SWADEHC.arcaneRules = function(rules, arcanas, powers) {
@@ -1143,15 +1100,9 @@ SWADEHC.arcaneRules = function(rules, arcanas, powers) {
   // No changes needed to the rules defined by base method
 };
 
-/* Defines the rules related to character attributes and description. */
-SWADEHC.attributeRules = function(rules) {
-  SWADE.attributeRules(rules);
-  // No changes needed to the rules defined by base method
-};
-
 /* Defines the rules related to combat. */
-SWADEHC.combatRules = function(rules, armors, shields, weapons) {
-  SWADE.combatRules(rules, armors, shields, weapons);
+SWADEHC.combatRules = function(rules, weapons) {
+  SWADE.combatRules(rules, {}, {}, weapons);
   let allNotes = rules.getChoices('notes');
   if(allNotes && 'weapons.Bite' in allNotes)
     allNotes['weapons.Bite'] = allNotes['weapons.Bite'].replace(')', '%6)');
@@ -1162,159 +1113,27 @@ SWADEHC.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEHC.identityRules = function(rules, races, concepts) {
-  SWADE.identityRules(rules, races, {}, concepts);
+SWADEHC.identityRules = function(rules, concepts) {
+  SWADE.identityRules(rules, {}, {}, concepts);
 };
 
 /* Defines rules related to character aptitudes. */
-SWADEHC.talentRules = function(
-  rules, edges, features, goodies, hindrances, skills
-) {
+SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
   SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, skills);
+    (rules, edges, features, {}, hindrances, skills);
   // Monstrous hero edges are free; add an edge point to compensate
-  rules.defineRule('edgePoints', 'monstrousHero', '+=', '1');
-};
-
-/*
- * Adds #name# as a possible user #type# choice and parses #attrs# to add rules
- * related to selecting that choice.
- */
-SWADEHC.choiceRules = function(rules, type, name, attrs) {
-  if(type == 'Arcana')
-    SWADEHC.arcanaRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Skill'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Powers')
-    );
-  else if(type == 'Armor')
-    SWADEHC.armorRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Area'),
-      QuilvynUtils.getAttrValue(attrs, 'Armor'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
-    );
-  else if(type == 'Concept')
-    SWADEHC.conceptRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
-    );
-  else if(type == 'Edge') {
-    SWADEHC.edgeRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Type')
-    );
-    SWADEHC.edgeRulesExtra(rules, name);
-  } else if(type == 'Feature')
-    SWADEHC.featureRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Note')
-    );
-  else if(type == 'Goody')
-    SWADEHC.goodyRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Pattern'),
-      QuilvynUtils.getAttrValue(attrs, 'Effect'),
-      QuilvynUtils.getAttrValue(attrs, 'Value'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Note')
-    );
-  else if(type == 'Hindrance') {
-    SWADEHC.hindranceRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValue(attrs, 'Severity')
-    );
-    SWADEHC.hindranceRulesExtra(rules, name);
-  } else if(type == 'Power')
-    SWADEHC.powerRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Advances'),
-      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValue(attrs, 'School'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
-    );
-  else if(type == 'Race') {
-    SWADEHC.raceRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
-    );
-    SWADEHC.raceRulesExtra(rules, name);
-  } else if(type == 'Shield')
-    SWADEHC.shieldRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Parry'),
-      QuilvynUtils.getAttrValue(attrs, 'Cover'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
-    );
-  else if(type == 'Skill')
-    SWADEHC.skillRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValue(attrs, 'Core')
-    );
-  else if(type == 'Weapon')
-    SWADEHC.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight'),
-      QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValue(attrs, 'AP'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'ROF'),
-      QuilvynUtils.getAttrValue(attrs, 'Parry')
-    );
-  else {
-    console.log('Unknown choice type "' + type + '"');
-    return;
+  for(let e in edges) {
+    SWADEHC.edgeRulesExtra(rules, e, edges[e]);
+    let types = QuilvynUtils.getAttrValueArray(edges[e], 'Type');
+    let requires = QuilvynUtils.getAttrValueArray(edges[e], 'Require');
+    if(types[0] == 'Monstrous' &&
+       requires.length == 1 &&
+       requires[0].match(/monstrousHero\s*==\s*1/))
+      rules.defineRule('monstrousHero', 'edges.' + e, '+=', '1');
   }
-  type =
-    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-  rules.addChoice(type, name, attrs);
-};
-
-/*
- * Defines in #rules# the rules associated with arcane power source #name#,
- * which draws on skill #skill# when casting and allows access to the list of
- * powers #powers#.
- */
-SWADEHC.arcanaRules = function(rules, name, skill, powers) {
-  SWADE.arcanaRules(rules, name, skill);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with armor #name#, which covers the
- * body areas listed in #areas#, adds #armor# to the character's Toughness,
- * requires a strength of #minStr# to use effectively, and weighs #weight#.
- */
-SWADEHC.armorRules = function(rules, name, areas, armor, minStr, weight) {
-  SWADE.armorRules
-    (rules, name, ['Medieval'], areas, armor, minStr, weight);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with concept #name#. #attributes#,
- * #edges#, and #skills# list the names of attributes, edges, and skills
- * associated with the concept.
- */
-SWADEHC.conceptRules = function(rules, name, attributes, edges, skills) {
-  SWADE.conceptRules(rules, name, attributes, edges, skills); 
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with edge #name#. #require# and
- * #implies# list any hard and soft prerequisites for the edge, and #types#
- * lists the categories of the edge.
- */
-SWADEHC.edgeRules = function(rules, name, requires, implies, types) {
-  SWADE.edgeRules(rules, name, requires, implies, types);
-  if(types[0] == 'Monstrous' &&
-     requires.length == 1 &&
-     requires[0].match(/monstrousHero\s*==\s*1/))
-    rules.defineRule('monstrousHero', 'edges.' + name, '+=', '1');
+  rules.defineRule('edgePoints', 'monstrousHero', '+=', '1');
+  for(let h in hindrances)
+    SWADEHC.hindranceRulesExtra(rules, h, hindrances[h]);
 };
 
 /*
@@ -1349,7 +1168,7 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
   }
   if(name == 'Angel') {
     rules.defineRule('combatNotes.flight',
-      'features.Angel', '=', '12',
+      'features.Angel', '^=', '12',
       'features.Speed Flight', '+', 'source==1 ? 12 : 36',
       'combatNotes.speedFlight', '+', 'null'
     );
@@ -1375,55 +1194,29 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
   } else if(name == 'Phantom') {
     rules.defineRule('combatNotes.flight', 'features.Phantom', '=', '12');
   } else if(name == 'Vampire') {
+    rules.defineRule('vampireWallWalker',
+      'edges.Vampire', '?', null,
+      'pace', '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule
+      ('combatNotes.wallWalker', 'vampireWallWalker', '^=', null);
+    rules.defineRule
+      ('combatNotes.wallWalker.1', 'vampireWallWalker', '^=', null);
     rules.defineRule('damageStep.Claws', 'edges.Vampire', '^=', '2');
   } else if(name == 'Werewolf') {
+    rules.defineRule('werewolfWallWalker',
+      'edges.Werewolf', '?', null,
+      'pace', '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule
+      ('combatNotes.wallWalker', 'werewolfWallWalker', '^=', null);
+    rules.defineRule
+      ('combatNotes.wallWalker.1', 'werewolfWallWalker', '^=', null);
     rules.defineRule('damageStep.Bite', 'edges.Werewolf', '^=', '2');
     rules.defineRule('weapons.Bite.6', 'edges.Werewolf', '=', '" AP 2"');
     rules.defineRule('damageStep.Claws', 'edges.Werewolf', '^=', '2');
     rules.defineRule('weapons.Claws.6', 'edges.Werewolf', '=', '" AP 2"');
   }
-  if(SWADE.edgeRulesExtra)
-    SWADE.edgeRulesExtra(rules, name);
-};
-
-/*
- * Defines in #rules# the rules associated with feature #name#. #sections# lists
- * the sections of the notes related to the feature and #notes# the note texts;
- * the two must have the same number of elements.
- */
-SWADEHC.featureRules = function(rules, name, sections, notes) {
-  SWADE.featureRules(rules, name, sections, notes);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with goody #name#, triggered by
- * a starred line in the character notes that matches #pattern#. #effect#
- * specifies the effect of the goody on each attribute in list #attributes#.
- * This is one of "increment" (adds #value# to the attribute), "set" (replaces
- * the value of the attribute by #value#), "lower" (decreases the value to
- * #value#), or "raise" (increases the value to #value#). #value#, if null,
- * defaults to 1; occurrences of $1, $2, ... in #value# reference capture
- * groups in #pattern#. #sections# and #notes# list the note sections
- * ("attribute", "combat", "companion", "feature", "power", or "skill")
- * and formats that show the effects of the goody on the character sheet.
- */
-SWADEHC.goodyRules = function(
-  rules, name, pattern, effect, value, attributes, sections, notes
-) {
-  SWADE.goodyRules
-    (rules, name, pattern, effect, value, attributes, sections, notes);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with hindrance #name#, which has
- * the list of hard prerequisites #requires# and level #severity# (Major or
- * Minor).
- */
-SWADEHC.hindranceRules = function(rules, name, requires, severity) {
-  SWADE.hindranceRules(rules, name, requires, severity);
-  // No changes needed to the rules defined by base method
 };
 
 /*
@@ -1436,86 +1229,6 @@ SWADEHC.hindranceRulesExtra = function(rules, name) {
     rules.defineRule
       ('validationNotes.menacingEdgeAlt.0', 'features.Grim', '+', '1');
   }
-};
-
-/*
- * Defines in #rules# the rules associated with power #name#, which may be
- * acquired only after #advances# advances, requires #powerPoints# Power Points
- * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects and #school#, if defined, is the magic
- * school that defines the power.
- */
-SWADEHC.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school, modifiers
-) {
-  SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, school, modifiers);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with race #name#, which has the
- * list of hard prerequisites #requires#. #abilities# list associated abilities.
- */
-SWADEHC.raceRules = function(rules, name, requires, abilities) {
-  SWADE.raceRules(rules, name, requires, abilities);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with race #name# that cannot be
- * derived directly from the attributes passed to raceRules.
- */
-SWADEHC.raceRulesExtra = function(rules, name) {
-  if(SWADE.raceRulesExtra)
-    SWADE.raceRulesExtra(rules, name);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with shield #name#, which adds
- * #parry# to the character's Parry, provides #cover# cover, requires #minStr#
- * to handle, and weighs #weight#.
- */
-SWADEHC.shieldRules = function(rules, name, parry, cover, minStr, weight) {
-  SWADE.shieldRules
-    (rules, name, ['Medieval'], parry, cover, minStr, weight);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with skill #name#, associated with
- * #attribute# (one of 'agility', 'spirit', etc.).
- */
-SWADEHC.skillRules = function(rules, name, attribute, core) {
-  SWADE.skillRules(rules, name, ['Medieval'], attribute, core);
-};
-
-/*
- * Defines in #rules# the rules associated with weapon #name#, which belongs
- * to category #category#, requires #minStr# to use effectively, and weighs
- * #weight#. The weapon does #damage# HP on a successful attack. If specified,
- * the weapon bypasses #armorPiercing# points of armor. Also if specified, the
- * weapon can be used as a ranged weapon with a range increment of #range#
- * feet, firing #rateOfFire# per round. Parry, if specified, indicates the
- * parry bonus from wielding the weapon.
- */
-SWADEHC.weaponRules = function(
-  rules, name, damage, minStr, weight, category, armorPiercing, range,
-  rateOfFire, parry
-) {
-  SWADE.weaponRules(
-    rules, name, ['Medieval'], damage, minStr, weight, category, armorPiercing,
-    range, rateOfFire, parry
-  );
-};
-
-/*
- * Returns the list of editing elements needed by #choiceRules# to add a #type#
- * item to #rules#.
- */
-SWADEHC.choiceEditorElements = function(rules, type) {
-  return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
@@ -1539,40 +1252,24 @@ SWADEHC.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   }
-  return SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
-};
-
-/* Returns an array of plugins upon which this one depends. */
-SWADEHC.getPlugins = function() {
-  var result = [SWADE].concat(SWADE.getPlugins());
-  return result;
+  return this.hcReplacedRandomizer(attributes, attribute);
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
 SWADEHC.ruleNotes = function() {
   return '' +
-    '<h2>SWADE Fantasy Companion Quilvyn Module Notes</h2>\n' +
-    'SWADE Fantasy Companion Quilvyn Module Version ' + SWADEHC.VERSION + '\n' +
+    '<h2>SWADE Horror Companion Quilvyn Module Notes</h2>\n' +
+    'SWADE Horror Companion Quilvyn Module Version ' + SWADEHC.VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  Quilvyn assumes that the skills Driving, Electronics, Hacking, and ' +
-    "  Piloting are not meaningful in a fantasy setting, and so doesn't " +
-    '  include them in the SWADEHC list of skills. You can add any of these ' +
-    '  as homebrew choices if they are appropriate to your game.\n' +
-    '  </li><li>\n' +
     '  To avoid confusion with core features, Quilvyn combines the Angel ' +
     '  Toughness edge and the Werewolf Tough edges into an edge named ' +
     '  Toughness +2 and renames the Angel Speed edge as Speed Flight.\n' +
     '  </li><li>\n' +
     '  Quilvyn adds Flashbacks+ and Forlorn+ hindrances to support the ' +
     '  effects of the Veteran Of The Dark World hindrance.\n' +
-    '  </li><li>\n' +
-    '  The SWADEHC plugin supports all the same homebrew choices as the SWADE' +
-    '  plugin, the one difference being that SWADE Races are called ' +
-    '  Ancestries in SWADEHC. See the <a href="plugins/homebrew-swade.html">' +
-    '  SWADE Homebrew documentation</a> for details.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
@@ -1588,8 +1285,8 @@ SWADEHC.ruleNotes = function() {
     'representation or warranty as to the quality, viability, or\n' +
     'suitability for purpose of this product.\n' +
     '</p><p>\n' +
-    'Savage Worlds Adventure Edition Fantasy Companion ' +
-    '© 2022 Pinnacle Entertainment Group.\n' +
+    'Savage Worlds Adventure Edition Horror Companion ' +
+    '© 2023 Pinnacle Entertainment Group.\n' +
     '</p>\n' +
     '<img alt="Savage Worlds Fan Logo" width="300" height="200" src="https://peginc.com/wp-content/uploads/2019/01/SW_LOGO_FP_2018.png"/>\n';
 };
