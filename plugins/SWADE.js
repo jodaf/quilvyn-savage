@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils, SWADEFC, SWADEHC */
 "use strict";
 
 /*
@@ -41,6 +41,7 @@ function SWADE() {
   rules.removeChoice = SWADE.removeChoice;
   rules.editorElements = SWADE.initialEditorElements();
   rules.getFormats = SWADE.getFormats;
+  rules.getPlugins = SWADE.getPlugins;
   rules.makeValid = SWADE.makeValid;
   rules.randomizeOneAttribute = SWADE.randomizeOneAttribute;
   rules.defineChoice('random', SWADE.RANDOMIZABLE_ATTRIBUTES);
@@ -960,9 +961,7 @@ SWADE.FEATURES = {
     'Section=combat Note="+4 vs. cold effects/-4 damage from cold"',
   'Environmental Weakness (Cold)':
     'Section=combat Note="-4 vs. cold effects/+4 damage from cold"',
-  'Flight':
-    'Section=combat,skill ' +
-    'Note="Fly Pace 12","Uses Athletics for flight maneuvers"',
+  'Flight':'Section=combat Note="Fly Pace %V"',
   'Frail':'Section=combat Note="-1 Toughness"',
   'Hardy':
     'Section=combat Note="Does not suffer a Wound from a second Shaken result"',
@@ -1006,7 +1005,7 @@ SWADE.FEATURES = {
   'Toughness':'Section=combat Note="+1 Toughness"',
   'Wall Walker':
     'Section=combat ' +
-    'Note="May move full Pace on vertical surfaces, half Pace on inverted"'
+    'Note="May move %V\\" on vertical surfaces and %1\\" on inverted"'
 
 };
 SWADE.GOODIES = {
@@ -2791,8 +2790,12 @@ SWADE.hindranceRulesExtra = function(rules, name) {
   if(name == 'Elderly+') {
     rules.defineRule('skillPoints', 'skillNotes.elderly+', '+', '5');
   } else if(name == 'Obese') {
+    rules.defineRule('obeseArmorAdjustment',
+      'attributeNotes.obese', '?', null,
+      'strength', '=', 'source > 1 ? 1 : null'
+    );
     rules.defineRule
-      ('armorStrengthStepShortfall', 'attributeNotes.obese', '+', '1');
+      ('armorStrengthStepShortfall', 'obeseArmorAdjustment', '+=', null);
   } else if(name == 'Small') {
     rules.defineRule('descriptionNotes.small', 'features.Size -1', 'v', '0');
   }
@@ -2894,9 +2897,13 @@ SWADE.raceRules = function(rules, name, requires, abilities) {
  * derived directly from the attributes passed to raceRules.
  */
 SWADE.raceRulesExtra = function(rules, name) {
-  if(name == 'Half-Elf')
+  if(name == 'Avion') {
+    rules.defineRule('isAvion', 'race', '=', 'source=="Avion" ? 1 : null');
+    rules.defineRule('combatNotes.flight', 'isAvion', '^=', '12');
+  } else if(name == 'Half-Elf') {
     rules.defineRule
       ('improvementPoints', 'descriptionNotes.heritage', '+', '2');
+  }
 };
 
 /*
@@ -4026,7 +4033,12 @@ SWADE.makeValid = function(attributes) {
 
 /* Returns an array of plugins upon which this one depends. */
 SWADE.getPlugins = function() {
-  return [];
+  let result = [];
+  if(window.SWADEFC != null)
+    result.unshift(window.SWADEFC);
+  if(window.SWADEHC != null)
+    result.unshift(window.SWADEHC);
+  return result;
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
