@@ -772,7 +772,7 @@ SWADEHC.FEATURES = {
     'Note="May spend a Benny to gain supernatural powers 1/session; suffers major psychosis afterward (Spirit-2 neg)"',
   'Regeneration (Fast)':
     'Section=combat ' +
-    'Note="Successful healing removes incapacitation or restores 1 Wound (Raise 2 Wounds) 1/rd"',
+    'Note="Successful healing removes incapacitation or restores 1 Wound (Raise 2 Wounds)%1 1/rd"',
   'Regeneration (Slow)':
     'Section=combat Note="May attempt a natural healing roll 1/dy"',
   'Relentless':
@@ -1043,14 +1043,18 @@ SWADEHC.POWERS = {
     'Range=Self ' +
     'Description=' +
       '"Successful attackers suffer 1d6 damage per Wound inflicted for 5 rd"',
-  'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
+  'Summon Ally': // Changed from SWADE
+    'Advances=0 ' +
     'PowerPoints=1+ ' +
+    'Range=Smarts ' +
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
       '"+2 PP Servant can fly Pace\\"/rd",' +
       '"+1 PP Servant gains +1 Trait Step",' +
       '"+1 PP Self can use servant\'s senses",' +
-      '"Epic +Half PP/additional servant"',
+      '"Epic +Half PP/additional servant" ' +
+    'Description=' +
+      '"Creates an obedient servant (Raise servant may take 1 Wound) for 5 rd"',
   'Summon Demon':
     'Advances=8 ' +
     'PowerPoints=3+ ' +
@@ -1096,13 +1100,22 @@ SWADEHC.WEAPONS = {
 
 /* Defines rules related to powers. */
 SWADEHC.arcaneRules = function(rules, arcanas, powers) {
+  // Suppress redefinition warnings for replaced powers
+  let allNotes = rules.getChoices('notes');
+  let allPowers = rules.getChoices('powers');
+  for(let p in powers) {
+    if(p in allPowers) {
+      delete allPowers[p];
+      delete allNotes['powers.' + p];
+    }
+  }
   SWADE.arcaneRules(rules, arcanas, powers);
-  // No changes needed to the rules defined by base method
 };
 
 /* Defines the rules related to combat. */
 SWADEHC.combatRules = function(rules, weapons) {
   SWADE.combatRules(rules, {}, {}, weapons);
+  // Add placeholders for Bite and Claw AP values.
   let allNotes = rules.getChoices('notes');
   if(allNotes && 'weapons.Bite' in allNotes)
     allNotes['weapons.Bite'] = allNotes['weapons.Bite'].replace(')', '%6)');
@@ -1115,15 +1128,19 @@ SWADEHC.combatRules = function(rules, weapons) {
 /* Defines rules related to basic character identity. */
 SWADEHC.identityRules = function(rules, concepts) {
   SWADE.identityRules(rules, {}, {}, concepts);
+  // No changes needed to the rules defined by base method
 };
 
 /* Defines rules related to character aptitudes. */
 SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
   SWADE.talentRules
     (rules, edges, features, {}, hindrances, skills);
+  for(let e in edges)
+    SWADEHC.edgeRulesExtra(rules, e, edges[e]);
+  for(let h in hindrances)
+    SWADEHC.hindranceRulesExtra(rules, h, hindrances[h]);
   // Monstrous hero edges are free; add an edge point to compensate
   for(let e in edges) {
-    SWADEHC.edgeRulesExtra(rules, e, edges[e]);
     let types = QuilvynUtils.getAttrValueArray(edges[e], 'Type');
     let requires = QuilvynUtils.getAttrValueArray(edges[e], 'Require');
     if(types[0] == 'Monstrous' &&
@@ -1132,8 +1149,6 @@ SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
       rules.defineRule('monstrousHero', 'edges.' + e, '+=', '1');
   }
   rules.defineRule('edgePoints', 'monstrousHero', '+=', '1');
-  for(let h in hindrances)
-    SWADEHC.hindranceRulesExtra(rules, h, hindrances[h]);
 };
 
 /*
@@ -1146,23 +1161,23 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
   // make sure that associated notes only apply to those with the base edge.
   if(name.startsWith('Arcane Background')) {
     if(name.match(/Demonologist|Fortune Teller|Medium|Occultist|Warlock/)) {
+      rules.defineRule
+        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
       rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
         'edges.Arcane Background (Magic)', '?', null
       );
-      rules.defineRule
-        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
     } else if(name.match(/Priest|Voodooist/)) {
+      rules.defineRule
+        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
       rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
         'edges.Arcane Background (Miracles)', '?', null
       );
-      rules.defineRule
-        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
     } else if(name.match(/Psychic Investigator/)) {
-      rules.defineRule('arcanaNotes.arcaneBackground(Psionics)',
-        'edges.Arcane Background (Psionics)', '?', null
-      );
       rules.defineRule('features.Arcane Background (Psionics)',
         'features.' + name, '=', '1'
+      );
+      rules.defineRule('arcanaNotes.arcaneBackground(Psionics)',
+        'edges.Arcane Background (Psionics)', '?', null
       );
     }
   }
@@ -1170,7 +1185,7 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.flight',
       'features.Angel', '^=', '12',
       'features.Speed Flight', '+', 'source==1 ? 12 : 36',
-      'combatNotes.speedFlight', '+', 'null'
+      'combatNotes.speedFlight', '+', 'null' // Italics noop
     );
   } else if(name == 'Arcane Background (Blighted)') {
     // TODO Rework AB-dependent edge validation tests
@@ -1191,27 +1206,39 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
     rules.defineRule('features.Claws (Climbing)', 'edges.Claws', '=', '1');
     rules.defineRule
       ('weapons.Claws.6', 'edges.Claws', '=', 'source>1 ? " AP 2" : null');
+  } else if(name == 'Mummy') {
+    rules.defineRule('combatNotes.regeneration(Fast).1',
+      'features.Mummy', '=', '" not caused by fire or holy water"'
+    );
   } else if(name == 'Phantom') {
     rules.defineRule('combatNotes.flight', 'features.Phantom', '=', '12');
+  } else if(name == 'Regeneration (Fast)') {
+    rules.defineRule('combatNotes.regeneration(Fast).1',
+      'features.Regeneration (Fast)', '?', null,
+      '', '=', '""'
+    );
   } else if(name == 'Vampire') {
-    rules.defineRule('vampireWallWalker',
+    rules.defineRule('combatNotes.regeneration(Fast).1',
+      'features.Vampire', '=', '" not caused by decapitation, holy water or weapons, sunlight, or a stake throught the heart"'
+    );
+    rules.defineRule('vampireWallPace',
       'edges.Vampire', '?', null,
       'pace', '=', 'Math.floor(source / 2)'
     );
-    rules.defineRule
-      ('combatNotes.wallWalker', 'vampireWallWalker', '^=', null);
-    rules.defineRule
-      ('combatNotes.wallWalker.1', 'vampireWallWalker', '^=', null);
+    rules.defineRule('combatNotes.wallWalker', 'vampireWallPace', '^=', null);
+    rules.defineRule('combatNotes.wallWalker.1', 'vampireWallPace', '^=', null);
     rules.defineRule('damageStep.Claws', 'edges.Vampire', '^=', '2');
   } else if(name == 'Werewolf') {
-    rules.defineRule('werewolfWallWalker',
+    rules.defineRule('combatNotes.regeneration(Fast).1',
+      'features.Werewolf', '=', '" not caused by silver"'
+    );
+    rules.defineRule('werewolfWallPace',
       'edges.Werewolf', '?', null,
       'pace', '=', 'Math.floor(source / 2)'
     );
+    rules.defineRule('combatNotes.wallWalker', 'werewolfWallPace', '^=', null);
     rules.defineRule
-      ('combatNotes.wallWalker', 'werewolfWallWalker', '^=', null);
-    rules.defineRule
-      ('combatNotes.wallWalker.1', 'werewolfWallWalker', '^=', null);
+      ('combatNotes.wallWalker.1', 'werewolfWallPace', '^=', null);
     rules.defineRule('damageStep.Bite', 'edges.Werewolf', '^=', '2');
     rules.defineRule('weapons.Bite.6', 'edges.Werewolf', '=', '" AP 2"');
     rules.defineRule('damageStep.Claws', 'edges.Werewolf', '^=', '2');
@@ -1264,12 +1291,17 @@ SWADEHC.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
+    '  Quilvyn allows the creation of monstrous heroes through the selection ' +
+    '  of additional edges named Angel, Demon, Mummy, etc. Selecting any one ' +
+    '  of these edges gives the character an additional edge point, and so ' +
+    '  does not reduce the number of other edges that can be selected.\n' +
+    '  </li><li>\n' +
     '  To avoid confusion with core features, Quilvyn combines the Angel ' +
-    '  Toughness edge and the Werewolf Tough edges into an edge named ' +
+    '  Toughness edge and the Werewolf Tough edge into an edge named ' +
     '  Toughness +2 and renames the Angel Speed edge as Speed Flight.\n' +
     '  </li><li>\n' +
-    '  Quilvyn adds Flashbacks+ and Forlorn+ hindrances to support the ' +
-    '  effects of the Veteran Of The Dark World hindrance.\n' +
+    '  Quilvyn supports the effects of the Veteran Of The Dark World ' +
+    '  hindrance by adding Flashbacks+ and Forlorn+ hindrances.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
