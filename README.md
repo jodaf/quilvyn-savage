@@ -28,10 +28,15 @@ lines to the file plugins/plugins.js:
       url:'plugins/SWADE.js',
       group:'Savage Worlds'
     };
-    RULESETS["SWADE Fantasy Companion"] = {
+    RULESETS["Fantasy Companion supplement to SWADE rules"] = {
       url:'plugins/SWADEFC.js',
       group:'Savage Worlds',
-      require:'SWADE.js'
+      supplement:"Savage Worlds Adventurer's Edition"
+    };
+    RULESETS["Horror Companion supplement to SWADE rules"] = {
+      url:'plugins/SWADEHC.js',
+      group:'Savage Worlds',
+      supplement:"Savage Worlds Adventurer's Edition"
     };
     RULESETS["Deadlands - The Weird West"] = {
       url:'plugins/WeirdWest.js',

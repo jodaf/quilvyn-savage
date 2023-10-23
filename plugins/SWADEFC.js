@@ -29,45 +29,22 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * constant fields of SWADE (SKILLS, EDGES, etc.) can be manipulated to modify
  * the choices.
  */
-function SWADEFC(baseRules) {
+function SWADEFC(baseRules, rules) {
 
   if(window.SWADE == null) {
     alert('The SWADEFC module requires use of the SWADE module');
     return;
   }
-
-  var rules = new QuilvynRules('SWADE Fantasy', SWADEFC.VERSION);
-  rules.plugin = SWADEFC;
-  SWADEFC.rules = rules;
-
-  rules.defineChoice('choices', SWADEFC.CHOICES);
-  rules.choiceEditorElements = SWADEFC.choiceEditorElements;
-  rules.choiceRules = SWADEFC.choiceRules;
-  rules.removeChoice = SWADE.removeChoice;
-  rules.editorElements = SWADE.initialEditorElements();
-  rules.getFormats = SWADE.getFormats;
-  rules.getPlugins = SWADEFC.getPlugins;
-  rules.makeValid = SWADE.makeValid;
+  if(rules == null)
+    rules = SWADE.rules;
+  rules.fcReplacedRandomizer = rules.randomizeOneAttribute;
   rules.randomizeOneAttribute = SWADEFC.randomizeOneAttribute;
-  rules.defineChoice('random', SWADEFC.RANDOMIZABLE_ATTRIBUTES);
-  rules.ruleNotes = SWADEFC.ruleNotes;
-
-  SWADE.createViewers(rules, SWADE.VIEWERS);
-  rules.defineChoice('extras',
-    'edges', 'edgePoints', 'hindrances', 'sanityNotes', 'validationNotes'
-  );
-  rules.defineChoice('preset',
-    'ancestry:Ancestry,select-one,ancestrys', 'advances:Advances,text,4',
-    'concepts:Concepts,set,concepts'
-  );
-
-  SWADEFC.attributeRules(rules);
   SWADEFC.combatRules
     (rules, SWADEFC.ARMORS, SWADEFC.SHIELDS, SWADEFC.WEAPONS);
   SWADEFC.arcaneRules(rules, SWADEFC.ARCANAS, SWADEFC.POWERS);
   SWADEFC.talentRules
-    (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
-     SWADEFC.HINDRANCES, SWADEFC.SKILLS);
+    (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.HINDRANCES,
+     SWADEFC.SKILLS);
   SWADEFC.identityRules(rules, SWADEFC.ANCESTRYS, SWADEFC.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
@@ -75,11 +52,6 @@ function SWADEFC(baseRules) {
 }
 
 SWADEFC.VERSION = '2.4.1.0';
-
-SWADEFC.CHOICES =
-  SWADE.CHOICES.filter(x => !['Era', 'Race'].includes(x)).concat('Ancestry');
-SWADEFC.RANDOMIZABLE_ATTRIBUTES =
-  SWADE.RANDOMIZABLE_ATTRIBUTES.filter(x => x != 'era').map(x => x == 'race' ? 'ancestry' : x);
 
 SWADEFC.ANCESTRYS = {
   'Aquarian':SWADE.RACES.Aquarian,
@@ -424,7 +396,7 @@ SWADEFC.ARMORS = {
   'Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=4',
   'Enclosed Heavy Helm':'Area=Head Armor=4 MinStr=10 Weight=8'
 };
-SWADEFC.CONCEPTS_ADDED = {
+SWADEFC.CONCEPTS = {
   'Alchemist':
     'Edge="Arcane Background (Alchemist)" ' +
     'Attribute=Smarts ' +
@@ -522,8 +494,7 @@ SWADEFC.CONCEPTS_ADDED = {
     'Attribute=Smarts ' +
     'Skill=Spellcasting'
 };
-SWADEFC.CONCEPTS = Object.assign({}, SWADE.CONCEPTS, SWADEFC.CONCEPTS_ADDED);
-SWADEFC.EDGES_ADDED = {
+SWADEFC.EDGES = {
   'Air Scion':'Type=Background Require="ancestry == \'Elemental Scion\'"',
   'Earth Scion':'Type=Background Require="ancestry == \'Elemental Scion\'"',
   'Fire Scion':'Type=Background Require="ancestry == \'Elemental Scion\'"',
@@ -577,7 +548,7 @@ SWADEFC.EDGES_ADDED = {
   'Uncanny Reflexes':
     'Type=Combat Require="advances>=8","agility>=8","skills.Athletics>=8"',
   'Wing Gust':'Type=Combat Require="advances>=4","features.Flight"',
-  'Artificer':'Type=Power Require="advances>=4","powerPoints>0"',
+  'Artificer':'Type=Power Require="advances >= 4","powerPoints >= 1"',
   'Master Artificer':
     'Type=Power ' +
     'Require="advances>=12","features.Artificer","skills.Occult>=10"',
@@ -844,9 +815,7 @@ SWADEFC.EDGES_ADDED = {
     'Require=' +
       '"features.Arcane Background (Wizard)"'
 };
-SWADEFC.EDGES = Object.assign({}, SWADE.EDGES, SWADEFC.EDGES_ADDED);
-delete SWADEFC.EDGES.Wizard;
-SWADEFC.FEATURES_ADDED = {
+SWADEFC.FEATURES = {
   // Ancestry
   'Additional Actions':
     'Section=combat Note="Use of limbs reduces multi-action penalty by 2"',
@@ -857,6 +826,10 @@ SWADEFC.FEATURES_ADDED = {
   'Animal Aversion':
     'Section=skill ' +
     'Note="Animals keep 5\\" distance/-2 to control or ride animals"',
+  // Armor +2 as SWADE
+  // Attractive as SWADE
+  // Big as SWADE
+  // Bite as SWADE
   'Bite Or Claw':
     'Section=combat Note="Mandibles or pincers inflict Bite or Claws damage"',
   'Blood Drinker':
@@ -872,12 +845,15 @@ SWADEFC.FEATURES_ADDED = {
     'Note=' +
       '"May use <i>Disguise</i> as a limited free action to change own appearance",' +
       '"Has Arcane Background (Gifted) feature"',
+  // Charismatic as SWADE
+  // Claws as SWADE
   'Claws (Climbing)':'Section=skill Note="+2 Athletics (climbing)"',
   'Cold Resistance':
     'Section=feature Note="Has Environmental Resistance (Cold) feature"',
   'Cold-Blooded':
     'Section=attribute ' +
     'Note="10 min in 60F/18C or below inflicts -1 Agility, Strength, and Vigor"',
+  // Construct as SWADE
   'Craven':'Section=feature Note="Has Yellow+ feature"',
   'Cunning':'Section=attribute Note="+1 Smarts Step"',
   'Darkvision':'Section=feature Note="R10\\" Ignores illumination penalties"',
@@ -898,6 +874,7 @@ SWADEFC.FEATURES_ADDED = {
     'Note="+1 Edge Points (Choice of Air, Earth, Fire, or Water Scion)"',
   'Environmental Resistance (Air)':
     'Section=combat Note="+4 vs. air effects/-4 damage from air effects"',
+  // Environmental Resistance (Cold) as SWADE
   'Environmental Resistance (Earth)':
     'Section=combat Note="+4 vs. earth effects/-4 damage from earth effects"',
   'Environmental Resistance (Fire)':
@@ -910,30 +887,21 @@ SWADEFC.FEATURES_ADDED = {
   'Fire Scion':
     'Section=feature ' +
     'Note="Has Environmental Resistance (Fire) and Quick features"',
-  'Flight': // Changed from SWADE
-    'Section=combat,skill ' +
-    'Note="Fly Pace %V","Uses Athletics for flight maneuvers"',
+  // Flight as SWADE
   'Hardened':'Section=attribute Note="+1 Attribute Points (Strength or Vigor)"',
+  // Hardy as SWADE
   'Hive Minded': 'Section=feature Note="Has Driven+ and Loyal features"',
   'Hooves':'Section=combat Note="Hooves are a natural weapon"',
+  // Horns as SWADE
   'Ill-Tempered':'Section=feature Note="Has Arrogant+ feature"',
-  // Additional from New Ancestry Abilities table
-  'Camouflage':
-    'Section=skill Note="+2 Stealth (+4 if motionless) in chosen terrain"',
-  'Echolocation':
-    'Section=feature ' +
-    'Note="R10\\" Hearing negates 4 points of vision penalties"',
-  'Phosphorescence':
-    'Section=combat,feature,skill ' +
-    'Note=' +
-      '"-4 Stealth (sight-based) when glowing",' +
-      '"Glow negates 2 points of illumination penalties",' +
-      '"Flashing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
   'Infravision (Goblin)':
     'Section=combat ' +
     'Note="Illumination penalties reduced by half when attacking targets that radiate heat or cold"',
   'Inner Air':'Section=feature Note="Does not need to breathe"',
+  // Low Light Vision as SWADE
+  // Keen Senses as SWADE
   'Natural Resistance':'Section=combat Note="Immune to poison and disease"',
+  // No Vital Organs as SWADE
   'Pace (Serpentfolk)':'Section=combat Note="+4 Pace/+2 Run Step"',
   'Pace +4':'Section=combat Note="+4 Pace/+2 Run Step"',
   'Phobia (Cats)':
@@ -941,8 +909,12 @@ SWADEFC.FEATURES_ADDED = {
   'Reduced Core Skills':
     'Section=skill ' +
     'Note="Has no starting Common Knowledge, Persuasion, or Stealth ability"',
+  // Reduced Pace as SWADE
   'Rock Solid':'Section=attribute Note="+1 Vigor Step"',
+  // Scavenger as SWADE
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
+  // Size -1 as SWADE
+  // Size +1 as SWADE
   'Size +2':
     'Section=combat,description ' +
     'Note=' +
@@ -957,6 +929,7 @@ SWADEFC.FEATURES_ADDED = {
   'Sunlight Sensitivity':
     'Section=combat Note="Suffers Distraction in sunlight or equivalent"',
   'Survivors':'Section=feature Note="+1 Edge Points"',
+  // Tough as SWADE
   'Uneducated':'Section=attribute Note="-1 Smarts"',
   'Unimposing':'Section=feature Note="Has Mild Mannered feature"',
   'Unnatural Strength':'Section=attribute Note="+1 Strength Step"',
@@ -968,9 +941,22 @@ SWADEFC.FEATURES_ADDED = {
     'Section=combat Note="Successful bite inflicts Mild Poison (Vigor neg)"',
   'Very Strong':'Section=attribute Note="+2 Strength Step"',
   'Very Tough':'Section=attribute Note="+2 Vigor Step"',
+  // Wall Walker as SWADE
   'Water Scion':
     'Section=feature ' +
     'Note="Has Environmental Resistance (Water) and Aquatic features"',
+  // Additional from New Ancestry Abilities table
+  'Camouflage':
+    'Section=skill Note="+2 Stealth (+4 if motionless) in chosen terrain"',
+  'Echolocation':
+    'Section=feature ' +
+    'Note="R10\\" Hearing negates 4 points of vision penalties"',
+  'Phosphorescence':
+    'Section=combat,feature,skill ' +
+    'Note=' +
+      '"-4 Stealth (sight-based) when glowing",' +
+      '"Glow negates 2 points of illumination penalties",' +
+      '"Flashing glow gives self +1 on some Tests and inflicts -1 melee attacks on foes"',
   // Edges
   'Arcane Background (Alchemist)':
     'Section=arcana,arcana,feature ' +
@@ -1342,6 +1328,7 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note="Can communicate w/a magical, Wild Card undead animal that stores 5 Power Points"',
   // Hindrances
+  // All Thumbs as SWADE
   'Amorous':
     'Section=skill Note="-2 on Tests by a foe w/the Attractive feature"',
   'Arcane Sensitivity':'Section=combat Note="-2 to resist powers"',
@@ -1354,22 +1341,31 @@ SWADEFC.FEATURES_ADDED = {
     'Section=arcana ' +
     'Note=' +
       '"In light, medium, or heavy armor, suffers -4 arcane skill rolls and cannot use arcane edge features"',
+  // Arrogant+ as SWADE
+  // Big Mouth as SWADE
   'Blunderer+':
     'Section=skill ' +
     'Note="Skill die of 1 on chosen essential skill inflicts critical failure"',
+  // Clueless+ as SWADE
+  // Clumsy+ as SWADE
+  // Code Of Honor+ as SWADE
   'Corruption+':
     'Section=arcana ' +
     'Note=' +
       '"Critical failure on arcane skill inflicts additional or increased hindrance until next advance"',
+  // Curious as SWADE
   'Cursed+':
     'Section=arcana ' +
     'Note="Powers cast to aid self suffer -2 arcane skill; critical failure stuns caster"',
+  // Dependency as SWADE
   'Doomed+':'Section=attribute Note="-2 Vigor (soak)"',
   'Grim':
     'Section=combat ' +
     'Note="Provoked (-2 to affect other opponents) by any successful Taunt; lasts until a Joker is drawn"',
   'Idealistic':
     'Section=feature Note="Approaches moral dilemmas with absolute thinking"',
+  // Illiterate as SWADE
+  // Impulsive as SWADE
   'Jingoistic':
     'Section=combat,skill ' +
     'Note=' +
@@ -1383,6 +1379,10 @@ SWADEFC.FEATURES_ADDED = {
   'Material Components+':
     'Section=arcana ' +
     'Note="Suffers -4 arcane skill rolls when materials are unavailable; critical failure exhausts materials"',
+  // Mean as SWADE
+  // Outsider as SWADE
+  // Outsider+ as SWADE
+  // Secret+ as SWADE
   'Selfless':'Section=feature Note="Puts others first"',
   'Selfless+':'Section=feature Note="Always puts others first"',
   'Talisman':
@@ -1391,9 +1391,9 @@ SWADEFC.FEATURES_ADDED = {
   'Talisman+':
     'Section=arcana ' +
     'Note="-2 casting when talisman is unavailable; critical failure stuns"'
+  // Thin Skinned+ as SWADE
 };
-SWADEFC.FEATURES = Object.assign(Object.fromEntries(Object.entries(SWADE.FEATURES).filter(([k, v]) => !k.match(/Wizard/))), SWADEFC.FEATURES_ADDED);
-SWADEFC.HINDRANCES_ADDED = {
+SWADEFC.HINDRANCES = {
   'Amorous':'Severity=Minor',
   'Arcane Sensitivity':
     'Require="features.Arcane Sensitivity+ == 0" Severity=Minor',
@@ -1417,18 +1417,18 @@ SWADEFC.HINDRANCES_ADDED = {
   'Selfless':'Require="features.Selfless+ == 0" Severity=Minor',
   'Selfless+':'Require="features.Selfless == 0" Severity=Major',
   'Talisman':'Require="features.Talisman+ == 0" Severity=Minor',
-  'Talisman+':'Require="features.Talisman == 0" Severity=Major',
+  'Talisman+':'Require="features.Talisman == 0" Severity=Major'
+  // Vow+ as SWADE
 };
-SWADEFC.HINDRANCES =
-  Object.assign({}, SWADE.HINDRANCES, SWADEFC.HINDRANCES_ADDED);
-SWADEFC.POWER_CHANGES = {
+SWADEFC.POWERS = {
   'Arcane Protection':
     'Modifier=' +
       '"Epic +2 PP foes suffer -4 (Raise -6)"',
   'Banish':
     'Modifier=' +
       '"Epic +1/+2/+3 PP 1\\"/2\\"/3\\" radius"',
-  'Barrier':SWADE.POWERS.Barrier +
+  'Barrier':
+    SWADE.POWERS.Barrier + ' ' +
     'Modifier=' +
       '"+0 PP Immaterial barrier",' +
       '"+0/+1 PP Immaterial/material barrier inflicts 2d4 damage",' +
@@ -1455,7 +1455,8 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +2 PP Turns target to dust (Vigor neg)",' +
       '"Epic +4 PP Inflicts 4d6 damage (Raise 5d6) as Heavy Weapon",' +
       '"Epic +2 PP ROF 2"',
-  'Boost/Lower Trait':SWADE.POWERS['Boost/Lower Trait'] + ' ' +
+  'Boost/Lower Trait':
+    SWADE.POWERS['Boost/Lower Trait'] + ' ' +
     'PowerPoints=3 ' +
     'Modifier=' +
       '"+2 PP/additional target",' +
@@ -1505,7 +1506,8 @@ SWADEFC.POWER_CHANGES = {
   'Darksight':
     'Modifier=' +
       '"Epic +2 PP Target ignores all illumination penalties and 4 points from invisibility"',
-  'Deflection':SWADE.POWERS.Deflection + ' ' +
+  'Deflection':
+    SWADE.POWERS.Deflection + ' ' +
     'PowerPoints=2 ' +
     'Description=' +
       '"Foes suffer -2 on choice of ranged or melee attacks (Raise both) on target for 5 rd"',
@@ -1550,7 +1552,8 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +1 Inflicts 2d6 damage" ' +
     'Description=' +
       '"Restrains target (Raise binds; Athletics or breaking Hardness 8 frees)"',
-  'Environmental Protection':SWADE.POWERS['Environmental Protection'] + ' ' +
+  'Environmental Protection':
+    SWADE.POWERS['Environmental Protection'] + ' ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Reduces environmental damage by 4 (Raise 6)" ' +
@@ -1569,8 +1572,8 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"Epic +2 Lasts 5 min",' +
       '"Epic +2 Shrink retains Toughness and Strength"',
-  'Havoc':SWADE.POWERS.Havoc
-    .replace('radius or', 'radius, 12\\" stream, or') + ' ' +
+  'Havoc':
+    SWADE.POWERS.Havoc.replace('radius or', 'radius, 12\\" stream, or') + ' ' +
     'Modifier=' +
       '"+1 PP 3\\" radius",' +
       '"Epic +2 PP Throws 3d6\\""',
@@ -1637,7 +1640,8 @@ SWADEFC.POWER_CHANGES = {
     'Range=special ' +
     'Description=' +
       '"Ritual causes great event"',
-  'Object Reading':SWADE.POWERS['Object Reading'] + ' ' +
+  'Object Reading':
+    SWADE.POWERS['Object Reading'] + ' ' +
     'Modifier=' +
       '"Epic +2 PP Share w/others nearby" ' +
     'Description=' +
@@ -1658,21 +1662,24 @@ SWADEFC.POWER_CHANGES = {
       '"Epic +2 PP Plane shifts foe (Spirit neg) for 3 rd (Raise 5 rd)" ' +
     'Description=' +
       '"Self travels to chosen plane, w/in 10d10 miles (Raise 5d10) of a known location"',
-  'Protection':SWADE.POWERS.Protection + ' ' +
+  'Protection':
+    SWADE.POWERS.Protection + ' ' +
     'Description="Target gains +2 Armor (Raise +2 Toughness) for 5 rd" ' +
     'Modifier=' +
       '"+1 PP/additional target"',
   'Puppet':
     'Modifier=' +
       '"+2 PP Spirit-2"',
-  'Relief':SWADE.POWERS.Relief + ' ' +
+  'Relief':
+    SWADE.POWERS.Relief + ' ' +
     'Description=' +
       '"Removes choice of Shaken, Distracted, or Vulnerable (Raise 2 choices) from target, or reduces penalties due to Wounds and Fatigue by 1 (Raise 2) for 1 hr" ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+3 PP Restore 1 die type from energy drain (Raise 2 die types)",' +
       '"+1 PP Also removes Stunned"',
-  'Resurrection':SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
+  'Resurrection'
+    :SWADE.POWERS.Resurrection.replace('-8', '-4') + ' ' +
     'Modifier=' +
       '"+5 PP Raises 10 yr corpse",' +
       '"Epic +10 PP 12-hr ritual raises corpse of any age"',
@@ -1693,7 +1700,8 @@ SWADEFC.POWER_CHANGES = {
       '"+1 PP Shares with allies in a %{smarts}\\" radius" ' +
     'Description=' +
       '"Gives view of chosen target (-2 unfamiliar target; Spirit target detects) for 5 rd"',
-  'Shape Change':SWADE.POWERS['Shape Change'] + ' ' +
+  'Shape Change':
+    SWADE.POWERS['Shape Change'] + ' ' +
     'Modifier=' +
       '"+1 PP Lasts 5 min",' +
       '"Epic +3 PP Transforms touched target (Raise Smarts lowered to animal; Spirit neg, Spirit-2 recover (Raise Spirit-4))",' +
@@ -1712,7 +1720,8 @@ SWADEFC.POWER_CHANGES = {
     'Modifier=' +
       '"Epic +2 PP Speak, read, and write all languages",' +
       '"Epic +5 PP All in a %{smarts*2}\\" radius can understand each other"',
-  'Summon Ally':SWADE.POWERS['Summon Ally'] + ' ' +
+  'Summon Ally':
+    SWADE.POWERS['Summon Ally'] + ' ' +
     'PowerPoints=1+ ' +
     'Modifier=' +
       '"+1 PP Servant gains combat edge",' +
@@ -1772,29 +1781,23 @@ SWADEFC.POWER_CHANGES = {
     'Range=smarts ' +
     'Description=' +
       '"Self alters reality and loses 3 PP permanently (Raise no PP loss)"',
-  'Zombie':SWADE.POWERS.Zombie + ' ' +
+  'Zombie':
+    SWADE.POWERS.Zombie + ' ' +
     'Modifier=' +
       '"+1 PP/additional target",' +
       '"+1 PP Target is armed and has 2 Armor points",' +
       '"+1 PP Self can use target senses",' +
       '"+1 PP Target becomes animated skeleton"'
 };
-SWADEFC.POWERS = Object.assign({}, SWADE.POWERS);
-for(let p in SWADEFC.POWER_CHANGES) {
-  if(SWADEFC.POWER_CHANGES[p].includes('Description=')) {
-    // New power or completely new description
-    SWADEFC.POWERS[p] = SWADEFC.POWER_CHANGES[p];
-  } else if(!(p in SWADE.POWERS)) {
-    console.log('Unknown power "' + p + '"');
-  } else {
-    if(SWADEFC.POWER_CHANGES[p].includes('Modifier=')) {
-      // New modifiers
-      let allMods = QuilvynUtils.getAttrValueArray(SWADE.POWERS[p], 'Modifier').concat(QuilvynUtils.getAttrValueArray(SWADEFC.POWER_CHANGES[p], 'Modifier')).map(m => m.replaceAll('"', '\\"'));
-      SWADEFC.POWERS[p] += ' Modifier="' + allMods.join('","') + '"';
-    }
-    if(SWADEFC.POWER_CHANGES[p].includes('PowerPoints='))
-      // Changed PP
-      SWADEFC.POWERS[p] += ' PowerPoints=' + QuilvynUtils.getAttrValue(SWADEFC.POWER_CHANGES[p], 'PowerPoints');
+for(let p in SWADEFC.POWERS) {
+  if(p in SWADE.POWERS && !SWADEFC.POWERS[p].includes('Description=')) {
+    let swadeModifiers =
+      QuilvynUtils.getAttrValueArray(SWADE.POWERS[p], 'Modifier');
+    let swadefcModifiers =
+      QuilvynUtils.getAttrValueArray(SWADEFC.POWERS[p], 'Modifier');
+    SWADEFC.POWERS[p] =
+      SWADE.POWERS[p] + SWADEFC.POWERS[p] +
+      ' Modifier="' + swadeModifiers.concat(swadefcModifiers).map(x => x.replaceAll('"', '\\"')).join('","') + '"';
   }
 }
 SWADEFC.SHIELDS = {
@@ -1803,63 +1806,44 @@ SWADEFC.SHIELDS = {
   'Medium Shield':'Parry=2 Cover=2 MinStr=8 Weight=8',
   'Large Shield':'Parry=2 Cover=4 MinStr=10 Weight=12'
 };
-SWADEFC.SKILLS_ADDED = {
+SWADEFC.SKILLS = {
   'Alchemy':'Attribute=smarts'
 };
-SWADEFC.SKILLS = Object.assign(Object.fromEntries(Object.entries(SWADE.SKILLS).filter(([k, v]) => !v.includes('Era') || v.match(/Era=[\w,]*Medieval/))), SWADEFC.SKILLS_ADDED);
 SWADEFC.WEAPONS = {
-  'Unarmed':SWADE.WEAPONS.Unarmed,
-
   'Hand Axe':SWADE.WEAPONS['Hand Axe'] + ' Range=3',
-  'Battle Axe':SWADE.WEAPONS['Battle Axe'],
   'Great Axe':SWADE.WEAPONS['Great Axe'] + ' AP=3',
   'Chakram':
     'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed Range=4 Parry=1',
-  'Light Club':SWADE.WEAPONS['Light Club'],
-  'Heavy Club':SWADE.WEAPONS['Heavy Club'],
   'Cutlass':'Damage=Str+d6 MinStr=4 Weight=4 Category=One-Handed',
-  'Dagger':SWADE.WEAPONS.Dagger,
-  'Knife':SWADE.WEAPONS.Knife,
-  'Flail':SWADE.WEAPONS.Flail,
   'Heavy Flail':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
   'Falchion':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
   'Glaive':'Damage=Str+d8 MinStr=8 Weight=10 Category=Two-Handed',
   'Guisarme':'Damage=Str+d6 MinStr=6 Weight=12 Category=Two-Handed AP=1',
   'Halberd':SWADE.WEAPONS.Halberd + ' AP=1',
-  'Katana':SWADE.WEAPONS.Katana,
-  'Lance':SWADE.WEAPONS.Lance,
   'Light Mace':SWADE.WEAPONS.Mace,
   'Heavy Mace':'Damage=Str+d8 MinStr=8 Weight=8 Category=One-Handed AP=1',
   'Mancatcher':'Damage=Str+d4 MinStr=6 Weight=10 Category=Two-Handed',
   'Meteor Hammer':'Damage=Str+d6 MinStr=6 Weight=5 Category=Two-Handed',
   'Morningstar':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed',
   'Maul':SWADE.WEAPONS.Maul + ' AP=2',
-  'Pike':SWADE.WEAPONS.Pike,
-  'Rapier':SWADE.WEAPONS.Rapier,
   'Ranseur':'Damage=Str+d6 MinStr=6 Weight=12 Category=One-Handed AP=1',
   'Sap':'Damage=Str+d4 MinStr=4 Weight=1 Category=One-Handed',
   'Scimitar':'Damage=Str+d6 MinStr=6 Weight=4 Category=One-Handed',
   'Scythe':'Damage=Str+d6 MinStr=6 Weight=10 Category=Two-Handed',
   'Sickle':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed',
   'Short Spear':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed Range=4',
-  'Spear':SWADE.WEAPONS.Spear,
   'Spiked Chain':'Damage=Str+d6 MinStr=6 Weight=6 Category=Two-Handed AP=1',
   'Spiked Gauntlet':'Damage=Str+d4 MinStr=6 Weight=1 Category=Unarmed',
-  'Staff':SWADE.WEAPONS.Staff,
   'Quarterstaff':SWADE.WEAPONS.Staff,
   'Bastard Sword':'Damage=Str+d8 MinStr=8 Weight=6 Category=One-Handed AP=1',
   'Great Sword':SWADE.WEAPONS['Great Sword'] + ' AP=2',
   'Hook Sword':'Damage=Str+d6 MinStr=6 Weight=3 Category=One-Handed AP=1',
-  'Long Sword':SWADE.WEAPONS['Long Sword'],
-  'Short Sword':SWADE.WEAPONS['Short Sword'],
   'Trident':'Damage=Str+d6 MinStr=6 Weight=5 Category=One-Handed Range=3',
-  'Warhammer':SWADE.WEAPONS.Warhammer,
   'Whip':'Damage=Str+d4 MinStr=4 Weight=2 Category=One-Handed Parry=-1',
 
   'Bolas':'Damage=Str+d4 MinStr=4 Weight=2 Category=Ranged Range=3',
   'Blowgun':'Damage=d4-2 MinStr=4 Weight=1 Category=Ranged Range=3',
   'Short Bow':SWADE.WEAPONS.Bow,
-  'Long Bow':SWADE.WEAPONS['Long Bow'],
   'Composite Bow':SWADE.WEAPONS['Compound Bow'],
   'Hand Crossbow':'Damage=2d4 MinStr=4 Weight=2 Category=Ranged Range=5',
   'Repeating Hand Crossbow':
@@ -1869,154 +1853,74 @@ SWADEFC.WEAPONS = {
   'Heavy Crossbow':'Damage=2d8 MinStr=8 Weight=8 Category=Ranged Range=15 AP=2',
   'Repeating Heavy Crossbow':
     'Damage=2d8 MinStr=8 Weight=12 Category=Ranged Range=15 AP=2',
-  'Net':SWADE.WEAPONS.Net,
-  'Javelin':SWADE.WEAPONS.Javelin,
-  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=Ranged Range=3',
-  'Sling':SWADE.WEAPONS.Sling
+  'Shuriken':'Damage=Str+d4 MinStr=4 Weight=0 Category=Ranged Range=3'
 };
 
 /* Defines rules related to powers. */
 SWADEFC.arcaneRules = function(rules, arcanas, powers) {
+  let allNotes = rules.getChoices('notes');
+  let allPowers = rules.getChoices('powers');
+  for(let p in powers) {
+    if(p in allPowers) {
+      delete allPowers[p];
+      delete allNotes['powers.' + p];
+    }
+  }
   SWADE.arcaneRules(rules, arcanas, powers);
-  // No changes needed to the rules defined by base method
-};
-
-/* Defines the rules related to character attributes and description. */
-SWADEFC.attributeRules = function(rules) {
-  SWADE.attributeRules(rules);
   // No changes needed to the rules defined by base method
 };
 
 /* Defines the rules related to combat. */
 SWADEFC.combatRules = function(rules, armors, shields, weapons) {
+  let allArmors = rules.getChoices('armors');
+  let allNotes = rules.getChoices('notes');
+  let allShields = rules.getChoices('shields');
+  let allWeapons = rules.getChoices('weapons');
+  for(let a in armors) {
+    if(a in allArmors)
+      delete allArmors[a];
+  }
+  for(let s in shields) {
+    if(s in allShields)
+      delete allShields[s];
+  }
+  for(let w in weapons) {
+    if(w in allWeapons) {
+      delete allWeapons[w];
+      delete allNotes['weapons.' + w];
+    }
+  }
   SWADE.combatRules(rules, armors, shields, weapons);
   // No changes needed to the rules defined by base method
 };
 
 /* Defines rules related to basic character identity. */
 SWADEFC.identityRules = function(rules, ancestrys, concepts) {
+  let allRaces = rules.getChoices('races');
+  for(let a in ancestrys) {
+    if(a in allRaces)
+      delete allRaces[a];
+  }
   SWADE.identityRules(rules, ancestrys, {}, concepts);
   rules.defineEditorElement('race');
   rules.defineEditorElement
-    ('ancestry', 'Ancestry', 'select-one', 'ancestrys', 'imageUrl');
+    ('ancestry', 'Ancestry', 'select-one', 'races', 'imageUrl');
+  rules.defineRule('race', 'ancestry', '=', null);
+  rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
+  for(let a in ancestrys)
+    SWADEFC.ancestryRulesExtra(rules, a, ancestrys[a]);
+  rules.defineRule('rakashanFeatures.Racial Enemy', 'ancestry', '?', '0');
 };
 
 /* Defines rules related to character aptitudes. */
-SWADEFC.talentRules = function(
-  rules, edges, features, goodies, hindrances, skills
-) {
-  SWADE.talentRules
-    (rules, edges, features, goodies, hindrances, skills);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Adds #name# as a possible user #type# choice and parses #attrs# to add rules
- * related to selecting that choice.
- */
-SWADEFC.choiceRules = function(rules, type, name, attrs) {
-  if(type == 'Race')
-    type = 'Ancestry';
-  if(type == 'Ancestry') {
-    SWADEFC.ancestryRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Abilities')
-    );
-    SWADEFC.ancestryRulesExtra(rules, name);
-  } else if(type == 'Arcana')
-    SWADEFC.arcanaRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Skill'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Powers')
-    );
-  else if(type == 'Armor')
-    SWADEFC.armorRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Area'),
-      QuilvynUtils.getAttrValue(attrs, 'Armor'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
-    );
-  else if(type == 'Concept')
-    SWADEFC.conceptRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Edge'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
-    );
-  else if(type == 'Edge') {
-    SWADEFC.edgeRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Type')
-    );
-    SWADEFC.edgeRulesExtra(rules, name);
-  } else if(type == 'Feature')
-    SWADEFC.featureRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Note')
-    );
-  else if(type == 'Goody')
-    SWADEFC.goodyRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Pattern'),
-      QuilvynUtils.getAttrValue(attrs, 'Effect'),
-      QuilvynUtils.getAttrValue(attrs, 'Value'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Note')
-    );
-  else if(type == 'Hindrance') {
-    SWADEFC.hindranceRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValue(attrs, 'Severity')
-    );
-    SWADEFC.hindranceRulesExtra(rules, name);
-  } else if(type == 'Power')
-    SWADEFC.powerRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Advances'),
-      QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValue(attrs, 'School'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
-    );
-  else if(type == 'Shield')
-    SWADEFC.shieldRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Parry'),
-      QuilvynUtils.getAttrValue(attrs, 'Cover'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
-    );
-  else if(type == 'Skill')
-    SWADEFC.skillRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Attribute'),
-      QuilvynUtils.getAttrValue(attrs, 'Core')
-    );
-  else if(type == 'Weapon')
-    SWADEFC.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'MinStr'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight'),
-      QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValue(attrs, 'AP'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'ROF'),
-      QuilvynUtils.getAttrValue(attrs, 'Parry')
-    );
-  else {
-    console.log('Unknown choice type "' + type + '"');
-    return;
-  }
-  type =
-    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-  rules.addChoice(type, name, attrs);
-};
-
-/*
- * Defines in #rules# the rules associated with ancestry #name#, which has the
- * list of hard prerequisites #requires#. #abilities# list associated abilities.
- */
-SWADEFC.ancestryRules = function(rules, name, requires, abilities) {
-  SWADE.raceRules(rules, name, requires, abilities);
-  rules.defineRule('race', 'ancestry', '=', null); // So SWADE rules will work
-  rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
+SWADEFC.talentRules = function(rules, edges, features, hindrances, skills) {
+  delete rules.getChoices('features')['Assassin'];
+  delete rules.getChoices('notes')['combatNotes.assassin'];
+  SWADE.talentRules(rules, edges, features, {}, hindrances, skills);
+  for(let e in edges)
+    SWADEFC.edgeRulesExtra(rules, e, edges[e]);
+  for(let h in hindrances)
+    SWADEFC.edgeRulesExtra(rules, h, hindrances[h]);
 };
 
 /*
@@ -2068,6 +1972,14 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
   } else if(name == 'Insectoid') {
     rules.defineRule('weapons.Bite', 'combatNotes.biteOrClaw', '=', '1');
     rules.defineRule('weapons.Claws', 'combatNotes.biteOrClaw', '=', '1');
+    rules.defineRule('insectoidPace',
+      'ancestry', '?', 'source == "Insectoid"',
+      'pace', '=', null
+    );
+    rules.defineRule('combatNotes.wallWalker', 'insectoidPace', '=', null);
+    rules.defineRule('combatNotes.wallWalker.1',
+      'insectoidPace', '=', 'Math.floor(source / 2)'
+    );
   } else if(name == 'Minotaur') {
     SWADE.weaponRules(
       rules, 'Hooves', [], 'Str+d4', 0, 0, 'Unarmed', null, null, null, null
@@ -2076,49 +1988,6 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
   } else if(name == 'Shapeshifter') {
     rules.defineRule('powers.Disguise', 'features.Change Shape', '=', '1');
   }
-  if(SWADE.raceRulesExtra)
-    SWADE.raceRulesExtra(rules, name);
-};
-
-/*
- * Defines in #rules# the rules associated with arcane power source #name#,
- * which draws on skill #skill# when casting and allows access to the list of
- * powers #powers#.
- */
-SWADEFC.arcanaRules = function(rules, name, skill, powers) {
-  SWADE.arcanaRules(rules, name, skill);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with armor #name#, which covers the
- * body areas listed in #areas#, adds #armor# to the character's Toughness,
- * requires a strength of #minStr# to use effectively, and weighs #weight#.
- */
-SWADEFC.armorRules = function(rules, name, areas, armor, minStr, weight) {
-  SWADE.armorRules
-    (rules, name, ['Medieval'], areas, armor, minStr, weight);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with concept #name#. #attributes#,
- * #edges#, and #skills# list the names of attributes, edges, and skills
- * associated with the concept.
- */
-SWADEFC.conceptRules = function(rules, name, attributes, edges, skills) {
-  SWADE.conceptRules(rules, name, attributes, edges, skills); 
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with edge #name#. #require# and
- * #implies# list any hard and soft prerequisites for the edge, and #types#
- * lists the categories of the edge.
- */
-SWADEFC.edgeRules = function(rules, name, requires, implies, types) {
-  SWADE.edgeRules(rules, name, requires, implies, types);
-  // No changes needed to the rules defined by base method
 };
 
 /*
@@ -2175,8 +2044,9 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
     rules.defineRule
       ('features.Arcane Background (Cleric)', 'features.' + name, '=', '1');
   } else if(name == 'Heartwood Staff') {
-    SWADEFC.weaponRules(
-      rules, 'Heartwood Staff', 'Str+d8', 6, 6, 'Two-Handed', null, null, null, 1
+    SWADE.weaponRules(
+      rules, 'Heartwood Staff', [], 'Str+d8', 6, 6, 'Two-Handed', null, null,
+      null, 1
     );
     rules.defineRule
       ('weapons.Heartwood Staff', 'features.Heartwood Staff', '=', '1');
@@ -2196,48 +2066,6 @@ SWADEFC.edgeRulesExtra = function(rules, name) {
         rules.defineRule('sumLeadershipEdges', 'edges.' + e, '+', '1');
     }
   }
-  if(SWADE.edgeRulesExtra)
-    SWADE.edgeRulesExtra(rules, name);
-};
-
-/*
- * Defines in #rules# the rules associated with feature #name#. #sections# lists
- * the sections of the notes related to the feature and #notes# the note texts;
- * the two must have the same number of elements.
- */
-SWADEFC.featureRules = function(rules, name, sections, notes) {
-  SWADE.featureRules(rules, name, sections, notes);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with goody #name#, triggered by
- * a starred line in the character notes that matches #pattern#. #effect#
- * specifies the effect of the goody on each attribute in list #attributes#.
- * This is one of "increment" (adds #value# to the attribute), "set" (replaces
- * the value of the attribute by #value#), "lower" (decreases the value to
- * #value#), or "raise" (increases the value to #value#). #value#, if null,
- * defaults to 1; occurrences of $1, $2, ... in #value# reference capture
- * groups in #pattern#. #sections# and #notes# list the note sections
- * ("attribute", "combat", "companion", "feature", "power", or "skill")
- * and formats that show the effects of the goody on the character sheet.
- */
-SWADEFC.goodyRules = function(
-  rules, name, pattern, effect, value, attributes, sections, notes
-) {
-  SWADE.goodyRules
-    (rules, name, pattern, effect, value, attributes, sections, notes);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with hindrance #name#, which has
- * the list of hard prerequisites #requires# and level #severity# (Major or
- * Minor).
- */
-SWADEFC.hindranceRules = function(rules, name, requires, severity) {
-  SWADE.hindranceRules(rules, name, requires, severity);
-  // No changes needed to the rules defined by base method
 };
 
 /*
@@ -2250,68 +2078,6 @@ SWADEFC.hindranceRulesExtra = function(rules, name) {
     rules.defineRule
       ('validationNotes.menacingEdgeAlt.0', 'features.Grim', '+', '1');
   }
-};
-
-/*
- * Defines in #rules# the rules associated with power #name#, which may be
- * acquired only after #advances# advances, requires #powerPoints# Power Points
- * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects and #school#, if defined, is the magic
- * school that defines the power.
- */
-SWADEFC.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school, modifiers
-) {
-  SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, school, modifiers);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with shield #name#, which adds
- * #parry# to the character's Parry, provides #cover# cover, requires #minStr#
- * to handle, and weighs #weight#.
- */
-SWADEFC.shieldRules = function(rules, name, parry, cover, minStr, weight) {
-  SWADE.shieldRules
-    (rules, name, ['Medieval'], parry, cover, minStr, weight);
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Defines in #rules# the rules associated with skill #name#, associated with
- * #attribute# (one of 'agility', 'spirit', etc.).
- */
-SWADEFC.skillRules = function(rules, name, attribute, core) {
-  SWADE.skillRules(rules, name, ['Medieval'], attribute, core);
-};
-
-/*
- * Defines in #rules# the rules associated with weapon #name#, which belongs
- * to category #category#, requires #minStr# to use effectively, and weighs
- * #weight#. The weapon does #damage# HP on a successful attack. If specified,
- * the weapon bypasses #armorPiercing# points of armor. Also if specified, the
- * weapon can be used as a ranged weapon with a range increment of #range#
- * feet, firing #rateOfFire# per round. Parry, if specified, indicates the
- * parry bonus from wielding the weapon.
- */
-SWADEFC.weaponRules = function(
-  rules, name, damage, minStr, weight, category, armorPiercing, range,
-  rateOfFire, parry
-) {
-  SWADE.weaponRules(
-    rules, name, ['Medieval'], damage, minStr, weight, category, armorPiercing,
-    range, rateOfFire, parry
-  );
-  // No changes needed to the rules defined by base method
-};
-
-/*
- * Returns the list of editing elements needed by #choiceRules# to add a #type#
- * item to #rules#.
- */
-SWADEFC.choiceEditorElements = function(rules, type) {
-  return SWADE.choiceEditorElements(rules, type == 'Ancestry' ? 'Race' : type);
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
@@ -2342,13 +2108,7 @@ SWADEFC.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   }
-  return SWADE.randomizeOneAttribute.apply(this, [attributes, attribute]);
-};
-
-/* Returns an array of plugins upon which this one depends. */
-SWADEFC.getPlugins = function() {
-  var result = [SWADE].concat(SWADE.getPlugins());
-  return result;
+  return this.fcReplacedRandomizer(attributes, attribute);
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
@@ -2357,20 +2117,6 @@ SWADEFC.ruleNotes = function() {
     '<h2>SWADE Fantasy Companion Quilvyn Module Notes</h2>\n' +
     'SWADE Fantasy Companion Quilvyn Module Version ' + SWADEFC.VERSION + '\n' +
     '\n' +
-    '<h3>Usage Notes</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '  Quilvyn assumes that the skills Driving, Electronics, Hacking, and ' +
-    "  Piloting are not meaningful in a fantasy setting, and so doesn't " +
-    '  include them in the SWADEFC list of skills. You can add any of these ' +
-    '  as homebrew choices if they are appropriate to your game.\n' +
-    '  </li><li>\n' +
-    '  The SWADEFC plugin supports all the same homebrew choices as the SWADE' +
-    '  plugin, the one difference being that SWADE Races are called ' +
-    '  Ancestries in SWADEFC. See the <a href="plugins/homebrew-swade.html">' +
-    '  SWADE Homebrew documentation</a> for details.\n' +
-    '  </li>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
     'All copyrights to character, vehicle, and other rules and settings are\n' +
