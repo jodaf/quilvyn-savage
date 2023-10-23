@@ -2132,6 +2132,7 @@ PF4SW.edgeRulesExtra = function(rules, name) {
     rules.defineRule('attributeNotes.armorInterference.1',
       'featureNotes.sorcerer', '=', '"any"'
     );
+    rules.defineRule('combatNotes.flight', 'edges.Sorcerer', '^=', '12');
     rules.defineRule('edgePoints', 'featureNotes.bloodline', '+', '1');
     rules.defineRule('spellcastingStepAdjustment',
       'skillNotes.arcaneBackground(Sorcerer)', '?', null,
