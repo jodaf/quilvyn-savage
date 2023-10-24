@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals Quilvyn, QuilvynRules, QuilvynUtils, SWADE */
+/* globals QuilvynUtils, SWADE */
 "use strict";
 
 /*
@@ -211,7 +211,8 @@ SWADEHC.EDGES = {
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Blighted) || features.Arcane Background (Occultist) || features.Arcane Background (Warlock/Witch)",' +
+      // AB (Blighted) added by talentRules
+      '"features.Arcane Background (Occultist) || features.Arcane Background (Warlock/Witch)",' +
       '"arcaneSkill >= 8"',
   'Silent Caster':'Type=Power Require="powerPoints > 0","skills.Occult >= 8"',
   'Monster Hunter':'Type=Professional Require="advances >= 4","spirit >= 6"',
@@ -1139,14 +1140,20 @@ SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
     SWADEHC.edgeRulesExtra(rules, e, edges[e]);
   for(let h in hindrances)
     SWADEHC.hindranceRulesExtra(rules, h, hindrances[h]);
-  // Monstrous hero edges are free; add an edge point to compensate
   for(let e in edges) {
+    // Monstrous hero edges are free; add an edge point to compensate
     let types = QuilvynUtils.getAttrValueArray(edges[e], 'Type');
     let requires = QuilvynUtils.getAttrValueArray(edges[e], 'Require');
+    let validationNote =
+      'validationNotes.' + e.charAt(0).toLowerCase() + e.substring(1).replaceAll(' ', '') + 'Edge';
     if(types[0] == 'Monstrous' &&
        requires.length == 1 &&
-       requires[0].match(/monstrousHero\s*==\s*1/))
+       requires[0].match(/^monstrousHero\s*==\s*1$/))
       rules.defineRule('monstrousHero', 'edges.' + e, '+=', '1');
+    // Allow AB (Blighted) to satisfy AB (*) edge requirement
+    if(requires.filter(x => x.match(/Arcane Background/)).length > 0)
+      rules.defineRule
+        (validationNote, 'features.Arcane Background (Blighted)', '+', '1');
   }
   rules.defineRule('edgePoints', 'monstrousHero', '+=', '1');
 };
@@ -1187,8 +1194,6 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
       'features.Speed Flight', '+', 'source==1 ? 12 : 36',
       'combatNotes.speedFlight', '+', 'null' // Italics noop
     );
-  } else if(name == 'Arcane Background (Blighted)') {
-    // TODO Rework AB-dependent edge validation tests
   } else if(name == 'Bite') {
     rules.defineRule('damageStep.Bite', 'edges.Bite', '^=', '2');
     rules.defineRule
@@ -1219,7 +1224,7 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
     );
   } else if(name == 'Vampire') {
     rules.defineRule('combatNotes.regeneration(Fast).1',
-      'features.Vampire', '=', '" not caused by decapitation, holy water or weapons, sunlight, or a stake throught the heart"'
+      'features.Vampire', '=', '" not caused by decapitation, holy water or weapons, sunlight, or a stake through the heart"'
     );
     rules.defineRule('vampireWallPace',
       'edges.Vampire', '?', null,
