@@ -245,8 +245,8 @@ SWADEFC.ARCANAS = {
       'Curse,Darksight,Deflection,"Detect/Conceal Arcana",Disguise,Dispel,' +
       'Divination,"Drain Power Points","Elemental Manipulation",Empathy,' +
       'Entangle,"Environmental Protection",Farsight,Fear,Fly,Growth/Shrink,' +
-      'Havoc,Healing,Illusion,Invisibility,Light/Darkness,Lock/Unlock,Locate,' +
-      '"Mystic Intervention","Object Reading","Mind Reading","Mind Wipe",' +
+      'Havoc,Healing,Illusion,Invisibility,Light/Darkness,Locate,Lock/Unlock,' +
+      '"Mystic Intervention","Mind Reading","Mind Wipe","Object Reading",' +
       'Protection,Puppet,Relief,Scrying,"Shape Change",Sloth/Speed,Slumber,' +
       'Smite,Sound/Silence,"Speak Language",Stun,"Summon Ally",' +
       '"Summon Animal",Telekinesis,"Wall Walker","Warrior\'s Gift",Wish',
@@ -503,61 +503,63 @@ SWADEFC.EDGES = {
   'Fey Blood':'Type=Background',
   'Favored Enemy':
     'Type=Background ' +
-    'Require="skills.Athletics>=6 || skills.Fighting>=6 || skills.Shooting>=6"',
-  'Favored Terrain':'Type=Background Require="skills.Survival>=6"',
+    'Require=' +
+      '"skills.Athletics >= 6 || skills.Fighting >= 6 || skills.Shooting >= 6"',
+  'Favored Terrain':'Type=Background Require="skills.Survival >= 6"',
   'Heirloom':'Type=Background',
-  'Charge':'Type=Combat Require="advances>=4","skills.Fighting>=8"',
-  'Close Fighting':'Type=Combat Require="agility>=8","skills.Fighting>=8"',
+  'Charge':'Type=Combat Require="advances >= 4","skills.Fighting >= 8"',
+  'Close Fighting':'Type=Combat Require="agility >= 8","skills.Fighting >= 8"',
   'Improved Close Fighting':
-    'Type=Combat Require="advances>=8","features.Close Fighting"',
-  'Defender':'Type=Combat Require="advances>=4","skills.Fighting>=6"',
-  'Dirty Fighter':'Type=Combat Require="advances>=4"',
+    'Type=Combat Require="advances >= 8","features.Close Fighting"',
+  'Defender':'Type=Combat Require="advances >= 4","skills.Fighting >= 6"',
+  'Dirty Fighter':'Type=Combat Require="advances >= 4"',
   'Really Dirty Fighter':
-    'Type=Combat Require="advances>=4","features.Dirty Fighter"',
+    'Type=Combat Require="advances >= 4","features.Dirty Fighter"',
   'Double Shot':
     'Type=Combat ' +
-    'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
+    'Require="advances >= 4","skills.Athletics >= 8 || skills.Shooting >= 8"',
   'Improved Double Shot':
     'Type=Combat ' +
     'Require=' +
-      '"advances>=12",' +
+      '"advances >= 12",' +
       '"features.Double Shot",' +
-      '"skills.Athletics>=10 || skills.Shooting>=10"',
-  'Formation Fighter':'Type=Combat Require="skills.Fighting>=8"',
+      '"skills.Athletics >= 10 || skills.Shooting >= 10"',
+  'Formation Fighter':'Type=Combat Require="skills.Fighting >= 8"',
   'Shield Wall':
-    'Type=Combat Require="features.Formation Fighter","skills.Fighting>=8"',
+    'Type=Combat Require="features.Formation Fighter","skills.Fighting >= 8"',
   'Martial Flexibility':
-    'Type=Combat Require="advances>=4","skills.Fighting>=8"',
+    'Type=Combat Require="advances >= 4","skills.Fighting >= 8"',
   'Missile Deflection':
-    'Type=Combat Require="advances>=12","skills.Fighting>=10"',
-  'Opportunistic':'Type=Combat Require="advances>=8"',
-  'Roar':'Type=Combat Require="advances>=4","spirit>=8"',
-  'Savagery':'Type=Combat Require="skills.Fighting>=6"',
+    'Type=Combat Require="advances >= 12","skills.Fighting >= 10"',
+  'Opportunistic':'Type=Combat Require="advances >= 8"',
+  'Roar':'Type=Combat Require="advances >= 4","spirit >= 8"',
+  'Savagery':'Type=Combat Require="skills.Fighting >= 6"',
   'Scorch':
-    'Type=Combat Require="advances>=4","vigor>=8","features.Breath Weapon"',
-  'Sneak Attack':'Type=Combat Require="advances>=4","features.Assassin"',
+    'Type=Combat Require="advances >= 4","vigor >= 8","features.Breath Weapon"',
+  'Sneak Attack':'Type=Combat Require="advances >= 4","features.Assassin"',
   'Improved Sneak Attack':
-    'Type=Combat Require="advances>=8","features.Sneak Attack"',
-  'Stunning Blow':'Type=Combat Require="advances>=4","strength>=8"',
-  'Sunder':'Type=Combat Require="strength>=8"',
+    'Type=Combat Require="advances >= 8","features.Sneak Attack"',
+  'Stunning Blow':'Type=Combat Require="advances >= 4","strength >= 8"',
+  'Sunder':'Type=Combat Require="strength >= 8"',
   'Take The Hit':
-    'Type=Combat Require="advances>=4","features.Iron Jaw","vigor>=10"',
+    'Type=Combat Require="advances >= 4","features.Iron Jaw","vigor >= 10"',
   'Trick Shot':
     'Type=Combat ' +
-    'Require="advances>=4","skills.Athletics>=8 || skills.Shooting>=8"',
+    'Require="advances >= 4","skills.Athletics >= 8 || skills.Shooting >= 8"',
   'Uncanny Reflexes':
-    'Type=Combat Require="advances>=8","agility>=8","skills.Athletics>=8"',
-  'Wing Gust':'Type=Combat Require="advances>=4","features.Flight"',
+    'Type=Combat ' +
+    'Require="advances >= 8","agility >= 8","skills.Athletics >= 8"',
+  'Wing Gust':'Type=Combat Require="advances >= 4","features.Flight"',
   'Artificer':'Type=Power Require="advances >= 4","powerPoints >= 1"',
   'Master Artificer':
     'Type=Power ' +
-    'Require="advances>=12","features.Artificer","skills.Occult>=10"',
+    'Require="advances >= 12","features.Artificer","skills.Occult >= 10"',
   'Battle Magic':
-    'Type=Power Require="advances>=8","powerPoints>0","arcaneSkill>=10"',
+    'Type=Power Require="advances >= 8","powerPoints > 0","arcaneSkill >= 10"',
   // NOTE: Also requires "evil disposition"
-  'Blood Magic':'Type=Power Require="powerPoints>0"',
+  'Blood Magic':'Type=Power Require="powerPoints > 0"',
   'Epic Mastery':
-    'Type=Power Require="advances>=8","powerPoints>0","arcaneSkill>=6"',
+    'Type=Power Require="advances >= 8","powerPoints > 0","arcaneSkill >= 6"',
   'Familiar':
     'Type=Power ' +
     'Require=' +
@@ -570,59 +572,61 @@ SWADEFC.EDGES = {
        'features.Arcane Background (Warlock/Witch) || ' +
        'features.Arcane Background (Wizard)"',
   'Favored Power':
-    'Type=Power Require="advances>=4","powerPoints>0","arcaneSkill>=8"',
+    'Type=Power Require="advances >= 4","powerPoints > 0","arcaneSkill >= 8"',
   'Mystic Powers (Barbarian)':
-    'Type=Power Require="advances>=4","strength>=8"',
+    'Type=Power Require="advances >= 4","strength >= 8"',
   'Mystic Powers (Fighter)':
-    'Type=Power Require="advances>=4","skills.Fighting>=8"',
+    'Type=Power Require="advances >= 4","skills.Fighting >= 8"',
   'Mystic Powers (Monk)':
-    'Type=Power Require="advances>=4","skills.Athletics>=8"',
+    'Type=Power Require="advances >= 4","skills.Athletics >= 8"',
   'Mystic Powers (Paladin)':
-    'Type=Power Require="advances>=4","spirit>=8"',
+    'Type=Power Require="advances >= 4","spirit >= 8"',
   'Mystic Powers (Ranger)':
-    'Type=Power Require="advances>=4","skills.Survival>=8"',
+    'Type=Power Require="advances >= 4","skills.Survival >= 8"',
   'Mystic Powers (Rogue)':
-    'Type=Power Require="advances>=4","skills.Thievery>=8"',
+    'Type=Power Require="advances >= 4 ","skills.Thievery >= 8"',
   'Silent Caster':
-    'Type=Power Require="powerPoints>=0","features.Bard==0","skills.Occult>=8"',
-  'Transfer':'Type=Power Require="powerPoints>=0"',
+    'Type=Power ' +
+    'Require="powerPoints > 0","features.Bard == 0","skills.Occult >= 8"',
+  'Transfer':'Type=Power Require="powerPoints > 0"',
   'Born In The Saddle':
-    'Type=Professional Require="agility>=8","skills.Riding>=6"',
-  'Explorer':'Type=Professional Require="vigor>=6","skills.Survival>=8"',
+    'Type=Professional Require="agility >= 8","skills.Riding >= 6"',
+  'Explorer':'Type=Professional Require="vigor >= 6","skills.Survival >= 8"',
   'Knight':
     'Type=Professional ' +
     'Require=' +
-      '"spirit>=6",' +
-      '"strength>=8",' +
-      '"vigor>=8",' +
-      '"skills.Fighting>=8",' +
-      '"skills.Riding>=6",' +
+      '"spirit >= 6",' +
+      '"strength >= 8",' +
+      '"vigor >= 8",' +
+      '"skills.Fighting >= 8",' +
+      '"skills.Riding >= 6",' +
       '"features.Obligation+"',
-  'Mount':'Type=Professional Require="skills.Riding>=6"',
+  'Mount':'Type=Professional Require="skills.Riding >= 6"',
   'Poisoner':
     'Type=Professional ' +
-    'Require="skills.Alchemy>=6 || skills.Healing>=6 || skills.Survival>=6"',
-  'Scout':'Type=Professional Require="skills.Survival>=6"',
-  'Stonecunning':'Type=Professional Require="skills.Repair>=6"',
-  'Trap Sense':'Type=Professional Require="advances>=4","skills.Repair>=6"',
+    'Require=' +
+      '"skills.Alchemy >= 6 || skills.Healing >= 6 || skills.Survival >= 6"',
+  'Scout':'Type=Professional Require="skills.Survival >= 6"',
+  'Stonecunning':'Type=Professional Require="skills.Repair >= 6"',
+  'Trap Sense':'Type=Professional Require="advances >= 4","skills.Repair >= 6"',
   'Treasure Hunter':
-    'Type=Professional Require="skills.Notice>=8","skills.Occult>=8"',
+    'Type=Professional Require="skills.Notice >= 8","skills.Occult >= 8"',
   'Troubadour':
     'Type=Professional ' +
-    'Require="skills.Common Knowledge>=6","skills.Performance>=8"',
-  'Deceptive':'Type=Social Require="advances>=4","smarts>=8"',
-  'Aura Of Courage':'Type=Weird Require="spirit>=8"',
+    'Require="skills.Common Knowledge >= 6","skills.Performance >= 8"',
+  'Deceptive':'Type=Social Require="advances >= 4","smarts >= 8"',
+  'Aura Of Courage':'Type=Weird Require="spirit >= 8"',
   'Beast Talker':'Type=Weird',
   'Rapid Change':'Type=Weird Require="features.Lycanthropy"',
   'Home Ground':
-    'Type=Legendary Require="advances>=16","spirit>=8","powerPoints>=0"',
+    'Type=Legendary Require="advances >= 16","spirit >= 8","powerPoints > 0"',
   'Relic':'Type=Legendary',
   'Unstoppable':
     'Type=Legendary ' +
-    'Require="vigor>=10","features.Iron Jaw","features.Nerves Of Steel"',
+    'Require="vigor >= 10","features.Iron Jaw","features.Nerves Of Steel"',
   'Warband':
     'Type=Legendary ' +
-    'Require="features.Command","sumLeadershipEdges>=3","features.Followers"',
+    'Require="features.Command","sumLeadershipEdges >= 3","features.Followers"',
   // Arcane Backgrounds
   'Arcane Background (Alchemist)':'Type=Background Require="smarts >= 6"',
   'Arcane Background (Bard)':'Type=Background Require="spirit >= 6"',
@@ -664,24 +668,24 @@ SWADEFC.EDGES = {
     'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Alchemist)",' +
-      '"skills.Alchemy>=8"',
+      '"skills.Alchemy >= 8"',
   'Master Alchemist':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Alchemist)",' +
-      '"skills.Alchemy>=10"',
+      '"skills.Alchemy >= 10"',
   'Dirge':
     'Type=Power ' +
     'Require=' +
-      '"advances>=12",' +
+      '"advances >= 12",' +
       '"features.Arcane Background (Bard)"',
   'Inspire Heroics':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Bard)",' +
-      '"skills.Performance>=8"',
+      '"skills.Performance >= 8"',
   'Instrument':
     'Type=Power ' +
     'Require=' +
@@ -689,18 +693,18 @@ SWADEFC.EDGES = {
   'Destroy Undead':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Cleric)"',
   'Mercy':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Cleric)",' +
-      '"skills.Faith>=8"',
+      '"skills.Faith >= 8"',
   "Hell's Wrath":
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Diabolist)"',
   'Infernal Armor':
     'Type=Power ' +
@@ -713,7 +717,7 @@ SWADEFC.EDGES = {
   'True Form':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Druid)"',
   'Elemental Absorption':
     'Type=Power ' +
@@ -722,67 +726,67 @@ SWADEFC.EDGES = {
   'Elemental Master':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Elementalist)"',
   'Deadly Illusion':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Illusionist)",' +
-      '"skills.Spellcasting>=10"',
+      '"skills.Spellcasting >= 10"',
   'Master Of Illusion':
     'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Illusionist)",' +
-      '"skills.Spellcasting>=8"',
+      '"skills.Spellcasting >= 8"',
   'Soul Jar':
     'Type=Power ' +
     'Require=' +
-      '"advances>=16",' +
+      '"advances >= 16",' +
       '"features.Arcane Background (Necromancer)",' +
-      '"skills.Occult>=10"',
+      '"skills.Occult >= 10"',
   'Undead Familiar':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Necromancer)"',
   'Primal Magic':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Shaman)"',
   'Sacred Fetish':
     'Type=Power ' +
     'Require=' +
       '"features.Arcane Background (Shaman)",' +
-      '"skills.Faith>=8"',
+      '"skills.Faith >= 8"',
   'Great Power':
     'Type=Power ' +
     'Require=' +
-      '"advances>=8",' +
+      '"advances >= 8",' +
       '"features.Arcane Background (Sorcerer)"',
   'Phenomenal Power':
     'Type=Power ' +
     'Require=' +
-      '"advances>=12",' +
+      '"advances >= 12",' +
       '"features.Arcane Background (Sorcerer)",' +
       '"features.Great Power"',
   'Arcane Barding':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Summoner)",' +
       '"powers.Summon Animal"',
   'Ferocious Summoning':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Summoner)",' +
       '"powers.Summon Monster"',
   'Great Summoning':
     'Type=Power ' +
     'Require=' +
-      '"advances>=12",' +
+      '"advances >= 12",' +
       '"features.Arcane Background (Summoner)",' +
       '"powers.Summon Animal",' +
       '"powers.Summon Monster"',
@@ -793,22 +797,22 @@ SWADEFC.EDGES = {
   "Tinkerer's Armor":
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Tinkerer)"',
   'The Evil Eye':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Warlock/Witch)"',
   'The Witching Hour':
     'Type=Power ' +
     'Require=' +
-      '"advances>=4",' +
+      '"advances >= 4",' +
       '"features.Arcane Background (Warlock/Witch)"',
   'Eldritch Inspiration':
     'Type=Power ' +
     'Require=' +
-      '"advances>=8",' +
+      '"advances >= 8",' +
       '"features.Arcane Background (Wizard)"',
   'Spellbooks':
     'Type=Power ' +
@@ -1920,7 +1924,7 @@ SWADEFC.talentRules = function(rules, edges, features, hindrances, skills) {
   for(let e in edges)
     SWADEFC.edgeRulesExtra(rules, e, edges[e]);
   for(let h in hindrances)
-    SWADEFC.edgeRulesExtra(rules, h, hindrances[h]);
+    SWADEFC.hindranceRulesExtra(rules, h, hindrances[h]);
 };
 
 /*
