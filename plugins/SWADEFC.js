@@ -1899,26 +1899,26 @@ SWADEFC.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEFC.identityRules = function(rules, ancestrys, concepts) {
+SWADEFC.identityRules = function(rules, ancestries, concepts) {
   let allRaces = rules.getChoices('races');
-  for(let a in ancestrys) {
+  for(let a in ancestries) {
     if(a in allRaces)
       delete allRaces[a];
   }
-  SWADE.identityRules(rules, ancestrys, {}, concepts);
+  SWADE.identityRules(rules, ancestries, {}, concepts);
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('ancestry', 'Ancestry', 'select-one', 'races', 'imageUrl');
   rules.defineRule('race', 'ancestry', '=', null);
   rules.defineRule('armorMinStr', 'combatNotes.diminutive(Tiny)', 'v=', '4');
-  for(let a in ancestrys)
-    SWADEFC.ancestryRulesExtra(rules, a, ancestrys[a]);
+  for(let a in ancestries)
+    SWADEFC.ancestryRulesExtra(rules, a, ancestries[a]);
   rules.defineRule('rakashanFeatures.Racial Enemy', 'ancestry', '?', '0');
 };
 
 /* Defines rules related to character aptitudes. */
 SWADEFC.talentRules = function(rules, edges, features, hindrances, skills) {
-  delete rules.getChoices('features')['Assassin'];
+  delete rules.getChoices('features').Assassin;
   delete rules.getChoices('notes')['combatNotes.assassin'];
   SWADE.talentRules(rules, edges, features, {}, hindrances, skills);
   for(let e in edges)
