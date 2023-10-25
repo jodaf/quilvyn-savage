@@ -730,7 +730,7 @@ SWADE.FEATURES = {
     'Section=attribute ' +
     'Note="+1 Strength Step (encumbrance)/May reroll Vigor (environmental hazards)"',
   'Soul Drain':
-    'Section=arcana Note="May suffer fatigue to recover 5 Power Points"',
+    'Section=arcana Note="May suffer Fatigue to recover 5 Power Points"',
   'Steady Hands':
     'Section=combat ' +
     'Note="Suffers no penalty for a shot from an unstable platform and reduces running shot penalty by 1"',
@@ -787,7 +787,7 @@ SWADE.FEATURES = {
     'Note="Suffers -2 using mechanical and electrical devices; critical failure breaks device"',
   'Anemic':
     'Section=attribute ' +
-    'Note="-2 Vigor (resist disease, sickness, fatigue, and environment)"',
+    'Note="-2 Vigor (resist disease, sickness, Fatigue, and environment)"',
   'Arrogant+':'Section=combat Note="Always takes on the biggest threat"',
   'Bad Eyes':'Section=skill Note="-1 on visual Trait rolls"',
   'Bad Eyes+':'Section=skill Note="-2 on visual Trait rolls"',
@@ -954,7 +954,7 @@ SWADE.FEATURES = {
       '"Does not need to breathe"',
   'Dependency':
     'Section=feature ' +
-    'Note="Must spend 1 hr/dy in native environment or become fatigued"',
+    'Note="Must spend 1 hr/dy in native environment or become Fatigued"',
   "Doesn't Breathe":
     'Section=combat Note="Has immunity to inhaled toxins and suffocation"',
   'Environmental Resistance (Cold)':
@@ -1542,7 +1542,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+1 PP/additional target" ' +
     'Description=' +
-      '"Target recovers from 1 fatigue level or Shaken (Raise 2 levels or Stunned)"',
+      '"Target recovers from 1 Fatigue level or Shaken (Raise 2 levels or Stunned)"',
   'Resurrection':
     'Advances=12 ' +
     'PowerPoints=30 ' +
@@ -1550,7 +1550,7 @@ SWADE.POWERS = {
     'Modifier=' +
       '"+5 PP Raises 10 yr corpse" ' +
     'Description=' +
-      '"Successful -8 casting roll returns corpse dead up to 1 yr to life with 3 Wounds and 2 fatigue levels (Raise 0 Wounds)"',
+      '"Successful -8 casting roll returns corpse dead up to 1 yr to life with 3 Wounds and 2 Fatigue levels (Raise 0 Wounds)"',
   'Shape Change':
     'Advances=0 ' +
     'PowerPoints=3+ ' +

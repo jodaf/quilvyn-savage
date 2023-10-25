@@ -874,7 +874,7 @@ PF4SW.FEATURES_ADDED = {
   'Dragon Disciple II':'Section=feature Note="Has Wings feature"',
   'Dragon Disciple III':
     'Section=feature ' +
-    'Note="May use Dragon Form feature for 5 min (may suffer fatigue to dbl duration) 2/dy"',
+    'Note="May use Dragon Form feature for 5 min (may suffer Fatigue to dbl duration) 2/dy"',
   'Dragon Form':
     'Section=combat ' +
     'Note="Gains Size 3, Strength d12, Vigor d10, Armor 4, Bite and Claw that inflict d%{strength}+d8, AP 2, and Resistance to heritage energy"',
@@ -905,7 +905,7 @@ PF4SW.FEATURES_ADDED = {
   'Enhance Arrow':'Section=combat Note="Arrow gains +1 attack and damage"',
   'Enraged':
     'Section=feature ' +
-    'Note="Ignores 2 points of Wound penalties and all fatigue penalties"',
+    'Note="Ignores 2 points of Wound penalties and all Fatigue penalties"',
   'Epic Tales':
     'Section=feature Note="May tell a story during a rest to give allies 1 Benny each"',
   'Familiar':
@@ -1046,7 +1046,7 @@ PF4SW.FEATURES_ADDED = {
     'Note="Gains an additional Favored Enemy and Favored Terrain"',
   'Rage':
     'Section=combat ' +
-    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or wounded (Smarts neg); suffers 1 level of fatigue afterward until 1 hr rest"',
+    'Note="Has Fury, Enraged, and Reckless Abandon features for 5 rd at will or when Shaken or wounded (Smarts neg); suffers 1 level of Fatigue afterward until 1 hr rest"',
   'Ranger':
     'Section=feature ' +
     'Note="Has Armor Restriction, Favored Enemy, Favored Terrain, and Wilderness Stride features"',
@@ -1416,7 +1416,7 @@ PF4SW.POWERS_CHANGES = {
       '"+3 PP Restores 1 energy-draining effect (Raise 2)",' +
       '"+1 PP Removes Stunned condition" ' +
     'Description=' +
-      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Wound or fatigue penalty (Raise 2) for 1 hr"',
+      '"Removes Shaken, Distracted, or Vulnerable (Raise 2 of these) or numbs 1 Wound or Fatigue penalty (Raise 2) for 1 hr"',
   'Resurrection':
     'School=Conjuration ' +
     'PowerPoints=20 ' +
@@ -1516,9 +1516,9 @@ PF4SW.POWERS_CHANGES = {
     'Range=touch ' +
     'School=Necromancy ' +
     'Modifier=' +
-      '"Epic +5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
+      '"Epic +5 PP Inflicts 1 level of Fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
+      '"Target suffers 1 level of Fatigue and an additional level each sunset (Spirit neg)"',
   'Locate':
     'Advances=0 ' +
     'PowerPoints=3 ' +

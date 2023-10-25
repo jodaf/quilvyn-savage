@@ -842,7 +842,7 @@ SWADEFC.FEATURES = {
   'Boneheaded':'Section=attribute Note="-1 Smarts"',
   'Breath Weapon':
     'Section=combat ' +
-    'Note="Successful Athletics inflicts 2d6 fire damage in a 9\\" cone or 12\\" line; critical failure inflicts fatigue on self"',
+    'Note="Successful Athletics inflicts 2d6 fire damage in a 9\\" cone or 12\\" line; critical failure inflicts Fatigue on self"',
   'Brutish':'Section=attribute Note="-1 Smarts"',
   'Change Shape':
     'Section=arcana,feature ' +
@@ -1499,9 +1499,9 @@ SWADEFC.POWERS = {
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Modifier=' +
-      '"Epic +5 PP Inflicts fatigue each rd (Spirit neg); incapacity turns to stone" ' +
+      '"Epic +5 PP Inflicts Fatigue each rd (Spirit neg); incapacity turns to stone" ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
+      '"Target suffers 1 level of Fatigue and an additional level each sunset (Spirit neg)"',
   'Damage Field':
     'Modifier=' +
       '"+2 PP 2\\" radius",' +

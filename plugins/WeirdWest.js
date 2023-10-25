@@ -856,18 +856,18 @@ WeirdWest.FEATURES_ADDED = {
     'Section=arcana,arcana,feature ' +
     'Note=' +
       '"3 Powers/15 Power Points",' +
-      '"Critical failure causes fatigue",' +
+      '"Critical failure causes Fatigue",' +
       '"Violating core beliefs inflicts -2 Faith for 1 wk; major sins remove powers"',
   'Arcane Background (Chi Master)':
     'Section=arcana,arcana ' +
     'Note=' +
       '"3 Powers/15 Power Points",' +
-      '"Critical failure causes fatigue/Power range reduced to self or touch"',
+      '"Critical failure causes Fatigue/Power range reduced to self or touch"',
   'Arcane Background (Huckster)':
     'Section=arcana,arcana ' +
     'Note=' +
       '"3 Powers/10 Power Points",' +
-      '"Critical failure causes fatigue/May cast via Deal with the Devil"',
+      '"Critical failure causes Fatigue/May cast via Deal with the Devil"',
   'Arcane Background (Mad Scientist)':
     'Section=arcana,arcana ' +
     'Note=' +
@@ -877,7 +877,7 @@ WeirdWest.FEATURES_ADDED = {
     'Section=arcana,arcana ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
-      '"Critical failure causes fatigue"',
+      '"Critical failure causes Fatigue"',
   'Behold A Pale Horse':
     'Section=feature ' +
     'Note="Mount is a Wild Card with Fearless and Danger Sense features"',
@@ -985,12 +985,12 @@ WeirdWest.FEATURES_ADDED = {
     'Note="Successful Notice-2 detects encounters/Always considered alert vs. Stealth/Ignores 2 penalty points for Survival (tracking)/+2 Common Knowledge (known route)"',
   'Soul Eater':
     'Section=combat ' +
-    'Note="Successful Spirit-2 roll after inflicting an unarmed Wound heals self Wound or reduces fatigue"',
+    'Note="Successful Spirit-2 roll after inflicting an unarmed Wound heals self Wound or reduces Fatigue"',
   "Spirit's Favor":
     'Section=arcana Note="May cast chosen power as a free action"',
   'Spook':
     'Section=arcana ' +
-    'Note="May make a targeted -2 fear effect or suffer fatigue to make a 12\\" radius fear effect"',
+    'Note="May make a targeted -2 fear effect or suffer Fatigue to make a 12\\" radius fear effect"',
   "Stitchin'":'Section=combat Note="May attempt a natural healing roll 1/%V"',
   'Superior Kung Fu (Drunken Style)':
     'Section=combat Note="May suffer -2 Pace to inflict -2 attack on foes"',
@@ -1028,7 +1028,7 @@ WeirdWest.FEATURES_ADDED = {
      'Note="+4 Advances","Has an additional hindrance"',
   'Whateley Blood':
     'Section=arcana,skill ' +
-    'Note="May suffer fatigue to gain 5 Power Points or 1 Wound to gain 10","-1 Persuasion"',
+    'Note="May suffer Fatigue to gain 5 Power Points or 1 Wound to gain 10","-1 Persuasion"',
   'Wither':
     'Section=arcana ' +
     'Note="Touch reduces target Strength (Raise Strength and Vigor) 1 Step for 1 hr"',
@@ -1036,9 +1036,9 @@ WeirdWest.FEATURES_ADDED = {
   // Hindrances
   "Ailin'":
     'Section=attribute ' +
-    'Note="-1 vs. fatigue; critical failure inflicts Ailin\'+"',
+    'Note="-1 vs. Fatigue; critical failure inflicts Ailin\'+"',
   "Ailin'+":
-    'Section=attribute Note="-2 vs. fatigue; critical failure inflicts death"',
+    'Section=attribute Note="-2 vs. Fatigue; critical failure inflicts death"',
   'Cursed+':'Section=feature Note="GM gains +1 Benny each session"',
   "Grim Servant O' Death+":
     'Section=combat ' +
@@ -1097,7 +1097,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=5 ' +
     'Range=touch ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
+      '"Target suffers 1 level of Fatigue and an additional level each sunset (Spirit neg)"',
   'Detect Arcana':
     'Advances=0 ' +
     'PowerPoints=2 ' +
@@ -1129,7 +1129,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=2 ' +
     'Range=self ' +
     'Description=' +
-      '"Allies in a %{spirit}\\" radius ignore 1 point of Wound or fatigue penalties (Raise 2) for 5 rd"',
+      '"Allies in a %{spirit}\\" radius ignore 1 point of Wound or Fatigue penalties (Raise 2) for 5 rd"',
   'Puppet':SWADE.POWERS.Puppet
     .replace('Modifier=', 'Modifier="+1 PP Self can use target senses",'),
   'Sanctify':
@@ -1137,7 +1137,7 @@ WeirdWest.POWERS_ADDED = {
     'PowerPoints=10 ' +
     'Range=touch ' +
     'Description=' +
-      '"Supernaturally evil creatures in a 15\\" sq suffer fatigue (Spirit neg (Raise Spirit-2)) until the next sunset"',
+      '"Supernaturally evil creatures in a 15\\" sq suffer Fatigue (Spirit neg (Raise Spirit-2)) until the next sunset"',
   'Shrink':
     'Advances=4 ' +
     'PowerPoints=2 ' +

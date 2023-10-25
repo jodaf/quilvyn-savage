@@ -639,7 +639,7 @@ SWD.FEATURES = {
       '"+2 Shaken recovery, immune to disease and poison",' +
       '"Ignores Wound penalties/Requires Repair to heal"',
   'Dehydration':
-    'Section=feature Note="Requires 1 hr/dy immersion to avoid fatigue"',
+    'Section=feature Note="Requires 1 hr/dy immersion to avoid Fatigue"',
   'Flight':'Section=combat Note="Fly Pace %{pace}"',
   'Fortunate':'Section=feature Note="+1 Benny each session"',
   'Hardy':SWADE.FEATURES.Hardy,
@@ -663,7 +663,7 @@ SWD.FEATURES = {
   'Racial Enemy':'Section=skill Note="-4 Charisma (racial enemy)"',
   'Recharge':
     'Section=feature ' +
-    'Note="Requires access to a power source 1/dy to avoid fatigue"',
+    'Note="Requires access to a power source 1/dy to avoid Fatigue"',
   'Saurian Senses':'Section=skill Note="+2 Notice"',
   'Semi-Aquatic':SWADE.FEATURES['Semi-Aquatic'],
   'Short':'Section=combat,description Note="-1 Toughness","-1 Size"',
@@ -873,7 +873,7 @@ SWD.POWERS = {
     'Advances=0 ' +
     'PowerPoints=1 ' +
     'Range=touch ' +
-    'Description="Target recovers from 1 level of fatigue (Raise 2 levels) and Shaken"',
+    'Description="Target recovers from 1 level of Fatigue (Raise 2 levels) and Shaken"',
   'Wall Walker':
     'Range=touch'
 };
