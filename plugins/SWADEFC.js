@@ -972,42 +972,42 @@ SWADEFC.FEATURES = {
     'Section=arcana,feature ' +
     'Note=' +
       '"3 Powers/10 Power Points",' +
-      '"Has Armor Interference and Sharp Tongued features"',
+      '"Has Armor Interference, Magic, and Sharp Tongued features"',
   'Arcane Background (Cleric)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Holy Symbol and Vow+ features"',
+      '"Has Holy Symbol, Miracles, and Vow+ features"',
   'Arcane Background (Diabolist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference+, Corruption+, and Summoning features"',
+      '"Has Armor Interference+, Corruption+, Magic, and Summoning features"',
   'Arcane Background (Druid)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference, Material Components+, One With Nature, Vow+, and Wilderness Stride features"',
+      '"Has Armor Interference, Material Components+, Miracles, One With Nature, Vow+, and Wilderness Stride features"',
   'Arcane Background (Elementalist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference+, Elemental Origin, and Elemental Synergy features"',
+      '"Has Armor Interference+, Elemental Origin, Elemental Synergy, and Magic features"',
   'Arcane Background (Illusionist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference+ and Strong Illusions features"',
+      '"Has Armor Interference+, Magic, and Strong Illusions features"',
   'Arcane Background (Necromancer)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Corruption+ and Raise The Dead features"',
+      '"Has Corruption+, Magic, and Raise The Dead features"',
   'Arcane Background (Shaman)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Armor Interference, Favored Power, Fetish, and Quirk features"',
+      '"Has Armor Interference, Favored Power, Fetish, Miracles, and Quirk features"',
   'Arcane Background (Sorcerer)':
     'Section=arcana,arcana,feature ' +
     'Note=' +
@@ -1018,24 +1018,24 @@ SWADEFC.FEATURES = {
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/15 Power Points",' +
-      '"Has Armor Interference and Master Summoner features"',
+      '"Has Armor Interference, Magic, and Master Summoner features"',
   'Arcane Background (Tinkerer)':
     'Section=arcana,arcana,arcana,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
       '"Critical failure disables device; requires 1 hr and successful Repair to mend",' +
       '"Devices given to others use self Repair skill and PP to activate",' +
-      '"Has Jinx and Tools features"',
+      '"Has Jinx, Tools, and Weird Science features"',
   'Arcane Background (Warlock/Witch)':
     'Section=arcana,feature ' +
     'Note=' +
       '"3 Powers/10 Power Points",' +
-      '"Has Armor Interference+, Corruption+, Coven, Familiar, Material Components+, and Prepared Powers features"',
+      '"Has Armor Interference+, Corruption+, Coven, Familiar, Magic, Material Components+, and Prepared Powers features"',
   'Arcane Background (Wizard)':
     'Section=arcana,feature ' +
     'Note=' +
       '"6 Powers/15 Power Points",' +
-      '"Has Armor Interference+ and Material Components+ features"',
+      '"Has Armor Interference+, Magic, and Material Components+ features"',
   'Assassin': // Changed from SWADE
     'Section=combat Note="+d6 damage to Vulnerable foes and with The Drop"',
   'Aura Of Courage':
@@ -1123,6 +1123,9 @@ SWADEFC.FEATURES = {
     'Note=' +
       '"Has authority over common folk in liege\'s realm",' +
       '"+1 Intimidation and Persuasion in areas of liege authority"',
+  'Magic':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Magic)"',
   'Martial Flexibility':
     'Section=combat ' +
     'Note="May gain the benefits of a combat edge for 5 rd 1/encounter"',
@@ -1132,6 +1135,9 @@ SWADEFC.FEATURES = {
   'Master Summoner':
     'Section=arcana ' +
     'Note="Reduces cost of <i>Summon Ally/Animal/Monster</i> by 2 PP (minimum 1 PP) and increases duration by 10x"',
+  'Miracles':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Miracles)"',
   'Missile Deflection':
     'Section=combat ' +
     'Note="When armed, physical ranged attacks on self must match Parry to succeed"',
@@ -1250,6 +1256,9 @@ SWADEFC.FEATURES = {
   'Warband':
     'Section=combat ' +
     'Note="%{features.Warband*5} followers may take an additional Wound before becoming incapacitated"',
+  'Weird Science':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Weird Science)"',
   'Wilderness Stride':
     'Section=combat ' +
     'Note="Suffers no movement penalty for difficult ground in natural terrain"',
@@ -1925,6 +1934,24 @@ SWADEFC.talentRules = function(rules, edges, features, hindrances, skills) {
     SWADEFC.edgeRulesExtra(rules, e, edges[e]);
   for(let h in hindrances)
     SWADEFC.hindranceRulesExtra(rules, h, hindrances[h]);
+  // Handle new Arcane Background features that allow characters to select
+  // edges particular to one of the core ABs by giving them that AB feature,
+  // but make sure that associated notes only show for those with the base edge.
+  rules.defineRule
+    ('features.Arcane Background (Magic)', 'features.Magic', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
+    'edges.Arcane Background (Magic)', '?', null
+  );
+  rules.defineRule
+    ('features.Arcane Background (Miracles)', 'features.Miracles', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
+    'edges.Arcane Background (Miracles)', '?', null
+  );
+  rules.defineRule
+    ('features.Arcane Background (Weird Science)', 'features.Weird Science', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(WeirdScience)',
+    'edges.Arcane Background (Weird Science)', '?', null
+  );
 };
 
 /*
@@ -1999,33 +2026,6 @@ SWADEFC.ancestryRulesExtra = function(rules, name) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEFC.edgeRulesExtra = function(rules, name) {
-  // Give characters with an Arcane Background feature the "base" AB feature
-  // from the core rules so that they satisfy any requirements based on it, but
-  // make sure that associated notes only apply to those with the base edge.
-  if(name.startsWith('Arcane Background')) {
-    if(name.match(/Alchemist|Sorcerer/)) {
-      // empty -- edge does not satisfy any SWADE AB requirements
-    } else if(name.match(/Cleric|Druid|Shaman/)) {
-      rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
-        'edges.Arcane Background (Miracles)', '?', null
-      );
-      rules.defineRule
-        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
-    } else if(name.match(/Tinkerer/)) {
-      rules.defineRule('arcanaNotes.arcaneBackground(WeirdScience)',
-        'edges.Arcane Background (Weird Science)', '?', null
-      );
-      rules.defineRule('features.Arcane Background (Weird Science)',
-        'features.' + name, '=', '1'
-      );
-    } else if(name.match(/Bard|Diabolist|Elementalist|Illusionist|Necromancer|Summoner|Warlock.Witch|Wizard/)) {
-      rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
-        'edges.Arcane Background (Magic)', '?', null
-      );
-      rules.defineRule
-        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
-    }
-  }
   if(name == 'Arcane Background (Bard)') {
     // NOTE: The substitution of Performance for Taunt presently only affects
     // validation for the SWADE Humiliate, Provoke, and Retort edges. In
