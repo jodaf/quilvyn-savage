@@ -211,8 +211,7 @@ SWADEHC.EDGES = {
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      // AB (Blighted) added by talentRules
-      '"features.Arcane Background (Occultist) || features.Arcane Background (Warlock/Witch)",' +
+      '"features.Arcane Background (Blighted) || features.Arcane Background (Occultist) || features.Arcane Background (Warlock/Witch)",' +
       '"arcaneSkill >= 8"',
   'Silent Caster':'Type=Power Require="powerPoints > 0","skills.Occult >= 8"',
   'Monster Hunter':'Type=Professional Require="advances >= 4","spirit >= 6"',
@@ -363,100 +362,100 @@ SWADEHC.EDGES = {
   'Chemist':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Alchemist)",' +
+      '"features.Arcane Background (Alchemist) || features.Arcane Background (Blighted)",' +
       '"skills.Alchemy >= 8"',
   'Discerning':
     'Type=Power ' +
     'Require=' +
       '"advances >= 8",' +
-      '"features.Arcane Background (Alchemist)",' +
+      '"features.Arcane Background (Alchemist) || features.Arcane Background (Blighted)",' +
       '"skills.Alchemy >= 10"',
   "Hell's Wrath":
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Demonologist)"',
+      '"features.Arcane Background (Demonologist) || features.Arcane Background (Blighted)"',
   'Infernal Armor':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Demonologist)"',
+      '"features.Arcane Background (Demonologist) || features.Arcane Background (Blighted)"',
   'Forewarning':
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Fortune Teller)"',
+      '"features.Arcane Background (Fortune Teller) || features.Arcane Background (Blighted)"',
   'Sixth Sense':
     'Type=Power ' +
     'Require=' +
       '"advances >= 8",' +
-      '"features.Arcane Background (Fortune Teller)"',
+      '"features.Arcane Background (Fortune Teller) || features.Arcane Background (Blighted)"',
   'Spirit Friend':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Medium)"',
+      '"features.Arcane Background (Medium) || features.Arcane Background (Blighted)"',
   'This House Is Clean':
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Medium)"',
+      '"features.Arcane Background (Medium) || features.Arcane Background (Blighted)"',
   'Eldritch Inspiration':
     'Type=Power ' +
     'Require=' +
       '"advances >= 12",' +
-      '"features.Arcane Background (Occultist)"',
+      '"features.Arcane Background (Occultist) || features.Arcane Background (Blighted)"',
   'Universal Ward':
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Occultist)"',
+      '"features.Arcane Background (Occultist) || features.Arcane Background (Blighted)"',
   'Aura Of Courage':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Priest)",' +
+      '"features.Arcane Background (Priest) || features.Arcane Background (Blighted)",' +
       '"spirit >= 8"',
   'Mercy':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Priest)"',
+      '"features.Arcane Background (Priest) || features.Arcane Background (Blighted)"',
   'Scan':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Psychic Investigator)",' +
+      '"features.Arcane Background (Psychic Investigator) || features.Arcane Background (Blighted)",' +
       '"skills.Psionics >= 8"',
   'Tower Of Will':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Psychic Investigator)",' +
+      '"features.Arcane Background (Psychic Investigator) || features.Arcane Background (Blighted)",' +
       '"smarts >= 8"',
   'Been To The Crossroads':
     'Type=Power ' +
     'Require=' +
-      '"features.Arcane Background (Voodooist)",' +
+      '"features.Arcane Background (Voodooist) || features.Arcane Background (Blighted)",' +
       '"spirit >= 8",' +
       '"skills.Faith >= 8"',
   'Favored':
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Voodooist)",' +
+      '"features.Arcane Background (Voodooist) || features.Arcane Background (Blighted)",' +
       '"spirit >= 8",' +
       '"skills.Faith >= 8"',
   'Consort':
     'Type=Power ' +
     'Require=' +
       '"advances >= 8",' +
-      '"features.Arcane Background (Warlock/Witch)"',
+      '"features.Arcane Background (Warlock/Witch) || features.Arcane Background (Blighted)"',
   'The Witching Hour':
     'Type=Power ' +
     'Require=' +
       '"advances >= 4",' +
-      '"features.Arcane Background (Warlock/Witch)"'
+      '"features.Arcane Background (Warlock/Witch) || features.Arcane Background (Blighted)"'
 };
 SWADEHC.FEATURES = {
   'Ageless':'Section=feature Note="Does not age"',
   'Aggravated Damage':
     'Section=combat ' +
-    'Note="Natural attacks can hurt supernatural creatures; foe regeneration suffers -4 penalty"',
+    'Note="Natural and inherent power attacks can hurt supernatural creatures; foe regeneration suffers -4 penalty"',
   'Amorous':
     'Section=skill Note="-2 on Tests by a foe w/the Attractive feature"',
   'Alpha':
@@ -475,50 +474,50 @@ SWADEHC.FEATURES = {
       '"May make alchemical items/Concoctions given to others have specific aspects, use self Alchemy to activate, and must be used w/in 48 hr",' +
       '"Has Material Components+ feature"',
   'Arcane Background (Blighted)':
-    'Section=arcana,feature,feature ' +
+    'Section=arcana,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
-      '"Has Favored Power and Corruption+ features",' +
-      '"May take edges particular to other arcane backgrounds"',
+      '"Has Corruption+, Favored Power, and Power features"',
   'Arcane Background (Demonologist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Corruption+ and Summoning features"',
+      '"Has Corruption+, Magic, and Summoning features"',
   'Arcane Background (Fortune Teller)':
     'Section=arcana,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
-      '"Has The Sight feature"',
+      '"Has Magic and The Sight features"',
   'Arcane Background (Medium)':
     'Section=arcana,feature ' +
     'Note=' +
       '"3 Powers/15 Power Points",' +
-      '"Has I See Dead People feature"',
+      '"Has I See Dead People and Magic features"',
   'Arcane Background (Occultist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Corruption+ feature"',
+      '"Has Corruption+ and Magic features"',
   'Arcane Background (Priest)':
     'Section=arcana,feature ' +
     'Note=' +
       '"5 Powers/10 Power Points",' +
-      '"Has Holy Symbol and Vow+ features"',
+      '"Has Holy Symbol, Miracles, and Vow+ features"',
   'Arcane Background (Psychic Investigator)':
-    'Section=arcana ' +
+    'Section=arcana,feature ' +
     'Note=' +
-      '"3 Powers/10 Power Points"',
+      '"3 Powers/10 Power Points",' +
+      '"Has Psionics feature"',
   'Arcane Background (Voodooist)':
     'Section=arcana,feature ' +
     'Note=' +
       '"2 Powers/15 Power Points",' +
-      '"Has Material Components+ feature"',
+      '"Has Material Components+ and Miracles feature"',
   'Arcane Background (Warlock/Witch)':
     'Section=arcana,feature ' +
     'Note=' +
       '"3 Powers/10 Power Points",' +
-      '"Has Corruption+, Familiar, and Material Components+ features"',
+      '"Has Corruption+, Familiar, Magic, and Material Components+ features"',
   'Armored Hide':'Section=combat Note="+4 Armor"',
   'Aura Of Courage':
     'Section=combat ' +
@@ -526,7 +525,7 @@ SWADEHC.FEATURES = {
   'Beautify':'Section=arcana Note="May create minor beauty effects"',
   'Been To The Crossroads':'Section=skill Note="May reroll Faith"',
   // Berserk as SWADE
-  'Bespoil':'Section=arcana Note="May create minor ugliness effects"',
+  'Bespoil':'Section=arcana Note="May create minor ruinous effects"',
   // Bite as SWADE
   'Bite & Claws':'Section=combat Note="Increased Bite and Claw effects"',
   'Bleeder+':
@@ -555,7 +554,7 @@ SWADEHC.FEATURES = {
   'Claws (Climbing)':'Section=skill Note="+2 Athletics (climbing)"',
   'Consort':
     'Section=arcana ' +
-    'Note="May spend a Benny to cast any power; failure triggers Corruption+"',
+    'Note="May spend a Benny to cast any power via a ritual; failure triggers Corruption+"',
   'Corruption+':
     'Section=arcana ' +
     'Note=' +
@@ -570,7 +569,7 @@ SWADEHC.FEATURES = {
   'Darkvision':
     'Section=feature ' +
     'Note="R10\\" Ignores illumination penalties and 2 points from invisibility"',
-  'Daywalker':'Section=feature Note="Not harmed by sunlight"',
+  'Daywalker':'Section=feature Note="Suffers no harm from sunlight"',
   'Deal Maker':
     'Section=feature ' +
     'Note="May grant a boon in exchange for a hindrance and a later favor"',
@@ -620,7 +619,8 @@ SWADEHC.FEATURES = {
     'Section=arcana ' + 
     'Note="Ignores 2 points of penalties when casting chosen power"',
   'Fear -2':
-    'Section=combat Note="Inflicts -2 penalty on others\' first Fear check"',
+    'Section=combat ' +
+    'Note="Other characters suffer -2 penalty on initial encounter Fear check"',
   'Feed':'Section=feature Note="Has Habit+ feature"',
   'Ferocity':
     'Section=attribute Note="+2 Agility Step/+2 Strength Step/+2 Vigor Step"',
@@ -655,7 +655,7 @@ SWADEHC.FEATURES = {
     'Note="R12\\" May create and move a 1\\" radius fire that inflicts %{combatNotes.scorch?2:1}d6 damage or attack with a 9\\" cone%{combatNotes.scorch?\' or 12\\" stream\':\'\'} that inflicts 2d%{combatNotes.scorch?6:4} damage"',
   'Holy Light':
     'Section=combat ' +
-    'Note="R12\\" May create and move a 3\\" radius dim or bright light or attack with a 9\\" cone or 12\\" stream that inflicts 2d%{combatNotes.searingBlast?6:4} damage"',
+    'Note="R12\\" May create and move a 3\\" radius dim or bright light or attack with a 9\\" cone or 12\\" stream that inflicts 2d%{combatNotes.searingBlast?6:4} damage; critical fail inflicts Fatigue"',
   'Holy Symbol':
     'Section=skill Note="May reroll Faith when holding holy symbol"',
   'I See Dead People':
@@ -674,15 +674,21 @@ SWADEHC.FEATURES = {
   // Infravision as SWADE
   'Invisibility':'Section=feature Note="May become invisible while ethereal"',
   'Jumpy':'Section=attribute Note="Must attempt Fear check whenever startled"',
+  'Magic':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Magic)"',
   'Material Components+':
     'Section=arcana ' +
     'Note="Suffers -4 arcane skill rolls when materials are unavailable; critical failure exhausts materials"',
   'Mercy':
     'Section=arcana ' +
     'Note="R%{spirit}\\" May spend 1 PP to remove Distracted, Vulnerable, or Shaken from target"',
+  'Miracles':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Miracles)"',
   'Mist Form':
     'Section=feature ' +
-    'Note="Successful Smarts-2 allows transformation into mist 1/night; failure inflicts Fatigue (crit prevents retry)"',
+    'Note="Successful Smarts-2 allows transformation into mist 1/night; failure inflicts Fatigue and critical failure prevents retry"',
   'Monster Hunter':
     'Section=combat ' +
     'Note="Immune to fear from %{$\'edges.Monster Hunter\'} creature type"',
@@ -768,9 +774,15 @@ SWADEHC.FEATURES = {
   'Phantom':
     'Section=feature ' +
     'Note="Has Ageless, Darkvision, Doesn\'t Breathe, Ethereal, Flight, Immune To Disease And Poison, Rage, Strong Spirit, and Weakness (Salt) features"',
+  'Power':
+    'Section=feature ' +
+    'Note="May take edges particular to other arcane backgrounds"',
+  'Psionics':
+    'Section=feature ' +
+    'Note="May take edges particular to Arcane Background (Psionics)"',
   'Rage':
     'Section=combat ' +
-    'Note="May spend a Benny to gain supernatural powers 1/session; suffers major psychosis afterward (Spirit-2 neg)"',
+    'Note="May spend a Benny to gain supernatural powers 1/session; suffers a major psychosis afterward (Spirit-2 neg)"',
   'Regeneration (Fast)':
     'Section=combat ' +
     'Note="Successful healing removes incapacitation or restores 1 Wound (Raise 2 Wounds)%1 1/rd"',
@@ -783,7 +795,7 @@ SWADEHC.FEATURES = {
       '"Driven to pursue and defeat evil"',
   'Relentless Tracker':
     'Section=skill ' +
-    'Note="+2 Survival (tracking) vs. revenge target; regains trail after 2d6 hr if lost"',
+    'Note="+2 Survival (tracking) vs. revenge target and regains trail after 2d6 hr if lost"',
   'Revenant':
     'Section=feature ' +
     'Note="Has Ageless, Hardy, Rage, Regeneration (Slow), Strength Of The Dead, Undead, and Vengeance features"',
@@ -804,7 +816,7 @@ SWADEHC.FEATURES = {
     'Section=attribute,combat ' +
     'Note=' +
       '"Screams in response to a failed Fear check",' +
-      '"Scream after failed Fear check inflicts Distracted on self and allies in a 3\\" radius; successful smarts ends"',
+      '"Scream after failed Fear check inflicts Distracted on self and allies in a 3\\" radius; successful Smarts ends"',
   'Searing Blast':'Section=combat Note="Increased Holy Light effects"',
   'Sense Supernatural':
     'Section=feature ' +
@@ -822,7 +834,7 @@ SWADEHC.FEATURES = {
     'Section=feature ' +
     'Note="May speak haltingly in werewolf form; suffers a -2 penalty on spoken Trait checks"',
   'Speed':'Section=combat Note="+2 Pace/+1 Run Step"',
-  'Speed Flight':'Section=combat Note="Increased Flight speed"',
+  'Speed Flight':'Section=combat Note="Increases Flight speed"',
   'Spirit Friend':
     'Section=arcana ' +
     'Note="Can communicate w/a magical, Wild Card ethereal spirit that stores 5 Power Points"',
@@ -839,7 +851,7 @@ SWADEHC.FEATURES = {
     'Note="Summoned swarm splits into two medium swarms when slain"',
   'Summon Storm':
     'Section=arcana ' +
-    'Note="May create a sandstorm several miles in diameter that causes darkness and Fatigue (Vigor or shelter neg)"',
+    'Note="May create a sandstorm several miles in diameter that causes darkness and Fatigue (Vigor or shelter neg) 1/wk"',
   'Summon Swarm':
     'Section=arcana ' +
     'Note="May summon a %{$\'edges.Summon Great Swarm\'?\'large\':\'medium\'} swarm of pests 1/dy"',
@@ -851,7 +863,7 @@ SWADEHC.FEATURES = {
     'Note="-1 on all Trait rolls if focus object or routine is disturbed"',
   'The Sight':
     'Section=combat ' +
-    'Note="May spend a Benny to rearrange Action Cards as desired"',
+    'Note="May spend a Benny to rearrange allies\' Action Cards as desired"',
   'The Strength Of Ages':
     'Section=attribute Note="+2 Strength Step/+2 Vigor Step"',
   'The Witching Hour':
@@ -861,7 +873,7 @@ SWADEHC.FEATURES = {
     'Section=arcana Note="+2 Spellcasting when casting <i>Banish</i>"',
   'Thought Eater':
     'Section=feature Note="Gains memories from eating a fresh brain"',
-  'Thrall':'Section=feature Note="Has %{edges.Thrall} devoted %{advances<8 ? \'novice\' : advances<12 ? \'seasoned\' : rank<16 ? \'veteran\' : \'heroic\'} servant"',
+  'Thrall':'Section=feature Note="Has %{edges.Thrall} devoted servant of %{advances<8 ? \'novice\' : advances<12 ? \'seasoned\' : advances<16 ? \'veteran\' : \'heroic\'} rank"',
   'Tongues':'Section=feature Note="Speaks every human language fluently"',
   'Toughness +2':'Section=combat Note="+2 Toughness"',
   'Tower Of Will':'Section=combat Note="+4 vs. mental intrusion"',
@@ -964,7 +976,7 @@ SWADEHC.POWERS = {
     'Modifier=' +
       '"+2 PP Inflicts minor hindrance (Raise major)" ' +
     'Description=' +
-      '"Target suffers 1 level fatigue and an additional level each sunset (Spirit neg)"',
+      '"Target suffers 1 level of Fatigue and an additional level each sunset (Spirit neg)"',
   'Exorcism':
     'Advances=8 ' +
     'PowerPoints=3+ ' +
@@ -1144,18 +1156,30 @@ SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
     // Monstrous hero edges are free; add an edge point to compensate
     let types = QuilvynUtils.getAttrValueArray(edges[e], 'Type');
     let requires = QuilvynUtils.getAttrValueArray(edges[e], 'Require');
-    let validationNote =
-      'validationNotes.' + e.charAt(0).toLowerCase() + e.substring(1).replaceAll(' ', '') + 'Edge';
     if(types[0] == 'Monstrous' &&
        requires.length == 1 &&
        requires[0].match(/^monstrousHero\s*==\s*1$/))
       rules.defineRule('monstrousHero', 'edges.' + e, '+=', '1');
-    // Allow AB (Blighted) to satisfy AB (*) edge requirement
-    if(requires.filter(x => x.match(/Arcane Background/)).length > 0)
-      rules.defineRule
-        (validationNote, 'features.Arcane Background (Blighted)', '+', '1');
   }
   rules.defineRule('edgePoints', 'monstrousHero', '+=', '1');
+  // Handle new Arcane Background features that allow characters to select
+  // edges particular to one of the core ABs by giving them that AB feature,
+  // but make sure that associated notes only show for those with the base edge.
+  rules.defineRule
+    ('features.Arcane Background (Magic)', 'features.Magic', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
+    'edges.Arcane Background (Magic)', '?', null
+  );
+  rules.defineRule
+    ('features.Arcane Background (Miracles)', 'features.Miracles', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
+    'edges.Arcane Background (Miracles)', '?', null
+  );
+  rules.defineRule
+    ('features.Arcane Background (Psionics)', 'features.Psionics', '=', '1');
+  rules.defineRule('arcanaNotes.arcaneBackground(Psionics)',
+    'edges.Arcane Background (Psionics)', '?', null
+  );
 };
 
 /*
@@ -1163,31 +1187,6 @@ SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
  * derived directly from the attributes passed to edgeRules.
  */
 SWADEHC.edgeRulesExtra = function(rules, name) {
-  // Give characters with an Arcane Background feature the "base" AB feature
-  // from the core rules so that they satisfy any requirements based on it, but
-  // make sure that associated notes only apply to those with the base edge.
-  if(name.startsWith('Arcane Background')) {
-    if(name.match(/Demonologist|Fortune Teller|Medium|Occultist|Warlock/)) {
-      rules.defineRule
-        ('features.Arcane Background (Magic)', 'features.' + name, '=', '1');
-      rules.defineRule('arcanaNotes.arcaneBackground(Magic)',
-        'edges.Arcane Background (Magic)', '?', null
-      );
-    } else if(name.match(/Priest|Voodooist/)) {
-      rules.defineRule
-        ('features.Arcane Background (Miracles)', 'features.' + name, '=', '1');
-      rules.defineRule('arcanaNotes.arcaneBackground(Miracles)',
-        'edges.Arcane Background (Miracles)', '?', null
-      );
-    } else if(name.match(/Psychic Investigator/)) {
-      rules.defineRule('features.Arcane Background (Psionics)',
-        'features.' + name, '=', '1'
-      );
-      rules.defineRule('arcanaNotes.arcaneBackground(Psionics)',
-        'edges.Arcane Background (Psionics)', '?', null
-      );
-    }
-  }
   if(name == 'Angel') {
     rules.defineRule('combatNotes.flight',
       'features.Angel', '^=', '12',
@@ -1248,6 +1247,12 @@ SWADEHC.edgeRulesExtra = function(rules, name) {
     rules.defineRule('weapons.Bite.6', 'edges.Werewolf', '=', '" AP 2"');
     rules.defineRule('damageStep.Claws', 'edges.Werewolf', '^=', '2');
     rules.defineRule('weapons.Claws.6', 'edges.Werewolf', '=', '" AP 2"');
+  } else if(name == 'Wing Strike') {
+    SWADE.weaponRules(
+      rules, 'Wings', ['Ancient', 'Medieval', 'Modern', 'Future'], 'Str+d8', 0,
+      0, 'Unarmed', null, null, null, null
+    );
+    rules.defineRule('weapons.Wings', 'features.Wing Strike', '=', '1');
   }
 };
 
