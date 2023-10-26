@@ -35,7 +35,7 @@ function WeirdWest(baseRules) {
     return;
   }
 
-  var rules = new QuilvynRules('Deadlands Weird West', WeirdWest.VERSION);
+  let rules = new QuilvynRules('Deadlands Weird West', WeirdWest.VERSION);
   rules.plugin = WeirdWest;
   WeirdWest.rules = rules;
 
@@ -1299,10 +1299,10 @@ WeirdWest.identityRules = function(
     (ethnicities, ['Family', 'Feminine', 'Masculine', 'Neutral', 'Order']);
   QuilvynUtils.checkAttrTable(nicknames, ['Type', 'Long', 'Move']);
 
-  for(var ethnicity in ethnicities) {
+  for(let ethnicity in ethnicities) {
     rules.choiceRules(rules, 'Ethnicity', ethnicity, ethnicities[ethnicity]);
   }
-  for(var nickname in nicknames) {
+  for(let nickname in nicknames) {
     rules.choiceRules(rules, 'Nickname', nickname, nicknames[nickname]);
   }
   rules.defineEditorElement('ethnicity', 'Ethnicity', 'text', [20], 'race');
@@ -1719,12 +1719,12 @@ WeirdWest.choiceEditorElements = function(rules, type) {
  * shortened versions of particular names (i.e., Dick for Richard).
  */
 WeirdWest.nicknames = function(name, nicknames) {
-  var result =
+  let result =
     QuilvynUtils.getKeys(nicknames)
       .filter(x => nicknames[x].match('Long=\\S*\\b' + name + '\\b'));
-  var diminutive;
+  let diminutive;
   // Use the first syllable ([consonants] vowels consonants) for the nickname.
-  var nicked =
+  let nicked =
     name.replace(/^(([^aeiouy]|^y(?=[aeiouy]))*[aeiouy]+[^aeiouy]+).*$/i, '$1');
   // Remove certain ends of consonant runs that tend to create ugly nicknames
   // (e.g., Andr for Andrew)
@@ -1761,33 +1761,33 @@ WeirdWest.nicknames = function(name, nicknames) {
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'name') {
-    var allNicknames = this.getChoices('nicknames');
-    var adjectives =
+    let allNicknames = this.getChoices('nicknames');
+    let adjectives =
       QuilvynUtils.getKeys(allNicknames)
       .filter(x => allNicknames[x].match(/adjective/i));
-    var ethnicity = attributes.ethnicity;
-    var fullName;
+    let ethnicity = attributes.ethnicity;
+    let fullName;
     if(ethnicity == 'American Indian') {
-      var animals =
+      let animals =
         QuilvynUtils.getKeys(allNicknames)
         .filter(x => allNicknames[x].match(/animal/i));
-      var natures =
+      let natures =
         QuilvynUtils.getKeys(allNicknames)
         .filter(x => allNicknames[x].match(/nature/i));
-      var prepositions =
+      let prepositions =
         QuilvynUtils.getKeys(allNicknames)
         .filter(x => allNicknames[x].match(/preposition/i));
-      var verbs =
+      let verbs =
         QuilvynUtils.getKeys(allNicknames)
         .filter(x => allNicknames[x].match(/verb/i));
-      var animal = animals[QuilvynUtils.random(0, animals.length - 1)];
+      let animal = animals[QuilvynUtils.random(0, animals.length - 1)];
       // Use "adjective animal" or "[animal who] verb preposition noun"
       if(QuilvynUtils.random(0, 1) == 0) {
         fullName =
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
           animal;
       } else {
-        var moves =
+        let moves =
           QuilvynUtils.getAttrValueArray(allNicknames[animal], 'Move');
         if(moves.length == 0)
           moves = ['Leaps', 'Runs', 'Swims', 'Walks'];
@@ -1801,27 +1801,28 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
       attributes.name = fullName;
       return;
     }
-    var allEthnicities = this.getChoices('ethnicitys');
+    let allEthnicities = this.getChoices('ethnicitys');
     if(!(ethnicity in allEthnicities))
       ethnicity = 'Multiethnic';
-    var names = allEthnicities[ethnicity];
-    var gender =
+    let names = allEthnicities[ethnicity];
+    let gender =
       attributes.gender && attributes.gender.match(/^f(emale)?$/i) ? 'Feminine':
       attributes.gender && attributes.gender.match(/^m(ale)?$/i) ? 'Masculine' :
       'Neutral';
-    var choices = QuilvynUtils.getAttrValueArray(names, gender);
-    var order = QuilvynUtils.getAttrValue(names, 'Order');
+    let choices = QuilvynUtils.getAttrValueArray(names, gender);
+    let order = QuilvynUtils.getAttrValue(names, 'Order');
     while(choices.length == 0)
       // Multiethnic or "other"; get names for a random ethnicity
       choices = QuilvynUtils.getAttrValueArray(allEthnicities[QuilvynUtils.randomKey(allEthnicities)], gender);
-    var personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
+    let personalName = choices[QuilvynUtils.random(0, choices.length - 1)];
+    let epithet = '';
     // 2/3 of names get an epithet
     if(QuilvynUtils.random(0, 2) != 2) {
-      var nicknames = WeirdWest.nicknames(personalName, allNicknames);
-      var nouns =
+      let nicknames = WeirdWest.nicknames(personalName, allNicknames);
+      let nouns =
         QuilvynUtils.getKeys(allNicknames)
         .filter(x => allNicknames[x].match(/animal|nature|noun/i));
-      var epithet =
+      epithet =
         QuilvynUtils.random(0, 2) == 0 ?
           adjectives[QuilvynUtils.random(0, adjectives.length - 1)] + ' ' +
           nouns[QuilvynUtils.random(0, nouns.length - 1)]
@@ -1830,15 +1831,16 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
           nicknames[QuilvynUtils.random(0, nicknames.length - 1)]
         :
           nouns[QuilvynUtils.random(0, nouns.length - 1)];
-      personalName += ' "' + epithet + '"';
+      epithet = '"' + epithet + '" ';
     }
     choices = QuilvynUtils.getAttrValueArray(names, 'Family');
     while(choices.length == 0)
       choices = QuilvynUtils.getAttrValueArray(allEthnicities[QuilvynUtils.randomKey(allEthnicities)], 'Family');
-    var familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
+    let familyName = choices[QuilvynUtils.random(0, choices.length - 1)];
     fullName =
-      (order + '').match(/^eastern$/i) ? familyName + ' ' + personalName
-      : (personalName + ' ' + familyName);
+      (order + '').match(/^eastern$/i) ?
+        epithet + familyName + ' ' + personalName
+      : (personalName + ' ' + epithet + familyName);
     attributes.name = fullName;
   } else if(attribute == 'gender') {
     attributes.gender =
@@ -1851,7 +1853,7 @@ WeirdWest.randomizeOneAttribute = function(attributes, attribute) {
 
 /* Returns an array of plugins upon which this one depends. */
 WeirdWest.getPlugins = function() {
-  var result = [SWADE].concat(SWADE.getPlugins());
+  let result = [SWADE].concat(SWADE.getPlugins());
   return result;
 };
 
