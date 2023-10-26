@@ -6,7 +6,7 @@ the Savage Worlds RPG, applying the rules from these source books:
 <a href="https://peginc.com/product/fantasy-companion-swade/">SWADE Fantasy Companion</a>;
 <a href="https://peginc.com/product/horror-companion-swade/">SWADE Horror Companion</a>;
 <a href="https://peginc.com/product/savage-worlds-deluxe-explorers-edition/">Savage Worlds Deluxe Edition</a>;
-<a href="https://peginc.com/product/deadlands-the-weird-west-core-rules/"> Deadlands: THe Weird West</a>;
+<a href="https://peginc.com/product/deadlands-the-weird-west-core-rules/"> Deadlands: The Weird West</a>;
 <a href="https://peginc.com/product/pathfinder-for-savage-worlds-core-rules/">Pathfinder for Savage Worlds Core Rules</a>.
 
 ### Requirements
@@ -52,7 +52,7 @@ lines to the file plugins/plugins.js:
 
 ### Usage
 
-Once the SWADE plugin is installed as described above, start Quilvyn and
-check the box next to one or more of the rule set names listed above in
+Once the quilvyn-savage package is installed as described above, start Quilvyn
+and check the box next to one or more of the rule set names listed above in
 the initial window. The rules from the supplements extend the Savage Worlds
 Adventurer's Edition rule set.
