@@ -40,17 +40,21 @@ function SWADEHC(baseRules, rules) {
     rules = SWADE.rules;
   rules.hcReplacedRandomizer = rules.randomizeOneAttribute;
   rules.randomizeOneAttribute = SWADEHC.randomizeOneAttribute;
-  SWADEHC.combatRules(rules, SWADEHC.WEAPONS);
+  SWADEHC.combatRules(rules, SWADEHC.ARMORS, SWADEHC.SHIELDS, SWADEHC.WEAPONS);
   SWADEHC.arcaneRules(rules, SWADEHC.ARCANAS, SWADEHC.POWERS);
   SWADEHC.talentRules
-    (rules, SWADEHC.EDGES, SWADEHC.FEATURES, SWADEHC.HINDRANCES,
-     SWADEHC.SKILLS);
-  SWADEHC.identityRules(rules, SWADEHC.CONCEPTS);
+    (rules, SWADEHC.EDGES, SWADEHC.FEATURES, SWADEHC.GOODIES,
+     SWADEHC.HINDRANCES, SWADEHC.SKILLS);
+  SWADEHC.identityRules
+    (rules, SWADEHC.ANCESTRYS, SWADEHC.ERAS, SWADEHC.CONCEPTS);
 
 }
 
 SWADEHC.VERSION = '2.4.1.0';
 
+SWADEHC.ANCESTRYS = {
+  // empty
+};
 SWADEHC.ARCANAS = {
   'Alchemist':
     'Skill=Alchemy ' +
@@ -141,6 +145,9 @@ SWADEHC.ARCANAS = {
       'Sound/Silence,"Speak Language",Spite,Stun,"Summon Ally",' +
       '"Summon Demon","Suppress Transformation",Telekinesis,"Wall Walker",' +
       '"Warrior\'s Gift"'
+};
+SWADEHC.ARMORS = {
+  // empty
 };
 SWADEHC.CONCEPTS = {
   'Angel':
@@ -450,6 +457,9 @@ SWADEHC.EDGES = {
     'Require=' +
       '"advances >= 4",' +
       '"features.Arcane Background (Warlock/Witch) || features.Arcane Background (Blighted)"'
+};
+SWADEHC.ERAS = {
+  // empty
 };
 SWADEHC.FEATURES = {
   'Ageless':'Section=feature Note="Does not age"',
@@ -927,6 +937,9 @@ SWADEHC.FEATURES = {
     'Section=skill ' +
     'Note="Successful Intimidation vs. Spirit gives control of mindless skeletons and zombies until the end of the encounter"'
 };
+SWADEHC.GOODIES = {
+  // empty
+};
 SWADEHC.HINDRANCES = {
   'Amorous':'Severity=Minor',
   'Bleeder+':'Severity=Major',
@@ -1091,6 +1104,9 @@ SWADEHC.POWERS = {
     'Description=' +
       '"Target can detect the presence of supernatural effects (Raise also the type) for 5 rd"'
 };
+SWADEHC.SHIELDS = {
+  // empty
+};
 SWADEHC.SKILLS = {
   'Alchemy':'Attribute=smarts'
 };
@@ -1126,8 +1142,8 @@ SWADEHC.arcaneRules = function(rules, arcanas, powers) {
 };
 
 /* Defines the rules related to combat. */
-SWADEHC.combatRules = function(rules, weapons) {
-  SWADE.combatRules(rules, {}, {}, weapons);
+SWADEHC.combatRules = function(rules, armors, shields, weapons) {
+  SWADE.combatRules(rules, armors, shields, weapons);
   // Add placeholders for Bite and Claw AP values.
   let allNotes = rules.getChoices('notes');
   if(allNotes && 'weapons.Bite' in allNotes)
@@ -1139,15 +1155,16 @@ SWADEHC.combatRules = function(rules, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEHC.identityRules = function(rules, concepts) {
-  SWADE.identityRules(rules, {}, {}, concepts);
+SWADEHC.identityRules = function(rules, ancestries, eras, concepts) {
+  SWADE.identityRules(rules, ancestries, eras, concepts);
   // No changes needed to the rules defined by base method
 };
 
 /* Defines rules related to character aptitudes. */
-SWADEHC.talentRules = function(rules, edges, features, hindrances, skills) {
-  SWADE.talentRules
-    (rules, edges, features, {}, hindrances, skills);
+SWADEHC.talentRules = function(
+  rules, edges, features, goodies, hindrances, skills)
+{
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, skills);
   for(let e in edges)
     SWADEHC.edgeRulesExtra(rules, e, edges[e]);
   for(let h in hindrances)

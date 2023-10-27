@@ -43,9 +43,10 @@ function SWADEFC(baseRules, rules) {
     (rules, SWADEFC.ARMORS, SWADEFC.SHIELDS, SWADEFC.WEAPONS);
   SWADEFC.arcaneRules(rules, SWADEFC.ARCANAS, SWADEFC.POWERS);
   SWADEFC.talentRules
-    (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.HINDRANCES,
-     SWADEFC.SKILLS);
-  SWADEFC.identityRules(rules, SWADEFC.ANCESTRYS, SWADEFC.CONCEPTS);
+    (rules, SWADEFC.EDGES, SWADEFC.FEATURES, SWADEFC.GOODIES,
+     SWADEFC.HINDRANCES, SWADEFC.SKILLS);
+  SWADEFC.identityRules
+    (rules, SWADEFC.ANCESTRYS, SWADEFC.ERAS, SWADEFC.CONCEPTS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -819,6 +820,9 @@ SWADEFC.EDGES = {
     'Require=' +
       '"features.Arcane Background (Wizard)"'
 };
+SWADEFC.ERAS = {
+  // empty
+};
 SWADEFC.FEATURES = {
   // Ancestry
   'Additional Actions':
@@ -1406,6 +1410,9 @@ SWADEFC.FEATURES = {
     'Note="-2 casting when talisman is unavailable; critical failure stuns"'
   // Thin Skinned+ as SWADE
 };
+SWADEFC.GOODIES = {
+  // empty
+};
 SWADEFC.HINDRANCES = {
   'Amorous':'Severity=Minor',
   'Arcane Sensitivity':
@@ -1908,13 +1915,13 @@ SWADEFC.combatRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines rules related to basic character identity. */
-SWADEFC.identityRules = function(rules, ancestries, concepts) {
+SWADEFC.identityRules = function(rules, ancestries, eras, concepts) {
   let allRaces = rules.getChoices('races');
   for(let a in ancestries) {
     if(a in allRaces)
       delete allRaces[a];
   }
-  SWADE.identityRules(rules, ancestries, {}, concepts);
+  SWADE.identityRules(rules, ancestries, eras, concepts);
   rules.defineEditorElement('race');
   rules.defineEditorElement
     ('ancestry', 'Ancestry', 'select-one', 'races', 'imageUrl');
@@ -1926,10 +1933,12 @@ SWADEFC.identityRules = function(rules, ancestries, concepts) {
 };
 
 /* Defines rules related to character aptitudes. */
-SWADEFC.talentRules = function(rules, edges, features, hindrances, skills) {
+SWADEFC.talentRules = function(
+  rules, edges, features, goodies, hindrances, skills)
+{
   delete rules.getChoices('features').Assassin;
   delete rules.getChoices('notes')['combatNotes.assassin'];
-  SWADE.talentRules(rules, edges, features, {}, hindrances, skills);
+  SWADE.talentRules(rules, edges, features, goodies, hindrances, skills);
   for(let e in edges)
     SWADEFC.edgeRulesExtra(rules, e, edges[e]);
   for(let h in hindrances)
