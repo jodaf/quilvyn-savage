@@ -38,7 +38,7 @@ function SWADESPC(baseRules, rules) {
 
   if(rules == null)
     rules = SWADE.rules;
-  rules.defineChoice('choices', 'Super Power');
+  rules.defineChoice('choices', 'Super Power', 'Super Power Modifier');
   rules.defineChoice('random', 'superPowers');
   rules.spcReplacedChoiceRules = rules.choiceRules;
   rules.choiceRules = SWADESPC.choiceRules;
@@ -46,7 +46,8 @@ function SWADESPC(baseRules, rules) {
   rules.randomizeOneAttribute = SWADESPC.randomizeOneAttribute;
   SWADESPC.combatRules(rules, SWADESPC.ARMORS, SWADESPC.SHIELDS, SWADESPC.WEAPONS);
   SWADESPC.arcaneRules
-    (rules, SWADESPC.ARCANAS, SWADESPC.POWERS, SWADESPC.SUPER_POWERS);
+    (rules, SWADESPC.ARCANAS, SWADESPC.POWERS, SWADESPC.SUPER_POWERS,
+     SWADESPC.SUPER_POWER_MODIFIERS);
   SWADESPC.talentRules
     (rules, SWADESPC.EDGES, SWADESPC.FEATURES, SWADESPC.GOODIES,
      SWADESPC.HINDRANCES, SWADESPC.SKILLS);
@@ -229,17 +230,866 @@ SWADESPC.SKILLS = {
 };
 SWADESPC.SUPER_POWERS = {
   'Absorption':
-    'SuperPowerPoints=2 ' +
-    'Modifier=' +
-      '"-1 SPP Cannot absorb two Power Types" ' +
-    'Description=' +
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Achilles Heel","Additional Power Type",Growth,Mastery,Reflection,' +
+      'Transference,Transmute ' +
+    'Section=feature ' +
+    'Note=' +
       '"FILL"',
   'Additional Actions':
-    'SuperPowerPoints=5 ' +
-    'Modifier=' +
-      '"-1 SPP Cannot absorb two Power Types" ' +
-    'Description=' +
+    'Cost=5 ' +
+    'Modifiers=' +
+      'Concentration,Evaluation,"Fast Action","Mental Only","Physical Only" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Ageless':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Very Old" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Altered Form':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Fall Proof",Grappler,Reach,"Requires Activation",Sticky,Viscous,' +
+      'Yield ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Animal Companion':
+    'Cost=3 ' +
+    'Modifiers=' +
+      'Intelligent,Speech,Summonable,"Super Powers","Telepathic Link" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Animal Control':
+    'Cost=Special ' +
+    'Modifiers=' +
+      '"Requires Touch",Summonable,"Telepathic Link" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Aquatic':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Fast Swimmer" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Armor':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Heavy Armor","Partial Protection","Requires Activation",Sealed ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Awareness':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Blind':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Area Effect",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Boost/Lower Trait':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Additional Recipients","Any Trait",Leech,Power,"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Broadcast':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Channel Surfer",Manipulation,Range ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Burrowing':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Block Buster",Pace,Tunneler ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Chameleon':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Inanimate Object",Biometrics,"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Construct':
+    'Cost=8 ' +
+    'Modifiers=' +
+      'Dependency ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Copycat':
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Arcane,Devices,Duration,"Overly Accurate","Partial Power",' +
+      '"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Damage Field':
+    'Cost=Special ' +
+    'Modifiers=' +
+      '"Armor Piercing","Area Effect",Lethal,Permanent ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Deadeye':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Deadly ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Decay':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Area Effect","Midas Touch",Strong,"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Dodge':
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Defender,Deflect,"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  "Doesn't Breathe":
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Extreme ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  "Doesn't Eat":
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Extreme ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  "Doesn't Sleep":
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Tireless ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Duplication':
+    'Cost=4 ' +
+    'Modifiers=' +
+      'Equipped,Leashed,"No Tell",Promotion ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Earthquake':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Energy Control':
+    'Cost=5 ' +
+    'Modifiers=' +
+      '"Additional Power Type","Area Effect",Power,"Requires Material" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Entangle':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Area Effect",Deadly,"Requires Material","Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Environmental Resistance':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Additional Power Type","Area Effect",Immunity,"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Explode':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Big Bang",Failsafe,"Temporary Disintegration" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Extra Limbs':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Reach ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Fear':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Area Effect","Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Fearless':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Steady ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Flight':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'FTL,Glider,Maneuverable,Ungainly ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Force Field':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Area Effect","Life Support",Mobile,"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Genius':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Fast Learner" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Growth':
+    'Cost=3 ' +
+    'Modifiers=' +
+      'Permanent,Swat ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Hardy':
+    'Cost=2 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Healing':
+    'Cost=3 ' +
+    'Modifiers=' +
+      'Cure,Fatigue,Refresh,"Requires Touch",Restoration,Resurrection ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Eagle Eyes)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Hearing)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Infravision)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Low Light Vision)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Microscopic Vision)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (Smell)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Heightened Senses (X-Ray Vision)':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Illusion':
+    'Cost=4 ' +
+    'Modifiers=' +
+      '"After Effects","Area Effect",Distraction,"Film Quality",Obscurement,' +
+      '"System Shock" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Immune To Disease':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Cure Disease" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Immune To Poison':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Cure Poison" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Infection':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Affliction,"Area Effect",Contagious,Duration,Lethal,Mutation,' +
+      'Replication,"Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Intangibility':
+    'Cost=5 ' +
+    'Modifiers=' +
+      '"Affect Others",Permanent,"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Interface':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Code Breaker",Fast,Range ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Invisibility':
+    'Cost=8 ' +
+    'Modifiers=' +
+      'Mobile,Permanent,Personal,Projection,"True Invisibility" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Jinx':
+    'Cost=4 ' +
+    'Modifiers=' +
+      '"Greater Jinx" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Leaping':
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Bounce,"Death From Above" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Machine Control':
+    'Cost=Special ' +
+    'Modifiers=' +
+      'Multi-Task,"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Malfunction':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Area Effect","Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Matter Control':
+    'Cost=5 ' +
+    'Modifiers=' +
+      '"Additional Power Type","Area Effect",Power,"Requires Material" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Melee Attack':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Armor Piercing",Charge,Smash,"Thrown Weapons" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Mind Control':
+    'Cost=5 ' +
+    'Modifiers=' +
+      'Forgetful,Leashed,"Multiple Minds","Requires Touch",Smarts,Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Mind Reading':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Memory Mastery","Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Mind Shield':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Area Effect",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Minions':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Resilient,Summonable,"Super Powers" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Negation':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Area Effect","Full Spectrum","Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'No Vital Organs':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Object Reading':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Obscure':
+    'Cost=4 ' +
+    'Modifiers=' +
+      '"Additional Sense","Area Effect",Self,Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Pace':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Strider ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Parry':
+    'Cost=4 ' +
+    'Modifiers=' +
+      'Deflect,Protector ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Poison':
+    'Cost=4 ' +
+    'Modifiers=' +
+      '"Area Effect",Deadly,Strong,"Requires Touch" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Possession':
+    'Cost=5 ' +
+    'Modifiers=' +
+      'Forgetful,Memories,"Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Push':
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Ranged Attack':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Armor Piercing","Area Effect",Charge,Cone,Lethal,"Rate Of Fire",' +
+      '"Requires Material",Spread ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Reach':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Regeneration':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Destruction,Relief,Regrowth ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Scan':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Additional Power Type",Calibration,Distance,Tracker ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Shape Change':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Powers,Primal,Retention,Speech ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Shrink':
+    'Cost=4 ' +
+    'Modifiers=' +
+      'Density,Microscopic,"Quick Change",Smaller ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Skill Bonus':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Greater Jinx" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Slow':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Additional Recipients" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Spacer':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Requires Activation",Shareable ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Speak Language':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Written Word" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Speed':
+    'Cost=3 ' +
+    'Modifiers=' +
+      'Maneuverable,Pummel,"Surface Tension",Vibrate,Ungainly ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Stun':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Area Effect","Requires Touch",Strong ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Super Attribute':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Not Today" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Super Edge':
+    'Cost=2 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Super Skill':
+    'Cost=1 ' +
+    'Modifiers= ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Super Science':
+    'Cost=4 ' +
+    'Modifiers=' +
+      'Overload ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Super Sorcery':
+    'Cost=4 ' +
+    'Modifiers=' +
+      'Backlash ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Swinging':
+    'Cost=2 ' +
+    'Modifiers=' +
+      '"Strong Line" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Telekinesis':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Fine Control",Flight,Power ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Telepathy':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Range,"Mind Rider",Switchboard ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Teleport':
+    'Cost=2 ' +
+    'Modifiers=' +
+      'Portal,Range,"Rapid Teleport",Redirect,"Teleport Other",Traverse ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Toughness':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Uncanny Reflexes':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Requires Activation" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Undead':
+    'Cost=8 ' +
+    'Modifiers=' +
+      '"Spark Of Life" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Vehicle':
+    'Cost=1 ' +
+    'Modifiers=' +
+      'Armored,"Bulletproof Glass",Enclosed,"Ejection Seats",Flight,Handling,' +
+      'Passengers,Size,"Super Powers",Weapons ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Wall Walker':
+    'Cost=1 ' +
+    'Modifiers=' +
+      '"Strong Grip" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Weather Control':
+    'Cost=7 ' +
+    'Modifiers=' +
+      '"Outdoor Only" ' +
+    'Section=feature ' +
+    'Note=' +
+      '"FILL"',
+  'Whirlwind':
+    'Cost=3 ' +
+    'Modifiers=' +
+      '"Area Effect",Damage,Cone,Strong ' +
+    'Section=feature ' +
+    'Note=' +
       '"FILL"'
+};
+SWADESPC.SUPER_POWER_MODIFIERS = {
+  'Achilles Heel':'Cost=-1',
+  'Additional Power Type':'Cost=1,2,4,8',
+  'Additional Recipients':'Cost=1',
+  'Additional Sense':'Cost=1',
+  'Affect Others':'Cost=2',
+  'Affliction':'Cost=2',
+  'After Effects':'Cost=1',
+  'Alternate Trait':'Cost=1',
+  'Any Trait':'Cost=2',
+  'Arcane':'Cost=2',
+  'Area Effect':'Cost=2,3,4', // TODO
+  'Armor Piercing':'Cost=1',
+  'Armored':'Cost=2,4',
+  'Backlash':'Cost=-1',
+  'Big Bang':'Cost=2',
+  'Biometrics':'Cost=2',
+  'Block Buster':'Cost=1',
+  'Bounce':'Cost=1',
+  'Bulletproof Glass':'Cost=1',
+  'Calibration':'Cost=2',
+  'Channel Surfer':'Cost=1',
+  'Charge':'Cost=1',
+  'Code Breaker':'Cost=1',
+  'Concentration':'Cost=2',
+  'Cone':'Cost=1',
+  'Contagious':'Cost=1',
+  'Contingent':'Cost=0',
+  'Cure':'Cost=2',
+  'Cure Disease':'Cost=2',
+  'Cure Poison':'Cost=1',
+  'Damage':'Cost=2',
+  'Deadly':'Cost=1,2,4',
+  'Death From Above':'Cost=1',
+  'Defender':'Cost=2,4',
+  'Deflect':'Cost=2',
+  'Density':'Cost=5',
+  'Dependency':'Cost=-2',
+  'Destruction':'Cost=-1',
+  'Device':'Cost=-1',
+  'Devices':'Cost=2',
+  'Distance':'Cost=1,2',
+  'Distraction':'Cost=1',
+  'Duration':'Cost=1,3',
+  'Ejection Seats':'Cost=1',
+  'Enclosed':'Cost=1',
+  'Equipped':'Cost=2',
+  'Evaluation':'Cost=2',
+  'Extreme':'Cost=1',
+  'FTL':'Cost=1',
+  'Failsafe':'Cost=1',
+  'Fall Proof':'Cost=1',
+  'Fast':'Cost=2',
+  'Fast Action':'Cost=2',
+  'Fast Learner':'Cost=1',
+  'Fast Swimmer':'Cost=1,2',
+  'Fatigue':'Cost=2',
+  'Film Quality':'Cost=1',
+  'Fine Control':'Cost=3',
+  'Flight':'Cost=1,2',
+  'Forgetful':'Cost=2',
+  'Full Spectrum':'Cost=3',
+  'Glider':'Cost=-1',
+  'Grappler':'Cost=1',
+  'Greater Jinx':'Cost=2',
+  'Growth':'Cost=3',
+  'Handling':'Cost=1,2',
+  'Heavy Armor':'Cost=4',
+  'Heavy Weapon':'Cost=1',
+  'Immunity':'Cost=2',
+  'Inanimate Object':'Cost=2',
+  'Intelligent':'Cost=2',
+  'Leashed':'Cost=-2',
+  'Leech':'Cost=2',
+  'Lethal':'Cost=-1,1',
+  'Life Support':'Cost=2',
+  'Limitation':'Cost=-1',
+  'Linked':'Cost=2',
+  'Maneuverable':'Cost=1',
+  'Manipulation':'Cost=1,3',
+  'Mastery':'Cost=1',
+  'Memories':'Cost=2',
+  'Memory Mastery':'Cost=3,5',
+  'Mental Only':'Cost=-1',
+  'Microscopic':'Cost=3',
+  'Midas Touch':'Cost=-2',
+  'Mind Rider':'Cost=3',
+  'Mobile':'Cost=1',
+  'Multi-Task':'Cost=2,4',
+  'Multiple Minds':'Cost=2',
+  'Mutation':'Cost=1',
+  'No Tell':'Cost=1',
+  'Not Today':'Cost=2',
+  'Obscurement':'Cost=2',
+  'Outdoor Only':'Cost=-2',
+  'Overload':'Cost=-1',
+  'Overly Accurate':'Cost=-2',
+  'Pace':'Cost=1',
+  'Partial Power':'Cost=2',
+  'Partial Protection':'Cost=-1,-2',
+  'Passengers':'Cost=1,2,4',
+  'Permanent':'Cost=-2',
+  'Personal':'Cost=-2',
+  'Physical Only':'Cost=-1',
+  'Portal':'Cost=2',
+  'Power':'Cost=2,5',
+  'Powers':'Cost=4',
+  'Primal':'Cost=-4',
+  'Projection':'Cost=3,6',
+  'Promotion':'Cost=2',
+  'Protector':'Cost=2',
+  'Pummel':'Cost=4',
+  'Quick Change':'Cost=1',
+  'Range':'Cost=1,2',
+  'Rapid Teleport':'Cost=1',
+  'Rate Of Fire':'Cost=3,6',
+  'Reach':'Cost=1',
+  'Redirect':'Cost=4',
+  'Reflection':'Cost=2',
+  'Refresh':'Cost=2',
+  'Regrowth':'Cost=2',
+  'Relief':'Cost=2',
+  'Replication':'Cost=1',
+  'Requires Activation':'Cost=-1',
+  'Requires Material':'Cost=-1,-2',
+  'Requires Touch':'Cost=-2',
+  'Resilient':'Cost=1',
+  'Restoration':'Cost=2',
+  'Resurrection':'Cost=2',
+  'Retention':'Cost=4',
+  'Sealed':'Cost=2',
+  'Selective':'Cost=1',
+  'Self':'Cost=-1',
+  'Shareable':'Cost=1',
+  'Size':'Cost=1',
+  'Smaller':'Cost=8,16',
+  'Smarts':'Cost=1',
+  'Smash':'Cost=3',
+  'Spark Of Life':'Cost=2',
+  'Speech':'Cost=1,2',
+  'Spread':'Cost=1',
+  'Steady':'Cost=2',
+  'Sticky':'Cost=2',
+  'Strider':'Cost=1',
+  'Strong':'Cost=1,2',
+  'Strong Grip':'Cost=1',
+  'Strong Line':'Cost=1',
+  'Summonable':'Cost=2,4',
+  'Super Powers':'Cost=2,3,5,8',
+  'Surface Tension':'Cost=1',
+  'Swat':'Cost=1,2',
+  'Switchable':'Cost=1',
+  'Switchboard':'Cost=2',
+  'System Shock':'Cost=2',
+  'Telepathic Link':'Cost=1,2',
+  'Teleport Other':'Cost=5',
+  'Temporary Disintegration':'Cost=-1',
+  'Thrown Weapons':'Cost=2',
+  'Tireless':'',
+  'Tracker':'Cost=1',
+  'Transference':'Cost=2',
+  'Transmute':'Cost=3',
+  'Traverse':'Cost=3',
+  'True Invisibility':'Cost=2',
+  'Tunneler':'Cost=1',
+  'Ungainly':'Cost=-2',
+  'Very Old':'Cost=2',
+  'Vibrate':'Cost=5',
+  'Viscous':'Cost=2',
+  'Weapons':'',
+  'Written Word':'Cost=1',
+  'Yield':'Cost=1'
 };
 SWADESPC.WEAPONS = {
   'Baton':SWADE.WEAPONS.Baton + ' Weight=2',
@@ -265,10 +1115,19 @@ SWADESPC.WEAPONS = {
 };
 
 /* Defines rules related to powers. */
-SWADESPC.arcaneRules = function(rules, arcanas, powers, superPowers) {
+SWADESPC.arcaneRules = function(
+  rules, arcanas, powers, superPowers, superPowerModifiers
+) {
   SWADE.arcaneRules(rules, arcanas, powers);
+  QuilvynUtils.checkAttrTable
+    (superPowers, ['Cost', 'Note', 'Section', 'Modifiers']);
+  QuilvynUtils.checkAttrTable(superPowerModifiers, ['Cost', 'Note', 'Powers']);
   rules.defineEditorElement
     ('superPowers', 'Super Powers', 'set', 'superPowers', 'powers');
+  for(let spm in superPowerModifiers) {
+    rules.choiceRules
+      (rules, 'Super Power Modifier', spm, superPowerModifiers[spm]);
+  }
   for(let sp in superPowers) {
     rules.choiceRules(rules, 'Super Power', sp, superPowers[sp]);
   }
@@ -319,12 +1178,18 @@ SWADESPC.talentRules = function(
 SWADESPC.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Super Power') {
     SWADESPC.superPowerRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'SuperPowerPoints'),
-      QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Note'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifiers')
     );
     rules.addChoice('superPowers', name, attrs);
+  } else if(type == 'Super Power Modifier') {
+    SWADESPC.superPowerModifierRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Note'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Powers'),
+    );
   } else {
     rules.spcReplacedChoiceRules(rules, type, name, attrs);
   }
@@ -361,19 +1226,21 @@ SWADESPC.hindranceRulesExtra = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with power #name#, which requires
- * #superPowerPoints# Super Power Points to acquir, and can be cast at range
- * #range#. #description# is a concise description of the power's effects and
- * #modifiers# lists the super power point cost and effects of any
- * power-specific modifiers.
+ * FILL
  */
 SWADESPC.superPowerRules = function(
-  rules, name, superPowerPoints, range, description, modifiers
+  rules, name, cost, section, note, modifiers
 ) {
   // FILL
-  rules.defineRule('allocatedSuperPowerPoints',
-    'superPowers.' + name, '+=', superPowerPoints
-  );
+  rules.defineRule
+    ('allocatedSuperPowerPoints', 'superPowers.' + name, '+=', cost);
+};
+
+/*
+ * FILL
+ */
+SWADESPC.superPowerModifierRules = function( rules, name, cost, note, powers) {
+  // FILL
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
