@@ -5,6 +5,7 @@ the Savage Worlds RPG, applying the rules from these source books:
 <a href="https://peginc.com/product/savage-worlds-adventure-edition-core-rules-pdf-swade/">Savage Worlds Adventure Edition</a>;
 <a href="https://peginc.com/product/fantasy-companion-swade/">SWADE Fantasy Companion</a>;
 <a href="https://peginc.com/product/horror-companion-swade/">SWADE Horror Companion</a>;
+<a href="https://peginc.com/product/swade-super-powers-companion/">SWADE Super Power Companion</a>;
 <a href="https://peginc.com/product/savage-worlds-deluxe-explorers-edition/">Savage Worlds Deluxe Edition</a>;
 <a href="https://peginc.com/product/deadlands-the-weird-west-core-rules/"> Deadlands: The Weird West</a>;
 <a href="https://peginc.com/product/pathfinder-for-savage-worlds-core-rules/">Pathfinder for Savage Worlds Core Rules</a>.
@@ -36,6 +37,11 @@ lines to the file plugins/plugins.js:
     };
     RULESETS["Horror Companion supplement to SWADE rules"] = {
       url:'plugins/SWADEHC.js',
+      group:'Savage Worlds',
+      supplement:"Savage Worlds Adventurer's Edition"
+    };
+    RULESETS["Super Powers Companion supplement to SWADE rules"] = {
+      url:'plugins/SWADESPC.js',
       group:'Savage Worlds',
       supplement:"Savage Worlds Adventurer's Edition"
     };
