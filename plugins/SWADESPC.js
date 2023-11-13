@@ -1076,7 +1076,7 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Teleport Other':'Cost=5',
   'Temporary Disintegration':'Cost=-1',
   'Thrown Weapons':'Cost=2',
-  'Tireless':'',
+  'Tireless':'Cost=1',
   'Tracker':'Cost=1',
   'Transference':'Cost=2',
   'Transmute':'Cost=3',
@@ -1087,7 +1087,7 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Very Old':'Cost=2',
   'Vibrate':'Cost=5',
   'Viscous':'Cost=2',
-  'Weapons':'',
+  'Weapons':'Cost=1,2,3,4',
   'Written Word':'Cost=1',
   'Yield':'Cost=1'
 };
@@ -1123,7 +1123,10 @@ SWADESPC.arcaneRules = function(
     (superPowers, ['Cost', 'Note', 'Section', 'Modifiers']);
   QuilvynUtils.checkAttrTable(superPowerModifiers, ['Cost', 'Note', 'Powers']);
   rules.defineEditorElement
-    ('superPowers', 'Super Powers', 'set', 'superPowers', 'powers');
+    ('superPowerSelections', 'Super Powers', 'setbag', 'superPowerSelections',
+     'powers');
+  rules.defineSheetElement('Super Power Points', 'Power Count');
+  rules.defineSheetElement('Super Powers', 'Powers');
   for(let spm in superPowerModifiers) {
     rules.choiceRules
       (rules, 'Super Power Modifier', spm, superPowerModifiers[spm]);
@@ -1190,6 +1193,7 @@ SWADESPC.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Note'),
       QuilvynUtils.getAttrValueArray(attrs, 'Powers'),
     );
+    rules.addChoice('superPowerModifiers', name, attrs);
   } else {
     rules.spcReplacedChoiceRules(rules, type, name, attrs);
   }
@@ -1232,8 +1236,33 @@ SWADESPC.superPowerRules = function(
   rules, name, cost, section, note, modifiers
 ) {
   // FILL
+  let baseName = name + ' (Base: ' + cost + ' SPP)';
+  let baseSelection = 'superPowerSelections.' + baseName;
+  rules.addChoice('superPowerSelections', baseName, '');
+  rules.defineRule('superPowers.' + name, baseSelection, '=', '1');
   rules.defineRule
-    ('allocatedSuperPowerPoints', 'superPowers.' + name, '+=', cost);
+    ('allocatedSuperPowerPoints', baseSelection, '+=', cost + ' * source');
+  // TODO
+  rules.defineChoice('notes', 'superPowers.' + name + ':' + note);
+  let allModifiers = rules.getChoices('superPowerModifiers');
+  for(let i = 0; i < modifiers.length; i++) {
+    let m = modifiers[i];
+    if(!allModifiers || !(m in allModifiers)) {
+      console.log('Unknown super power modifier "' + m + '"');
+      continue;
+    }
+    let costs = QuilvynUtils.getAttrValueArray(allModifiers[m], 'Cost') || [1];
+    let modifierName = name + ' (' + m + ': ' + costs.join('/') + ' SPP)';
+    let modifierSelection = 'superPowerSelections.' + modifierName;
+    rules.addChoice('superPowerSelections', modifierName, '');
+    rules.defineRule(baseSelection, modifierSelection, '=', '1');
+    // Replace costs w/cumulative values for computing allocated points
+    for(let j = 1; j < costs.length; j++)
+      costs[j] += costs[j - 1];
+    rules.defineRule('allocatedSuperPowerPoints',
+      modifierSelection, '+', costs.length==1 ? costs[0] + ' * source' : ('[' + costs.join(', ') + '][source - 1] || ' + costs[costs.length - 1])
+    );
+  }
 };
 
 /*
