@@ -21,7 +21,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 "use strict";
 
 /*
- * This module loads the rules from the Savage Worlds Adventure Edition Fantasy
+ * This module loads the rules from the Savage Worlds Adventure Edition Horror
  * Companion. The SWADEHC function contains methods that load rules for
  * particular parts of the rules: ancestryRules for character ancestries,
  * arcaneRules for powers, etc. These member methods can be called
