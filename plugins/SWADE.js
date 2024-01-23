@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils, SWADEFC, SWADEHC */
+/* globals Expr, ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils */
 "use strict";
 
 /*
@@ -2317,39 +2317,54 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
  * choiceRules.
  */
 SWADE.removeChoice = function(rules, type, name) {
-  let choiceGroup =
+  let group =
     type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
-  let choices = rules.getChoices(choiceGroup);
-  let constantName = type.toUpperCase().replaceAll(' ', '_') + 'S';
-  if(choices && choices[name]) {
-    let currentAttrs = choices[name];
+  let choices = rules.getChoices(group);
+  if(!choices)
+    return;
+  let currentAttrs = choices[name];
+  if(currentAttrs) {
     delete choices[name];
-    // Disable rules based on this choice that affect character sheet
-    // Assume there are no rules to disable:
-    //   Concept, Era
-    // Assume any rules are sufficiently disabled by choice removal:
-    //   Arcana, Armor, Hindrance, Power, Shield, Skill, Weapon
-    // Need to take action to disable rules:
-    //   Edge, Feature, Race
-    if(type == 'Edge') {
-      rules.defineRule('features.' + name, 'edges.' + name, '=', 'null');
-    } else if(type == 'Feature') {
-      let prefix =
-        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-      QuilvynUtils.getAttrValueArray(currentAttrs, 'Section').forEach(s => {
-        rules.defineRule(s.toLowerCase() + 'Notes.' + prefix,
-          'features.' + name, '=', 'null'
-        );
-      });
+    // Q defines no way to delete rules outright; instead, we override with a
+    // noop all rules that have the removed choice as their source
+    if(type == 'Shield') {
+      // Remove this item from rules' cached item stats ...
+      let stats = rules[type.toLowerCase() + 'Stats'];
+      if(stats) {
+        for(let s in stats)
+          delete stats[s][name];
+      }
+      // ... and force a recomputation of associated rules
+      let first = Object.keys(choices)[0];
+      if(first)
+        rules.choiceRules(rules, type, first, choices[first]);
     } else if(type == 'Race') {
-      let abilities = QuilvynUtils.getAttrValueArray(currentAttrs, 'Abilities');
-      let prefix =
-        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-      let raceAdvances = prefix + 'Level';
-      abilities.forEach(f => {
-        rules.defineRule(prefix + 'Features.' + f, raceAdvances, '=', 'null');
+      let advances =
+        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') + 'Advances';
+      let targets = rules.allTargets(advances);
+      targets.forEach(x => {
+        rules.defineRule(x, advances, '=', 'null');
       });
+    } else {
+      let source =
+        type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') +
+        (type.match(/^(Edge|Feature|Hindrance|Skill)$/) ? 's' : '') +
+        '.' + name;
+      let targets = rules.allTargets(source);
+      targets.forEach(x => {
+        rules.defineRule(x, source, '=', 'null');
+      });
+      if(type == 'Skill') {
+        targets = rules.allTargets('skillAllocation.' + name);
+        targets.forEach(x => {
+          rules.defineRule(x, 'skillAllocation.' + name, '=', 'null');
+        });
+      }
+      delete rules.getChoices('notes')[group + '.' + name];
     }
+    // If this choice overloaded a plugin-defined one (e.g., a homebrew Human
+    // race), restore the plugin version
+    let constantName = type.toUpperCase().replaceAll(' ', '_') + 'S';
     if(rules.plugin &&
        rules.plugin[constantName] &&
        name in rules.plugin[constantName] &&
