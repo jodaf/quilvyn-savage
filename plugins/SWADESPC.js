@@ -267,7 +267,7 @@ SWADESPC.SUPER_POWERS = {
     'Note=' +
       '"FILL"',
   'Animal Control':
-    'Cost=Special ' +
+    'Cost=1 ' + // TODO
     'Modifiers=' +
       '"Requires Touch",Summonable,"Telepathic Link" ' +
     'Section=feature ' +
@@ -345,7 +345,7 @@ SWADESPC.SUPER_POWERS = {
     'Note=' +
       '"FILL"',
   'Damage Field':
-    'Cost=Special ' +
+    'Cost=1 ' + // TODO
     'Modifiers=' +
       '"Armor Piercing","Area Effect",Lethal,Permanent ' +
     'Section=feature ' +
@@ -605,7 +605,7 @@ SWADESPC.SUPER_POWERS = {
     'Note=' +
       '"FILL"',
   'Machine Control':
-    'Cost=Special ' +
+    'Cost=1 ' + // TODO
     'Modifiers=' +
       'Multi-Task,"Requires Touch" ' +
     'Section=feature ' +
@@ -1110,7 +1110,7 @@ SWADESPC.WEAPONS = {
   'Pulse Gatling':
     'Damage=3d6 Minstr=8 Weight=12 Category=Ranged Range=20 AP=4 ROF=3',
   'Pulse Cannon':
-    // TODO MinStr is actually d12+1
+    // MinStr of 12+1 hard-coded in combatRules
     'Damage=4d10 Minstr=12 Weight=200 Category=Ranged Range=100 AP=10 ROF=3',
 };
 
@@ -1123,17 +1123,16 @@ SWADESPC.arcaneRules = function(
     (superPowers, ['Cost', 'Note', 'Section', 'Modifiers']);
   QuilvynUtils.checkAttrTable(superPowerModifiers, ['Cost', 'Note', 'Powers']);
   rules.defineEditorElement
-    ('superPowerSelections', 'Super Powers', 'setbag', 'superPowerSelections',
-     'powers');
-  rules.defineSheetElement('Super Power Points', 'Power Count');
-  rules.defineSheetElement('Super Powers', 'Powers');
-  for(let spm in superPowerModifiers) {
-    rules.choiceRules
-      (rules, 'Super Power Modifier', spm, superPowerModifiers[spm]);
-  }
-  for(let sp in superPowers) {
-    rules.choiceRules(rules, 'Super Power', sp, superPowers[sp]);
-  }
+    ('superPowersChosen', 'Super Powers', 'setbag', 'superPowerChoices', 'armor');
+  rules.defineSheetElement('SuperPowerPart', 'EdgePart+', '%V', ' ');
+  rules.defineSheetElement
+    ('Super Power Points', 'SuperPowerPart/', '<b>Super Powers</b> (%V points):');
+  rules.defineSheetElement('Super Powers', 'SuperPowerPart/', '%V', '; ');
+  for(let s in superPowerModifiers)
+    rules.choiceRules(rules, 'Super Power Modifier', s, superPowerModifiers[s]);
+  for(let s in superPowers)
+    rules.choiceRules(rules, 'Super Power', s, superPowers[s]);
+  rules.defineRule('superPowerPoints', '', '=', '0');
   QuilvynRules.validAllocationRules
     (rules, 'superPowers', 'superPowerPoints', 'allocatedSuperPowerPoints');
 };
@@ -1143,7 +1142,9 @@ SWADESPC.combatRules = function(rules, armors, shields, weapons) {
   delete rules.getChoices('armors')['Body Armor'];
   delete rules.getChoices('weapons')['Baton'];
   SWADE.combatRules(rules, armors, shields, weapons);
-  // No changes needed to the rules defined by base method
+  rules.defineRule('combatNotes.pulseCannonStrengthPenalty',
+    'strengthStep', '+=', 'source<6 ? 1 : null'
+  );
 };
 
 /* Defines rules related to basic character identity. */
@@ -1230,20 +1231,53 @@ SWADESPC.hindranceRulesExtra = function(rules, name) {
 };
 
 /*
- * FILL
+ * Defines in #rules# the rules associated with super power #name#. #cost#
+ * gives the number of super power points required to take the power,
+ * #sections# and #notes# list the section names and notes used to describe
+ * the power, and #modifiers# list the modifiers available with the power.
  */
 SWADESPC.superPowerRules = function(
-  rules, name, cost, section, note, modifiers
+  rules, name, cost, sections, notes, modifiers
 ) {
-  // FILL
+
+  if(!name) {
+    console.log('Empty super power name');
+    return;
+  }
+  if(typeof cost != 'number' && cost != 'Special') {
+    console.log('Bad cost "' + cost + '" for super power ' + name);
+    return;
+  }
+  if(!Array.isArray(sections)) {
+    console.log('Bad sections list "' + sections + '" for super power ' + name);
+    return;
+  }
+  if(!Array.isArray(notes)) {
+    console.log('Bad notes list "' + notes + '" for super power ' + name);
+    return;
+  }
+  if(sections.length != notes.length) {
+    console.log(sections.length + ' sections, ' + notes.length + ' notes for super power ' + name);
+    return;
+  }
+  if(!Array.isArray(modifiers)) {
+    console.log
+      ('Bad modifiers list "' + modifiers + '" for super power ' + name);
+    return;
+  }
+
   let baseName = name + ' (Base: ' + cost + ' SPP)';
-  let baseSelection = 'superPowerSelections.' + baseName;
-  rules.addChoice('superPowerSelections', baseName, '');
-  rules.defineRule('superPowers.' + name, baseSelection, '=', '1');
+  let baseChoice = 'superPowerChoices.' + baseName;
+  let baseChosen = 'superPowersChosen.' + baseName;
+  let baseFeature = 'features.' + name + ' Super Power';
+  let basePower = 'superPowers.' + name;
+  let displayFormat = 'Base';
+  rules.addChoice('superPowerChoices', baseName, '');
+  rules.defineRule(basePower, baseChosen, '=', '1');
+  rules.defineRule(baseFeature, basePower, '=', '1');
   rules.defineRule
-    ('allocatedSuperPowerPoints', baseSelection, '+=', cost + ' * source');
-  // TODO
-  rules.defineChoice('notes', 'superPowers.' + name + ':' + note);
+    ('allocatedSuperPowerPoints', baseChosen, '+=', cost + ' * source');
+  SWADE.featureRules(rules, name + ' Super Power', sections, notes);
   let allModifiers = rules.getChoices('superPowerModifiers');
   for(let i = 0; i < modifiers.length; i++) {
     let m = modifiers[i];
@@ -1253,28 +1287,35 @@ SWADESPC.superPowerRules = function(
     }
     let costs = QuilvynUtils.getAttrValueArray(allModifiers[m], 'Cost') || [1];
     let modifierName = name + ' (' + m + ': ' + costs.join('/') + ' SPP)';
-    let modifierSelection = 'superPowerSelections.' + modifierName;
-    rules.addChoice('superPowerSelections', modifierName, '');
-    rules.defineRule(baseSelection, modifierSelection, '=', '1');
+    let modifierChosen = 'superPowersChosen.' + modifierName;
+    rules.addChoice('superPowerChoices', modifierName, '');
+    rules.defineRule(baseChosen, modifierChosen, '=', '1');
     // Replace costs w/cumulative values for computing allocated points
     for(let j = 1; j < costs.length; j++)
       costs[j] += costs[j - 1];
     rules.defineRule('allocatedSuperPowerPoints',
-      modifierSelection, '+', costs.length==1 ? costs[0] + ' * source' : ('[' + costs.join(', ') + '][source - 1] || ' + costs[costs.length - 1])
+      modifierChosen, '+', costs.length==1 ? costs[0] + ' * source' : ('[' + costs.join(', ') + '][source - 1] || ' + costs[costs.length - 1])
+    );
+    displayFormat += '%' + (i + 1);
+    rules.defineRule(basePower + '.' + (i + 1),
+      basePower, '=', '""',
+      modifierChosen, '=', '"+' + m + '"',
     );
   }
+  rules.defineChoice('notes', basePower + ':' + displayFormat);
 };
 
 /*
  * FILL
  */
-SWADESPC.superPowerModifierRules = function( rules, name, cost, note, powers) {
+SWADESPC.superPowerModifierRules = function(rules, name, cost, note, powers) {
   // FILL
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SWADESPC.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'superPowers') {
+    // FILL
   } else {
     return this.spcReplacedRandomizer(attributes, attribute);
   }
