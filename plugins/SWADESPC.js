@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /*jshint esversion: 6 */
 /* jshint forin: false */
-/* globals QuilvynUtils, SWADE */
+/* globals QuilvynRules, QuilvynUtils, SWADE */
 "use strict";
 
 /*
@@ -234,9 +234,9 @@ SWADESPC.SUPER_POWERS = {
     'Modifiers=' +
       '"Achilles Heel","Additional Power Type",Growth,Mastery,Reflection,' +
       'Transference,Transmute ' +
-    'Section=feature ' +
+    'Section=combat ' +
     'Note=' +
-      '"FILL"',
+      '"May attempt a free Focus Soak when taking Wounds from chosen matter or energy type"',
   'Additional Actions':
     'Cost=5 ' +
     'Modifiers=' +
@@ -250,15 +250,14 @@ SWADESPC.SUPER_POWERS = {
       '"Very Old" ' +
     'Section=feature ' +
     'Note=' +
-      '"FILL"',
+      '"Does not age"',
   'Altered Form':
     'Cost=2 ' +
     'Modifiers=' +
       '"Fall Proof",Grappler,Reach,"Requires Activation",Sticky,Viscous,' +
       'Yield ' +
     'Section=feature ' +
-    'Note=' +
-      '"FILL"',
+    'Note="Has a morphable body that negates Called Shots and halves Knockback distance and damage from falls and collisions"',
   'Animal Companion':
     'Cost=3 ' +
     'Modifiers=' +
@@ -272,56 +271,56 @@ SWADESPC.SUPER_POWERS = {
       '"Requires Touch",Summonable,"Telepathic Link" ' +
     'Section=feature ' +
     'Note=' +
-      '"FILL"',
+      '"May control beasts telepathically"',
   'Aquatic':
     'Cost=1 ' +
     'Modifiers=' +
       '"Fast Swimmer" ' +
-    'Section=feature ' +
+    'Section=attribute ' +
     'Note=' +
-      '"FILL"',
+      '"May hold breath for 15 min"',
   'Armor':
     'Cost=1 ' +
     'Modifiers=' +
       '"Heavy Armor","Partial Protection","Requires Activation",Sealed ' +
-    'Section=feature ' +
+    'Section=combat ' +
     'Note=' +
-      '"FILL"',
+      '"+2 natural armor"',
   'Awareness':
     'Cost=1 ' +
     'Modifiers=' +
       '"Requires Activation" ' +
-    'Section=feature ' +
+    'Section=combat ' +
     'Note=' +
-      '"FILL"',
+      '"Ignores 1 point of attack penalties"',
   'Blind':
     'Cost=1 ' +
     'Modifiers=' +
       '"Area Effect",Strong ' +
-    'Section=feature ' +
+    'Section=combat ' +
     'Note=' +
-      '"FILL"',
+      '"R10\' Successfuil Focus vs. Vigor inflicts -2 on sight-based actions (Raise -4)"',
   'Boost/Lower Trait':
     'Cost=2 ' +
     'Modifiers=' +
       '"Additional Recipients","Any Trait",Leech,Power,"Requires Touch" ' +
     'Section=feature ' +
     'Note=' +
-      '"FILL"',
+      '"R12\\" Increases or decreases chosen target Trait 1 step (Raise 2 steps) for 1 rd"',
   'Broadcast':
     'Cost=2 ' +
     'Modifiers=' +
       '"Channel Surfer",Manipulation,Range ' +
     'Section=feature ' +
     'Note=' +
-      '"FILL"',
+      '"R10 miles May see and hear signals (Focus-2 if encrypted)"',
   'Burrowing':
     'Cost=1 ' +
     'Modifiers=' +
       '"Block Buster",Pace,Tunneler ' +
-    'Section=feature ' +
+    'Section=ability ' +
     'Note=' +
-      '"FILL"',
+      '"May move through earth %{pace//2}\\"/rd"',
   'Chameleon':
     'Cost=3 ' +
     'Modifiers=' +
@@ -919,33 +918,35 @@ SWADESPC.SUPER_POWERS = {
       '"FILL"'
 };
 SWADESPC.SUPER_POWER_MODIFIERS = {
-  'Achilles Heel':'Cost=-1',
+  'Achilles Heel':'Cost=-1 Note="cannot absorb two chosen Power Types"',
   'Additional Power Type':'Cost=1,2,4,8',
-  'Additional Recipients':'Cost=1',
+  'Additional Recipients':'Cost=1 Note="affects +1 target"',
   'Additional Sense':'Cost=1',
   'Affect Others':'Cost=2',
   'Affliction':'Cost=2',
   'After Effects':'Cost=1',
-  'Alternate Trait':'Cost=1',
-  'Any Trait':'Cost=2',
+  'Alternate Trait':'Cost=1 Note="may use chosen Trait to activate"',
+  'Any Trait':'Cost=2 Note="may determine affected Trait when activated"',
   'Arcane':'Cost=2',
-  'Area Effect':'Cost=2,3,4', // TODO
+  'Area Effect':'Cost=2,3,4 Note="affects 3 in radius"', // TODO
   'Armor Piercing':'Cost=1',
   'Armored':'Cost=2,4',
   'Backlash':'Cost=-1',
   'Big Bang':'Cost=2',
   'Biometrics':'Cost=2',
-  'Block Buster':'Cost=1',
+  'Block Buster':
+    'Cost=1 ' +
+    'Note="successful attack damage vs. obstacle hardness breaks through"',
   'Bounce':'Cost=1',
   'Bulletproof Glass':'Cost=1',
   'Calibration':'Cost=2',
-  'Channel Surfer':'Cost=1',
+  'Channel Surfer':'Cost=1 Note="may access multiple channels simultaneously"',
   'Charge':'Cost=1',
   'Code Breaker':'Cost=1',
   'Concentration':'Cost=2',
   'Cone':'Cost=1',
   'Contagious':'Cost=1',
-  'Contingent':'Cost=0',
+  'Contingent':'Cost=0 Note="activation requires another successful action"',
   'Cure':'Cost=2',
   'Cure Disease':'Cost=2',
   'Cure Poison':'Cost=1',
@@ -957,7 +958,7 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Density':'Cost=5',
   'Dependency':'Cost=-2',
   'Destruction':'Cost=-1',
-  'Device':'Cost=-1',
+  'Device':'Cost=-1 Note="activated using an item that can be lost"',
   'Devices':'Cost=2',
   'Distance':'Cost=1,2',
   'Distraction':'Cost=1',
@@ -969,21 +970,23 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Extreme':'Cost=1',
   'FTL':'Cost=1',
   'Failsafe':'Cost=1',
-  'Fall Proof':'Cost=1',
+  'Fall Proof':'Cost=1 Note="suffers no falling damage"',
   'Fast':'Cost=2',
   'Fast Action':'Cost=2',
   'Fast Learner':'Cost=1',
-  'Fast Swimmer':'Cost=1,2',
+  'Fast Swimmer':'Cost=1,2 Note="%{pace+2} swim Speed"',
   'Fatigue':'Cost=2',
   'Film Quality':'Cost=1',
   'Fine Control':'Cost=3',
   'Flight':'Cost=1,2',
+  'Forceful':'Cost=1 Note="Knockback moves target +1d6 in"',
   'Forgetful':'Cost=2',
   'Full Spectrum':'Cost=3',
   'Glider':'Cost=-1',
-  'Grappler':'Cost=1',
+  'Grappler':'Cost=1 Note="+2 on grapple attacks and escapes"',
   'Greater Jinx':'Cost=2',
-  'Growth':'Cost=3',
+  'Growth':
+    'Cost=3 Note="gains +1 Size per Wound absorbed until end of encounter"',
   'Handling':'Cost=1,2',
   'Heavy Armor':'Cost=4',
   'Heavy Weapon':'Cost=1',
@@ -991,13 +994,13 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Inanimate Object':'Cost=2',
   'Intelligent':'Cost=2',
   'Leashed':'Cost=-2',
-  'Leech':'Cost=2',
+  'Leech':'Cost=2 Note="lowering target Trait increases self"',
   'Lethal':'Cost=-1,1',
   'Life Support':'Cost=2',
-  'Limitation':'Cost=-1',
-  'Linked':'Cost=2',
+  'Limitation':'Cost=-1 Note="usable only in specific circumstances"',
+  'Linked':'Cost=2 Note="may be activated by another successful action"',
   'Maneuverable':'Cost=1',
-  'Manipulation':'Cost=1,3',
+  'Manipulation':'Cost=1,3 Note="may access recorded broadcasts"',
   'Mastery':'Cost=1',
   'Memories':'Cost=2',
   'Memory Mastery':'Cost=3,5',
@@ -1015,7 +1018,7 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Outdoor Only':'Cost=-2',
   'Overload':'Cost=-1',
   'Overly Accurate':'Cost=-2',
-  'Pace':'Cost=1',
+  'Pace':'Cost=1 Note="may move %{pace} in/rd"',
   'Partial Power':'Cost=2',
   'Partial Protection':'Cost=-1,-2',
   'Passengers':'Cost=1,2,4',
@@ -1023,7 +1026,7 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Personal':'Cost=-2',
   'Physical Only':'Cost=-1',
   'Portal':'Cost=2',
-  'Power':'Cost=2,5',
+  'Power':'Cost=2,5 Note="target gains a free reroll 1/rd (Raise 1/action)"',
   'Powers':'Cost=4',
   'Primal':'Cost=-4',
   'Projection':'Cost=3,6',
@@ -1031,25 +1034,28 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Protector':'Cost=2',
   'Pummel':'Cost=4',
   'Quick Change':'Cost=1',
-  'Range':'Cost=1,2',
+  'Range':'Cost=2 Note="extended range"',
   'Rapid Teleport':'Cost=1',
   'Rate Of Fire':'Cost=3,6',
-  'Reach':'Cost=1',
+  'Reach':'Cost=1 Note="+1 Reach"',
   'Redirect':'Cost=4',
-  'Reflection':'Cost=2',
+  'Reflection':
+    'Cost=2 Note="may redirect absorbed Wounds to targets in 12 in radius"',
   'Refresh':'Cost=2',
   'Regrowth':'Cost=2',
   'Relief':'Cost=2',
   'Replication':'Cost=1',
-  'Requires Activation':'Cost=-1',
+  'Requires Activation':
+    'Cost=-1 ' +
+    'Note="requires deliberate activation and concentration to maintain"',
   'Requires Material':'Cost=-1,-2',
-  'Requires Touch':'Cost=-2',
+  'Requires Touch':'Cost=-2 Note="must touch target to activate"',
   'Resilient':'Cost=1',
   'Restoration':'Cost=2',
   'Resurrection':'Cost=2',
   'Retention':'Cost=4',
-  'Sealed':'Cost=2',
-  'Selective':'Cost=1',
+  'Sealed':'Cost=2 Note="armor is airtight"',
+  'Selective':'Cost=1 Note="may choose affected targets"',
   'Self':'Cost=-1',
   'Shareable':'Cost=1',
   'Size':'Cost=1',
@@ -1062,29 +1068,33 @@ SWADESPC.SUPER_POWER_MODIFIERS = {
   'Steady':'Cost=2',
   'Sticky':'Cost=2',
   'Strider':'Cost=1',
-  'Strong':'Cost=1,2',
+  'Strong':'Cost=1,2 Note="roll to avoid suffers -2 penalty"',
   'Strong Grip':'Cost=1',
   'Strong Line':'Cost=1',
-  'Summonable':'Cost=2,4',
+  'Summonable':'Cost=2,4 Note="may summon targets w/a successful Focus-2"',
   'Super Powers':'Cost=2,3,5,8',
   'Surface Tension':'Cost=1',
   'Swat':'Cost=1,2',
-  'Switchable':'Cost=1',
+  'Switchable':'Cost=1 Note="may switch between multiple versions"',
   'Switchboard':'Cost=2',
   'System Shock':'Cost=2',
-  'Telepathic Link':'Cost=1,2',
+  'Telepathic Link':'Cost=1,2 Note="may control targets telepathically"',
   'Teleport Other':'Cost=5',
   'Temporary Disintegration':'Cost=-1',
   'Thrown Weapons':'Cost=2',
   'Tireless':'Cost=1',
   'Tracker':'Cost=1',
-  'Transference':'Cost=2',
-  'Transmute':'Cost=3',
+  'Transference':
+    'Cost=2 ' +
+    'Note="may use an absorbed Wound to increase an attribute by 1 step for 5 rd"',
+  'Transmute':
+    'Cost=3 ' +
+    'Note="may use an absorbed Wound to gain +1 Toughness until end of encounter, perform a Power Stunt, or inflict +1d6 damage"',
   'Traverse':'Cost=3',
   'True Invisibility':'Cost=2',
-  'Tunneler':'Cost=1',
+  'Tunneler':'Cost=1 Note="may create tunnel"',
   'Ungainly':'Cost=-2',
-  'Very Old':'Cost=2',
+  'Very Old':'Cost=2 Note="+2 Smarts and Common Knowledge"',
   'Vibrate':'Cost=5',
   'Viscous':'Cost=2',
   'Weapons':'Cost=1,2,3,4',
@@ -1140,7 +1150,7 @@ SWADESPC.arcaneRules = function(
 /* Defines the rules related to combat. */
 SWADESPC.combatRules = function(rules, armors, shields, weapons) {
   delete rules.getChoices('armors')['Body Armor'];
-  delete rules.getChoices('weapons')['Baton'];
+  delete rules.getChoices('weapons').Baton;
   SWADE.combatRules(rules, armors, shields, weapons);
   rules.defineRule('combatNotes.pulseCannonStrengthPenalty',
     'strengthStep', '+=', 'source<6 ? 1 : null'
@@ -1187,12 +1197,13 @@ SWADESPC.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Note'),
       QuilvynUtils.getAttrValueArray(attrs, 'Modifiers')
     );
+    SWADESPC.superPowerRulesExtra(rules, name);
     rules.addChoice('superPowers', name, attrs);
   } else if(type == 'Super Power Modifier') {
     SWADESPC.superPowerModifierRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Cost'),
       QuilvynUtils.getAttrValue(attrs, 'Note'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Powers'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Powers')
     );
     rules.addChoice('superPowerModifiers', name, attrs);
   } else {
@@ -1211,7 +1222,7 @@ SWADESPC.edgeRulesExtra = function(rules, name) {
     rules.defineRule('edgePoints', 'features.' + name, '+', '1');
     rules.defineRule('superPowerEdgeCount', 'features.' + name, '+=', '1');
     rules.defineRule('superPowerPoints',
-      'features.' + name, '=', matchInfo[1]=='V' ? 75 : matchInfo[1] == 'IV' ? 60 : (15 * matchInfo.length)
+      'features.' + name, '=', matchInfo[1]=='V' ? 75 : matchInfo[1] == 'IV' ? 60 : (15 * matchInfo[1].length)
     );
     rules.defineRule
       ('powerLimit', 'superPowerPoints', '=', 'Math.floor(source / 3)');
@@ -1267,25 +1278,30 @@ SWADESPC.superPowerRules = function(
   }
 
   let baseName = name + ' (Base: ' + cost + ' SPP)';
-  let baseChoice = 'superPowerChoices.' + baseName;
   let baseChosen = 'superPowersChosen.' + baseName;
-  let baseFeature = 'features.' + name + ' Super Power';
+  let baseFeature = 'features.Super ' + name;
+  let baseNoteName = 'super' + name.replaceAll(' ', '');
   let basePower = 'superPowers.' + name;
-  let displayFormat = 'Base';
   rules.addChoice('superPowerChoices', baseName, '');
   rules.defineRule(basePower, baseChosen, '=', '1');
   rules.defineRule(baseFeature, basePower, '=', '1');
   rules.defineRule
     ('allocatedSuperPowerPoints', baseChosen, '+=', cost + ' * source');
-  SWADE.featureRules(rules, name + ' Super Power', sections, notes);
+  let modifierPlaceholders = '';
+  for(let i = 1; i <= modifiers.length; i++)
+    modifierPlaceholders += '%' + i;
+  let displayFormat = 'Base' + modifierPlaceholders;
+  notes = notes.map(x => x + modifierPlaceholders);
+  SWADE.featureRules(rules, 'Super ' + name, sections, notes);
   let allModifiers = rules.getChoices('superPowerModifiers');
   for(let i = 0; i < modifiers.length; i++) {
     let m = modifiers[i];
-    if(!allModifiers || !(m in allModifiers)) {
-      console.log('Unknown super power modifier "' + m + '"');
-      continue;
-    }
-    let costs = QuilvynUtils.getAttrValueArray(allModifiers[m], 'Cost') || [1];
+    if(!allModifiers || !(m in allModifiers))
+      console.log('Unknown modifier "' + m + '" for super power ' + name);
+    let costs =
+      QuilvynUtils.getAttrValueArray(allModifiers[m] || '', 'Cost') || [1];
+    let modifierNote =
+      QuilvynUtils.getAttrValue(allModifiers[m] || '', 'Note') || 'FILL';
     let modifierName = name + ' (' + m + ': ' + costs.join('/') + ' SPP)';
     let modifierChosen = 'superPowersChosen.' + modifierName;
     rules.addChoice('superPowerChoices', modifierName, '');
@@ -1296,13 +1312,34 @@ SWADESPC.superPowerRules = function(
     rules.defineRule('allocatedSuperPowerPoints',
       modifierChosen, '+', costs.length==1 ? costs[0] + ' * source' : ('[' + costs.join(', ') + '][source - 1] || ' + costs[costs.length - 1])
     );
-    displayFormat += '%' + (i + 1);
     rules.defineRule(basePower + '.' + (i + 1),
       basePower, '=', '""',
-      modifierChosen, '=', '"+' + m + '"',
+      modifierChosen, '=', '"+' + m + '"'
     );
+    for(let j = 0; j < notes.length; j++) {
+      rules.defineRule(sections[j].toLowerCase() + 'Notes.' + baseNoteName + '.' + (i + 1),
+        basePower, '=', '""',
+        modifierChosen, '=',
+          modifierNote.includes('"') ? "'; " + modifierNote + "'" : ('"; ' + modifierNote + '"')
+      );
+    }
   }
   rules.defineChoice('notes', basePower + ':' + displayFormat);
+};
+
+/*
+ * Defines in #rules# the rules associated with super power #name# that cannot
+ * be derived directly from the attributes passed to superPowerRules.
+ */
+SWADESPC.superPowerRulesExtra = function(rules, name) {
+  if(name == 'Ageless') {
+    rules.defineRule('smartsModifier',
+      'featureNotes.ageless.1', '+=', 'source == "" ? null : 2'
+    );
+    rules.defineRule('skillModifier.Common Knowledge',
+      'featureNotes.ageless.1', '+=', 'source == "" ? null : 2'
+    );
+  }
 };
 
 /*
@@ -1315,7 +1352,46 @@ SWADESPC.superPowerModifierRules = function(rules, name, cost, note, powers) {
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SWADESPC.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'superPowers') {
-    // FILL
+    let attrs = this.applyRules(attributes);
+    let costs = [];
+    let choices = [];
+    let allPowers = this.getChoices('superPowers');
+    let allModifiers = this.getChoices('superPowerModifiers');
+    let unallocatedPoints =
+      (attrs.superPowerPoints || 0) - (attrs.allocatedSuperPowerPoints || 0);
+    for(let p in allPowers) {
+      let cost = QuilvynUtils.getAttrValue(allPowers[p], 'Cost') || '1';
+      let baseName = p + ' (Base: ' + cost + ' SPP)';
+      if('superPowersChoice.' + baseName in attrs)
+        continue;
+      choices.push(p);
+      costs.push(cost);
+    }
+    while(unallocatedPoints > 0 && choices.length > 0) {
+      let index = QuilvynUtils.random(0, choices.length - 1);
+      let cost = costs[index];
+      let power = choices[index];
+      choices.splice(index, 1);
+      costs.splice(index, 1);
+      if(cost > unallocatedPoints)
+        continue;
+      let baseName = power + ' (Base: ' + cost + ' SPP)';
+      attributes['superPowersChosen.' + baseName] = 1;
+      unallocatedPoints -= cost;
+      let modifiers =
+        QuilvynUtils.getAttrValueArray(allPowers[power], 'Modifiers');
+      if(modifiers.length > 0 && QuilvynUtils.random(1, 10) < 9) {
+        let index = QuilvynUtils.random(0, modifiers.length - 1);
+        let m = modifiers[index];
+        let cost =
+          QuilvynUtils.getAttrValue(allModifiers[m] || '', 'Cost') || '1';
+        if(m in allModifiers && cost < unallocatedPoints) {
+          let modifierName = power + ' (' + m + ': ' + cost + ' SPP)';
+          attributes['superPowersChosen.' + modifierName] = 1;
+          unallocatedPoints -= cost;
+        }
+      }
+    }
   } else {
     return this.spcReplacedRandomizer(attributes, attribute);
   }
