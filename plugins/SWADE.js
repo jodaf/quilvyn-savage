@@ -3069,7 +3069,7 @@ SWADE.weaponRules = function(
     console.log('Bad minStr "' + minStr + '" for weapon ' + name);
   }
   if(typeof weight != 'number') {
-    console.log('Bad minStr "' + minStr + '" for weapon ' + name);
+    console.log('Bad weight "' + weight + '" for weapon ' + name);
   }
   if(!(category + '').match(/^(one-handed|two-handed|ranged|unarmed)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
