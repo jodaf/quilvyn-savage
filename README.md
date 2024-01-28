@@ -22,29 +22,29 @@ contents of the plugins/ and Images/ subdirectories are placed into the
 corresponding Quilvyn installation subdirectories, then append the following
 lines to the file plugins/plugins.js:
 
-    RULESETS["Savage Worlds Deluxe Edition"] = {
+    RULESETS["Savage Worlds Deluxe Edition (SWD)"] = {
       url:'plugins/SWD.js',
       group:'Savage Worlds',
       require:'SWADE.js'
     };
-    RULESETS["Savage Worlds Adventurer's Edition"] = {
+    RULESETS["Savage Worlds Adventurer's Edition (SWADE)"] = {
       url:'plugins/SWADE.js',
       group:'Savage Worlds'
     };
     RULESETS["Fantasy Companion supplement to SWADE rules"] = {
       url:'plugins/SWADEFC.js',
       group:'Savage Worlds',
-      supplement:"Savage Worlds Adventurer's Edition"
+      supplement:"Savage Worlds Adventurer's Edition (SWADE)"
     };
     RULESETS["Horror Companion supplement to SWADE rules"] = {
       url:'plugins/SWADEHC.js',
       group:'Savage Worlds',
-      supplement:"Savage Worlds Adventurer's Edition"
+      supplement:"Savage Worlds Adventurer's Edition (SWADE)"
     };
     RULESETS["Super Powers Companion supplement to SWADE rules"] = {
       url:'plugins/SWADESPC.js',
       group:'Savage Worlds',
-      supplement:"Savage Worlds Adventurer's Edition"
+      supplement:"Savage Worlds Adventurer's Edition (SWADE)"
     };
     RULESETS["Deadlands - The Weird West"] = {
       url:'plugins/WeirdWest.js',
