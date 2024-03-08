@@ -1398,8 +1398,8 @@ WeirdWest.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValue(attrs, 'School'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier'),
+      QuilvynUtils.getAttrValue(attrs, 'BasedOn')
     );
   else if(type == 'Race')
     WeirdWest.raceRules(rules, name,
@@ -1627,13 +1627,17 @@ WeirdWest.nicknameRules = function(rules, name, types, longs, moves) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects.
+ * description of the power's effects. #modifiers# lists specific modifications
+ * that may be applied when using this power. #basedOn#, if defined, is an
+ * existing power that this power adapts; other undefined parameters are copied
+ * from the attributes of this power.
  */
 WeirdWest.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school, modifiers
+  rules, name, advances, powerPoints, range, description, modifiers, basedOn
 ) {
-  SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, school, modifiers);
+  SWADE.powerRules(
+    rules, name, advances, powerPoints, range, description, modifiers, basedOn
+  );
   // No changes needed to the rules defined by base method
 };
 

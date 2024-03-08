@@ -1214,7 +1214,8 @@ SWD.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Advances'),
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
-      QuilvynUtils.getAttrValue(attrs, 'Description')
+      QuilvynUtils.getAttrValue(attrs, 'Description'),
+      QuilvynUtils.getAttrValue(attrs, 'BasedOn')
     );
   else if(type == 'Race') {
     SWD.raceRules(rules, name,
@@ -1389,13 +1390,15 @@ SWD.hindranceRulesExtra = function(rules, name) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects.
+ * description of the power's effects. #basedOn#, if defined, is an existing
+ * power that this power adapts; other undefined parameters are copied from the
+ * attributes of this power.
  */
 SWD.powerRules = function(
-  rules, name, advances, powerPoints, range, description
+  rules, name, advances, powerPoints, range, description, basedOn
 ) {
   SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, null, []);
+    (rules, name, advances, powerPoints, range, description, [], basedOn);
   // No changes needed to the rules defined by base method
 };
 

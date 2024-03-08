@@ -1839,7 +1839,8 @@ PF4SW.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description'),
       QuilvynUtils.getAttrValue(attrs, 'School'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier'),
+      QuilvynUtils.getAttrValue(attrs, 'BasedOn')
     );
   else if(type == 'Shield')
     PF4SW.shieldRules(rules, name,
@@ -2229,18 +2230,33 @@ PF4SW.languageRules = function(rules, name) {
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
  * description of the power's effects and #school#, if defined, is the magic
- * school that defines the power.
+ * school that defines the power. #modifiers# lists specific modifications that
+ * may be applied when using this power. #basedOn#, if defined, is an existing
+ * power that this power adapts; other undefined parameters are copied from the
+ * attributes of this power.
  */
 PF4SW.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school, modifiers
+  rules, name, advances, powerPoints, range, description, school, modifiers,
+  basedOn
 ) {
+  if(basedOn && !school) {
+    let basePowerAttrs = rules.getChoices('powers')[basedOn];
+    if(basePowerAttrs)
+      school = QuilvynUtils.getAttrValue(basePowerAttrs, 'School');
+  }
   if(!(school + '').match(/^(Abjuration|Conjuration|Divination|Enchantment|Evocation|Illusion|Necromancy|Transmutation|Universal)$/)) {
     console.log('Bad school "' + school + '" for spell ' + name);
     return;
   }
-  SWADE.powerRules
-    (rules, name, advances, powerPoints, range, description, school, modifiers);
-  // No changes needed to the rules defined by base method
+  SWADE.powerRules(
+    rules, name, advances, powerPoints, range, description, modifiers, basedOn
+  );
+  // Add the school abbreviation to the power display
+  let note = rules.getChoices('notes')['powers.' + name];
+  if(note) {
+    note = note.replace('PP', 'PP ' + school.substring(0, 4));
+    rules.getChoices('notes')['powers.' + name] = note;
+  }
 };
 
 /*

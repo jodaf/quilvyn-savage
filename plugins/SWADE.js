@@ -1937,8 +1937,10 @@ SWADE.WEAPONS = {
 /* Defines rules related to powers. */
 SWADE.arcaneRules = function(rules, arcanas, powers) {
   QuilvynUtils.checkAttrTable(arcanas, ['Skill', 'Powers']);
+  // Allow School as a power attribute to make life easier for PF4SW, even
+  // though it's not recognized in this plugin
   QuilvynUtils.checkAttrTable
-    (powers, ['Advances', 'PowerPoints', 'Range', 'Description', 'School', 'Modifier']);
+    (powers, ['Advances', 'PowerPoints', 'Range', 'Description', 'Modifier', 'School']);
   for(let arcana in arcanas) {
     rules.choiceRules(rules, 'Arcana', arcana, arcanas[arcana]);
   }
@@ -2268,8 +2270,8 @@ SWADE.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'PowerPoints'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Description'),
-      QuilvynUtils.getAttrValue(attrs, 'School'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Modifier')
+      QuilvynUtils.getAttrValueArray(attrs, 'Modifier'),
+      QuilvynUtils.getAttrValue(attrs, 'BasedOn')
     );
   else if(type == 'Race') {
     SWADE.raceRules(rules, name,
@@ -2820,16 +2822,34 @@ SWADE.hindranceRulesExtra = function(rules, name) {
  * Defines in #rules# the rules associated with power #name#, which may be
  * acquired only after #advances# advances, requires #powerPoints# Power Points
  * to use, and can be cast at range #range#. #description# is a concise
- * description of the power's effects and #school#, if defined, is the magic
- * school that defines the power, and #modifiers# lists the power point cost
- * and effects of any power-specific modifiers.
+ * description of the power's effects. #modifiers# lists specific modifications
+ * that may be applied when using this power. #basedOn#, if defined, is an
+ * existing power that this power adapts; other undefined parameters are copied
+ * from the attributes of this power.
  */
 SWADE.powerRules = function(
-  rules, name, advances, powerPoints, range, description, school, modifiers
+  rules, name, advances, powerPoints, range, description, modifiers, basedOn
 ) {
   if(!name) {
     console.log('Empty power name');
     return;
+  }
+  if(basedOn) {
+    let basePowerAttrs = rules.getChoices('powers')[basedOn];
+    if(!basePowerAttrs) {
+      console.log('Bad basedOn "' + basedOn + '" for power ' + name);
+      return;
+    }
+    if(advances == null)
+      advances = QuilvynUtils.getAttrValue(basePowerAttrs, 'Advances');
+    if(powerPoints == null)
+      powerPoints = QuilvynUtils.getAttrValue(basePowerAttrs, 'PowerPoints');
+    if(range == null)
+      range = QuilvynUtils.getAttrValue(basePowerAttrs, 'Range');
+    if(description == null)
+      description = QuilvynUtils.getAttrValue(basePowerAttrs, 'Description');
+    if(modifiers.length == 0)
+      modifiers = QuilvynUtils.getAttrValueArray(basePowerAttrs, 'Modifier');
   }
   if(typeof advances != 'number') {
     console.log('Bad advances "' + advances + '" for power ' + name);
@@ -2858,10 +2878,10 @@ SWADE.powerRules = function(
   if(QuilvynRules.wrapVarsContainingSpace)
     description = QuilvynRules.wrapVarsContainingSpace(description);
   let powerAttrs = powerPoints + ' PP';
-  if(school)
-    powerAttrs += ' ' + school.substring(0, 4);
   if(modifiers.length > 0)
     description += ' (' + modifiers.map(x => x.replace(/(\+?\d+(\/\+?\d+)* PP)/, '<b>$1</b>')).join('; ') + ')';
+  if(basedOn)
+    description += ' (ref <i>' + basedOn + ')';
   rules.defineChoice
     ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + description);
 };
@@ -3478,7 +3498,8 @@ SWADE.choiceEditorElements = function(rules, type) {
       ['PowerPoints', 'Power Points', 'text', [5]],
       ['Range', 'Range', 'text', [15]],
       ['Description', 'Description', 'text', [60]],
-      ['Modifier', 'Modifier', 'text', [60]]
+      ['Modifier', 'Modifier', 'text', [60]],
+      ['BasedOn', 'Based On Power', 'text', [30]]
     );
   } else if(type == 'Race')
     result.push(
