@@ -2881,7 +2881,7 @@ SWADE.powerRules = function(
   if(modifiers.length > 0)
     description += ' (' + modifiers.map(x => x.replace(/(\+?\d+(\/\+?\d+)* PP)/, '<b>$1</b>')).join('; ') + ')';
   if(basedOn)
-    description += ' (ref <i>' + basedOn + ')';
+    description += ' (see <i>' + basedOn + ')';
   rules.defineChoice
     ('notes', 'powers.' + name + ':(' + powerAttrs + ') ' + range + description);
 };
