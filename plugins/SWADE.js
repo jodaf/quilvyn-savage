@@ -68,7 +68,7 @@ function SWADE() {
 
 }
 
-SWADE.VERSION = '2.4.1.0';
+SWADE.VERSION = '2.4.1.1';
 
 /* List of choices that can be expanded by house rules. */
 SWADE.CHOICES = [
@@ -3277,16 +3277,15 @@ SWADE.createViewers = function(rules, viewers) {
       let outerSep = name == '\n';
       viewer.addElements(
         {name: '_top', borders: 1, separator: '\n'},
-        {name: 'Header', within: '_top'},
+        {name: 'Header', within: '_top', separator:''},
           {name: 'Image Url', within: 'Header', format: '<img src="%V" alt="No Image" style="height:75px; vertical-align:middle"/>&nbsp;&nbsp;'},
-          {name: 'Identity', within: 'Header', separator: ''},
-            {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
-            {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
-            {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Era', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Rank', within: 'Identity', format: ' <b>%V</b>'},
-            {name: 'Concepts', within: 'Identity', format: ' <b>%V</b>',
-             separator: '/'},
+          {name: 'Name', within: 'Header', format: '<b>%V</b>'},
+          {name: 'Gender', within: 'Header', format: ' -- <b>%V</b>'},
+          {name: 'Race', within: 'Header', format: ' <b>%V</b>'},
+          {name: 'Era', within: 'Header', format: ' <b>%V</b>'},
+          {name: 'Rank', within: 'Header', format: ' <b>%V</b>'},
+          {name: 'Concepts', within: 'Header', format: ' <b>%V</b>',
+           separator: '/'},
         {name: 'Characteristics', within: '_top', separator: outerSep},
           {name: 'Attribute Points', within: 'Characteristics', format: '<b>Attributes</b> (%V Points):'},
           {name: 'Attributes', within: 'Characteristics', separator: innerSep},
